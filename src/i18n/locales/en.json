@@ -1,0 +1,282 @@
+{
+  "login": {
+    "title": "Training Management System",
+    "emailLabel": "Email or Employee ID",
+    "emailPlaceholder": "Enter your email or employee ID",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "forgotPassword": "Forgot password?",
+    "button": "Sign In",
+    "signingIn": "Signing In...",
+    "or": "OR",
+    "newEmployee": "New Employee?",
+    "completeEmployeeOnboarding": "Complete Employee Onboarding",
+    "secureLogin": "SECURE ENTERPRISE LOGIN",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacey Policy",
+    "stayLoggedIn": "Stay logged in on this device",
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required"
+    }
+  },
+
+  "register": {
+    "title": "New Employee Account",
+    "subtitle": "Please fill in the details below to register a new employee on the Avante Medical LMS. This will create their unique profile and access credentials.",
+    "emailLabel": "Email or Employee ID",
+    "emailPlaceholder": "Enter your email or employee ID",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "forgotPassword": "Forgot password?",
+    "button": "Sign In",
+    "signingIn": "Signing In...",
+    "or": "OR",
+    "newEmployee": "New Employee?",
+    "completeEmployeeOnboarding": "Complete Employee Onboarding",
+    "secureLogin": "SECURE ENTERPRISE LOGIN",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacey Policy",
+    "stayLoggedIn": "Stay logged in on this device",
+    "footerText": "By creating an account, you agree to Avante Medical's Terms of Service and Privacy Policy.",
+    "details": {
+      "personalInfo": "Personal Information",
+      "createPassword": "Create Password",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter full name",
+      "email": "Email Address",
+      "emailPlaceholder": "Enter email address",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter phone number",
+      "employeeId": "Employee ID",
+      "employeeIdPlaceholder": "Enter Employee ID",
+      "department": "Department",
+      "departmentPlaceholder": "Select Department",
+      "designation": "Designation",
+      "designationPlaceholder": "Select Designation",
+      "region": "Region",
+      "regionPlaceholder": "Select region",
+      "city": "City",
+      "cityPlaceholder": "Enter city",
+      "role": "Role",
+      "rolePlaceholder": "Select role",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "Enter new password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter password",
+      "profileImage": "Profile Image",
+      "uploadImage": "Upload Image",
+      "deleteText": "Are you sure you want to delete this user?"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
+      "roleRequired": "Role is required",
+      "departmentRequired": "Department is required",
+      "designationRequired": "Designation is required",
+      "regionRequired": "Region is required",
+      "cityRequired": "City is required",
+      "mobileRequired": "Mobile number is required",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 6 characters",
+      "confirmPasswordRequired": "Confirm password is required",
+      "passwordMatch": "Passwords must match"
+    },
+    "actions": {
+      "createAccount": "Create Account",
+      "creating": "Creating"
+    }
+  },
+
+  "forgotPassword": {
+    "title": "Forgot your password?",
+    "subtitle": "Enter your registered email address and we'll send you a link to reset your password.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@company.com",
+    "button": "Send Link",
+    "sending": "Sending...",
+    "back": "Back to sign in",
+    "spam": "Check your spam folder",
+    "notReceived": "Didn't receive the email?",
+    "rememberYourPassword": "Remember your password?",
+    "signIn": "Sign In",
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address"
+    }
+  },
+
+  "checkEmail": {
+    "title": "Check Your Email",
+    "subtitle": "We sent a password reset link to",
+    "openApp": "Open Email App",
+    "resend": "Resend Link",
+    "back": "Back to sign in"
+  },
+
+  "resetPassword": {
+    "title": "Reset Password",
+    "subtitle": "Set a new password to regain access to your account.",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "placeholderNew": "Enter new password",
+    "placeholderConfirm": "Re-enter new password",
+    "update": "Reset Password",
+    "updating": "Resetting...",
+    "rules": {
+      "min": "Minimum 8 characters",
+      "uppercase": "At least 1 uppercase letter",
+      "number": "At least 1 number",
+      "special": "At least 1 special character"
+    },
+    "validation": {
+      "passwordRequired": "Password is required",
+      "passwordMin": "Minimum 8 characters",
+      "passwordUppercase": "At least 1 uppercase letter",
+      "passwordNumber": "At least 1 number",
+      "passwordSpecial": "At least 1 special character",
+      "confirmPasswordRequired": "Confirm password is required",
+      "passwordMatch": "Passwords must match"
+    }
+  },
+
+  "changePassword": {
+    "title": "Change Password",
+    "subtitle": "Update your password to keep your account secure.",
+    "oldPassword": "Old Password",
+    "oldPasswordPlaceholder": "Enter Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "placeholderNew": "Enter new password",
+    "placeholderConfirm": "Re-enter new password",
+    "update": "Update Password",
+    "updating": "Updating...",
+    "rules": {
+      "min": "Minimum 8 characters",
+      "uppercase": "At least 1 uppercase letter",
+      "number": "At least 1 number",
+      "special": "At least 1 special character"
+    },
+    "validation": {
+      "oldPassword": "Old password is required",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Minimum 8 characters",
+      "passwordUppercase": "At least 1 uppercase letter",
+      "passwordNumber": "At least 1 number",
+      "passwordSpecial": "At least 1 special character",
+      "confirmPasswordRequired": "Confirm password is required",
+      "passwordMatch": "Passwords must match"
+    }
+  },
+
+  "profile": {
+    "title": "Profile Settings",
+    "subtitle": "Manage your personal information and account details",
+
+    "details": {
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter email address",
+      "mobile": "Mobile Number",
+      "mobilePlaceholder": "Enter 10 digit mobile number",
+      "city": "City",
+      "cityPlaceholder": "Enter city",
+      "country": "Country",
+      "countryPlaceholder": "Select country",
+      "upload": "Upload"
+    },
+
+    "actions": {
+      "updateProfile": "Update Profile",
+      "updating": "Updating..."
+    },
+
+    "validation": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email",
+      "mobileRequired": "Mobile number is required",
+      "mobileInvalid": "Enter valid 10-digit mobile number",
+      "cityRequired": "City is required",
+      "cityMin": "City must be at least 2 characters",
+      "countryRequired": "Country is required"
+    }
+  },
+
+  "navbar": {
+    "searchPlaceholder": "Search analytics, users or courses...",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "profile": "Profile",
+    "changePassword": "Change Password",
+    "logout": "Logout"
+  },
+
+  "sidebar": {
+    "dashboard": "Dashboard",
+
+    "userManagement": "User Management",
+    "assignTrainingProgram": "Assign Training Program",
+
+    "trainingPrograms": "Training Programs",
+    "programList": "Program List",
+    "createProgram": "Create Program",
+    "programAssignment": "Program Assignment",
+
+    "curriculumManagement": "Curriculum Management",
+    "levels": "Levels",
+    "modules": "Modules",
+    "chapters": "Chapters",
+    "topics": "Topics",
+    "bulkImport": "Bulk Import",
+
+    "contentManagement": "Content Management",
+    "learningUnitBuilder": "Learning Unit Builder",
+    "interactiveContent": "Interactive Content",
+    "mediaLibrary": "Media Library",
+
+    "assessmentManagement": "Assessment Management",
+    "quizForTopic": "Quiz for Topic",
+    "examForLevel": "Exam for Level",
+    "faq": "FAQ",
+
+    "trainingCertification": "Training & Certification",
+    "trainingAssignment": "Training Assignment",
+    "progressTracker": "Progress Tracker",
+    "certification": "Certification",
+
+    "reportsAdministration": "Reports & Administration",
+    "topResult": "Top Result",
+    "reportsAnalytics": "Reports & Analytics",
+    "userAnalytics": "User Analytics",
+    "trainingAnalytics": "Training Analytics",
+    "performanceReports": "Performance Reports",
+    "completionReports": "Completion Reports",
+    "rolesPermission": "Roles & Permission",
+    "systemSettings": "System Settings",
+
+    "multiLanguage": "Multi Language",
+
+    "logout": "Logout"
+  },
+
+  "globalConfirmationModal": {
+    "confirmDeletion": "Confirm Deletion",
+    "cancle": "Cancle",
+    "confirm": "Confirm"
+  },
+
+  "loaderText": "Please wait while we process your request",
+
+  "sessionModal": {
+    "title": "Session Expiring",
+    "description": "You’ve been inactive. You’ll be logged out soon.",
+    "continue": "Continue",
+    "logout": "Logout"
+  }
+}
