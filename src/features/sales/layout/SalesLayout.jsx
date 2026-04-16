@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import useIdleTimeout from "../../../hooks/useIdleTimeout";
 import SessionModal from "../common/SessionModal";
+import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import NavbarBottom from "../components/NavbarBottom";
 
 const SalesLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -29,25 +30,25 @@ const SalesLayout = () => {
         onLogout={handleLogout}
       />
       <div className="h-screen flex flex-col overflow-hidden">
-        {/* Top Navbar — passes toggle handler */}
-        <Navbar
+        <Header
           onMenuToggle={() => setSidebarOpen((p) => !p)}
           isSidebarOpen={sidebarOpen}
         />
 
-        {/* Sidebar + Main Content */}
-        <div className="flex flex-1 overflow-hidden relative">
-          {/* Sidebar — handles both desktop (static) and mobile (drawer) */}
-          <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        {/* Desktop Navbar */}
+        <Navbar />
 
-          {/* Main Content */}
+        <div className="flex flex-1 overflow-hidden relative">
           <main className="flex-1 overflow-auto bg-white custom-scrollbar">
-            {/* Inner padding — slightly tighter on mobile */}
-            <div className="p-4 sm:p-5 lg:p-6 min-h-full ">
+            {/* Centered Content with Max Width */}
+            <div className="max-w-7xl mx-auto p-4 sm:p-5 lg:p-6 min-h-full pb-20 sm:pb-6">
               <Outlet />
             </div>
           </main>
         </div>
+
+        {/* Mobile Bottom Navbar */}
+        <NavbarBottom />
       </div>
     </>
   );
