@@ -4,6 +4,18 @@ import WorkInProgress from "./ModuleProgress";
 import Dashboard from "../pages/dashboad/Dashboard";
 import Levels from "../pages/levels/Levels";
 import LevelDetails from "../pages/levels/components/LevelDetails";
+import Quize from "../pages/quize/Quize";
+import QuizeResult from "../pages/quize/QuizeResult";
+import Certificate from "../pages/certificate/Certificate";
+import ProgressStats from "../pages/progress/ProgressStats";
+import Profile from "../pages/profile/Profile";
+import ProfileDetails from "../pages/profile/components/ProfileDetails";
+import ChangePassword from "../pages/profile/components/ChangePassword";
+import Chapters from "../pages/chapters/Chapters";
+import Modules from "../pages/modules/Modules";
+import Topics from "../pages/topics/Topic";
+import Units from "../pages/topics/Units";
+import Exam from "../pages/exam/Exam";
 
 const SalesRoutes = (
   <Route
@@ -16,6 +28,32 @@ const SalesRoutes = (
       {/* levels */}
       <Route path="levels" element={<Levels />} />
       <Route path="levels/:id" element={<LevelDetails />} />
+      <Route path="levels/exam/:id" element={<Exam />} />
+
+      {/* modules */}
+      <Route path="modules/:id" element={<Modules />} />
+
+      {/* chapters */}
+      <Route path="chapters/:id" element={<Chapters />} />
+
+      {/* topics */}
+      <Route path="topics" element={<Topics />} />
+      <Route path="topics/units" element={<Units />} />
+
+      {/* quize */}
+      <Route path="quize" element={<Quize />} />
+      <Route path="quize/result" element={<QuizeResult />} />
+
+      {/*certificate  */}
+      <Route path="certificate" element={<Certificate />} />
+
+      {/*progress  */}
+      <Route path="progress" element={<ProgressStats />} />
+
+      {/*profile  */}
+      <Route path="profile" element={<Profile />} />
+      <Route path="profile/details" element={<ProfileDetails />} />
+      <Route path="change-password" element={<ChangePassword />} />
 
       <Route path="*" element={<WorkInProgress />} />
     </Route>
