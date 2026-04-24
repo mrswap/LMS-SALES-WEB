@@ -9,23 +9,23 @@ import FormButton from "../../common/form/FormButton";
 import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { loginUser } from "../../../../redux/slice/authSlice";
+import { loginUser } from "../../../../redux/slice/authSlice";
 import { useTranslation } from "react-i18next";
-// import { useToast } from "../../common/toast/ToastContext";
+import { useToast } from "../../common/toast/ToastContext";
 
 const Login = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
-  // const toast = useToast();
+  const toast = useToast();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
-  // const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.auth);
 
   const initialValues = {
-    email: "ajaycharve109@gmail.com",
-    password: "A1234567@",
+    email: "kajalcharve6@gmail.com",
+    password: "123456",
   };
 
   const validationSchema = Yup.object({
@@ -37,8 +37,8 @@ const Login = () => {
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-      // const res = await dispatch(loginUser(values)).unwrap();
-      // toast.success(res?.message || t("login.success"));
+      const res = await dispatch(loginUser(values)).unwrap();
+      toast.success(res?.message || t("login.success"));
       navigate("/");
     } catch (err) {
       toast.error(err?.message || t("login.error"));

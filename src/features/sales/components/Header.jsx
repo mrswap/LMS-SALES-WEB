@@ -19,7 +19,7 @@ const Header = () => {
   const handleLogout = () => {
     navigate("/login");
   };
-
+ 
   return (
     <div className="h-14 sm:h-16 bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] flex items-center justify-between px-3 sm:px-6 shadow-lg border-b border-[#1d3d8a] z-50 relative">
       <div className="flex items-center gap-2 sm:gap-4">

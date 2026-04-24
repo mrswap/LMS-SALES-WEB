@@ -9,7 +9,7 @@ import React, {
 
 // ==============================
 // Types & Constants
-// ==============================
+// ============================== 
 
 const TOAST_TYPES = {
   SUCCESS: "success",
