@@ -9,6 +9,13 @@ export default defineConfig({
     tailwindcss()
   ],
   server: {
-    port: 5500
+    // port: 5500,
+    proxy: {
+      '/api': {
+        target: 'https://lms-backend.netswaptech.com',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   }
 })

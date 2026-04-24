@@ -198,7 +198,7 @@ import img from "../../../../assets/sales/pacemaker.jpg";
 /* ---------------- Data ---------------- */
 const levelsData = [
   {
-    id: 1,
+    id: 2,
     title: "Level 1 — Device Introduction & Core Concepts",
     lessons: "4.5 Hours • 2 Modules",
     progress: 100,
@@ -207,7 +207,7 @@ const levelsData = [
     img: img,
   },
   {
-    id: 2,
+    id: 1,
     title: "Level 2 — System Components & Basic Operation",
     lessons: "4.5 Hours • 2 Modules",
     progress: 60,

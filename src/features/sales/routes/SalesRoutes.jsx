@@ -16,29 +16,28 @@ import Modules from "../pages/modules/Modules";
 import Topics from "../pages/topics/Topic";
 import Units from "../pages/topics/Units";
 import Exam from "../pages/exam/Exam";
+import ProtectedRoute from "./ProtectedRoute";
 
 const SalesRoutes = (
-  <Route
-  //   element={<ProtectedRoute />}
-  >
+  <Route element={<ProtectedRoute />}>
     <Route path="/" element={<SalesLayout />}>
       <Route index element={<Navigate to="/dashboard" replace />} />
       <Route path="/dashboard" element={<Dashboard />} />
 
       {/* levels */}
       <Route path="levels" element={<Levels />} />
-      <Route path="levels/:id" element={<LevelDetails />} />
+      <Route path="levels/:levelId" element={<LevelDetails />} />
       <Route path="levels/exam/:id" element={<Exam />} />
 
       {/* modules */}
-      <Route path="modules/:id" element={<Modules />} />
+      <Route path="modules/:moduleId" element={<Modules />} />
 
       {/* chapters */}
-      <Route path="chapters/:id" element={<Chapters />} />
+      <Route path="chapters/:chapterId" element={<Chapters />} />
 
       {/* topics */}
-      <Route path="topics" element={<Topics />} />
-      <Route path="topics/units" element={<Units />} />
+      <Route path="topics/:topicId" element={<Topics />} />
+      <Route path="topics/:topicId/units" element={<Units />} />
 
       {/* quize */}
       <Route path="quize" element={<Quize />} />
