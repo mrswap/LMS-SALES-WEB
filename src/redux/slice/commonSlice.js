@@ -10,7 +10,7 @@ export const getRoles = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                "/v1/common/roles?status=all",
+                "/common/roles?status=all",
                 getAuthConfig()
             );
             return res.data;
@@ -30,7 +30,7 @@ export const getDesignations = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                "/v1/common/designations?status=all",
+                "/common/designations?status=all",
                 getAuthConfig()
             );
             return res.data;
