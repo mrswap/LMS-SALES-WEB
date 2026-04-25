@@ -10,7 +10,7 @@ export const getProfile = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                "/v1/trainee/profile",
+                "/trainee/profile",
                 getAuthConfig()
             );
             return res.data;
@@ -30,7 +30,7 @@ export const updateProfile = createAsyncThunk(
     async (profileData, thunkAPI) => {
         try {
             const res = await axiosInstance.post(
-                "/v1/trainee/update-profile",
+                "/trainee/update-profile",
                 profileData,
                 getAuthConfig()
             );
@@ -51,7 +51,7 @@ export const changePassword = createAsyncThunk(
     async (passwordData, thunkAPI) => {
         try {
             const res = await axiosInstance.post(
-                "/v1/trainee/change-password",
+                "/trainee/change-password",
                 passwordData,
                 getAuthConfig()
             );

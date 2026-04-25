@@ -1,164 +1,3 @@
-// import React, { useEffect } from "react";
-// import { useParams, useNavigate } from "react-router-dom";
-// import {
-//   PageLayout,
-//   PageBody,
-//   PageHeader,
-//   PageHeaderLeft,
-//   PageTitle,
-//   PageSubtitle,
-//   PageHeaderRight,
-// } from "../../common/layout/index";
-// import img from "../../../../assets/sales/pacemaker.jpg";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getChapterById } from "../../../../redux/slice/coursePreviewSlice";
-
-// export default function Chapters() {
-//   const { chapterId: id } = useParams();
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-
-//   const { currentChapter, isLoading, isError, message } = useSelector(
-//     (state) => state.course,
-//   );
-
-//   useEffect(() => {
-//     if (id) {
-//       dispatch(getChapterById(id));
-//     }
-//   }, [dispatch, id]);
-
-//   console.log("currentChapter", currentChapter);
-
-//   return (
-//     <PageLayout>
-//       <PageHeader>
-//         <PageHeaderLeft>
-//           <PageTitle>Chapter Details</PageTitle>
-//           <PageSubtitle>
-//             Track your progress and continue your journey
-//           </PageSubtitle>
-//         </PageHeaderLeft>
-//         <PageHeaderRight />
-//       </PageHeader>
-//       <PageBody>
-//         {/* 🔹 Banner */}
-//         <div className="relative rounded-2xl overflow-hidden shadow-lg">
-//           <img src={img} className="w-full h-56 sm:h-64 lg:h-80 object-cover" />
-
-//           {/* Gradient Overlay */}
-//           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-
-//           <div className="absolute bottom-5 left-5 right-5 text-white">
-//             <p className="text-xs sm:text-sm opacity-80 tracking-wide">
-//               LEVEL 1 • FOUNDATION
-//             </p>
-//             <h1 className="text-xl sm:text-3xl font-semibold leading-tight">
-//               Device Introduction & Core Concepts
-//             </h1>
-//           </div>
-
-//           <button
-//             onClick={() => navigate(-1)}
-//             className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-md text-sm border border-gray-300 shadow-sm hover:bg-white transition"
-//           >
-//             ← Back
-//           </button>
-//         </div>
-
-//         {/* 🔹 Progress Card */}
-//         <div className="bg-white rounded-2xl p-5 mt-5 shadow-md border border-gray-300">
-//           <p className="text-xs text-gray-500 tracking-wide">
-//             OVERALL COMPLETION
-//           </p>
-
-//           <div className="flex justify-between items-end mt-2">
-//             <h2 className="text-3xl font-bold text-blue-600">60%</h2>
-//             <p className="text-xs text-gray-500">2 of 3 Modules Complete</p>
-//           </div>
-
-//           <div className="w-full h-2.5 bg-gray-200 rounded-full mt-3 overflow-hidden">
-//             <div className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full w-[60%]" />
-//           </div>
-//         </div>
-
-//         {/* 🔹 About */}
-//         <div className="bg-white rounded-2xl p-5 mt-5 shadow-md border border-gray-300">
-//           <h3 className="font-semibold text-gray-800 mb-2 text-lg">
-//             About this Level
-//           </h3>
-
-//           <p className="text-sm text-gray-600 leading-relaxed">
-//             A comprehensive, interactive self-paced program designed to build
-//             practical knowledge of pacemaker technology, implantation basics,
-//             and patient management.
-//           </p>
-
-//           <button className="text-blue-600 text-sm mt-3 font-medium hover:underline">
-//             Read more →
-//           </button>
-//         </div>
-
-//         {/* 🔹 Chapters */}
-//         <div className="mt-6">
-//           <h3 className="font-semibold text-gray-800 mb-4 text-lg">
-//             All Topics
-//           </h3>
-
-//           {/* Module Card */}
-//           <div className="space-y-3">
-//             {/* Completed */}
-//             <div className="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm border border-gray-300 hover:shadow-md transition">
-//               <div className="flex items-center gap-3">
-//                 <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold">
-//                   ✓
-//                 </div>
-
-//                 <div>
-//                   <p className="text-xs text-gray-500">Topic 1</p>
-//                   <h4 className="text-sm font-medium">XXXXXXXXXX</h4>
-//                 </div>
-//               </div>
-
-//               <span className="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full">
-//                 Completed
-//               </span>
-//             </div>
-
-//             {/* Active */}
-//             <div className="bg-white rounded-xl p-4 flex items-center justify-between shadow-md border border-blue-500 hover:shadow-lg transition">
-//               <div className="flex items-center gap-3">
-//                 <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-//                   ▶
-//                 </div>
-
-//                 <div>
-//                   <p className="text-xs text-gray-500">Chapter 2 • Current</p>
-//                   <h4 className="text-sm font-medium">XXXXXXX</h4>
-//                 </div>
-//               </div>
-
-//               <button className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-md transition">
-//                 Resume
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* 🔹 Bottom CTA */}
-//         <div>
-//           <button
-//             onClick={() => navigate("/topics")}
-//             className="w-full bg-gradient-to-r from-green-500 to-emerald-600 cursor-pointer text-white py-3 rounded-xl font-semibold shadow-md hover:opacity-90 transition"
-//           >
-//             Continue Learning
-//           </button>
-//         </div>
-//       </PageBody>
-//     </PageLayout>
-//   );
-// }
-
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -186,6 +25,8 @@ import {
   IoPlay,
   IoListOutline,
 } from "react-icons/io5";
+import Loader from "../../common/Loader";
+import Error from "../../common/Error";
 
 export default function Chapters() {
   const { chapterId: id } = useParams();
@@ -202,74 +43,66 @@ export default function Chapters() {
     }
   }, [dispatch, id]);
 
-  console.log("currentChapter", currentChapter);
+  console.log("currentChapter from API:", currentChapter);
 
-  // Your current topics data
-  const topics = [
-    {
-      id: 1,
-      title: "Topic 1",
-      description: "Topic 1 explanation",
-      thumbnail: null,
-      is_unlocked: true,
-      is_completed: false,
-    },
-    {
-      id: 2,
-      title: "Topic 2",
-      description: "Topic 2 explanation",
-      thumbnail: null,
-      is_unlocked: false,
-      is_completed: false,
-    },
-    {
-      id: 3,
-      title: "Topic 3",
-      description: "Topic 3 explanation",
-      thumbnail: null,
-      is_unlocked: false,
-      is_completed: false,
-    },
-    {
-      id: 30,
-      title: "Topic 1",
-      description: null,
-      thumbnail: null,
-      is_unlocked: false,
-      is_completed: false,
-    },
-    {
-      id: 31,
-      title: "Topic 1",
-      description: null,
-      thumbnail: null,
-      is_unlocked: false,
-      is_completed: false,
-    },
-  ];
+  // Use actual topics from API response
+  const topics = currentChapter?.topics || [];
 
-  // Calculate progress
-  const completedTopics = topics.filter((t) => t.is_completed).length;
+  // Calculate progress based on actual completed topics
+  // Note: API me is_completed 0/1 ya boolean me aa sakta hai
+  const completedTopics = topics.filter((t) => {
+    return t.is_completed === true || t.is_completed === 1;
+  }).length;
+
   const totalTopics = topics.length;
   const progress = totalTopics > 0 ? (completedTopics / totalTopics) * 100 : 0;
 
-  // Calculate total estimated time (example: 10 min per topic)
-  const totalTime = totalTopics * 10;
+  // Calculate total estimated time from topics
+  const calculateTotalTime = () => {
+    let totalDuration = 0;
+    topics.forEach((topic) => {
+      if (topic.estimated_duration) {
+        totalDuration += topic.estimated_duration;
+      }
+    });
+    return totalDuration;
+  };
+
+  const totalTime = calculateTotalTime();
 
   // Get current topic (first unlocked and not completed)
   const currentTopic =
-    topics.find((t) => t.is_unlocked && !t.is_completed) ||
-    topics.find((t) => t.is_unlocked);
+    topics.find((t) => {
+      const isUnlocked = t.is_unlocked === true || t.is_unlocked === 1;
+      const isCompleted = t.is_completed === true || t.is_completed === 1;
+      return isUnlocked && !isCompleted;
+    }) ||
+    topics.find((t) => {
+      const isUnlocked = t.is_unlocked === true || t.is_unlocked === 1;
+      return isUnlocked;
+    });
 
   // Get next topic for CTA
-  const nextTopic = topics.find((t) => !t.is_completed && t.is_unlocked);
+  const nextTopic = topics.find((t) => {
+    const isCompleted = t.is_completed === true || t.is_completed === 1;
+    const isUnlocked = t.is_unlocked === true || t.is_unlocked === 1;
+    return !isCompleted && isUnlocked;
+  });
 
   if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error message={message} />;
+  }
+
+  if (!currentChapter) {
     return (
       <PageLayout>
         <PageBody>
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="text-center py-20">
+            <p className="text-gray-500">No chapter data available</p>
           </div>
         </PageBody>
       </PageLayout>
@@ -290,8 +123,8 @@ export default function Chapters() {
           {/* 🔹 Hero Banner */}
           <div className="relative rounded-2xl overflow-hidden shadow-xl group">
             <img
-              src={img}
-              className="w-full h-56 sm:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+              src={currentChapter?.thumbnail}
+              className="w-full h-56 sm:h-72 lg:h-80 object-cover"
               alt="Chapter Banner"
             />
 
@@ -300,15 +133,15 @@ export default function Chapters() {
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <div className="flex items-center gap-2 mb-2">
                 <span className="bg-blue-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium">
-                  Chapter {currentChapter?.chapter_number || 1} •{" "}
-                  {currentChapter?.name || "Core Topics"}
+                  {currentChapter?.title || "Chapter"} • {totalTopics} Topics •{" "}
+                  {totalTime} min
                 </span>
                 <span className="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs flex items-center gap-1">
                   <IoTimeOutline className="w-3 h-3" /> Self-paced
                 </span>
               </div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-                {currentChapter?.name || "Device Introduction & Core Concepts"}
+                {currentChapter?.title || "Device Introduction & Core Concepts"}
               </h1>
               <p className="text-sm sm:text-base text-white/80 mt-2 max-w-2xl">
                 {currentChapter?.description ||
@@ -389,9 +222,6 @@ export default function Chapters() {
                   {currentChapter?.description ||
                     "A comprehensive, interactive chapter designed to build practical knowledge through structured topics and hands-on learning experiences."}
                 </p>
-                <button className="text-blue-600 text-sm mt-2 font-medium hover:text-blue-700 transition-colors flex items-center gap-1">
-                  Read more <IoChevronForward className="w-3 h-3" />
-                </button>
               </div>
             </div>
           </div>
@@ -409,90 +239,103 @@ export default function Chapters() {
             </div>
 
             <div className="space-y-3">
-              {topics.map((topic, index) => (
-                <div
-                  key={topic.id}
-                  className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md cursor-pointer
-                    ${topic.is_unlocked && !topic.is_completed ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
-                  onClick={() => {
-                    if (topic.is_unlocked) {
-                      navigate(`/topics/${topic.id}`);
-                    }
-                  }}
-                >
-                  <div className="flex items-center justify-between flex-wrap gap-3">
-                    <div className="flex items-center gap-3 flex-1">
-                      <div
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all
-                          ${topic.is_completed ? "bg-green-100" : topic.is_unlocked ? "bg-blue-100" : "bg-gray-100"}`}
-                      >
-                        {topic.is_completed ? (
-                          <IoCheckmarkCircle className="w-6 h-6 text-green-600" />
-                        ) : topic.is_unlocked ? (
-                          <IoPlay className="w-6 h-6 text-blue-600" />
-                        ) : (
-                          <IoLockClosed className="w-6 h-6 text-gray-400" />
-                        )}
-                      </div>
+              {topics.map((topic, index) => {
+                const isUnlocked =
+                  topic.is_unlocked === true || topic.is_unlocked === 1;
+                const isCompleted =
+                  topic.is_completed === true || topic.is_completed === 1;
 
-                      <div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <p className="text-xs font-medium text-gray-500">
-                            Topic {index + 1}
-                          </p>
-                          {topic.is_unlocked && !topic.is_completed && (
-                            <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                              Current
-                            </span>
-                          )}
-                          {topic.is_completed && (
-                            <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                              Completed
-                            </span>
-                          )}
-                          {!topic.is_unlocked && (
-                            <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                              <IoLockClosed className="w-3 h-3" /> Locked
-                            </span>
+                return (
+                  <div
+                    key={topic.id}
+                    className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md cursor-pointer
+                      ${isUnlocked && !isCompleted ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
+                    onClick={() => {
+                      if (isUnlocked) {
+                        navigate(`/topics/${topic.id}`);
+                      }
+                    }}
+                  >
+                    <div className="flex items-center justify-between flex-wrap gap-3">
+                      <div className="flex items-center gap-3 flex-1">
+                        <div
+                          className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all
+                            ${isCompleted ? "bg-green-100" : isUnlocked ? "bg-blue-100" : "bg-gray-100"}`}
+                        >
+                          {isCompleted ? (
+                            <IoCheckmarkCircle className="w-6 h-6 text-green-600" />
+                          ) : isUnlocked ? (
+                            <IoPlay className="w-6 h-6 text-blue-600" />
+                          ) : (
+                            <IoLockClosed className="w-6 h-6 text-gray-400" />
                           )}
                         </div>
-                        <h4 className="text-base font-semibold text-gray-800 mt-0.5">
-                          {topic.title}
-                        </h4>
-                        {topic.description && (
-                          <p className="text-xs text-gray-500 mt-1">
-                            {topic.description}
-                          </p>
-                        )}
-                      </div>
-                    </div>
 
-                    {topic.is_completed ? (
-                      <div className="text-green-600 text-sm font-medium flex items-center gap-1">
-                        <IoCheckmarkCircle className="w-4 h-4" /> Completed
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <p className="text-xs font-medium text-gray-500">
+                              Topic {index + 1}
+                            </p>
+                            {isUnlocked && !isCompleted && (
+                              <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
+                                Current
+                              </span>
+                            )}
+                            {isCompleted && (
+                              <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
+                                Completed
+                              </span>
+                            )}
+                            {!isUnlocked && (
+                              <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+                                <IoLockClosed className="w-3 h-3" /> Locked
+                              </span>
+                            )}
+                            {topic.estimated_duration && (
+                              <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+                                <IoTimeOutline className="w-3 h-3" />{" "}
+                                {topic.estimated_duration} min
+                              </span>
+                            )}
+                          </div>
+                          <h4 className="text-base font-semibold text-gray-800 mt-0.5">
+                            {topic.title}
+                          </h4>
+                          {topic.description && (
+                            <p className="text-xs text-gray-500 mt-1">
+                              {topic.description}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                    ) : (
-                      <button
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all transform hover:scale-105
-                          ${
-                            topic.is_unlocked
-                              ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md hover:shadow-lg"
-                              : "bg-gray-100 text-gray-500 cursor-not-allowed"
-                          }`}
-                        disabled={!topic.is_unlocked}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (topic.is_unlocked) {
-                            navigate(`/topics/${topic.id}`);
-                          }
-                        }}
-                      >
-                        {topic.is_unlocked ? "Start Topic" : "Locked"}
-                      </button>
-                    )}
+
+                      {isCompleted ? (
+                        <div className="text-green-600 text-sm font-medium flex items-center gap-1">
+                          <IoCheckmarkCircle className="w-4 h-4" /> Completed
+                        </div>
+                      ) : (
+                        <button
+                          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all transform hover:scale-105
+                            ${
+                              isUnlocked
+                                ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md hover:shadow-lg"
+                                : "bg-gray-100 text-gray-500 cursor-not-allowed"
+                            }`}
+                          disabled={!isUnlocked}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isUnlocked) {
+                              navigate(`/topics/${topic.id}`);
+                            }
+                          }}
+                        >
+                          {isUnlocked ? "Start Topic" : "Locked"}
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

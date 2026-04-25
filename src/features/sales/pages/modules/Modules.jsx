@@ -1,168 +1,3 @@
-// import React, { useEffect } from "react";
-// import { useParams, useNavigate } from "react-router-dom";
-// import {
-//   PageLayout,
-//   PageBody,
-//   PageHeader,
-//   PageHeaderLeft,
-//   PageTitle,
-//   PageSubtitle,
-//   PageHeaderRight,
-// } from "../../common/layout/index";
-// import img from "../../../../assets/sales/pacemaker.jpg";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getModuleById } from "../../../../redux/slice/coursePreviewSlice";
-
-// export default function Modules() {
-//   const { moduleId: id } = useParams();
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-
-//   const { currentModule, isLoading, isError, message } = useSelector(
-//     (state) => state.course,
-//   );
-
-//   useEffect(() => {
-//     if (id) {
-//       dispatch(getModuleById(id));
-//     }
-//   }, [dispatch, id]);
-
-//   console.log("currentModule", currentModule);
-
-//   return (
-//     <PageLayout>
-//       <PageHeader>
-//         <PageHeaderLeft>
-//           <PageTitle>Module Details</PageTitle>
-//           <PageSubtitle>
-//             Track your progress and continue your journey
-//           </PageSubtitle>
-//         </PageHeaderLeft>
-//         <PageHeaderRight />
-//       </PageHeader>
-//       <PageBody>
-//         {/* 🔹 Banner */}
-//         <div className="relative rounded-2xl overflow-hidden shadow-lg">
-//           <img src={img} className="w-full h-56 sm:h-64 lg:h-80 object-cover" />
-
-//           {/* Gradient Overlay */}
-//           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
-
-//           <div className="absolute bottom-5 left-5 right-5 text-white">
-//             <p className="text-xs sm:text-sm opacity-80 tracking-wide">
-//               LEVEL 1 • FOUNDATION
-//             </p>
-//             <h1 className="text-xl sm:text-3xl font-semibold leading-tight">
-//               Device Introduction & Core Concepts
-//             </h1>
-//           </div>
-
-//           <button
-//             onClick={() => navigate(-1)}
-//             className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-md text-sm border border-gray-300 shadow-sm hover:bg-white transition"
-//           >
-//             ← Back
-//           </button>
-//         </div>
-
-//         {/* 🔹 Progress Card */}
-//         <div className="bg-white rounded-2xl p-5 mt-5 shadow-md border border-gray-300">
-//           <p className="text-xs text-gray-500 tracking-wide">
-//             OVERALL COMPLETION
-//           </p>
-
-//           <div className="flex justify-between items-end mt-2">
-//             <h2 className="text-3xl font-bold text-blue-600">60%</h2>
-//             <p className="text-xs text-gray-500">2 of 3 Modules Complete</p>
-//           </div>
-
-//           <div className="w-full h-2.5 bg-gray-200 rounded-full mt-3 overflow-hidden">
-//             <div className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full w-[60%]" />
-//           </div>
-//         </div>
-
-//         {/* 🔹 About */}
-//         <div className="bg-white rounded-2xl p-5 mt-5 shadow-md border border-gray-300">
-//           <h3 className="font-semibold text-gray-800 mb-2 text-lg">
-//             About this Level
-//           </h3>
-
-//           <p className="text-sm text-gray-600 leading-relaxed">
-//             A comprehensive, interactive self-paced program designed to build
-//             practical knowledge of pacemaker technology, implantation basics,
-//             and patient management.
-//           </p>
-
-//           <button className="text-blue-600 text-sm mt-3 font-medium hover:underline">
-//             Read more →
-//           </button>
-//         </div>
-
-//         {/* 🔹 Chapters */}
-//         <div className="mt-6">
-//           <h3 className="font-semibold text-gray-800 mb-4 text-lg">
-//             All Chapters
-//           </h3>
-
-//           {/* Module Card */}
-//           <div className="space-y-3">
-//             {/* Completed */}
-//             <div className="bg-white rounded-xl p-4 flex items-center justify-between shadow-sm border border-gray-300 hover:shadow-md transition">
-//               <div className="flex items-center gap-3">
-//                 <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold">
-//                   ✓
-//                 </div>
-
-//                 <div>
-//                   <p className="text-xs text-gray-500">Chapter 1</p>
-//                   <h4 className="text-sm font-medium">
-//                     Pacemaker Fundamentals
-//                   </h4>
-//                 </div>
-//               </div>
-
-//               <span className="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full">
-//                 Completed
-//               </span>
-//             </div>
-
-//             {/* Active */}
-//             <div className="bg-white rounded-xl p-4 flex items-center justify-between shadow-md border border-blue-500 hover:shadow-lg transition">
-//               <div className="flex items-center gap-3">
-//                 <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-//                   ▶
-//                 </div>
-
-//                 <div>
-//                   <p className="text-xs text-gray-500">Chapter 2 • Current</p>
-//                   <h4 className="text-sm font-medium">
-//                     Basic ECG Interpretation
-//                   </h4>
-//                 </div>
-//               </div>
-
-//               <button className="text-xs bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-md transition">
-//                 Resume
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* 🔹 Bottom CTA */}
-//         <div>
-//           <button
-//             onClick={() => navigate("/chapters/id")}
-//             className="w-full bg-gradient-to-r from-green-500 to-emerald-600 cursor-pointer text-white py-3 rounded-xl font-semibold shadow-md hover:opacity-90 transition"
-//           >
-//             Continue Learning
-//           </button>
-//         </div>
-//       </PageBody>
-//     </PageLayout>
-//   );
-// }
-
 import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -190,6 +25,8 @@ import {
   IoPlay,
   IoDocumentTextOutline,
 } from "react-icons/io5";
+import Loader from "../../common/Loader";
+import Error from "../../common/Error";
 
 export default function Modules() {
   const { moduleId: id } = useParams();
@@ -206,59 +43,74 @@ export default function Modules() {
     }
   }, [dispatch, id]);
 
-  console.log("currentModule", currentModule);
+  console.log("currentModule from API:", currentModule);
 
-  // Your current chapters data
-  const chapters = [
-    {
-      description: "Chapter 1 description",
-      id: 1,
-      is_completed: false,
-      is_unlocked: true,
-      thumbnail: null,
-      title: "Chapter 1",
-    },
-    {
-      description: "Chapter 2 description",
-      id: 2,
-      is_completed: false,
-      is_unlocked: false,
-      thumbnail: null,
-      title: "Chapter 2",
-    },
-    {
-      description: "Chapter 3 description",
-      id: 3,
-      is_completed: false,
-      is_unlocked: false,
-      thumbnail: null,
-      title: "Chapter 3",
-    },
-  ];
+  // Use actual chapters from API response
+  const chapters = currentModule?.chapters || [];
 
-  // Calculate progress
-  const completedChapters = chapters.filter((c) => c.is_completed).length;
+  // Calculate progress based on actual completed chapters
+  const completedChapters = chapters.filter(
+    (c) => c.is_completed === true,
+  ).length;
   const totalChapters = chapters.length;
   const progress =
     totalChapters > 0 ? (completedChapters / totalChapters) * 100 : 0;
 
-  // Calculate total estimated time (example: 15 min per chapter)
-  const totalTime = totalChapters * 15;
+  // Calculate total estimated time from topics
+  const calculateTotalTime = () => {
+    let totalDuration = 0;
+    chapters.forEach((chapter) => {
+      if (chapter.topics) {
+        chapter.topics.forEach((topic) => {
+          if (topic.estimated_duration) {
+            totalDuration += topic.estimated_duration;
+          }
+        });
+      }
+    });
+    return totalDuration;
+  };
+
+  const totalTime = calculateTotalTime();
+
+  // Calculate total topics
+  const totalTopics = chapters.reduce((acc, chapter) => {
+    return acc + (chapter.topics?.length || 0);
+  }, 0);
+
+  const completedTopics = chapters.reduce((acc, chapter) => {
+    return (
+      acc +
+      (chapter.topics?.filter(
+        (t) => t.is_completed === true || t.is_completed === 1,
+      ).length || 0)
+    );
+  }, 0);
 
   // Get current chapter (first unlocked and not completed)
   const currentChapter =
-    chapters.find((c) => c.is_unlocked && !c.is_completed) ||
-    chapters.find((c) => c.is_unlocked);
+    chapters.find((c) => c.is_unlocked === true && c.is_completed === false) ||
+    chapters.find((c) => c.is_unlocked === true);
 
   // Get next chapter for CTA
-  const nextChapter = chapters.find((c) => !c.is_completed && c.is_unlocked);
+  const nextChapter = chapters.find(
+    (c) => c.is_completed === false && c.is_unlocked === true,
+  );
 
   if (isLoading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <Error message={message} />;
+  }
+
+  if (!currentModule) {
     return (
       <PageLayout>
         <PageBody>
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div className="text-center py-20">
+            <p className="text-gray-500">No module data available</p>
           </div>
         </PageBody>
       </PageLayout>
@@ -279,8 +131,8 @@ export default function Modules() {
           {/* 🔹 Hero Banner */}
           <div className="relative rounded-2xl overflow-hidden shadow-xl group">
             <img
-              src={img}
-              className="w-full h-56 sm:h-72 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+              src={currentModule?.thumbnail}
+              className="w-full h-56 sm:h-72 lg:h-80 object-cover "
               alt="Module Banner"
             />
 
@@ -289,15 +141,15 @@ export default function Modules() {
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <div className="flex items-center gap-2 mb-2">
                 <span className="bg-blue-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium">
-                  Module {currentModule?.module_number || 1} •{" "}
-                  {currentModule?.name || "Core Concepts"}
+                  {currentModule?.title || "Module"} • {totalChapters} Chapters
+                  • {totalTopics} Topics
                 </span>
                 <span className="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs flex items-center gap-1">
                   <IoTimeOutline className="w-3 h-3" /> Self-paced
                 </span>
               </div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-                {currentModule?.name || "Device Introduction & Core Concepts"}
+                {currentModule?.title || "Device Introduction & Core Concepts"}
               </h1>
               <p className="text-sm sm:text-base text-white/80 mt-2 max-w-2xl">
                 {currentModule?.description ||
@@ -346,6 +198,9 @@ export default function Modules() {
                 <IoRibbonOutline className="text-purple-400 w-8 h-8" />
               </div>
               <p className="text-xs text-purple-600 mt-2">Chapters completed</p>
+              <p className="text-xs text-purple-600 mt-1">
+                {completedTopics}/{totalTopics} topics
+              </p>
             </div>
 
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
@@ -375,12 +230,8 @@ export default function Modules() {
                   About this Module
                 </h3>
                 <p className="text-sm text-gray-600 leading-relaxed">
-                  {currentModule?.description ||
-                    "A comprehensive, interactive self-paced program designed to build practical knowledge through structured chapters and hands-on learning experiences."}
+                  {currentModule?.description}
                 </p>
-                <button className="text-blue-600 text-sm mt-2 font-medium hover:text-blue-700 transition-colors flex items-center gap-1">
-                  Read more <IoChevronForward className="w-3 h-3" />
-                </button>
               </div>
             </div>
           </div>
@@ -398,7 +249,7 @@ export default function Modules() {
             </div>
 
             <div className="space-y-3">
-              {chapters.map((chapter) => (
+              {chapters.map((chapter, index) => (
                 <div
                   key={chapter.id}
                   className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md cursor-pointer
@@ -424,10 +275,10 @@ export default function Modules() {
                         )}
                       </div>
 
-                      <div>
+                      <div className="flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
                           <p className="text-xs font-medium text-gray-500">
-                            Chapter {chapter.id}
+                            Chapter {index + 1}
                           </p>
                           {chapter.is_unlocked && !chapter.is_completed && (
                             <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
@@ -446,11 +297,35 @@ export default function Modules() {
                           )}
                         </div>
                         <h4 className="text-base font-semibold text-gray-800 mt-0.5">
-                          {chapter.title}
+                          {chapter?.title}
                         </h4>
                         <p className="text-xs text-gray-500 mt-1">
-                          {chapter.description}
+                          {chapter?.description}
                         </p>
+                        {chapter?.topics && (
+                          <p className="text-xs text-gray-400 mt-2 flex items-center gap-2">
+                            <span>{chapter.topics.length} topics</span>
+                            <span>•</span>
+                            <span>
+                              {
+                                chapter.topics.filter(
+                                  (t) =>
+                                    t.is_completed === true ||
+                                    t.is_completed === 1,
+                                ).length
+                              }{" "}
+                              completed
+                            </span>
+                            <span>•</span>
+                            <span>
+                              {chapter.topics.reduce(
+                                (acc, t) => acc + (t.estimated_duration || 0),
+                                0,
+                              )}{" "}
+                              min
+                            </span>
+                          </p>
+                        )}
                       </div>
                     </div>
 
@@ -495,7 +370,7 @@ export default function Modules() {
                 <p className="text-xs text-gray-400">
                   {nextChapter
                     ? `Next: ${nextChapter.title}`
-                    : "All chapters completed! 🎉"}
+                    : "All chapters completed! "}
                 </p>
               </div>
               <button
@@ -513,7 +388,7 @@ export default function Modules() {
                   }`}
               >
                 <IoPlayCircle className="w-5 h-5" />
-                {nextChapter ? "Continue Learning" : "All Completed 🎉"}
+                {nextChapter ? "Continue Learning" : "All Completed "}
                 <IoChevronForward className="w-4 h-4" />
               </button>
             </div>

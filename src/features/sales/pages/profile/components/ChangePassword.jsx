@@ -10,8 +10,16 @@ import {
   PageSubtitle,
   PageBody,
 } from "../../../common/layout/index";
+import { changePassword } from "../../../../../redux/slice/profileSlice";
+import { useToast } from "../../../common/toast/ToastContext";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
+  const toast = useToast();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialValues = {
     currentPassword: "",
     newPassword: "",
@@ -28,8 +36,22 @@ const ChangePassword = () => {
       .required("Confirm password required"),
   });
 
-  const onSubmit = (values) => {
-    console.log("Password Data:", values);
+  const onSubmit = async (values, { resetForm }) => {
+    try {
+      const payload = {
+        old_password: values.currentPassword,
+        new_password: values.newPassword,
+        new_password_confirmation: values.confirmNewPassword,
+      };
+
+      const res = await dispatch(changePassword(payload)).unwrap();
+
+      toast.success(res.message || "Password updated successfully");
+      resetForm();
+      navigate("/profile");
+    } catch (error) {
+      toast.error(error?.message || "Something went wrong");
+    }
   };
 
   return (

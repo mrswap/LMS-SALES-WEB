@@ -9,7 +9,7 @@ export const getAllLevels = createAsyncThunk(
     "coursePreview/getAllLevels",
     async (_, thunkAPI) => {
         try {
-            const res = await axiosInstance.get("/levels");
+            const res = await axiosInstance.get("/trainee/hierarchy", getAuthConfig());
             return res.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(
@@ -27,11 +27,8 @@ export const getLevelById = createAsyncThunk(
     async (levelId, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                `/v1/trainee/progress`,
-                {
-                    params: { level_id: levelId },
-                    ...getAuthConfig(),
-                }
+                // `/trainee/progress`,
+                `/trainee/hierarchy/level/${levelId}`, getAuthConfig()
             );
             return res.data;
         } catch (error) {
@@ -50,11 +47,7 @@ export const getModuleById = createAsyncThunk(
     async (moduleId, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                `/v1/trainee/progress`,
-                {
-                    params: { module_id: moduleId },
-                    ...getAuthConfig(),
-                }
+                `/trainee/hierarchy/module/${moduleId}`, getAuthConfig()
             );
             return res.data;
         } catch (error) {
@@ -73,11 +66,7 @@ export const getChapterById = createAsyncThunk(
     async (chapterId, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                `/v1/trainee/progress`,
-                {
-                    params: { chapter_id: chapterId },
-                    ...getAuthConfig(),
-                }
+                `/trainee/hierarchy/chapter/${chapterId}`, getAuthConfig()
             );
             return res.data;
         } catch (error) {
@@ -96,7 +85,7 @@ export const getTopicById = createAsyncThunk(
     async (topicId, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                `/v1/trainee/content/topics/${topicId}`,
+                `/trainee/content/topics/${topicId}`,
                 getAuthConfig()
             );
 
@@ -104,6 +93,27 @@ export const getTopicById = createAsyncThunk(
         } catch (error) {
             return thunkAPI.rejectWithValue(
                 error.response?.data || { message: "Failed to fetch topic" }
+            );
+        }
+    }
+);
+
+/* ===========================
+   GET SINGLE CONTENT
+=========================== */
+export const getSingleContent = createAsyncThunk(
+    "coursePreview/getSingleContent",
+    async ({ topicId, contentId }, thunkAPI) => {
+        try {
+            const res = await axiosInstance.get(
+                `/trainee/content/single-preview/${topicId}/${contentId}`,
+                getAuthConfig()
+            );
+
+            return res.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(
+                error.response?.data || { message: "Failed to fetch content" }
             );
         }
     }
@@ -120,6 +130,7 @@ const coursePreviewSlice = createSlice({
         currentModule: null,
         currentChapter: null,
         currentTopic: null,
+        currentContent: null,
         isLoading: false,
         isError: false,
         isSuccess: false,
@@ -219,7 +230,23 @@ const coursePreviewSlice = createSlice({
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload?.message;
-            });
+            })
+
+            /* ===== GET SINGLE CONTENT ===== */
+            .addCase(getSingleContent.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getSingleContent.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.currentContent = action.payload.data || action.payload;
+                state.message = action.payload.message;
+            })
+            .addCase(getSingleContent.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload?.message;
+            })
     },
 });
 

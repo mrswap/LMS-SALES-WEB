@@ -17,6 +17,7 @@ import Topics from "../pages/topics/Topic";
 import Units from "../pages/topics/Units";
 import Exam from "../pages/exam/Exam";
 import ProtectedRoute from "./ProtectedRoute";
+import TopicContent from "../pages/topics/TopicContent";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -37,7 +38,12 @@ const SalesRoutes = (
 
       {/* topics */}
       <Route path="topics/:topicId" element={<Topics />} />
-      <Route path="topics/:topicId/units" element={<Units />} />
+      <Route
+        path="topics/:topicId/content/:contentId"
+        element={<TopicContent />}
+      />
+
+      {/* <Route path="topics/:topicId/units" element={<Units />} /> */}
 
       {/* quize */}
       <Route path="quize" element={<Quize />} />
