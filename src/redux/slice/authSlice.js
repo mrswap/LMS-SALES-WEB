@@ -10,6 +10,7 @@ export const registerUser = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const res = await axiosInstance.post("/trainee/register", userData);
+      console.log("res", res.data)
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -43,7 +44,7 @@ export const forgotPassword = createAsyncThunk(
   "auth/forgotPassword",
   async (userData, thunkAPI) => {
     try {
-      const res = await axiosInstance.post("/forgot-password", userData);
+      const res = await axiosInstance.post("/trainee/forgot-password", userData);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -61,7 +62,7 @@ export const resetPassword = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const res = await axiosInstance.post(
-        "/reset-password",
+        "/trainee/reset-password",
         userData,
         getAuthConfig()
       );
@@ -110,13 +111,7 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.message = action.payload.message;
-
-        // optional: auto login after register
-        if (action.payload.token) {
-          localStorage.setItem("token", action.payload.token);
-          state.user = action.payload.user;
-        }
+        state.message = action.payload?.message;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;

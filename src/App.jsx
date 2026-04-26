@@ -9,6 +9,8 @@ import NotFound from "./NotFound";
 import Register from "./features/sales/pages/auth/Register";
 import SalesRoutes from "./features/sales/routes/SalesRoutes";
 import PublicRoute from "./features/sales/routes/PublicRoute";
+import VerifyEmail from "./features/sales/pages/auth/VerifyEmail";
+import ResetPassword from "./features/sales/pages/auth/ResetPassword";
 
 const App = () => {
   return (
@@ -19,8 +21,9 @@ const App = () => {
 
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/verify-email/:token" element={<CheckEmail />} />
-          {/* <Route path="/reset-password" element={<ResetPassword />} /> */}
+          <Route path="/check-email" element={<CheckEmail />} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         {SalesRoutes}

@@ -38,10 +38,10 @@ const Login = () => {
   const onSubmit = async (values, { setSubmitting }) => {
     try {
       const res = await dispatch(loginUser(values)).unwrap();
-      toast.success(res?.message || t("login.success"));
+      toast.success(res?.message || "Login Successfull");
       navigate("/");
     } catch (err) {
-      toast.error(err?.message || t("login.error"));
+      toast.error(err?.message || "Something went wrong");
     } finally {
       setSubmitting(false);
     }

@@ -120,6 +120,27 @@ export const getSingleContent = createAsyncThunk(
 );
 
 /* ===========================
+   TOGGLE READ STATUS (MARK AS READ)
+=========================== */
+export const markContentAsRead = createAsyncThunk(
+    "coursePreview/markContentAsRead",
+    async ({ contentId }, thunkAPI) => {
+        try {
+            const res = await axiosInstance.post(
+                `/trainee/content/${contentId}/toggle-read`,
+                {}, // Empty body if not needed
+                getAuthConfig()
+            );
+            return res.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(
+                error.response?.data || { message: "Failed to mark content as read" }
+            );
+        }
+    }
+);
+
+/* ===========================
    SLICE
 =========================== */
 const coursePreviewSlice = createSlice({

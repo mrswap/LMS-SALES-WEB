@@ -64,50 +64,52 @@ const ChangePassword = () => {
       </PageHeader>
 
       <PageBody>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={onSubmit}
-        >
-          {({ handleSubmit }) => (
-            <Form onSubmit={handleSubmit} className="space-y-4 ">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
-                <TextInput
-                  name="currentPassword"
-                  label="Current Password"
-                  type="password"
-                  placeholder="Enter current password"
-                  required={true}
-                />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            {({ handleSubmit }) => (
+              <Form onSubmit={handleSubmit} className="space-y-4 ">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                  <TextInput
+                    name="currentPassword"
+                    label="Current Password"
+                    type="password"
+                    placeholder="Enter current password"
+                    required={true}
+                  />
 
-                <TextInput
-                  name="newPassword"
-                  label="New Password"
-                  type="password"
-                  placeholder="Enter new password"
-                  required={true}
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
-                <TextInput
-                  name="confirmNewPassword"
-                  label="Confirm New Password"
-                  type="password"
-                  placeholder="Re-enter new password"
-                  required={true}
-                />
-              </div>
+                  <TextInput
+                    name="newPassword"
+                    label="New Password"
+                    type="password"
+                    placeholder="Enter new password"
+                    required={true}
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                  <TextInput
+                    name="confirmNewPassword"
+                    label="Confirm New Password"
+                    type="password"
+                    placeholder="Re-enter new password"
+                    required={true}
+                  />
+                </div>
 
-              {/* Button */}
-              <button
-                type="submit"
-                className="w-full py-3 rounded-lg bg-teal-500 text-white font-medium hover:bg-teal-600 transition"
-              >
-                Update Password
-              </button>
-            </Form>
-          )}
-        </Formik>
+                {/* Button */}
+                <button
+                  type="submit"
+                  className="w-full py-3 rounded-lg bg-teal-500 text-white font-medium hover:bg-teal-600 transition"
+                >
+                  Update Password
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </PageBody>
     </PageLayout>
   );
