@@ -46,8 +46,8 @@ const SalesRoutes = (
       {/* <Route path="topics/:topicId/units" element={<Units />} /> */}
 
       {/* quize */}
-      <Route path="quize" element={<Quize />} />
-      <Route path="quize/result" element={<QuizeResult />} />
+      <Route path="quiz/:topicId" element={<Quize />} />
+      <Route path="quiz/result" element={<QuizeResult />} />
 
       {/*certificate  */}
       <Route path="certificate" element={<Certificate />} />

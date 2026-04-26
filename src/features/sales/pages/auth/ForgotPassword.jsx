@@ -6,16 +6,14 @@ import TextInput from "../../common/form/TextInput";
 import FormButton from "../../common/form/FormButton";
 import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
 import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-// import { useDispatch } from "react-redux";
-// import { useToast } from "../../common/toast/ToastContext";
-// import { forgotPassword } from "../../../../redux/slice/authSlice";
+import { useDispatch } from "react-redux";
+import { useToast } from "../../common/toast/ToastContext";
+import { forgotPassword } from "../../../../redux/slice/authSlice";
 
 const ForgotPassword = () => {
-  const { t } = useTranslation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const toast = useToast();
+  const toast = useToast();
 
   const initialValues = {
     email: "",
@@ -23,20 +21,23 @@ const ForgotPassword = () => {
 
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email(t("forgotPassword.validation.emailInvalid"))
-      .required(t("forgotPassword.validation.emailRequired")),
+      .email("Invalid email address")
+      .required("Email is required"),
   });
 
   const onSubmit = async (values, { setSubmitting }) => {
-    // try {
-    //   const res = await dispatch(forgotPassword(values)).unwrap();
-    //   toast.success(res?.message || "Login Successfully");
-    //   // navigate("/reset-password");
-    // } catch (err) {
-    //   toast.error(err?.message || "Login Failed");
-    // } finally {
-    //   setSubmitting(false);
-    // }
+    try {
+      const res = await dispatch(forgotPassword(values)).unwrap();
+      toast.success("Link sent successfully to your mail. Please check.");
+      setTimeout(() => {
+        navigate("/reset-password");
+      }, 2000);
+    } catch (err) {
+      toast.error(err?.message || "Login Failed");
+      setSubmitting(false);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -46,7 +47,7 @@ const ForgotPassword = () => {
         {/* Language Dropdown */}
         <div className="w-full max-w-md flex justify-end">
           <select className="text-sm border border-gray-300 rounded-md px-3 py-1 bg-white">
-            <option>🌐 {t("login.language")}</option>
+            <option>🌐 Language</option>
           </select>
         </div>
         {/* Logo */}
@@ -56,7 +57,7 @@ const ForgotPassword = () => {
             alt="logo"
             className="mx-auto w-[160px] sm:w-[190px]"
           />
-          <p className="text-gray-500 text-sm mt-2">{t("login.title")}</p>
+          <p className="text-gray-500 text-sm mt-2">Avante Medical LMS</p>
         </div>
         {/* Heading */}
         <div className="mb-6">
@@ -66,10 +67,11 @@ const ForgotPassword = () => {
             </span>
           </div>
           <h2 className="text-2xl text-center font-bold text-primary">
-            {t("forgotPassword.title")}
+            Forgot Password?
           </h2>
           <p className="text-[#64748B] text-sm text-center mt-2">
-            {t("forgotPassword.subtitle")}
+            Enter your email address and we'll send you a link to reset your
+            password.
           </p>
         </div>
         <Formik
@@ -84,13 +86,13 @@ const ForgotPassword = () => {
                 <div className="relative">
                   <FiMail
                     size={18}
-                    className="absolute top-7 sm:top-9 left-3  text-primary"
+                    className="absolute top-7 sm:top-9 left-3 text-primary"
                   />
                   <TextInput
-                    label={t("forgotPassword.emailLabel")}
+                    label="Email Address"
                     name="email"
                     type="email"
-                    placeholder={t("forgotPassword.emailPlaceholder")}
+                    placeholder="Enter your email"
                     className="!pl-10"
                   />
                 </div>
@@ -98,11 +100,7 @@ const ForgotPassword = () => {
 
               {/* Send Link Button */}
               <FormButton
-                text={
-                  isSubmitting
-                    ? t("forgotPassword.sending")
-                    : t("forgotPassword.button")
-                }
+                text={isSubmitting ? "Sending..." : "Send Reset Link"}
                 className="cursor-pointer"
                 loading={isSubmitting}
                 type="submit"
@@ -111,13 +109,12 @@ const ForgotPassword = () => {
               {/* Help text */}
               <div className="text-center text-sm text-[#64748B]">
                 <p>
-                  {t("forgotPassword.notReceived")}{" "}
+                  Didn't receive the email?{" "}
                   <Link
                     to="/check-email"
-                    // type="button"
                     className="text-[#1F3C88] hover:underline font-medium"
                   >
-                    {t("forgotPassword.spam")}
+                    Check spam folder
                   </Link>
                 </p>
               </div>
@@ -127,12 +124,12 @@ const ForgotPassword = () => {
         {/* Sign in link */}
         <div className="mt-6 text-center text-sm text-[#64748B]">
           <p>
-            {t("forgotPassword.rememberYourPassword")}{" "}
+            Remember your password?{" "}
             <a
               href="/signin"
               className="text-[#1F3C88] font-medium hover:underline"
             >
-              {t("forgotPassword.signIn")}
+              Sign In
             </a>
           </p>
         </div>
