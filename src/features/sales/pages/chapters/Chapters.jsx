@@ -24,6 +24,7 @@
 //   IoTimeOutline,
 //   IoPlay,
 //   IoListOutline,
+//   IoHelpCircle, // Added for quiz button
 // } from "react-icons/io5";
 // import Loader from "../../common/Loader";
 // import Error from "../../common/Error";
@@ -49,7 +50,6 @@
 //   const topics = currentChapter?.topics || [];
 
 //   // Calculate progress based on actual completed topics
-//   // Note: API me is_completed 0/1 ya boolean me aa sakta hai
 //   const completedTopics = topics.filter((t) => {
 //     return t.is_completed === true || t.is_completed === 1;
 //   }).length;
@@ -89,6 +89,13 @@
 //     return !isCompleted && isUnlocked;
 //   });
 
+//   // Function to handle quiz navigation
+//   const handleGiveQuiz = (topicId, e) => {
+//     e.stopPropagation(); // Prevent triggering the parent topic click
+//     navigate(`/quiz/${topicId}`); // Adjust the route as needed
+//     // Or if you need to pass quiz ID: navigate(`/quiz/${quizId}`);
+//   };
+
 //   if (isLoading) {
 //     return <Loader />;
 //   }
@@ -120,7 +127,7 @@
 //       </PageHeader>
 //       <PageBody>
 //         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
-//           {/* 🔹 Hero Banner */}
+//           {/* Hero Banner - unchanged */}
 //           <div className="relative rounded-2xl overflow-hidden shadow-xl group">
 //             <img
 //               src={currentChapter?.thumbnail}
@@ -157,7 +164,7 @@
 //             </button>
 //           </div>
 
-//           {/* 🔹 Stats & Progress Section */}
+//           {/* Stats & Progress Section - unchanged */}
 //           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
 //             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
 //               <div className="flex items-center justify-between">
@@ -208,7 +215,7 @@
 //             </div>
 //           </div>
 
-//           {/* 🔹 About Section */}
+//           {/* About Section - unchanged */}
 //           <div className="bg-white rounded-xl p-5 mt-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
 //             <div className="flex items-start gap-3">
 //               <div className="p-2 bg-blue-50 rounded-lg">
@@ -226,7 +233,7 @@
 //             </div>
 //           </div>
 
-//           {/* 🔹 Topics Section */}
+//           {/* Topics Section - Updated with Quiz Button */}
 //           <div className="mt-6">
 //             <div className="flex justify-between items-center mb-4">
 //               <h3 className="font-bold text-gray-800 text-lg flex items-center gap-2">
@@ -244,6 +251,9 @@
 //                   topic.is_unlocked === true || topic.is_unlocked === 1;
 //                 const isCompleted =
 //                   topic.is_completed === true || topic.is_completed === 1;
+//                 const isQuizAvailable =
+//                   topic.is_quiz_available === true ||
+//                   topic.is_quiz_available === 1;
 
 //                 return (
 //                   <div
@@ -309,29 +319,49 @@
 //                         </div>
 //                       </div>
 
-//                       {isCompleted ? (
-//                         <div className="text-green-600 text-sm font-medium flex items-center gap-1">
-//                           <IoCheckmarkCircle className="w-4 h-4" /> Completed
-//                         </div>
-//                       ) : (
-//                         <button
-//                           className={`px-4 py-2 rounded-lg text-sm font-medium transition-all transform hover:scale-105
-//                             ${
-//                               isUnlocked
-//                                 ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md hover:shadow-lg"
-//                                 : "bg-gray-100 text-gray-500 cursor-not-allowed"
-//                             }`}
-//                           disabled={!isUnlocked}
-//                           onClick={(e) => {
-//                             e.stopPropagation();
-//                             if (isUnlocked) {
-//                               navigate(`/topics/${topic.id}`);
-//                             }
-//                           }}
-//                         >
-//                           {isUnlocked ? "Start Topic" : "Locked"}
-//                         </button>
-//                       )}
+//                       <div className="flex items-center gap-2">
+//                         {/* Quiz Button - only show if quiz is available */}
+//                         {isQuizAvailable && (
+//                           <button
+//                             onClick={(e) => handleGiveQuiz(topic.id, e)}
+//                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all transform hover:scale-105 flex items-center gap-2
+//                               ${
+//                                 isUnlocked
+//                                   ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:shadow-lg"
+//                                   : "bg-gray-100 text-gray-500 cursor-not-allowed"
+//                               }`}
+//                             disabled={!isUnlocked}
+//                           >
+//                             <IoHelpCircle className="w-4 h-4" />
+//                             Give Quiz
+//                           </button>
+//                         )}
+
+//                         {/* Start Topic / Completed Button */}
+//                         {isCompleted ? (
+//                           <div className="text-green-600 text-sm font-medium flex items-center gap-1">
+//                             <IoCheckmarkCircle className="w-4 h-4" /> Completed
+//                           </div>
+//                         ) : (
+//                           <button
+//                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all transform hover:scale-105
+//                               ${
+//                                 isUnlocked
+//                                   ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md hover:shadow-lg"
+//                                   : "bg-gray-100 text-gray-500 cursor-not-allowed"
+//                               }`}
+//                             disabled={!isUnlocked}
+//                             onClick={(e) => {
+//                               e.stopPropagation();
+//                               if (isUnlocked) {
+//                                 navigate(`/topics/${topic.id}`);
+//                               }
+//                             }}
+//                           >
+//                             {isUnlocked ? "Start Topic" : "Locked"}
+//                           </button>
+//                         )}
+//                       </div>
 //                     </div>
 //                   </div>
 //                 );
@@ -340,7 +370,7 @@
 //           </div>
 //         </div>
 
-//         {/* 🔹 Bottom Sticky CTA */}
+//         {/* Bottom Sticky CTA - unchanged */}
 //         <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
 //           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 //             <div className="flex items-center justify-between flex-wrap gap-3">
@@ -406,15 +436,17 @@ import {
   IoTimeOutline,
   IoPlay,
   IoListOutline,
-  IoHelpCircle, // Added for quiz button
+  IoHelpCircle,
 } from "react-icons/io5";
 import Loader from "../../common/Loader";
 import Error from "../../common/Error";
+import { useTranslation } from "react-i18next";
 
 export default function Chapters() {
   const { chapterId: id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const { currentChapter, isLoading, isError, message } = useSelector(
     (state) => state.course,
@@ -473,9 +505,8 @@ export default function Chapters() {
 
   // Function to handle quiz navigation
   const handleGiveQuiz = (topicId, e) => {
-    e.stopPropagation(); // Prevent triggering the parent topic click
-    navigate(`/quiz/${topicId}`); // Adjust the route as needed
-    // Or if you need to pass quiz ID: navigate(`/quiz/${quizId}`);
+    e.stopPropagation();
+    navigate(`/quiz/${topicId}`);
   };
 
   if (isLoading) {
@@ -491,7 +522,7 @@ export default function Chapters() {
       <PageLayout>
         <PageBody>
           <div className="text-center py-20">
-            <p className="text-gray-500">No chapter data available</p>
+            <p className="text-gray-500">{t("chapters.emptyState.noData")}</p>
           </div>
         </PageBody>
       </PageLayout>
@@ -502,14 +533,14 @@ export default function Chapters() {
     <PageLayout>
       <PageHeader>
         <PageHeaderLeft>
-          <PageTitle>Chapter Details</PageTitle>
-          <PageSubtitle>Track your progress through topics</PageSubtitle>
+          <PageTitle>{t("chapters.pageTitle")}</PageTitle>
+          <PageSubtitle>{t("chapters.pageSubtitle")}</PageSubtitle>
         </PageHeaderLeft>
         <PageHeaderRight />
       </PageHeader>
       <PageBody>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-28">
-          {/* Hero Banner - unchanged */}
+          {/* Hero Banner */}
           <div className="relative rounded-2xl overflow-hidden shadow-xl group">
             <img
               src={currentChapter?.thumbnail}
@@ -522,11 +553,13 @@ export default function Chapters() {
             <div className="absolute bottom-6 left-6 right-6 text-white">
               <div className="flex items-center gap-2 mb-2">
                 <span className="bg-blue-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium">
-                  {currentChapter?.title || "Chapter"} • {totalTopics} Topics •{" "}
-                  {totalTime} min
+                  {currentChapter?.title || "Chapter"} • {totalTopics}{" "}
+                  {t("chapters.badge.topics")} • {totalTime}{" "}
+                  {t("chapters.badge.minutes")}
                 </span>
                 <span className="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs flex items-center gap-1">
-                  <IoTimeOutline className="w-3 h-3" /> Self-paced
+                  <IoTimeOutline className="w-3 h-3" />{" "}
+                  {t("chapters.stats.selfPaced")}
                 </span>
               </div>
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
@@ -542,16 +575,18 @@ export default function Chapters() {
               onClick={() => navigate(-1)}
               className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white px-3 py-1.5 rounded-xl text-sm font-medium transition-all hover:shadow-lg flex items-center gap-1"
             >
-              <IoArrowBack className="w-4 h-4" /> Back
+              <IoArrowBack className="w-4 h-4" /> {t("chapters.backButton")}
             </button>
           </div>
 
-          {/* Stats & Progress Section - unchanged */}
+          {/* Stats & Progress Section */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-blue-600 font-medium">PROGRESS</p>
+                  <p className="text-xs text-blue-600 font-medium">
+                    {t("chapters.stats.progress")}
+                  </p>
                   <h2 className="text-3xl font-bold text-blue-700 mt-1">
                     {Math.round(progress)}%
                   </h2>
@@ -570,7 +605,7 @@ export default function Chapters() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-purple-600 font-medium">
-                    COMPLETED
+                    {t("chapters.stats.completed")}
                   </p>
                   <h2 className="text-3xl font-bold text-purple-700 mt-1">
                     {completedTopics}/{totalTopics}
@@ -578,14 +613,16 @@ export default function Chapters() {
                 </div>
                 <IoRibbonOutline className="text-purple-400 w-8 h-8" />
               </div>
-              <p className="text-xs text-purple-600 mt-2">Topics completed</p>
+              <p className="text-xs text-purple-600 mt-2">
+                {t("chapters.stats.topicsCompleted")}
+              </p>
             </div>
 
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-green-600 font-medium">
-                    EST. TIME
+                    {t("chapters.stats.estTime")}
                   </p>
                   <h2 className="text-3xl font-bold text-green-700 mt-1">
                     {totalTime} min
@@ -593,11 +630,13 @@ export default function Chapters() {
                 </div>
                 <IoTimeOutline className="text-green-400 w-8 h-8" />
               </div>
-              <p className="text-xs text-green-600 mt-2">Total learning time</p>
+              <p className="text-xs text-green-600 mt-2">
+                {t("chapters.stats.totalLearningTime")}
+              </p>
             </div>
           </div>
 
-          {/* About Section - unchanged */}
+          {/* About Section */}
           <div className="bg-white rounded-xl p-5 mt-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-blue-50 rounded-lg">
@@ -605,7 +644,7 @@ export default function Chapters() {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-800 mb-2">
-                  About this Chapter
+                  {t("chapters.aboutSection.title")}
                 </h3>
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {currentChapter?.description ||
@@ -615,12 +654,12 @@ export default function Chapters() {
             </div>
           </div>
 
-          {/* Topics Section - Updated with Quiz Button */}
+          {/* Topics Section */}
           <div className="mt-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-bold text-gray-800 text-lg flex items-center gap-2">
                 <IoListOutline className="text-blue-600" />
-                All Topics
+                {t("chapters.topicsSection.title")}
               </h3>
               <p className="text-xs text-gray-500">
                 {completedTopics} of {totalTopics} completed
@@ -666,27 +705,30 @@ export default function Chapters() {
                         <div className="flex-1">
                           <div className="flex items-center gap-2 flex-wrap">
                             <p className="text-xs font-medium text-gray-500">
-                              Topic {index + 1}
+                              {t("chapters.topicsSection.topicText")}{" "}
+                              {index + 1}
                             </p>
                             {isUnlocked && !isCompleted && (
                               <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                                Current
+                                {t("chapters.topicsSection.current")}
                               </span>
                             )}
                             {isCompleted && (
                               <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                                Completed
+                                {t("chapters.topicsSection.completed")}
                               </span>
                             )}
                             {!isUnlocked && (
                               <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                                <IoLockClosed className="w-3 h-3" /> Locked
+                                <IoLockClosed className="w-3 h-3" />{" "}
+                                {t("chapters.topicsSection.locked")}
                               </span>
                             )}
                             {topic.estimated_duration && (
                               <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
                                 <IoTimeOutline className="w-3 h-3" />{" "}
-                                {topic.estimated_duration} min
+                                {topic.estimated_duration}{" "}
+                                {t("chapters.topicsSection.min")}
                               </span>
                             )}
                           </div>
@@ -702,7 +744,7 @@ export default function Chapters() {
                       </div>
 
                       <div className="flex items-center gap-2">
-                        {/* Quiz Button - only show if quiz is available */}
+                        {/* Quiz Button */}
                         {isQuizAvailable && (
                           <button
                             onClick={(e) => handleGiveQuiz(topic.id, e)}
@@ -715,14 +757,15 @@ export default function Chapters() {
                             disabled={!isUnlocked}
                           >
                             <IoHelpCircle className="w-4 h-4" />
-                            Give Quiz
+                            {t("chapters.topicsSection.giveQuiz")}
                           </button>
                         )}
 
                         {/* Start Topic / Completed Button */}
                         {isCompleted ? (
                           <div className="text-green-600 text-sm font-medium flex items-center gap-1">
-                            <IoCheckmarkCircle className="w-4 h-4" /> Completed
+                            <IoCheckmarkCircle className="w-4 h-4" />{" "}
+                            {t("chapters.topicsSection.completed")}
                           </div>
                         ) : (
                           <button
@@ -740,7 +783,9 @@ export default function Chapters() {
                               }
                             }}
                           >
-                            {isUnlocked ? "Start Topic" : "Locked"}
+                            {isUnlocked
+                              ? t("chapters.topicsSection.startTopic")
+                              : t("chapters.topicsSection.lockedButton")}
                           </button>
                         )}
                       </div>
@@ -752,18 +797,18 @@ export default function Chapters() {
           </div>
         </div>
 
-        {/* Bottom Sticky CTA - unchanged */}
+        {/* Bottom Sticky CTA */}
         <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="hidden sm:block">
                 <p className="text-sm text-gray-600">
-                  Continue your learning journey
+                  {t("chapters.cta.continueJourney")}
                 </p>
                 <p className="text-xs text-gray-400">
                   {nextTopic
-                    ? `Next: ${nextTopic.title}`
-                    : "All topics completed! 🎉"}
+                    ? `${t("chapters.cta.nextTopic")} ${nextTopic.title}`
+                    : t("chapters.cta.allTopicsCompleted")}
                 </p>
               </div>
               <button
@@ -781,7 +826,9 @@ export default function Chapters() {
                   }`}
               >
                 <IoPlayCircle className="w-5 h-5" />
-                {nextTopic ? "Continue Learning" : "All Completed 🎉"}
+                {nextTopic
+                  ? t("chapters.cta.continueLearning")
+                  : t("chapters.cta.allCompleted")}
                 <IoChevronForward className="w-4 h-4" />
               </button>
             </div>

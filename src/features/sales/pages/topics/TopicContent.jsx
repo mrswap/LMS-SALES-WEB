@@ -1,7 +1,10 @@
-// import React, { useEffect } from "react";
+// import React, { useEffect, useRef } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useParams, useNavigate } from "react-router-dom";
-// import { getSingleContent } from "../../../../redux/slice/coursePreviewSlice";
+// import {
+//   getSingleContent,
+//   markContentAsRead,
+// } from "../../../../redux/slice/coursePreviewSlice";
 // import {
 //   FaArrowLeft,
 //   FaArrowRight,
@@ -19,6 +22,7 @@
 //   const dispatch = useDispatch();
 //   const navigate = useNavigate();
 //   const { topicId, contentId } = useParams();
+//   const hasMarkedRead = useRef(false); // Prevent multiple API calls
 
 //   const { currentContent, isLoading } = useSelector((state) => state.course);
 
@@ -29,8 +33,35 @@
 //   useEffect(() => {
 //     if (topicId && contentId) {
 //       dispatch(getSingleContent({ topicId, contentId }));
+//       // Reset the read flag when content changes
+//       hasMarkedRead.current = false;
 //     }
 //   }, [topicId, contentId, dispatch]);
+
+//   // Effect to call read API when content loads and is not read
+//   useEffect(() => {
+//     // Check if content exists, is not read (0 or false), and hasn't been marked yet
+//     if (
+//       content &&
+//       content.id &&
+//       (content.is_read === 0 || content.is_read === false) &&
+//       !hasMarkedRead.current
+//     ) {
+//       hasMarkedRead.current = true; // Set flag to prevent multiple calls
+
+//       // Call the toggle-read API
+//       dispatch(markContentAsRead({ contentId: content.id })).then((result) => {
+//         if (result.meta.requestStatus === "fulfilled") {
+//           console.log("Content marked as read successfully");
+//           // Optional: Refresh content to get updated is_read status
+//           dispatch(getSingleContent({ topicId, contentId }));
+//         } else {
+//           // If API fails, reset flag so it can retry
+//           hasMarkedRead.current = false;
+//         }
+//       });
+//     }
+//   }, [content, topicId, contentId, dispatch]);
 
 //   const navigateToContent = (newContentId) => {
 //     if (newContentId) {
@@ -235,6 +266,12 @@
 //                 <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
 //                   {getTypeLabel()}
 //                 </span>
+//                 {/* Optional: Show read status badge */}
+//                 {content?.is_read === 1 && (
+//                   <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+//                     ✓ Read
+//                   </span>
+//                 )}
 //               </div>
 //               <h1 className="text-3xl font-bold text-gray-900 leading-tight">
 //                 {content?.title}
@@ -326,10 +363,12 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import { MdPictureAsPdf } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 const TopicContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { topicId, contentId } = useParams();
   const hasMarkedRead = useRef(false); // Prevent multiple API calls
 
@@ -398,15 +437,15 @@ const TopicContent = () => {
   const getTypeLabel = () => {
     switch (content?.type) {
       case "text":
-        return "Reading Material";
+        return t("topicContent.contentTypes.text");
       case "video":
-        return "Video Lecture";
+        return t("topicContent.contentTypes.video");
       case "pdf":
-        return "Document";
+        return t("topicContent.contentTypes.pdf");
       case "audio":
-        return "Audio Lesson";
+        return t("topicContent.contentTypes.audio");
       case "image":
-        return "Visual Content";
+        return t("topicContent.contentTypes.image");
       default:
         return content?.type;
     }
@@ -439,14 +478,14 @@ const TopicContent = () => {
       <div className="bg-gray-800 text-white px-4 py-2 flex items-center justify-between">
         <span className="text-sm flex items-center gap-2">
           <MdPictureAsPdf className="text-red-400" />
-          PDF Document
+          {t("topicContent.pdf.title")}
         </span>
         <a
           href={content?.pdf_url || content?.content}
           download
           className="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded transition"
         >
-          Download PDF
+          {t("topicContent.pdf.download")}
         </a>
       </div>
       <iframe
@@ -506,7 +545,9 @@ const TopicContent = () => {
       default:
         return (
           <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-8 text-center">
-            <p className="text-yellow-800">Content type: {content?.type}</p>
+            <p className="text-yellow-800">
+              {t("topicContent.fallbackMessage")} {content?.type}
+            </p>
           </div>
         );
     }
@@ -518,7 +559,9 @@ const TopicContent = () => {
         <div className="relative">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600"></div>
         </div>
-        <p className="mt-6 text-gray-500 font-medium">Loading content...</p>
+        <p className="mt-6 text-gray-500 font-medium">
+          {t("topicContent.loading")}
+        </p>
       </div>
     );
   }
@@ -530,16 +573,16 @@ const TopicContent = () => {
           <FaFileAlt className="text-3xl text-gray-400" />
         </div>
         <h3 className="text-xl font-semibold text-gray-700 mb-2">
-          Content Not Found
+          {t("topicContent.notFound.title")}
         </h3>
         <p className="text-gray-500 mb-6">
-          The content you're looking for doesn't exist or has been moved.
+          {t("topicContent.notFound.description")}
         </p>
         <button
           onClick={() => navigate(-1)}
           className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition shadow-sm"
         >
-          Return to Course
+          {t("topicContent.notFound.button")}
         </button>
       </div>
     );
@@ -556,7 +599,7 @@ const TopicContent = () => {
               className="text-gray-500 hover:text-gray-700 transition flex items-center gap-1"
             >
               <FaChevronLeft size={12} />
-              Back
+              {t("topicContent.backButton")}
             </button>
             <span className="text-gray-300">/</span>
             <span className="text-gray-500">{topic?.title || "Course"}</span>
@@ -578,7 +621,7 @@ const TopicContent = () => {
                 {/* Optional: Show read status badge */}
                 {content?.is_read === 1 && (
                   <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
-                    ✓ Read
+                    ✓ {t("topicContent.readStatus")}
                   </span>
                 )}
               </div>
@@ -615,16 +658,20 @@ const TopicContent = () => {
                 className="group-hover:-translate-x-0.5 transition-transform"
               />
               <div className="text-left">
-                <p className="text-xs text-gray-500">Previous</p>
+                <p className="text-xs text-gray-500">
+                  {t("topicContent.navigation.previous")}
+                </p>
                 <p className="text-sm font-medium text-gray-700">
-                  Previous Lesson
+                  {t("topicContent.navigation.previousLesson")}
                 </p>
               </div>
             </button>
 
             <div className="text-center">
               {navigation?.has_next && (
-                <p className="text-xs text-gray-400">Continue to next lesson</p>
+                <p className="text-xs text-gray-400">
+                  {t("topicContent.navigation.continueText")}
+                </p>
               )}
             </div>
 
@@ -636,8 +683,12 @@ const TopicContent = () => {
                        hover:bg-blue-700 transition-all duration-200 shadow-sm"
             >
               <div className="text-right">
-                <p className="text-xs text-blue-100">Next</p>
-                <p className="text-sm font-medium text-white">Next Lesson</p>
+                <p className="text-xs text-blue-100">
+                  {t("topicContent.navigation.next")}
+                </p>
+                <p className="text-sm font-medium text-white">
+                  {t("topicContent.navigation.nextLesson")}
+                </p>
               </div>
               <FaArrowRight
                 size={14}

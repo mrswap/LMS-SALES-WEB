@@ -1,595 +1,561 @@
 {
   "login": {
-    "title": "वापस स्वागत है",
-    "subtitle": "अपने Avante एडमिन अकाउंट में साइन इन करें",
-    "emailLabel": "ईमेल या कर्मचारी आईडी",
-    "emailPlaceholder": "अपना ईमेल या कर्मचारी आईडी दर्ज करें",
+    "title": "वापस स्वागत है!",
+    "emailLabel": "ईमेल पता",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
     "passwordLabel": "पासवर्ड",
     "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
     "forgotPassword": "पासवर्ड भूल गए?",
+    "stayLoggedIn": "लॉगिन बनाए रखें",
     "button": "साइन इन करें",
-    "signingIn": "साइन इन हो रहा है...",
-    "trouble": "साइन इन करने में समस्या है?",
-    "contactAdmin": "अपने सिस्टम एडमिनिस्ट्रेटर से संपर्क करें",
+    "or": "या",
+    "newEmployee": "नए कर्मचारी?",
+    "completeEmployeeOnboarding": "कर्मचारी ऑनबोर्डिंग पूरी करें",
+    "secureLogin": "सुरक्षित लॉगिन",
+    "termsOfService": "सेवा की शर्तें",
+    "privacyPolicy": "गोपनीयता नीति",
+    "language": "भाषा",
     "validation": {
       "emailRequired": "ईमेल आवश्यक है",
-      "emailInvalid": "कृपया एक वैध ईमेल पता दर्ज करें",
+      "emailInvalid": "अमान्य ईमेल पता",
       "passwordRequired": "पासवर्ड आवश्यक है"
     }
   },
 
   "forgotPassword": {
-    "title": "पासवर्ड भूल गए?",
-    "subtitle": "अपना पंजीकृत ईमेल पता दर्ज करें और हम आपको पासवर्ड रीसेट करने का लिंक भेजेंगे।",
+    "title": "Avante Medical LMS",
+    "language": "भाषा",
+    "heading": "पासवर्ड भूल गए?",
+    "description": "अपना ईमेल पता दर्ज करें और हम आपको पासवर्ड रीसेट करने का लिंक भेजेंगे।",
     "emailLabel": "ईमेल पता",
-    "emailPlaceholder": "you@company.com",
-    "button": "लिंक भेजें",
-    "sending": "भेजा जा रहा है...",
-    "back": "साइन इन पर वापस जाएं",
-    "spam": "अपना स्पैम फ़ोल्डर जांचें",
-    "notReceived": "ईमेल नहीं मिला?",
-    "rememberYourPassword": "पासवर्ड याद है?",
-    "signIn": "साइन इन करें",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
+    "sendLinkButton": "रीसेट लिंक भेजें",
+    "sendingButton": "भेजा जा रहा है...",
+    "helpText": "ईमेल नहीं मिली?",
+    "checkSpam": "स्पैम फ़ोल्डर जांचें",
+    "signInText": "पासवर्ड याद है?",
+    "signInLink": "साइन इन करें",
+    "successMessage": "लिंक सफलतापूर्वक आपके मेल पर भेज दिया गया है। कृपया जांचें।",
+    "errorMessage": "रीसेट लिंक भेजने में विफल",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0",
     "validation": {
       "emailRequired": "ईमेल आवश्यक है",
       "emailInvalid": "अमान्य ईमेल पता"
     }
   },
 
-  "checkEmail": {
-    "title": "अपना ईमेल जांचें",
-    "subtitle": "हमने पासवर्ड रीसेट लिंक भेजा है",
-    "openApp": "ईमेल ऐप खोलें",
-    "resend": "लिंक पुनः भेजें",
-    "back": "साइन इन पर वापस जाएं"
-  },
-
-  "resetPassword": {
-    "title": "पासवर्ड रीसेट करें",
-    "subtitle": "अपने अकाउंट तक पुनः पहुंच प्राप्त करने के लिए नया पासवर्ड सेट करें।",
-    "newPassword": "नया पासवर्ड",
-    "confirmPassword": "पासवर्ड की पुष्टि करें",
-    "placeholderNew": "नया पासवर्ड दर्ज करें",
-    "placeholderConfirm": "नया पासवर्ड दोबारा दर्ज करें",
-    "update": "पासवर्ड रीसेट करें",
-    "updating": "रीसेट हो रहा है...",
-    "rules": {
-      "min": "न्यूनतम 8 अक्षर",
-      "uppercase": "कम से कम 1 बड़ा अक्षर",
-      "number": "कम से कम 1 अंक",
-      "special": "कम से कम 1 विशेष अक्षर"
-    },
-    "validation": {
-      "passwordRequired": "पासवर्ड आवश्यक है",
-      "passwordMin": "न्यूनतम 8 अक्षर",
-      "passwordUppercase": "कम से कम 1 बड़ा अक्षर",
-      "passwordNumber": "कम से कम 1 अंक",
-      "passwordSpecial": "कम से कम 1 विशेष अक्षर",
-      "confirmPasswordRequired": "पासवर्ड की पुष्टि आवश्यक है",
-      "passwordMatch": "पासवर्ड मेल नहीं खाते"
-    }
-  },
-
-  "changePassword": {
-    "title": "पासवर्ड बदलें",
-    "subtitle": "अपने अकाउंट को सुरक्षित रखने के लिए पासवर्ड अपडेट करें।",
-    "oldPassword": "पुराना पासवर्ड",
-    "oldPasswordPlaceholder": "पुराना पासवर्ड दर्ज करें",
-    "newPassword": "नया पासवर्ड",
-    "confirmPassword": "पासवर्ड की पुष्टि करें",
-    "placeholderNew": "नया पासवर्ड दर्ज करें",
-    "placeholderConfirm": "नया पासवर्ड दोबारा दर्ज करें",
-    "update": "पासवर्ड अपडेट करें",
-    "updating": "अपडेट हो रहा है...",
-    "rules": {
-      "min": "न्यूनतम 8 अक्षर",
-      "uppercase": "कम से कम 1 बड़ा अक्षर",
-      "number": "कम से कम 1 अंक",
-      "special": "कम से कम 1 विशेष अक्षर"
-    },
-    "validation": {
-      "oldPassword": "पुराना पासवर्ड आवश्यक है",
-      "passwordRequired": "पासवर्ड आवश्यक है",
-      "passwordMin": "न्यूनतम 8 अक्षर",
-      "passwordUppercase": "कम से कम 1 बड़ा अक्षर",
-      "passwordNumber": "कम से कम 1 अंक",
-      "passwordSpecial": "कम से कम 1 विशेष अक्षर",
-      "confirmPasswordRequired": "पासवर्ड की पुष्टि आवश्यक है",
-      "passwordMatch": "पासवर्ड मेल नहीं खाते"
-    }
-  },
-
-  "profile": {
-    "title": "प्रोफ़ाइल सेटिंग्स",
-    "subtitle": "अपनी व्यक्तिगत जानकारी और अकाउंट विवरण प्रबंधित करें",
-
-    "details": {
-      "name": "पूरा नाम",
-      "namePlaceholder": "अपना पूरा नाम दर्ज करें",
-      "email": "ईमेल",
-      "emailPlaceholder": "ईमेल पता दर्ज करें",
-      "mobile": "मोबाइल नंबर",
-      "mobilePlaceholder": "10 अंकों का मोबाइल नंबर दर्ज करें",
-      "city": "शहर",
-      "cityPlaceholder": "शहर दर्ज करें",
-      "country": "देश",
-      "countryPlaceholder": "देश चुनें",
-      "upload": "अपलोड करें"
-    },
-
-    "actions": {
-      "updateProfile": "प्रोफ़ाइल अपडेट करें",
-      "updating": "अपडेट हो रहा है..."
-    },
-
+  "register": {
+    "language": "भाषा",
+    "title": "Avante Medical LMS",
+    "subtitle": "अपना खाता बनाएं",
+    "fullNameLabel": "पूरा नाम",
+    "fullNamePlaceholder": "अपना पूरा नाम दर्ज करें",
+    "emailLabel": "ईमेल पता",
+    "emailPlaceholder": "example@email.com",
+    "mobileLabel": "मोबाइल नंबर",
+    "mobilePlaceholder": "9876543210",
+    "employeeIdLabel": "कर्मचारी आईडी",
+    "employeeIdPlaceholder": "EMP-12345",
+    "designationLabel": "पद",
+    "designationLoading": "पद लोड हो रहे हैं...",
+    "designationPlaceholder": "पद चुनें",
+    "countryLabel": "क्षेत्र",
+    "countryPlaceholder": "देश चुनें",
+    "cityLabel": "शहर",
+    "cityPlaceholder": "अपना शहर दर्ज करें",
+    "passwordLabel": "पासवर्ड",
+    "passwordPlaceholder": "********",
+    "confirmPasswordLabel": "पासवर्ड की पुष्टि करें",
+    "confirmPasswordPlaceholder": "********",
+    "profileImageLabel": "प्रोफ़ाइल छवि",
+    "uploadPhoto": "फ़ोटो अपलोड करें",
+    "changePhoto": "फ़ोटो बदलें",
+    "removePhoto": "हटाएं",
+    "imageSupportedText": "समर्थित: JPG, PNG, GIF • अधिकतम 5MB",
+    "registerButton": "पंजीकरण करें",
+    "registeringButton": "खाता बनाया जा रहा है...",
+    "or": "या",
+    "alreadyAccount": "पहले से खाता है?",
+    "loginButton": "अपने खाते में लॉगिन करें",
+    "secureRegistration": "सुरक्षित पंजीकरण",
+    "termsOfService": "सेवा की शर्तें",
+    "privacyPolicy": "गोपनीयता नीति",
+    "successMessage": "पंजीकरण सफल! कृपया लॉगिन करें।",
+    "errorMessage": "पंजीकरण विफल। कृपया पुनः प्रयास करें।",
     "validation": {
       "nameRequired": "नाम आवश्यक है",
       "emailRequired": "ईमेल आवश्यक है",
       "emailInvalid": "अमान्य ईमेल",
-      "mobileRequired": "मोबाइल नंबर आवश्यक है",
-      "mobileInvalid": "वैध 10 अंकों का मोबाइल नंबर दर्ज करें",
+      "mobileRequired": "मोबाइल आवश्यक है",
+      "mobileInvalid": "मोबाइल नंबर 10 अंकों का होना चाहिए",
+      "employeeIdRequired": "कर्मचारी आईडी आवश्यक है",
+      "designationRequired": "पद आवश्यक है",
+      "countryRequired": "देश आवश्यक है",
       "cityRequired": "शहर आवश्यक है",
-      "cityMin": "शहर का नाम कम से कम 2 अक्षरों का होना चाहिए",
-      "countryRequired": "देश आवश्यक है"
-    }
-  },
-
-  "navbar": {
-    "searchPlaceholder": "एनालिटिक्स, उपयोगकर्ता या कोर्स खोजें...",
-    "notifications": "सूचनाएं",
-    "messages": "संदेश",
-    "profile": "प्रोफ़ाइल",
-    "changePassword": "पासवर्ड बदलें",
-    "logout": "लॉगआउट"
-  },
-
-  "sidebar": {
-    "dashboard": "डैशबोर्ड",
-
-    "userManagement": "उपयोगकर्ता प्रबंधन",
-    "assignTrainingProgram": "प्रशिक्षण कार्यक्रम असाइन करें",
-
-    "trainingPrograms": "प्रशिक्षण कार्यक्रम",
-    "programList": "कार्यक्रम सूची",
-    "createProgram": "कार्यक्रम बनाएं",
-    "programAssignment": "कार्यक्रम असाइनमेंट",
-
-    "curriculumManagement": "पाठ्यक्रम प्रबंधन",
-    "levels": "स्तर",
-    "modules": "मॉड्यूल",
-    "chapters": "अध्याय",
-    "topics": "विषय",
-    "bulkImport": "बल्क आयात",
-
-    "contentManagement": "सामग्री प्रबंधन",
-    "learningUnitBuilder": "लर्निंग यूनिट बिल्डर",
-    "interactiveContent": "इंटरएक्टिव सामग्री",
-    "mediaLibrary": "मीडिया लाइब्रेरी",
-
-    "assessmentManagement": "मूल्यांकन प्रबंधन",
-    "quizForTopic": "विषय के लिए क्विज़",
-    "examForLevel": "स्तर के लिए परीक्षा",
-    "faq": "सामान्य प्रश्न",
-
-    "trainingCertification": "प्रशिक्षण और प्रमाणन",
-    "trainingAssignment": "प्रशिक्षण असाइनमेंट",
-    "progressTracker": "प्रगति ट्रैकर",
-    "certification": "प्रमाणन",
-
-    "reportsAdministration": "रिपोर्ट और प्रशासन",
-    "topResult": "शीर्ष परिणाम",
-    "reportsAnalytics": "रिपोर्ट और विश्लेषण",
-    "userAnalytics": "उपयोगकर्ता विश्लेषण",
-    "trainingAnalytics": "प्रशिक्षण विश्लेषण",
-    "performanceReports": "प्रदर्शन रिपोर्ट",
-    "completionReports": "पूर्णता रिपोर्ट",
-    "rolesPermission": "भूमिकाएं और अनुमतियां",
-    "systemSettings": "सिस्टम सेटिंग्स",
-
-    "multiLanguage": "बहु-भाषा",
-
-    "logout": "लॉगआउट"
-  },
-
-  "userManagement": {
-    "list": {
-      "title": "उपयोगकर्ता प्रबंधन",
-      "subtitle": "सभी क्षेत्रों में चिकित्सा पेशेवरों के अकाउंट प्रबंधित करें, ऑडिट करें और सहायता प्रदान करें।",
-      "searchPlaceholder": "विषय के नाम से खोजें...",
-      "clearAll": "सभी साफ़ करें",
-      "columns": {
-        "userId": "उपयोगकर्ता आईडी",
-        "name": "नाम",
-        "contact": "संपर्क",
-        "region": "क्षेत्र",
-        "programs": "कार्यक्रम",
-        "status": "स्थिति",
-        "actions": "क्रियाएं"
-      }
-    },
-    "details": {
-      "personalInfo": "व्यक्तिगत जानकारी",
-      "createPassword": "पासवर्ड बनाएं",
-      "fullName": "पूरा नाम",
-      "fullNamePlaceholder": "पूरा नाम दर्ज करें",
-      "email": "ईमेल पता",
-      "emailPlaceholder": "ईमेल पता दर्ज करें",
-      "phone": "फ़ोन नंबर",
-      "phonePlaceholder": "फ़ोन नंबर दर्ज करें",
-      "employeeId": "कर्मचारी आईडी",
-      "employeeIdPlaceholder": "कर्मचारी आईडी दर्ज करें",
-      "department": "विभाग",
-      "departmentPlaceholder": "विभाग चुनें",
-      "designation": "पदनाम",
-      "designationPlaceholder": "पदनाम चुनें",
-      "region": "क्षेत्र",
-      "regionPlaceholder": "क्षेत्र चुनें",
-      "city": "शहर",
-      "cityPlaceholder": "शहर दर्ज करें",
-      "role": "भूमिका",
-      "rolePlaceholder": "भूमिका चुनें",
-      "password": "पासवर्ड",
-      "passwordPlaceholder": "पासवर्ड दर्ज करें",
-      "newPassword": "नया पासवर्ड",
-      "newPasswordPlaceholder": "नया पासवर्ड दर्ज करें",
-      "confirmPassword": "पासवर्ड की पुष्टि करें",
-      "confirmPasswordPlaceholder": "पासवर्ड दोबारा दर्ज करें",
-      "profileImage": "प्रोफ़ाइल छवि",
-      "uploadImage": "छवि अपलोड करें",
-      "deleteText": "क्या आप वाकई इस उपयोगकर्ता को हटाना चाहते हैं?"
-    },
-    "create": {
-      "title": "नया उपयोगकर्ता बनाएं",
-      "subtitle": "प्लेटफ़ॉर्म पर नए चिकित्सा पेशेवर या स्टाफ सदस्य को जोड़ें।"
-    },
-    "actions": {
-      "addNewUser": "+ नया उपयोगकर्ता जोड़ें",
-      "deleteUser": "उपयोगकर्ता हटाएं",
-      "cancle": "रद्द करें",
-      "createUser": "उपयोगकर्ता बनाएं",
-      "creating": "बनाया जा रहा है...",
-      "updateUser": "उपयोगकर्ता अपडेट करें",
-      "updating": "अपडेट हो रहा है..."
-    },
-    "breadcrumb": {
-      "users": "उपयोगकर्ता",
-      "viewUserProfile": "उपयोगकर्ता प्रोफ़ाइल देखें"
-    },
-    "validation": {
-      "nameRequired": "नाम आवश्यक है",
-      "emailRequired": "ईमेल आवश्यक है",
-      "emailInvalid": "अमान्य ईमेल पता",
-      "roleRequired": "भूमिका आवश्यक है",
-      "departmentRequired": "विभाग आवश्यक है",
-      "designationRequired": "पदनाम आवश्यक है",
-      "regionRequired": "क्षेत्र आवश्यक है",
-      "cityRequired": "शहर आवश्यक है",
-      "mobileRequired": "मोबाइल नंबर आवश्यक है",
       "passwordRequired": "पासवर्ड आवश्यक है",
       "passwordMin": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए",
       "confirmPasswordRequired": "पासवर्ड की पुष्टि आवश्यक है",
-      "passwordMatch": "पासवर्ड मेल नहीं खाते"
+      "passwordMatch": "पासवर्ड मेल खाने चाहिए",
+      "imageInvalidType": "कृपया एक वैध छवि फ़ाइल अपलोड करें (JPEG, PNG, GIF, WEBP)",
+      "imageSizeExceed": "छवि का आकार 5MB से कम होना चाहिए"
     }
   },
 
-  "program": {
-    "list": {
-      "title": "कार्यक्रम प्रबंधन",
-      "subtitle": "अपने चिकित्सा प्रशिक्षण पाठ्यक्रम को कॉन्फ़िगर करें, मॉड्यूल संरचित करें और नामांकन विवरण सहजता से प्रबंधित करें।",
-      "searchPlaceholder": "कार्यक्रम के नाम से खोजें...",
-      "clearAll": "सभी साफ़ करें",
-      "columns": {
-        "programName": "कार्यक्रम का नाम",
-        "totalLevels": "कुल स्तर",
-        "assignedUsers": "असाइन किए गए उपयोगकर्ता",
-        "complitionRate": "पूर्णता दर",
-        "status": "स्थिति",
-        "actions": "क्रियाएं"
-      }
+  "checkEmail": {
+    "title": "Avante Medical",
+    "heading": "अपना ईमेल जांचें",
+    "message": "हमने आपके ईमेल पते पर एक सत्यापन टोकन भेजा है:",
+    "tokenSuccess": "टोकन सफलतापूर्वक भेजा गया!",
+    "tokenDescription": "कृपया अपना मेलबॉक्स जांचें और अपना खाता सक्रिय करने के लिए सत्यापन लिंक पर क्लिक करें।",
+    "expiryText": "टोकन 10 मिनट में समाप्त हो जाएगा",
+    "spamText": "ईमेल नहीं मिली? अपना स्पैम फ़ोल्डर जांचें",
+    "goToLogin": "लॉगिन पर जाएं",
+    "backToRegistration": "पंजीकरण पर वापस जाएं",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0"
+  },
+
+  "verifyEmail": {
+    "title": "Avante Medical",
+    "loading": {
+      "heading": "ईमेल सत्यापित किया जा रहा है",
+      "message": "कृपया प्रतीक्षा करें जब तक हम आपका ईमेल सत्यापित करते हैं..."
+    },
+    "success": {
+      "heading": "ईमेल सत्यापित हो गई!",
+      "message": "आपका ईमेल सफलतापूर्वक सत्यापित हो गया है।",
+      "goToLogin": "लॉगिन पर जाएं",
+      "backToHome": "होम पर वापस जाएं"
+    },
+    "error": {
+      "heading": "सत्यापन विफल",
+      "invalidLink": "अमान्य सत्यापन लिंक",
+      "defaultMessage": "सत्यापन विफल",
+      "tryAgain": "पुनः प्रयास करें",
+      "backToHome": "होम पर वापस जाएं",
+      "goToLogin": "लॉगिन पर जाएं"
+    },
+    "footer": "© 2025 Avante Medical LMS · v2.1.0"
+  },
+
+  "resetPassword": {
+    "title": "Avante Medical LMS",
+    "heading": "पासवर्ड रीसेट करें",
+    "description": "कृपया नीचे अपना नया पासवर्ड दर्ज करें।",
+    "newPasswordLabel": "नया पासवर्ड",
+    "newPasswordPlaceholder": "नया पासवर्ड दर्ज करें",
+    "confirmPasswordLabel": "पासवर्ड की पुष्टि करें",
+    "confirmPasswordPlaceholder": "नए पासवर्ड की पुष्टि करें",
+    "updateButton": "पासवर्ड अपडेट करें",
+    "updatingButton": "अपडेट हो रहा है...",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0",
+    "successMessage": "पासवर्ड सफलतापूर्वक रीसेट हो गया",
+    "errorMessage": "पासवर्ड रीसेट विफल",
+    "validation": {
+      "passwordRequired": "पासवर्ड आवश्यक है",
+      "passwordMin": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए",
+      "passwordUppercase": "पासवर्ड में कम से कम एक बड़ा अक्षर होना चाहिए",
+      "passwordNumber": "पासवर्ड में कम से कम एक अंक होना चाहिए",
+      "passwordSpecialChar": "पासवर्ड में कम से कम एक विशेष अक्षर होना चाहिए",
+      "confirmPasswordRequired": "पासवर्ड की पुष्टि आवश्यक है",
+      "passwordMatch": "पासवर्ड मेल खाने चाहिए"
+    },
+    "passwordRules": {
+      "length": "कम से कम 8 अक्षर",
+      "uppercase": "कम से कम एक बड़ा अक्षर",
+      "number": "कम से कम एक अंक",
+      "specialChar": "कम से कम एक विशेष अक्षर (!@#$%^&*)"
+    }
+  },
+
+  "header": {
+    "language": {
+      "en": "English",
+      "hi": "हिन्दी",
+      "pa": "ਪੰਜਾਬੀ"
+    }
+  },
+
+  "sidebar": {
+    "home": "होम",
+    "myLevels": "मेरे स्तर",
+    "anlytics": "विश्लेषण",
+    "profile": "प्रोफ़ाइल"
+  },
+
+  "profile": {
+    "pageTitle": "प्रोफाइल",
+    "pageSubtitle": "अपने अकाउंट को मैनेज करें",
+    "loading": "लोड हो रहा है...",
+    "notSpecified": "निर्दिष्ट नहीं",
+    "notAssigned": "असाइन नहीं किया गया",
+    "notProvided": "प्रदान नहीं किया गया",
+    "na": "उपलब्ध नहीं",
+    "tags": {
+      "id": "आईडी",
+      "city": "शहर"
     },
     "details": {
-      "generalDetails": "सामान्य विवरण",
-      "programTitle": "कार्यक्रम शीर्षक",
-      "programTitlePlaceholder": "कार्यक्रम का नाम दर्ज करें",
-      "description": "विवरण",
-      "descriptionPlaceholder": "कार्यक्रम का विवरण लिखें...",
-      "thumbnail": "कार्यक्रम थंबनेल",
-      "uploadText": "थंबनेल अपलोड करने के लिए क्लिक करें",
-      "uploadSubText": "PNG, JPG, JPEG 5MB तक",
-      "changeImage": "छवि बदलें",
-      "deleteText": "क्या आप वाकई इस कार्यक्रम को हटाना चाहते हैं?"
+      "department": "विभाग",
+      "mobile": "मोबाइल",
+      "role": "भूमिका",
+      "designationId": "डिज़िग्नेशन आईडी",
+      "employeeId": "कर्मचारी आईडी"
     },
-    "create": {
-      "title": "कार्यक्रम बनाएं",
-      "subtitle": "अपने चिकित्सा प्रशिक्षण पाठ्यक्रम को कॉन्फ़िगर करें, मॉड्यूल संरचित करें और नामांकन विवरण सहजता से प्रबंधित करें।"
+    "menu": {
+      "editProfile": "प्रोफाइल एडिट करें",
+      "changePassword": "पासवर्ड बदलें",
+      "notificationSettings": "नोटिफिकेशन सेटिंग्स",
+      "logout": "लॉगआउट"
+    }
+  },
+
+  "changePassword": {
+    "pageTitle": "पासवर्ड बदलें",
+    "pageSubtitle": "अपने अकाउंट का पासवर्ड अपडेट करें",
+    "fields": {
+      "currentPassword": {
+        "label": "वर्तमान पासवर्ड",
+        "placeholder": "वर्तमान पासवर्ड दर्ज करें"
+      },
+      "newPassword": {
+        "label": "नया पासवर्ड",
+        "placeholder": "नया पासवर्ड दर्ज करें"
+      },
+      "confirmNewPassword": {
+        "label": "नया पासवर्ड पुष्टि करें",
+        "placeholder": "नया पासवर्ड फिर से दर्ज करें"
+      }
     },
-    "actions": {
-      "addNewProgram": "+ नया कार्यक्रम जोड़ें",
-      "deleteProgram": "कार्यक्रम हटाएं",
-      "createProgram": "कार्यक्रम बनाएं",
-      "creating": "बनाया जा रहा है...",
-      "updateProgram": "कार्यक्रम अपडेट करें",
-      "updating": "अपडेट हो रहा है..."
+    "button": "पासवर्ड अपडेट करें",
+    "validation": {
+      "currentPasswordRequired": "वर्तमान पासवर्ड आवश्यक है",
+      "newPasswordRequired": "नया पासवर्ड आवश्यक है",
+      "newPasswordMin": "कम से कम 6 अक्षर",
+      "confirmPasswordRequired": "पासवर्ड पुष्टि आवश्यक है",
+      "passwordMatch": "पासवर्ड मेल खाने चाहिए"
     },
-    "breadcrumb": {
-      "trainingProgram": "प्रशिक्षण कार्यक्रम",
-      "view-program": "कार्यक्रम देखें"
+    "successMessage": "पासवर्ड सफलतापूर्वक अपडेट हुआ",
+    "errorMessage": "कुछ गलत हो गया"
+  },
+
+  "profileDetails": {
+    "pageTitle": "प्रोफाइल अपडेट करें",
+    "pageSubtitle": "अपनी प्रोफाइल जानकारी और इमेज मैनेज करें",
+    "profileImage": {
+      "title": "प्रोफाइल इमेज",
+      "upload": "इमेज अपलोड करें",
+      "change": "इमेज बदलें",
+      "remove": "इमेज हटाएं",
+      "supportedFormats": "सपोर्टेड फॉर्मेट: JPEG, PNG, WEBP. अधिकतम साइज: 5MB",
+      "selected": "चयनित:",
+      "newImageSelected": "नई इमेज चयनित: (प्रोफाइल के साथ सेव होगी)"
+    },
+    "basicInfo": {
+      "employeeId": {
+        "label": "कर्मचारी आईडी",
+        "placeholder": "जैसे: EMP124"
+      },
+      "fullName": {
+        "label": "पूरा नाम",
+        "placeholder": "जैसे: Ajay Trainee"
+      },
+      "email": {
+        "label": "ईमेल पता",
+        "placeholder": "kajalcharve6@gmail.com"
+      },
+      "mobile": {
+        "label": "मोबाइल नंबर",
+        "placeholder": "8982251020"
+      }
+    },
+    "location": {
+      "city": {
+        "label": "शहर",
+        "placeholder": "जैसे: इंदौर"
+      },
+      "region": {
+        "label": "रीजन",
+        "placeholder": "रीजन चुनें"
+      }
+    },
+    "workInfo": {
+      "department": {
+        "label": "विभाग",
+        "placeholder": "जैसे: सेल्स"
+      },
+      "designation": {
+        "label": "डिज़िग्नेशन",
+        "placeholder": "डिज़िग्नेशन चुनें"
+      }
+    },
+    "additionalInfo": {
+      "title": "अतिरिक्त जानकारी",
+      "role": "भूमिका",
+      "accountStatus": "अकाउंट स्थिति",
+      "emailVerified": "ईमेल सत्यापित",
+      "notAssigned": "असाइन नहीं",
+      "active": "सक्रिय ✓",
+      "inactive": "निष्क्रिय ✗",
+      "verified": "सत्यापित दिनांक",
+      "notVerified": "सत्यापित नहीं"
+    },
+    "timestamps": {
+      "created": "बनाया गया:",
+      "lastUpdated": "आखिरी अपडेट:",
+      "na": "उपलब्ध नहीं"
+    },
+    "buttons": {
+      "save": "सेव करें",
+      "saving": "सेव हो रहा है...",
+      "cancel": "रद्द करें"
     },
     "validation": {
-      "titleRequired": "शीर्षक आवश्यक है",
-      "descriptionRequired": "विवरण आवश्यक है"
+      "employeeIdRequired": "कर्मचारी आईडी आवश्यक है",
+      "fullNameRequired": "पूरा नाम आवश्यक है",
+      "emailInvalid": "अमान्य ईमेल",
+      "emailRequired": "ईमेल आवश्यक है",
+      "mobileInvalid": "मोबाइल नंबर 10 अंकों का होना चाहिए",
+      "designationRequired": "डिज़िग्नेशन आवश्यक है",
+      "regionRequired": "रीजन आवश्यक है"
+    },
+    "toast": {
+      "imageInvalidType": "कृपया वैध इमेज फाइल चुनें (JPEG, PNG, WEBP)",
+      "imageSizeExceed": "इमेज का साइज 5MB से कम होना चाहिए",
+      "success": "प्रोफाइल सफलतापूर्वक अपडेट हुई!",
+      "error": "प्रोफाइल अपडेट नहीं हो पाई, कृपया पुनः प्रयास करें।"
     }
   },
 
-  "levels": {
-    "list": {
-      "title": "स्तर प्रबंधन",
-      "subtitle": "सीखने की यात्रा को संरचित करने के लिए प्रशिक्षण स्तरों को प्रबंधित और व्यवस्थित करें...",
-      "searchPlaceholder": "स्तर के नाम से खोजें...",
-      "clearAll": "सभी साफ़ करें",
-      "columns": {
-        "levelName": "स्तर का नाम",
-        "parentProgram": "मूल कार्यक्रम",
-        "totalChapters": "कुल अध्याय",
-        "totalTopics": "कुल विषय",
-        "totalModules": "कुल मॉड्यूल",
-        "status": "स्थिति",
-        "actions": "क्रियाएं"
-      }
+  "levelsPage": {
+    "programTitle": "पेस मेकर",
+    "subtitle": "अपनी प्रगति ट्रैक करें और अपनी यात्रा जारी रखें",
+    "allLevels": "सभी स्तर",
+    "completed": "पूर्ण",
+    "status": {
+      "completed": "पूर्ण",
+      "running": "जारी",
+      "locked": "लॉक"
     },
-    "details": {
-      "generalDetails": "सामान्य विवरण",
-      "levelName": "स्तर का नाम",
-      "levelNamePlaceholder": "स्तर का नाम दर्ज करें",
-      "parentProgram": "मूल कार्यक्रम",
-      "perentProgramPlaceholder": "एक कार्यक्रम चुनें",
-      "description": "विवरण",
-      "descriptionPlaceholder": "स्तर का विवरण लिखें...",
-      "thumbnail": "स्तर थंबनेल",
-      "uploadText": "थंबनेल अपलोड करने के लिए क्लिक करें",
-      "uploadSubText": "PNG, JPG, JPEG 5MB तक",
-      "changeImage": "छवि बदलें",
-      "deleteText": "क्या आप वाकई इस स्तर को हटाना चाहते हैं?"
+    "buttons": {
+      "takeExam": "परीक्षा दें",
+      "continue": "जारी रखें",
+      "startLevel": "स्तर शुरू करें"
     },
-    "create": {
-      "title": "स्तर प्रबंधन",
-      "subtitle": "बुनियादी ज्ञान से उन्नत नैदानिक विशेषज्ञता तक सीखने की यात्रा को संरचित करने के लिए प्रशिक्षण स्तरों को प्रबंधित और व्यवस्थित करें।"
+    "progress": "प्रगति",
+    "modules": {
+      "zero": "0 मॉड्यूल",
+      "one": "1 मॉड्यूल",
+      "other": "मॉड्यूल"
     },
-    "actions": {
-      "addNew": "+ नया स्तर जोड़ें",
-      "createLevel": "स्तर बनाएं",
-      "creating": "बनाया जा रहा है...",
-      "updateLevel": "स्तर अपडेट करें",
-      "updating": "अपडेट हो रहा है...",
-      "deleteLevel": "स्तर हटाएं"
-    },
-    "breadcrumb": {
-      "curriculum": "पाठ्यक्रम",
-      "view-level": "स्तर देखें"
-    },
-    "validation": {
-      "levelNameRequired": "स्तर का नाम आवश्यक है",
-      "programRequired": "मूल कार्यक्रम आवश्यक है",
-      "descriptionRequired": "विवरण आवश्यक है"
+    "emptyStates": {
+      "noCompleted": "अभी तक कोई स्तर पूर्ण नहीं हुआ। सीखते रहें!",
+      "noLevels": "कोई स्तर उपलब्ध नहीं है।",
+      "error": "कुछ गलत हो गया"
     }
   },
 
-  "module": {
-    "list": {
-      "title": "मॉड्यूल प्रबंधन",
-      "subtitle": "सहज सीखने के अनुभव के लिए संरचित सामग्री, मूल्यांकन और प्रगति ट्रैकिंग के साथ मॉड्यूल डिज़ाइन, व्यवस्थित और प्रबंधित करें।",
-      "searchPlaceholder": "मॉड्यूल के नाम से खोजें...",
-      "clearAll": "सभी साफ़ करें",
-      "columns": {
-        "moduleName": "मॉड्यूल का नाम",
-        "parentLevel": "मूल स्तर",
-        "totalChapters": "कुल अध्याय",
-        "totalTopics": "कुल विषय",
-        "duration": "अवधि",
-        "status": "स्थिति",
-        "actions": "क्रियाएं"
-      }
+  "levelDetails": {
+    "pageTitle": "स्तर विवरण",
+    "pageSubtitle": "अपनी प्रगति ट्रैक करें और अपनी यात्रा जारी रखें",
+    "backButton": "वापस",
+    "stats": {
+      "progress": "प्रगति",
+      "completed": "पूर्ण",
+      "estTime": "अनुमानित समय",
+      "modulesCompleted": "मॉड्यूल पूर्ण",
+      "totalLearningTime": "कुल सीखने का समय",
+      "selfPaced": "स्व-गति"
     },
-    "details": {
-      "generalDetails": "सामान्य विवरण",
-      "moduleName": "मॉड्यूल का नाम",
-      "moduleNamePlaceholder": "मॉड्यूल का नाम दर्ज करें",
-      "parentLevel": "मूल स्तर",
-      "parentLevelPlaceholder": "एक स्तर चुनें",
-      "parentProgram": "मूल कार्यक्रम",
-      "perentProgramPlaceholder": "एक कार्यक्रम चुनें",
-      "description": "विवरण",
-      "descriptionPlaceholder": "मॉड्यूल का विवरण लिखें...",
-      "thumbnail": "स्तर थंबनेल",
-      "uploadText": "थंबनेल अपलोड करने के लिए क्लिक करें",
-      "uploadSubText": "PNG, JPG, JPEG 5MB तक",
-      "changeImage": "छवि बदलें",
-      "deleteText": "क्या आप वाकई इस मॉड्यूल को हटाना चाहते हैं?"
+    "aboutSection": {
+      "title": "इस स्तर के बारे में"
     },
-    "create": {
-      "title": "मॉड्यूल प्रबंधन",
-      "subtitle": "सहज सीखने के अनुभव के लिए संरचित सामग्री, मूल्यांकन और प्रगति ट्रैकिंग के साथ मॉड्यूल डिज़ाइन, व्यवस्थित और प्रबंधित करें।"
+    "modulesSection": {
+      "title": "लर्निंग मॉड्यूल",
+      "moduleText": "मॉड्यूल",
+      "current": "वर्तमान",
+      "completed": "पूर्ण",
+      "locked": "लॉक",
+      "chapters": "अध्याय",
+      "topics": "विषय",
+      "startModule": "मॉड्यूल शुरू करें",
+      "lockedButton": "लॉक"
+    },
+    "cta": {
+      "continueLearning": "सीखना जारी रखें",
+      "allCompleted": "सभी पूर्ण",
+      "continueJourney": "अपनी सीखने की यात्रा जारी रखें",
+      "nextModule": "अगला:",
+      "allModulesCompleted": "सभी मॉड्यूल पूर्ण हो गए!"
+    },
+    "emptyState": {
+      "noData": "कोई स्तर डेटा उपलब्ध नहीं है"
+    },
+    "levelBadge": "स्तर",
+    "modulesCount": "मॉड्यूल"
+  },
+
+  "modules": {
+    "pageTitle": "मॉड्यूल विवरण",
+    "pageSubtitle": "अध्यायों के माध्यम से अपनी प्रगति ट्रैक करें",
+    "backButton": "वापस",
+    "stats": {
+      "progress": "प्रगति",
+      "completed": "पूर्ण",
+      "estTime": "अनुमानित समय",
+      "chaptersCompleted": "अध्याय पूर्ण",
+      "totalLearningTime": "कुल सीखने का समय",
+      "selfPaced": "स्व-गति",
+      "topics": "विषय"
+    },
+    "aboutSection": {
+      "title": "इस मॉड्यूल के बारे में"
+    },
+    "chaptersSection": {
+      "title": "सभी अध्याय",
+      "chapterText": "अध्याय",
+      "current": "वर्तमान",
+      "completed": "पूर्ण",
+      "locked": "लॉक",
+      "startChapter": "अध्याय शुरू करें",
+      "lockedButton": "लॉक",
+      "topics": "विषय",
+      "completedText": "पूर्ण",
+      "min": "मिनट"
+    },
+    "cta": {
+      "continueLearning": "सीखना जारी रखें",
+      "allCompleted": "सभी पूर्ण",
+      "continueJourney": "अपनी सीखने की यात्रा जारी रखें",
+      "nextChapter": "अगला:",
+      "allChaptersCompleted": "सभी अध्याय पूर्ण हो गए!"
+    },
+    "emptyState": {
+      "noData": "कोई मॉड्यूल डेटा उपलब्ध नहीं है"
+    },
+    "badge": {
+      "chapters": "अध्याय",
+      "topics": "विषय"
+    }
+  },
+
+  "chapters": {
+    "pageTitle": "अध्याय विवरण",
+    "pageSubtitle": "विषयों के माध्यम से अपनी प्रगति ट्रैक करें",
+    "backButton": "वापस",
+    "stats": {
+      "progress": "प्रगति",
+      "completed": "पूर्ण",
+      "estTime": "अनुमानित समय",
+      "topicsCompleted": "विषय पूर्ण",
+      "totalLearningTime": "कुल सीखने का समय",
+      "selfPaced": "स्व-गति"
+    },
+    "aboutSection": {
+      "title": "इस अध्याय के बारे में"
+    },
+    "topicsSection": {
+      "title": "सभी विषय",
+      "topicText": "विषय",
+      "current": "वर्तमान",
+      "completed": "पूर्ण",
+      "locked": "लॉक",
+      "startTopic": "विषय शुरू करें",
+      "lockedButton": "लॉक",
+      "giveQuiz": "क्विज़ दें",
+      "min": "मिनट"
+    },
+    "cta": {
+      "continueLearning": "सीखना जारी रखें",
+      "allCompleted": "सभी पूर्ण 🎉",
+      "continueJourney": "अपनी सीखने की यात्रा जारी रखें",
+      "nextTopic": "अगला:",
+      "allTopicsCompleted": "सभी विषय पूर्ण हो गए! 🎉"
+    },
+    "emptyState": {
+      "noData": "कोई अध्याय डेटा उपलब्ध नहीं है"
+    },
+    "badge": {
+      "topics": "विषय",
+      "minutes": "मिनट"
+    }
+  },
+
+  "topics": {
+    "pageTitle": "लर्निंग विषय",
+    "pageSubtitle": "अपनी सीखने की सामग्री ब्राउज़ करें",
+    "topicTypes": {
+      "text": "टेक्स्ट विषय",
+      "media": "मीडिया विषय"
     },
     "status": {
-      "active": "सक्रिय",
-      "draft": "ड्राफ्ट",
-      "archived": "संग्रहीत",
-      "all": "सभी"
+      "read": "पढ़ा गया",
+      "unread": "नहीं पढ़ा"
     },
-    "actions": {
-      "addNewModule": "+ नया मॉड्यूल जोड़ें",
-      "createModule": "मॉड्यूल बनाएं",
-      "creating": "बनाया जा रहा है...",
-      "deleteModule": "मॉड्यूल हटाएं",
-      "updateModule": "मॉड्यूल अपडेट करें",
-      "updating": "अपडेट हो रहा है..."
+    "topicLabel": "विषय",
+    "buttons": {
+      "viewTopic": "विषय देखें",
+      "previous": "पिछला",
+      "next": "अगला"
     },
-    "breadcrumb": {
-      "curriculum": "पाठ्यक्रम",
-      "view-module": "मॉड्यूल देखें"
+    "pagination": {
+      "showing": "दिखाया जा रहा है",
+      "of": "में से",
+      "topics": "विषय"
     },
-    "validation": {
-      "moduleNameRequired": "मॉड्यूल का नाम आवश्यक है",
-      "levelRequired": "स्तर का नाम आवश्यक है",
-      "programRequired": "मूल कार्यक्रम आवश्यक है",
-      "descriptionRequired": "विवरण आवश्यक है"
+    "emptyState": {
+      "title": "कोई विषय उपलब्ध नहीं",
+      "description": "नई सीखने की सामग्री के लिए बाद में जांचें"
     }
   },
 
-  "chapter": {
-    "list": {
-      "title": "अध्याय प्रबंधन",
-      "subtitle": "मॉड्यूल को केंद्रित और समझने में आसान शिक्षण खंडों में विभाजित करने के लिए अध्याय सामग्री परिभाषित और संरचित करें।",
-      "searchPlaceholder": "अध्याय के नाम से खोजें...",
-      "clearAll": "सभी साफ़ करें",
-      "columns": {
-        "chapterName": "अध्याय का नाम",
-        "parentModule": "मूल मॉड्यूल",
-        "parentLevel": "मूल स्तर",
-        "totalChapters": "कुल अध्याय",
-        "totalTopics": "कुल विषय",
-        "duration": "अवधि",
-        "status": "स्थिति",
-        "actions": "क्रियाएं"
-      }
+  "topicContent": {
+    "loading": "सामग्री लोड हो रही है...",
+    "notFound": {
+      "title": "सामग्री नहीं मिली",
+      "description": "जो सामग्री आप ढूंढ रहे हैं वह मौजूद नहीं है या स्थानांतरित कर दी गई है।",
+      "button": "कोर्स पर वापस जाएं"
     },
-    "details": {
-      "generalDetails": "सामान्य विवरण",
-      "chapterName": "अध्याय का नाम",
-      "chapterNamePlaceholder": "अध्याय का नाम दर्ज करें",
-      "parentModule": "मूल मॉड्यूल",
-      "parentModulePlaceholder": "एक मॉड्यूल चुनें",
-      "parentLevel": "मूल स्तर",
-      "parentLevelPlaceholder": "एक स्तर चुनें",
-      "parentProgram": "मूल कार्यक्रम",
-      "perentProgramPlaceholder": "एक कार्यक्रम चुनें",
-      "description": "विवरण",
-      "descriptionPlaceholder": "मॉड्यूल का विवरण लिखें...",
-      "thumbnail": "स्तर थंबनेल",
-      "uploadText": "थंबनेल अपलोड करने के लिए क्लिक करें",
-      "uploadSubText": "PNG, JPG, JPEG 5MB तक",
-      "changeImage": "छवि बदलें",
-      "deleteText": "क्या आप वाकई इस अध्याय को हटाना चाहते हैं?"
+    "backButton": "वापस",
+    "contentTypes": {
+      "text": "पठन सामग्री",
+      "video": "वीडियो व्याख्यान",
+      "pdf": "दस्तावेज़",
+      "audio": "ऑडियो पाठ",
+      "image": "दृश्य सामग्री"
     },
-    "create": {
-      "title": "नया अध्याय बनाएं",
-      "subtitle": "मॉड्यूल को केंद्रित और समझने में आसान शिक्षण खंडों में विभाजित करने के लिए अध्याय सामग्री परिभाषित और संरचित करें।"
+    "readStatus": "पढ़ा गया",
+    "pdf": {
+      "download": "PDF डाउनलोड करें",
+      "title": "PDF दस्तावेज़"
     },
-    "actions": {
-      "addNewChapter": "+ नया अध्याय जोड़ें",
-      "createChapter": "अध्याय बनाएं",
-      "creating": "बनाया जा रहा है...",
-      "deleteChapter": "अध्याय हटाएं",
-      "updateChapter": "अध्याय अपडेट करें",
-      "updating": "अपडेट हो रहा है..."
+    "navigation": {
+      "previous": "पिछला",
+      "previousLesson": "पिछला पाठ",
+      "next": "अगला",
+      "nextLesson": "अगला पाठ",
+      "continueText": "अगले पाठ पर जारी रखें"
     },
-    "breadcrumb": {
-      "curriculum": "पाठ्यक्रम",
-      "view-chapter": "अध्याय देखें"
+    "fallbackMessage": "सामग्री प्रकार:"
+  },
+
+  "quiz": {
+    "pageTitle": "क्विज़ असेसमेंट",
+    "pageSubtitle": "अपना ज्ञान जांचें",
+    "timeLeft": "बचा हुआ समय",
+    "timeUpWarning": "समय समाप्त! आपका क्विज़ अपने आप सबमिट हो गया है।",
+    "answerSelected": "उत्तर चुना गया",
+    "skipped": "छोड़ा गया",
+    "questionOf": "प्रश्न {current} में से {total}",
+    "buttons": {
+      "previous": "पिछला",
+      "skip": "छोड़ें",
+      "next": "अगला",
+      "submitQuiz": "क्विज़ सबमिट करें",
+      "submitting": "सबमिट हो रहा है..."
     },
-    "validation": {
-      "chapterNameRequired": "अध्याय का नाम आवश्यक है",
-      "moduleRequired": "मॉड्यूल का नाम आवश्यक है",
-      "levelRequired": "स्तर का नाम आवश्यक है",
-      "programRequired": "मूल कार्यक्रम आवश्यक है",
-      "descriptionRequired": "विवरण आवश्यक है"
+    "emptyState": {
+      "title": "कोई प्रश्न नहीं मिला",
+      "description": "इस क्विज़ में अभी कोई प्रश्न उपलब्ध नहीं है।"
     }
-  },
-
-  "topic": {
-    "list": {
-      "title": "विषय प्रबंधन",
-      "subtitle": "विशेष चिकित्सा विभागों में छात्र प्रगति और सामग्री वितरण को ट्रैक करते हुए विस्तृत शिक्षण उद्देश्यों का प्रबंधन करें।",
-      "searchPlaceholder": "स्तर के नाम से खोजें...",
-      "clearAll": "सभी साफ़ करें",
-      "columns": {
-        "topicName": "विषय का नाम",
-        "parentChapter": "मूल अध्याय",
-        "parentModule": "मूल मॉड्यूल",
-        "parentLevel": "मूल स्तर",
-        "duration": "अवधि",
-        "status": "स्थिति",
-        "actions": "क्रियाएं"
-      }
-    },
-    "details": {
-      "generalDetails": "सामान्य विवरण",
-      "topicName": "विषय का नाम",
-      "topicNamePlaceholder": "विषय का नाम दर्ज करें",
-      "parentChapter": "मूल अध्याय",
-      "parentChapterPlaceholder": "एक अध्याय चुनें",
-      "parentModule": "मूल मॉड्यूल",
-      "parentModulePlaceholder": "एक मॉड्यूल चुनें",
-      "parentLevel": "स्तर का नाम",
-      "parentLevelPlaceholder": "एक स्तर चुनें",
-      "parentProgram": "मूल कार्यक्रम",
-      "perentProgramPlaceholder": "एक कार्यक्रम चुनें",
-      "duration": "अवधि (मिनटों में)",
-      "durationPlaceholder": "मिनटों में अवधि दर्ज करें",
-      "description": "विवरण",
-      "descriptionPlaceholder": "मॉड्यूल का विवरण लिखें...",
-      "thumbnail": "स्तर थंबनेल",
-      "uploadText": "थंबनेल अपलोड करने के लिए क्लिक करें",
-      "uploadSubText": "PNG, JPG, JPEG 5MB तक",
-      "changeImage": "छवि बदलें",
-      "deleteText": "क्या आप वाकई इस विषय को हटाना चाहते हैं?"
-    },
-    "create": {
-      "title": "नया विषय बनाएं",
-      "subtitle": "विशेष चिकित्सा विभागों में छात्र प्रगति और सामग्री वितरण को ट्रैक करते हुए विस्तृत शिक्षण उद्देश्यों का प्रबंधन करें।"
-    },
-    "actions": {
-      "addNewTopic": "+ नया विषय जोड़ें",
-      "createTopic": "विषय बनाएं",
-      "creating": "बनाया जा रहा है...",
-      "deleteTopic": "विषय हटाएं",
-      "updateTopic": "विषय अपडेट करें",
-      "updating": "अपडेट हो रहा है..."
-    },
-    "breadcrumb": {
-      "curriculum": "पाठ्यक्रम",
-      "view-topic": "विषय देखें"
-    },
-    "validation": {
-      "topicNameRequired": "विषय का नाम आवश्यक है",
-      "durationRequired": "अवधि आवश्यक है",
-      "durationNumber": "अवधि एक संख्या होनी चाहिए",
-      "durationPositive": "अवधि सकारात्मक होनी चाहिए",
-      "chapterRequired": "अध्याय का नाम आवश्यक है",
-      "moduleRequired": "मॉड्यूल का नाम आवश्यक है",
-      "levelRequired": "स्तर का नाम आवश्यक है",
-      "programRequired": "मूल कार्यक्रम आवश्यक है",
-      "descriptionRequired": "विवरण आवश्यक है"
-    }
-  },
-
-  "language": {
-    "title": "भाषा प्रबंधन",
-    "desc": "प्लेटफ़ॉर्म इंटरफ़ेस और शिक्षण सामग्री के लिए सिस्टम भाषाएं और अनुवाद प्रबंधित करें।",
-    "addLanguage": "+ भाषा जोड़ें",
-    "exportTranslation": "अनुवाद निर्यात करें",
-    "searchPlaceholder": "भाषा खोजें",
-    "colums": {
-      "noData": "कोई भाषा नहीं मिली।",
-      "langId": "भाषा आईडी",
-      "langName": "भाषा का नाम",
-      "status": "स्थिति",
-      "actions": "क्रियाएं"
-    }
-  },
-
-  "globalConfirmationModal": {
-    "confirmDeletion": "हटाने की पुष्टि करें",
-    "cancle": "रद्द करें",
-    "confirm": "पुष्टि करें"
-  },
-
-  "loaderText": "कृपया प्रतीक्षा करें जबकि हम आपके अनुरोध को संसाधित कर रहे हैं",
-
-  "sessionModal": {
-    "title": "सत्र समाप्त हो रहा है",
-    "description": "आप निष्क्रिय रहे हैं। आपको जल्द ही लॉगआउट कर दिया जाएगा।",
-    "continue": "जारी रखें",
-    "logout": "लॉगआउट"
   }
 }

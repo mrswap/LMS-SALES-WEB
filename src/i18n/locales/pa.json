@@ -1,595 +1,505 @@
 {
   "login": {
-    "title": "ਵਾਪਸ ਸੁਆਗਤ ਹੈ",
-    "subtitle": "ਆਪਣੇ Avante ਐਡਮਿਨ ਖਾਤੇ ਵਿੱਚ ਸਾਈਨ ਇਨ ਕਰੋ",
-    "emailLabel": "ਈਮੇਲ ਜਾਂ ਕਰਮਚਾਰੀ ਆਈਡੀ",
-    "emailPlaceholder": "ਆਪਣੀ ਈਮੇਲ ਜਾਂ ਕਰਮਚਾਰੀ ਆਈਡੀ ਦਰਜ ਕਰੋ",
+    "title": "ਵਾਪਸ ਜੀ ਆਇਆਂ ਨੂੰ!",
+    "emailLabel": "ਈਮੇਲ ਪਤਾ",
+    "emailPlaceholder": "ਆਪਣਾ ਈਮੇਲ ਦਾਖਲ ਕਰੋ",
     "passwordLabel": "ਪਾਸਵਰਡ",
-    "passwordPlaceholder": "ਆਪਣਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
+    "passwordPlaceholder": "ਆਪਣਾ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ",
     "forgotPassword": "ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?",
+    "stayLoggedIn": "ਲੌਗਿਨ ਰਹੋ",
     "button": "ਸਾਈਨ ਇਨ ਕਰੋ",
-    "signingIn": "ਸਾਈਨ ਇਨ ਹੋ ਰਿਹਾ ਹੈ...",
-    "trouble": "ਸਾਈਨ ਇਨ ਕਰਨ ਵਿੱਚ ਮੁਸ਼ਕਲ ਹੈ?",
-    "contactAdmin": "ਆਪਣੇ ਸਿਸਟਮ ਪ੍ਰਬੰਧਕ ਨਾਲ ਸੰਪਰਕ ਕਰੋ",
+    "or": "ਜਾਂ",
+    "newEmployee": "ਨਵੇਂ ਕਰਮਚਾਰੀ?",
+    "completeEmployeeOnboarding": "ਕਰਮਚਾਰੀ ਓਨਬੋਰਡਿੰਗ ਪੂਰੀ ਕਰੋ",
+    "secureLogin": "ਸੁਰੱਖਿਅਤ ਲੌਗਿਨ",
+    "termsOfService": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
+    "privacyPolicy": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ",
+    "language": "ਭਾਸ਼ਾ",
     "validation": {
       "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
-      "emailInvalid": "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ",
+      "emailInvalid": "ਅਵੈਧ ਈਮੇਲ ਪਤਾ",
       "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ"
     }
   },
 
   "forgotPassword": {
-    "title": "ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?",
-    "subtitle": "ਆਪਣਾ ਰਜਿਸਟਰਡ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ ਅਤੇ ਅਸੀਂ ਤੁਹਾਨੂੰ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰਨ ਦਾ ਲਿੰਕ ਭੇਜਾਂਗੇ।",
+    "title": "Avante Medical LMS",
+    "language": "ਭਾਸ਼ਾ",
+    "heading": "ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?",
+    "description": "ਆਪਣਾ ਈਮੇਲ ਪਤਾ ਦਾਖਲ ਕਰੋ ਅਤੇ ਅਸੀਂ ਤੁਹਾਨੂੰ ਪਾਸਵਰਡ ਰੀਸੈਟ ਕਰਨ ਦਾ ਲਿੰਕ ਭੇਜਾਂਗੇ।",
     "emailLabel": "ਈਮੇਲ ਪਤਾ",
-    "emailPlaceholder": "you@company.com",
-    "button": "ਲਿੰਕ ਭੇਜੋ",
-    "sending": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
-    "back": "ਸਾਈਨ ਇਨ 'ਤੇ ਵਾਪਸ ਜਾਓ",
-    "spam": "ਆਪਣਾ ਸਪੈਮ ਫੋਲਡਰ ਜਾਂਚੋ",
-    "notReceived": "ਈਮੇਲ ਨਹੀਂ ਮਿਲੀ?",
-    "rememberYourPassword": "ਪਾਸਵਰਡ ਯਾਦ ਹੈ?",
-    "signIn": "ਸਾਈਨ ਇਨ ਕਰੋ",
+    "emailPlaceholder": "ਆਪਣਾ ਈਮੇਲ ਦਾਖਲ ਕਰੋ",
+    "sendLinkButton": "ਰੀਸੈਟ ਲਿੰਕ ਭੇਜੋ",
+    "sendingButton": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
+    "helpText": "ਈਮੇਲ ਨਹੀਂ ਮਿਲੀ?",
+    "checkSpam": "ਸਪੈਮ ਫੋਲਡਰ ਜਾਂਚੋ",
+    "signInText": "ਪਾਸਵਰਡ ਯਾਦ ਹੈ?",
+    "signInLink": "ਸਾਈਨ ਇਨ ਕਰੋ",
+    "successMessage": "ਲਿੰਕ ਸਫਲਤਾਪੂਰਵਕ ਤੁਹਾਡੀ ਮੇਲ 'ਤੇ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਜਾਂਚੋ।",
+    "errorMessage": "ਰੀਸੈਟ ਲਿੰਕ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0",
     "validation": {
       "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
       "emailInvalid": "ਅਵੈਧ ਈਮੇਲ ਪਤਾ"
     }
   },
 
-  "checkEmail": {
-    "title": "ਆਪਣੀ ਈਮੇਲ ਜਾਂਚੋ",
-    "subtitle": "ਅਸੀਂ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਲਿੰਕ ਭੇਜਿਆ ਹੈ",
-    "openApp": "ਈਮੇਲ ਐਪ ਖੋਲ੍ਹੋ",
-    "resend": "ਲਿੰਕ ਦੁਬਾਰਾ ਭੇਜੋ",
-    "back": "ਸਾਈਨ ਇਨ 'ਤੇ ਵਾਪਸ ਜਾਓ"
-  },
-
-  "resetPassword": {
-    "title": "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ",
-    "subtitle": "ਆਪਣੇ ਖਾਤੇ ਤੱਕ ਮੁੜ ਪਹੁੰਚ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਨਵਾਂ ਪਾਸਵਰਡ ਸੈੱਟ ਕਰੋ।",
-    "newPassword": "ਨਵਾਂ ਪਾਸਵਰਡ",
-    "confirmPassword": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
-    "placeholderNew": "ਨਵਾਂ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
-    "placeholderConfirm": "ਨਵਾਂ ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਦਰਜ ਕਰੋ",
-    "update": "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ",
-    "updating": "ਰੀਸੈੱਟ ਹੋ ਰਿਹਾ ਹੈ...",
-    "rules": {
-      "min": "ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ",
-      "uppercase": "ਘੱਟੋ-ਘੱਟ 1 ਵੱਡਾ ਅੱਖਰ",
-      "number": "ਘੱਟੋ-ਘੱਟ 1 ਅੰਕ",
-      "special": "ਘੱਟੋ-ਘੱਟ 1 ਵਿਸ਼ੇਸ਼ ਅੱਖਰ"
-    },
-    "validation": {
-      "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordMin": "ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ",
-      "passwordUppercase": "ਘੱਟੋ-ਘੱਟ 1 ਵੱਡਾ ਅੱਖਰ",
-      "passwordNumber": "ਘੱਟੋ-ਘੱਟ 1 ਅੰਕ",
-      "passwordSpecial": "ਘੱਟੋ-ਘੱਟ 1 ਵਿਸ਼ੇਸ਼ ਅੱਖਰ",
-      "confirmPasswordRequired": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ"
-    }
-  },
-
-  "changePassword": {
-    "title": "ਪਾਸਵਰਡ ਬਦਲੋ",
-    "subtitle": "ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਪਾਸਵਰਡ ਅੱਪਡੇਟ ਕਰੋ।",
-    "oldPassword": "ਪੁਰਾਣਾ ਪਾਸਵਰਡ",
-    "oldPasswordPlaceholder": "ਪੁਰਾਣਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
-    "newPassword": "ਨਵਾਂ ਪਾਸਵਰਡ",
-    "confirmPassword": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
-    "placeholderNew": "ਨਵਾਂ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
-    "placeholderConfirm": "ਨਵਾਂ ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਦਰਜ ਕਰੋ",
-    "update": "ਪਾਸਵਰਡ ਅੱਪਡੇਟ ਕਰੋ",
-    "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ...",
-    "rules": {
-      "min": "ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ",
-      "uppercase": "ਘੱਟੋ-ਘੱਟ 1 ਵੱਡਾ ਅੱਖਰ",
-      "number": "ਘੱਟੋ-ਘੱਟ 1 ਅੰਕ",
-      "special": "ਘੱਟੋ-ਘੱਟ 1 ਵਿਸ਼ੇਸ਼ ਅੱਖਰ"
-    },
-    "validation": {
-      "oldPassword": "ਪੁਰਾਣਾ ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordMin": "ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ",
-      "passwordUppercase": "ਘੱਟੋ-ਘੱਟ 1 ਵੱਡਾ ਅੱਖਰ",
-      "passwordNumber": "ਘੱਟੋ-ਘੱਟ 1 ਅੰਕ",
-      "passwordSpecial": "ਘੱਟੋ-ਘੱਟ 1 ਵਿਸ਼ੇਸ਼ ਅੱਖਰ",
-      "confirmPasswordRequired": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ"
-    }
-  },
-
-  "profile": {
-    "title": "ਪ੍ਰੋਫਾਈਲ ਸੈਟਿੰਗਾਂ",
-    "subtitle": "ਆਪਣੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਅਤੇ ਖਾਤੇ ਦੇ ਵੇਰਵੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ",
-
-    "details": {
-      "name": "ਪੂਰਾ ਨਾਮ",
-      "namePlaceholder": "ਆਪਣਾ ਪੂਰਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      "email": "ਈਮੇਲ",
-      "emailPlaceholder": "ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ",
-      "mobile": "ਮੋਬਾਈਲ ਨੰਬਰ",
-      "mobilePlaceholder": "10 ਅੰਕਾਂ ਵਾਲਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ",
-      "city": "ਸ਼ਹਿਰ",
-      "cityPlaceholder": "ਸ਼ਹਿਰ ਦਰਜ ਕਰੋ",
-      "country": "ਦੇਸ਼",
-      "countryPlaceholder": "ਦੇਸ਼ ਚੁਣੋ",
-      "upload": "ਅੱਪਲੋਡ ਕਰੋ"
-    },
-
-    "actions": {
-      "updateProfile": "ਪ੍ਰੋਫਾਈਲ ਅੱਪਡੇਟ ਕਰੋ",
-      "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ..."
-    },
-
+  "register": {
+    "language": "ਭਾਸ਼ਾ",
+    "title": "Avante Medical LMS",
+    "subtitle": "ਆਪਣਾ ਖਾਤਾ ਬਣਾਓ",
+    "fullNameLabel": "ਪੂਰਾ ਨਾਮ",
+    "fullNamePlaceholder": "ਆਪਣਾ ਪੂਰਾ ਨਾਮ ਦਾਖਲ ਕਰੋ",
+    "emailLabel": "ਈਮੇਲ ਪਤਾ",
+    "emailPlaceholder": "example@email.com",
+    "mobileLabel": "ਮੋਬਾਈਲ ਨੰਬਰ",
+    "mobilePlaceholder": "9876543210",
+    "employeeIdLabel": "ਕਰਮਚਾਰੀ ਆਈਡੀ",
+    "employeeIdPlaceholder": "EMP-12345",
+    "designationLabel": "ਅਹੁਦਾ",
+    "designationLoading": "ਅਹੁਦੇ ਲੋਡ ਹੋ ਰਹੇ ਹਨ...",
+    "designationPlaceholder": "ਅਹੁਦਾ ਚੁਣੋ",
+    "countryLabel": "ਖੇਤਰ",
+    "countryPlaceholder": "ਦੇਸ਼ ਚੁਣੋ",
+    "cityLabel": "ਸ਼ਹਿਰ",
+    "cityPlaceholder": "ਆਪਣਾ ਸ਼ਹਿਰ ਦਾਖਲ ਕਰੋ",
+    "passwordLabel": "ਪਾਸਵਰਡ",
+    "passwordPlaceholder": "********",
+    "confirmPasswordLabel": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "confirmPasswordPlaceholder": "********",
+    "profileImageLabel": "ਪ੍ਰੋਫਾਈਲ ਚਿੱਤਰ",
+    "uploadPhoto": "ਫੋਟੋ ਅਪਲੋਡ ਕਰੋ",
+    "changePhoto": "ਫੋਟੋ ਬਦਲੋ",
+    "removePhoto": "ਹਟਾਓ",
+    "imageSupportedText": "ਸਮਰਥਿਤ: JPG, PNG, GIF • ਵੱਧ ਤੋਂ ਵੱਧ 5MB",
+    "registerButton": "ਰਜਿਸਟਰ ਕਰੋ",
+    "registeringButton": "ਖਾਤਾ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...",
+    "or": "ਜਾਂ",
+    "alreadyAccount": "ਪਹਿਲਾਂ ਤੋਂ ਖਾਤਾ ਹੈ?",
+    "loginButton": "ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਲੌਗਿਨ ਕਰੋ",
+    "secureRegistration": "ਸੁਰੱਖਿਅਤ ਰਜਿਸਟ੍ਰੇਸ਼ਨ",
+    "termsOfService": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
+    "privacyPolicy": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ",
+    "successMessage": "ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਸਫਲ! ਕਿਰਪਾ ਕਰਕੇ ਲੌਗਿਨ ਕਰੋ।",
+    "errorMessage": "ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
     "validation": {
       "nameRequired": "ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
       "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
       "emailInvalid": "ਅਵੈਧ ਈਮੇਲ",
-      "mobileRequired": "ਮੋਬਾਈਲ ਨੰਬਰ ਲਾਜ਼ਮੀ ਹੈ",
-      "mobileInvalid": "ਵੈਧ 10 ਅੰਕਾਂ ਵਾਲਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ",
+      "mobileRequired": "ਮੋਬਾਈਲ ਲਾਜ਼ਮੀ ਹੈ",
+      "mobileInvalid": "ਮੋਬਾਈਲ ਨੰਬਰ 10 ਅੰਕਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "employeeIdRequired": "ਕਰਮਚਾਰੀ ਆਈਡੀ ਲਾਜ਼ਮੀ ਹੈ",
+      "designationRequired": "ਅਹੁਦਾ ਲਾਜ਼ਮੀ ਹੈ",
+      "countryRequired": "ਦੇਸ਼ ਲਾਜ਼ਮੀ ਹੈ",
       "cityRequired": "ਸ਼ਹਿਰ ਲਾਜ਼ਮੀ ਹੈ",
-      "cityMin": "ਸ਼ਹਿਰ ਦਾ ਨਾਮ ਘੱਟੋ-ਘੱਟ 2 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
-      "countryRequired": "ਦੇਸ਼ ਲਾਜ਼ਮੀ ਹੈ"
+      "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
+      "passwordMin": "ਪਾਸਵਰਡ ਘੱਟੋ ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "confirmPasswordRequired": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਲਾਜ਼ਮੀ ਹੈ",
+      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਖਾਣੇ ਚਾਹੀਦੇ ਹਨ",
+      "imageInvalidType": "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਚਿੱਤਰ ਫਾਈਲ ਅਪਲੋਡ ਕਰੋ (JPEG, PNG, GIF, WEBP)",
+      "imageSizeExceed": "ਚਿੱਤਰ ਦਾ ਆਕਾਰ 5MB ਤੋਂ ਘੱਟ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
     }
   },
 
-  "navbar": {
-    "searchPlaceholder": "ਵਿਸ਼ਲੇਸ਼ਣ, ਉਪਭੋਗਤਾ ਜਾਂ ਕੋਰਸ ਖੋਜੋ...",
-    "notifications": "ਸੂਚਨਾਵਾਂ",
-    "messages": "ਸੁਨੇਹੇ",
-    "profile": "ਪ੍ਰੋਫਾਈਲ",
-    "changePassword": "ਪਾਸਵਰਡ ਬਦਲੋ",
-    "logout": "ਲੌਗਆਉਟ"
+  "checkEmail": {
+    "title": "Avante Medical",
+    "heading": "ਆਪਣੀ ਈਮੇਲ ਜਾਂਚੋ",
+    "message": "ਅਸੀਂ ਤੁਹਾਡੇ ਈਮੇਲ ਪਤੇ 'ਤੇ ਇੱਕ ਤਸਦੀਕ ਟੋਕਨ ਭੇਜਿਆ ਹੈ:",
+    "tokenSuccess": "ਟੋਕਨ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ!",
+    "tokenDescription": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਮੇਲਬਾਕਸ ਜਾਂਚੋ ਅਤੇ ਆਪਣਾ ਖਾਤਾ ਸਰਗਰਮ ਕਰਨ ਲਈ ਤਸਦੀਕ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।",
+    "expiryText": "ਟੋਕਨ 10 ਮਿੰਟਾਂ ਵਿੱਚ ਮਿਆਦ ਪੁੱਗ ਜਾਵੇਗਾ",
+    "spamText": "ਈਮੇਲ ਨਹੀਂ ਮਿਲੀ? ਆਪਣਾ ਸਪੈਮ ਫੋਲਡਰ ਜਾਂਚੋ",
+    "goToLogin": "ਲੌਗਿਨ 'ਤੇ ਜਾਓ",
+    "backToRegistration": "ਰਜਿਸਟ੍ਰੇਸ਼ਨ 'ਤੇ ਵਾਪਸ ਜਾਓ",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0"
+  },
+
+  "verifyEmail": {
+    "title": "Avante Medical",
+    "loading": {
+      "heading": "ਈਮੇਲ ਤਸਦੀਕ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ",
+      "message": "ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਤੁਹਾਡੀ ਈਮੇਲ ਤਸਦੀਕ ਕਰਦੇ ਹਾਂ..."
+    },
+    "success": {
+      "heading": "ਈਮੇਲ ਤਸਦੀਕ ਹੋ ਗਈ!",
+      "message": "ਤੁਹਾਡੀ ਈਮੇਲ ਸਫਲਤਾਪੂਰਵਕ ਤਸਦੀਕ ਹੋ ਗਈ ਹੈ।",
+      "goToLogin": "ਲੌਗਿਨ 'ਤੇ ਜਾਓ",
+      "backToHome": "ਹੋਮ 'ਤੇ ਵਾਪਸ ਜਾਓ"
+    },
+    "error": {
+      "heading": "ਤਸਦੀਕ ਅਸਫਲ",
+      "invalidLink": "ਅਵੈਧ ਤਸਦੀਕ ਲਿੰਕ",
+      "defaultMessage": "ਤਸਦੀਕ ਅਸਫਲ",
+      "tryAgain": "ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+      "backToHome": "ਹੋਮ 'ਤੇ ਵਾਪਸ ਜਾਓ",
+      "goToLogin": "ਲੌਗਿਨ 'ਤੇ ਜਾਓ"
+    },
+    "footer": "© 2025 Avante Medical LMS · v2.1.0"
+  },
+
+  "resetPassword": {
+    "title": "Avante Medical LMS",
+    "heading": "ਪਾਸਵਰਡ ਰੀਸੈਟ ਕਰੋ",
+    "description": "ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਆਪਣਾ ਨਵਾਂ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ।",
+    "newPasswordLabel": "ਨਵਾਂ ਪਾਸਵਰਡ",
+    "newPasswordPlaceholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ",
+    "confirmPasswordLabel": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "confirmPasswordPlaceholder": "ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "updateButton": "ਪਾਸਵਰਡ ਅਪਡੇਟ ਕਰੋ",
+    "updatingButton": "ਅਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ...",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0",
+    "successMessage": "ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਰੀਸੈਟ ਹੋ ਗਿਆ",
+    "errorMessage": "ਪਾਸਵਰਡ ਰੀਸੈਟ ਅਸਫਲ",
+    "validation": {
+      "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
+      "passwordMin": "ਪਾਸਵਰਡ ਘੱਟੋ ਘੱਟ 8 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "passwordUppercase": "ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ ਘੱਟ ਇੱਕ ਵੱਡਾ ਅੱਖਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "passwordNumber": "ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ ਘੱਟ ਇੱਕ ਅੰਕ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "passwordSpecialChar": "ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ ਘੱਟ ਇੱਕ ਵਿਸ਼ੇਸ਼ ਅੱਖਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "confirmPasswordRequired": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਲਾਜ਼ਮੀ ਹੈ",
+      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਖਾਣੇ ਚਾਹੀਦੇ ਹਨ"
+    },
+    "passwordRules": {
+      "length": "ਘੱਟੋ ਘੱਟ 8 ਅੱਖਰ",
+      "uppercase": "ਘੱਟੋ ਘੱਟ ਇੱਕ ਵੱਡਾ ਅੱਖਰ",
+      "number": "ਘੱਟੋ ਘੱਟ ਇੱਕ ਅੰਕ",
+      "specialChar": "ਘੱਟੋ ਘੱਟ ਇੱਕ ਵਿਸ਼ੇਸ਼ ਅੱਖਰ (!@#$%^&*)"
+    }
+  },
+
+  "header": {
+    "language": {
+      "en": "English",
+      "hi": "हिन्दी",
+      "pa": "ਪੰਜਾਬੀ"
+    }
   },
 
   "sidebar": {
-    "dashboard": "ਡੈਸ਼ਬੋਰਡ",
-
-    "userManagement": "ਉਪਭੋਗਤਾ ਪ੍ਰਬੰਧਨ",
-    "assignTrainingProgram": "ਸਿਖਲਾਈ ਪ੍ਰੋਗਰਾਮ ਦੇਣਾ",
-
-    "trainingPrograms": "ਸਿਖਲਾਈ ਪ੍ਰੋਗਰਾਮ",
-    "programList": "ਪ੍ਰੋਗਰਾਮ ਸੂਚੀ",
-    "createProgram": "ਪ੍ਰੋਗਰਾਮ ਬਣਾਓ",
-    "programAssignment": "ਪ੍ਰੋਗਰਾਮ ਅਸਾਈਨਮੈਂਟ",
-
-    "curriculumManagement": "ਪਾਠਕ੍ਰਮ ਪ੍ਰਬੰਧਨ",
-    "levels": "ਪੱਧਰ",
-    "modules": "ਮੌਡਿਊਲ",
-    "chapters": "ਅਧਿਆਏ",
-    "topics": "ਵਿਸ਼ੇ",
-    "bulkImport": "ਬਲਕ ਆਯਾਤ",
-
-    "contentManagement": "ਸਮੱਗਰੀ ਪ੍ਰਬੰਧਨ",
-    "learningUnitBuilder": "ਲਰਨਿੰਗ ਯੂਨਿਟ ਬਿਲਡਰ",
-    "interactiveContent": "ਇੰਟਰੈਕਟਿਵ ਸਮੱਗਰੀ",
-    "mediaLibrary": "ਮੀਡੀਆ ਲਾਇਬ੍ਰੇਰੀ",
-
-    "assessmentManagement": "ਮੁਲਾਂਕਣ ਪ੍ਰਬੰਧਨ",
-    "quizForTopic": "ਵਿਸ਼ੇ ਲਈ ਕੁਇਜ਼",
-    "examForLevel": "ਪੱਧਰ ਲਈ ਪ੍ਰੀਖਿਆ",
-    "faq": "ਆਮ ਸਵਾਲ",
-
-    "trainingCertification": "ਸਿਖਲਾਈ ਅਤੇ ਸਰਟੀਫਿਕੇਸ਼ਨ",
-    "trainingAssignment": "ਸਿਖਲਾਈ ਅਸਾਈਨਮੈਂਟ",
-    "progressTracker": "ਪ੍ਰਗਤੀ ਟਰੈਕਰ",
-    "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
-
-    "reportsAdministration": "ਰਿਪੋਰਟਾਂ ਅਤੇ ਪ੍ਰਸ਼ਾਸਨ",
-    "topResult": "ਸਿਖਰਲੇ ਨਤੀਜੇ",
-    "reportsAnalytics": "ਰਿਪੋਰਟਾਂ ਅਤੇ ਵਿਸ਼ਲੇਸ਼ਣ",
-    "userAnalytics": "ਉਪਭੋਗਤਾ ਵਿਸ਼ਲੇਸ਼ਣ",
-    "trainingAnalytics": "ਸਿਖਲਾਈ ਵਿਸ਼ਲੇਸ਼ਣ",
-    "performanceReports": "ਪ੍ਰਦਰਸ਼ਨ ਰਿਪੋਰਟਾਂ",
-    "completionReports": "ਮੁਕੰਮਲਤਾ ਰਿਪੋਰਟਾਂ",
-    "rolesPermission": "ਭੂਮਿਕਾਵਾਂ ਅਤੇ ਅਨੁਮਤੀਆਂ",
-    "systemSettings": "ਸਿਸਟਮ ਸੈਟਿੰਗਾਂ",
-
-    "multiLanguage": "ਬਹੁ-ਭਾਸ਼ਾ",
-
-    "logout": "ਲੌਗਆਉਟ"
+    "home": "ਹੋਮ",
+    "myLevels": "ਮੇਰੇ ਪੱਧਰ",
+    "anlytics": "ਵਿਸ਼ਲੇਸ਼ਣ",
+    "profile": "ਪ੍ਰੋਫਾਈਲ"
   },
 
-  "userManagement": {
-    "list": {
-      "title": "ਉਪਭੋਗਤਾ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਸਾਰੇ ਖੇਤਰਾਂ ਵਿੱਚ ਮੈਡੀਕਲ ਪੇਸ਼ੇਵਰਾਂ ਦੇ ਖਾਤੇ ਪ੍ਰਬੰਧਿਤ, ਆਡਿਟ ਅਤੇ ਸਹਾਇਤਾ ਕਰੋ।",
-      "searchPlaceholder": "ਵਿਸ਼ੇ ਦੇ ਨਾਮ ਨਾਲ ਖੋਜੋ...",
-      "clearAll": "ਸਭ ਸਾਫ਼ ਕਰੋ",
-      "columns": {
-        "userId": "ਉਪਭੋਗਤਾ ਆਈਡੀ",
-        "name": "ਨਾਮ",
-        "contact": "ਸੰਪਰਕ",
-        "region": "ਖੇਤਰ",
-        "programs": "ਪ੍ਰੋਗਰਾਮ",
-        "status": "ਸਥਿਤੀ",
-        "actions": "ਕਾਰਵਾਈਆਂ"
-      }
+  "profile": {
+    "pageTitle": "ਪ੍ਰੋਫਾਈਲ",
+    "pageSubtitle": "ਆਪਣਾ ਅਕਾਊਂਟ ਮੈਨੇਜ ਕਰੋ",
+    "loading": "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
+    "notSpecified": "ਦੱਸਿਆ ਨਹੀਂ ਗਿਆ",
+    "notAssigned": "ਅਸਾਈਨ ਨਹੀਂ ਕੀਤਾ ਗਿਆ",
+    "notProvided": "ਉਪਲਬਧ ਨਹੀਂ",
+    "na": "ਲਾਗੂ ਨਹੀਂ",
+    "tags": {
+      "id": "ਆਈਡੀ",
+      "city": "ਸ਼ਹਿਰ"
     },
     "details": {
-      "personalInfo": "ਨਿੱਜੀ ਜਾਣਕਾਰੀ",
-      "createPassword": "ਪਾਸਵਰਡ ਬਣਾਓ",
-      "fullName": "ਪੂਰਾ ਨਾਮ",
-      "fullNamePlaceholder": "ਪੂਰਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      "email": "ਈਮੇਲ ਪਤਾ",
-      "emailPlaceholder": "ਈਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ",
-      "phone": "ਫ਼ੋਨ ਨੰਬਰ",
-      "phonePlaceholder": "ਫ਼ੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ",
-      "employeeId": "ਕਰਮਚਾਰੀ ਆਈਡੀ",
-      "employeeIdPlaceholder": "ਕਰਮਚਾਰੀ ਆਈਡੀ ਦਰਜ ਕਰੋ",
       "department": "ਵਿਭਾਗ",
-      "departmentPlaceholder": "ਵਿਭਾਗ ਚੁਣੋ",
-      "designation": "ਅਹੁਦਾ",
-      "designationPlaceholder": "ਅਹੁਦਾ ਚੁਣੋ",
-      "region": "ਖੇਤਰ",
-      "regionPlaceholder": "ਖੇਤਰ ਚੁਣੋ",
-      "city": "ਸ਼ਹਿਰ",
-      "cityPlaceholder": "ਸ਼ਹਿਰ ਦਰਜ ਕਰੋ",
+      "mobile": "ਮੋਬਾਈਲ",
       "role": "ਭੂਮਿਕਾ",
-      "rolePlaceholder": "ਭੂਮਿਕਾ ਚੁਣੋ",
-      "password": "ਪਾਸਵਰਡ",
-      "passwordPlaceholder": "ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
-      "newPassword": "ਨਵਾਂ ਪਾਸਵਰਡ",
-      "newPasswordPlaceholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
-      "confirmPassword": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
-      "confirmPasswordPlaceholder": "ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਦਰਜ ਕਰੋ",
-      "profileImage": "ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ",
-      "uploadImage": "ਤਸਵੀਰ ਅੱਪਲੋਡ ਕਰੋ",
-      "deleteText": "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਉਪਭੋਗਤਾ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+      "designationId": "ਡਿਜ਼ਿਗਨੇਸ਼ਨ ਆਈਡੀ",
+      "employeeId": "ਕਰਮਚਾਰੀ ਆਈਡੀ"
     },
-    "create": {
-      "title": "ਨਵਾਂ ਉਪਭੋਗਤਾ ਬਣਾਓ",
-      "subtitle": "ਪਲੇਟਫਾਰਮ 'ਤੇ ਨਵੇਂ ਮੈਡੀਕਲ ਪੇਸ਼ੇਵਰ ਜਾਂ ਸਟਾਫ਼ ਮੈਂਬਰ ਨੂੰ ਜੋੜੋ।"
-    },
-    "actions": {
-      "addNewUser": "+ ਨਵਾਂ ਉਪਭੋਗਤਾ ਜੋੜੋ",
-      "deleteUser": "ਉਪਭੋਗਤਾ ਮਿਟਾਓ",
-      "cancle": "ਰੱਦ ਕਰੋ",
-      "createUser": "ਉਪਭੋਗਤਾ ਬਣਾਓ",
-      "creating": "ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...",
-      "updateUser": "ਉਪਭੋਗਤਾ ਅੱਪਡੇਟ ਕਰੋ",
-      "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ..."
-    },
-    "breadcrumb": {
-      "users": "ਉਪਭੋਗਤਾ",
-      "viewUserProfile": "ਉਪਭੋਗਤਾ ਪ੍ਰੋਫਾਈਲ ਦੇਖੋ"
-    },
-    "validation": {
-      "nameRequired": "ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
-      "emailInvalid": "ਅਵੈਧ ਈਮੇਲ ਪਤਾ",
-      "roleRequired": "ਭੂਮਿਕਾ ਲਾਜ਼ਮੀ ਹੈ",
-      "departmentRequired": "ਵਿਭਾਗ ਲਾਜ਼ਮੀ ਹੈ",
-      "designationRequired": "ਅਹੁਦਾ ਲਾਜ਼ਮੀ ਹੈ",
-      "regionRequired": "ਖੇਤਰ ਲਾਜ਼ਮੀ ਹੈ",
-      "cityRequired": "ਸ਼ਹਿਰ ਲਾਜ਼ਮੀ ਹੈ",
-      "mobileRequired": "ਮੋਬਾਈਲ ਨੰਬਰ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordMin": "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
-      "confirmPasswordRequired": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਲਾਜ਼ਮੀ ਹੈ",
-      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ"
+    "menu": {
+      "editProfile": "ਪ੍ਰੋਫਾਈਲ ਸੋਧੋ",
+      "changePassword": "ਪਾਸਵਰਡ ਬਦਲੋ",
+      "notificationSettings": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਸੈਟਿੰਗਜ਼",
+      "logout": "ਲਾਗਆਉਟ"
     }
   },
 
-  "program": {
-    "list": {
-      "title": "ਪ੍ਰੋਗਰਾਮ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਆਪਣੇ ਮੈਡੀਕਲ ਸਿਖਲਾਈ ਪਾਠਕ੍ਰਮ ਨੂੰ ਕੌਂਫਿਗਰ ਕਰੋ, ਮੌਡਿਊਲ ਸੰਰਚਿਤ ਕਰੋ ਅਤੇ ਦਾਖਲੇ ਦੇ ਵੇਰਵੇ ਸਹਿਜੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ।",
-      "searchPlaceholder": "ਪ੍ਰੋਗਰਾਮ ਦੇ ਨਾਮ ਨਾਲ ਖੋਜੋ...",
-      "clearAll": "ਸਭ ਸਾਫ਼ ਕਰੋ",
-      "columns": {
-        "programName": "ਪ੍ਰੋਗਰਾਮ ਦਾ ਨਾਮ",
-        "totalLevels": "ਕੁੱਲ ਪੱਧਰ",
-        "assignedUsers": "ਨਿਯੁਕਤ ਉਪਭੋਗਤਾ",
-        "complitionRate": "ਮੁਕੰਮਲਤਾ ਦਰ",
-        "status": "ਸਥਿਤੀ",
-        "actions": "ਕਾਰਵਾਈਆਂ"
+  "changePassword": {
+    "pageTitle": "ਪਾਸਵਰਡ ਬਦਲੋ",
+    "pageSubtitle": "ਆਪਣਾ ਪਾਸਵਰਡ ਅਪਡੇਟ ਕਰੋ",
+    "fields": {
+      "currentPassword": {
+        "label": "ਮੌਜੂਦਾ ਪਾਸਵਰਡ",
+        "placeholder": "ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ"
+      },
+      "newPassword": {
+        "label": "ਨਵਾਂ ਪਾਸਵਰਡ",
+        "placeholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ"
+      },
+      "confirmNewPassword": {
+        "label": "ਨਵਾਂ ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ ਕਰੋ",
+        "placeholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਦਾਖਲ ਕਰੋ"
       }
     },
-    "details": {
-      "generalDetails": "ਆਮ ਵੇਰਵੇ",
-      "programTitle": "ਪ੍ਰੋਗਰਾਮ ਸਿਰਲੇਖ",
-      "programTitlePlaceholder": "ਪ੍ਰੋਗਰਾਮ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      "description": "ਵਿਵਰਣ",
-      "descriptionPlaceholder": "ਪ੍ਰੋਗਰਾਮ ਦਾ ਵਿਵਰਣ ਲਿਖੋ...",
-      "thumbnail": "ਪ੍ਰੋਗਰਾਮ ਥੰਬਨੇਲ",
-      "uploadText": "ਥੰਬਨੇਲ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ",
-      "uploadSubText": "PNG, JPG, JPEG 5MB ਤੱਕ",
-      "changeImage": "ਤਸਵੀਰ ਬਦਲੋ",
-      "deleteText": "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਪ੍ਰੋਗਰਾਮ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
-    },
-    "create": {
-      "title": "ਪ੍ਰੋਗਰਾਮ ਬਣਾਓ",
-      "subtitle": "ਆਪਣੇ ਮੈਡੀਕਲ ਸਿਖਲਾਈ ਪਾਠਕ੍ਰਮ ਨੂੰ ਕੌਂਫਿਗਰ ਕਰੋ, ਮੌਡਿਊਲ ਸੰਰਚਿਤ ਕਰੋ ਅਤੇ ਦਾਖਲੇ ਦੇ ਵੇਰਵੇ ਸਹਿਜੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ।"
-    },
-    "actions": {
-      "addNewProgram": "+ ਨਵਾਂ ਪ੍ਰੋਗਰਾਮ ਜੋੜੋ",
-      "deleteProgram": "ਪ੍ਰੋਗਰਾਮ ਮਿਟਾਓ",
-      "createProgram": "ਪ੍ਰੋਗਰਾਮ ਬਣਾਓ",
-      "creating": "ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...",
-      "updateProgram": "ਪ੍ਰੋਗਰਾਮ ਅੱਪਡੇਟ ਕਰੋ",
-      "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ..."
-    },
-    "breadcrumb": {
-      "trainingProgram": "ਸਿਖਲਾਈ ਪ੍ਰੋਗਰਾਮ",
-      "view-program": "ਪ੍ਰੋਗਰਾਮ ਦੇਖੋ"
-    },
+    "button": "ਪਾਸਵਰਡ ਅਪਡੇਟ ਕਰੋ",
     "validation": {
-      "titleRequired": "ਸਿਰਲੇਖ ਲਾਜ਼ਮੀ ਹੈ",
-      "descriptionRequired": "ਵਿਵਰਣ ਲਾਜ਼ਮੀ ਹੈ"
+      "currentPasswordRequired": "ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
+      "newPasswordRequired": "ਨਵਾਂ ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
+      "newPasswordMin": "ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰ",
+      "confirmPasswordRequired": "ਪੁਸ਼ਟੀ ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
+      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਖਾਣੇ ਚਾਹੀਦੇ ਹਨ"
+    },
+    "successMessage": "ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਅਪਡੇਟ ਹੋਇਆ",
+    "errorMessage": "ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ"
+  },
+
+  "profileDetails": {
+    "pageTitle": "ਪ੍ਰੋਫਾਈਲ ਅਪਡੇਟ ਕਰੋ",
+    "pageSubtitle": "ਆਪਣੀ ਪ੍ਰੋਫਾਈਲ ਜਾਣਕਾਰੀ ਅਤੇ ਤਸਵੀਰ ਮੈਨੇਜ ਕਰੋ",
+    "profileImage": {
+      "title": "ਪ੍ਰੋਫਾਈਲ ਤਸਵੀਰ",
+      "upload": "ਤਸਵੀਰ ਅਪਲੋਡ ਕਰੋ",
+      "change": "ਤਸਵੀਰ ਬਦਲੋ",
+      "remove": "ਤਸਵੀਰ ਹਟਾਓ",
+      "supportedFormats": "ਸਹਾਇਕ ਫਾਰਮੈਟ: JPEG, PNG, WEBP. ਅਧਿਕਤਮ ਆਕਾਰ: 5MB",
+      "selected": "ਚੁਣਿਆ ਗਿਆ:",
+      "newImageSelected": "ਨਵੀਂ ਤਸਵੀਰ ਚੁਣੀ ਗਈ: (ਪ੍ਰੋਫਾਈਲ ਨਾਲ ਸੇਵ ਹੋਵੇਗੀ)"
+    },
+    "basicInfo": {
+      "employeeId": {
+        "label": "ਕਰਮਚਾਰੀ ਆਈਡੀ",
+        "placeholder": "ਜਿਵੇਂ: EMP124"
+      },
+      "fullName": {
+        "label": "ਪੂਰਾ ਨਾਮ",
+        "placeholder": "ਜਿਵੇਂ: Ajay Trainee"
+      },
+      "email": {
+        "label": "ਈਮੇਲ ਪਤਾ",
+        "placeholder": "kajalcharve6@gmail.com"
+      },
+      "mobile": {
+        "label": "ਮੋਬਾਈਲ ਨੰਬਰ",
+        "placeholder": "8982251020"
+      }
     }
   },
 
-  "levels": {
-    "list": {
-      "title": "ਪੱਧਰ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਨੂੰ ਸੰਰਚਿਤ ਕਰਨ ਲਈ ਸਿਖਲਾਈ ਪੱਧਰਾਂ ਨੂੰ ਪ੍ਰਬੰਧਿਤ ਅਤੇ ਸੰਗਠਿਤ ਕਰੋ...",
-      "searchPlaceholder": "ਪੱਧਰ ਦੇ ਨਾਮ ਨਾਲ ਖੋਜੋ...",
-      "clearAll": "ਸਭ ਸਾਫ਼ ਕਰੋ",
-      "columns": {
-        "levelName": "ਪੱਧਰ ਦਾ ਨਾਮ",
-        "parentProgram": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ",
-        "totalChapters": "ਕੁੱਲ ਅਧਿਆਏ",
-        "totalTopics": "ਕੁੱਲ ਵਿਸ਼ੇ",
-        "totalModules": "ਕੁੱਲ ਮੌਡਿਊਲ",
-        "status": "ਸਥਿਤੀ",
-        "actions": "ਕਾਰਵਾਈਆਂ"
-      }
+  "levelsPage": {
+    "programTitle": "ਪੇਸ ਮੇਕਰ",
+    "subtitle": "ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ ਅਤੇ ਆਪਣਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
+    "allLevels": "ਸਾਰੇ ਪੱਧਰ",
+    "completed": "ਪੂਰਾ",
+    "status": {
+      "completed": "ਪੂਰਾ",
+      "running": "ਜਾਰੀ",
+      "locked": "ਲਾਕ"
     },
-    "details": {
-      "generalDetails": "ਆਮ ਵੇਰਵੇ",
-      "levelName": "ਪੱਧਰ ਦਾ ਨਾਮ",
-      "levelNamePlaceholder": "ਪੱਧਰ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      "parentProgram": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ",
-      "perentProgramPlaceholder": "ਇੱਕ ਪ੍ਰੋਗਰਾਮ ਚੁਣੋ",
-      "description": "ਵਿਵਰਣ",
-      "descriptionPlaceholder": "ਪੱਧਰ ਦਾ ਵਿਵਰਣ ਲਿਖੋ...",
-      "thumbnail": "ਪੱਧਰ ਥੰਬਨੇਲ",
-      "uploadText": "ਥੰਬਨੇਲ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ",
-      "uploadSubText": "PNG, JPG, JPEG 5MB ਤੱਕ",
-      "changeImage": "ਤਸਵੀਰ ਬਦਲੋ",
-      "deleteText": "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਪੱਧਰ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+    "buttons": {
+      "takeExam": "ਪ੍ਰੀਖਿਆ ਦਿਓ",
+      "continue": "ਜਾਰੀ ਰੱਖੋ",
+      "startLevel": "ਪੱਧਰ ਸ਼ੁਰੂ ਕਰੋ"
     },
-    "create": {
-      "title": "ਪੱਧਰ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਬੁਨਿਆਦੀ ਗਿਆਨ ਤੋਂ ਉੱਨਤ ਕਲੀਨਿਕਲ ਮੁਹਾਰਤ ਤੱਕ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਨੂੰ ਸੰਰਚਿਤ ਕਰਨ ਲਈ ਸਿਖਲਾਈ ਪੱਧਰਾਂ ਨੂੰ ਪ੍ਰਬੰਧਿਤ ਅਤੇ ਸੰਗਠਿਤ ਕਰੋ।"
+    "progress": "ਪ੍ਰਗਤੀ",
+    "modules": {
+      "zero": "0 ਮੌਡਿਊਲ",
+      "one": "1 ਮੌਡਿਊਲ",
+      "other": "ਮੌਡਿਊਲ"
     },
-    "actions": {
-      "addNew": "+ ਨਵਾਂ ਪੱਧਰ ਜੋੜੋ",
-      "createLevel": "ਪੱਧਰ ਬਣਾਓ",
-      "creating": "ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...",
-      "updateLevel": "ਪੱਧਰ ਅੱਪਡੇਟ ਕਰੋ",
-      "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ...",
-      "deleteLevel": "ਪੱਧਰ ਮਿਟਾਓ"
-    },
-    "breadcrumb": {
-      "curriculum": "ਪਾਠਕ੍ਰਮ",
-      "view-level": "ਪੱਧਰ ਦੇਖੋ"
-    },
-    "validation": {
-      "levelNameRequired": "ਪੱਧਰ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "programRequired": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "descriptionRequired": "ਵਿਵਰਣ ਲਾਜ਼ਮੀ ਹੈ"
+    "emptyStates": {
+      "noCompleted": "ਅਜੇ ਕੋਈ ਪੱਧਰ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ। ਸਿੱਖਦੇ ਰਹੋ!",
+      "noLevels": "ਕੋਈ ਪੱਧਰ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+      "error": "ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ"
     }
   },
 
-  "module": {
-    "list": {
-      "title": "ਮੌਡਿਊਲ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਸਹਿਜ ਸਿੱਖਣ ਦੇ ਅਨੁਭਵ ਲਈ ਸੰਰਚਿਤ ਸਮੱਗਰੀ, ਮੁਲਾਂਕਣ ਅਤੇ ਪ੍ਰਗਤੀ ਟਰੈਕਿੰਗ ਨਾਲ ਮੌਡਿਊਲ ਡਿਜ਼ਾਈਨ, ਸੰਗਠਿਤ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ।",
-      "searchPlaceholder": "ਮੌਡਿਊਲ ਦੇ ਨਾਮ ਨਾਲ ਖੋਜੋ...",
-      "clearAll": "ਸਭ ਸਾਫ਼ ਕਰੋ",
-      "columns": {
-        "moduleName": "ਮੌਡਿਊਲ ਦਾ ਨਾਮ",
-        "parentLevel": "ਮੂਲ ਪੱਧਰ",
-        "totalChapters": "ਕੁੱਲ ਅਧਿਆਏ",
-        "totalTopics": "ਕੁੱਲ ਵਿਸ਼ੇ",
-        "duration": "ਮਿਆਦ",
-        "status": "ਸਥਿਤੀ",
-        "actions": "ਕਾਰਵਾਈਆਂ"
-      }
+  "levelDetails": {
+    "pageTitle": "ਪੱਧਰ ਵੇਰਵਾ",
+    "pageSubtitle": "ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ ਅਤੇ ਆਪਣਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
+    "backButton": "ਵਾਪਸ",
+    "stats": {
+      "progress": "ਪ੍ਰਗਤੀ",
+      "completed": "ਪੂਰਾ",
+      "estTime": "ਅਨੁਮਾਨਿਤ ਸਮਾਂ",
+      "modulesCompleted": "ਮੌਡਿਊਲ ਪੂਰੇ",
+      "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ",
+      "selfPaced": "ਸਵੈ-ਗਤੀ"
     },
-    "details": {
-      "generalDetails": "ਆਮ ਵੇਰਵੇ",
-      "moduleName": "ਮੌਡਿਊਲ ਦਾ ਨਾਮ",
-      "moduleNamePlaceholder": "ਮੌਡਿਊਲ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      "parentLevel": "ਮੂਲ ਪੱਧਰ",
-      "parentLevelPlaceholder": "ਇੱਕ ਪੱਧਰ ਚੁਣੋ",
-      "parentProgram": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ",
-      "perentProgramPlaceholder": "ਇੱਕ ਪ੍ਰੋਗਰਾਮ ਚੁਣੋ",
-      "description": "ਵਿਵਰਣ",
-      "descriptionPlaceholder": "ਮੌਡਿਊਲ ਦਾ ਵਿਵਰਣ ਲਿਖੋ...",
-      "thumbnail": "ਪੱਧਰ ਥੰਬਨੇਲ",
-      "uploadText": "ਥੰਬਨੇਲ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ",
-      "uploadSubText": "PNG, JPG, JPEG 5MB ਤੱਕ",
-      "changeImage": "ਤਸਵੀਰ ਬਦਲੋ",
-      "deleteText": "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਮੌਡਿਊਲ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+    "aboutSection": {
+      "title": "ਇਸ ਪੱਧਰ ਬਾਰੇ"
     },
-    "create": {
-      "title": "ਮੌਡਿਊਲ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਸਹਿਜ ਸਿੱਖਣ ਦੇ ਅਨੁਭਵ ਲਈ ਸੰਰਚਿਤ ਸਮੱਗਰੀ, ਮੁਲਾਂਕਣ ਅਤੇ ਪ੍ਰਗਤੀ ਟਰੈਕਿੰਗ ਨਾਲ ਮੌਡਿਊਲ ਡਿਜ਼ਾਈਨ, ਸੰਗਠਿਤ ਅਤੇ ਪ੍ਰਬੰਧਿਤ ਕਰੋ।"
+    "modulesSection": {
+      "title": "ਲਰਨਿੰਗ ਮੌਡਿਊਲ",
+      "moduleText": "ਮੌਡਿਊਲ",
+      "current": "ਮੌਜੂਦਾ",
+      "completed": "ਪੂਰਾ",
+      "locked": "ਲਾਕ",
+      "chapters": "ਅਧਿਆਏ",
+      "topics": "ਵਿਸ਼ੇ",
+      "startModule": "ਮੌਡਿਊਲ ਸ਼ੁਰੂ ਕਰੋ",
+      "lockedButton": "ਲਾਕ"
+    },
+    "cta": {
+      "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
+      "allCompleted": "ਸਾਰੇ ਪੂਰੇ",
+      "continueJourney": "ਆਪਣਾ ਸਿੱਖਣ ਦਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
+      "nextModule": "ਅਗਲਾ:",
+      "allModulesCompleted": "ਸਾਰੇ ਮੌਡਿਊਲ ਪੂਰੇ ਹੋ ਗਏ!"
+    },
+    "emptyState": {
+      "noData": "ਕੋਈ ਪੱਧਰ ਡੇਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+    },
+    "levelBadge": "ਪੱਧਰ",
+    "modulesCount": "ਮੌਡਿਊਲ"
+  },
+
+  "modules": {
+    "pageTitle": "ਮੌਡਿਊਲ ਵੇਰਵਾ",
+    "pageSubtitle": "ਅਧਿਆਵਾਂ ਰਾਹੀਂ ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ",
+    "backButton": "ਵਾਪਸ",
+    "stats": {
+      "progress": "ਪ੍ਰਗਤੀ",
+      "completed": "ਪੂਰਾ",
+      "estTime": "ਅਨੁਮਾਨਿਤ ਸਮਾਂ",
+      "chaptersCompleted": "ਅਧਿਆਏ ਪੂਰੇ",
+      "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ",
+      "selfPaced": "ਸਵੈ-ਗਤੀ",
+      "topics": "ਵਿਸ਼ੇ"
+    },
+    "aboutSection": {
+      "title": "ਇਸ ਮੌਡਿਊਲ ਬਾਰੇ"
+    },
+    "chaptersSection": {
+      "title": "ਸਾਰੇ ਅਧਿਆਏ",
+      "chapterText": "ਅਧਿਆਏ",
+      "current": "ਮੌਜੂਦਾ",
+      "completed": "ਪੂਰਾ",
+      "locked": "ਲਾਕ",
+      "startChapter": "ਅਧਿਆਏ ਸ਼ੁਰੂ ਕਰੋ",
+      "lockedButton": "ਲਾਕ",
+      "topics": "ਵਿਸ਼ੇ",
+      "completedText": "ਪੂਰਾ",
+      "min": "ਮਿੰਟ"
+    },
+    "cta": {
+      "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
+      "allCompleted": "ਸਾਰੇ ਪੂਰੇ",
+      "continueJourney": "ਆਪਣਾ ਸਿੱਖਣ ਦਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
+      "nextChapter": "ਅਗਲਾ:",
+      "allChaptersCompleted": "ਸਾਰੇ ਅਧਿਆਏ ਪੂਰੇ ਹੋ ਗਏ!"
+    },
+    "emptyState": {
+      "noData": "ਕੋਈ ਮੌਡਿਊਲ ਡੇਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+    },
+    "badge": {
+      "chapters": "ਅਧਿਆਏ",
+      "topics": "ਵਿਸ਼ੇ"
+    }
+  },
+
+  "chapters": {
+    "pageTitle": "ਅਧਿਆਏ ਵੇਰਵਾ",
+    "pageSubtitle": "ਵਿਸ਼ਿਆਂ ਰਾਹੀਂ ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ",
+    "backButton": "ਵਾਪਸ",
+    "stats": {
+      "progress": "ਪ੍ਰਗਤੀ",
+      "completed": "ਪੂਰਾ",
+      "estTime": "ਅਨੁਮਾਨਿਤ ਸਮਾਂ",
+      "topicsCompleted": "ਵਿਸ਼ੇ ਪੂਰੇ",
+      "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ",
+      "selfPaced": "ਸਵੈ-ਗਤੀ"
+    },
+    "aboutSection": {
+      "title": "ਇਸ ਅਧਿਆਏ ਬਾਰੇ"
+    },
+    "topicsSection": {
+      "title": "ਸਾਰੇ ਵਿਸ਼ੇ",
+      "topicText": "ਵਿਸ਼ਾ",
+      "current": "ਮੌਜੂਦਾ",
+      "completed": "ਪੂਰਾ",
+      "locked": "ਲਾਕ",
+      "startTopic": "ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਕਰੋ",
+      "lockedButton": "ਲਾਕ",
+      "giveQuiz": "ਕੁਇਜ਼ ਦਿਓ",
+      "min": "ਮਿੰਟ"
+    },
+    "cta": {
+      "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
+      "allCompleted": "ਸਾਰੇ ਪੂਰੇ 🎉",
+      "continueJourney": "ਆਪਣਾ ਸਿੱਖਣ ਦਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
+      "nextTopic": "ਅਗਲਾ:",
+      "allTopicsCompleted": "ਸਾਰੇ ਵਿਸ਼ੇ ਪੂਰੇ ਹੋ ਗਏ! 🎉"
+    },
+    "emptyState": {
+      "noData": "ਕੋਈ ਅਧਿਆਏ ਡੇਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+    },
+    "badge": {
+      "topics": "ਵਿਸ਼ੇ",
+      "minutes": "ਮਿੰਟ"
+    }
+  },
+
+  "topics": {
+    "pageTitle": "ਲਰਨਿੰਗ ਵਿਸ਼ੇ",
+    "pageSubtitle": "ਆਪਣੀ ਸਿੱਖਣ ਸਮੱਗਰੀ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
+    "topicTypes": {
+      "text": "ਟੈਕਸਟ ਵਿਸ਼ਾ",
+      "media": "ਮੀਡੀਆ ਵਿਸ਼ਾ"
     },
     "status": {
-      "active": "ਸਰਗਰਮ",
-      "draft": "ਡਰਾਫਟ",
-      "archived": "ਸੰਗ੍ਰਹਿਤ",
-      "all": "ਸਭ"
+      "read": "ਪੜ੍ਹਿਆ",
+      "unread": "ਨਹੀਂ ਪੜ੍ਹਿਆ"
     },
-    "actions": {
-      "addNewModule": "+ ਨਵਾਂ ਮੌਡਿਊਲ ਜੋੜੋ",
-      "createModule": "ਮੌਡਿਊਲ ਬਣਾਓ",
-      "creating": "ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...",
-      "deleteModule": "ਮੌਡਿਊਲ ਮਿਟਾਓ",
-      "updateModule": "ਮੌਡਿਊਲ ਅੱਪਡੇਟ ਕਰੋ",
-      "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ..."
+    "topicLabel": "ਵਿਸ਼ਾ",
+    "buttons": {
+      "viewTopic": "ਵਿਸ਼ਾ ਦੇਖੋ",
+      "previous": "ਪਿਛਲਾ",
+      "next": "ਅਗਲਾ"
     },
-    "breadcrumb": {
-      "curriculum": "ਪਾਠਕ੍ਰਮ",
-      "view-module": "ਮੌਡਿਊਲ ਦੇਖੋ"
+    "pagination": {
+      "showing": "ਦਿਖਾਇਆ ਜਾ ਰਿਹਾ ਹੈ",
+      "of": "ਵਿੱਚੋਂ",
+      "topics": "ਵਿਸ਼ੇ"
     },
-    "validation": {
-      "moduleNameRequired": "ਮੌਡਿਊਲ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "levelRequired": "ਪੱਧਰ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "programRequired": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "descriptionRequired": "ਵਿਵਰਣ ਲਾਜ਼ਮੀ ਹੈ"
+    "emptyState": {
+      "title": "ਕੋਈ ਵਿਸ਼ਾ ਉਪਲਬਧ ਨਹੀਂ",
+      "description": "ਨਵੀਂ ਸਿੱਖਣ ਸਮੱਗਰੀ ਲਈ ਬਾਅਦ ਵਿੱਚ ਜਾਂਚੋ"
     }
   },
 
-  "chapter": {
-    "list": {
-      "title": "ਅਧਿਆਏ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਮੌਡਿਊਲ ਨੂੰ ਕੇਂਦ੍ਰਿਤ ਅਤੇ ਸਮਝਣ ਵਿੱਚ ਆਸਾਨ ਸਿੱਖਣ ਭਾਗਾਂ ਵਿੱਚ ਵੰਡਣ ਲਈ ਅਧਿਆਏ ਸਮੱਗਰੀ ਪਰਿਭਾਸ਼ਿਤ ਅਤੇ ਸੰਰਚਿਤ ਕਰੋ।",
-      "searchPlaceholder": "ਅਧਿਆਏ ਦੇ ਨਾਮ ਨਾਲ ਖੋਜੋ...",
-      "clearAll": "ਸਭ ਸਾਫ਼ ਕਰੋ",
-      "columns": {
-        "chapterName": "ਅਧਿਆਏ ਦਾ ਨਾਮ",
-        "parentModule": "ਮੂਲ ਮੌਡਿਊਲ",
-        "parentLevel": "ਮੂਲ ਪੱਧਰ",
-        "totalChapters": "ਕੁੱਲ ਅਧਿਆਏ",
-        "totalTopics": "ਕੁੱਲ ਵਿਸ਼ੇ",
-        "duration": "ਮਿਆਦ",
-        "status": "ਸਥਿਤੀ",
-        "actions": "ਕਾਰਵਾਈਆਂ"
-      }
+  "topicContent": {
+    "loading": "ਸਮੱਗਰੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ...",
+    "notFound": {
+      "title": "ਸਮੱਗਰੀ ਨਹੀਂ ਮਿਲੀ",
+      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਹਿਲਾ ਦਿੱਤੀ ਗਈ ਹੈ।",
+      "button": "ਕੋਰਸ 'ਤੇ ਵਾਪਸ ਜਾਓ"
     },
-    "details": {
-      "generalDetails": "ਆਮ ਵੇਰਵੇ",
-      "chapterName": "ਅਧਿਆਏ ਦਾ ਨਾਮ",
-      "chapterNamePlaceholder": "ਅਧਿਆਏ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      "parentModule": "ਮੂਲ ਮੌਡਿਊਲ",
-      "parentModulePlaceholder": "ਇੱਕ ਮੌਡਿਊਲ ਚੁਣੋ",
-      "parentLevel": "ਮੂਲ ਪੱਧਰ",
-      "parentLevelPlaceholder": "ਇੱਕ ਪੱਧਰ ਚੁਣੋ",
-      "parentProgram": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ",
-      "perentProgramPlaceholder": "ਇੱਕ ਪ੍ਰੋਗਰਾਮ ਚੁਣੋ",
-      "description": "ਵਿਵਰਣ",
-      "descriptionPlaceholder": "ਮੌਡਿਊਲ ਦਾ ਵਿਵਰਣ ਲਿਖੋ...",
-      "thumbnail": "ਪੱਧਰ ਥੰਬਨੇਲ",
-      "uploadText": "ਥੰਬਨੇਲ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ",
-      "uploadSubText": "PNG, JPG, JPEG 5MB ਤੱਕ",
-      "changeImage": "ਤਸਵੀਰ ਬਦਲੋ",
-      "deleteText": "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਅਧਿਆਏ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
+    "backButton": "ਵਾਪਸ",
+    "contentTypes": {
+      "text": "ਪੜ੍ਹਨ ਸਮੱਗਰੀ",
+      "video": "ਵੀਡੀਓ ਲੈਕਚਰ",
+      "pdf": "ਦਸਤਾਵੇਜ਼",
+      "audio": "ਆਡੀਓ ਪਾਠ",
+      "image": "ਦ੍ਰਿਸ਼ਟੀਗਤ ਸਮੱਗਰੀ"
     },
-    "create": {
-      "title": "ਨਵਾਂ ਅਧਿਆਏ ਬਣਾਓ",
-      "subtitle": "ਮੌਡਿਊਲ ਨੂੰ ਕੇਂਦ੍ਰਿਤ ਅਤੇ ਸਮਝਣ ਵਿੱਚ ਆਸਾਨ ਸਿੱਖਣ ਭਾਗਾਂ ਵਿੱਚ ਵੰਡਣ ਲਈ ਅਧਿਆਏ ਸਮੱਗਰੀ ਪਰਿਭਾਸ਼ਿਤ ਅਤੇ ਸੰਰਚਿਤ ਕਰੋ।"
+    "readStatus": "ਪੜ੍ਹਿਆ",
+    "pdf": {
+      "download": "PDF ਡਾਊਨਲੋਡ ਕਰੋ",
+      "title": "PDF ਦਸਤਾਵੇਜ਼"
     },
-    "actions": {
-      "addNewChapter": "+ ਨਵਾਂ ਅਧਿਆਏ ਜੋੜੋ",
-      "createChapter": "ਅਧਿਆਏ ਬਣਾਓ",
-      "creating": "ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...",
-      "deleteChapter": "ਅਧਿਆਏ ਮਿਟਾਓ",
-      "updateChapter": "ਅਧਿਆਏ ਅੱਪਡੇਟ ਕਰੋ",
-      "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ..."
+    "navigation": {
+      "previous": "ਪਿਛਲਾ",
+      "previousLesson": "ਪਿਛਲਾ ਪਾਠ",
+      "next": "ਅਗਲਾ",
+      "nextLesson": "ਅਗਲਾ ਪਾਠ",
+      "continueText": "ਅਗਲੇ ਪਾਠ 'ਤੇ ਜਾਰੀ ਰੱਖੋ"
     },
-    "breadcrumb": {
-      "curriculum": "ਪਾਠਕ੍ਰਮ",
-      "view-chapter": "ਅਧਿਆਏ ਦੇਖੋ"
+    "fallbackMessage": "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ:"
+  },
+
+  "quiz": {
+    "pageTitle": "ਕੁਇਜ਼ ਅਸੈਸਮੈਂਟ",
+    "pageSubtitle": "ਆਪਣਾ ਗਿਆਨ ਜਾਂਚੋ",
+    "timeLeft": "ਬਾਕੀ ਸਮਾਂ",
+    "timeUpWarning": "ਸਮਾਂ ਮੁੱਕ ਗਿਆ! ਤੁਹਾਡਾ ਕੁਇਜ਼ ਆਪਣੇ ਆਪ ਸਬਮਿਟ ਹੋ ਗਿਆ ਹੈ।",
+    "answerSelected": "ਜਵਾਬ ਚੁਣਿਆ ਗਿਆ",
+    "skipped": "ਛੱਡਿਆ ਗਿਆ",
+    "questionOf": "ਸਵਾਲ {current} ਵਿੱਚੋਂ {total}",
+    "buttons": {
+      "previous": "ਪਿਛਲਾ",
+      "skip": "ਛੱਡੋ",
+      "next": "ਅਗਲਾ",
+      "submitQuiz": "ਕੁਇਜ਼ ਸਬਮਿਟ ਕਰੋ",
+      "submitting": "ਸਬਮਿਟ ਹੋ ਰਿਹਾ ਹੈ..."
     },
-    "validation": {
-      "chapterNameRequired": "ਅਧਿਆਏ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "moduleRequired": "ਮੌਡਿਊਲ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "levelRequired": "ਪੱਧਰ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "programRequired": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "descriptionRequired": "ਵਿਵਰਣ ਲਾਜ਼ਮੀ ਹੈ"
+    "emptyState": {
+      "title": "ਕੋਈ ਸਵਾਲ ਨਹੀਂ ਮਿਲਿਆ",
+      "description": "ਇਸ ਕੁਇਜ਼ ਵਿੱਚ ਹਾਲੇ ਕੋਈ ਸਵਾਲ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।"
     }
-  },
-
-  "topic": {
-    "list": {
-      "title": "ਵਿਸ਼ਾ ਪ੍ਰਬੰਧਨ",
-      "subtitle": "ਵਿਸ਼ੇਸ਼ ਮੈਡੀਕਲ ਵਿਭਾਗਾਂ ਵਿੱਚ ਵਿਦਿਆਰਥੀ ਪ੍ਰਗਤੀ ਅਤੇ ਸਮੱਗਰੀ ਸਪੁਰਦਗੀ ਨੂੰ ਟਰੈਕ ਕਰਦੇ ਹੋਏ ਵਿਸਤ੍ਰਿਤ ਸਿੱਖਣ ਉਦੇਸ਼ਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।",
-      "searchPlaceholder": "ਪੱਧਰ ਦੇ ਨਾਮ ਨਾਲ ਖੋਜੋ...",
-      "clearAll": "ਸਭ ਸਾਫ਼ ਕਰੋ",
-      "columns": {
-        "topicName": "ਵਿਸ਼ੇ ਦਾ ਨਾਮ",
-        "parentChapter": "ਮੂਲ ਅਧਿਆਏ",
-        "parentModule": "ਮੂਲ ਮੌਡਿਊਲ",
-        "parentLevel": "ਮੂਲ ਪੱਧਰ",
-        "duration": "ਮਿਆਦ",
-        "status": "ਸਥਿਤੀ",
-        "actions": "ਕਾਰਵਾਈਆਂ"
-      }
-    },
-    "details": {
-      "generalDetails": "ਆਮ ਵੇਰਵੇ",
-      "topicName": "ਵਿਸ਼ੇ ਦਾ ਨਾਮ",
-      "topicNamePlaceholder": "ਵਿਸ਼ੇ ਦਾ ਨਾਮ ਦਰਜ ਕਰੋ",
-      "parentChapter": "ਮੂਲ ਅਧਿਆਏ",
-      "parentChapterPlaceholder": "ਇੱਕ ਅਧਿਆਏ ਚੁਣੋ",
-      "parentModule": "ਮੂਲ ਮੌਡਿਊਲ",
-      "parentModulePlaceholder": "ਇੱਕ ਮੌਡਿਊਲ ਚੁਣੋ",
-      "parentLevel": "ਪੱਧਰ ਦਾ ਨਾਮ",
-      "parentLevelPlaceholder": "ਇੱਕ ਪੱਧਰ ਚੁਣੋ",
-      "parentProgram": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ",
-      "perentProgramPlaceholder": "ਇੱਕ ਪ੍ਰੋਗਰਾਮ ਚੁਣੋ",
-      "duration": "ਮਿਆਦ (ਮਿੰਟਾਂ ਵਿੱਚ)",
-      "durationPlaceholder": "ਮਿੰਟਾਂ ਵਿੱਚ ਮਿਆਦ ਦਰਜ ਕਰੋ",
-      "description": "ਵਿਵਰਣ",
-      "descriptionPlaceholder": "ਮੌਡਿਊਲ ਦਾ ਵਿਵਰਣ ਲਿਖੋ...",
-      "thumbnail": "ਪੱਧਰ ਥੰਬਨੇਲ",
-      "uploadText": "ਥੰਬਨੇਲ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ",
-      "uploadSubText": "PNG, JPG, JPEG 5MB ਤੱਕ",
-      "changeImage": "ਤਸਵੀਰ ਬਦਲੋ",
-      "deleteText": "ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਇਸ ਵਿਸ਼ੇ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
-    },
-    "create": {
-      "title": "ਨਵਾਂ ਵਿਸ਼ਾ ਬਣਾਓ",
-      "subtitle": "ਵਿਸ਼ੇਸ਼ ਮੈਡੀਕਲ ਵਿਭਾਗਾਂ ਵਿੱਚ ਵਿਦਿਆਰਥੀ ਪ੍ਰਗਤੀ ਅਤੇ ਸਮੱਗਰੀ ਸਪੁਰਦਗੀ ਨੂੰ ਟਰੈਕ ਕਰਦੇ ਹੋਏ ਵਿਸਤ੍ਰਿਤ ਸਿੱਖਣ ਉਦੇਸ਼ਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।"
-    },
-    "actions": {
-      "addNewTopic": "+ ਨਵਾਂ ਵਿਸ਼ਾ ਜੋੜੋ",
-      "createTopic": "ਵਿਸ਼ਾ ਬਣਾਓ",
-      "creating": "ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...",
-      "deleteTopic": "ਵਿਸ਼ਾ ਮਿਟਾਓ",
-      "updateTopic": "ਵਿਸ਼ਾ ਅੱਪਡੇਟ ਕਰੋ",
-      "updating": "ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ..."
-    },
-    "breadcrumb": {
-      "curriculum": "ਪਾਠਕ੍ਰਮ",
-      "view-topic": "ਵਿਸ਼ਾ ਦੇਖੋ"
-    },
-    "validation": {
-      "topicNameRequired": "ਵਿਸ਼ੇ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "durationRequired": "ਮਿਆਦ ਲਾਜ਼ਮੀ ਹੈ",
-      "durationNumber": "ਮਿਆਦ ਇੱਕ ਸੰਖਿਆ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ",
-      "durationPositive": "ਮਿਆਦ ਸਕਾਰਾਤਮਕ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ",
-      "chapterRequired": "ਅਧਿਆਏ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "moduleRequired": "ਮੌਡਿਊਲ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "levelRequired": "ਪੱਧਰ ਦਾ ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "programRequired": "ਮੂਲ ਪ੍ਰੋਗਰਾਮ ਲਾਜ਼ਮੀ ਹੈ",
-      "descriptionRequired": "ਵਿਵਰਣ ਲਾਜ਼ਮੀ ਹੈ"
-    }
-  },
-
-  "language": {
-    "title": "ਭਾਸ਼ਾ ਪ੍ਰਬੰਧਨ",
-    "desc": "ਪਲੇਟਫਾਰਮ ਇੰਟਰਫੇਸ ਅਤੇ ਸਿੱਖਣ ਸਮੱਗਰੀ ਲਈ ਸਿਸਟਮ ਭਾਸ਼ਾਵਾਂ ਅਤੇ ਅਨੁਵਾਦ ਪ੍ਰਬੰਧਿਤ ਕਰੋ।",
-    "addLanguage": "+ ਭਾਸ਼ਾ ਜੋੜੋ",
-    "exportTranslation": "ਅਨੁਵਾਦ ਨਿਰਯਾਤ ਕਰੋ",
-    "searchPlaceholder": "ਭਾਸ਼ਾ ਖੋਜੋ",
-    "colums": {
-      "noData": "ਕੋਈ ਭਾਸ਼ਾ ਨਹੀਂ ਮਿਲੀ।",
-      "langId": "ਭਾਸ਼ਾ ਆਈਡੀ",
-      "langName": "ਭਾਸ਼ਾ ਦਾ ਨਾਮ",
-      "status": "ਸਥਿਤੀ",
-      "actions": "ਕਾਰਵਾਈਆਂ"
-    }
-  },
-
-  "globalConfirmationModal": {
-    "confirmDeletion": "ਮਿਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
-    "cancle": "ਰੱਦ ਕਰੋ",
-    "confirm": "ਪੁਸ਼ਟੀ ਕਰੋ"
-  },
-
-  "loaderText": "ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ ਜਦੋਂ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਬੇਨਤੀ ਪ੍ਰੋਸੈੱਸ ਕਰ ਰਹੇ ਹਾਂ",
-
-  "sessionModal": {
-    "title": "ਸੈਸ਼ਨ ਖਤਮ ਹੋ ਰਿਹਾ ਹੈ",
-    "description": "ਤੁਸੀਂ ਅਕਿਰਿਆਸ਼ੀਲ ਰਹੇ। ਤੁਹਾਨੂੰ ਜਲਦੀ ਲੌਗਆਉਟ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ।",
-    "continue": "ਜਾਰੀ ਰੱਖੋ",
-    "logout": "ਲੌਗਆਉਟ"
   }
 }
