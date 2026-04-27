@@ -7,13 +7,11 @@
 // import TextInput from "../../common/form/TextInput";
 // import FormButton from "../../common/form/FormButton";
 // import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
-// import { useTranslation } from "react-i18next";
 // import { useDispatch } from "react-redux";
 // import { useToast } from "../../common/toast/ToastContext";
 // import { resetPassword } from "../../../../redux/slice/authSlice";
 
 // const ResetPassword = () => {
-//   const { t } = useTranslation();
 //   const dispatch = useDispatch();
 //   const navigate = useNavigate();
 //   const toast = useToast();
@@ -21,7 +19,7 @@
 //   const [showPassword, setShowPassword] = useState(false);
 //   const [showConfirm, setShowConfirm] = useState(false);
 
-//   //  Get token from URL
+//   // Get token from URL
 //   const location = useLocation();
 //   const queryParams = new URLSearchParams(location.search);
 //   const token = queryParams.get("token");
@@ -31,18 +29,21 @@
 //     confirmPassword: "",
 //   };
 
-//   //  Validation Schema (resetPassword keys)
+//   // Validation Schema
 //   const validationSchema = Yup.object({
 //     password: Yup.string()
-//       .min(8, t("resetPassword.validation.passwordMin"))
-//       .matches(/[A-Z]/, t("resetPassword.validation.passwordUppercase"))
-//       .matches(/[0-9]/, t("resetPassword.validation.passwordNumber"))
-//       .matches(/[!@#$%^&*]/, t("resetPassword.validation.passwordSpecial"))
-//       .required(t("resetPassword.validation.passwordRequired")),
+//       .min(8, "Password must be at least 8 characters")
+//       .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+//       .matches(/[0-9]/, "Password must contain at least one number")
+//       .matches(
+//         /[!@#$%^&*]/,
+//         "Password must contain at least one special character",
+//       )
+//       .required("Password is required"),
 
 //     confirmPassword: Yup.string()
-//       .oneOf([Yup.ref("password")], t("resetPassword.validation.passwordMatch"))
-//       .required(t("resetPassword.validation.confirmPasswordRequired")),
+//       .oneOf([Yup.ref("password")], "Passwords must match")
+//       .required("Confirm password is required"),
 //   });
 
 //   const onSubmit = async (values, { setSubmitting }) => {
@@ -74,11 +75,11 @@
 //       <div className="w-full max-w-md bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
 //         {/* Heading */}
 //         <h2 className="text-xl font-semibold text-center text-[#1F3C88]">
-//           {t("resetPassword.title")}
+//           Reset Password
 //         </h2>
 
 //         <p className="text-sm text-gray-500 text-center mt-2 mb-6">
-//           {t("resetPassword.subtitle")}
+//           Please enter your new password below.
 //         </p>
 
 //         <Formik
@@ -94,9 +95,9 @@
 
 //                 <TextInput
 //                   name="password"
-//                   label={t("resetPassword.newPassword")}
+//                   label="New Password"
 //                   type={showPassword ? "text" : "password"}
-//                   placeholder={t("resetPassword.placeholderNew")}
+//                   placeholder="Enter new password"
 //                   className="!pl-10"
 //                 />
 
@@ -114,9 +115,9 @@
 
 //                 <TextInput
 //                   name="confirmPassword"
-//                   label={t("resetPassword.confirmPassword")}
+//                   label="Confirm Password"
 //                   type={showConfirm ? "text" : "password"}
-//                   placeholder={t("resetPassword.placeholderConfirm")}
+//                   placeholder="Confirm new password"
 //                   className="!pl-10"
 //                 />
 
@@ -130,19 +131,15 @@
 
 //               {/* Password Rules */}
 //               <ul className="text-xs text-gray-500 space-y-1 pl-4 list-disc">
-//                 <li>{t("resetPassword.rules.min")}</li>
-//                 <li>{t("resetPassword.rules.uppercase")}</li>
-//                 <li>{t("resetPassword.rules.number")}</li>
-//                 <li>{t("resetPassword.rules.special")}</li>
+//                 <li>At least 8 characters</li>
+//                 <li>At least one uppercase letter</li>
+//                 <li>At least one number</li>
+//                 <li>At least one special character (!@#$%^&amp;*)</li>
 //               </ul>
 
 //               {/* Button */}
 //               <FormButton
-//                 text={
-//                   isSubmitting
-//                     ? t("resetPassword.updating")
-//                     : t("resetPassword.update")
-//                 }
+//                 text={isSubmitting ? "Updating..." : "Update Password"}
 //                 loading={isSubmitting}
 //                 type="submit"
 //                 className="bg-[#22A699] hover:bg-[#1d8f85] text-white py-2.5 rounded-lg w-full"
@@ -174,11 +171,13 @@ import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
 import { useDispatch } from "react-redux";
 import { useToast } from "../../common/toast/ToastContext";
 import { resetPassword } from "../../../../redux/slice/authSlice";
+import { useTranslation } from "react-i18next";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toast = useToast();
+  const { t } = useTranslation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -196,18 +195,15 @@ const ResetPassword = () => {
   // Validation Schema
   const validationSchema = Yup.object({
     password: Yup.string()
-      .min(8, "Password must be at least 8 characters")
-      .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
-      .matches(/[0-9]/, "Password must contain at least one number")
-      .matches(
-        /[!@#$%^&*]/,
-        "Password must contain at least one special character",
-      )
-      .required("Password is required"),
+      .min(8, t("resetPassword.validation.passwordMin"))
+      .matches(/[A-Z]/, t("resetPassword.validation.passwordUppercase"))
+      .matches(/[0-9]/, t("resetPassword.validation.passwordNumber"))
+      .matches(/[!@#$%^&*]/, t("resetPassword.validation.passwordSpecialChar"))
+      .required(t("resetPassword.validation.passwordRequired")),
 
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match")
-      .required("Confirm password is required"),
+      .oneOf([Yup.ref("password")], t("resetPassword.validation.passwordMatch"))
+      .required(t("resetPassword.validation.confirmPasswordRequired")),
   });
 
   const onSubmit = async (values, { setSubmitting }) => {
@@ -219,10 +215,10 @@ const ResetPassword = () => {
 
     try {
       const res = await dispatch(resetPassword(payload)).unwrap();
-      toast.success(res?.message || "Password reset successful");
+      toast.success(res?.message || t("resetPassword.successMessage"));
       navigate("/login");
     } catch (err) {
-      toast.error(err?.message || "Password reset failed");
+      toast.error(err?.message || t("resetPassword.errorMessage"));
     } finally {
       setSubmitting(false);
     }
@@ -232,18 +228,18 @@ const ResetPassword = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#EEF2F6] px-4">
       {/* Logo */}
       <div className="mb-6">
-        <img src={logo} alt="logo" className="w-[200px]" />
+        <img src={logo} alt={t("resetPassword.title")} className="w-[200px]" />
       </div>
 
       {/* Card */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
         {/* Heading */}
         <h2 className="text-xl font-semibold text-center text-[#1F3C88]">
-          Reset Password
+          {t("resetPassword.heading")}
         </h2>
 
         <p className="text-sm text-gray-500 text-center mt-2 mb-6">
-          Please enter your new password below.
+          {t("resetPassword.description")}
         </p>
 
         <Formik
@@ -259,9 +255,9 @@ const ResetPassword = () => {
 
                 <TextInput
                   name="password"
-                  label="New Password"
+                  label={t("resetPassword.newPasswordLabel")}
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter new password"
+                  placeholder={t("resetPassword.newPasswordPlaceholder")}
                   className="!pl-10"
                 />
 
@@ -279,9 +275,9 @@ const ResetPassword = () => {
 
                 <TextInput
                   name="confirmPassword"
-                  label="Confirm Password"
+                  label={t("resetPassword.confirmPasswordLabel")}
                   type={showConfirm ? "text" : "password"}
-                  placeholder="Confirm new password"
+                  placeholder={t("resetPassword.confirmPasswordPlaceholder")}
                   className="!pl-10"
                 />
 
@@ -295,15 +291,19 @@ const ResetPassword = () => {
 
               {/* Password Rules */}
               <ul className="text-xs text-gray-500 space-y-1 pl-4 list-disc">
-                <li>At least 8 characters</li>
-                <li>At least one uppercase letter</li>
-                <li>At least one number</li>
-                <li>At least one special character (!@#$%^&amp;*)</li>
+                <li>{t("resetPassword.passwordRules.length")}</li>
+                <li>{t("resetPassword.passwordRules.uppercase")}</li>
+                <li>{t("resetPassword.passwordRules.number")}</li>
+                <li>{t("resetPassword.passwordRules.specialChar")}</li>
               </ul>
 
               {/* Button */}
               <FormButton
-                text={isSubmitting ? "Updating..." : "Update Password"}
+                text={
+                  isSubmitting
+                    ? t("resetPassword.updatingButton")
+                    : t("resetPassword.updateButton")
+                }
                 loading={isSubmitting}
                 type="submit"
                 className="bg-[#22A699] hover:bg-[#1d8f85] text-white py-2.5 rounded-lg w-full"
@@ -314,9 +314,7 @@ const ResetPassword = () => {
       </div>
 
       {/* Footer */}
-      <p className="text-xs text-gray-400 my-4">
-        © 2025 Avante Medical LMS · v2.1.0
-      </p>
+      <p className="text-xs text-gray-400 my-4">{t("resetPassword.footer")}</p>
     </div>
   );
 };

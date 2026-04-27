@@ -1,282 +1,561 @@
 {
   "login": {
-    "title": "Training Management System",
-    "emailLabel": "Email or Employee ID",
-    "emailPlaceholder": "Enter your email or employee ID",
+    "title": "Welcome Back!",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
     "passwordLabel": "Password",
     "passwordPlaceholder": "Enter your password",
-    "forgotPassword": "Forgot password?",
+    "forgotPassword": "Forgot Password?",
+    "stayLoggedIn": "Stay logged in",
     "button": "Sign In",
-    "signingIn": "Signing In...",
     "or": "OR",
     "newEmployee": "New Employee?",
     "completeEmployeeOnboarding": "Complete Employee Onboarding",
-    "secureLogin": "SECURE ENTERPRISE LOGIN",
+    "secureLogin": "SECURE LOGIN",
     "termsOfService": "Terms of Service",
-    "privacyPolicy": "Privacey Policy",
-    "stayLoggedIn": "Stay logged in on this device",
+    "privacyPolicy": "Privacy Policy",
+    "language": "Language",
     "validation": {
       "emailRequired": "Email is required",
-      "emailInvalid": "Please enter a valid email address",
+      "emailInvalid": "Invalid email address",
       "passwordRequired": "Password is required"
     }
   },
 
-  "register": {
-    "title": "New Employee Account",
-    "subtitle": "Please fill in the details below to register a new employee on the Avante Medical LMS. This will create their unique profile and access credentials.",
-    "emailLabel": "Email or Employee ID",
-    "emailPlaceholder": "Enter your email or employee ID",
-    "passwordLabel": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "forgotPassword": "Forgot password?",
-    "button": "Sign In",
-    "signingIn": "Signing In...",
-    "or": "OR",
-    "newEmployee": "New Employee?",
-    "completeEmployeeOnboarding": "Complete Employee Onboarding",
-    "secureLogin": "SECURE ENTERPRISE LOGIN",
-    "termsOfService": "Terms of Service",
-    "privacyPolicy": "Privacey Policy",
-    "stayLoggedIn": "Stay logged in on this device",
-    "footerText": "By creating an account, you agree to Avante Medical's Terms of Service and Privacy Policy.",
-    "details": {
-      "personalInfo": "Personal Information",
-      "createPassword": "Create Password",
-      "fullName": "Full Name",
-      "fullNamePlaceholder": "Enter full name",
-      "email": "Email Address",
-      "emailPlaceholder": "Enter email address",
-      "phone": "Phone Number",
-      "phonePlaceholder": "Enter phone number",
-      "employeeId": "Employee ID",
-      "employeeIdPlaceholder": "Enter Employee ID",
-      "department": "Department",
-      "departmentPlaceholder": "Select Department",
-      "designation": "Designation",
-      "designationPlaceholder": "Select Designation",
-      "region": "Region",
-      "regionPlaceholder": "Select region",
-      "city": "City",
-      "cityPlaceholder": "Enter city",
-      "role": "Role",
-      "rolePlaceholder": "Select role",
-      "password": "Password",
-      "passwordPlaceholder": "Enter password",
-      "newPassword": "New Password",
-      "newPasswordPlaceholder": "Enter new password",
-      "confirmPassword": "Confirm Password",
-      "confirmPasswordPlaceholder": "Re-enter password",
-      "profileImage": "Profile Image",
-      "uploadImage": "Upload Image",
-      "deleteText": "Are you sure you want to delete this user?"
-    },
-    "validation": {
-      "nameRequired": "Name is required",
-      "emailRequired": "Email is required",
-      "emailInvalid": "Invalid email address",
-      "roleRequired": "Role is required",
-      "departmentRequired": "Department is required",
-      "designationRequired": "Designation is required",
-      "regionRequired": "Region is required",
-      "cityRequired": "City is required",
-      "mobileRequired": "Mobile number is required",
-      "passwordRequired": "Password is required",
-      "passwordMin": "Password must be at least 6 characters",
-      "confirmPasswordRequired": "Confirm password is required",
-      "passwordMatch": "Passwords must match"
-    },
-    "actions": {
-      "createAccount": "Create Account",
-      "creating": "Creating"
-    }
-  },
-
   "forgotPassword": {
-    "title": "Forgot your password?",
-    "subtitle": "Enter your registered email address and we'll send you a link to reset your password.",
-    "emailLabel": "Email address",
-    "emailPlaceholder": "you@company.com",
-    "button": "Send Link",
-    "sending": "Sending...",
-    "back": "Back to sign in",
-    "spam": "Check your spam folder",
-    "notReceived": "Didn't receive the email?",
-    "rememberYourPassword": "Remember your password?",
-    "signIn": "Sign In",
+    "title": "Avante Medical LMS",
+    "language": "Language",
+    "heading": "Forgot Password?",
+    "description": "Enter your email address and we'll send you a link to reset your password.",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "sendLinkButton": "Send Reset Link",
+    "sendingButton": "Sending...",
+    "helpText": "Didn't receive the email?",
+    "checkSpam": "Check spam folder",
+    "signInText": "Remember your password?",
+    "signInLink": "Sign In",
+    "successMessage": "Link sent successfully to your mail. Please check.",
+    "errorMessage": "Failed to send reset link",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0",
     "validation": {
       "emailRequired": "Email is required",
       "emailInvalid": "Invalid email address"
     }
   },
 
+  "register": {
+    "language": "Language",
+    "title": "Avante Medical LMS",
+    "subtitle": "Create your account",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "example@email.com",
+    "mobileLabel": "Mobile Number",
+    "mobilePlaceholder": "9876543210",
+    "employeeIdLabel": "Employee ID",
+    "employeeIdPlaceholder": "EMP-12345",
+    "designationLabel": "Designation",
+    "designationLoading": "Loading designations...",
+    "designationPlaceholder": "Select Designation",
+    "countryLabel": "Region",
+    "countryPlaceholder": "Select Country",
+    "cityLabel": "City",
+    "cityPlaceholder": "Enter your city",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "********",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "********",
+    "profileImageLabel": "Profile Image",
+    "uploadPhoto": "Upload Photo",
+    "changePhoto": "Change Photo",
+    "removePhoto": "Remove",
+    "imageSupportedText": "Supported: JPG, PNG, GIF • Max 5MB",
+    "registerButton": "Register",
+    "registeringButton": "Creating Account...",
+    "or": "OR",
+    "alreadyAccount": "Already have an account?",
+    "loginButton": "Login to your account",
+    "secureRegistration": "SECURE REGISTRATION",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "successMessage": "Registration successful! Please login.",
+    "errorMessage": "Registration failed. Please try again.",
+    "validation": {
+      "nameRequired": "Name required",
+      "emailRequired": "Email required",
+      "emailInvalid": "Invalid email",
+      "mobileRequired": "Mobile required",
+      "mobileInvalid": "Mobile number must be 10 digits",
+      "employeeIdRequired": "Employee ID required",
+      "designationRequired": "Designation required",
+      "countryRequired": "Country required",
+      "cityRequired": "City required",
+      "passwordRequired": "Password required",
+      "passwordMin": "Password must be at least 6 characters",
+      "confirmPasswordRequired": "Confirm password required",
+      "passwordMatch": "Passwords must match",
+      "imageInvalidType": "Please upload a valid image file (JPEG, PNG, GIF, WEBP)",
+      "imageSizeExceed": "Image size should be less than 5MB"
+    }
+  },
+
   "checkEmail": {
-    "title": "Check Your Email",
-    "subtitle": "We sent a password reset link to",
-    "openApp": "Open Email App",
-    "resend": "Resend Link",
-    "back": "Back to sign in"
+    "title": "Avante Medical",
+    "heading": "Check Your Email",
+    "message": "We've sent a verification token to your email address:",
+    "tokenSuccess": "Token Sent Successfully!",
+    "tokenDescription": "Please check your mailbox and click the verification link to activate your account.",
+    "expiryText": "Token expires in 10 minutes",
+    "spamText": "Didn't receive email? Check your spam folder",
+    "goToLogin": "Go to Login",
+    "backToRegistration": "Back to Registration",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0"
+  },
+
+  "verifyEmail": {
+    "title": "Avante Medical",
+    "loading": {
+      "heading": "Verifying Email",
+      "message": "Please wait while we verify your email..."
+    },
+    "success": {
+      "heading": "Email Verified!",
+      "message": "Your email has been successfully verified.",
+      "goToLogin": "Go to Login",
+      "backToHome": "Back to Home"
+    },
+    "error": {
+      "heading": "Verification Failed",
+      "invalidLink": "Invalid verification link",
+      "defaultMessage": "Verification failed",
+      "tryAgain": "Try Again",
+      "backToHome": "Back to Home",
+      "goToLogin": "Go to Login"
+    },
+    "footer": "© 2025 Avante Medical LMS · v2.1.0"
   },
 
   "resetPassword": {
-    "title": "Reset Password",
-    "subtitle": "Set a new password to regain access to your account.",
-    "newPassword": "New Password",
-    "confirmPassword": "Confirm Password",
-    "placeholderNew": "Enter new password",
-    "placeholderConfirm": "Re-enter new password",
-    "update": "Reset Password",
-    "updating": "Resetting...",
-    "rules": {
-      "min": "Minimum 8 characters",
-      "uppercase": "At least 1 uppercase letter",
-      "number": "At least 1 number",
-      "special": "At least 1 special character"
-    },
+    "title": "Avante Medical LMS",
+    "heading": "Reset Password",
+    "description": "Please enter your new password below.",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm new password",
+    "updateButton": "Update Password",
+    "updatingButton": "Updating...",
+    "footer": "© 2025 Avante Medical LMS · v2.1.0",
+    "successMessage": "Password reset successful",
+    "errorMessage": "Password reset failed",
     "validation": {
       "passwordRequired": "Password is required",
-      "passwordMin": "Minimum 8 characters",
-      "passwordUppercase": "At least 1 uppercase letter",
-      "passwordNumber": "At least 1 number",
-      "passwordSpecial": "At least 1 special character",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordUppercase": "Password must contain at least one uppercase letter",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecialChar": "Password must contain at least one special character",
       "confirmPasswordRequired": "Confirm password is required",
       "passwordMatch": "Passwords must match"
+    },
+    "passwordRules": {
+      "length": "At least 8 characters",
+      "uppercase": "At least one uppercase letter",
+      "number": "At least one number",
+      "specialChar": "At least one special character (!@#$%^&*)"
+    }
+  },
+
+  "header": {
+    "language": {
+      "en": "English",
+      "hi": "हिन्दी",
+      "pa": "ਪੰਜਾਬੀ"
+    }
+  },
+
+  "sidebar": {
+    "home": "Home",
+    "myLevels": "My Levels",
+    "anlytics": "Analytics",
+    "profile": "Profile"
+  },
+
+  "profile": {
+    "pageTitle": "Profile",
+    "pageSubtitle": "Manage your account",
+    "loading": "Loading...",
+    "notSpecified": "Not specified",
+    "notAssigned": "Not assigned",
+    "notProvided": "Not provided",
+    "na": "N/A",
+    "tags": {
+      "id": "ID",
+      "city": "CITY"
+    },
+    "details": {
+      "department": "Department",
+      "mobile": "Mobile",
+      "role": "Role",
+      "designationId": "Designation ID",
+      "employeeId": "Employee ID"
+    },
+    "menu": {
+      "editProfile": "Edit Profile",
+      "changePassword": "Change Password",
+      "notificationSettings": "Notification Settings",
+      "logout": "Logout"
     }
   },
 
   "changePassword": {
-    "title": "Change Password",
-    "subtitle": "Update your password to keep your account secure.",
-    "oldPassword": "Old Password",
-    "oldPasswordPlaceholder": "Enter Old Password",
-    "newPassword": "New Password",
-    "confirmPassword": "Confirm Password",
-    "placeholderNew": "Enter new password",
-    "placeholderConfirm": "Re-enter new password",
-    "update": "Update Password",
-    "updating": "Updating...",
-    "rules": {
-      "min": "Minimum 8 characters",
-      "uppercase": "At least 1 uppercase letter",
-      "number": "At least 1 number",
-      "special": "At least 1 special character"
+    "pageTitle": "Change Password",
+    "pageSubtitle": "Update your account password",
+    "fields": {
+      "currentPassword": {
+        "label": "Current Password",
+        "placeholder": "Enter current password"
+      },
+      "newPassword": {
+        "label": "New Password",
+        "placeholder": "Enter new password"
+      },
+      "confirmNewPassword": {
+        "label": "Confirm New Password",
+        "placeholder": "Re-enter new password"
+      }
     },
+    "button": "Update Password",
     "validation": {
-      "oldPassword": "Old password is required",
-      "passwordRequired": "Password is required",
-      "passwordMin": "Minimum 8 characters",
-      "passwordUppercase": "At least 1 uppercase letter",
-      "passwordNumber": "At least 1 number",
-      "passwordSpecial": "At least 1 special character",
-      "confirmPasswordRequired": "Confirm password is required",
+      "currentPasswordRequired": "Current password required",
+      "newPasswordRequired": "New password required",
+      "newPasswordMin": "Min 6 chars",
+      "confirmPasswordRequired": "Confirm password required",
       "passwordMatch": "Passwords must match"
-    }
+    },
+    "successMessage": "Password updated successfully",
+    "errorMessage": "Something went wrong"
   },
 
-  "profile": {
-    "title": "Profile Settings",
-    "subtitle": "Manage your personal information and account details",
-
-    "details": {
-      "name": "Full Name",
-      "namePlaceholder": "Enter your full name",
-      "email": "Email",
-      "emailPlaceholder": "Enter email address",
-      "mobile": "Mobile Number",
-      "mobilePlaceholder": "Enter 10 digit mobile number",
-      "city": "City",
-      "cityPlaceholder": "Enter city",
-      "country": "Country",
-      "countryPlaceholder": "Select country",
-      "upload": "Upload"
+  "profileDetails": {
+    "pageTitle": "Update Profile",
+    "pageSubtitle": "Manage your profile information and image",
+    "profileImage": {
+      "title": "Profile Image",
+      "upload": "Upload Image",
+      "change": "Change Image",
+      "remove": "Remove Image",
+      "supportedFormats": "Supported formats: JPEG, PNG, WEBP. Max size: 5MB",
+      "selected": "Selected:",
+      "newImageSelected": "New image selected: (will be saved with profile)"
     },
-
-    "actions": {
-      "updateProfile": "Update Profile",
-      "updating": "Updating..."
+    "basicInfo": {
+      "employeeId": {
+        "label": "Employee ID",
+        "placeholder": "e.g. EMP124"
+      },
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "e.g. Ajay Trainee"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "kajalcharve6@gmail.com"
+      },
+      "mobile": {
+        "label": "Mobile Number",
+        "placeholder": "8982251020"
+      }
     },
-
+    "location": {
+      "city": {
+        "label": "City",
+        "placeholder": "e.g. Indore"
+      },
+      "region": {
+        "label": "Region",
+        "placeholder": "Select Region"
+      }
+    },
+    "workInfo": {
+      "department": {
+        "label": "Department",
+        "placeholder": "e.g. Sales"
+      },
+      "designation": {
+        "label": "Designation",
+        "placeholder": "Select Designation"
+      }
+    },
+    "additionalInfo": {
+      "title": "Additional Information",
+      "role": "Role",
+      "accountStatus": "Account Status",
+      "emailVerified": "Email Verified",
+      "notAssigned": "Not assigned",
+      "active": "Active ✓",
+      "inactive": "Inactive ✗",
+      "verified": "Verified on",
+      "notVerified": "Not verified"
+    },
+    "timestamps": {
+      "created": "Created:",
+      "lastUpdated": "Last Updated:",
+      "na": "N/A"
+    },
+    "buttons": {
+      "save": "Save Changes",
+      "saving": "Saving...",
+      "cancel": "Cancel"
+    },
     "validation": {
-      "nameRequired": "Name is required",
-      "emailRequired": "Email is required",
+      "employeeIdRequired": "Employee ID required",
+      "fullNameRequired": "Full name required",
       "emailInvalid": "Invalid email",
-      "mobileRequired": "Mobile number is required",
-      "mobileInvalid": "Enter valid 10-digit mobile number",
-      "cityRequired": "City is required",
-      "cityMin": "City must be at least 2 characters",
-      "countryRequired": "Country is required"
+      "emailRequired": "Email required",
+      "mobileInvalid": "Mobile number must be 10 digits",
+      "designationRequired": "Designation required",
+      "regionRequired": "Region required"
+    },
+    "toast": {
+      "imageInvalidType": "Please select a valid image file (JPEG, PNG, WEBP)",
+      "imageSizeExceed": "Image size should be less than 5MB",
+      "success": "Profile updated successfully!",
+      "error": "Failed to update profile. Please try again."
     }
   },
 
-  "navbar": {
-    "searchPlaceholder": "Search analytics, users or courses...",
-    "notifications": "Notifications",
-    "messages": "Messages",
-    "profile": "Profile",
-    "changePassword": "Change Password",
-    "logout": "Logout"
+  "levelsPage": {
+    "programTitle": "Pace Maker",
+    "subtitle": "Track your progress and continue your journey",
+    "allLevels": "All Levels",
+    "completed": "Completed",
+    "status": {
+      "completed": "COMPLETED",
+      "running": "RUNNING",
+      "locked": "LOCKED"
+    },
+    "buttons": {
+      "takeExam": "Take an Exam",
+      "continue": "Continue",
+      "startLevel": "Start Level"
+    },
+    "progress": "Progress",
+    "modules": {
+      "zero": "0 Modules",
+      "one": "1 Module",
+      "other": "Modules"
+    },
+    "emptyStates": {
+      "noCompleted": "No completed levels yet. Keep learning!",
+      "noLevels": "No levels available.",
+      "error": "Something Went wrong"
+    }
   },
 
-  "sidebar": {
-    "dashboard": "Dashboard",
-
-    "userManagement": "User Management",
-    "assignTrainingProgram": "Assign Training Program",
-
-    "trainingPrograms": "Training Programs",
-    "programList": "Program List",
-    "createProgram": "Create Program",
-    "programAssignment": "Program Assignment",
-
-    "curriculumManagement": "Curriculum Management",
-    "levels": "Levels",
-    "modules": "Modules",
-    "chapters": "Chapters",
-    "topics": "Topics",
-    "bulkImport": "Bulk Import",
-
-    "contentManagement": "Content Management",
-    "learningUnitBuilder": "Learning Unit Builder",
-    "interactiveContent": "Interactive Content",
-    "mediaLibrary": "Media Library",
-
-    "assessmentManagement": "Assessment Management",
-    "quizForTopic": "Quiz for Topic",
-    "examForLevel": "Exam for Level",
-    "faq": "FAQ",
-
-    "trainingCertification": "Training & Certification",
-    "trainingAssignment": "Training Assignment",
-    "progressTracker": "Progress Tracker",
-    "certification": "Certification",
-
-    "reportsAdministration": "Reports & Administration",
-    "topResult": "Top Result",
-    "reportsAnalytics": "Reports & Analytics",
-    "userAnalytics": "User Analytics",
-    "trainingAnalytics": "Training Analytics",
-    "performanceReports": "Performance Reports",
-    "completionReports": "Completion Reports",
-    "rolesPermission": "Roles & Permission",
-    "systemSettings": "System Settings",
-
-    "multiLanguage": "Multi Language",
-
-    "logout": "Logout"
+  "levelDetails": {
+    "pageTitle": "Level Details",
+    "pageSubtitle": "Track your progress and continue your journey",
+    "backButton": "Back",
+    "stats": {
+      "progress": "PROGRESS",
+      "completed": "COMPLETED",
+      "estTime": "EST. TIME",
+      "modulesCompleted": "Modules completed",
+      "totalLearningTime": "Total learning time",
+      "selfPaced": "Self-paced"
+    },
+    "aboutSection": {
+      "title": "About this Level"
+    },
+    "modulesSection": {
+      "title": "Learning Modules",
+      "moduleText": "Module",
+      "current": "Current",
+      "completed": "Completed",
+      "locked": "Locked",
+      "chapters": "chapters",
+      "topics": "topics",
+      "startModule": "Start Module",
+      "lockedButton": "Locked"
+    },
+    "cta": {
+      "continueLearning": "Continue Learning",
+      "allCompleted": "All Completed",
+      "continueJourney": "Continue your learning journey",
+      "nextModule": "Next:",
+      "allModulesCompleted": "All modules completed!"
+    },
+    "emptyState": {
+      "noData": "No level data available"
+    },
+    "levelBadge": "Level",
+    "modulesCount": "Modules"
   },
 
-  "globalConfirmationModal": {
-    "confirmDeletion": "Confirm Deletion",
-    "cancle": "Cancle",
-    "confirm": "Confirm"
+  "modules": {
+    "pageTitle": "Module Details",
+    "pageSubtitle": "Track your progress through chapters",
+    "backButton": "Back",
+    "stats": {
+      "progress": "PROGRESS",
+      "completed": "COMPLETED",
+      "estTime": "EST. TIME",
+      "chaptersCompleted": "Chapters completed",
+      "totalLearningTime": "Total learning time",
+      "selfPaced": "Self-paced",
+      "topics": "topics"
+    },
+    "aboutSection": {
+      "title": "About this Module"
+    },
+    "chaptersSection": {
+      "title": "All Chapters",
+      "chapterText": "Chapter",
+      "current": "Current",
+      "completed": "Completed",
+      "locked": "Locked",
+      "startChapter": "Start Chapter",
+      "lockedButton": "Locked",
+      "topics": "topics",
+      "completedText": "completed",
+      "min": "min"
+    },
+    "cta": {
+      "continueLearning": "Continue Learning",
+      "allCompleted": "All Completed",
+      "continueJourney": "Continue your learning journey",
+      "nextChapter": "Next:",
+      "allChaptersCompleted": "All chapters completed!"
+    },
+    "emptyState": {
+      "noData": "No module data available"
+    },
+    "badge": {
+      "chapters": "Chapters",
+      "topics": "Topics"
+    }
   },
 
-  "loaderText": "Please wait while we process your request",
+  "chapters": {
+    "pageTitle": "Chapter Details",
+    "pageSubtitle": "Track your progress through topics",
+    "backButton": "Back",
+    "stats": {
+      "progress": "PROGRESS",
+      "completed": "COMPLETED",
+      "estTime": "EST. TIME",
+      "topicsCompleted": "Topics completed",
+      "totalLearningTime": "Total learning time",
+      "selfPaced": "Self-paced"
+    },
+    "aboutSection": {
+      "title": "About this Chapter"
+    },
+    "topicsSection": {
+      "title": "All Topics",
+      "topicText": "Topic",
+      "current": "Current",
+      "completed": "Completed",
+      "locked": "Locked",
+      "startTopic": "Start Topic",
+      "lockedButton": "Locked",
+      "giveQuiz": "Give Quiz",
+      "min": "min"
+    },
+    "cta": {
+      "continueLearning": "Continue Learning",
+      "allCompleted": "All Completed 🎉",
+      "continueJourney": "Continue your learning journey",
+      "nextTopic": "Next:",
+      "allTopicsCompleted": "All topics completed! 🎉"
+    },
+    "emptyState": {
+      "noData": "No chapter data available"
+    },
+    "badge": {
+      "topics": "Topics",
+      "minutes": "min"
+    }
+  },
 
-  "sessionModal": {
-    "title": "Session Expiring",
-    "description": "You’ve been inactive. You’ll be logged out soon.",
-    "continue": "Continue",
-    "logout": "Logout"
+  "topics": {
+    "pageTitle": "Learning Topics",
+    "pageSubtitle": "Browse through your learning materials",
+    "topicTypes": {
+      "text": "Text Topic",
+      "media": "Media Topic"
+    },
+    "status": {
+      "read": "Read",
+      "unread": "Unread"
+    },
+    "topicLabel": "Topic",
+    "buttons": {
+      "viewTopic": "View Topic",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "pagination": {
+      "showing": "Showing",
+      "of": "of",
+      "topics": "topics"
+    },
+    "emptyState": {
+      "title": "No Topics Available",
+      "description": "Check back later for new learning materials"
+    }
+  },
+
+  "topicContent": {
+    "loading": "Loading content...",
+    "notFound": {
+      "title": "Content Not Found",
+      "description": "The content you're looking for doesn't exist or has been moved.",
+      "button": "Return to Course"
+    },
+    "backButton": "Back",
+    "contentTypes": {
+      "text": "Reading Material",
+      "video": "Video Lecture",
+      "pdf": "Document",
+      "audio": "Audio Lesson",
+      "image": "Visual Content"
+    },
+    "readStatus": "Read",
+    "pdf": {
+      "download": "Download PDF",
+      "title": "PDF Document"
+    },
+    "navigation": {
+      "previous": "Previous",
+      "previousLesson": "Previous Lesson",
+      "next": "Next",
+      "nextLesson": "Next Lesson",
+      "continueText": "Continue to next lesson"
+    },
+    "fallbackMessage": "Content type:"
+  },
+
+  "quiz": {
+    "pageTitle": "Quiz Assessment",
+    "pageSubtitle": "Test your knowledge",
+    "timeLeft": "Time Left",
+    "timeUpWarning": "Time's up! Your quiz has been automatically submitted.",
+    "answerSelected": "Answer selected",
+    "skipped": "Skipped",
+    "questionOf": "Question {current} of {total}",
+    "buttons": {
+      "previous": "Previous",
+      "skip": "Skip",
+      "next": "Next",
+      "submitQuiz": "Submit Quiz",
+      "submitting": "Submitting..."
+    },
+    "emptyState": {
+      "title": "No Questions Found",
+      "description": "This quiz doesn't have any questions yet."
+    }
   }
 }

@@ -21,6 +21,7 @@
 // import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
 // import { useTranslation } from "react-i18next";
 // import { getDesignations, getRoles } from "../../../../redux/slice/commonSlice";
+// import countriesData from "../../../../data/countries.json";
 
 // const Register = () => {
 //   const navigate = useNavigate();
@@ -44,29 +45,24 @@
 //   // Convert API designations to SelectField options format
 //   const designationOptions =
 //     designations?.map((des) => ({
-//       label: des.name, // Designation name show hoga
-//       value: des.id, // Designation ID submit hoga
+//       label: des.name,
+//       value: des.id,
 //     })) || [];
 
-//   // Region options (hardcoded for now, can be from API too)
-//   const regionOptions = [
-//     { label: "North", value: "north" },
-//     { label: "South", value: "south" },
-//     { label: "East", value: "east" },
-//     { label: "West", value: "west" },
-//   ];
+//   // Get countries from JSON file
+//   const countryOptions = countriesData.countries || [];
 
 //   // Form initial values
 //   const initialValues = {
-//     name: "",
-//     email: "",
-//     mobile: "",
-//     employee_id: "",
+//     name: "ajay",
+//     email: "ajaycharve@gmail.com",
+//     mobile: "8982251020",
+//     employee_id: "Emp 123",
 //     designation_id: null,
-//     region: null,
-//     city: "",
-//     password: "",
-//     password_confirmation: "",
+//     country: null, // Changed from region to country
+//     city: "indore",
+//     password: "123456",
+//     password_confirmation: "123456",
 //     profile_image: null,
 //   };
 
@@ -79,7 +75,7 @@
 //       .required("Mobile required"),
 //     employee_id: Yup.string().required("Employee ID required"),
 //     designation_id: Yup.object().nullable().required("Designation required"),
-//     region: Yup.object().nullable().required("Region required"),
+//     country: Yup.object().nullable().required("Country required"), // Changed from region
 //     city: Yup.string().required("City required"),
 //     password: Yup.string()
 //       .min(6, "Password must be at least 6 characters")
@@ -110,13 +106,12 @@
 //         return;
 //       }
 
-//       // setFieldValue("profile_image", file);
 //       setFieldValue("profile_image", file);
 //       setPreview(URL.createObjectURL(file));
 //     }
 //   };
 
-//   // Handle remove profile image
+//   // Handle remove profile image - FIXED: Now accepts setFieldValue parameter
 //   const handleRemoveImage = (setFieldValue) => {
 //     setFieldValue("profile_image", null);
 //     if (preview) {
@@ -128,7 +123,7 @@
 //     }
 //   };
 
-//   // Form submission handler
+//   // Form submission handler - FIXED: Removed handleRemoveImage call without parameters
 //   const onSubmit = async (values, { setSubmitting, resetForm }) => {
 //     try {
 //       const formData = new FormData();
@@ -140,7 +135,7 @@
 //       formData.append("password_confirmation", values.password_confirmation);
 //       formData.append("employee_id", values.employee_id);
 //       formData.append("designation_id", values.designation_id.value);
-//       formData.append("region", values.region.value);
+//       formData.append("region", values.country.value);
 //       formData.append("city", values.city);
 
 //       if (values.profile_image) {
@@ -149,8 +144,17 @@
 
 //       await dispatch(registerUser(formData)).unwrap();
 //       toast.success("Registration successful! Please login.");
+
+//       // Reset form and clear image
 //       resetForm();
-//       handleRemoveImage();
+//       if (preview) {
+//         URL.revokeObjectURL(preview);
+//         setPreview(null);
+//       }
+//       if (fileInputRef.current) {
+//         fileInputRef.current.value = "";
+//       }
+
 //       navigate("/check-email");
 //     } catch (error) {
 //       toast.error(error?.message || "Registration failed. Please try again.");
@@ -236,7 +240,7 @@
 //                 </div>
 //               </div>
 
-//               {/* Designation + Region */}
+//               {/* Designation + Country */}
 //               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 //                 <SelectField
 //                   name="designation_id"
@@ -251,10 +255,10 @@
 //                 />
 
 //                 <SelectField
-//                   name="region"
+//                   name="country"
 //                   label="Region"
-//                   options={regionOptions}
-//                   placeholder="Select Region"
+//                   options={countryOptions}
+//                   placeholder="Select Country"
 //                   required
 //                 />
 //               </div>
@@ -486,7 +490,7 @@ const Register = () => {
     mobile: "8982251020",
     employee_id: "Emp 123",
     designation_id: null,
-    country: null, // Changed from region to country
+    country: null,
     city: "indore",
     password: "123456",
     password_confirmation: "123456",
@@ -495,21 +499,29 @@ const Register = () => {
 
   // Validation schema
   const validationSchema = Yup.object({
-    name: Yup.string().required("Name required"),
-    email: Yup.string().email("Invalid email").required("Email required"),
+    name: Yup.string().required(t("register.validation.nameRequired")),
+    email: Yup.string()
+      .email(t("register.validation.emailInvalid"))
+      .required(t("register.validation.emailRequired")),
     mobile: Yup.string()
-      .matches(/^[0-9]{10}$/, "Mobile number must be 10 digits")
-      .required("Mobile required"),
-    employee_id: Yup.string().required("Employee ID required"),
-    designation_id: Yup.object().nullable().required("Designation required"),
-    country: Yup.object().nullable().required("Country required"), // Changed from region
-    city: Yup.string().required("City required"),
+      .matches(/^[0-9]{10}$/, t("register.validation.mobileInvalid"))
+      .required(t("register.validation.mobileRequired")),
+    employee_id: Yup.string().required(
+      t("register.validation.employeeIdRequired"),
+    ),
+    designation_id: Yup.object()
+      .nullable()
+      .required(t("register.validation.designationRequired")),
+    country: Yup.object()
+      .nullable()
+      .required(t("register.validation.countryRequired")),
+    city: Yup.string().required(t("register.validation.cityRequired")),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password required"),
+      .min(6, t("register.validation.passwordMin"))
+      .required(t("register.validation.passwordRequired")),
     password_confirmation: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match")
-      .required("Confirm password required"),
+      .oneOf([Yup.ref("password")], t("register.validation.passwordMatch"))
+      .required(t("register.validation.confirmPasswordRequired")),
   });
 
   // Handle profile image change
@@ -524,12 +536,12 @@ const Register = () => {
         "image/webp",
       ];
       if (!validTypes.includes(file.type)) {
-        toast.error("Please upload a valid image file (JPEG, PNG, GIF, WEBP)");
+        toast.error(t("register.validation.imageInvalidType"));
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        toast.error("Image size should be less than 5MB");
+        toast.error(t("register.validation.imageSizeExceed"));
         return;
       }
 
@@ -538,7 +550,7 @@ const Register = () => {
     }
   };
 
-  // Handle remove profile image - FIXED: Now accepts setFieldValue parameter
+  // Handle remove profile image
   const handleRemoveImage = (setFieldValue) => {
     setFieldValue("profile_image", null);
     if (preview) {
@@ -550,7 +562,7 @@ const Register = () => {
     }
   };
 
-  // Form submission handler - FIXED: Removed handleRemoveImage call without parameters
+  // Form submission handler
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const formData = new FormData();
@@ -570,7 +582,7 @@ const Register = () => {
       }
 
       await dispatch(registerUser(formData)).unwrap();
-      toast.success("Registration successful! Please login.");
+      toast.success(t("register.successMessage"));
 
       // Reset form and clear image
       resetForm();
@@ -584,7 +596,7 @@ const Register = () => {
 
       navigate("/check-email");
     } catch (error) {
-      toast.error(error?.message || "Registration failed. Please try again.");
+      toast.error(error?.message || t("register.errorMessage"));
     } finally {
       setSubmitting(false);
     }
@@ -597,7 +609,7 @@ const Register = () => {
         {/* Language Dropdown */}
         <div className="w-full flex justify-end mb-4">
           <select className="text-sm border border-gray-300 rounded-md px-3 py-1 bg-white">
-            <option>🌐 {t("login.language") || "English"}</option>
+            <option>🌐 {t("register.language")}</option>
           </select>
         </div>
 
@@ -608,7 +620,7 @@ const Register = () => {
             alt="logo"
             className="mx-auto w-[160px] sm:w-[190px]"
           />
-          <p className="text-gray-500 text-sm mt-2">Create your account</p>
+          <p className="text-gray-500 text-sm mt-2">{t("register.subtitle")}</p>
         </div>
 
         <Formik
@@ -623,8 +635,8 @@ const Register = () => {
                 <FiUser className="absolute top-7 sm:top-9 left-3 text-gray-400 z-10" />
                 <TextInput
                   name="name"
-                  label="Full Name"
-                  placeholder="Enter your full name"
+                  label={t("register.fullNameLabel")}
+                  placeholder={t("register.fullNamePlaceholder")}
                   className="!pl-10"
                   required
                 />
@@ -635,8 +647,8 @@ const Register = () => {
                 <FiMail className="absolute top-7 sm:top-9 left-3 text-gray-400 z-10" />
                 <TextInput
                   name="email"
-                  label="Email Address"
-                  placeholder="example@email.com"
+                  label={t("register.emailLabel")}
+                  placeholder={t("register.emailPlaceholder")}
                   className="!pl-10"
                   required
                 />
@@ -648,8 +660,8 @@ const Register = () => {
                   <FiPhone className="absolute top-7 sm:top-9 left-3 text-gray-400 z-10" />
                   <TextInput
                     name="mobile"
-                    label="Mobile Number"
-                    placeholder="9876543210"
+                    label={t("register.mobileLabel")}
+                    placeholder={t("register.mobilePlaceholder")}
                     className="!pl-10"
                     required
                   />
@@ -659,8 +671,8 @@ const Register = () => {
                   <FiBriefcase className="absolute top-7 sm:top-9 left-3 text-gray-400 z-10" />
                   <TextInput
                     name="employee_id"
-                    label="Employee ID"
-                    placeholder="EMP-12345"
+                    label={t("register.employeeIdLabel")}
+                    placeholder={t("register.employeeIdPlaceholder")}
                     className="!pl-10"
                     required
                   />
@@ -671,21 +683,21 @@ const Register = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <SelectField
                   name="designation_id"
-                  label="Designation"
+                  label={t("register.designationLabel")}
                   options={designationOptions}
                   placeholder={
                     designationOptions.length === 0
-                      ? "Loading designations..."
-                      : "Select Designation"
+                      ? t("register.designationLoading")
+                      : t("register.designationPlaceholder")
                   }
                   required
                 />
 
                 <SelectField
                   name="country"
-                  label="Region"
+                  label={t("register.countryLabel")}
                   options={countryOptions}
-                  placeholder="Select Country"
+                  placeholder={t("register.countryPlaceholder")}
                   required
                 />
               </div>
@@ -695,8 +707,8 @@ const Register = () => {
                 <FiMapPin className="absolute top-7 sm:top-9 left-3 text-gray-400 z-0" />
                 <TextInput
                   name="city"
-                  label="City"
-                  placeholder="Enter your city"
+                  label={t("register.cityLabel")}
+                  placeholder={t("register.cityPlaceholder")}
                   className="!pl-10"
                   required
                 />
@@ -707,9 +719,9 @@ const Register = () => {
                 <FiLock className="absolute top-7 sm:top-9 left-3 text-gray-400 z-10" />
                 <TextInput
                   name="password"
-                  label="Password"
+                  label={t("register.passwordLabel")}
                   type={showPassword ? "text" : "password"}
-                  placeholder="********"
+                  placeholder={t("register.passwordPlaceholder")}
                   className="!pl-10 !pr-10"
                   required
                 />
@@ -727,9 +739,9 @@ const Register = () => {
                 <FiLock className="absolute top-7 sm:top-9 left-3 text-gray-400 z-10" />
                 <TextInput
                   name="password_confirmation"
-                  label="Confirm Password"
+                  label={t("register.confirmPasswordLabel")}
                   type={showConfirmPassword ? "text" : "password"}
-                  placeholder="********"
+                  placeholder={t("register.confirmPasswordPlaceholder")}
                   className="!pl-10 !pr-10"
                   required
                 />
@@ -749,7 +761,7 @@ const Register = () => {
               {/* Profile Image */}
               <div>
                 <label className="block mb-2 text-[#29324C] font-medium text-xs sm:text-sm">
-                  Profile Image
+                  {t("register.profileImageLabel")}
                 </label>
 
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3">
@@ -776,7 +788,9 @@ const Register = () => {
                       className="px-4 py-1.5 text-sm bg-white border border-gray-300 hover:border-gray-400 rounded-md text-gray-700 flex items-center gap-2 transition-all"
                     >
                       <FiCamera size={14} />
-                      {preview ? "Change Photo" : "Upload Photo"}
+                      {preview
+                        ? t("register.changePhoto")
+                        : t("register.uploadPhoto")}
                     </button>
 
                     <input
@@ -794,14 +808,14 @@ const Register = () => {
                         className="px-4 py-1.5 text-sm bg-white border border-gray-300 hover:border-red-300 hover:bg-red-50 rounded-md text-gray-600 hover:text-red-600 flex items-center gap-2 transition-all"
                       >
                         <FiTrash2 size={14} />
-                        Remove
+                        {t("register.removePhoto")}
                       </button>
                     )}
                   </div>
                 </div>
 
                 <p className="text-xs text-gray-400 mt-2">
-                  Supported: JPG, PNG, GIF • Max 5MB
+                  {t("register.imageSupportedText")}
                 </p>
               </div>
 
@@ -811,7 +825,9 @@ const Register = () => {
                 disabled={isSubmitting}
                 className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2.5 rounded-md font-medium transition disabled:bg-gray-400 disabled:cursor-not-allowed text-sm sm:text-base"
               >
-                {isSubmitting ? "Creating Account..." : "Register"}
+                {isSubmitting
+                  ? t("register.registeringButton")
+                  : t("register.registerButton")}
               </button>
             </Form>
           )}
@@ -820,32 +836,34 @@ const Register = () => {
         {/* OR Divider */}
         <div className="flex items-center gap-3 my-5">
           <div className="flex-1 h-px bg-gray-300"></div>
-          <span className="text-gray-500 text-sm">OR</span>
+          <span className="text-gray-500 text-sm">{t("register.or")}</span>
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
 
         {/* Already have account */}
         <p className="text-gray-600 text-sm text-center mb-3">
-          Already have an account?
+          {t("register.alreadyAccount")}
         </p>
 
         <button
           onClick={() => navigate("/login")}
           className="w-full border border-teal-500 text-teal-600 py-2 rounded-md font-medium hover:bg-teal-50 transition text-sm sm:text-base"
         >
-          Login to your account
+          {t("register.loginButton")}
         </button>
 
         {/* Footer */}
         <div className="text-xs text-gray-400 mt-6 text-center">
-          <p className="tracking-widest mb-2">SECURE REGISTRATION</p>
+          <p className="tracking-widest mb-2">
+            {t("register.secureRegistration")}
+          </p>
           <div className="flex justify-center gap-2">
             <span className="hover:underline cursor-pointer">
-              Terms of Service
+              {t("register.termsOfService")}
             </span>
             <span>/</span>
             <span className="hover:underline cursor-pointer">
-              Privacy Policy
+              {t("register.privacyPolicy")}
             </span>
           </div>
         </div>
