@@ -413,7 +413,7 @@ const TopicContent = () => {
 
   const navigateToContent = (newContentId) => {
     if (newContentId) {
-      navigate(`/course/topic/${topicId}/content/${newContentId}`);
+      navigate(`/topics/${topicId}/content/${newContentId}`);
     }
   };
 
@@ -589,8 +589,8 @@ const TopicContent = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-6 py-6">
         {/* Breadcrumb & Header */}
         <div className="mb-8">
           <nav className="flex items-center gap-2 text-sm mb-4">
