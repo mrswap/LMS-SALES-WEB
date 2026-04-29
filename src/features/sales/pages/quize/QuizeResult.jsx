@@ -1,4 +1,3 @@
-// import React from "react";
 import { FaCheck, FaTimes, FaAward } from "react-icons/fa";
 import {
   PageBody,

@@ -14,10 +14,12 @@ import ChangePassword from "../pages/profile/components/ChangePassword";
 import Chapters from "../pages/chapters/Chapters";
 import Modules from "../pages/modules/Modules";
 import Topics from "../pages/topics/Topic";
-import Units from "../pages/topics/Units";
 import Exam from "../pages/exam/Exam";
 import ProtectedRoute from "./ProtectedRoute";
 import TopicContent from "../pages/topics/TopicContent";
+import AboutUs from "../pages/settings/about-us/AboutUs";
+import TermsAndCondition from "../pages/settings/terms-and-condition/TermsAndCondition";
+import Policy from "../pages/settings/privacy-policy/Policy";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -43,8 +45,6 @@ const SalesRoutes = (
         element={<TopicContent />}
       />
 
-      {/* <Route path="topics/:topicId/units" element={<Units />} /> */}
-
       {/* quize */}
       <Route path="quiz/:topicId" element={<Quize />} />
       <Route path="quiz/result" element={<QuizeResult />} />
@@ -59,6 +59,11 @@ const SalesRoutes = (
       <Route path="profile" element={<Profile />} />
       <Route path="profile/details" element={<ProfileDetails />} />
       <Route path="change-password" element={<ChangePassword />} />
+
+      {/*settings  */}
+      <Route path="about-us" element={<AboutUs />} />
+      <Route path="terms-conditions" element={<TermsAndCondition />} />
+      <Route path="policy" element={<Policy />} />
 
       <Route path="*" element={<WorkInProgress />} />
     </Route>

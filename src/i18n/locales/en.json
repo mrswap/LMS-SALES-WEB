@@ -557,5 +557,41 @@
       "title": "No Questions Found",
       "description": "This quiz doesn't have any questions yet."
     }
+  },
+
+  "footer": {
+    "quickLinks": "Quick Links",
+    "downloadApps": "Download Apps",
+    "appStore": "App Store",
+    "playStore": "Play Store",
+    "downloadOn": "Download on the",
+    "terms": "Terms & Condition",
+    "privacy": "Privacy Policy",
+    "aboutUs": "About Us",
+    "cookies": "Cookies",
+    "socialLinks": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram"
+    },
+    "loading": "Loading footer content..."
+  },
+
+  "aboutUs": {
+    "pageTitle": "About Us",
+    "pageSubtitle": "Learn more about our company and mission",
+    "noContent": "No content available"
+  },
+
+  "termsConditions": {
+    "pageTitle": "Terms & Conditions",
+    "pageSubtitle": "Please read these terms and conditions carefully before using our services",
+    "noContent": "No content available"
+  },
+  "privacyPolicy": {
+    "pageTitle": "Privacy Policy",
+    "pageSubtitle": "Learn how we collect, use, and protect your personal information",
+    "noContent": "No content available"
   }
 }
