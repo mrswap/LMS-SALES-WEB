@@ -5,13 +5,6 @@ import { MdOutlineVideoLibrary, MdAnalytics, MdSettings } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 
 const NavbarBottom = () => {
-  // const navItems = [
-  //   { path: "/", icon: HiHome },
-  //   { path: "/levels", icon: MdOutlineVideoLibrary },
-  //   { path: "/analytics", icon: MdAnalytics },
-  //   { path: "/settings", icon: MdSettings },
-  // ];
-
   const { t } = useTranslation();
 
   const navItems = [
@@ -22,7 +15,7 @@ const NavbarBottom = () => {
       icon: MdOutlineVideoLibrary,
     },
     { path: "/progress", name: t("sidebar.anlytics"), icon: MdAnalytics },
-    { path: "/profile", name: t("sidebar.profile"), icon: MdSettings },
+    { path: "/settings", name: t("sidebar.profile"), icon: MdSettings },
   ];
 
   return (

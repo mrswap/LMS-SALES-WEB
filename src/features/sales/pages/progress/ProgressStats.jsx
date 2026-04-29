@@ -21,63 +21,61 @@ const ProgressStats = () => {
       </PageHeader>
 
       <PageBody>
-        <div className="max-w-6xl mx-auto space-y-8">
-          {/* ================= TOP STATS ================= */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <StatCard
-              icon={<FaBookOpen />}
-              title="Levels"
-              value="1"
-              subtitle="Completed"
-              green
-            />
+        {/* ================= TOP STATS ================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+          <StatCard
+            icon={<FaBookOpen />}
+            title="Levels"
+            value="1"
+            subtitle="Completed"
+            green
+          />
 
-            <StatCard
-              icon={<FaClock />}
-              title="Pending Levels"
-              value="2"
-              subtitle="Incomplete"
-              red
-            />
+          <StatCard
+            icon={<FaClock />}
+            title="Pending Levels"
+            value="2"
+            subtitle="Incomplete"
+            red
+          />
 
-            <StatCard
-              icon={<FaChartLine />}
-              title="Avg. Score"
-              value="92%"
-              subtitle="Top 5% of class"
-              progress
-            />
+          <StatCard
+            icon={<FaChartLine />}
+            title="Avg. Score"
+            value="92%"
+            subtitle="Top 5% of class"
+            progress
+          />
+        </div>
+
+        {/* ================= CURRENT PROGRESS ================= */}
+        <div className="space-y-5">
+          {/* HEADER */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <h3 className="text-lg font-semibold text-gray-800">
+              Current Progress
+            </h3>
+
+            <button className="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm shadow hover:bg-blue-700 transition">
+              Past Level
+            </button>
           </div>
 
-          {/* ================= CURRENT PROGRESS ================= */}
-          <div className="space-y-5">
-            {/* HEADER */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <h3 className="text-lg font-semibold text-gray-800">
-                Current Progress
-              </h3>
+          {/* GRID (IMPORTANT) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <ProgressCard
+              title="Definition & Purpose"
+              module="Module 4: Pathophysiology"
+              progress={100}
+              button="View Certificate"
+            />
 
-              <button className="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm shadow hover:bg-blue-700 transition">
-                Past Level
-              </button>
-            </div>
-
-            {/* GRID (IMPORTANT) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <ProgressCard
-                title="Definition & Purpose"
-                module="Module 4: Pathophysiology"
-                progress={100}
-                button="View Certificate"
-              />
-
-              <ProgressCard
-                title="History & Evolution"
-                module="Module 4: Pathophysiology"
-                progress={75}
-                button="Continue Learning"
-              />
-            </div>
+            <ProgressCard
+              title="History & Evolution"
+              module="Module 4: Pathophysiology"
+              progress={75}
+              button="Continue Learning"
+            />
           </div>
         </div>
       </PageBody>

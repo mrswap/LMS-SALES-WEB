@@ -1,251 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import {
-//   FaEye,
-//   FaCheckCircle,
-//   FaRegCircle,
-//   FaArrowLeft,
-//   FaArrowRight,
-//   FaFileAlt,
-//   FaVideo,
-// } from "react-icons/fa";
-// import {
-//   PageBody,
-//   PageHeader,
-//   PageHeaderLeft,
-//   PageHeaderRight,
-//   PageLayout,
-//   PageSubtitle,
-//   PageTitle,
-// } from "../../common/layout/index";
-// import { useNavigate, useParams } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getTopicById } from "../../../../redux/slice/coursePreviewSlice";
-// import Loader from "../../common/Loader";
-
-// const Topics = () => {
-//   const { topicId: id } = useParams();
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
-
-//   const { currentTopic, isLoading, isError, message } = useSelector(
-//     (state) => state.course,
-//   );
-
-//   const [currentPage, setCurrentPage] = useState(1);
-
-//   useEffect(() => {
-//     if (id) {
-//       dispatch(getTopicById(id, currentPage));
-//     }
-//   }, [dispatch, id, currentPage]);
-
-//   // Extract topics data from paginated response
-//   const topicsData = currentTopic?.data || [];
-//   const pagination = {
-//     current_page: currentTopic?.current_page || 1,
-//     last_page: currentTopic?.last_page || 1,
-//     per_page: currentTopic?.per_page || 5,
-//     total: currentTopic?.total || 0,
-//     next_page_url: currentTopic?.next_page_url || null,
-//     prev_page_url: currentTopic?.prev_page_url || null,
-//   };
-
-//   // Handle page change
-//   const handlePageChange = (newPage) => {
-//     if (newPage >= 1 && newPage <= pagination.last_page) {
-//       setCurrentPage(newPage);
-//     }
-//   };
-
-//   // Handle view button click - navigate to details page
-//   const handleViewClick = (id) => {
-//     navigate(`content/${id}`);
-//   };
-
-//   if (isLoading) {
-//     return <Loader />;
-//   }
-
-//   return (
-//     <PageLayout>
-//       <PageHeader>
-//         <PageHeaderLeft>
-//           <PageTitle>Learning Topics</PageTitle>
-//           <PageSubtitle>Browse through your learning materials</PageSubtitle>
-//         </PageHeaderLeft>
-//         <PageHeaderRight />
-//       </PageHeader>
-
-//       <PageBody>
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-//           {/* Topics Grid */}
-//           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-//             {topicsData.map((topic) => {
-//               const isRead = topic.is_read === 1 || topic.is_read === true;
-
-//               return (
-//                 <div
-//                   key={topic.id}
-//                   className="group bg-white rounded-xl border-1 border-blue-500 shadow-lg overflow-hidden"
-//                 >
-//                   {/* Card Header with Type Badge */}
-//                   <div className="px-5 pt-5 pb-3 border-b border-gray-100">
-//                     <div className="flex items-center justify-between mb-3">
-//                       <div className="flex items-center gap-2">
-//                         {topic.type === "text" ? (
-//                           <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-//                             <FaFileAlt className="text-blue-600 text-sm" />
-//                           </div>
-//                         ) : (
-//                           <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
-//                             <FaVideo className="text-purple-600 text-sm" />
-//                           </div>
-//                         )}
-//                         <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-//                           {topic.type === "text" ? "Text Topic" : "Media Topic"}
-//                         </span>
-//                       </div>
-
-//                       {/* Read Status */}
-//                       {isRead ? (
-//                         <div className="flex items-center gap-1.5">
-//                           <FaCheckCircle className="text-green-500 text-sm" />
-//                           <span className="text-xs font-medium text-green-600">
-//                             Read
-//                           </span>
-//                         </div>
-//                       ) : (
-//                         <div className="flex items-center gap-1.5">
-//                           <FaRegCircle className="text-gray-400 text-sm" />
-//                           <span className="text-xs font-medium text-gray-500">
-//                             Unread
-//                           </span>
-//                         </div>
-//                       )}
-//                     </div>
-
-//                     {/* Topic Title - Main Heading */}
-//                     <h3 className="text-lg font-semibold text-gray-800 leading-snug line-clamp-2">
-//                       {topic.title}
-//                     </h3>
-
-//                     {/* Topic Order */}
-//                     <p className="text-xs text-gray-400 mt-2">
-//                       Topic {topic.order}
-//                     </p>
-//                   </div>
-
-//                   {/* Card Footer with View Button */}
-//                   <div className="px-5 py-4 bg-gray-50">
-//                     <button
-//                       onClick={() => handleViewClick(topic.id)}
-//                       className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 group"
-//                     >
-//                       <FaEye className="text-sm group-hover:text-white transition-colors" />
-//                       <span>View Topic</span>
-//                     </button>
-//                   </div>
-//                 </div>
-//               );
-//             })}
-//           </div>
-
-//           {/* Pagination Section */}
-//           {pagination.last_page > 1 && (
-//             <div className="flex justify-center items-center gap-3 mt-10 mb-4">
-//               <button
-//                 onClick={() => handlePageChange(pagination.current_page - 1)}
-//                 disabled={!pagination.prev_page_url}
-//                 className={`px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 text-sm font-medium
-//                   ${
-//                     pagination.prev_page_url
-//                       ? "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 cursor-pointer"
-//                       : "bg-gray-100 text-gray-400 cursor-not-allowed"
-//                   }`}
-//               >
-//                 <FaArrowLeft size={12} />
-//                 Previous
-//               </button>
-
-//               <div className="flex items-center gap-2">
-//                 {[...Array(pagination.last_page)].map((_, index) => {
-//                   const pageNum = index + 1;
-//                   const isActive = pageNum === pagination.current_page;
-
-//                   return (
-//                     <button
-//                       key={pageNum}
-//                       onClick={() => handlePageChange(pageNum)}
-//                       className={`w-9 h-9 rounded-lg font-medium text-sm transition-all duration-300
-//                         ${
-//                           isActive
-//                             ? "bg-blue-600 text-white shadow-sm"
-//                             : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
-//                         }`}
-//                     >
-//                       {pageNum}
-//                     </button>
-//                   );
-//                 })}
-//               </div>
-
-//               <button
-//                 onClick={() => handlePageChange(pagination.current_page + 1)}
-//                 disabled={!pagination.next_page_url}
-//                 className={`px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 text-sm font-medium
-//                   ${
-//                     pagination.next_page_url
-//                       ? "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 cursor-pointer"
-//                       : "bg-gray-100 text-gray-400 cursor-not-allowed"
-//                   }`}
-//               >
-//                 Next
-//                 <FaArrowRight size={12} />
-//               </button>
-//             </div>
-//           )}
-
-//           {/* Showing results info */}
-//           {pagination.total > 0 && (
-//             <div className="text-center text-sm text-gray-500 mt-6">
-//               Showing {topicsData.length} of {pagination.total} topics
-//             </div>
-//           )}
-
-//           {/* Empty State */}
-//           {topicsData.length === 0 && !isLoading && (
-//             <div className="text-center py-16">
-//               <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-//                 <svg
-//                   className="w-10 h-10 text-gray-400"
-//                   fill="none"
-//                   stroke="currentColor"
-//                   viewBox="0 0 24 24"
-//                 >
-//                   <path
-//                     strokeLinecap="round"
-//                     strokeLinejoin="round"
-//                     strokeWidth={1.5}
-//                     d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-//                   />
-//                 </svg>
-//               </div>
-//               <h3 className="text-lg font-semibold text-gray-700 mb-2">
-//                 No Topics Available
-//               </h3>
-//               <p className="text-gray-500">
-//                 Check back later for new learning materials
-//               </p>
-//             </div>
-//           )}
-//         </div>
-//       </PageBody>
-//     </PageLayout>
-//   );
-// };
-
-// export default Topics;
-
 import React, { useEffect, useState } from "react";
 import {
   FaEye,
@@ -327,172 +79,170 @@ const Topics = () => {
       </PageHeader>
 
       <PageBody>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          {/* Topics Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {topicsData.map((topic) => {
-              const isRead = topic.is_read === 1 || topic.is_read === true;
+        {/* Topics Grid */}
+        <div className="grid md:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+          {topicsData.map((topic) => {
+            const isRead = topic.is_read === 1 || topic.is_read === true;
 
-              return (
-                <div
-                  key={topic.id}
-                  className="group bg-white rounded-xl border-1 border-blue-500 shadow-lg overflow-hidden"
-                >
-                  {/* Card Header with Type Badge */}
-                  <div className="px-5 pt-5 pb-3 border-b border-gray-100">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        {topic.type === "text" ? (
-                          <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                            <FaFileAlt className="text-blue-600 text-sm" />
-                          </div>
-                        ) : (
-                          <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
-                            <FaVideo className="text-purple-600 text-sm" />
-                          </div>
-                        )}
-                        <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
-                          {topic.type === "text"
-                            ? t("topics.topicTypes.text")
-                            : t("topics.topicTypes.media")}
-                        </span>
-                      </div>
-
-                      {/* Read Status */}
-                      {isRead ? (
-                        <div className="flex items-center gap-1.5">
-                          <FaCheckCircle className="text-green-500 text-sm" />
-                          <span className="text-xs font-medium text-green-600">
-                            {t("topics.status.read")}
-                          </span>
+            return (
+              <div
+                key={topic.id}
+                className="group bg-white rounded-xl border-1 border-blue-500 shadow-lg overflow-hidden"
+              >
+                {/* Card Header with Type Badge */}
+                <div className="px-5 pt-5 pb-3 border-b border-gray-100">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      {topic.type === "text" ? (
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
+                          <FaFileAlt className="text-blue-600 text-sm" />
                         </div>
                       ) : (
-                        <div className="flex items-center gap-1.5">
-                          <FaRegCircle className="text-gray-400 text-sm" />
-                          <span className="text-xs font-medium text-gray-500">
-                            {t("topics.status.unread")}
-                          </span>
+                        <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center">
+                          <FaVideo className="text-purple-600 text-sm" />
                         </div>
                       )}
+                      <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                        {topic.type === "text"
+                          ? t("topics.topicTypes.text")
+                          : t("topics.topicTypes.media")}
+                      </span>
                     </div>
 
-                    {/* Topic Title - Main Heading */}
-                    <h3 className="text-lg font-semibold text-gray-800 leading-snug line-clamp-2">
-                      {topic.title}
-                    </h3>
-
-                    {/* Topic Order */}
-                    <p className="text-xs text-gray-400 mt-2">
-                      {t("topics.topicLabel")} {topic.order}
-                    </p>
+                    {/* Read Status */}
+                    {isRead ? (
+                      <div className="flex items-center gap-1.5">
+                        <FaCheckCircle className="text-green-500 text-sm" />
+                        <span className="text-xs font-medium text-green-600">
+                          {t("topics.status.read")}
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-1.5">
+                        <FaRegCircle className="text-gray-400 text-sm" />
+                        <span className="text-xs font-medium text-gray-500">
+                          {t("topics.status.unread")}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Card Footer with View Button */}
-                  <div className="px-5 py-4 bg-gray-50">
-                    <button
-                      onClick={() => handleViewClick(topic.id)}
-                      className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 group"
-                    >
-                      <FaEye className="text-sm group-hover:text-white transition-colors" />
-                      <span>{t("topics.buttons.viewTopic")}</span>
-                    </button>
-                  </div>
+                  {/* Topic Title - Main Heading */}
+                  <h3 className="text-lg font-semibold text-gray-800 leading-snug line-clamp-2">
+                    {topic.title}
+                  </h3>
+
+                  {/* Topic Order */}
+                  <p className="text-xs text-gray-400 mt-2">
+                    {t("topics.topicLabel")} {topic.order}
+                  </p>
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Pagination Section */}
-          {pagination.last_page > 1 && (
-            <div className="flex justify-center items-center gap-3 mt-10 mb-4">
-              <button
-                onClick={() => handlePageChange(pagination.current_page - 1)}
-                disabled={!pagination.prev_page_url}
-                className={`px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 text-sm font-medium
+                {/* Card Footer with View Button */}
+                <div className="px-5 py-4 bg-gray-50">
+                  <button
+                    onClick={() => handleViewClick(topic.id)}
+                    className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 group"
+                  >
+                    <FaEye className="text-sm group-hover:text-white transition-colors" />
+                    <span>{t("topics.buttons.viewTopic")}</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Pagination Section */}
+        {pagination.last_page > 1 && (
+          <div className="flex justify-center items-center gap-3 mt-10 mb-4">
+            <button
+              onClick={() => handlePageChange(pagination.current_page - 1)}
+              disabled={!pagination.prev_page_url}
+              className={`px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 text-sm font-medium
                   ${
                     pagination.prev_page_url
                       ? "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 cursor-pointer"
                       : "bg-gray-100 text-gray-400 cursor-not-allowed"
                   }`}
-              >
-                <FaArrowLeft size={12} />
-                {t("topics.buttons.previous")}
-              </button>
+            >
+              <FaArrowLeft size={12} />
+              {t("topics.buttons.previous")}
+            </button>
 
-              <div className="flex items-center gap-2">
-                {[...Array(pagination.last_page)].map((_, index) => {
-                  const pageNum = index + 1;
-                  const isActive = pageNum === pagination.current_page;
+            <div className="flex items-center gap-2">
+              {[...Array(pagination.last_page)].map((_, index) => {
+                const pageNum = index + 1;
+                const isActive = pageNum === pagination.current_page;
 
-                  return (
-                    <button
-                      key={pageNum}
-                      onClick={() => handlePageChange(pageNum)}
-                      className={`w-9 h-9 rounded-lg font-medium text-sm transition-all duration-300
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => handlePageChange(pageNum)}
+                    className={`w-9 h-9 rounded-lg font-medium text-sm transition-all duration-300
                         ${
                           isActive
                             ? "bg-blue-600 text-white shadow-sm"
                             : "bg-white border border-gray-300 text-gray-600 hover:bg-gray-50"
                         }`}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-              </div>
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
 
-              <button
-                onClick={() => handlePageChange(pagination.current_page + 1)}
-                disabled={!pagination.next_page_url}
-                className={`px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 text-sm font-medium
+            <button
+              onClick={() => handlePageChange(pagination.current_page + 1)}
+              disabled={!pagination.next_page_url}
+              className={`px-5 py-2 rounded-lg flex items-center gap-2 transition-all duration-300 text-sm font-medium
                   ${
                     pagination.next_page_url
                       ? "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 cursor-pointer"
                       : "bg-gray-100 text-gray-400 cursor-not-allowed"
                   }`}
+            >
+              {t("topics.buttons.next")}
+              <FaArrowRight size={12} />
+            </button>
+          </div>
+        )}
+
+        {/* Showing results info */}
+        {pagination.total > 0 && (
+          <div className="text-center text-sm text-gray-500 mt-6">
+            {t("topics.pagination.showing")} {topicsData.length}{" "}
+            {t("topics.pagination.of")} {pagination.total}{" "}
+            {t("topics.pagination.topics")}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {topicsData.length === 0 && !isLoading && (
+          <div className="text-center py-16">
+            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg
+                className="w-10 h-10 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                {t("topics.buttons.next")}
-                <FaArrowRight size={12} />
-              </button>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                />
+              </svg>
             </div>
-          )}
-
-          {/* Showing results info */}
-          {pagination.total > 0 && (
-            <div className="text-center text-sm text-gray-500 mt-6">
-              {t("topics.pagination.showing")} {topicsData.length}{" "}
-              {t("topics.pagination.of")} {pagination.total}{" "}
-              {t("topics.pagination.topics")}
-            </div>
-          )}
-
-          {/* Empty State */}
-          {topicsData.length === 0 && !isLoading && (
-            <div className="text-center py-16">
-              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-10 h-10 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-2">
-                {t("topics.emptyState.title")}
-              </h3>
-              <p className="text-gray-500">
-                {t("topics.emptyState.description")}
-              </p>
-            </div>
-          )}
-        </div>
+            <h3 className="text-lg font-semibold text-gray-700 mb-2">
+              {t("topics.emptyState.title")}
+            </h3>
+            <p className="text-gray-500">
+              {t("topics.emptyState.description")}
+            </p>
+          </div>
+        )}
       </PageBody>
     </PageLayout>
   );
