@@ -21,6 +21,7 @@ import Loader from "../../../common/Loader";
 import { FiUpload, FiTrash2, FiUser, FiCamera } from "react-icons/fi";
 import { useToast } from "../../../common/toast/ToastContext";
 import { useTranslation } from "react-i18next";
+import countryOption from "../../../../../data/countries.json";
 
 const ProfileDetails = () => {
   const dispatch = useDispatch();
@@ -52,12 +53,7 @@ const ProfileDetails = () => {
     }
   }, [dispatch, profile]);
 
-  const regionOptions = [
-    { label: "North", value: "north" },
-    { label: "South", value: "south" },
-    { label: "East", value: "east" },
-    { label: "West", value: "west" },
-  ];
+  const regionOptions = countryOption.countries || [];
 
   // Handle image selection
   const handleImageSelect = (e) => {

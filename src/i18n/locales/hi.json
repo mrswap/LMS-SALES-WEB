@@ -557,5 +557,88 @@
       "title": "कोई प्रश्न नहीं मिला",
       "description": "इस क्विज़ में अभी कोई प्रश्न उपलब्ध नहीं है।"
     }
+  },
+
+  "footer": {
+    "quickLinks": "त्वरित लिंक",
+    "downloadApps": "ऐप डाउनलोड करें",
+    "appStore": "ऐप स्टोर",
+    "playStore": "प्ले स्टोर",
+    "downloadOn": "डाउनलोड करें",
+    "terms": "नियम और शर्तें",
+    "privacy": "गोपनीयता नीति",
+    "aboutUs": "हमारे बारे में",
+    "contactUs": "संपर्क करें",
+    "cookies": "कुकीज़",
+    "socialLinks": {
+      "facebook": "फेसबुक",
+      "twitter": "ट्विटर",
+      "linkedin": "लिंक्डइन",
+      "instagram": "इंस्टाग्राम"
+    },
+    "loading": "फुटर सामग्री लोड हो रही है..."
+  },
+
+  "aboutUs": {
+    "pageTitle": "हमारे बारे में",
+    "pageSubtitle": "हमारी कंपनी और मिशन के बारे में जानें",
+    "noContent": "कोई सामग्री उपलब्ध नहीं है"
+  },
+
+  "termsConditions": {
+    "pageTitle": "नियम और शर्तें",
+    "pageSubtitle": "कृपया हमारी सेवाओं का उपयोग करने से पहले इन नियमों और शर्तों को ध्यान से पढ़ें",
+    "noContent": "कोई सामग्री उपलब्ध नहीं है"
+  },
+
+  "privacyPolicy": {
+    "pageTitle": "गोपनीयता नीति",
+    "pageSubtitle": "जानें कि हम आपकी व्यक्तिगत जानकारी को कैसे एकत्र, उपयोग और सुरक्षित रखते हैं",
+    "noContent": "कोई सामग्री उपलब्ध नहीं है"
+  },
+
+  "contactUs": {
+    "pageTitle": "संपर्क करें",
+    "pageSubtitle": "हम आपसे सुनना पसंद करेंगे",
+    "aboutCompany": "कंपनी के बारे में",
+    "contactInformation": "संपर्क जानकारी",
+    "sendMessage": "हमें संदेश भेजें",
+    "address": "123 बिज़नेस एवेन्यू, सुइट 100",
+    "buttons": {
+      "sendMessage": "संदेश भेजें",
+      "sending": "भेजा जा रहा है..."
+    },
+    "form": {
+      "fullName": {
+        "label": "पूरा नाम",
+        "placeholder": "अपना पूरा नाम दर्ज करें"
+      },
+      "email": {
+        "label": "ईमेल पता",
+        "placeholder": "you@example.com"
+      },
+      "subject": {
+        "label": "विषय",
+        "placeholder": "यह किस बारे में है?"
+      },
+      "message": {
+        "label": "संदेश",
+        "placeholder": "कृपया अपनी समस्या का विवरण दें..."
+      }
+    },
+    "validation": {
+      "nameRequired": "नाम आवश्यक है",
+      "nameMin": "नाम कम से कम 2 अक्षरों का होना चाहिए",
+      "emailInvalid": "अमान्य ईमेल पता",
+      "emailRequired": "ईमेल आवश्यक है",
+      "subjectRequired": "विषय आवश्यक है",
+      "subjectMin": "विषय कम से कम 3 अक्षरों का होना चाहिए",
+      "messageRequired": "संदेश आवश्यक है",
+      "messageMin": "संदेश कम से कम 10 अक्षरों का होना चाहिए"
+    },
+    "toast": {
+      "success": "संदेश सफलतापूर्वक भेजा गया!",
+      "error": "संदेश भेजने में विफल। कृपया पुनः प्रयास करें।"
+    }
   }
 }

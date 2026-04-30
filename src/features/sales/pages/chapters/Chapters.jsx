@@ -330,6 +330,18 @@ export default function Chapters() {
                     </div>
 
                     <div className="flex items-center gap-2">
+                      {/* ✅ FAQ BUTTON FOR TOPIC ADDED HERE */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/faqs?type=topic&id=${topic.id}`);
+                        }}
+                        className="px-3 py-2 rounded-lg text-sm font-medium transition-all bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 flex items-center gap-1"
+                      >
+                        <IoHelpCircle className="w-4 h-4" />
+                        FAQ
+                      </button>
+
                       {/* Quiz Button */}
                       {isQuizAvailable && (
                         <button
