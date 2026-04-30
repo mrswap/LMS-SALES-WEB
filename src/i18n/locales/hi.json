@@ -539,23 +539,107 @@
   },
 
   "quiz": {
-    "pageTitle": "क्विज़ असेसमेंट",
+    "pageTitle": "क्विज़",
     "pageSubtitle": "अपना ज्ञान जांचें",
-    "timeLeft": "बचा हुआ समय",
-    "timeUpWarning": "समय समाप्त! आपका क्विज़ अपने आप सबमिट हो गया है।",
-    "answerSelected": "उत्तर चुना गया",
-    "skipped": "छोड़ा गया",
+    "timeLeft": "शेष समय",
+    "exitQuiz": "क्विज़ छोड़ें",
+    "topicDetails": "विषय विवरण",
+    "attempts": "प्रयास",
+    "remaining": "शेष",
+    "duration": "अवधि",
+    "minutes": "मिनट",
+    "startedAt": "शुरू हुआ",
+    "expiresAt": "समाप्त होगा",
+    "attemptId": "प्रयास आईडी",
     "questionOf": "प्रश्न {current} में से {total}",
-    "buttons": {
-      "previous": "पिछला",
-      "skip": "छोड़ें",
-      "next": "अगला",
-      "submitQuiz": "क्विज़ सबमिट करें",
-      "submitting": "सबमिट हो रहा है..."
+    "answerSelected": "उत्तर चयनित",
+    "skipped": "छोड़ा गया",
+    "previous": "पिछला",
+    "skip": "छोड़ें",
+    "next": "अगला",
+    "submitQuiz": "क्विज़ सबमिट करें",
+    "submitting": "सबमिट हो रहा है...",
+    "timeUpWarning": "समय समाप्त! आपका क्विज़ स्वतः सबमिट किया जा रहा है...",
+    "noQuestionsTitle": "कोई प्रश्न उपलब्ध नहीं",
+    "noQuestionsDescription": "कृपया बाद में फिर से प्रयास करें।",
+    "noAttemptsLeft": "कोई प्रयास शेष नहीं! आपने सभी प्रयास समाप्त कर दिए हैं।",
+    "noAttemptsTitle": "कोई प्रयास शेष नहीं",
+    "noAttemptsSubtitle": "आपने इस क्विज़ के सभी प्रयास समाप्त कर दिए हैं",
+    "noAttemptsHeading": "कोई प्रयास शेष नहीं",
+    "noAttemptsMessage": "आपने इस क्विज़ के सभी {total} प्रयास उपयोग कर लिए हैं।",
+    "goBack": "वापस जाएं",
+    "leaveWarning": "आपका क्विज़ जारी है! क्या आप सच में छोड़ना चाहते हैं?",
+    "confirmationModal": {
+      "title": "क्विज़ छोड़ें?",
+      "description": "आपका क्विज़ जारी है। यदि आप अभी छोड़ते हैं, तो यह स्वतः सबमिट हो जाएगा।",
+      "progressSaved": "आपकी प्रगति सुरक्षित रहेगी।",
+      "timeRemaining": "शेष समय:",
+      "cancel": "रद्द करें",
+      "confirm": "छोड़ें और सबमिट करें"
+    }
+  },
+  "quizResult": {
+    "pageTitlePassed": "मूल्यांकन पूर्ण",
+    "pageTitleFailed": "क्विज़ समाप्त",
+    "pageSubtitlePassed": "मूल्यांकन पास करने पर बधाई",
+    "pageSubtitleFailed": "नीचे अपना प्रदर्शन देखें",
+    "score": "स्कोर",
+    "passed": "उत्तीर्ण",
+    "failed": "असफल",
+    "scoreLabel": "स्कोर",
+    "stats": {
+      "correct": "सही",
+      "incorrect": "गलत",
+      "skipped": "छोड़े गए",
+      "timeSpent": "समय व्यतीत"
     },
-    "emptyState": {
-      "title": "कोई प्रश्न नहीं मिला",
-      "description": "इस क्विज़ में अभी कोई प्रश्न उपलब्ध नहीं है।"
+    "analysis": {
+      "title": "विस्तृत प्रदर्शन विश्लेषण",
+      "totalQuestions": "कुल प्रश्न",
+      "questionsAttempted": "प्रयास किए गए प्रश्न",
+      "pendingQuestions": "लंबित प्रश्न",
+      "totalDuration": "कुल अवधि"
+    },
+    "feedback": {
+      "title": "अपना अनुभव साझा करें",
+      "ratingLabel": "आप इस क्विज़ को कैसे रेट करेंगे?",
+      "required": "*",
+      "additionalComments": "अतिरिक्त टिप्पणियाँ",
+      "placeholder": "अपने विचार, सुझाव या समस्या साझा करें...",
+      "submitButton": "फीडबैक सबमिट करें",
+      "submitting": "फीडबैक सबमिट हो रहा है…",
+      "thankYouTitle": "आपके फीडबैक के लिए धन्यवाद!",
+      "thankYouMessage": "आपका सुझाव हमें बेहतर बनाने में मदद करता है।",
+      "redirecting": "आपको डैशबोर्ड पर भेजा जा रहा है…",
+      "ratingLabels": {
+        "1": "खराब",
+        "2": "संतोषजनक",
+        "3": "अच्छा",
+        "4": "बहुत अच्छा",
+        "5": "उत्कृष्ट"
+      }
+    },
+    "buttons": {
+      "backToHome": "होम पर जाएं",
+      "tryAgain": "फिर से प्रयास करें"
+    },
+    "messages": {
+      "outstanding": "शानदार उपलब्धि!",
+      "excellent": "उत्कृष्ट प्रदर्शन!",
+      "good": "अच्छा काम!",
+      "satisfactory": "संतोषजनक",
+      "fair": "ठीक प्रयास",
+      "keepPracticing": "अभ्यास जारी रखें",
+      "outstandingSub": "आपने शानदार समझ दिखाई है",
+      "excellentSub": "आपकी पकड़ मजबूत है",
+      "goodSub": "अच्छा प्रदर्शन, ऐसे ही जारी रखें",
+      "satisfactorySub": "आप सही दिशा में हैं",
+      "fairSub": "सुधार की गुंजाइश है",
+      "keepPracticingSub": "हार मत मानो, फिर से प्रयास करो"
+    },
+    "errors": {
+      "ratingRequired": "कृपया रेटिंग चुनें",
+      "feedbackFailed": "फीडबैक सबमिट नहीं हो पाया। फिर से प्रयास करें।"
     }
   },
 

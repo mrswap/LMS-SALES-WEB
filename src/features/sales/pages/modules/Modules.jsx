@@ -763,16 +763,18 @@ export default function Modules() {
 
                   <div className="flex gap-2">
                     {/* ✅ FAQ BUTTON FOR CHAPTER ADDED HERE */}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/faqs?type=chapter&id=${chapter.id}`);
-                      }}
-                      className="px-3 py-2 rounded-lg text-sm font-medium transition-all bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 flex items-center gap-1"
-                    >
-                      <IoHelpCircle className="w-4 h-4" />
-                      FAQ
-                    </button>
+                    {chapter.is_completed && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/faqs?type=chapter&id=${chapter.id}`);
+                        }}
+                        className="px-3 py-2 rounded-lg text-sm font-medium transition-all bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 flex items-center gap-1"
+                      >
+                        <IoHelpCircle className="w-4 h-4" />
+                        FAQ
+                      </button>
+                    )}
 
                     {chapter.is_completed ? (
                       <div className="text-green-600 text-sm font-medium flex items-center gap-1">

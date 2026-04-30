@@ -539,23 +539,108 @@
   },
 
   "quiz": {
-    "pageTitle": "Quiz Assessment",
+    "pageTitle": "Quiz",
     "pageSubtitle": "Test your knowledge",
     "timeLeft": "Time Left",
-    "timeUpWarning": "Time's up! Your quiz has been automatically submitted.",
-    "answerSelected": "Answer selected",
-    "skipped": "Skipped",
+    "exitQuiz": "Exit Quiz",
+    "topicDetails": "Topic Details",
+    "attempts": "Attempts",
+    "remaining": "Remaining",
+    "duration": "Duration",
+    "minutes": "minutes",
+    "startedAt": "Started at",
+    "expiresAt": "Expires at",
+    "attemptId": "Attempt ID",
     "questionOf": "Question {current} of {total}",
-    "buttons": {
-      "previous": "Previous",
-      "skip": "Skip",
-      "next": "Next",
-      "submitQuiz": "Submit Quiz",
-      "submitting": "Submitting..."
+    "answerSelected": "Answer Selected",
+    "skipped": "Skipped",
+    "previous": "Previous",
+    "skip": "Skip",
+    "next": "Next",
+    "submitQuiz": "Submit Quiz",
+    "submitting": "Submitting...",
+    "timeUpWarning": "Time's up! Auto-submitting your quiz...",
+    "noQuestionsTitle": "No questions available",
+    "noQuestionsDescription": "Please try again later.",
+    "noAttemptsLeft": "No attempts left! You have exhausted all your attempts.",
+    "noAttemptsTitle": "No Attempts Left",
+    "noAttemptsSubtitle": "You have exhausted all your attempts for this quiz",
+    "noAttemptsHeading": "No Attempts Remaining",
+    "noAttemptsMessage": "You have used all {total} attempts for this quiz.",
+    "goBack": "Go Back",
+    "leaveWarning": "You have an ongoing quiz! Are you sure you want to leave?",
+    "confirmationModal": {
+      "title": "Leave Quiz?",
+      "description": "You have an ongoing quiz. If you leave now, your quiz will be auto-submitted.",
+      "progressSaved": "Your progress will be saved.",
+      "timeRemaining": "Time remaining:",
+      "cancel": "Cancel",
+      "confirm": "Leave & Submit"
+    }
+  },
+
+  "quizResult": {
+    "pageTitlePassed": "Assessment Complete",
+    "pageTitleFailed": "Quiz Finished",
+    "pageSubtitlePassed": "Congratulations on passing the assessment",
+    "pageSubtitleFailed": "Review your performance summary below",
+    "score": "score",
+    "passed": "Passed",
+    "failed": "Failed",
+    "scoreLabel": "Score",
+    "stats": {
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "skipped": "Skipped",
+      "timeSpent": "Time Spent"
     },
-    "emptyState": {
-      "title": "No Questions Found",
-      "description": "This quiz doesn't have any questions yet."
+    "analysis": {
+      "title": "Detailed Performance Analysis",
+      "totalQuestions": "Total Questions",
+      "questionsAttempted": "Questions Attempted",
+      "pendingQuestions": "Pending Questions",
+      "totalDuration": "Total Duration"
+    },
+    "feedback": {
+      "title": "Share Your Experience",
+      "ratingLabel": "How would you rate this quiz?",
+      "required": "*",
+      "additionalComments": "Additional Comments",
+      "placeholder": "Share your thoughts, suggestions, or concerns...",
+      "submitButton": "Submit Feedback",
+      "submitting": "Submitting Feedback…",
+      "thankYouTitle": "Thank You for Your Feedback!",
+      "thankYouMessage": "Your input helps us improve and create better learning experiences.",
+      "redirecting": "Redirecting to dashboard in a moment…",
+      "ratingLabels": {
+        "1": "Poor",
+        "2": "Fair",
+        "3": "Good",
+        "4": "Very Good",
+        "5": "Excellent"
+      }
+    },
+    "buttons": {
+      "backToHome": "Back to Home",
+      "tryAgain": "Try Again"
+    },
+    "messages": {
+      "outstanding": "Outstanding Achievement!",
+      "excellent": "Excellent Performance!",
+      "good": "Good Job!",
+      "satisfactory": "Satisfactory",
+      "fair": "Fair Effort",
+      "keepPracticing": "Keep Practicing",
+      "outstandingSub": "You've demonstrated exceptional understanding",
+      "excellentSub": "You have a strong grasp of the material",
+      "goodSub": "Solid performance, keep up the good work",
+      "satisfactorySub": "You're on the right track",
+      "fairSub": "Room for improvement, keep learning",
+      "keepPracticingSub": "Don't give up, review and try again"
+    },
+    "errors": {
+      "ratingRequired": "Please select a rating",
+      "feedbackFailed": "Failed to submit feedback. Please try again."
     }
   },
 
