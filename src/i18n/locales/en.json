@@ -568,6 +568,7 @@
     "terms": "Terms & Condition",
     "privacy": "Privacy Policy",
     "aboutUs": "About Us",
+    "contactUs": "Contact Us",
     "cookies": "Cookies",
     "socialLinks": {
       "facebook": "Facebook",
@@ -589,9 +590,55 @@
     "pageSubtitle": "Please read these terms and conditions carefully before using our services",
     "noContent": "No content available"
   },
+
   "privacyPolicy": {
     "pageTitle": "Privacy Policy",
     "pageSubtitle": "Learn how we collect, use, and protect your personal information",
     "noContent": "No content available"
+  },
+
+  "contactUs": {
+    "pageTitle": "Contact Us",
+    "pageSubtitle": "We'd love to hear from you",
+    "aboutCompany": "About Company",
+    "contactInformation": "Contact Information",
+    "sendMessage": "Send us a message",
+    "address": "123 Business Avenue, Suite 100",
+    "buttons": {
+      "sendMessage": "Send Message",
+      "sending": "Sending..."
+    },
+    "form": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "you@example.com"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "What is this regarding?"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Please describe your query..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMin": "Name must be at least 2 characters",
+      "emailInvalid": "Invalid email address",
+      "emailRequired": "Email is required",
+      "subjectRequired": "Subject is required",
+      "subjectMin": "Subject must be at least 3 characters",
+      "messageRequired": "Message is required",
+      "messageMin": "Message must be at least 10 characters"
+    },
+    "toast": {
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again."
+    }
   }
 }

@@ -1,126 +1,3 @@
-// import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import axiosInstance from "../../app/axios";
-// import { getAuthConfig } from "../../utils/authConfig";
-
-// /* ===========================
-//    START ATTEMPT (POST)
-// =========================== */
-// export const startAttempt = createAsyncThunk(
-//     "quiz/startAttempt",
-//     async (topicId, thunkAPI) => {
-//         try {
-//             const res = await axiosInstance.post(
-//                 `/trainee/assessments/${topicId}/start`,
-//                 {},
-//                 getAuthConfig()
-//             );
-//             return res.data;
-//         } catch (error) {
-//             return thunkAPI.rejectWithValue(
-//                 error.response?.data || { message: "Failed to start attempt" }
-//             );
-//         }
-//     }
-// );
-
-// /* ===========================
-//    FETCH QUESTIONS (GET)
-// =========================== */
-// export const fetchQuestions = createAsyncThunk(
-//     "quiz/fetchQuestions",
-//     async ({ topicId, attemptId }, thunkAPI) => {
-//         try {
-//             const res = await axiosInstance.get(
-//                 `/trainee/assessments/${topicId}/questions?attempt_id=${attemptId}`,
-//                 getAuthConfig()
-//             );
-//             return res.data;
-//         } catch (error) {
-//             return thunkAPI.rejectWithValue(
-//                 error.response?.data || { message: "Failed to fetch questions" }
-//             );
-//         }
-//     }
-// );
-
-// /* ===========================
-//    SLICE
-// =========================== */
-// const quizSlice = createSlice({
-//     name: "quiz",
-//     initialState: {
-//         attempt: null,
-//         questions: [],
-//         isLoading: false,
-//         isError: false,
-//         isSuccess: false,
-//         message: "",
-//     },
-//     reducers: {
-//         resetQuizState: (state) => {
-//             state.isLoading = false;
-//             state.isError = false;
-//             state.isSuccess = false;
-//             state.message = "";
-//         },
-//         clearQuizData: (state) => {
-//             state.attempt = null;
-//             state.questions = [];
-//         },
-//     },
-//     extraReducers: (builder) => {
-//         builder
-//             /* ===== START ATTEMPT ===== */
-//             .addCase(startAttempt.pending, (state) => {
-//                 state.isLoading = true;
-//             })
-//             .addCase(startAttempt.fulfilled, (state, action) => {
-//                 state.isLoading = false;
-//                 state.isSuccess = true;
-//                 state.attempt = action.payload; // 👈 important
-//                 state.message = action.payload.message;
-//             })
-//             .addCase(startAttempt.rejected, (state, action) => {
-//                 state.isLoading = false;
-//                 state.isError = true;
-//                 state.message = action.payload?.message;
-//             })
-
-//             /* ===== FETCH QUESTIONS ===== */
-//             .addCase(fetchQuestions.pending, (state) => {
-//                 state.isLoading = true;
-//             })
-//             // .addCase(fetchQuestions.fulfilled, (state, action) => {
-//             //     state.isLoading = false;
-//             //     state.isSuccess = true;
-//             //     state.questions = action.payload.data || action.payload;
-//             //     state.message = action.payload.message;
-//             // })
-//             .addCase(fetchQuestions.fulfilled, (state, action) => {
-//                 state.isLoading = false;
-//                 state.isSuccess = true;
-
-//                 // ❌ galat
-//                 // state.questions = action.payload.data
-
-//                 // ✅ sahi
-//                 state.questions = action.payload.questions;
-
-//                 state.message = action.payload.message;
-//             })
-//             .addCase(fetchQuestions.rejected, (state, action) => {
-//                 state.isLoading = false;
-//                 state.isError = true;
-//                 state.message = action.payload?.message;
-//             });
-//     },
-// });
-
-// export const { resetQuizState, clearQuizData } = quizSlice.actions;
-// export default quizSlice.reducer;
-
-
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../app/axios";
 import { getAuthConfig } from "../../utils/authConfig";
@@ -216,25 +93,6 @@ export const submitAnswer = createAsyncThunk(
     }
 );
 
-/* ===========================
-   RESUME ATTEMPT (GET)
-=========================== */
-export const resumeAttempt = createAsyncThunk(
-    "quiz/resumeAttempt",
-    async (topicId, thunkAPI) => {
-        try {
-            const res = await axiosInstance.get(
-                `/trainee/assessments/${topicId}/resume`,
-                getAuthConfig()
-            );
-            return res.data;
-        } catch (error) {
-            return thunkAPI.rejectWithValue(
-                error.response?.data || { message: "Failed to resume attempt" }
-            );
-        }
-    }
-);
 
 /* ===========================
    SUBMIT COMPLETE QUIZ (POST)
@@ -260,6 +118,32 @@ export const submitQuiz = createAsyncThunk(
 );
 
 /* ===========================
+   SUBMIT FEEDBACK (POST)
+=========================== */
+
+export const submitFeedback = createAsyncThunk(
+    "quiz/submitFeedback",
+    async ({ topicId, attemptId, rating, review }, thunkAPI) => {
+        try {
+            const res = await axiosInstance.post(
+                `/trainee/assessments/${topicId}/feedback`,
+                {
+                    attempt_id: attemptId,
+                    rating: rating,
+                    review: review,
+                },
+                getAuthConfig()
+            );
+            return res.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(
+                error.response?.data || { message: "Failed to submit feedback" }
+            );
+        }
+    }
+);
+
+/* ===========================
    SLICE
 =========================== */
 const quizSlice = createSlice({
@@ -268,7 +152,9 @@ const quizSlice = createSlice({
         attempt: null,
         questions: [],
         currentQuestionIndex: 0,
-
+        quizResults: null,
+        feedbackSubmitted: false,
+        feedbackData: null,
         isLoading: false,
         isError: false,
         isSuccess: false,
@@ -287,6 +173,9 @@ const quizSlice = createSlice({
             state.attempt = null;
             state.questions = [];
             state.currentQuestionIndex = 0;
+            state.quizResults = null;
+            state.feedbackSubmitted = false;
+            state.feedbackData = null;
         },
 
         nextQuestion: (state) => {
@@ -299,6 +188,10 @@ const quizSlice = createSlice({
             if (state.currentQuestionIndex > 0) {
                 state.currentQuestionIndex -= 1;
             }
+        },
+
+        clearQuizResults: (state) => {
+            state.quizResults = null;
         },
     },
 
@@ -327,12 +220,7 @@ const quizSlice = createSlice({
             .addCase(fetchQuestions.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-
-                state.questions =
-                    action.payload.questions ||
-                    action.payload.data ||
-                    [];
-
+                state.questions = action.payload.questions || action.payload.data || [];
                 state.currentQuestionIndex = 0;
                 state.message = action.payload.message;
             })
@@ -350,8 +238,6 @@ const quizSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.message = action.payload.message;
-
-                // auto next
                 if (state.currentQuestionIndex < state.questions.length - 1) {
                     state.currentQuestionIndex += 1;
                 }
@@ -370,33 +256,11 @@ const quizSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.message = action.payload.message;
-
-                // auto next
                 if (state.currentQuestionIndex < state.questions.length - 1) {
                     state.currentQuestionIndex += 1;
                 }
             })
             .addCase(submitAnswer.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload?.message;
-            })
-
-            /* ===== RESUME ATTEMPT ===== */
-            .addCase(resumeAttempt.pending, (state) => {
-                state.isLoading = true;
-            })
-            .addCase(resumeAttempt.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.isSuccess = true;
-
-                state.attempt = action.payload.attempt;
-                state.questions = action.payload.questions || [];
-                state.currentQuestionIndex = 0;
-
-                state.message = action.payload.message;
-            })
-            .addCase(resumeAttempt.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload?.message;
@@ -410,14 +274,31 @@ const quizSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.message = action.payload.message;
-                // You might want to store results if needed
-                state.results = action.payload.results || action.payload;
+                // Store the quiz results from API response
+                state.quizResults = action.payload;
             })
             .addCase(submitQuiz.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload?.message;
             })
+
+            /* ===== SUBMIT FEEDBACK ===== */
+            .addCase(submitFeedback.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(submitFeedback.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.feedbackSubmitted = true;
+                state.feedbackData = action.payload;
+                state.message = action.payload.message;
+            })
+            .addCase(submitFeedback.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload?.message;
+            });
     },
 });
 
@@ -426,6 +307,7 @@ export const {
     clearQuizData,
     nextQuestion,
     prevQuestion,
+    clearQuizResults,
 } = quizSlice.actions;
 
 export default quizSlice.reducer;

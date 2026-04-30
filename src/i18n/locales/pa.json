@@ -501,5 +501,88 @@
       "title": "ਕੋਈ ਸਵਾਲ ਨਹੀਂ ਮਿਲਿਆ",
       "description": "ਇਸ ਕੁਇਜ਼ ਵਿੱਚ ਹਾਲੇ ਕੋਈ ਸਵਾਲ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।"
     }
+  },
+
+  "footer": {
+    "quickLinks": "ਤੁਰੰਤ ਲਿੰਕ",
+    "downloadApps": "ਐਪ ਡਾਊਨਲੋਡ ਕਰੋ",
+    "appStore": "ਐਪ ਸਟੋਰ",
+    "playStore": "ਪਲੇ ਸਟੋਰ",
+    "downloadOn": "ਡਾਊਨਲੋਡ ਕਰੋ",
+    "terms": "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
+    "privacy": "ਪਰਾਈਵੇਸੀ ਨੀਤੀ",
+    "aboutUs": "ਸਾਡੇ ਬਾਰੇ",
+    "contactUs": "ਸੰਪਰਕ ਕਰੋ",
+    "cookies": "ਕੂਕੀਜ਼",
+    "socialLinks": {
+      "facebook": "ਫੇਸਬੁੱਕ",
+      "twitter": "ਟਵਿੱਟਰ",
+      "linkedin": "ਲਿੰਕਡਇਨ",
+      "instagram": "ਇੰਸਟਾਗ੍ਰਾਮ"
+    },
+    "loading": "ਫੁੱਟਰ ਸਮੱਗਰੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ..."
+  },
+
+  "aboutUs": {
+    "pageTitle": "ਸਾਡੇ ਬਾਰੇ",
+    "pageSubtitle": "ਸਾਡੀ ਕੰਪਨੀ ਅਤੇ ਮਿਸ਼ਨ ਬਾਰੇ ਜਾਣੋ",
+    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+  },
+
+  "termsConditions": {
+    "pageTitle": "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
+    "pageSubtitle": "ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀਆਂ ਸੇਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ",
+    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+  },
+
+  "privacyPolicy": {
+    "pageTitle": "ਪਰਾਈਵੇਸੀ ਨੀਤੀ",
+    "pageSubtitle": "ਜਾਣੋ ਅਸੀਂ ਤੁਹਾਡੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਕਿਵੇਂ ਇਕੱਠੀ, ਵਰਤਦੇ ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਰਦੇ ਹਾਂ",
+    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+  },
+
+  "contactUs": {
+    "pageTitle": "ਸੰਪਰਕ ਕਰੋ",
+    "pageSubtitle": "ਅਸੀਂ ਤੁਹਾਡੇ ਤੋਂ ਸੁਣਨਾ ਚਾਹੁੰਦੇ ਹਾਂ",
+    "aboutCompany": "ਕੰਪਨੀ ਬਾਰੇ",
+    "contactInformation": "ਸੰਪਰਕ ਜਾਣਕਾਰੀ",
+    "sendMessage": "ਸਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜੋ",
+    "address": "123 ਬਿਜ਼ਨਸ ਐਵੇਨਿਊ, ਸੂਟ 100",
+    "buttons": {
+      "sendMessage": "ਸੁਨੇਹਾ ਭੇਜੋ",
+      "sending": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ..."
+    },
+    "form": {
+      "fullName": {
+        "label": "ਪੂਰਾ ਨਾਮ",
+        "placeholder": "ਆਪਣਾ ਪੂਰਾ ਨਾਮ ਦਰਜ ਕਰੋ"
+      },
+      "email": {
+        "label": "ਈਮੇਲ ਪਤਾ",
+        "placeholder": "you@example.com"
+      },
+      "subject": {
+        "label": "ਵਿਸ਼ਾ",
+        "placeholder": "ਇਹ ਕਿਸ ਬਾਰੇ ਹੈ?"
+      },
+      "message": {
+        "label": "ਸੁਨੇਹਾ",
+        "placeholder": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਸਮੱਸਿਆ ਵੇਰਵਾ ਕਰੋ..."
+      }
+    },
+    "validation": {
+      "nameRequired": "ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
+      "nameMin": "ਨਾਮ ਘੱਟੋ-ਘੱਟ 2 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "emailInvalid": "ਗਲਤ ਈਮੇਲ ਪਤਾ",
+      "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
+      "subjectRequired": "ਵਿਸ਼ਾ ਲਾਜ਼ਮੀ ਹੈ",
+      "subjectMin": "ਵਿਸ਼ਾ ਘੱਟੋ-ਘੱਟ 3 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "messageRequired": "ਸੁਨੇਹਾ ਲਾਜ਼ਮੀ ਹੈ",
+      "messageMin": "ਸੁਨੇਹਾ ਘੱਟੋ-ਘੱਟ 10 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
+    },
+    "toast": {
+      "success": "ਸੁਨੇਹਾ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ!",
+      "error": "ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    }
   }
 }

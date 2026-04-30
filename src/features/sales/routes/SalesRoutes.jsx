@@ -20,6 +20,8 @@ import TopicContent from "../pages/topics/TopicContent";
 import AboutUs from "../pages/settings/about-us/AboutUs";
 import TermsAndCondition from "../pages/settings/terms-and-condition/TermsAndCondition";
 import Policy from "../pages/settings/privacy-policy/Policy";
+import ContactUs from "../pages/settings/contact-us/ContactUs";
+import Faq from "../pages/faq/Faq";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -45,9 +47,14 @@ const SalesRoutes = (
         element={<TopicContent />}
       />
 
+      <Route path="faqs" element={<Faq />} />
+
       {/* quize */}
       <Route path="quiz/:topicId" element={<Quize />} />
-      <Route path="quiz/result" element={<QuizeResult />} />
+      <Route
+        path="/quiz/result/:topicId/:attemptId"
+        element={<QuizeResult />}
+      />
 
       {/*certificate  */}
       <Route path="certificate" element={<Certificate />} />
@@ -64,6 +71,7 @@ const SalesRoutes = (
       <Route path="about-us" element={<AboutUs />} />
       <Route path="terms-conditions" element={<TermsAndCondition />} />
       <Route path="policy" element={<Policy />} />
+      <Route path="contact-us" element={<ContactUs />} />
 
       <Route path="*" element={<WorkInProgress />} />
     </Route>

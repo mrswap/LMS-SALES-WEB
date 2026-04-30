@@ -37,7 +37,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-/* ===========================
+/* =========================== 
    FORGOT PASSWORD
 =========================== */
 export const forgotPassword = createAsyncThunk(

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import useIdleTimeout from "../../../hooks/useIdleTimeout";
 import SessionModal from "../common/SessionModal";
@@ -9,10 +9,20 @@ import Footer from "../components/Footer";
 
 const SalesLayout = () => {
   const navigate = useNavigate();
+  const mainRef = useRef(null);
 
   const handleLogout = () => {
     navigate("/login");
   };
+
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [location.pathname]);
 
   const { showModal, setShowModal, resetTimer } = useIdleTimeout(
     handleLogout,
@@ -36,7 +46,10 @@ const SalesLayout = () => {
         <Navbar />
 
         <div className="flex flex-1 overflow-hidden relative">
-          <main className="flex-1 overflow-auto bg-white custom-scrollbar">
+          <main
+            ref={mainRef}
+            className="flex-1 overflow-auto bg-white custom-scrollbar"
+          >
             {/* Centered Content with Max Width */}
             <div className=" max-w-[1500px] mx-auto p-4 sm:p-5 lg:p-6 min-h-full pb-20 sm:pb-6">
               <Outlet />

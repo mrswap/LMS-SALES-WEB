@@ -34,6 +34,7 @@ const Profile = () => {
   const { profile, isLoading, isError, message } = useSelector(
     (state) => state.profile,
   );
+
   const { user: authUser } = useSelector((state) => state.auth);
 
   // console.log("profile", profile);
