@@ -483,23 +483,107 @@
   },
 
   "quiz": {
-    "pageTitle": "ਕੁਇਜ਼ ਅਸੈਸਮੈਂਟ",
-    "pageSubtitle": "ਆਪਣਾ ਗਿਆਨ ਜਾਂਚੋ",
-    "timeLeft": "ਬਾਕੀ ਸਮਾਂ",
-    "timeUpWarning": "ਸਮਾਂ ਮੁੱਕ ਗਿਆ! ਤੁਹਾਡਾ ਕੁਇਜ਼ ਆਪਣੇ ਆਪ ਸਬਮਿਟ ਹੋ ਗਿਆ ਹੈ।",
+    "pageTitle": "ਕੁਇਜ਼",
+    "pageSubtitle": "ਆਪਣਾ ਗਿਆਨ ਪਰਖੋ",
+    "timeLeft": "ਬਚਿਆ ਸਮਾਂ",
+    "exitQuiz": "ਕੁਇਜ਼ ਛੱਡੋ",
+    "topicDetails": "ਵਿਸ਼ਾ ਵੇਰਵਾ",
+    "attempts": "ਕੋਸ਼ਿਸ਼ਾਂ",
+    "remaining": "ਬਚਿਆ",
+    "duration": "ਅਵਧੀ",
+    "minutes": "ਮਿੰਟ",
+    "startedAt": "ਸ਼ੁਰੂ ਹੋਇਆ",
+    "expiresAt": "ਮੁਕੰਮਲ ਹੋਵੇਗਾ",
+    "attemptId": "ਕੋਸ਼ਿਸ਼ ਆਈਡੀ",
+    "questionOf": "ਸਵਾਲ {current} ਵਿੱਚੋਂ {total}",
     "answerSelected": "ਜਵਾਬ ਚੁਣਿਆ ਗਿਆ",
     "skipped": "ਛੱਡਿਆ ਗਿਆ",
-    "questionOf": "ਸਵਾਲ {current} ਵਿੱਚੋਂ {total}",
-    "buttons": {
-      "previous": "ਪਿਛਲਾ",
-      "skip": "ਛੱਡੋ",
-      "next": "ਅਗਲਾ",
-      "submitQuiz": "ਕੁਇਜ਼ ਸਬਮਿਟ ਕਰੋ",
-      "submitting": "ਸਬਮਿਟ ਹੋ ਰਿਹਾ ਹੈ..."
+    "previous": "ਪਿਛਲਾ",
+    "skip": "ਛੱਡੋ",
+    "next": "ਅਗਲਾ",
+    "submitQuiz": "ਕੁਇਜ਼ ਜਮ੍ਹਾਂ ਕਰੋ",
+    "submitting": "ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "timeUpWarning": "ਸਮਾਂ ਖਤਮ! ਤੁਹਾਡਾ ਕੁਇਜ਼ ਆਪੇ ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "noQuestionsTitle": "ਕੋਈ ਸਵਾਲ ਉਪਲਬਧ ਨਹੀਂ",
+    "noQuestionsDescription": "ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+    "noAttemptsLeft": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਨਹੀਂ ਬਚੀ! ਤੁਸੀਂ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ।",
+    "noAttemptsTitle": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਨਹੀਂ ਬਚੀ",
+    "noAttemptsSubtitle": "ਤੁਸੀਂ ਇਸ ਕੁਇਜ਼ ਲਈ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਖਤਮ ਕਰ ਲਈਆਂ ਹਨ",
+    "noAttemptsHeading": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਨਹੀਂ ਬਚੀ",
+    "noAttemptsMessage": "ਤੁਸੀਂ ਇਸ ਕੁਇਜ਼ ਲਈ ਸਾਰੀਆਂ {total} ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ।",
+    "goBack": "ਵਾਪਸ ਜਾਓ",
+    "leaveWarning": "ਤੁਹਾਡਾ ਕੁਇਜ਼ ਚੱਲ ਰਿਹਾ ਹੈ! ਕੀ ਤੁਸੀਂ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "confirmationModal": {
+      "title": "ਕੁਇਜ਼ ਛੱਡਣਾ ਹੈ?",
+      "description": "ਤੁਹਾਡਾ ਕੁਇਜ਼ ਚੱਲ ਰਿਹਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਹੁਣ ਛੱਡਦੇ ਹੋ, ਇਹ ਆਪੇ ਜਮ੍ਹਾਂ ਹੋ ਜਾਵੇਗਾ।",
+      "progressSaved": "ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ ਸੇਵ ਰਹੇਗੀ।",
+      "timeRemaining": "ਬਚਿਆ ਸਮਾਂ:",
+      "cancel": "ਰੱਦ ਕਰੋ",
+      "confirm": "ਛੱਡੋ ਅਤੇ ਜਮ੍ਹਾਂ ਕਰੋ"
+    }
+  },
+  "quizResult": {
+    "pageTitlePassed": "ਅਸੈਸਮੈਂਟ ਪੂਰਾ",
+    "pageTitleFailed": "ਕੁਇਜ਼ ਮੁਕੰਮਲ",
+    "pageSubtitlePassed": "ਅਸੈਸਮੈਂਟ ਪਾਸ ਕਰਨ ਲਈ ਵਧਾਈ",
+    "pageSubtitleFailed": "ਹੇਠਾਂ ਆਪਣੀ ਕਾਰਗੁਜ਼ਾਰੀ ਵੇਖੋ",
+    "score": "ਸਕੋਰ",
+    "passed": "ਪਾਸ",
+    "failed": "ਫੇਲ",
+    "scoreLabel": "ਸਕੋਰ",
+    "stats": {
+      "correct": "ਸਹੀ",
+      "incorrect": "ਗਲਤ",
+      "skipped": "ਛੱਡੇ",
+      "timeSpent": "ਲੱਗਿਆ ਸਮਾਂ"
     },
-    "emptyState": {
-      "title": "ਕੋਈ ਸਵਾਲ ਨਹੀਂ ਮਿਲਿਆ",
-      "description": "ਇਸ ਕੁਇਜ਼ ਵਿੱਚ ਹਾਲੇ ਕੋਈ ਸਵਾਲ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।"
+    "analysis": {
+      "title": "ਵਿਸਥਾਰਿਤ ਕਾਰਗੁਜ਼ਾਰੀ ਵਿਸ਼ਲੇਸ਼ਣ",
+      "totalQuestions": "ਕੁੱਲ ਸਵਾਲ",
+      "questionsAttempted": "ਕੋਸ਼ਿਸ਼ ਕੀਤੇ ਸਵਾਲ",
+      "pendingQuestions": "ਬਾਕੀ ਸਵਾਲ",
+      "totalDuration": "ਕੁੱਲ ਸਮਾਂ"
+    },
+    "feedback": {
+      "title": "ਆਪਣਾ ਅਨੁਭਵ ਸਾਂਝਾ ਕਰੋ",
+      "ratingLabel": "ਤੁਸੀਂ ਇਸ ਕੁਇਜ਼ ਨੂੰ ਕਿਵੇਂ ਰੇਟ ਕਰੋਗੇ?",
+      "required": "*",
+      "additionalComments": "ਹੋਰ ਟਿੱਪਣੀਆਂ",
+      "placeholder": "ਆਪਣੇ ਵਿਚਾਰ ਜਾਂ ਸੁਝਾਅ ਸਾਂਝੇ ਕਰੋ...",
+      "submitButton": "ਫੀਡਬੈਕ ਜਮ੍ਹਾਂ ਕਰੋ",
+      "submitting": "ਫੀਡਬੈਕ ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…",
+      "thankYouTitle": "ਤੁਹਾਡੇ ਫੀਡਬੈਕ ਲਈ ਧੰਨਵਾਦ!",
+      "thankYouMessage": "ਤੁਹਾਡਾ ਸੁਝਾਅ ਸਾਨੂੰ ਸੁਧਾਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।",
+      "redirecting": "ਤੁਹਾਨੂੰ ਡੈਸ਼ਬੋਰਡ ਤੇ ਲਿਆਂਦਾ ਜਾ ਰਿਹਾ ਹੈ…",
+      "ratingLabels": {
+        "1": "ਖਰਾਬ",
+        "2": "ਠੀਕ",
+        "3": "ਚੰਗਾ",
+        "4": "ਬਹੁਤ ਚੰਗਾ",
+        "5": "ਸ਼ਾਨਦਾਰ"
+      }
+    },
+    "buttons": {
+      "backToHome": "ਹੋਮ ਤੇ ਜਾਓ",
+      "tryAgain": "ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
+    },
+    "messages": {
+      "outstanding": "ਸ਼ਾਨਦਾਰ ਪ੍ਰਦਰਸ਼ਨ!",
+      "excellent": "ਬਹੁਤ ਵਧੀਆ ਕੰਮ!",
+      "good": "ਚੰਗਾ ਕੰਮ!",
+      "satisfactory": "ਠੀਕ",
+      "fair": "ਠੀਕ ਕੋਸ਼ਿਸ਼",
+      "keepPracticing": "ਅਭਿਆਸ ਜਾਰੀ ਰੱਖੋ",
+      "outstandingSub": "ਤੁਸੀਂ ਵਧੀਆ ਸਮਝ ਦਿਖਾਈ ਹੈ",
+      "excellentSub": "ਤੁਹਾਡੀ ਪਕੜ ਮਜ਼ਬੂਤ ਹੈ",
+      "goodSub": "ਚੰਗਾ ਕੰਮ ਜਾਰੀ ਰੱਖੋ",
+      "satisfactorySub": "ਤੁਸੀਂ ਸਹੀ ਰਸਤੇ ਤੇ ਹੋ",
+      "fairSub": "ਸੁਧਾਰ ਦੀ ਲੋੜ ਹੈ",
+      "keepPracticingSub": "ਹਿੰਮਤ ਨਾ ਹਾਰੋ, ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
+    },
+    "errors": {
+      "ratingRequired": "ਕਿਰਪਾ ਕਰਕੇ ਰੇਟਿੰਗ ਚੁਣੋ",
+      "feedbackFailed": "ਫੀਡਬੈਕ ਜਮ੍ਹਾਂ ਨਹੀਂ ਹੋਇਆ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
     }
   },
 

@@ -1,4 +1,782 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect, useRef } from "react";
+// import { useNavigate, useParams } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   PageBody,
+//   PageHeader,
+//   PageHeaderLeft,
+//   PageLayout,
+//   PageSubtitle,
+//   PageTitle,
+// } from "../../common/layout";
+// import {
+//   FiCheckCircle,
+//   FiXCircle,
+//   FiClock,
+//   FiStar,
+//   FiSend,
+//   FiHome,
+//   FiRefreshCw,
+//   FiAlertCircle,
+//   FiMessageSquare,
+//   FiBarChart2,
+//   FiCheck,
+//   FiAward,
+//   FiTarget,
+//   FiTrendingUp,
+//   FiBookOpen,
+// } from "react-icons/fi";
+// import { useTranslation } from "react-i18next";
+// import {
+//   submitFeedback,
+//   clearQuizData,
+// } from "../../../../redux/slice/quizSlice";
+// import Loader from "../../common/Loader";
+
+// /* ── Only unavoidable animations (SVG ring, confetti, spinner) ── */
+// const STYLES = `
+//   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+//   @keyframes qr-dash {
+//     to { stroke-dashoffset: var(--qr-offset); }
+//   }
+//   @keyframes qr-spin {
+//     to { transform: rotate(360deg); }
+//   }
+//   @keyframes qr-pulse-ring {
+//     0%   { transform: scale(1);    opacity: .4; }
+//     50%  { transform: scale(1.22); opacity: 0; }
+//     100% { opacity: 0; }
+//   }
+//   @keyframes qr-confetti {
+//     0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
+//     100% { transform: translateY(100px) rotate(720deg); opacity: 0; }
+//   }
+//   @keyframes qr-score-in {
+//     from { opacity: 0; transform: translateY(5px); }
+//     to   { opacity: 1; transform: translateY(0); }
+//   }
+//   @keyframes qr-shimmer-bar {
+//     0%   { background-position: -400px 0; }
+//     100% { background-position:  400px 0; }
+//   }
+
+//   .qr-font { font-family: 'DM Sans', system-ui, sans-serif; }
+//   .qr-serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+//   .qr-spin-ring  { animation: qr-spin 12s linear infinite; }
+//   .qr-pulse-ring { animation: qr-pulse-ring 2.2s ease-out infinite; }
+//   .qr-spin-loader { animation: qr-spin .7s linear infinite; }
+//   .qr-score-num  { animation: qr-score-in .4s ease .85s both; }
+
+//   .qr-confetti-piece {
+//     position: absolute;
+//     width: 7px; height: 7px;
+//     border-radius: 2px;
+//     animation: qr-confetti linear infinite;
+//     pointer-events: none;
+//   }
+
+//   .qr-shimmer-bar {
+//     background: linear-gradient(90deg, #34d399, #059669, #34d399);
+//     background-size: 200% 100%;
+//     animation: qr-shimmer-bar 3s linear infinite;
+//   }
+//   .qr-shimmer-bar-fail {
+//     background: linear-gradient(90deg, #fb7185, #e11d48, #fb7185);
+//     background-size: 200% 100%;
+//     animation: qr-shimmer-bar 3s linear infinite;
+//   }
+
+//   .qr-textarea:focus {
+//     outline: none;
+//     border-color: #6366f1 !important;
+//     box-shadow: 0 0 0 3px rgba(99,102,241,.15);
+//   }
+// `;
+
+// /* ── Confetti ── */
+// const CONFETTI_COLORS = [
+//   "#10b981",
+//   "#f59e0b",
+//   "#6366f1",
+//   "#f43f5e",
+//   "#06b6d4",
+//   "#a855f7",
+// ];
+// const Confetti = () => (
+//   <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[inherit]">
+//     {Array.from({ length: 18 }).map((_, i) => (
+//       <span
+//         key={i}
+//         className="qr-confetti-piece"
+//         style={{
+//           left: `${5 + ((i * 5.5) % 90)}%`,
+//           top: `${-8 + ((i * 7) % 15)}%`,
+//           background: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+//           animationDuration: `${2.2 + (i % 5) * 0.4}s`,
+//           animationDelay: `${(i * 0.18) % 1.8}s`,
+//           transform: `rotate(${i * 23}deg)`,
+//           borderRadius: i % 3 === 0 ? "50%" : "2px",
+//         }}
+//       />
+//     ))}
+//   </div>
+// );
+
+// /* ── SVG Score Ring ── */
+// const ScoreRing = ({ percentage, isPassed }) => {
+//   const circleRef = useRef(null);
+//   const r = 70;
+//   const circ = 2 * Math.PI * r;
+//   const offset = circ * (1 - (percentage || 0) / 100);
+
+//   const trackColor = isPassed ? "#d1fae5" : "#ffe4e6";
+//   const gradStart = isPassed ? "#34d399" : "#fb7185";
+//   const gradEnd = isPassed ? "#059669" : "#e11d48";
+//   const textColor = isPassed ? "#065f46" : "#9f1239";
+
+//   useEffect(() => {
+//     const el = circleRef.current;
+//     if (!el) return;
+//     requestAnimationFrame(() => {
+//       el.style.transition =
+//         "stroke-dashoffset 1.2s cubic-bezier(.22,.68,0,1.2) .4s";
+//       el.style.strokeDashoffset = offset;
+//     });
+//   }, [offset]);
+
+//   return (
+//     <div className="relative inline-flex items-center justify-center">
+//       <svg
+//         width="168"
+//         height="168"
+//         viewBox="0 0 160 160"
+//         style={{ transform: "rotate(-90deg)" }}
+//       >
+//         <defs>
+//           <linearGradient id="qr-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+//             <stop offset="0%" stopColor={gradStart} />
+//             <stop offset="100%" stopColor={gradEnd} />
+//           </linearGradient>
+//           <filter id="qr-glow">
+//             <feGaussianBlur stdDeviation="3" result="blur" />
+//             <feMerge>
+//               <feMergeNode in="blur" />
+//               <feMergeNode in="SourceGraphic" />
+//             </feMerge>
+//           </filter>
+//         </defs>
+//         <circle
+//           cx="80"
+//           cy="80"
+//           r={r}
+//           stroke={trackColor}
+//           strokeWidth="13"
+//           fill="none"
+//         />
+//         <circle
+//           ref={circleRef}
+//           cx="80"
+//           cy="80"
+//           r={r}
+//           stroke="url(#qr-grad)"
+//           strokeWidth="13"
+//           fill="none"
+//           strokeLinecap="round"
+//           strokeDasharray={circ}
+//           strokeDashoffset={circ}
+//           filter="url(#qr-glow)"
+//         />
+//       </svg>
+//       <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+//         <span
+//           className="qr-score-num qr-serif"
+//           style={{
+//             fontSize: "2.4rem",
+//             fontWeight: 700,
+//             lineHeight: 1,
+//             color: textColor,
+//           }}
+//         >
+//           {Math.round(percentage || 0)}%
+//         </span>
+//         <span className="text-[0.6rem] tracking-widest text-gray-400 font-semibold uppercase">
+//           score
+//         </span>
+//       </div>
+//     </div>
+//   );
+// };
+
+// /* ══════════════════════════════
+//    MAIN COMPONENT
+// ══════════════════════════════ */
+// const QuizResult = () => {
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+//   const { t } = useTranslation();
+//   const { topicId, attemptId } = useParams();
+
+//   const { quizResults, isLoading, feedbackSubmitted } = useSelector(
+//     (state) => state.quiz,
+//   );
+
+//   const [feedback, setFeedback] = useState({ rating: 0, review: "" });
+//   const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
+//   const [hoveredRating, setHoveredRating] = useState(0);
+//   const [showFeedbackForm, setShowFeedbackForm] = useState(true);
+//   const [feedbackError, setFeedbackError] = useState("");
+
+//   /* inject styles */
+//   useEffect(() => {
+//     if (!document.getElementById("qr-styles")) {
+//       const el = document.createElement("style");
+//       el.id = "qr-styles";
+//       el.textContent = STYLES;
+//       document.head.appendChild(el);
+//     }
+//     return () => document.getElementById("qr-styles")?.remove();
+//   }, []);
+
+//   useEffect(() => {
+//     if (!quizResults) navigate("/");
+//   }, [quizResults, navigate]);
+
+//   useEffect(() => {
+//     if (feedbackSubmitted) {
+//       const t = setTimeout(() => navigate("/"), 3000);
+//       return () => clearTimeout(t);
+//     }
+//   }, [feedbackSubmitted, navigate]);
+
+//   /* helpers */
+//   const pct = quizResults?.percentage || 0;
+//   const isPassed = quizResults?.status === "passed";
+
+//   const getScoreMessage = () => {
+//     if (pct >= 80) return "Outstanding Achievement!";
+//     if (pct >= 70) return "Excellent Performance!";
+//     if (pct >= 60) return "Good Job!";
+//     if (pct >= 50) return "Satisfactory";
+//     if (pct >= 40) return "Fair Effort";
+//     return "Keep Practicing";
+//   };
+
+//   const getScoreSubtext = () => {
+//     if (pct >= 80) return "You've demonstrated exceptional understanding";
+//     if (pct >= 70) return "You have a strong grasp of the material";
+//     if (pct >= 60) return "Solid performance, keep up the good work";
+//     if (pct >= 50) return "You're on the right track";
+//     if (pct >= 40) return "Room for improvement, keep learning";
+//     return "Don't give up, review and try again";
+//   };
+
+//   const getRatingLabel = (r) =>
+//     ({ 1: "Poor", 2: "Fair", 3: "Good", 4: "Very Good", 5: "Excellent" })[r] ||
+//     "";
+
+//   const handleRatingClick = (rating) => {
+//     setFeedback((f) => ({ ...f, rating }));
+//     setFeedbackError("");
+//   };
+
+//   const handleFeedbackSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!feedback.rating) {
+//       setFeedbackError("Please select a rating");
+//       return;
+//     }
+//     setIsSubmittingFeedback(true);
+//     setFeedbackError("");
+//     try {
+//       await dispatch(
+//         submitFeedback({
+//           topicId,
+//           attemptId,
+//           rating: feedback.rating,
+//           review: feedback.review,
+//         }),
+//       ).unwrap();
+//       setShowFeedbackForm(false);
+//     } catch (err) {
+//       setFeedbackError(
+//         err?.response?.data?.message ||
+//           "Failed to submit feedback. Please try again.",
+//       );
+//     } finally {
+//       setIsSubmittingFeedback(false);
+//     }
+//   };
+
+//   const handleGoHome = () => navigate(`/topic/${topicId}`);
+//   const handleRetry = () => {
+//     dispatch(clearQuizData());
+//     navigate(-2);
+//   };
+
+//   /* loading */
+//   if (isLoading || !quizResults) {
+//     return (
+//       <PageLayout>
+//         <div className="flex justify-center items-center min-h-[60vh]">
+//           <Loader />
+//         </div>
+//       </PageLayout>
+//     );
+//   }
+
+//   /* pass/fail colour tokens */
+//   const passGlow = isPassed ? "rgba(16,185,129,.18)" : "rgba(244,63,94,.14)";
+//   const heroBorder = isPassed ? "#a7f3d0" : "#fecdd3";
+//   const heroBg = isPassed
+//     ? "linear-gradient(160deg,#f0fdf4 0%,#fff 60%)"
+//     : "linear-gradient(160deg,#fff1f2 0%,#fff 60%)";
+//   const iconGrad = isPassed
+//     ? "linear-gradient(135deg,#34d399,#059669)"
+//     : "linear-gradient(135deg,#fb7185,#e11d48)";
+//   const ringColor = isPassed ? "#10b981" : "#f43f5e";
+//   const pulseBg = isPassed ? "rgba(16,185,129,.2)" : "rgba(244,63,94,.2)";
+//   const pillBg = isPassed ? "#d1fae5" : "#ffe4e6";
+//   const pillBorder = isPassed ? "#a7f3d0" : "#fecdd3";
+//   const pillText = isPassed ? "#065f46" : "#9f1239";
+//   const pillIcon = isPassed ? "#059669" : "#e11d48";
+//   const msgColor = isPassed ? "#065f46" : "#9f1239";
+//   const ghostNum = isPassed ? "rgba(16,185,129,.05)" : "rgba(244,63,94,.05)";
+
+//   /* stat cards */
+//   const stats = [
+//     {
+//       icon: FiCheckCircle,
+//       value: quizResults.correct || 0,
+//       label: "Correct",
+//       bg: "#d1fae5",
+//       color: "#059669",
+//     },
+//     {
+//       icon: FiXCircle,
+//       value: quizResults.wrong || 0,
+//       label: "Incorrect",
+//       bg: "#ffe4e6",
+//       color: "#e11d48",
+//     },
+//     {
+//       icon: FiClock,
+//       value: quizResults.skipped || 0,
+//       label: "Skipped",
+//       bg: "#f3f4f6",
+//       color: "#6b7280",
+//     },
+//     {
+//       icon: FiTrendingUp,
+//       value: `${Math.floor(quizResults.time_taken_minutes || 0)}m ${Math.floor((quizResults.time_taken_seconds || 0) % 60)}s`,
+//       label: "Time Spent",
+//       bg: "#dbeafe",
+//       color: "#1d4ed8",
+//       small: true,
+//     },
+//   ];
+
+//   /* analysis rows */
+//   const analysisRows = [
+//     {
+//       icon: FiBookOpen,
+//       label: "Total Questions",
+//       value: quizResults.total || 0,
+//     },
+//     {
+//       icon: FiTarget,
+//       label: "Questions Attempted",
+//       value: quizResults.answered_questions || 0,
+//     },
+//     {
+//       icon: FiClock,
+//       label: "Pending Questions",
+//       value: quizResults.remaining_questions || 0,
+//     },
+//     {
+//       icon: FiClock,
+//       label: "Total Duration",
+//       value: `${(quizResults.time_taken_minutes || 0).toFixed(2)} minutes`,
+//       last: true,
+//     },
+//   ];
+
+//   /* ── RENDER ── */
+//   return (
+//     <PageLayout>
+//       <link rel="preconnect" href="https://fonts.googleapis.com" />
+//       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
+//       {/* ── Page Header ── */}
+//       <PageHeader className="border-b border-gray-100">
+//         <PageHeaderLeft>
+//           <div className="flex items-center gap-5">
+//             {/* Status icon with rings */}
+//             <div className="relative flex items-center justify-center">
+//               <div
+//                 className="qr-pulse-ring absolute rounded-full"
+//                 style={{ inset: -6, background: pulseBg }}
+//               />
+//               <div
+//                 className="qr-spin-ring absolute rounded-full opacity-35"
+//                 style={{ inset: -14, border: `2px dashed ${ringColor}` }}
+//               />
+//               <div
+//                 className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl animate-[scaleIn_.45s_cubic-bezier(.22,.68,0,1.2)_both]"
+//                 style={{ background: iconGrad }}
+//               >
+//                 {isPassed ? (
+//                   <FiCheckCircle className="w-9 h-9 text-white" />
+//                 ) : (
+//                   <FiXCircle className="w-9 h-9 text-white" />
+//                 )}
+//               </div>
+//             </div>
+
+//             <div className="animate-[fadeUp_.5s_ease_both]">
+//               <PageTitle className="qr-serif text-[1.75rem]">
+//                 {isPassed ? "Assessment Complete" : "Quiz Finished"}
+//               </PageTitle>
+//               <PageSubtitle className="text-gray-500 mt-1">
+//                 {isPassed
+//                   ? "Congratulations on passing the assessment"
+//                   : "Review your performance summary below"}
+//               </PageSubtitle>
+//             </div>
+//           </div>
+//         </PageHeaderLeft>
+//       </PageHeader>
+
+//       <PageBody className="qr-font">
+//         <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+//           {/* ── Hero Score Card ── */}
+//           <div
+//             className="relative rounded-3xl overflow-hidden animate-[fadeUp_.5s_cubic-bezier(.22,.68,0,1.2)_.05s_both]"
+//             style={{
+//               background: "#fff",
+//               border: `1.5px solid ${heroBorder}`,
+//               boxShadow: `0 4px 48px -8px ${passGlow}`,
+//             }}
+//           >
+//             {isPassed && <Confetti />}
+
+//             {/* top shimmer band */}
+//             <div
+//               className={`h-1.5 ${isPassed ? "qr-shimmer-bar" : "qr-shimmer-bar-fail"}`}
+//             />
+
+//             {/* Score section */}
+//             <div
+//               className="relative px-8 pt-12 pb-8 text-center"
+//               style={{ background: heroBg }}
+//             >
+//               {/* ghost number */}
+//               <div
+//                 className="qr-serif absolute top-2 right-6 select-none pointer-events-none"
+//                 style={{
+//                   fontSize: "9rem",
+//                   fontWeight: 900,
+//                   lineHeight: 1,
+//                   color: ghostNum,
+//                 }}
+//               >
+//                 {Math.round(pct)}
+//               </div>
+
+//               <div className="mb-6 animate-[scaleIn_.45s_cubic-bezier(.22,.68,0,1.2)_.1s_both]">
+//                 <ScoreRing percentage={pct} isPassed={isPassed} />
+//               </div>
+
+//               <h2
+//                 className="qr-serif text-[1.75rem] font-bold mb-1 animate-[fadeUp_.5s_ease_.15s_both]"
+//                 style={{ color: msgColor }}
+//               >
+//                 {getScoreMessage()}
+//               </h2>
+//               <p className="text-gray-500 text-sm max-w-sm mx-auto mb-3 animate-[fadeUp_.5s_ease_.2s_both]">
+//                 {getScoreSubtext()}
+//               </p>
+
+//               {/* Pass/Fail pill */}
+//               <div
+//                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full animate-[fadeUp_.5s_ease_.22s_both]"
+//                 style={{
+//                   background: pillBg,
+//                   border: `1px solid ${pillBorder}`,
+//                 }}
+//               >
+//                 <FiAward style={{ width: 14, height: 14, color: pillIcon }} />
+//                 <span
+//                   className="text-xs font-semibold uppercase tracking-wide"
+//                   style={{ color: pillText }}
+//                 >
+//                   {isPassed ? "Passed" : "Failed"} &nbsp;·&nbsp; Score:{" "}
+//                   {quizResults.score} / {quizResults.total}
+//                 </span>
+//               </div>
+//             </div>
+
+//             {/* Stat grid */}
+//             <div className="grid grid-cols-4 border-t border-gray-100">
+//               {stats.map(
+//                 ({ icon: Icon, value, label, bg, color, small }, i) => (
+//                   <div
+//                     key={label}
+//                     className="group py-6 px-3 text-center bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg cursor-default"
+//                     style={{
+//                       borderRight: i < 3 ? "1px solid #f3f4f6" : "none",
+//                     }}
+//                   >
+//                     <div className="flex justify-center mb-2.5">
+//                       <div
+//                         className="w-9 h-9 rounded-[10px] flex items-center justify-center"
+//                         style={{ background: bg }}
+//                       >
+//                         <Icon style={{ width: 17, height: 17, color }} />
+//                       </div>
+//                     </div>
+//                     <div
+//                       className={`qr-serif font-bold text-gray-800 leading-none mb-1 ${small ? "text-[1.1rem]" : "text-[1.55rem]"}`}
+//                     >
+//                       {value}
+//                     </div>
+//                     <div className="text-[0.65rem] text-gray-400 uppercase tracking-widest font-semibold">
+//                       {label}
+//                     </div>
+//                   </div>
+//                 ),
+//               )}
+//             </div>
+//           </div>
+
+//           {/* ── Analysis Card ── */}
+//           <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm animate-[fadeUp_.5s_cubic-bezier(.22,.68,0,1.2)_.2s_both]">
+//             {/* Card header */}
+//             <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white flex items-center gap-3">
+//               <div className="w-8 h-8 rounded-[9px] bg-gray-100 flex items-center justify-center">
+//                 <FiBarChart2 className="w-4 h-4 text-gray-600" />
+//               </div>
+//               <span className="qr-serif font-semibold text-gray-800 text-base">
+//                 Detailed Performance Analysis
+//               </span>
+//             </div>
+
+//             {/* Rows */}
+//             <div className="px-6">
+//               {analysisRows.map(({ icon: Icon, label, value, last }) => (
+//                 <div
+//                   key={label}
+//                   className="flex justify-between items-center py-3.5 transition-colors duration-150 hover:bg-gray-50 -mx-6 px-6"
+//                   style={{ borderBottom: last ? "none" : "1px solid #f9fafb" }}
+//                 >
+//                   <div className="flex items-center gap-2.5">
+//                     <Icon className="w-3.5 h-3.5 text-gray-400" />
+//                     <span className="text-gray-500 text-sm">{label}</span>
+//                   </div>
+//                   <span className="qr-serif font-semibold text-gray-800 text-[0.95rem]">
+//                     {value}
+//                   </span>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+
+//           {/* ── Feedback Form ── */}
+//           {showFeedbackForm && !feedbackSubmitted && (
+//             <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm animate-[fadeUp_.5s_cubic-bezier(.22,.68,0,1.2)_.3s_both]">
+//               {/* Header */}
+//               <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white flex items-center gap-3">
+//                 <div className="w-8 h-8 rounded-[9px] bg-gray-100 flex items-center justify-center">
+//                   <FiMessageSquare className="w-4 h-4 text-gray-600" />
+//                 </div>
+//                 <span className="qr-serif font-semibold text-gray-800 text-base">
+//                   Share Your Experience
+//                 </span>
+//               </div>
+
+//               <div className="p-6">
+//                 <form onSubmit={handleFeedbackSubmit}>
+//                   {/* Stars */}
+//                   <div className="mb-7">
+//                     <label className="block text-gray-700 font-medium text-sm mb-3">
+//                       How would you rate this quiz?{" "}
+//                       <span className="text-rose-500">*</span>
+//                     </label>
+
+//                     <div className="flex items-center gap-2.5 mb-2">
+//                       {[1, 2, 3, 4, 5].map((star) => {
+//                         const active =
+//                           (hoveredRating || feedback.rating) >= star;
+//                         return (
+//                           <button
+//                             key={star}
+//                             type="button"
+//                             onClick={() => handleRatingClick(star)}
+//                             onMouseEnter={() => setHoveredRating(star)}
+//                             onMouseLeave={() => setHoveredRating(0)}
+//                             className="qr-star-btn p-0 bg-transparent border-0 cursor-pointer leading-none transition-transform duration-150 hover:scale-125 active:scale-90"
+//                           >
+//                             <FiStar
+//                               className="w-8 h-8 transition-all duration-150"
+//                               style={{
+//                                 color: active ? "#f59e0b" : "#e5e7eb",
+//                                 fill: active ? "#f59e0b" : "none",
+//                               }}
+//                             />
+//                           </button>
+//                         );
+//                       })}
+
+//                       {feedback.rating > 0 && (
+//                         <span className="ml-1 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-800">
+//                           {getRatingLabel(feedback.rating)}
+//                         </span>
+//                       )}
+//                     </div>
+
+//                     {feedbackError && (
+//                       <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-[10px] bg-rose-50 border border-rose-200 text-rose-500 text-sm mt-2">
+//                         <FiAlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+//                         {feedbackError}
+//                       </div>
+//                     )}
+//                   </div>
+
+//                   {/* Textarea */}
+//                   <div className="mb-6">
+//                     <label className="block text-gray-700 font-medium text-sm mb-2">
+//                       Additional Comments
+//                     </label>
+//                     <textarea
+//                       value={feedback.review}
+//                       onChange={(e) =>
+//                         setFeedback((f) => ({ ...f, review: e.target.value }))
+//                       }
+//                       rows={4}
+//                       placeholder="Share your thoughts, suggestions, or concerns..."
+//                       className="qr-textarea w-full px-4 py-3 border-[1.5px] border-gray-200 rounded-xl text-sm text-gray-700 resize-none bg-gray-50 transition-all duration-200"
+//                       style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
+//                     />
+//                   </div>
+
+//                   {/* Submit button */}
+//                   <button
+//                     type="submit"
+//                     disabled={isSubmittingFeedback}
+//                     className="submit-btn w-full py-3.5 rounded-xl border-0 font-semibold text-[0.95rem] text-white flex items-center justify-content-center gap-2 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+//                     style={{
+//                       background: "linear-gradient(135deg,#1f2937,#111827)",
+//                       justifyContent: "center",
+//                       fontFamily: "'DM Sans', system-ui, sans-serif",
+//                     }}
+//                   >
+//                     {isSubmittingFeedback ? (
+//                       <>
+//                         <div
+//                           className="qr-spin-loader w-4 h-4 rounded-full"
+//                           style={{
+//                             border: "2.5px solid rgba(255,255,255,.3)",
+//                             borderTopColor: "#fff",
+//                           }}
+//                         />
+//                         Submitting Feedback…
+//                       </>
+//                     ) : (
+//                       <>
+//                         <FiSend className="w-4 h-4" /> Submit Feedback
+//                       </>
+//                     )}
+//                   </button>
+//                 </form>
+//               </div>
+//             </div>
+//           )}
+
+//           {/* ── Thank-you card ── */}
+//           {feedbackSubmitted && (
+//             <div
+//               className="relative rounded-2xl overflow-hidden text-center px-8 py-12 animate-[thankPop_.6s_cubic-bezier(.22,.68,0,1.2)_both]"
+//               style={{
+//                 background: "linear-gradient(135deg,#ecfdf5,#d1fae5)",
+//                 border: "1.5px solid #6ee7b7",
+//                 boxShadow: "0 4px 32px -8px rgba(16,185,129,.22)",
+//               }}
+//             >
+//               <Confetti />
+
+//               <div
+//                 className="w-16 h-16 rounded-[18px] mx-auto mb-5 flex items-center justify-center"
+//                 style={{
+//                   background: "linear-gradient(135deg,#34d399,#059669)",
+//                   boxShadow: "0 8px 24px -4px rgba(16,185,129,.45)",
+//                 }}
+//               >
+//                 <FiCheck className="w-7 h-7 text-white" />
+//               </div>
+
+//               <h3 className="qr-serif text-[1.4rem] font-bold text-emerald-900 mb-1.5">
+//                 Thank You for Your Feedback!
+//               </h3>
+//               <p className="text-emerald-700 text-sm mb-4">
+//                 Your input helps us improve and create better learning
+//                 experiences.
+//               </p>
+
+//               <div className="flex justify-center gap-1.5 mb-3">
+//                 {[1, 2, 3, 4, 5].map((star) => (
+//                   <FiStar
+//                     key={star}
+//                     className="w-5 h-5"
+//                     style={{
+//                       color: star <= feedback.rating ? "#f59e0b" : "#d1d5db",
+//                       fill: star <= feedback.rating ? "#f59e0b" : "none",
+//                       transition: `all .12s ease ${star * 80}ms`,
+//                     }}
+//                   />
+//                 ))}
+//               </div>
+
+//               <p className="text-emerald-400 text-xs tracking-wide">
+//                 Redirecting to dashboard in a moment…
+//               </p>
+//             </div>
+//           )}
+
+//           {/* ── Action Buttons ── */}
+//           {!feedbackSubmitted && (
+//             <div className="flex gap-4 justify-center animate-[fadeUp_.5s_ease_.45s_both]">
+//               <button
+//                 onClick={handleGoHome}
+//                 className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg active:-translate-y-0.5"
+//                 style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
+//               >
+//                 <FiHome className="w-3.5 h-3.5" />
+//                 Back to Home
+//               </button>
+
+//               <button
+//                 onClick={handleRetry}
+//                 className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-0 text-white font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg active:-translate-y-0.5"
+//                 style={{
+//                   background: "linear-gradient(135deg,#1f2937,#111827)",
+//                   fontFamily: "'DM Sans', system-ui, sans-serif",
+//                 }}
+//               >
+//                 <FiRefreshCw className="w-3.5 h-3.5" />
+//                 Try Again
+//               </button>
+//             </div>
+//           )}
+//         </div>
+//       </PageBody>
+//     </PageLayout>
+//   );
+// };
+
+// export default QuizResult;
+
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -33,161 +811,294 @@ import {
 } from "../../../../redux/slice/quizSlice";
 import Loader from "../../common/Loader";
 
+/* ── Only unavoidable animations (SVG ring, confetti, spinner) ── */
+const STYLES = `
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  @keyframes qr-dash {
+    to { stroke-dashoffset: var(--qr-offset); }
+  }
+  @keyframes qr-spin {
+    to { transform: rotate(360deg); }
+  }
+  @keyframes qr-pulse-ring {
+    0%   { transform: scale(1);    opacity: .4; }
+    50%  { transform: scale(1.22); opacity: 0; }
+    100% { opacity: 0; }
+  }
+  @keyframes qr-confetti {
+    0%   { transform: translateY(-10px) rotate(0deg);   opacity: 1; }
+    100% { transform: translateY(100px) rotate(720deg); opacity: 0; }
+  }
+  @keyframes qr-score-in {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes qr-shimmer-bar {
+    0%   { background-position: -400px 0; }
+    100% { background-position:  400px 0; }
+  }
+
+  .qr-font { font-family: 'DM Sans', system-ui, sans-serif; }
+  .qr-serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+  .qr-spin-ring  { animation: qr-spin 12s linear infinite; }
+  .qr-pulse-ring { animation: qr-pulse-ring 2.2s ease-out infinite; }
+  .qr-spin-loader { animation: qr-spin .7s linear infinite; }
+  .qr-score-num  { animation: qr-score-in .4s ease .85s both; }
+
+  .qr-confetti-piece {
+    position: absolute;
+    width: 7px; height: 7px;
+    border-radius: 2px;
+    animation: qr-confetti linear infinite;
+    pointer-events: none;
+  }
+
+  .qr-shimmer-bar {
+    background: linear-gradient(90deg, #34d399, #059669, #34d399);
+    background-size: 200% 100%;
+    animation: qr-shimmer-bar 3s linear infinite;
+  }
+  .qr-shimmer-bar-fail {
+    background: linear-gradient(90deg, #fb7185, #e11d48, #fb7185);
+    background-size: 200% 100%;
+    animation: qr-shimmer-bar 3s linear infinite;
+  }
+
+  .qr-textarea:focus {
+    outline: none;
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 3px rgba(99,102,241,.15);
+  }
+`;
+
+/* ── Confetti ── */
+const CONFETTI_COLORS = [
+  "#10b981",
+  "#f59e0b",
+  "#6366f1",
+  "#f43f5e",
+  "#06b6d4",
+  "#a855f7",
+];
+const Confetti = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[inherit]">
+    {Array.from({ length: 18 }).map((_, i) => (
+      <span
+        key={i}
+        className="qr-confetti-piece"
+        style={{
+          left: `${5 + ((i * 5.5) % 90)}%`,
+          top: `${-8 + ((i * 7) % 15)}%`,
+          background: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+          animationDuration: `${2.2 + (i % 5) * 0.4}s`,
+          animationDelay: `${(i * 0.18) % 1.8}s`,
+          transform: `rotate(${i * 23}deg)`,
+          borderRadius: i % 3 === 0 ? "50%" : "2px",
+        }}
+      />
+    ))}
+  </div>
+);
+
+/* ── SVG Score Ring ── */
+const ScoreRing = ({ percentage, isPassed }) => {
+  const { t } = useTranslation();
+  const circleRef = useRef(null);
+  const r = 70;
+  const circ = 2 * Math.PI * r;
+  const offset = circ * (1 - (percentage || 0) / 100);
+
+  const trackColor = isPassed ? "#d1fae5" : "#ffe4e6";
+  const gradStart = isPassed ? "#34d399" : "#fb7185";
+  const gradEnd = isPassed ? "#059669" : "#e11d48";
+  const textColor = isPassed ? "#065f46" : "#9f1239";
+
+  useEffect(() => {
+    const el = circleRef.current;
+    if (!el) return;
+    requestAnimationFrame(() => {
+      el.style.transition =
+        "stroke-dashoffset 1.2s cubic-bezier(.22,.68,0,1.2) .4s";
+      el.style.strokeDashoffset = offset;
+    });
+  }, [offset]);
+
+  return (
+    <div className="relative inline-flex items-center justify-center">
+      <svg
+        width="168"
+        height="168"
+        viewBox="0 0 160 160"
+        style={{ transform: "rotate(-90deg)" }}
+      >
+        <defs>
+          <linearGradient id="qr-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={gradStart} />
+            <stop offset="100%" stopColor={gradEnd} />
+          </linearGradient>
+          <filter id="qr-glow">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <circle
+          cx="80"
+          cy="80"
+          r={r}
+          stroke={trackColor}
+          strokeWidth="13"
+          fill="none"
+        />
+        <circle
+          ref={circleRef}
+          cx="80"
+          cy="80"
+          r={r}
+          stroke="url(#qr-grad)"
+          strokeWidth="13"
+          fill="none"
+          strokeLinecap="round"
+          strokeDasharray={circ}
+          strokeDashoffset={circ}
+          filter="url(#qr-glow)"
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5">
+        <span
+          className="qr-score-num qr-serif"
+          style={{
+            fontSize: "2.4rem",
+            fontWeight: 700,
+            lineHeight: 1,
+            color: textColor,
+          }}
+        >
+          {Math.round(percentage || 0)}%
+        </span>
+        <span className="text-[0.6rem] tracking-widest text-gray-400 font-semibold uppercase">
+          {t("quizResult.score")}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+/* ══════════════════════════════
+   MAIN COMPONENT
+══════════════════════════════ */
 const QuizResult = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { topicId, attemptId } = useParams();
-  console.log("topicId", topicId);
 
   const { quizResults, isLoading, feedbackSubmitted } = useSelector(
     (state) => state.quiz,
   );
 
-  const [feedback, setFeedback] = useState({
-    rating: 0,
-    review: "",
-  });
-
+  const [feedback, setFeedback] = useState({ rating: 0, review: "" });
   const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
   const [hoveredRating, setHoveredRating] = useState(0);
   const [showFeedbackForm, setShowFeedbackForm] = useState(true);
   const [feedbackError, setFeedbackError] = useState("");
 
+  /* inject styles */
   useEffect(() => {
-    if (!quizResults) {
-      navigate("/");
+    if (!document.getElementById("qr-styles")) {
+      const el = document.createElement("style");
+      el.id = "qr-styles";
+      el.textContent = STYLES;
+      document.head.appendChild(el);
     }
+    return () => document.getElementById("qr-styles")?.remove();
+  }, []);
+
+  useEffect(() => {
+    if (!quizResults) navigate("/");
   }, [quizResults, navigate]);
 
   useEffect(() => {
     if (feedbackSubmitted) {
-      const timer = setTimeout(() => {
-        navigate("/");
-      }, 3000);
-      return () => clearTimeout(timer);
+      const t = setTimeout(() => navigate("/"), 3000);
+      return () => clearTimeout(t);
     }
   }, [feedbackSubmitted, navigate]);
 
-  const getStatusColor = () => {
-    return quizResults?.status === "passed"
-      ? "text-emerald-700"
-      : "text-rose-700";
-  };
-
-  const getStatusBgColor = () => {
-    return quizResults?.status === "passed"
-      ? "bg-emerald-50 border-emerald-200"
-      : "bg-rose-50 border-rose-200";
-  };
-
-  const getStatusIcon = () => {
-    return quizResults?.status === "passed" ? (
-      <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
-        <FiCheckCircle className="w-10 h-10 text-white" />
-      </div>
-    ) : (
-      <div className="w-20 h-20 bg-gradient-to-br from-rose-400 to-rose-600 rounded-2xl flex items-center justify-center shadow-lg">
-        <FiXCircle className="w-10 h-10 text-white" />
-      </div>
-    );
-  };
-
-  const getPercentageColor = () => {
-    const percentage = quizResults?.percentage || 0;
-    if (percentage >= 70) return "text-emerald-700";
-    if (percentage >= 40) return "text-amber-700";
-    return "text-rose-700";
-  };
-
-  const getProgressBarColor = () => {
-    const percentage = quizResults?.percentage || 0;
-    if (percentage >= 70)
-      return "bg-gradient-to-r from-emerald-500 to-emerald-600";
-    if (percentage >= 40) return "bg-gradient-to-r from-amber-500 to-amber-600";
-    return "bg-gradient-to-r from-rose-500 to-rose-600";
-  };
+  /* helpers */
+  const pct = quizResults?.percentage || 0;
+  const isPassed = quizResults?.status === "passed";
 
   const getScoreMessage = () => {
-    const percentage = quizResults?.percentage || 0;
-    if (percentage >= 80) return "Outstanding Achievement!";
-    if (percentage >= 70) return "Excellent Performance!";
-    if (percentage >= 60) return "Good Job!";
-    if (percentage >= 50) return "Satisfactory";
-    if (percentage >= 40) return "Fair Effort";
-    return "Keep Practicing";
+    if (pct >= 80) return t("quizResult.messages.outstanding");
+    if (pct >= 70) return t("quizResult.messages.excellent");
+    if (pct >= 60) return t("quizResult.messages.good");
+    if (pct >= 50) return t("quizResult.messages.satisfactory");
+    if (pct >= 40) return t("quizResult.messages.fair");
+    return t("quizResult.messages.keepPracticing");
   };
 
   const getScoreSubtext = () => {
-    const percentage = quizResults?.percentage || 0;
-    if (percentage >= 80)
-      return "You've demonstrated exceptional understanding";
-    if (percentage >= 70) return "You have a strong grasp of the material";
-    if (percentage >= 60) return "Solid performance, keep up the good work";
-    if (percentage >= 50) return "You're on the right track";
-    if (percentage >= 40) return "Room for improvement, keep learning";
-    return "Don't give up, review and try again";
+    if (pct >= 80) return t("quizResult.messages.outstandingSub");
+    if (pct >= 70) return t("quizResult.messages.excellentSub");
+    if (pct >= 60) return t("quizResult.messages.goodSub");
+    if (pct >= 50) return t("quizResult.messages.satisfactorySub");
+    if (pct >= 40) return t("quizResult.messages.fairSub");
+    return t("quizResult.messages.keepPracticingSub");
   };
 
+  const getRatingLabel = (r) =>
+    ({
+      1: t("quizResult.feedback.ratingLabels.1"),
+      2: t("quizResult.feedback.ratingLabels.2"),
+      3: t("quizResult.feedback.ratingLabels.3"),
+      4: t("quizResult.feedback.ratingLabels.4"),
+      5: t("quizResult.feedback.ratingLabels.5"),
+    })[r] || "";
+
   const handleRatingClick = (rating) => {
-    setFeedback({ ...feedback, rating });
+    setFeedback((f) => ({ ...f, rating }));
     setFeedbackError("");
   };
 
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
-
-    if (feedback.rating === 0) {
-      setFeedbackError("Please select a rating");
+    if (!feedback.rating) {
+      setFeedbackError(t("quizResult.errors.ratingRequired"));
       return;
     }
-
     setIsSubmittingFeedback(true);
     setFeedbackError("");
-
     try {
       await dispatch(
         submitFeedback({
-          topicId: topicId,
-          attemptId: attemptId,
+          topicId,
+          attemptId,
           rating: feedback.rating,
           review: feedback.review,
         }),
       ).unwrap();
-
       setShowFeedbackForm(false);
-    } catch (error) {
-      console.error("Failed to submit feedback:", error);
+    } catch (err) {
       setFeedbackError(
-        error.response?.data?.message ||
-          "Failed to submit feedback. Please try again.",
+        err?.response?.data?.message || t("quizResult.errors.feedbackFailed"),
       );
     } finally {
       setIsSubmittingFeedback(false);
     }
   };
 
-  const handleGoHome = () => {
-    // dispatch(clearQuizData());
-    navigate(`/topic/${topicId}`);
-  };
-
+  const handleGoHome = () => navigate(`/topic/${topicId}`);
   const handleRetry = () => {
     dispatch(clearQuizData());
     navigate(-2);
   };
 
-  const getRatingLabel = (rating) => {
-    const labels = {
-      1: "Poor",
-      2: "Fair",
-      3: "Good",
-      4: "Very Good",
-      5: "Excellent",
-    };
-    return labels[rating] || "";
-  };
-
+  /* loading */
   if (isLoading || !quizResults) {
     return (
       <PageLayout>
@@ -198,333 +1109,372 @@ const QuizResult = () => {
     );
   }
 
+  /* pass/fail colour tokens */
+  const passGlow = isPassed ? "rgba(16,185,129,.18)" : "rgba(244,63,94,.14)";
+  const heroBorder = isPassed ? "#a7f3d0" : "#fecdd3";
+  const heroBg = isPassed
+    ? "linear-gradient(160deg,#f0fdf4 0%,#fff 60%)"
+    : "linear-gradient(160deg,#fff1f2 0%,#fff 60%)";
+  const iconGrad = isPassed
+    ? "linear-gradient(135deg,#34d399,#059669)"
+    : "linear-gradient(135deg,#fb7185,#e11d48)";
+  const ringColor = isPassed ? "#10b981" : "#f43f5e";
+  const pulseBg = isPassed ? "rgba(16,185,129,.2)" : "rgba(244,63,94,.2)";
+  const pillBg = isPassed ? "#d1fae5" : "#ffe4e6";
+  const pillBorder = isPassed ? "#a7f3d0" : "#fecdd3";
+  const pillText = isPassed ? "#065f46" : "#9f1239";
+  const pillIcon = isPassed ? "#059669" : "#e11d48";
+  const msgColor = isPassed ? "#065f46" : "#9f1239";
+  const ghostNum = isPassed ? "rgba(16,185,129,.05)" : "rgba(244,63,94,.05)";
+
+  /* stat cards */
+  const stats = [
+    {
+      icon: FiCheckCircle,
+      value: quizResults.correct || 0,
+      label: t("quizResult.stats.correct"),
+      bg: "#d1fae5",
+      color: "#059669",
+    },
+    {
+      icon: FiXCircle,
+      value: quizResults.wrong || 0,
+      label: t("quizResult.stats.incorrect"),
+      bg: "#ffe4e6",
+      color: "#e11d48",
+    },
+    {
+      icon: FiClock,
+      value: quizResults.skipped || 0,
+      label: t("quizResult.stats.skipped"),
+      bg: "#f3f4f6",
+      color: "#6b7280",
+    },
+    {
+      icon: FiTrendingUp,
+      value: `${Math.floor(quizResults.time_taken_minutes || 0)}m ${Math.floor((quizResults.time_taken_seconds || 0) % 60)}s`,
+      label: t("quizResult.stats.timeSpent"),
+      bg: "#dbeafe",
+      color: "#1d4ed8",
+      small: true,
+    },
+  ];
+
+  /* analysis rows */
+  const analysisRows = [
+    {
+      icon: FiBookOpen,
+      label: t("quizResult.analysis.totalQuestions"),
+      value: quizResults.total || 0,
+    },
+    {
+      icon: FiTarget,
+      label: t("quizResult.analysis.questionsAttempted"),
+      value: quizResults.answered_questions || 0,
+    },
+    {
+      icon: FiClock,
+      label: t("quizResult.analysis.pendingQuestions"),
+      value: quizResults.remaining_questions || 0,
+    },
+    {
+      icon: FiClock,
+      label: t("quizResult.analysis.totalDuration"),
+      value: `${(quizResults.time_taken_minutes || 0).toFixed(2)} minutes`,
+      last: true,
+    },
+  ];
+
+  /* ── RENDER ── */
   return (
     <PageLayout>
-      <PageHeader className="border-b border-gray-100 bg-gradient-to-b from-white to-gray-50">
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
+      {/* ── Page Header ── */}
+      <PageHeader className="border-b border-gray-100">
         <PageHeaderLeft>
-          <div className="flex items-center gap-6">
-            {getStatusIcon()}
-            <div>
-              <PageTitle className="text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
-                {quizResults?.status === "passed"
-                  ? "Assessment Complete"
-                  : "Quiz Finished"}
+          <div className="flex items-center gap-5">
+            {/* Status icon with rings */}
+            <div className="relative flex items-center justify-center">
+              <div
+                className="qr-pulse-ring absolute rounded-full"
+                style={{ inset: -6, background: pulseBg }}
+              />
+              <div
+                className="qr-spin-ring absolute rounded-full opacity-35"
+                style={{ inset: -14, border: `2px dashed ${ringColor}` }}
+              />
+              <div
+                className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl animate-[scaleIn_.45s_cubic-bezier(.22,.68,0,1.2)_both]"
+                style={{ background: iconGrad }}
+              >
+                {isPassed ? (
+                  <FiCheckCircle className="w-9 h-9 text-white" />
+                ) : (
+                  <FiXCircle className="w-9 h-9 text-white" />
+                )}
+              </div>
+            </div>
+
+            <div className="animate-[fadeUp_.5s_ease_both]">
+              <PageTitle className="qr-serif text-[1.75rem]">
+                {isPassed
+                  ? t("quizResult.pageTitlePassed")
+                  : t("quizResult.pageTitleFailed")}
               </PageTitle>
               <PageSubtitle className="text-gray-500 mt-1">
-                {quizResults?.status === "passed"
-                  ? "Congratulations on passing the assessment"
-                  : "Review your performance summary below"}
+                {isPassed
+                  ? t("quizResult.pageSubtitlePassed")
+                  : t("quizResult.pageSubtitleFailed")}
               </PageSubtitle>
             </div>
           </div>
         </PageHeaderLeft>
       </PageHeader>
 
-      <PageBody>
-        <div className="max-w-5xl mx-auto px-4 py-8">
-          {/* Main Score Card - Classic Design */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8 hover:shadow-md transition-shadow duration-300">
-            {/* Score Header with Gradient */}
-            <div className="relative bg-gradient-to-br from-gray-50 to-white p-8 text-center border-b border-gray-100">
-              {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-gray-50 to-transparent rounded-full opacity-50"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-gray-50 to-transparent rounded-full opacity-50"></div>
+      <PageBody className="qr-font">
+        <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+          {/* ── Hero Score Card ── */}
+          <div
+            className="relative rounded-3xl overflow-hidden animate-[fadeUp_.5s_cubic-bezier(.22,.68,0,1.2)_.05s_both]"
+            style={{
+              background: "#fff",
+              border: `1.5px solid ${heroBorder}`,
+              boxShadow: `0 4px 48px -8px ${passGlow}`,
+            }}
+          >
+            {isPassed && <Confetti />}
 
-              {/* Percentage Circle - Enhanced */}
-              <div className="relative inline-block mb-6">
-                <svg className="w-40 h-40 transform -rotate-90">
-                  <defs>
-                    <linearGradient
-                      id="gradient"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
-                      <stop
-                        offset="0%"
-                        stopColor={
-                          quizResults?.percentage >= 70
-                            ? "#10b981"
-                            : quizResults?.percentage >= 40
-                              ? "#f59e0b"
-                              : "#f43f5e"
-                        }
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor={
-                          quizResults?.percentage >= 70
-                            ? "#059669"
-                            : quizResults?.percentage >= 40
-                              ? "#d97706"
-                              : "#e11d48"
-                        }
-                      />
-                    </linearGradient>
-                  </defs>
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r="70"
-                    stroke="#f3f4f6"
-                    strokeWidth="12"
-                    fill="none"
-                  />
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r="70"
-                    stroke="url(#gradient)"
-                    strokeWidth="12"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeDasharray={`${2 * Math.PI * 70}`}
-                    strokeDashoffset={`${2 * Math.PI * 70 * (1 - (quizResults?.percentage || 0) / 100)}`}
-                    style={{ transition: "stroke-dashoffset 1s ease-out" }}
-                  />
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span
-                    className={`text-4xl font-bold ${getPercentageColor()}`}
-                  >
-                    {Math.round(quizResults?.percentage || 0)}%
-                  </span>
-                  <span className="text-xs text-gray-400 mt-1 font-medium">
-                    SCORE
-                  </span>
-                </div>
+            {/* top shimmer band */}
+            <div
+              className={`h-1.5 ${isPassed ? "qr-shimmer-bar" : "qr-shimmer-bar-fail"}`}
+            />
+
+            {/* Score section */}
+            <div
+              className="relative px-8 pt-12 pb-8 text-center"
+              style={{ background: heroBg }}
+            >
+              {/* ghost number */}
+              <div
+                className="qr-serif absolute top-2 right-6 select-none pointer-events-none"
+                style={{
+                  fontSize: "9rem",
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  color: ghostNum,
+                }}
+              >
+                {Math.round(pct)}
               </div>
 
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              <div className="mb-6 animate-[scaleIn_.45s_cubic-bezier(.22,.68,0,1.2)_.1s_both]">
+                <ScoreRing percentage={pct} isPassed={isPassed} />
+              </div>
+
+              <h2
+                className="qr-serif text-[1.75rem] font-bold mb-1 animate-[fadeUp_.5s_ease_.15s_both]"
+                style={{ color: msgColor }}
+              >
                 {getScoreMessage()}
               </h2>
-              <p className="text-gray-500 text-sm max-w-md mx-auto">
+              <p className="text-gray-500 text-sm max-w-sm mx-auto mb-3 animate-[fadeUp_.5s_ease_.2s_both]">
                 {getScoreSubtext()}
               </p>
-              <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full">
-                <FiAward className="w-4 h-4 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">
-                  Score: {quizResults?.score} / {quizResults?.total}
+
+              {/* Pass/Fail pill */}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full animate-[fadeUp_.5s_ease_.22s_both]"
+                style={{
+                  background: pillBg,
+                  border: `1px solid ${pillBorder}`,
+                }}
+              >
+                <FiAward style={{ width: 14, height: 14, color: pillIcon }} />
+                <span
+                  className="text-xs font-semibold uppercase tracking-wide"
+                  style={{ color: pillText }}
+                >
+                  {isPassed ? t("quizResult.passed") : t("quizResult.failed")}{" "}
+                  &nbsp;·&nbsp; {t("quizResult.scoreLabel")}:{" "}
+                  {quizResults.score} / {quizResults.total}
                 </span>
               </div>
             </div>
 
-            {/* Statistics Grid - Professional Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-              <div className="bg-white p-6 text-center hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-center mb-2">
-                  <div className="p-2 bg-emerald-100 rounded-lg">
-                    <FiCheckCircle className="w-5 h-5 text-emerald-600" />
+            {/* Stat grid */}
+            <div className="grid grid-cols-4 border-t border-gray-100">
+              {stats.map(
+                ({ icon: Icon, value, label, bg, color, small }, i) => (
+                  <div
+                    key={label}
+                    className="group py-6 px-3 text-center bg-white transition-all duration-200 hover:-translate-y-1 hover:shadow-lg cursor-default"
+                    style={{
+                      borderRight: i < 3 ? "1px solid #f3f4f6" : "none",
+                    }}
+                  >
+                    <div className="flex justify-center mb-2.5">
+                      <div
+                        className="w-9 h-9 rounded-[10px] flex items-center justify-center"
+                        style={{ background: bg }}
+                      >
+                        <Icon style={{ width: 17, height: 17, color }} />
+                      </div>
+                    </div>
+                    <div
+                      className={`qr-serif font-bold text-gray-800 leading-none mb-1 ${small ? "text-[1.1rem]" : "text-[1.55rem]"}`}
+                    >
+                      {value}
+                    </div>
+                    <div className="text-[0.65rem] text-gray-400 uppercase tracking-widest font-semibold">
+                      {label}
+                    </div>
                   </div>
-                </div>
-                <div className="text-2xl font-bold text-gray-800">
-                  {quizResults?.correct || 0}
-                </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">
-                  Correct Answers
-                </div>
-              </div>
-
-              <div className="bg-white p-6 text-center hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-center mb-2">
-                  <div className="p-2 bg-rose-100 rounded-lg">
-                    <FiXCircle className="w-5 h-5 text-rose-600" />
-                  </div>
-                </div>
-                <div className="text-2xl font-bold text-gray-800">
-                  {quizResults?.wrong || 0}
-                </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">
-                  Incorrect Answers
-                </div>
-              </div>
-
-              <div className="bg-white p-6 text-center hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-center mb-2">
-                  <div className="p-2 bg-gray-100 rounded-lg">
-                    <FiClock className="w-5 h-5 text-gray-600" />
-                  </div>
-                </div>
-                <div className="text-2xl font-bold text-gray-800">
-                  {quizResults?.skipped || 0}
-                </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">
-                  Skipped Questions
-                </div>
-              </div>
-
-              <div className="bg-white p-6 text-center hover:bg-gray-50 transition-colors">
-                <div className="flex items-center justify-center mb-2">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <FiTrendingUp className="w-5 h-5 text-blue-600" />
-                  </div>
-                </div>
-                <div className="text-xl font-bold text-gray-800">
-                  {Math.floor(quizResults?.time_taken_minutes || 0)}m{" "}
-                  {Math.floor((quizResults?.time_taken_seconds || 0) % 60)}s
-                </div>
-                <div className="text-xs text-gray-500 uppercase tracking-wide mt-1">
-                  Time Spent
-                </div>
-              </div>
+                ),
+              )}
             </div>
           </div>
 
-          {/* Detailed Statistics Card - Classic Elegance */}
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8 hover:shadow-md transition-shadow duration-300">
-            <div className="border-b border-gray-100 px-8 py-5 bg-gradient-to-r from-gray-50 to-white">
-              <h3 className="font-semibold text-gray-800 flex items-center gap-3">
-                <div className="p-2 bg-gray-100 rounded-lg">
-                  <FiBarChart2 className="w-4 h-4 text-gray-700" />
-                </div>
-                <span className="text-lg">Detailed Performance Analysis</span>
-              </h3>
-            </div>
-            <div className="p-8">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <FiBookOpen className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Total Questions</span>
-                  </div>
-                  <span className="font-semibold text-gray-800 text-lg">
-                    {quizResults?.total || 0}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <FiTarget className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Questions Attempted</span>
-                  </div>
-                  <span className="font-semibold text-gray-800">
-                    {quizResults?.answered_questions || 0}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <FiClock className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Pending Questions</span>
-                  </div>
-                  <span className="font-semibold text-gray-800">
-                    {quizResults?.remaining_questions || 0}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <FiTrendingUp className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Completion Method</span>
-                  </div>
-                  <span className="font-semibold capitalize text-gray-800">
-                    {quizResults?.submit_type === "auto"
-                      ? "Auto-submitted"
-                      : quizResults?.submit_type || "Manual"}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3">
-                  <div className="flex items-center gap-3">
-                    <FiClock className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-600">Total Duration</span>
-                  </div>
-                  <span className="font-semibold text-gray-800">
-                    {quizResults?.time_taken_minutes?.toFixed(2) || 0} minutes
-                  </span>
-                </div>
+          {/* ── Analysis Card ── */}
+          <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm animate-[fadeUp_.5s_cubic-bezier(.22,.68,0,1.2)_.2s_both]">
+            {/* Card header */}
+            <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white flex items-center gap-3">
+              <div className="w-8 h-8 rounded-[9px] bg-gray-100 flex items-center justify-center">
+                <FiBarChart2 className="w-4 h-4 text-gray-600" />
               </div>
+              <span className="qr-serif font-semibold text-gray-800 text-base">
+                {t("quizResult.analysis.title")}
+              </span>
+            </div>
+
+            {/* Rows */}
+            <div className="px-6">
+              {analysisRows.map(({ icon: Icon, label, value, last }) => (
+                <div
+                  key={label}
+                  className="flex justify-between items-center py-3.5 transition-colors duration-150 hover:bg-gray-50 -mx-6 px-6"
+                  style={{ borderBottom: last ? "none" : "1px solid #f9fafb" }}
+                >
+                  <div className="flex items-center gap-2.5">
+                    <Icon className="w-3.5 h-3.5 text-gray-400" />
+                    <span className="text-gray-500 text-sm">{label}</span>
+                  </div>
+                  <span className="qr-serif font-semibold text-gray-800 text-[0.95rem]">
+                    {value}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Feedback Form - Classic Design */}
+          {/* ── Feedback Form ── */}
           {showFeedbackForm && !feedbackSubmitted && (
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8 hover:shadow-md transition-shadow duration-300">
-              <div className="border-b border-gray-100 px-8 py-5 bg-gradient-to-r from-gray-50 to-white">
-                <h3 className="font-semibold text-gray-800 flex items-center gap-3">
-                  <div className="p-2 bg-gray-100 rounded-lg">
-                    <FiMessageSquare className="w-4 h-4 text-gray-700" />
-                  </div>
-                  <span className="text-lg">Share Your Experience</span>
-                </h3>
+            <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm animate-[fadeUp_.5s_cubic-bezier(.22,.68,0,1.2)_.3s_both]">
+              {/* Header */}
+              <div className="px-6 py-4 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white flex items-center gap-3">
+                <div className="w-8 h-8 rounded-[9px] bg-gray-100 flex items-center justify-center">
+                  <FiMessageSquare className="w-4 h-4 text-gray-600" />
+                </div>
+                <span className="qr-serif font-semibold text-gray-800 text-base">
+                  {t("quizResult.feedback.title")}
+                </span>
               </div>
-              <div className="p-8">
+
+              <div className="p-6">
                 <form onSubmit={handleFeedbackSubmit}>
-                  {/* Rating Stars Section */}
-                  <div className="mb-8">
-                    <label className="block text-gray-700 font-medium mb-3">
-                      How would you rate this quiz?{" "}
-                      <span className="text-rose-500">*</span>
+                  {/* Stars */}
+                  <div className="mb-7">
+                    <label className="block text-gray-700 font-medium text-sm mb-3">
+                      {t("quizResult.feedback.ratingLabel")}{" "}
+                      <span className="text-rose-500">
+                        {t("quizResult.feedback.required")}
+                      </span>
                     </label>
 
-                    <div className="space-y-3">
-                      <div className="flex gap-3">
-                        {[1, 2, 3, 4, 5].map((star) => (
+                    <div className="flex items-center gap-2.5 mb-2">
+                      {[1, 2, 3, 4, 5].map((star) => {
+                        const active =
+                          (hoveredRating || feedback.rating) >= star;
+                        return (
                           <button
                             key={star}
                             type="button"
                             onClick={() => handleRatingClick(star)}
                             onMouseEnter={() => setHoveredRating(star)}
                             onMouseLeave={() => setHoveredRating(0)}
-                            className="focus:outline-none transform transition-all hover:scale-110"
+                            className="qr-star-btn p-0 bg-transparent border-0 cursor-pointer leading-none transition-transform duration-150 hover:scale-125 active:scale-90"
                           >
                             <FiStar
-                              className={`w-8 h-8 transition-all ${
-                                (hoveredRating || feedback.rating) >= star
-                                  ? "text-amber-400 fill-current"
-                                  : "text-gray-300"
-                              }`}
+                              className="w-8 h-8 transition-all duration-150"
+                              style={{
+                                color: active ? "#f59e0b" : "#e5e7eb",
+                                fill: active ? "#f59e0b" : "none",
+                              }}
                             />
                           </button>
-                        ))}
-                      </div>
+                        );
+                      })}
 
                       {feedback.rating > 0 && (
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 rounded-full">
-                          <span className="text-sm font-medium text-amber-700">
-                            {getRatingLabel(feedback.rating)}
-                          </span>
-                        </div>
-                      )}
-
-                      {feedbackError && (
-                        <div className="text-rose-600 text-sm flex items-center gap-2 bg-rose-50 p-3 rounded-lg">
-                          <FiAlertCircle className="w-4 h-4" />
-                          {feedbackError}
-                        </div>
+                        <span className="ml-1 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-800">
+                          {getRatingLabel(feedback.rating)}
+                        </span>
                       )}
                     </div>
+
+                    {feedbackError && (
+                      <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-[10px] bg-rose-50 border border-rose-200 text-rose-500 text-sm mt-2">
+                        <FiAlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                        {feedbackError}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Review Section */}
-                  <div className="mb-8">
-                    <label className="block text-gray-700 font-medium mb-3">
-                      Additional Comments
+                  {/* Textarea */}
+                  <div className="mb-6">
+                    <label className="block text-gray-700 font-medium text-sm mb-2">
+                      {t("quizResult.feedback.additionalComments")}
                     </label>
                     <textarea
                       value={feedback.review}
                       onChange={(e) =>
-                        setFeedback({ ...feedback, review: e.target.value })
+                        setFeedback((f) => ({ ...f, review: e.target.value }))
                       }
-                      rows="4"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent transition-all resize-none text-gray-700 placeholder-gray-400"
-                      placeholder="Share your thoughts, suggestions, or concerns..."
+                      rows={4}
+                      placeholder={t("quizResult.feedback.placeholder")}
+                      className="qr-textarea w-full px-4 py-3 border-[1.5px] border-gray-200 rounded-xl text-sm text-gray-700 resize-none bg-gray-50 transition-all duration-200"
+                      style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  {/* Submit button */}
                   <button
                     type="submit"
                     disabled={isSubmittingFeedback}
-                    className="w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 rounded-xl font-medium hover:from-gray-900 hover:to-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200"
+                    className="submit-btn w-full py-3.5 rounded-xl border-0 font-semibold text-[0.95rem] text-white flex items-center justify-content-center gap-2 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                    style={{
+                      background: "linear-gradient(135deg,#1f2937,#111827)",
+                      justifyContent: "center",
+                      fontFamily: "'DM Sans', system-ui, sans-serif",
+                    }}
                   >
                     {isSubmittingFeedback ? (
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                        Submitting Feedback...
-                      </div>
+                      <>
+                        <div
+                          className="qr-spin-loader w-4 h-4 rounded-full"
+                          style={{
+                            border: "2.5px solid rgba(255,255,255,.3)",
+                            borderTopColor: "#fff",
+                          }}
+                        />
+                        {t("quizResult.feedback.submitting")}
+                      </>
                     ) : (
-                      <div className="flex items-center justify-center gap-2">
-                        <FiSend className="w-4 h-4" />
-                        Submit Feedback
-                      </div>
+                      <>
+                        <FiSend className="w-4 h-4" />{" "}
+                        {t("quizResult.feedback.submitButton")}
+                      </>
                     )}
                   </button>
                 </form>
@@ -532,53 +1482,77 @@ const QuizResult = () => {
             </div>
           )}
 
-          {/* Thank You Message - Elegant */}
+          {/* ── Thank-you card ── */}
           {feedbackSubmitted && (
-            <div className="bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200 rounded-2xl p-8 text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <FiCheck className="w-8 h-8 text-white" />
+            <div
+              className="relative rounded-2xl overflow-hidden text-center px-8 py-12 animate-[thankPop_.6s_cubic-bezier(.22,.68,0,1.2)_both]"
+              style={{
+                background: "linear-gradient(135deg,#ecfdf5,#d1fae5)",
+                border: "1.5px solid #6ee7b7",
+                boxShadow: "0 4px 32px -8px rgba(16,185,129,.22)",
+              }}
+            >
+              <Confetti />
+
+              <div
+                className="w-16 h-16 rounded-[18px] mx-auto mb-5 flex items-center justify-center"
+                style={{
+                  background: "linear-gradient(135deg,#34d399,#059669)",
+                  boxShadow: "0 8px 24px -4px rgba(16,185,129,.45)",
+                }}
+              >
+                <FiCheck className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-emerald-800 mb-2">
-                Thank You for Your Feedback!
+
+              <h3 className="qr-serif text-[1.4rem] font-bold text-emerald-900 mb-1.5">
+                {t("quizResult.feedback.thankYouTitle")}
               </h3>
-              <p className="text-emerald-700">
-                Your input helps us improve and create better learning
-                experiences.
+              <p className="text-emerald-700 text-sm mb-4">
+                {t("quizResult.feedback.thankYouMessage")}
               </p>
-              <div className="mt-4 flex justify-center gap-1">
+
+              <div className="flex justify-center gap-1.5 mb-3">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <FiStar
                     key={star}
-                    className={`w-5 h-5 ${
-                      star <= feedback.rating
-                        ? "text-amber-400 fill-current"
-                        : "text-gray-300"
-                    }`}
+                    className="w-5 h-5"
+                    style={{
+                      color: star <= feedback.rating ? "#f59e0b" : "#d1d5db",
+                      fill: star <= feedback.rating ? "#f59e0b" : "none",
+                      transition: `all .12s ease ${star * 80}ms`,
+                    }}
                   />
                 ))}
               </div>
-              <p className="text-emerald-600 text-sm mt-4">
-                Redirecting to dashboard in a moment...
+
+              <p className="text-emerald-400 text-xs tracking-wide">
+                {t("quizResult.feedback.redirecting")}
               </p>
             </div>
           )}
 
-          {/* Action Buttons - Classic Style */}
+          {/* ── Action Buttons ── */}
           {!feedbackSubmitted && (
-            <div className="flex gap-4 justify-center">
+            <div className="flex gap-4 justify-center animate-[fadeUp_.5s_ease_.45s_both]">
               <button
                 onClick={handleGoHome}
-                className="group flex items-center gap-2 px-6 py-2.5 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 hover:border-gray-400 transition-all text-sm"
+                className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg active:-translate-y-0.5"
+                style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
               >
-                <FiHome className="w-4 h-4 group-hover:transform group-hover:-translate-x-0.5 transition-transform" />
-                Back to Home
+                <FiHome className="w-3.5 h-3.5" />
+                {t("quizResult.buttons.backToHome")}
               </button>
+
               <button
                 onClick={handleRetry}
-                className="group flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl font-medium hover:from-gray-900 hover:to-gray-800 transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 text-sm"
+                className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-0 text-white font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg active:-translate-y-0.5"
+                style={{
+                  background: "linear-gradient(135deg,#1f2937,#111827)",
+                  fontFamily: "'DM Sans', system-ui, sans-serif",
+                }}
               >
-                <FiRefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
-                Try Again
+                <FiRefreshCw className="w-3.5 h-3.5" />
+                {t("quizResult.buttons.tryAgain")}
               </button>
             </div>
           )}

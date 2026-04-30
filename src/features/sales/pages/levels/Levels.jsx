@@ -397,16 +397,18 @@ const LevelCard = ({ item }) => {
         </div>
 
         {/* FAQ Button - Added Here */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate(`/faqs?type=level&id=${item.id}`);
-          }}
-          className="mt-3 w-full py-2.5 rounded-xl text-sm font-medium transition bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 flex items-center justify-center gap-2"
-        >
-          <FaQuestionCircle className="w-4 h-4" />
-          {"FAQs"}
-        </button>
+        {item.is_completed && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/faqs?type=level&id=${item.id}`);
+            }}
+            className="mt-3 w-full py-2.5 rounded-xl text-sm font-medium transition bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 flex items-center justify-center gap-2"
+          >
+            <FaQuestionCircle className="w-4 h-4" />
+            {"FAQs"}
+          </button>
+        )}
 
         {/* Button */}
         <button
