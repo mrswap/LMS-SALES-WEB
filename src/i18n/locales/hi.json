@@ -1,16 +1,17 @@
 {
   "login": {
-    "title": "वापस स्वागत है!",
+    "title": "वापसी पर स्वागत है!",
     "emailLabel": "ईमेल पता",
     "emailPlaceholder": "अपना ईमेल दर्ज करें",
     "passwordLabel": "पासवर्ड",
     "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
     "forgotPassword": "पासवर्ड भूल गए?",
-    "stayLoggedIn": "लॉगिन बनाए रखें",
+    "stayLoggedIn": "लॉग इन रहें",
     "button": "साइन इन करें",
+    "loading": "साइन इन हो रहा है...",
     "or": "या",
     "newEmployee": "नए कर्मचारी?",
-    "completeEmployeeOnboarding": "कर्मचारी ऑनबोर्डिंग पूरी करें",
+    "completeEmployeeOnboarding": "कर्मचारी ऑनबोर्डिंग पूरा करें",
     "secureLogin": "सुरक्षित लॉगिन",
     "termsOfService": "सेवा की शर्तें",
     "privacyPolicy": "गोपनीयता नीति",
@@ -167,19 +168,19 @@
     }
   },
 
-  "header": {
+  "navbar": {
+    "home": "होम",
+    "myLevels": "मेरे लेवल्स",
+    "analytics": "एनालिटिक्स",
+    "assessment": "मूल्यांकन",
+    "profile": "प्रोफाइल",
+    "settings": "सेटिंग्स",
+    "logout": "लॉगआउट",
     "language": {
       "en": "English",
-      "hi": "हिन्दी",
-      "pa": "ਪੰਜਾਬੀ"
+      "hi": "हिंदी",
+      "pa": "पंजाबी"
     }
-  },
-
-  "sidebar": {
-    "home": "होम",
-    "myLevels": "मेरे स्तर",
-    "anlytics": "विश्लेषण",
-    "profile": "प्रोफ़ाइल"
   },
 
   "profile": {

@@ -1,21 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { HiHome } from "react-icons/hi";
-import { MdOutlineVideoLibrary, MdAnalytics, MdSettings } from "react-icons/md";
+import {
+  MdOutlineVideoLibrary,
+  MdAnalytics,
+  MdSettings,
+  MdAssignment,
+} from "react-icons/md";
 import { useTranslation } from "react-i18next";
 
 const NavbarBottom = () => {
   const { t } = useTranslation();
 
   const navItems = [
-    { path: "/dashboard", name: t("sidebar.home"), icon: HiHome },
+    { path: "/dashboard", name: t("navbar.home"), icon: HiHome },
     {
       path: "/levels",
-      name: t("sidebar.myLevels"),
+      name: t("navbar.myLevels"),
       icon: MdOutlineVideoLibrary,
     },
-    { path: "/progress", name: t("sidebar.anlytics"), icon: MdAnalytics },
-    { path: "/settings", name: t("sidebar.profile"), icon: MdSettings },
+    { path: "/progress", name: t("navbar.anlytics"), icon: MdAnalytics },
+    { path: "/assessment", name: t("navbar.assessment"), icon: MdAssignment },
   ];
 
   return (
