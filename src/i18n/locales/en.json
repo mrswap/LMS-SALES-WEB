@@ -8,6 +8,7 @@
     "forgotPassword": "Forgot Password?",
     "stayLoggedIn": "Stay logged in",
     "button": "Sign In",
+    "loading": "Signing In...",
     "or": "OR",
     "newEmployee": "New Employee?",
     "completeEmployeeOnboarding": "Complete Employee Onboarding",
@@ -167,19 +168,19 @@
     }
   },
 
-  "header": {
-    "language": {
-      "en": "English",
-      "hi": "हिन्दी",
-      "pa": "ਪੰਜਾਬੀ"
-    }
-  },
-
-  "sidebar": {
+  "navbar": {
     "home": "Home",
     "myLevels": "My Levels",
-    "anlytics": "Analytics",
-    "profile": "Profile"
+    "analytics": "Analytics",
+    "assessment": "Assessment",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "language": {
+      "en": "English",
+      "hi": "हिंदी",
+      "pa": "ਪੰਜਾਬੀ"
+    }
   },
 
   "profile": {

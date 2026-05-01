@@ -15,7 +15,7 @@ import { useToast } from "../../common/toast/ToastContext";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation(); // i18n object le lo
+  const { t, i18n } = useTranslation();
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -85,7 +85,7 @@ const Login = () => {
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          {() => (
+          {({ isSubmitting }) => (
             <Form className="space-y-4 sm:space-y-5">
               {/* Email */}
               <div className="relative">
@@ -141,14 +141,13 @@ const Login = () => {
                 <input type="checkbox" />
                 <span>{t("login.stayLoggedIn")}</span>
               </div>
-
-              {/* Button */}
-              <FormButton
-                text={t("login.button")}
-                className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2.5 rounded-md"
+              <button
                 type="submit"
-                disabled={isLoading}
-              />
+                disabled={isLoading || isSubmitting}
+                className="w-full bg-teal-500 hover:bg-teal-600 text-white py-2.5 rounded-md"
+              >
+                {isLoading ? t("login.loading") : t("login.button")}
+              </button>
             </Form>
           )}
         </Formik>

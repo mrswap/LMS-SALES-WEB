@@ -1,23 +1,24 @@
 {
   "login": {
-    "title": "ਵਾਪਸ ਜੀ ਆਇਆਂ ਨੂੰ!",
+    "title": "ਵਾਪਸੀ ਤੇ ਸਵਾਗਤ ਹੈ!",
     "emailLabel": "ਈਮੇਲ ਪਤਾ",
-    "emailPlaceholder": "ਆਪਣਾ ਈਮੇਲ ਦਾਖਲ ਕਰੋ",
+    "emailPlaceholder": "ਆਪਣਾ ਈਮੇਲ ਦਰਜ ਕਰੋ",
     "passwordLabel": "ਪਾਸਵਰਡ",
-    "passwordPlaceholder": "ਆਪਣਾ ਪਾਸਵਰਡ ਦਾਖਲ ਕਰੋ",
+    "passwordPlaceholder": "ਆਪਣਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
     "forgotPassword": "ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?",
-    "stayLoggedIn": "ਲੌਗਿਨ ਰਹੋ",
+    "stayLoggedIn": "ਲੌਗਇਨ ਰਹੋ",
     "button": "ਸਾਈਨ ਇਨ ਕਰੋ",
+    "loading": "ਸਾਈਨ ਇਨ ਹੋ ਰਿਹਾ ਹੈ...",
     "or": "ਜਾਂ",
-    "newEmployee": "ਨਵੇਂ ਕਰਮਚਾਰੀ?",
-    "completeEmployeeOnboarding": "ਕਰਮਚਾਰੀ ਓਨਬੋਰਡਿੰਗ ਪੂਰੀ ਕਰੋ",
-    "secureLogin": "ਸੁਰੱਖਿਅਤ ਲੌਗਿਨ",
+    "newEmployee": "ਨਵਾਂ ਕਰਮਚਾਰੀ?",
+    "completeEmployeeOnboarding": "ਕਰਮਚਾਰੀ ਆਨਬੋਰਡਿੰਗ ਪੂਰੀ ਕਰੋ",
+    "secureLogin": "ਸੁਰੱਖਿਅਤ ਲੌਗਇਨ",
     "termsOfService": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
     "privacyPolicy": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ",
     "language": "ਭਾਸ਼ਾ",
     "validation": {
       "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
-      "emailInvalid": "ਅਵੈਧ ਈਮੇਲ ਪਤਾ",
+      "emailInvalid": "ਗਲਤ ਈਮੇਲ ਪਤਾ",
       "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ"
     }
   },
@@ -167,19 +168,19 @@
     }
   },
 
-  "header": {
+  "navbar": {
+    "home": "ਹੋਮ",
+    "myLevels": "ਮੇਰੇ ਲੈਵਲ",
+    "analytics": "ਐਨਾਲਿਟਿਕਸ",
+    "assessment": "ਮੁਲਾਂਕਣ",
+    "profile": "ਪ੍ਰੋਫਾਈਲ",
+    "settings": "ਸੈਟਿੰਗਜ਼",
+    "logout": "ਲੌਗਆਉਟ",
     "language": {
       "en": "English",
-      "hi": "हिन्दी",
+      "hi": "ਹਿੰਦੀ",
       "pa": "ਪੰਜਾਬੀ"
     }
-  },
-
-  "sidebar": {
-    "home": "ਹੋਮ",
-    "myLevels": "ਮੇਰੇ ਪੱਧਰ",
-    "anlytics": "ਵਿਸ਼ਲੇਸ਼ਣ",
-    "profile": "ਪ੍ਰੋਫਾਈਲ"
   },
 
   "profile": {

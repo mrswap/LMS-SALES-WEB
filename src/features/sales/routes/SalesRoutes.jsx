@@ -6,7 +6,7 @@ import Levels from "../pages/levels/Levels";
 import LevelDetails from "../pages/levels/components/LevelDetails";
 import Quize from "../pages/quize/Quize";
 import QuizeResult from "../pages/quize/QuizeResult";
-import Certificate from "../pages/certificate/Certificate";
+// import Certificate from "../pages/certificate/Certificate";
 import ProgressStats from "../pages/progress/ProgressStats";
 import Profile from "../pages/profile/Profile";
 import ProfileDetails from "../pages/profile/components/ProfileDetails";
@@ -22,6 +22,11 @@ import TermsAndCondition from "../pages/settings/terms-and-condition/TermsAndCon
 import Policy from "../pages/settings/privacy-policy/Policy";
 import ContactUs from "../pages/settings/contact-us/ContactUs";
 import Faq from "../pages/faq/Faq";
+import Assessment from "../pages/assessment/Assessment";
+import AuditLogsReports from "../pages/progress/components/AuditLogsReports";
+import UserProgressReports from "../pages/progress/components/UserProgressReports";
+import CertificationReports from "../pages/progress/components/CertificationReports";
+import Certificate from "../pages/assessment/components/Certificate";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -57,10 +62,17 @@ const SalesRoutes = (
       />
 
       {/*certificate  */}
-      <Route path="certificate" element={<Certificate />} />
+      {/* <Route path="certificate" element={<Certificate />} /> */}
 
       {/*progress  */}
       <Route path="progress" element={<ProgressStats />} />
+      <Route path="audit-logs" element={<AuditLogsReports />} />
+      <Route path="user-progress" element={<UserProgressReports />} />
+      <Route path="certification" element={<CertificationReports />} />
+      <Route path="certificate/:id" element={<Certificate />} />
+
+      {/*assessment  */}
+      <Route path="assessment" element={<Assessment />} />
 
       {/*profile  */}
       <Route path="profile" element={<Profile />} />
