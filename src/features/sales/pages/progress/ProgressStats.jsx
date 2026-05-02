@@ -101,10 +101,6 @@ const ProgressStats = () => {
               icon={<FaClipboardList />}
               title="Audit Logs"
               description="Track system activities, user actions, and security events"
-              reportCount="156"
-              reportLabel="Recent Events"
-              trendIcon={<FaArrowUp className="text-green-500" />}
-              trendValue="+12 this week"
               onClick={navigateToAuditLogs}
               iconBg="bg-purple-100"
               iconColor="text-purple-600"
@@ -117,10 +113,6 @@ const ProgressStats = () => {
               icon={<FaUserGraduate />}
               title="User Progress"
               description="Monitor learner achievements, completion rates, and milestones"
-              reportCount="89%"
-              reportLabel="Avg Completion"
-              trendIcon={<FaTrophy className="text-yellow-500" />}
-              trendValue="↑ 5% vs last month"
               onClick={navigateToUserProgress}
               iconBg="bg-blue-100"
               iconColor="text-blue-600"
@@ -133,10 +125,6 @@ const ProgressStats = () => {
               icon={<FaCertificate />}
               title="Certification Reports"
               description="View certificates issued, pending, and expiration status"
-              reportCount="24"
-              reportLabel="Certificates Issued"
-              trendIcon={<FaCalendarAlt className="text-green-500" />}
-              trendValue="8 pending approval"
               onClick={navigateToCertification}
               iconBg="bg-emerald-100"
               iconColor="text-emerald-600"

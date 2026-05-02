@@ -75,6 +75,22 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
+export const verifyEmail = createAsyncThunk(
+  "auth/verifyEmail",
+  async (token, thunkAPI) => {
+    try {
+      const res = await axiosInstance.get(
+        `/trainee/verify-email?token=${token}`
+      );
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || { message: "Something went wrong" }
+      );
+    }
+  }
+);
+
 /* ===========================
    SLICE
 =========================== */
