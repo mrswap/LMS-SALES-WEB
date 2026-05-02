@@ -16,6 +16,8 @@
     "termsOfService": "Terms of Service",
     "privacyPolicy": "Privacy Policy",
     "language": "Language",
+    "successMessage": "Login Successful",
+    "errorMessage": "Something went wrong",
     "validation": {
       "emailRequired": "Email is required",
       "emailInvalid": "Invalid email address",
@@ -125,7 +127,9 @@
       "heading": "Email Verified!",
       "message": "Your email has been successfully verified.",
       "goToLogin": "Go to Login",
-      "backToHome": "Back to Home"
+      "backToHome": "Back to Home",
+      "redirecting": "Redirecting to login in",
+      "seconds": "seconds..."
     },
     "error": {
       "heading": "Verification Failed",
@@ -248,8 +252,7 @@
       "change": "Change Image",
       "remove": "Remove Image",
       "supportedFormats": "Supported formats: JPEG, PNG, WEBP. Max size: 5MB",
-      "selected": "Selected:",
-      "newImageSelected": "New image selected: (will be saved with profile)"
+      "selected": "Selected:"
     },
     "basicInfo": {
       "employeeId": {
@@ -262,11 +265,11 @@
       },
       "email": {
         "label": "Email Address",
-        "placeholder": "kajalcharve6@gmail.com"
+        "placeholder": "example@email.com"
       },
       "mobile": {
         "label": "Mobile Number",
-        "placeholder": "8982251020"
+        "placeholder": "9876543210"
       }
     },
     "location": {
@@ -332,26 +335,37 @@
     "subtitle": "Track your progress and continue your journey",
     "allLevels": "All Levels",
     "completed": "Completed",
+    "progress": "Progress",
     "status": {
-      "completed": "COMPLETED",
-      "running": "RUNNING",
-      "locked": "LOCKED"
+      "passed": "Passed",
+      "readyForExam": "Ready for Exam",
+      "inProgress": "In Progress",
+      "locked": "Locked",
+      "notStarted": "Not Started"
     },
     "buttons": {
-      "takeExam": "Take an Exam",
+      "locked": "Locked",
+      "viewCertificate": "View Certificate",
+      "giveExam": "Give Exam",
       "continue": "Continue",
-      "startLevel": "Start Level"
+      "startLevel": "Start Level",
+      "faqs": "FAQs"
     },
-    "progress": "Progress",
     "modules": {
       "zero": "0 Modules",
       "one": "1 Module",
       "other": "Modules"
     },
+    "messages": {
+      "contentCompleted": "Content completed!",
+      "readyForExam": "Ready for exam",
+      "certificateEarned": "Certificate earned!",
+      "examNotAvailable": "Exam will be available soon"
+    },
     "emptyStates": {
       "noCompleted": "No completed levels yet. Keep learning!",
       "noLevels": "No levels available.",
-      "error": "Something Went wrong"
+      "error": "Something went wrong"
     }
   },
 
@@ -359,6 +373,8 @@
     "pageTitle": "Level Details",
     "pageSubtitle": "Track your progress and continue your journey",
     "backButton": "Back",
+    "levelBadge": "Level",
+    "modulesCount": "Modules",
     "stats": {
       "progress": "PROGRESS",
       "completed": "COMPLETED",
@@ -378,8 +394,10 @@
       "locked": "Locked",
       "chapters": "chapters",
       "topics": "topics",
-      "startModule": "Start Module",
       "lockedButton": "Locked"
+    },
+    "buttons": {
+      "continue": "Continue"
     },
     "cta": {
       "continueLearning": "Continue Learning",
@@ -390,15 +408,17 @@
     },
     "emptyState": {
       "noData": "No level data available"
-    },
-    "levelBadge": "Level",
-    "modulesCount": "Modules"
+    }
   },
 
   "modules": {
     "pageTitle": "Module Details",
     "pageSubtitle": "Track your progress through chapters",
     "backButton": "Back",
+    "badge": {
+      "chapters": "Chapters",
+      "topics": "Topics"
+    },
     "stats": {
       "progress": "PROGRESS",
       "completed": "COMPLETED",
@@ -417,11 +437,13 @@
       "current": "Current",
       "completed": "Completed",
       "locked": "Locked",
-      "startChapter": "Start Chapter",
-      "lockedButton": "Locked",
       "topics": "topics",
       "completedText": "completed",
-      "min": "min"
+      "min": "min",
+      "lockedButton": "Locked"
+    },
+    "buttons": {
+      "continue": "Continue"
     },
     "cta": {
       "continueLearning": "Continue Learning",
@@ -432,10 +454,6 @@
     },
     "emptyState": {
       "noData": "No module data available"
-    },
-    "badge": {
-      "chapters": "Chapters",
-      "topics": "Topics"
     }
   },
 
@@ -443,6 +461,10 @@
     "pageTitle": "Chapter Details",
     "pageSubtitle": "Track your progress through topics",
     "backButton": "Back",
+    "badge": {
+      "topics": "Topics",
+      "minutes": "min"
+    },
     "stats": {
       "progress": "PROGRESS",
       "completed": "COMPLETED",
@@ -460,24 +482,22 @@
       "current": "Current",
       "completed": "Completed",
       "locked": "Locked",
-      "startTopic": "Start Topic",
-      "lockedButton": "Locked",
+      "min": "min",
       "giveQuiz": "Give Quiz",
-      "min": "min"
+      "lockedButton": "Locked"
+    },
+    "buttons": {
+      "continue": "Continue"
     },
     "cta": {
       "continueLearning": "Continue Learning",
-      "allCompleted": "All Completed 🎉",
+      "allCompleted": "All Completed",
       "continueJourney": "Continue your learning journey",
       "nextTopic": "Next:",
-      "allTopicsCompleted": "All topics completed! 🎉"
+      "allTopicsCompleted": "All topics completed!"
     },
     "emptyState": {
       "noData": "No chapter data available"
-    },
-    "badge": {
-      "topics": "Topics",
-      "minutes": "min"
     }
   },
 
@@ -506,6 +526,25 @@
     "emptyState": {
       "title": "No Topics Available",
       "description": "Check back later for new learning materials"
+    },
+    "quiz": {
+      "title": "Ready to Test Your Knowledge?",
+      "description": "You've completed all topics! Take the quiz to earn your certificate.",
+      "giveQuizButton": "Give Quiz"
+    },
+    "cta": {
+      "continueLearning": "Continue Learning",
+      "nextPage": "Next Page",
+      "giveQuiz": "Give Quiz",
+      "allCompleted": "All Topics Completed",
+      "continueJourney": "Continue your learning journey",
+      "moreTopics": "More topics available",
+      "testYourself": "Test your knowledge",
+      "allCompletedMessage": "All topics completed",
+      "nextTopic": "Next topic:",
+      "nextPageMessage": "Go to next page for more topics",
+      "readyForQuiz": "Ready for the quiz?",
+      "congratulations": "Congratulations! You've completed everything"
     }
   },
 
@@ -581,11 +620,11 @@
   },
 
   "quizResult": {
+    "score": "score",
     "pageTitlePassed": "Assessment Complete",
     "pageTitleFailed": "Quiz Finished",
     "pageSubtitlePassed": "Congratulations on passing the assessment",
     "pageSubtitleFailed": "Review your performance summary below",
-    "score": "score",
     "passed": "Passed",
     "failed": "Failed",
     "scoreLabel": "Score",
@@ -597,9 +636,12 @@
     },
     "analysis": {
       "title": "Detailed Performance Analysis",
+      "attemptId": "Attempt ID",
       "totalQuestions": "Total Questions",
       "questionsAttempted": "Questions Attempted",
       "pendingQuestions": "Pending Questions",
+      "attemptsUsed": "Attempts Used",
+      "attemptsRemaining": "Attempts Remaining",
       "totalDuration": "Total Duration"
     },
     "feedback": {
@@ -612,7 +654,6 @@
       "submitting": "Submitting Feedback…",
       "thankYouTitle": "Thank You for Your Feedback!",
       "thankYouMessage": "Your input helps us improve and create better learning experiences.",
-      "redirecting": "Redirecting to dashboard in a moment…",
       "ratingLabels": {
         "1": "Poor",
         "2": "Fair",
@@ -622,8 +663,10 @@
       }
     },
     "buttons": {
-      "backToHome": "Back to Home",
-      "tryAgain": "Try Again"
+      "home": "Home",
+      "myLevels": "My Levels",
+      "retry": "Retry Quiz",
+      "attemptsLeft": "attempts left"
     },
     "messages": {
       "outstanding": "Outstanding Achievement!",
@@ -726,5 +769,145 @@
       "success": "Message sent successfully!",
       "error": "Failed to send message. Please try again."
     }
+  },
+
+  "assessment": {
+    "tabs": {
+      "quiz": "Quiz Assessment",
+      "exam": "Exam Assessment"
+    },
+    "quizReport": {
+      "pageTitle": "Quiz Assessment Report",
+      "pageSubtitle": "View all assessment attempts and results",
+      "table": {
+        "userDetails": "User Details",
+        "assessment": "Assessment",
+        "scorePercentage": "Score / Percentage",
+        "status": "Status",
+        "answers": "Answers",
+        "attempt": "Attempt",
+        "dateTime": "Date & Time",
+        "action": "Action",
+        "viewCertificate": "View Certificate",
+        "correct": "Correct",
+        "incorrect": "Incorrect",
+        "skipped": "Skipped",
+        "passing": "Passing"
+      },
+      "status": {
+        "passed": "PASSED",
+        "failed": "FAILED"
+      }
+    },
+    "examReport": {
+      "pageTitle": "Exam Assessment Report",
+      "pageSubtitle": "View all assessment attempts and results",
+      "table": {
+        "userDetails": "User Details",
+        "assessment": "Assessment",
+        "scorePercentage": "Score / Percentage",
+        "status": "Status",
+        "answers": "Answers",
+        "attempt": "Attempt",
+        "dateTime": "Date & Time",
+        "correct": "Correct",
+        "incorrect": "Incorrect",
+        "skipped": "Skipped",
+        "passing": "Passing"
+      },
+      "status": {
+        "passed": "PASSED",
+        "failed": "FAILED"
+      }
+    }
+  },
+
+  "certificate": {},
+
+  "auditLogs": {
+    "pageTitle": "Audit Logs Report",
+    "pageSubtitle": "View all system audit logs",
+    "table": {
+      "userDetails": "User Details",
+      "event": "Event",
+      "description": "Description",
+      "ipAddress": "IP Address",
+      "device": "Device",
+      "dateTime": "Date & Time"
+    },
+    "events": {
+      "login": "LOGIN",
+      "profile_viewed": "PROFILE VIEWED",
+      "reset_device": "RESET DEVICE",
+      "chapter_viewed": "CHAPTER VIEWED"
+    }
+  },
+
+  "userProgress": {
+    "pageTitle": "User Progress Report",
+    "pageSubtitle": "View all user progress data",
+    "table": {
+      "userDetails": "User Details",
+      "level": "Level",
+      "module": "Module",
+      "chapter": "Chapter",
+      "topic": "Topic",
+      "progress": "Progress",
+      "completion": "Completion",
+      "status": "Status",
+      "lastActivity": "Last Activity",
+      "unlocked": "Unlocked",
+      "locked": "Locked"
+    },
+    "status": {
+      "completed": "completed",
+      "inProgress": "in progress"
+    }
+  },
+
+  "certificationReports": {
+    "pageTitle": "Certification Report",
+    "pageSubtitle": "View all user certifications",
+    "table": {
+      "userDetails": "User Details",
+      "program": "Program",
+      "type": "Type",
+      "levelTopic": "Level/Topic",
+      "certificateId": "Certificate ID",
+      "scorePercentage": "Score & Percentage",
+      "score": "Score",
+      "percentage": "Percentage",
+      "issueDate": "Issue Date",
+      "status": "Status",
+      "certificate": "Certificate",
+      "download": "Download",
+      "notAvailable": "Not Available",
+      "level": "Level"
+    },
+    "types": {
+      "topic": "TOPIC",
+      "chapter": "CHAPTER",
+      "module": "MODULE",
+      "level": "LEVEL"
+    },
+    "status": {
+      "active": "active",
+      "expired": "expired"
+    }
+  },
+
+  "globalConfirmationModal": {
+    "confirmDeletion": "Confirm Deletion",
+    "cancle": "Cancle",
+    "confirm": "Confirm"
+  },
+
+  "loaderText": "Please wait while we process your request",
+
+  "sessionModal": {
+    "title": "Session Expiring",
+    "description": "You’ve been inactive. You’ll be logged out soon.",
+    "continue": "Continue",
+    "logout": "Logout"
   }
 }

@@ -7,6 +7,9 @@
 //   FaArrowRight,
 //   FaFileAlt,
 //   FaVideo,
+//   FaQuestionCircle,
+//   FaPlay,
+//   FaChevronRight,
 // } from "react-icons/fa";
 // import {
 //   PageBody,
@@ -52,6 +55,25 @@
 //     prev_page_url: currentTopic?.prev_page_url || null,
 //   };
 
+//   // Calculate if all topics are read
+//   const allTopicsRead =
+//     topicsData.length > 0 &&
+//     topicsData.every((topic) => topic.is_read === 1 || topic.is_read === true);
+
+//   // Check if quiz is available for the chapter/topic
+//   const isQuizAvailable =
+//     currentTopic?.is_quiz_available === 1 ||
+//     currentTopic?.is_quiz_available === true;
+
+//   // Get current topic index and next topic
+//   const currentTopicIndex = topicsData.findIndex(
+//     (topic) => topic.is_read !== 1 && topic.is_read !== true,
+//   );
+
+//   const nextTopic =
+//     currentTopicIndex !== -1 ? topicsData[currentTopicIndex] : null;
+//   const hasMorePages = pagination.current_page < pagination.last_page;
+
 //   // Handle page change
 //   const handlePageChange = (newPage) => {
 //     if (newPage >= 1 && newPage <= pagination.last_page) {
@@ -63,6 +85,62 @@
 //   const handleViewClick = (id) => {
 //     navigate(`content/${id}`);
 //   };
+
+//   // Handle quiz navigation
+//   const handleGiveQuiz = () => {
+//     navigate(`/quiz/${id}`);
+//   };
+
+//   // Handle continue learning
+//   const handleContinueLearning = () => {
+//     if (nextTopic) {
+//       navigate(`content/${nextTopic.id}`);
+//     } else if (hasMorePages) {
+//       handlePageChange(pagination.current_page + 1);
+//     } else if (allTopicsRead && isQuizAvailable) {
+//       handleGiveQuiz();
+//     }
+//   };
+
+//   // Determine CTA text and action
+//   const getCTAButton = () => {
+//     if (nextTopic) {
+//       return {
+//         text: t("topics.cta.continueLearning") || "Continue Learning",
+//         action: handleContinueLearning,
+//         icon: <FaPlay className="w-4 h-4" />,
+//         variant: "green",
+//       };
+//     } else if (hasMorePages) {
+//       return {
+//         text: t("topics.cta.nextPage") || "Next Page",
+//         action: handleContinueLearning,
+//         icon: <FaArrowRight className="w-4 h-4" />,
+//         variant: "blue",
+//       };
+//     } else if (
+//       allTopicsRead
+//       //  && isQuizAvailable
+//     ) {
+//       return {
+//         text: "Give Quiz",
+//         action: handleGiveQuiz,
+//         icon: <FaQuestionCircle className="w-4 h-4" />,
+//         variant: "purple",
+//       };
+//     } else if (allTopicsRead && !isQuizAvailable) {
+//       return {
+//         text: t("topics.cta.allCompleted") || "All Topics Completed",
+//         action: null,
+//         icon: <FaCheckCircle className="w-4 h-4" />,
+//         variant: "gray",
+//         disabled: true,
+//       };
+//     }
+//     return null;
+//   };
+
+//   const ctaButton = getCTAButton();
 
 //   if (isLoading) {
 //     return <Loader />;
@@ -79,15 +157,45 @@
 //       </PageHeader>
 
 //       <PageBody>
+//         {/* Quiz Banner - Show when all topics are read */}
+//         {allTopicsRead && isQuizAvailable && (
+//           <div className="mb-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl overflow-hidden shadow-lg">
+//             <div className="px-6 py-5 flex items-center justify-between flex-wrap gap-4">
+//               <div className="flex items-center gap-4">
+//                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+//                   <FaQuestionCircle className="text-white text-2xl" />
+//                 </div>
+//                 <div>
+//                   <h3 className="text-white font-semibold text-lg">
+//                     {t("topics.quiz.title") || "Ready to Test Your Knowledge?"}
+//                   </h3>
+//                   <p className="text-white/80 text-sm">
+//                     {t("topics.quiz.description") ||
+//                       "You've completed all topics! Take the quiz to earn your certificate."}
+//                   </p>
+//                 </div>
+//               </div>
+//               <button
+//                 onClick={handleGiveQuiz}
+//                 className="px-6 py-2.5 bg-white text-purple-600 rounded-lg font-semibold hover:shadow-lg transition-all transform hover:scale-105 flex items-center gap-2"
+//               >
+//                 <FaQuestionCircle className="text-purple-600" />
+//                 {t("topics.quiz.giveQuizButton") || "Give Quiz"}
+//               </button>
+//             </div>
+//           </div>
+//         )}
+
 //         {/* Topics Grid */}
-//         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+//         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-24">
 //           {topicsData.map((topic) => {
 //             const isRead = topic.is_read === 1 || topic.is_read === true;
 
 //             return (
 //               <div
 //                 key={topic.id}
-//                 className="group bg-white rounded-xl border-1 border-blue-500 shadow-lg overflow-hidden"
+//                 className={`group bg-white rounded-xl border-1 shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl
+//                   ${!isRead ? "border-blue-300" : "border-gray-200"}`}
 //               >
 //                 {/* Card Header with Type Badge */}
 //                 <div className="px-5 pt-5 pb-3 border-b border-gray-100">
@@ -142,7 +250,7 @@
 //                 <div className="px-5 py-4 bg-gray-50">
 //                   <button
 //                     onClick={() => handleViewClick(topic.id)}
-//                     className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 group"
+//                     className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-medium hover:bg-accent hover:text-white  transition-all duration-300 group"
 //                   >
 //                     <FaEye className="text-sm group-hover:text-white transition-colors" />
 //                     <span>{t("topics.buttons.viewTopic")}</span>
@@ -155,7 +263,7 @@
 
 //         {/* Pagination Section */}
 //         {pagination.last_page > 1 && (
-//           <div className="flex justify-center items-center gap-3 mt-10 mb-4">
+//           <div className="flex justify-center items-center gap-3 mt-6 mb-4">
 //             <button
 //               onClick={() => handlePageChange(pagination.current_page - 1)}
 //               disabled={!pagination.prev_page_url}
@@ -210,7 +318,7 @@
 
 //         {/* Showing results info */}
 //         {pagination.total > 0 && (
-//           <div className="text-center text-sm text-gray-500 mt-6">
+//           <div className="text-center text-sm text-gray-500 mt-6 mb-4">
 //             {t("topics.pagination.showing")} {topicsData.length}{" "}
 //             {t("topics.pagination.of")} {pagination.total}{" "}
 //             {t("topics.pagination.topics")}
@@ -244,6 +352,57 @@
 //           </div>
 //         )}
 //       </PageBody>
+
+//       {/* Bottom Sticky CTA - Similar to Chapters */}
+//       {ctaButton && (
+//         <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
+//           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//             <div className="flex items-center justify-between flex-wrap gap-3">
+//               <div className="hidden sm:block">
+//                 <p className="text-sm text-gray-600">
+//                   {nextTopic
+//                     ? "Continue your learning journey"
+//                     : hasMorePages
+//                       ? "More topics available"
+//                       : allTopicsRead
+//                         ? // && isQuizAvailable
+//                           "Test your knowledge"
+//                         : "All topics completed"}
+//                 </p>
+//                 <p className="text-xs text-gray-400">
+//                   {nextTopic
+//                     ? `${t("topics.cta.nextTopic") || "Next topic:"} ${nextTopic.title}`
+//                     : hasMorePages
+//                       ? t("topics.cta.nextPageMessage") ||
+//                         "Go to next page for more topics"
+//                       : allTopicsRead
+//                         ? //  && isQuizAvailable
+//                           "Ready for the quiz?"
+//                         : "Congratulations! You've completed everything"}
+//                 </p>
+//               </div>
+//               <button
+//                 onClick={ctaButton.action}
+//                 disabled={ctaButton.disabled}
+//                 className={`flex-1 sm:flex-none px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2
+//                   ${
+//                     ctaButton.variant === "green"
+//                       ? "bg-accent hover:opacity-90 text-white shadow-md hover:cursor-pointer"
+//                       : ctaButton.variant === "blue"
+//                         ? "bg-accent hover:opacity-90 text-white shadow-md hover:cursor-pointer"
+//                         : ctaButton.variant === "purple"
+//                           ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:cursor-pointer"
+//                           : "bg-gray-300 text-gray-500 cursor-not-allowed"
+//                   }`}
+//               >
+//                 {ctaButton.icon}
+//                 {ctaButton.text}
+//                 <FaChevronRight className="w-3 h-3" />
+//               </button>
+//             </div>
+//           </div>
+//         </div>
+//       )}
 //     </PageLayout>
 //   );
 // };
@@ -358,14 +517,14 @@ const Topics = () => {
   const getCTAButton = () => {
     if (nextTopic) {
       return {
-        text: t("topics.cta.continueLearning") || "Continue Learning",
+        text: t("topics.cta.continueLearning"),
         action: handleContinueLearning,
         icon: <FaPlay className="w-4 h-4" />,
         variant: "green",
       };
     } else if (hasMorePages) {
       return {
-        text: t("topics.cta.nextPage") || "Next Page",
+        text: t("topics.cta.nextPage"),
         action: handleContinueLearning,
         icon: <FaArrowRight className="w-4 h-4" />,
         variant: "blue",
@@ -375,14 +534,14 @@ const Topics = () => {
       //  && isQuizAvailable
     ) {
       return {
-        text: "Give Quiz",
+        text: t("topics.cta.giveQuiz"),
         action: handleGiveQuiz,
         icon: <FaQuestionCircle className="w-4 h-4" />,
         variant: "purple",
       };
     } else if (allTopicsRead && !isQuizAvailable) {
       return {
-        text: t("topics.cta.allCompleted") || "All Topics Completed",
+        text: t("topics.cta.allCompleted"),
         action: null,
         icon: <FaCheckCircle className="w-4 h-4" />,
         variant: "gray",
@@ -419,11 +578,10 @@ const Topics = () => {
                 </div>
                 <div>
                   <h3 className="text-white font-semibold text-lg">
-                    {t("topics.quiz.title") || "Ready to Test Your Knowledge?"}
+                    {t("topics.quiz.title")}
                   </h3>
                   <p className="text-white/80 text-sm">
-                    {t("topics.quiz.description") ||
-                      "You've completed all topics! Take the quiz to earn your certificate."}
+                    {t("topics.quiz.description")}
                   </p>
                 </div>
               </div>
@@ -432,7 +590,7 @@ const Topics = () => {
                 className="px-6 py-2.5 bg-white text-purple-600 rounded-lg font-semibold hover:shadow-lg transition-all transform hover:scale-105 flex items-center gap-2"
               >
                 <FaQuestionCircle className="text-purple-600" />
-                {t("topics.quiz.giveQuizButton") || "Give Quiz"}
+                {t("topics.quiz.giveQuizButton")}
               </button>
             </div>
           </div>
@@ -446,8 +604,8 @@ const Topics = () => {
             return (
               <div
                 key={topic.id}
-                className={`group bg-white rounded-xl border-2 shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl
-                  ${!isRead ? "border-blue-500" : "border-gray-200"}`}
+                className={`group bg-white rounded-xl border-1 shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl
+                  ${!isRead ? "border-blue-300" : "border-gray-200"}`}
               >
                 {/* Card Header with Type Badge */}
                 <div className="px-5 pt-5 pb-3 border-b border-gray-100">
@@ -502,7 +660,7 @@ const Topics = () => {
                 <div className="px-5 py-4 bg-gray-50">
                   <button
                     onClick={() => handleViewClick(topic.id)}
-                    className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 group"
+                    className="w-full bg-white border border-gray-300 text-gray-700 py-2.5 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-medium hover:bg-accent hover:text-white  transition-all duration-300 group"
                   >
                     <FaEye className="text-sm group-hover:text-white transition-colors" />
                     <span>{t("topics.buttons.viewTopic")}</span>
@@ -613,37 +771,36 @@ const Topics = () => {
               <div className="hidden sm:block">
                 <p className="text-sm text-gray-600">
                   {nextTopic
-                    ? "Continue your learning journey"
+                    ? t("topics.cta.continueJourney")
                     : hasMorePages
-                      ? "More topics available"
+                      ? t("topics.cta.moreTopics")
                       : allTopicsRead
                         ? // && isQuizAvailable
-                          "Test your knowledge"
-                        : "All topics completed"}
+                          t("topics.cta.testYourself")
+                        : t("topics.cta.allCompletedMessage")}
                 </p>
                 <p className="text-xs text-gray-400">
                   {nextTopic
-                    ? `${t("topics.cta.nextTopic") || "Next topic:"} ${nextTopic.title}`
+                    ? `${t("topics.cta.nextTopic")} ${nextTopic.title}`
                     : hasMorePages
-                      ? t("topics.cta.nextPageMessage") ||
-                        "Go to next page for more topics"
+                      ? t("topics.cta.nextPageMessage")
                       : allTopicsRead
                         ? //  && isQuizAvailable
-                          "Ready for the quiz?"
-                        : "Congratulations! You've completed everything"}
+                          t("topics.cta.readyForQuiz")
+                        : t("topics.cta.congratulations")}
                 </p>
               </div>
               <button
                 onClick={ctaButton.action}
                 disabled={ctaButton.disabled}
-                className={`flex-1 sm:flex-none px-6 py-3 rounded-xl font-semibold transition-all transform hover:scale-105 flex items-center justify-center gap-2
+                className={`flex-1 sm:flex-none px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2
                   ${
                     ctaButton.variant === "green"
-                      ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-md hover:shadow-lg"
+                      ? "bg-accent hover:opacity-90 text-white shadow-md hover:cursor-pointer"
                       : ctaButton.variant === "blue"
-                        ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md hover:shadow-lg"
+                        ? "bg-accent hover:opacity-90 text-white shadow-md hover:cursor-pointer"
                         : ctaButton.variant === "purple"
-                          ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:shadow-lg"
+                          ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:cursor-pointer"
                           : "bg-gray-300 text-gray-500 cursor-not-allowed"
                   }`}
               >
