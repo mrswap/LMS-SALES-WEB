@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 import TextInput from "../../common/form/TextInput";
 import FormButton from "../../common/form/FormButton";
@@ -17,6 +17,7 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const { t } = useTranslation();
+  //  const [searchParams] = useSearchParams();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -35,9 +36,9 @@ const ResetPassword = () => {
   const validationSchema = Yup.object({
     password: Yup.string()
       .min(8, t("resetPassword.validation.passwordMin"))
-      .matches(/[A-Z]/, t("resetPassword.validation.passwordUppercase"))
-      .matches(/[0-9]/, t("resetPassword.validation.passwordNumber"))
-      .matches(/[!@#$%^&*]/, t("resetPassword.validation.passwordSpecialChar"))
+      // .matches(/[A-Z]/, t("resetPassword.validation.passwordUppercase"))
+      // .matches(/[0-9]/, t("resetPassword.validation.passwordNumber"))
+      // .matches(/[!@#$%^&*]/, t("resetPassword.validation.passwordSpecialChar"))
       .required(t("resetPassword.validation.passwordRequired")),
 
     confirmPassword: Yup.string()

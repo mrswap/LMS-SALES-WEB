@@ -344,12 +344,14 @@
       "notStarted": "शुरू नहीं किया"
     },
     "buttons": {
-      "locked": "लॉक",
+      "locked": "लॉक्ड",
       "viewCertificate": "प्रमाणपत्र देखें",
       "giveExam": "परीक्षा दें",
       "continue": "जारी रखें",
       "startLevel": "स्तर शुरू करें",
-      "faqs": "सामान्य प्रश्न"
+      "faqs": "अक्सर पूछे जाने वाले प्रश्न",
+      "view": "देखें",
+      "examNotAvailable": "परीक्षा उपलब्ध नहीं है"
     },
     "modules": {
       "zero": "0 मॉड्यूल",
@@ -397,7 +399,8 @@
       "lockedButton": "लॉक"
     },
     "buttons": {
-      "continue": "जारी रखें"
+      "continue": "जारी रखें",
+      "view": "देखें"
     },
     "cta": {
       "continueLearning": "सीखना जारी रखें",
@@ -443,7 +446,8 @@
       "lockedButton": "लॉक"
     },
     "buttons": {
-      "continue": "जारी रखें"
+      "continue": "जारी रखें",
+      "view": "देखें"
     },
     "cta": {
       "continueLearning": "सीखना जारी रखें",
@@ -481,13 +485,15 @@
       "topicText": "विषय",
       "current": "वर्तमान",
       "completed": "पूर्ण",
-      "locked": "लॉक",
+      "locked": "लॉक्ड",
       "min": "मिनट",
       "giveQuiz": "क्विज़ दें",
-      "lockedButton": "लॉक"
+      "lockedButton": "लॉक्ड",
+      "quizNotAvailable": "क्विज़ उपलब्ध नहीं है"
     },
     "buttons": {
-      "continue": "जारी रखें"
+      "continue": "जारी रखें",
+      "view": "देखें"
     },
     "cta": {
       "continueLearning": "सीखना जारी रखें",
@@ -516,7 +522,8 @@
     "buttons": {
       "viewTopic": "विषय देखें",
       "previous": "पिछला",
-      "next": "अगला"
+      "next": "अगला",
+      "view": "देखें"
     },
     "pagination": {
       "showing": "दिखाया जा रहा है",
@@ -698,6 +705,119 @@
     "errors": {
       "ratingRequired": "कृपया एक रेटिंग चुनें",
       "feedbackFailed": "प्रतिक्रिया सबमिट करने में विफल। कृपया पुनः प्रयास करें।"
+    }
+  },
+
+  "exam": {
+    "pageTitle": "ज्ञान जांच",
+    "pageSubtitle": "इस परीक्षा के साथ अपनी समझ का परीक्षण करें",
+    "timeLeft": "शेष समय",
+    "exitExam": "परीक्षा छोड़ें",
+    "examDetails": "परीक्षा विवरण",
+    "attempts": "प्रयास",
+    "remaining": "शेष",
+    "duration": "अवधि",
+    "minutes": "मिनट",
+    "startedAt": "शुरू हुआ",
+    "expiresAt": "समाप्त होगा",
+    "attemptId": "प्रयास आईडी",
+    "questionOf": "प्रश्न {current} / {total}",
+    "answerSelected": "उत्तर चुना गया",
+    "skipped": "छोड़ा गया",
+    "previous": "पिछला",
+    "skip": "छोड़ें",
+    "next": "अगला",
+    "submitExam": "परीक्षा सबमिट करें",
+    "submitting": "सबमिट हो रहा है...",
+    "timeUpWarning": "समय समाप्त! आपकी परीक्षा अपने आप सबमिट हो रही है।",
+    "noQuestionsTitle": "कोई प्रश्न उपलब्ध नहीं",
+    "noQuestionsDescription": "इस परीक्षा के लिए कोई प्रश्न नहीं मिले।",
+    "noAttemptsLeft": "आपके पास इस परीक्षा के लिए कोई प्रयास शेष नहीं है।",
+    "noAttemptsTitle": "कोई प्रयास शेष नहीं",
+    "noAttemptsSubtitle": "आपने इस परीक्षा के सभी प्रयास समाप्त कर दिए हैं",
+    "noAttemptsHeading": "कोई प्रयास बाकी नहीं",
+    "noAttemptsMessage": "आपने इस परीक्षा के सभी {total} प्रयास उपयोग कर लिए हैं।",
+    "goBack": "वापस जाएं",
+    "leaveWarning": "आपकी परीक्षा चल रही है। क्या आप वाकई छोड़ना चाहते हैं?",
+    "confirmationModal": {
+      "title": "परीक्षा छोड़ें?",
+      "description": "क्या आप वाकई बाहर निकलना चाहते हैं? आपकी प्रगति सुरक्षित रहेगी।",
+      "progressSaved": "आपकी प्रगति स्वतः सेव हो जाती है",
+      "timeRemaining": "शेष समय:",
+      "cancel": "रद्द करें",
+      "confirm": "परीक्षा छोड़ें"
+    }
+  },
+
+  "examResult": {
+    "score": "स्कोर",
+    "pageTitlePassed": "परीक्षा पास!",
+    "pageTitleFailed": "परीक्षा असफल",
+    "pageSubtitlePassed": "आकलन पास करने पर बधाई!",
+    "pageSubtitleFailed": "अगली बार बेहतर कोशिश करें! सुधार के लिए अभ्यास करते रहें।",
+    "passed": "पास",
+    "failed": "असफल",
+    "scoreLabel": "स्कोर",
+    "noResult": "कोई परीक्षा परिणाम नहीं मिला।",
+    "goHome": "होम जाएं",
+    "stats": {
+      "correct": "सही",
+      "incorrect": "गलत",
+      "skipped": "छोड़े गए",
+      "timeSpent": "समय व्यतीत"
+    },
+    "analysis": {
+      "title": "परीक्षा विश्लेषण",
+      "attemptId": "प्रयास आईडी",
+      "totalQuestions": "कुल प्रश्न",
+      "questionsAttempted": "प्रयास किए गए प्रश्न",
+      "pendingQuestions": "बाकी प्रश्न",
+      "attemptsUsed": "प्रयोग किए गए प्रयास",
+      "attemptsRemaining": "शेष प्रयास",
+      "totalDuration": "कुल अवधि"
+    },
+    "feedback": {
+      "title": "अपना फीडबैक साझा करें",
+      "ratingLabel": "अपने अनुभव को रेट करें",
+      "required": "*",
+      "additionalComments": "अतिरिक्त टिप्पणियाँ",
+      "placeholder": "परीक्षा के बारे में अपने विचार साझा करें...",
+      "submitButton": "फीडबैक सबमिट करें",
+      "submitting": "सबमिट हो रहा है...",
+      "thankYouTitle": "आपके फीडबैक के लिए धन्यवाद!",
+      "thankYouMessage": "आपका इनपुट हमें अपनी परीक्षाओं को बेहतर बनाने में मदद करता है।",
+      "ratingLabels": {
+        "1": "खराब",
+        "2": "ठीक-ठाक",
+        "3": "अच्छा",
+        "4": "बहुत अच्छा",
+        "5": "उत्कृष्ट"
+      }
+    },
+    "buttons": {
+      "home": "होम जाएं",
+      "myLevels": "मेरे लेवल्स",
+      "getCertificate": "प्रमाणपत्र प्राप्त करें",
+      "retry": "परीक्षा दोबारा दें",
+      "attemptsLeft": "बचे हुए प्रयास"
+    },
+    "messages": {
+      "outstanding": "शानदार! उत्कृष्ट प्रदर्शन!",
+      "excellent": "उत्कृष्ट! बहुत बढ़िया!",
+      "good": "अच्छा काम! ऐसे ही जारी रखें!",
+      "satisfactory": "संतोषजनक! सुधार की गुंजाइश है!",
+      "fair": "ठीक प्रयास! अभ्यास जारी रखें!",
+      "keepPracticing": "अभ्यास करते रहें! अगली बार बेहतर करेंगे!",
+      "outstandingSub": "आपने विषय में महारत दिखाई है।",
+      "excellentSub": "मजबूत समझ, थोड़े सुधार की आवश्यकता है।",
+      "goodSub": "अच्छी नींव है, कुछ अवधारणाएँ दोहराने की जरूरत है।",
+      "satisfactorySub": "मूल समझ हो गई है, अभ्यास जारी रखें।",
+      "fairSub": "सामग्री को दोहराएँ और बेहतर परिणाम के लिए फिर प्रयास करें।",
+      "keepPracticingSub": "हार मत मानो! लेवल्स दोहराएँ और फिर से प्रयास करें।"
+    },
+    "errors": {
+      "ratingRequired": "कृपया रेटिंग चुनें",
+      "feedbackFailed": "फीडबैक सबमिट नहीं हो सका। कृपया फिर से प्रयास करें।"
     }
   },
 

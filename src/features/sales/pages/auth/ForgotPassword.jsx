@@ -38,7 +38,7 @@ const ForgotPassword = () => {
       const res = await dispatch(forgotPassword(values)).unwrap();
       toast.success(t("forgotPassword.successMessage"));
       setTimeout(() => {
-        navigate("/reset-password");
+        navigate("/check-email");
       }, 2000);
     } catch (err) {
       toast.error(err?.message || t("forgotPassword.errorMessage"));

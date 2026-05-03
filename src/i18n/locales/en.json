@@ -349,7 +349,9 @@
       "giveExam": "Give Exam",
       "continue": "Continue",
       "startLevel": "Start Level",
-      "faqs": "FAQs"
+      "faqs": "FAQs",
+      "view": "View",
+      "examNotAvailable": "Exam not available"
     },
     "modules": {
       "zero": "0 Modules",
@@ -397,7 +399,8 @@
       "lockedButton": "Locked"
     },
     "buttons": {
-      "continue": "Continue"
+      "continue": "Continue",
+      "view": "View"
     },
     "cta": {
       "continueLearning": "Continue Learning",
@@ -443,7 +446,8 @@
       "lockedButton": "Locked"
     },
     "buttons": {
-      "continue": "Continue"
+      "continue": "Continue",
+      "view": "View"
     },
     "cta": {
       "continueLearning": "Continue Learning",
@@ -484,10 +488,12 @@
       "locked": "Locked",
       "min": "min",
       "giveQuiz": "Give Quiz",
-      "lockedButton": "Locked"
+      "lockedButton": "Locked",
+      "quizNotAvailable": "Quiz not available"
     },
     "buttons": {
-      "continue": "Continue"
+      "continue": "Continue",
+      "view": "View"
     },
     "cta": {
       "continueLearning": "Continue Learning",
@@ -516,7 +522,8 @@
     "buttons": {
       "viewTopic": "View Topic",
       "previous": "Previous",
-      "next": "Next"
+      "next": "Next",
+      "view": "View"
     },
     "pagination": {
       "showing": "Showing",
@@ -694,6 +701,119 @@
       "satisfactorySub": "You're on the right track",
       "fairSub": "Room for improvement, keep learning",
       "keepPracticingSub": "Don't give up, review and try again"
+    },
+    "errors": {
+      "ratingRequired": "Please select a rating",
+      "feedbackFailed": "Failed to submit feedback. Please try again."
+    }
+  },
+
+  "exam": {
+    "pageTitle": "Knowledge Check",
+    "pageSubtitle": "Test your understanding with this exam",
+    "timeLeft": "Time Left",
+    "exitExam": "Exit Exam",
+    "examDetails": "Exam Details",
+    "attempts": "Attempts",
+    "remaining": "Remaining",
+    "duration": "Duration",
+    "minutes": "minutes",
+    "startedAt": "Started At",
+    "expiresAt": "Expires At",
+    "attemptId": "Attempt ID",
+    "questionOf": "Question {current} of {total}",
+    "answerSelected": "Answer Selected",
+    "skipped": "Skipped",
+    "previous": "Previous",
+    "skip": "Skip",
+    "next": "Next",
+    "submitExam": "Submit Exam",
+    "submitting": "Submitting...",
+    "timeUpWarning": "Time's up! Your exam is being submitted automatically.",
+    "noQuestionsTitle": "No Questions Available",
+    "noQuestionsDescription": "No questions found for this exam.",
+    "noAttemptsLeft": "You have no attempts left for this exam.",
+    "noAttemptsTitle": "No Attempts Left",
+    "noAttemptsSubtitle": "You have exhausted all your attempts for this exam",
+    "noAttemptsHeading": "No Attempts Remaining",
+    "noAttemptsMessage": "You have used all {total} attempt(s) for this exam.",
+    "goBack": "Go Back",
+    "leaveWarning": "You have an active exam. Are you sure you want to leave?",
+    "confirmationModal": {
+      "title": "Exit Exam?",
+      "description": "Are you sure you want to exit? Your progress will be saved.",
+      "progressSaved": "Your progress is saved automatically",
+      "timeRemaining": "Time remaining:",
+      "cancel": "Cancel",
+      "confirm": "Exit Exam"
+    }
+  },
+
+  "examResult": {
+    "score": "SCORE",
+    "pageTitlePassed": "Exam Passed!",
+    "pageTitleFailed": "Exam Failed",
+    "pageSubtitlePassed": "Congratulations on passing the assessment!",
+    "pageSubtitleFailed": "Better luck next time! Keep practicing to improve.",
+    "passed": "PASSED",
+    "failed": "FAILED",
+    "scoreLabel": "SCORE",
+    "noResult": "No exam result found.",
+    "goHome": "Go Home",
+    "stats": {
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "skipped": "Skipped",
+      "timeSpent": "Time Spent"
+    },
+    "analysis": {
+      "title": "Exam Analysis",
+      "attemptId": "Attempt ID",
+      "totalQuestions": "Total Questions",
+      "questionsAttempted": "Questions Attempted",
+      "pendingQuestions": "Pending Questions",
+      "attemptsUsed": "Attempts Used",
+      "attemptsRemaining": "Attempts Remaining",
+      "totalDuration": "Total Duration"
+    },
+    "feedback": {
+      "title": "Share Your Feedback",
+      "ratingLabel": "Rate Your Experience",
+      "required": "*",
+      "additionalComments": "Additional Comments",
+      "placeholder": "Share your thoughts about the exam...",
+      "submitButton": "Submit Feedback",
+      "submitting": "Submitting...",
+      "thankYouTitle": "Thank You for Your Feedback!",
+      "thankYouMessage": "Your input helps us improve our exams.",
+      "ratingLabels": {
+        "1": "Poor",
+        "2": "Fair",
+        "3": "Good",
+        "4": "Very Good",
+        "5": "Excellent"
+      }
+    },
+    "buttons": {
+      "home": "Go Home",
+      "myLevels": "My Levels",
+      "getCertificate": "Get Certificate",
+      "retry": "Retry Exam",
+      "attemptsLeft": "attempts left"
+    },
+    "messages": {
+      "outstanding": "Outstanding! Exceptional performance!",
+      "excellent": "Excellent! Great work!",
+      "good": "Good job! Keep it up!",
+      "satisfactory": "Satisfactory! Room for improvement!",
+      "fair": "Fair effort! Keep practicing!",
+      "keepPracticing": "Keep practicing! You'll do better next time!",
+      "outstandingSub": "You've demonstrated mastery of the subject matter.",
+      "excellentSub": "Strong understanding with minor improvements needed.",
+      "goodSub": "Solid foundation with some concepts to review.",
+      "satisfactorySub": "Basic understanding achieved, keep practicing.",
+      "fairSub": "Review the material and try again for better results.",
+      "keepPracticingSub": "Don't give up! Review the levels and attempt the exam again."
     },
     "errors": {
       "ratingRequired": "Please select a rating",

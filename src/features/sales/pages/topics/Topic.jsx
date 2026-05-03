@@ -32,9 +32,10 @@ const Topics = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const { currentTopic, isLoading, isError, message } = useSelector(
-    (state) => state.course,
-  );
+  const { currentTopic, assessmentStatusTopic, isLoading, isError, message } =
+    useSelector((state) => state.course);
+
+  console.log("assessmentStatusTopic", assessmentStatusTopic);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -65,6 +66,9 @@ const Topics = () => {
     currentTopic?.is_quiz_available === 1 ||
     currentTopic?.is_quiz_available === true;
 
+  // Check if assessment status is passed
+  const isAssessmentPassed = assessmentStatusTopic?.status === "passed";
+
   // Get current topic index and next topic
   const currentTopicIndex = topicsData.findIndex(
     (topic) => topic.is_read !== 1 && topic.is_read !== true,
@@ -88,7 +92,10 @@ const Topics = () => {
 
   // Handle quiz navigation
   const handleGiveQuiz = () => {
-    navigate(`/quiz/${id}`);
+    // Only navigate if assessment is not passed
+    if (!isAssessmentPassed) {
+      navigate(`/quiz/${id}`);
+    }
   };
 
   // Handle continue learning
@@ -97,7 +104,7 @@ const Topics = () => {
       navigate(`content/${nextTopic.id}`);
     } else if (hasMorePages) {
       handlePageChange(pagination.current_page + 1);
-    } else if (allTopicsRead && isQuizAvailable) {
+    } else if (allTopicsRead && isQuizAvailable && !isAssessmentPassed) {
       handleGiveQuiz();
     }
   };
@@ -118,10 +125,7 @@ const Topics = () => {
         icon: <FaArrowRight className="w-4 h-4" />,
         variant: "blue",
       };
-    } else if (
-      allTopicsRead
-      //  && isQuizAvailable
-    ) {
+    } else if (allTopicsRead && isQuizAvailable && !isAssessmentPassed) {
       return {
         text: t("topics.cta.giveQuiz"),
         action: handleGiveQuiz,
@@ -131,6 +135,14 @@ const Topics = () => {
     } else if (allTopicsRead && !isQuizAvailable) {
       return {
         text: t("topics.cta.allCompleted"),
+        action: null,
+        icon: <FaCheckCircle className="w-4 h-4" />,
+        variant: "gray",
+        disabled: true,
+      };
+    } else if (allTopicsRead && isQuizAvailable && isAssessmentPassed) {
+      return {
+        text: t("topics.cta.quizAlreadyPassed"),
         action: null,
         icon: <FaCheckCircle className="w-4 h-4" />,
         variant: "gray",
@@ -157,8 +169,8 @@ const Topics = () => {
       </PageHeader>
 
       <PageBody>
-        {/* Quiz Banner - Show when all topics are read */}
-        {allTopicsRead && isQuizAvailable && (
+        {/* Quiz Banner - Show when all topics are read and assessment not passed */}
+        {allTopicsRead && isQuizAvailable && !isAssessmentPassed && (
           <div className="mb-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl overflow-hidden shadow-lg">
             <div className="px-6 py-5 flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
@@ -181,6 +193,31 @@ const Topics = () => {
                 <FaQuestionCircle className="text-purple-600" />
                 {t("topics.quiz.giveQuizButton")}
               </button>
+            </div>
+          </div>
+        )}
+
+        {/* Show message when assessment already passed */}
+        {allTopicsRead && isQuizAvailable && isAssessmentPassed && (
+          <div className="mb-6 bg-gradient-to-r from-green-500 to-teal-500 rounded-xl overflow-hidden shadow-lg">
+            <div className="px-6 py-5 flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                  <FaCheckCircle className="text-white text-2xl" />
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold text-lg">
+                    {t("topics.quiz.passedTitle")}
+                  </h3>
+                  <p className="text-white/80 text-sm">
+                    {t("topics.quiz.passedDescription")}
+                  </p>
+                </div>
+              </div>
+              <div className="px-6 py-2.5 bg-white/20 text-white rounded-lg font-semibold flex items-center gap-2">
+                <FaCheckCircle />
+                {t("topics.quiz.completed")}
+              </div>
             </div>
           </div>
         )}
@@ -363,20 +400,22 @@ const Topics = () => {
                     ? t("topics.cta.continueJourney")
                     : hasMorePages
                       ? t("topics.cta.moreTopics")
-                      : allTopicsRead
-                        ? // && isQuizAvailable
-                          t("topics.cta.testYourself")
-                        : t("topics.cta.allCompletedMessage")}
+                      : allTopicsRead && isQuizAvailable && !isAssessmentPassed
+                        ? t("topics.cta.testYourself")
+                        : isAssessmentPassed
+                          ? t("topics.cta.quizCompleted")
+                          : t("topics.cta.allCompletedMessage")}
                 </p>
                 <p className="text-xs text-gray-400">
                   {nextTopic
                     ? `${t("topics.cta.nextTopic")} ${nextTopic.title}`
                     : hasMorePages
                       ? t("topics.cta.nextPageMessage")
-                      : allTopicsRead
-                        ? //  && isQuizAvailable
-                          t("topics.cta.readyForQuiz")
-                        : t("topics.cta.congratulations")}
+                      : allTopicsRead && isQuizAvailable && !isAssessmentPassed
+                        ? t("topics.cta.readyForQuiz")
+                        : isAssessmentPassed
+                          ? t("topics.cta.alreadyPassed")
+                          : t("topics.cta.congratulations")}
                 </p>
               </div>
               <button

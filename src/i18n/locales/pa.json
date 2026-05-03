@@ -344,12 +344,14 @@
       "notStarted": "ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ"
     },
     "buttons": {
-      "locked": "ਲੌਕ",
+      "locked": "ਲੌਕ ਕੀਤਾ ਗਿਆ",
       "viewCertificate": "ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ",
       "giveExam": "ਪਰੀਖਿਆ ਦਿਓ",
       "continue": "ਜਾਰੀ ਰੱਖੋ",
       "startLevel": "ਲੈਵਲ ਸ਼ੁਰੂ ਕਰੋ",
-      "faqs": "ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ"
+      "faqs": "ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ",
+      "view": "ਵੇਖੋ",
+      "examNotAvailable": "ਪਰੀਖਿਆ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
     },
     "modules": {
       "zero": "0 ਮੋਡੀਊਲ",
@@ -397,7 +399,8 @@
       "lockedButton": "ਲੌਕ"
     },
     "buttons": {
-      "continue": "ਜਾਰੀ ਰੱਖੋ"
+      "continue": "ਜਾਰੀ ਰੱਖੋ",
+      "view": "ਵੇਖੋ"
     },
     "cta": {
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
@@ -443,7 +446,8 @@
       "lockedButton": "ਲੌਕ"
     },
     "buttons": {
-      "continue": "ਜਾਰੀ ਰੱਖੋ"
+      "continue": "ਜਾਰੀ ਰੱਖੋ",
+      "view": "ਵੇਖੋ"
     },
     "cta": {
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
@@ -480,14 +484,16 @@
       "title": "ਸਾਰੇ ਵਿਸ਼ੇ",
       "topicText": "ਵਿਸ਼ਾ",
       "current": "ਮੌਜੂਦਾ",
-      "completed": "ਪੂਰਾ",
-      "locked": "ਲੌਕ",
+      "completed": "ਪੂਰਾ ਹੋਇਆ",
+      "locked": "ਲੌਕ ਕੀਤਾ ਗਿਆ",
       "min": "ਮਿੰਟ",
       "giveQuiz": "ਕੁਇਜ਼ ਦਿਓ",
-      "lockedButton": "ਲੌਕ"
+      "lockedButton": "ਲੌਕ ਕੀਤਾ ਗਿਆ",
+      "quizNotAvailable": "ਕੁਇਜ਼ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
     },
     "buttons": {
-      "continue": "ਜਾਰੀ ਰੱਖੋ"
+      "continue": "ਜਾਰੀ ਰੱਖੋ",
+      "view": "ਵੇਖੋ"
     },
     "cta": {
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
@@ -516,7 +522,8 @@
     "buttons": {
       "viewTopic": "ਵਿਸ਼ਾ ਵੇਖੋ",
       "previous": "ਪਿਛਲਾ",
-      "next": "ਅਗਲਾ"
+      "next": "ਅਗਲਾ",
+      "view": "ਵੇਖੋ"
     },
     "pagination": {
       "showing": "ਦਿਖਾਇਆ ਜਾ ਰਿਹਾ ਹੈ",
@@ -698,6 +705,119 @@
     "errors": {
       "ratingRequired": "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਰੇਟਿੰਗ ਚੁਣੋ",
       "feedbackFailed": "ਫੀਡਬੈਕ ਜਮ੍ਹਾਂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    }
+  },
+
+  "exam": {
+    "pageTitle": "ਗਿਆਨ ਜਾਂਚ",
+    "pageSubtitle": "ਇਸ ਪਰੀਖਿਆ ਨਾਲ ਆਪਣੀ ਸਮਝ ਦੀ ਜਾਂਚ ਕਰੋ",
+    "timeLeft": "ਬਾਕੀ ਸਮਾਂ",
+    "exitExam": "ਪਰੀਖਿਆ ਛੱਡੋ",
+    "examDetails": "ਪਰੀਖਿਆ ਵੇਰਵਾ",
+    "attempts": "ਪ੍ਰਯਾਸ",
+    "remaining": "ਬਾਕੀ",
+    "duration": "ਅਵਧੀ",
+    "minutes": "ਮਿੰਟ",
+    "startedAt": "ਸ਼ੁਰੂ ਹੋਇਆ",
+    "expiresAt": "ਖਤਮ ਹੋਵੇਗਾ",
+    "attemptId": "ਪ੍ਰਯਾਸ ਆਈਡੀ",
+    "questionOf": "ਪ੍ਰਸ਼ਨ {current} / {total}",
+    "answerSelected": "ਉੱਤਰ ਚੁਣਿਆ ਗਿਆ",
+    "skipped": "ਛੱਡਿਆ ਗਿਆ",
+    "previous": "ਪਿਛਲਾ",
+    "skip": "ਛੱਡੋ",
+    "next": "ਅਗਲਾ",
+    "submitExam": "ਪਰੀਖਿਆ ਜਮ੍ਹਾ ਕਰੋ",
+    "submitting": "ਜਮ੍ਹਾ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "timeUpWarning": "ਸਮਾਂ ਖਤਮ! ਤੁਹਾਡੀ ਪਰੀਖਿਆ ਆਪਣੇ ਆਪ ਜਮ੍ਹਾ ਹੋ ਰਹੀ ਹੈ।",
+    "noQuestionsTitle": "ਕੋਈ ਪ੍ਰਸ਼ਨ ਉਪਲਬਧ ਨਹੀਂ",
+    "noQuestionsDescription": "ਇਸ ਪਰੀਖਿਆ ਲਈ ਕੋਈ ਪ੍ਰਸ਼ਨ ਨਹੀਂ ਮਿਲੇ।",
+    "noAttemptsLeft": "ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਪਰੀਖਿਆ ਲਈ ਕੋਈ ਪ੍ਰਯਾਸ ਬਾਕੀ ਨਹੀਂ ਹੈ।",
+    "noAttemptsTitle": "ਕੋਈ ਪ੍ਰਯਾਸ ਬਾਕੀ ਨਹੀਂ",
+    "noAttemptsSubtitle": "ਤੁਸੀਂ ਇਸ ਪਰੀਖਿਆ ਦੇ ਸਾਰੇ ਪ੍ਰਯਾਸ ਖਤਮ ਕਰ ਦਿੱਤੇ ਹਨ",
+    "noAttemptsHeading": "ਕੋਈ ਪ੍ਰਯਾਸ ਬਾਕੀ ਨਹੀਂ",
+    "noAttemptsMessage": "ਤੁਸੀਂ ਇਸ ਪਰੀਖਿਆ ਦੇ ਸਾਰੇ {total} ਪ੍ਰਯਾਸ ਵਰਤ ਲਏ ਹਨ।",
+    "goBack": "ਵਾਪਸ ਜਾਓ",
+    "leaveWarning": "ਤੁਹਾਡੀ ਪਰੀਖਿਆ ਚੱਲ ਰਹੀ ਹੈ। ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "confirmationModal": {
+      "title": "ਪਰੀਖਿਆ ਛੱਡੋ?",
+      "description": "ਕੀ ਤੁਸੀਂ ਪੱਕਾ ਬਾਹਰ ਨਿਕਲਣਾ ਚਾਹੁੰਦੇ ਹੋ? ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ ਸੇਵ ਰਹੇਗੀ।",
+      "progressSaved": "ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ ਆਪਣੇ ਆਪ ਸੇਵ ਹੋ ਜਾਂਦੀ ਹੈ",
+      "timeRemaining": "ਬਾਕੀ ਸਮਾਂ:",
+      "cancel": "ਰੱਦ ਕਰੋ",
+      "confirm": "ਪਰੀਖਿਆ ਛੱਡੋ"
+    }
+  },
+
+  "examResult": {
+    "score": "ਸਕੋਰ",
+    "pageTitlePassed": "ਪਰੀਖਿਆ ਪਾਸ!",
+    "pageTitleFailed": "ਪਰੀਖਿਆ ਫੇਲ",
+    "pageSubtitlePassed": "ਅਸੈਸਮੈਂਟ ਪਾਸ ਕਰਨ ਲਈ ਵਧਾਈ!",
+    "pageSubtitleFailed": "ਅਗਲੀ ਵਾਰੀ ਵਧੀਆ ਕੋਸ਼ਿਸ਼ ਕਰੋ! ਸੁਧਾਰ ਲਈ ਅਭਿਆਸ ਕਰਦੇ ਰਹੋ।",
+    "passed": "ਪਾਸ",
+    "failed": "ਫੇਲ",
+    "scoreLabel": "ਸਕੋਰ",
+    "noResult": "ਕੋਈ ਪਰੀਖਿਆ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।",
+    "goHome": "ਹੋਮ ਤੇ ਜਾਓ",
+    "stats": {
+      "correct": "ਸਹੀ",
+      "incorrect": "ਗਲਤ",
+      "skipped": "ਛੱਡੇ ਗਏ",
+      "timeSpent": "ਲੱਗਿਆ ਸਮਾਂ"
+    },
+    "analysis": {
+      "title": "ਪਰੀਖਿਆ ਵਿਸ਼ਲੇਸ਼ਣ",
+      "attemptId": "ਪ੍ਰਯਾਸ ਆਈਡੀ",
+      "totalQuestions": "ਕੁੱਲ ਪ੍ਰਸ਼ਨ",
+      "questionsAttempted": "ਕੀਤੇ ਗਏ ਪ੍ਰਸ਼ਨ",
+      "pendingQuestions": "ਬਾਕੀ ਪ੍ਰਸ਼ਨ",
+      "attemptsUsed": "ਵਰਤੇ ਗਏ ਪ੍ਰਯਾਸ",
+      "attemptsRemaining": "ਬਾਕੀ ਪ੍ਰਯਾਸ",
+      "totalDuration": "ਕੁੱਲ ਸਮਾਂ"
+    },
+    "feedback": {
+      "title": "ਆਪਣਾ ਫੀਡਬੈਕ ਸਾਂਝਾ ਕਰੋ",
+      "ratingLabel": "ਆਪਣਾ ਅਨੁਭਵ ਰੇਟ ਕਰੋ",
+      "required": "*",
+      "additionalComments": "ਵਾਧੂ ਟਿੱਪਣੀਆਂ",
+      "placeholder": "ਪਰੀਖਿਆ ਬਾਰੇ ਆਪਣੇ ਵਿਚਾਰ ਸਾਂਝੇ ਕਰੋ...",
+      "submitButton": "ਫੀਡਬੈਕ ਭੇਜੋ",
+      "submitting": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
+      "thankYouTitle": "ਤੁਹਾਡੇ ਫੀਡਬੈਕ ਲਈ ਧੰਨਵਾਦ!",
+      "thankYouMessage": "ਤੁਹਾਡਾ ਫੀਡਬੈਕ ਸਾਨੂੰ ਆਪਣੀਆਂ ਪਰੀਖਿਆਵਾਂ ਸੁਧਾਰਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।",
+      "ratingLabels": {
+        "1": "ਖਰਾਬ",
+        "2": "ਠੀਕ-ਠਾਕ",
+        "3": "ਚੰਗਾ",
+        "4": "ਬਹੁਤ ਵਧੀਆ",
+        "5": "ਸ਼ਾਨਦਾਰ"
+      }
+    },
+    "buttons": {
+      "home": "ਹੋਮ ਤੇ ਜਾਓ",
+      "myLevels": "ਮੇਰੇ ਲੈਵਲ",
+      "getCertificate": "ਸਰਟੀਫਿਕੇਟ ਲਵੋ",
+      "retry": "ਪਰੀਖਿਆ ਮੁੜ ਦਿਓ",
+      "attemptsLeft": "ਬਾਕੀ ਪ੍ਰਯਾਸ"
+    },
+    "messages": {
+      "outstanding": "ਸ਼ਾਨਦਾਰ! ਕਮਾਲ ਦਾ ਪ੍ਰਦਰਸ਼ਨ!",
+      "excellent": "ਉਤਕ੍ਰਿਸ਼ਟ! ਵਧੀਆ ਕੰਮ!",
+      "good": "ਚੰਗਾ ਕੰਮ! ਇਸੇ ਤਰ੍ਹਾਂ ਜਾਰੀ ਰੱਖੋ!",
+      "satisfactory": "ਸੰਤੋਸ਼ਜਨਕ! ਹੋਰ ਸੁਧਾਰ ਦੀ ਲੋੜ ਹੈ!",
+      "fair": "ਠੀਕ ਕੋਸ਼ਿਸ਼! ਅਭਿਆਸ ਜਾਰੀ ਰੱਖੋ!",
+      "keepPracticing": "ਅਭਿਆਸ ਕਰਦੇ ਰਹੋ! ਅਗਲੀ ਵਾਰੀ ਹੋਰ ਵਧੀਆ ਕਰੋਗੇ!",
+      "outstandingSub": "ਤੁਸੀਂ ਵਿਸ਼ੇ ਵਿੱਚ ਮਹਾਰਤ ਦਿਖਾਈ ਹੈ।",
+      "excellentSub": "ਚੰਗੀ ਸਮਝ ਹੈ, ਥੋੜ੍ਹੇ ਸੁਧਾਰ ਦੀ ਲੋੜ ਹੈ।",
+      "goodSub": "ਮਜ਼ਬੂਤ ਬੁਨਿਆਦ ਹੈ, ਕੁਝ ਵਿਸ਼ਿਆਂ ਨੂੰ ਦੁਹਰਾਉਣ ਦੀ ਲੋੜ ਹੈ।",
+      "satisfactorySub": "ਬੁਨਿਆਦੀ ਸਮਝ ਹੋ ਗਈ ਹੈ, ਅਭਿਆਸ ਜਾਰੀ ਰੱਖੋ।",
+      "fairSub": "ਸਮੱਗਰੀ ਨੂੰ ਦੁਹਰਾਓ ਅਤੇ ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+      "keepPracticingSub": "ਹਿੰਮਤ ਨਾ ਹਾਰੋ! ਲੈਵਲ ਦੁਹਰਾਓ ਅਤੇ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    },
+    "errors": {
+      "ratingRequired": "ਕਿਰਪਾ ਕਰਕੇ ਰੇਟਿੰਗ ਚੁਣੋ",
+      "feedbackFailed": "ਫੀਡਬੈਕ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
     }
   },
 

@@ -234,8 +234,7 @@ export default function Chapters() {
                 {t("chapters.aboutSection.title")}
               </h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                {currentChapter?.description ||
-                  "A comprehensive, interactive chapter designed to build practical knowledge through structured topics and hands-on learning experiences."}
+                {currentChapter?.description}
               </p>
             </div>
           </div>
@@ -266,13 +265,8 @@ export default function Chapters() {
               return (
                 <div
                   key={topic.id}
-                  className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md cursor-pointer
+                  className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md 
                       ${isUnlocked && !isCompleted ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
-                  onClick={() => {
-                    if (isUnlocked) {
-                      navigate(`/topics/${topic.id}`);
-                    }
-                  }}
                 >
                   <div className="flex items-center justify-between flex-wrap gap-3">
                     <div className="flex items-center gap-3 flex-1">
@@ -349,8 +343,7 @@ export default function Chapters() {
                         FAQ
                       </button>
 
-                      {/* Quiz Button */}
-                      {isQuizAvailable && (
+                      {/* {isQuizAvailable && (
                         <button
                           onClick={(e) => handleGiveQuiz(topic.id, e)}
                           className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
@@ -366,7 +359,6 @@ export default function Chapters() {
                         </button>
                       )}
 
-                      {/* Start Topic / Completed Button */}
                       {!isCompleted && (
                         <button
                           className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
@@ -375,6 +367,105 @@ export default function Chapters() {
                                   ? "bg-accent hover:opacity-90  text-white shadow-md "
                                   : "bg-gray-100 text-gray-500 cursor-not-allowed"
                               }`}
+                          disabled={!isUnlocked}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isUnlocked) {
+                              navigate(`/topics/${topic.id}`);
+                            }
+                          }}
+                        >
+                          {isUnlocked
+                            ? t("chapters.buttons.continue")
+                            : t("chapters.topicsSection.lockedButton")}
+                        </button>
+                      )} */}
+
+                      {/* {isCompleted ? (
+                        <button
+                          className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/topics/${topic.id}`);
+                          }}
+                        >
+                          {t("chapters.buttons.view")}
+                        </button>
+                      ) : isQuizAvailable ? (
+                        <button
+                          onClick={(e) => handleGiveQuiz(topic.id, e)}
+                          className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
+      ${
+        isUnlocked
+          ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:opacity-90"
+          : "bg-gray-100 text-gray-500 cursor-not-allowed"
+      }`}
+                          disabled={!isUnlocked}
+                        >
+                          <IoHelpCircle className="w-4 h-4" />
+                          {t("chapters.topicsSection.giveQuiz")}
+                        </button>
+                      ) : (
+                        <button
+                          className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
+      ${
+        isUnlocked
+          ? "bg-accent hover:opacity-90 text-white shadow-md"
+          : "bg-gray-100 text-gray-500 cursor-not-allowed"
+      }`}
+                          disabled={!isUnlocked}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isUnlocked) {
+                              navigate(`/topics/${topic.id}`);
+                            }
+                          }}
+                        >
+                          {isUnlocked
+                            ? t("chapters.buttons.continue")
+                            : t("chapters.topicsSection.lockedButton")}
+                        </button>
+                      )} */}
+
+                      {isCompleted ? (
+                        <button
+                          className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/topics/${topic.id}`);
+                          }}
+                        >
+                          {t("chapters.buttons.view")}
+                        </button>
+                      ) : isQuizAvailable ? (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (topics?.assessment) {
+                              handleGiveQuiz(topics?.assessment.id, e);
+                            }
+                          }}
+                          className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
+      ${
+        isUnlocked && topics?.assessment
+          ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:opacity-90"
+          : "bg-gray-100 text-gray-500 cursor-not-allowed"
+      }`}
+                          disabled={!isUnlocked || !topics?.assessment}
+                        >
+                          <IoHelpCircle className="w-4 h-4" />
+                          {topics?.assessment
+                            ? t("chapters.topicsSection.giveQuiz")
+                            : t("chapters.topicsSection.quizNotAvailable")}{" "}
+                        </button>
+                      ) : (
+                        <button
+                          className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
+      ${
+        isUnlocked
+          ? "bg-accent hover:opacity-90 text-white shadow-md"
+          : "bg-gray-100 text-gray-500 cursor-not-allowed"
+      }`}
                           disabled={!isUnlocked}
                           onClick={(e) => {
                             e.stopPropagation();
