@@ -139,7 +139,7 @@ const reportSlice = createSlice({
             .addCase(getAuditLogs.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message || "Failed to fetch audit logs";
+                state.message = action.payload?.message;
             })
 
             /* ===== GET USER PROGRESS ===== */
@@ -156,7 +156,7 @@ const reportSlice = createSlice({
             .addCase(getUserProgress.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message || "Failed to fetch user progress";
+                state.message = action.payload?.message;
             })
 
             /* ===== GET ASSESSMENT REPORT ===== */
@@ -167,13 +167,13 @@ const reportSlice = createSlice({
             .addCase(getAssessmentReport.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.assessmentReports = action.payload.data;
+                state.assessmentReports = action.payload?.data;
                 state.message = action.payload.message;
             })
             .addCase(getAssessmentReport.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message || "Failed to fetch assessment report";
+                state.message = action.payload?.message;
             })
 
             /* ===== GET CERTIFICATIONS ===== */
@@ -190,7 +190,7 @@ const reportSlice = createSlice({
             .addCase(getCertifications.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message || "Failed to fetch certifications";
+                state.message = action.payload?.message;
             })
 
             /* ===== GET CERTIFICATE BY ID ===== */
@@ -207,7 +207,7 @@ const reportSlice = createSlice({
             .addCase(getCertificateById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message || "Failed to fetch certificate";
+                state.message = action.payload?.message;
             });
     },
 });

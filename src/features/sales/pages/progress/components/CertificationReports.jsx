@@ -1,284 +1,3 @@
-// import { useEffect, useState } from "react";
-// import CustomeTable from "../../../common/table/CustomeTable";
-// import {
-//   FaEnvelope,
-//   FaIdCard,
-//   FaCertificate,
-//   FaCalendarAlt,
-//   FaPercent,
-// } from "react-icons/fa";
-// import {
-//   PageLayout,
-//   PageHeader,
-//   PageHeaderLeft,
-//   PageHeaderRight,
-//   PageTitle,
-//   PageSubtitle,
-//   PageBody,
-// } from "../../../common/layout";
-// import { useDispatch, useSelector } from "react-redux";
-// import Loader from "../../../common/Loader";
-// import Error from "../../../common/Error";
-// import { getCertifications } from "../../../../../redux/slice/reportSlice";
-
-// const ITEMS_PER_PAGE = 10;
-
-// const CertificationReports = () => {
-//   const dispatch = useDispatch();
-//   const { certifications, loadingCertifications, isError, message } =
-//     useSelector((state) => state.report);
-
-//   const [page, setPage] = useState(1);
-
-//   const fetchCertifications = (pageNum) => {
-//     const params = {
-//       page: pageNum,
-//       per_page: ITEMS_PER_PAGE,
-//     };
-//     dispatch(getCertifications(params));
-//   };
-
-//   useEffect(() => {
-//     fetchCertifications(page);
-//   }, [page]);
-
-//   const handlePageChange = (newPage) => {
-//     setPage(newPage);
-//   };
-
-//   const getTypeBadgeColor = (type) => {
-//     switch (type?.toLowerCase()) {
-//       case "topic":
-//         return "bg-purple-100 text-purple-700";
-//       case "chapter":
-//         return "bg-blue-100 text-blue-700";
-//       case "module":
-//         return "bg-green-100 text-green-700";
-//       case "level":
-//         return "bg-orange-100 text-orange-700";
-//       default:
-//         return "bg-gray-100 text-gray-700";
-//     }
-//   };
-
-//   const getStatusBadgeColor = (status) => {
-//     switch (status?.toLowerCase()) {
-//       case "active":
-//         return "bg-green-100 text-green-700";
-//       case "expired":
-//         return "bg-red-100 text-red-700";
-//       default:
-//         return "bg-gray-100 text-gray-700";
-//     }
-//   };
-
-//   const getPercentageColor = (percentage) => {
-//     if (percentage === 100) return "text-green-600";
-//     if (percentage >= 70) return "text-blue-600";
-//     if (percentage >= 40) return "text-yellow-600";
-//     return "text-red-600";
-//   };
-
-//   const columns = [
-//     {
-//       header: "User Details",
-//       render: (row) => (
-//         <div className="flex items-center gap-3">
-//           <div>
-//             <p className="font-semibold text-gray-800">{row?.user_name}</p>
-//             <p className="text-xs text-gray-500 flex items-center gap-1">
-//               <FaEnvelope size={10} />
-//               {row?.email}
-//             </p>
-//           </div>
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Program",
-//       render: (row) => (
-//         <div className="min-w-[120px]">
-//           <p className="text-sm font-medium text-gray-800">
-//             {row?.program || "-"}
-//           </p>
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Type",
-//       render: (row) => (
-//         <div>
-//           <span
-//             className={`px-2 py-1 rounded-full text-xs font-semibold ${getTypeBadgeColor(row?.type)}`}
-//           >
-//             {row?.type?.toUpperCase() || "-"}
-//           </span>
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Level/Topic",
-//       render: (row) => (
-//         <div className="min-w-[150px]">
-//           {row?.type?.toLowerCase() === "topic" && (
-//             <div>
-//               <p className="text-sm text-gray-700 font-medium">
-//                 {row?.topic || "-"}
-//               </p>
-//               {row?.level && (
-//                 <p className="text-xs text-gray-500 mt-1">
-//                   Level: {row?.level}
-//                 </p>
-//               )}
-//             </div>
-//           )}
-//           {row?.type?.toLowerCase() === "level" && (
-//             <div>
-//               <p className="text-sm text-gray-700 font-medium">
-//                 {row?.level || "-"}
-//               </p>
-//             </div>
-//           )}
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Certificate ID",
-//       render: (row) => (
-//         <div>
-//           <p className="text-sm font-mono text-blue-600 font-semibold">
-//             {row?.certificate_id || "-"}
-//           </p>
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Score & Percentage",
-//       render: (row) => (
-//         <div className="min-w-[120px]">
-//           <div className="flex justify-between items-center mb-1">
-//             <span className="text-xs text-gray-500">Score</span>
-//             <span className="text-xs font-semibold text-gray-700">
-//               {row?.score || 0}/{row?.max_score || 100}
-//             </span>
-//           </div>
-//           <div className="flex justify-between items-center mb-1">
-//             <span className="text-xs text-gray-500 flex items-center gap-1">
-//               <FaPercent size={10} /> Percentage
-//             </span>
-//             <span
-//               className={`text-xs font-semibold ${getPercentageColor(row?.percentage)}`}
-//             >
-//               {row?.percentage}%
-//             </span>
-//           </div>
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Issue Date",
-//       render: (row) => (
-//         <div className="min-w-[120px]">
-//           <div className="flex items-center gap-1 text-gray-600 text-sm">
-//             <FaCalendarAlt size={12} />
-//             <span>
-//               {row?.certificate_issue_date
-//                 ? new Date(row?.certificate_issue_date).toLocaleDateString()
-//                 : "-"}
-//             </span>
-//           </div>
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Status",
-//       render: (row) => (
-//         <div>
-//           <span
-//             className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusBadgeColor(row?.certificate_status)}`}
-//           >
-//             {row?.certificate_status || "-"}
-//           </span>
-//         </div>
-//       ),
-//     },
-//     {
-//       header: "Certificate",
-//       render: (row) => (
-//         <div>
-//           {row?.certificate_file ? (
-//             <a
-//               href={row?.certificate_file}
-//               target="_blank"
-//               rel="noopener noreferrer"
-//               className="flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-semibold"
-//             >
-//               <FaCertificate size={14} />
-//               Download
-//             </a>
-//           ) : (
-//             <span className="text-gray-400 text-sm">Not Available</span>
-//           )}
-//         </div>
-//       ),
-//     },
-//   ];
-
-//   const getTableData = () => {
-//     if (certifications?.data?.data) {
-//       return certifications.data.data;
-//     }
-//     if (certifications?.data) {
-//       return certifications.data;
-//     }
-//     return certifications || [];
-//   };
-
-//   const getPaginationData = () => {
-//     const data = certifications?.data || certifications || {};
-//     return {
-//       current_page: data?.current_page || 1,
-//       last_page: data?.last_page || 1,
-//       total: data?.total || 0,
-//     };
-//   };
-
-//   if (loadingCertifications && !getTableData().length) return <Loader />;
-//   if (isError) return <Error message={message} />;
-
-//   const pagination = getPaginationData();
-//   const tableData = getTableData();
-
-//   return (
-//     <PageLayout>
-//       <PageHeader>
-//         <PageHeaderLeft>
-//           <PageTitle>Certification Report</PageTitle>
-//           <PageSubtitle>View all user certifications</PageSubtitle>
-//         </PageHeaderLeft>
-//         <PageHeaderRight />
-//       </PageHeader>
-
-//       <PageBody>
-//         <div className="mt-4">
-//           <CustomeTable
-//             columns={columns}
-//             data={tableData}
-//             serverSide={true}
-//             currentPage={pagination.current_page}
-//             totalPages={pagination.last_page}
-//             totalItems={pagination.total}
-//             itemsPerPage={ITEMS_PER_PAGE}
-//             onPageChange={handlePageChange}
-//           />
-//         </div>
-//       </PageBody>
-//     </PageLayout>
-//   );
-// };
-
-// export default CertificationReports;
-
 import { useEffect, useState } from "react";
 import CustomeTable from "../../../common/table/CustomeTable";
 import {
@@ -302,6 +21,7 @@ import Loader from "../../../common/Loader";
 import Error from "../../../common/Error";
 import { getCertifications } from "../../../../../redux/slice/reportSlice";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -310,6 +30,8 @@ const CertificationReports = () => {
   const { t } = useTranslation();
   const { certifications, loadingCertifications, isError, message } =
     useSelector((state) => state.report);
+
+  const navigate = useNavigate();
 
   const [page, setPage] = useState(1);
 
@@ -508,26 +230,27 @@ const CertificationReports = () => {
       ),
     },
     {
-      header: t("certificationReports.table.certificate"),
-      render: (row) => (
-        <div>
-          {row?.certificate_file ? (
-            <a
-              href={row?.certificate_file}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-semibold"
-            >
-              <FaCertificate size={14} />
-              {t("certificationReports.table.download")}
-            </a>
-          ) : (
-            <span className="text-gray-400 text-sm">
-              {t("certificationReports.table.notAvailable")}
-            </span>
-          )}
-        </div>
-      ),
+      header: t("certificationReports.table.action"),
+      render: (row) => {
+        const isValidCertificate = Number(row?.passed_attempt_id) > 0;
+
+        return (
+          <div>
+            {isValidCertificate ? (
+              <button
+                onClick={() =>
+                  navigate(`/certificate/${row.passed_attempt_id}`)
+                }
+                className="px-3 py-1 text-xs font-semibold cursor-pointer text-blue-600 bg-blue-50 border border-blue-200 rounded-md hover:bg-blue-100 hover:border-blue-300 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all duration-150"
+              >
+                {t("certificationReports.table.viewCertificate")}
+              </button>
+            ) : (
+              <span className="text-xs text-gray-400 italic">—</span>
+            )}
+          </div>
+        );
+      },
     },
   ];
 
