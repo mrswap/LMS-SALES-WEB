@@ -29,6 +29,8 @@ const TopicContent = () => {
 
   const { currentContent, isLoading } = useSelector((state) => state.course);
 
+  // console.log("currentContent", currentContent);
+
   const content = currentContent?.current;
   const topic = currentContent?.topic;
   const navigation = currentContent?.navigation;

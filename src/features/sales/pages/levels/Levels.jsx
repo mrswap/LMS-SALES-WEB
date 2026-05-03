@@ -28,7 +28,6 @@ import {
   FaClipboardList,
 } from "react-icons/fa";
 
-/* ---------------- Card ---------------- */
 const LevelCard = ({ item }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -77,7 +76,7 @@ const LevelCard = ({ item }) => {
     }
   };
 
-  // Get status color (classic look with softer colors)
+  // Get status color
   const getStatusColor = () => {
     switch (status) {
       case "passed":
@@ -107,6 +106,17 @@ const LevelCard = ({ item }) => {
 
   const progressPercentage = getProgressPercentage();
 
+  // Check if content view should be shown
+  const shouldShowViewButton = () => {
+    // Show view button if:
+    // 1. Level is passed (completed)
+    // 2. Level has content completed (ready for exam but not passed yet)
+    // 3. Level is unlocked but content is fully completed (edge case)
+    return (item.is_passed || item.is_content_completed) && item.is_unlocked;
+  };
+
+  console.log("item", item);
+
   // Get main button config
   const getMainButtonConfig = () => {
     if (!item.is_unlocked) {
@@ -126,14 +136,26 @@ const LevelCard = ({ item }) => {
         action: () => navigate(`/certificate/${item.id}`),
         disabled: false,
         color:
-          "bg-emerald-50 text-emerald-700 border border-emerald-300 hover:bg-emerald-100 transition-colors",
+          "bg-emerald-50 cursor-pointer text-emerald-700 border border-emerald-300 hover:bg-emerald-100 transition-colors",
         icon: <FaAward className="w-4 h-4" />,
       };
     }
+
     if (item.is_content_completed && item.can_take_exam) {
+      if (!item.assessment) {
+        return {
+          text: t("levelsPage.buttons.examNotAvailable"),
+          action: null,
+          disabled: true,
+          color:
+            "bg-gray-100 text-gray-500 border border-gray-200 cursor-not-allowed",
+          icon: <FaGraduationCap className="w-4 h-4" />,
+        };
+      }
+
       return {
         text: t("levelsPage.buttons.giveExam"),
-        action: () => navigate(`/exam/${item.id}`),
+        action: () => navigate(`/exam/${item.assessment.id}`),
         disabled: false,
         color:
           "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md cursor-pointer hover:opacity-90",
@@ -147,7 +169,8 @@ const LevelCard = ({ item }) => {
         action: () => navigate(`/levels/${item.id}`),
         disabled: false,
         color:
-          "bg-accent text-white hover:opacity-90 transition-colors shadow-sm",
+          "bg-accent text-white hover:opacity-90 cursor-pointer transition-colors shadow-sm",
+        icon: <FaArrowRight className="w-4 h-4" />,
       };
     }
 
@@ -156,7 +179,8 @@ const LevelCard = ({ item }) => {
       action: () => navigate(`/levels/${item.id}`),
       disabled: false,
       color:
-        "bg-accent text-white hover:opacity-90 transition-colors shadow-sm",
+        "bg-accent text-white hover:opacity-90 cursor-pointer transition-colors shadow-sm",
+      icon: <FaArrowRight className="w-4 h-4" />,
     };
   };
 
@@ -174,12 +198,7 @@ const LevelCard = ({ item }) => {
   return (
     <div className="group bg-white rounded-xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
       {/* Image */}
-      <div
-        onClick={() => {
-          navigate(`/levels/${item.id}`);
-        }}
-        className="relative cursor-pointer"
-      >
+      <div className="relative">
         <img
           src={item.thumbnail}
           className="w-full h-44 object-cover"
@@ -189,7 +208,7 @@ const LevelCard = ({ item }) => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-        {/* Status Badge - Classic Style */}
+        {/* Status Badge */}
         <div
           className={`absolute top-3 right-3 text-xs px-3 py-1.5 rounded-md shadow-sm font-medium flex items-center gap-1.5 ${getStatusColor()}`}
         >
@@ -198,7 +217,7 @@ const LevelCard = ({ item }) => {
         </div>
 
         {/* Level Number Badge */}
-        <div className="absolute  bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
+        <div className="absolute bottom-3 left-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md flex items-center gap-1">
           <FaBookOpen className="w-3 h-3" />
           Level {item.id}
         </div>
@@ -219,7 +238,7 @@ const LevelCard = ({ item }) => {
           {getModulesInfo()}
         </p>
 
-        {/* Progress Bar - Classic Style */}
+        {/* Progress Bar */}
         {item.is_unlocked && (
           <div className="mt-3 mb-4">
             <div className="flex justify-between text-xs text-gray-600 mb-1.5">
@@ -251,7 +270,7 @@ const LevelCard = ({ item }) => {
           </div>
         )}
 
-        {/* Content Completion Message - Classic Alert */}
+        {/* Content Completion Message */}
         {item.is_content_completed && !item.is_passed && (
           <div className="mt-3 mb-3 p-2.5 bg-green-50 rounded-md border-l-4 border-green-500">
             <div className="flex items-center gap-2">
@@ -265,7 +284,7 @@ const LevelCard = ({ item }) => {
           </div>
         )}
 
-        {/* Certificate Earned Message - Classic Alert */}
+        {/* Certificate Earned Message */}
         {item.is_passed && (
           <div className="mt-3 mb-3 p-2.5 bg-emerald-50 rounded-md border-l-4 border-emerald-500">
             <div className="flex items-center gap-2">
@@ -291,40 +310,57 @@ const LevelCard = ({ item }) => {
             </div>
           )}
 
-        {/* FAQ Button - Classic Style */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (item.is_unlocked) {
-              navigate(`/faqs?type=level&id=${item.id}`);
-            }
-          }}
-          className={`mt-2 w-full py-2.5 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2
-    ${
-      item.is_unlocked
-        ? "bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 cursor-pointer"
-        : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
-    }`}
-          disabled={!item.is_unlocked}
-        >
-          <FaQuestionCircle className="w-4 h-4" />
-          {t("levelsPage.buttons.faqs")}
-        </button>
+        {/* Button Group - Two buttons when view button should be shown */}
+        <div className="mt-2 space-y-2">
+          {/* FAQ Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (item.is_unlocked) {
+                navigate(`/faqs?type=level&id=${item.id}`);
+              }
+            }}
+            className={`w-full py-2.5 rounded-md text-sm font-medium transition-all flex items-center justify-center gap-2
+              ${
+                item.is_unlocked
+                  ? "bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 cursor-pointer"
+                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
+              }`}
+            disabled={!item.is_unlocked}
+          >
+            <FaQuestionCircle className="w-4 h-4" />
+            {t("levelsPage.buttons.faqs")}
+          </button>
 
-        {/* Main Action Button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (mainButton.action) {
-              mainButton.action();
-            }
-          }}
-          disabled={mainButton.disabled}
-          className={`mt-2 w-full py-2.5 rounded-md text-sm font-semibold transition-all flex items-center justify-center gap-2 ${mainButton.color}`}
-        >
-          {mainButton.icon}
-          {mainButton.text}
-        </button>
+          {/* Show View Content button for completed/content completed levels */}
+          {shouldShowViewButton() && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/levels/${item.id}`);
+              }}
+              className="w-full py-2.5 rounded-md cursor-pointer text-sm font-semibold transition-all flex items-center justify-center gap-2 bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+            >
+              <FaBookOpen className="w-4 h-4" />
+              {t("levelsPage.buttons.view")}
+            </button>
+          )}
+
+          {/* Main Action Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              if (mainButton.action) {
+                mainButton.action();
+              }
+            }}
+            disabled={mainButton.disabled}
+            className={`w-full py-2.5  rounded-md text-sm font-semibold transition-all flex items-center justify-center gap-2 ${mainButton.color}`}
+          >
+            {mainButton.icon}
+            {mainButton.text}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -349,15 +385,15 @@ export default function LevelsPage() {
   if (courseData.levels && Array.isArray(courseData.levels)) {
     if (courseData.levels.length > 0 && courseData.levels[0].type === "level") {
       levelsArray = courseData.levels;
-      console.log("Case 1: Direct levels array", levelsArray);
+      // console.log("Case 1: Direct levels array", levelsArray);
     } else if (courseData.levels[0] && courseData.levels[0].levels) {
       levelsArray = courseData.levels[0].levels;
       programTitle = courseData.levels[0].title || t("levelsPage.programTitle");
-      console.log("Case 2: levels[0].levels", levelsArray);
+      // console.log("Case 2: levels[0].levels", levelsArray);
     } else if (courseData.levels.levels) {
       levelsArray = courseData.levels.levels;
       programTitle = courseData.levels.title || t("levelsPage.programTitle");
-      console.log("Case 3: levels.levels", levelsArray);
+      // console.log("Case 3: levels.levels", levelsArray);
     }
   } else if (courseData.data && courseData.data.levels) {
     levelsArray = courseData.data.levels;

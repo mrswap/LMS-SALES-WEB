@@ -60,10 +60,10 @@ const Register = () => {
 
   // Form initial values
   const initialValues = {
-    name: "ajay",
-    email: "ajaycharve@gmail.com",
-    mobile: "8982251020",
-    employee_id: "Emp 123",
+    name: "",
+    email: "",
+    mobile: "",
+    employee_id: "",
     designation_id: null,
     country: null,
     city: "indore",
@@ -151,6 +151,7 @@ const Register = () => {
       formData.append("designation_id", values.designation_id.value);
       formData.append("region", values.country.value);
       formData.append("city", values.city);
+      formData.append("source", "web");
 
       if (values.profile_image) {
         formData.append("profile_image", values.profile_image);

@@ -248,13 +248,8 @@ export default function LevelDetails() {
             {modules.map((module, index) => (
               <div
                 key={module.id}
-                className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md cursor-pointer
+                className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md 
                     ${module.is_unlocked && !module.is_completed ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
-                onClick={() => {
-                  if (module.is_unlocked) {
-                    navigate(`/modules/${module.id}`);
-                  }
-                }}
               >
                 <div className="flex items-center justify-between flex-wrap gap-3">
                   <div className="flex items-center gap-3 flex-1">
@@ -334,7 +329,7 @@ export default function LevelDetails() {
                       FAQ
                     </button>
 
-                    {!module?.is_completed && (
+                    {/* {!module?.is_completed && (
                       <button
                         className={`px-4 py-2 rounded-lg text-sm font-medium 
                           ${
@@ -342,6 +337,37 @@ export default function LevelDetails() {
                               ? "bg-accent hover:opacity-90 text-white shadow-md "
                               : "bg-gray-100 text-gray-500 cursor-not-allowed"
                           }`}
+                        disabled={!module.is_unlocked}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (module.is_unlocked) {
+                            navigate(`/modules/${module.id}`);
+                          }
+                        }}
+                      >
+                        {module.is_unlocked
+                          ? t("levelDetails.buttons.continue")
+                          : t("levelDetails.modulesSection.lockedButton")}
+                      </button>
+                    )} */}
+                    {module?.is_completed ? (
+                      <button
+                        className="w-full py-2 px-4 cursor-pointer rounded-md text-sm font-semibold  justify-center bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/modules/${module.id}`);
+                        }}
+                      >
+                        {t("levelDetails.buttons.view")}
+                      </button>
+                    ) : (
+                      <button
+                        className={`px-4 py-2 rounded-lg text-sm font-medium 
+      ${
+        module.is_unlocked
+          ? "bg-accent hover:opacity-90 text-white shadow-md cursor-pointer"
+          : "bg-gray-100 text-gray-500 cursor-not-allowed"
+      }`}
                         disabled={!module.is_unlocked}
                         onClick={(e) => {
                           e.stopPropagation();

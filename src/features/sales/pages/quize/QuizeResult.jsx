@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   PageBody,
@@ -219,6 +219,9 @@ const QuizResult = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { topicId } = useParams();
+
+  // console.log("topicId", topicId);
 
   const { quizResults, isLoading, feedbackSubmitted } = useSelector(
     (state) => state.quiz,
@@ -300,6 +303,7 @@ const QuizResult = () => {
     try {
       await dispatch(
         submitFeedback({
+          topicId: topicId,
           attemptId: attemptIdValue,
           rating: feedback.rating,
           review: feedback.review,
@@ -323,17 +327,6 @@ const QuizResult = () => {
     // Navigate to /chapters/:chapterId
     navigate(`/chapters/${currentChapterId}`);
   };
-
-  // /* loading */
-  // if (isLoading || !quizResults) {
-  //   return (
-  //     <PageLayout>
-  //       <div className="flex justify-center items-center min-h-[60vh]">
-  //         <Loader />
-  //       </div>
-  //     </PageLayout>
-  //   );
-  // }
 
   // loading state
   if (isLoading) {

@@ -262,13 +262,8 @@ export default function Modules() {
             {chapters.map((chapter, index) => (
               <div
                 key={chapter.id}
-                className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md cursor-pointer
+                className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md 
                     ${chapter.is_unlocked && !chapter.is_completed ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
-                onClick={() => {
-                  if (chapter.is_unlocked) {
-                    navigate(`/chapters/${chapter.id}`);
-                  }
-                }}
               >
                 <div className="flex items-center justify-between flex-wrap gap-3">
                   <div className="flex items-center gap-3 flex-1">
@@ -364,7 +359,7 @@ export default function Modules() {
                       FAQ
                     </button>
 
-                    {!chapter.is_completed && (
+                    {/* {!chapter.is_completed && (
                       <button
                         className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
                           ${
@@ -372,6 +367,38 @@ export default function Modules() {
                               ? "bg-accent hover:opacity-90 text-white shadow-md "
                               : "bg-gray-100 text-gray-500 cursor-not-allowed"
                           }`}
+                        disabled={!chapter.is_unlocked}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (chapter.is_unlocked) {
+                            navigate(`/chapters/${chapter.id}`);
+                          }
+                        }}
+                      >
+                        {chapter.is_unlocked
+                          ? t("modules.buttons.continue")
+                          : t("modules.chaptersSection.lockedButton")}
+                      </button>
+                    )} */}
+
+                    {chapter?.is_completed ? (
+                      <button
+                        className="w-full py-2 px-4 cursor-pointer rounded-md text-sm font-semibold justify-center bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/chapters/${chapter.id}`);
+                        }}
+                      >
+                        {t("modules.buttons.view")}
+                      </button>
+                    ) : (
+                      <button
+                        className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
+      ${
+        chapter.is_unlocked
+          ? "bg-accent hover:opacity-90 text-white shadow-md"
+          : "bg-gray-100 text-gray-500 cursor-not-allowed"
+      }`}
                         disabled={!chapter.is_unlocked}
                         onClick={(e) => {
                           e.stopPropagation();

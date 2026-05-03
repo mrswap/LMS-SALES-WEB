@@ -462,6 +462,7 @@ const coursePreviewSlice = createSlice({
         currentChapter: null,
         currentTopic: null,
         currentContent: null,
+        assessmentStatusTopic: null,
         faqs: [],           // Added FAQs array
         isLoading: false,
         isError: false,
@@ -555,7 +556,8 @@ const coursePreviewSlice = createSlice({
             .addCase(getTopicById.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.currentTopic = action.payload.data || action.payload;
+                state.currentTopic = action.payload.data;
+                state.assessmentStatusTopic = action.payload?.assessment_status;
                 state.message = action.payload.message;
             })
             .addCase(getTopicById.rejected, (state, action) => {
