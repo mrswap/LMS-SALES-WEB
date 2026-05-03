@@ -27,6 +27,7 @@ import AuditLogsReports from "../pages/progress/components/AuditLogsReports";
 import UserProgressReports from "../pages/progress/components/UserProgressReports";
 import CertificationReports from "../pages/progress/components/CertificationReports";
 import Certificate from "../pages/assessment/components/Certificate";
+import ExamResult from "../pages/exam/ExamResult";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -37,7 +38,7 @@ const SalesRoutes = (
       {/* levels */}
       <Route path="levels" element={<Levels />} />
       <Route path="levels/:levelId" element={<LevelDetails />} />
-      <Route path="levels/exam/:id" element={<Exam />} />
+      {/* <Route path="levels/exam/:id" element={<Exam />} /> */}
 
       {/* modules */}
       <Route path="modules/:moduleId" element={<Modules />} />
@@ -60,6 +61,10 @@ const SalesRoutes = (
         path="/quiz/result/:topicId/:attemptId"
         element={<QuizeResult />}
       />
+
+      {/* exam */}
+      <Route path="exam/:topicId" element={<Exam />} />
+      <Route path="/exam/result/:topicId/:attemptId" element={<ExamResult />} />
 
       {/*certificate  */}
       {/* <Route path="certificate" element={<Certificate />} /> */}

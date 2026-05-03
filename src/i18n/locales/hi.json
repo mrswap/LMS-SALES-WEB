@@ -548,6 +548,17 @@
     }
   },
 
+  "faq": {
+    "pageTitle": "अक्सर पूछे जाने वाले प्रश्न",
+    "pageSubtitle": "हमारे पाठ्यक्रमों के बारे में सामान्य प्रश्नों के उत्तर खोजें",
+    "contentType": "सामग्री का प्रकार",
+    "illustrationFor": "चित्रण",
+    "emptyState": {
+      "title": "इस समय कोई FAQ उपलब्ध नहीं है।",
+      "description": "कृपया अपडेट के लिए बाद में दोबारा जाँच करें।"
+    }
+  },
+
   "topicContent": {
     "loading": "सामग्री लोड हो रही है...",
     "notFound": {
@@ -621,10 +632,10 @@
 
   "quizResult": {
     "score": "स्कोर",
-    "pageTitlePassed": "मूल्यांकन पूरा हुआ",
-    "pageTitleFailed": "क्विज़ समाप्त हुआ",
-    "pageSubtitlePassed": "मूल्यांकन पास करने पर बधाई",
-    "pageSubtitleFailed": "नीचे अपने प्रदर्शन का सारांश देखें",
+    "pageTitlePassed": "मूल्यांकन पूर्ण",
+    "pageTitleFailed": "प्रश्नोत्तरी समाप्त",
+    "pageSubtitlePassed": "मूल्यांकन पास करने पर बधाई हो",
+    "pageSubtitleFailed": "नीचे अपना प्रदर्शन सारांश देखें",
     "passed": "उत्तीर्ण",
     "failed": "अनुत्तीर्ण",
     "scoreLabel": "स्कोर",
@@ -632,13 +643,13 @@
       "correct": "सही",
       "incorrect": "गलत",
       "skipped": "छोड़ा गया",
-      "timeSpent": "समय लिया गया"
+      "timeSpent": "लगाया गया समय"
     },
     "analysis": {
       "title": "विस्तृत प्रदर्शन विश्लेषण",
       "attemptId": "प्रयास आईडी",
       "totalQuestions": "कुल प्रश्न",
-      "questionsAttempted": "प्रयास किए गए प्रश्न",
+      "questionsAttempted": "किए गए प्रश्न",
       "pendingQuestions": "लंबित प्रश्न",
       "attemptsUsed": "उपयोग किए गए प्रयास",
       "attemptsRemaining": "शेष प्रयास",
@@ -646,17 +657,17 @@
     },
     "feedback": {
       "title": "अपना अनुभव साझा करें",
-      "ratingLabel": "आप इस क्विज़ को कैसे रेट करेंगे?",
+      "ratingLabel": "आप इस प्रश्नोत्तरी को कैसे रेटिंग देंगे?",
       "required": "*",
       "additionalComments": "अतिरिक्त टिप्पणियाँ",
-      "placeholder": "अपने विचार, सुझाव या चिंताएँ साझा करें...",
-      "submitButton": "फीडबैक सबमिट करें",
-      "submitting": "फीडबैक भेजा जा रहा है…",
-      "thankYouTitle": "आपके फीडबैक के लिए धन्यवाद!",
-      "thankYouMessage": "आपका इनपुट हमें सुधार करने और बेहतर सीखने का अनुभव बनाने में मदद करता है।",
+      "placeholder": "अपने विचार, सुझाव या शंकाएँ साझा करें...",
+      "submitButton": "प्रतिक्रिया सबमिट करें",
+      "submitting": "प्रतिक्रिया सबमिट की जा रही है...",
+      "thankYouTitle": "आपकी प्रतिक्रिया के लिए धन्यवाद!",
+      "thankYouMessage": "आपका इनपुट हमें बेहतर सीखने के अनुभव बनाने में मदद करता है।",
       "ratingLabels": {
         "1": "खराब",
-        "2": "औसत",
+        "2": "ठीक",
         "3": "अच्छा",
         "4": "बहुत अच्छा",
         "5": "उत्कृष्ट"
@@ -665,26 +676,28 @@
     "buttons": {
       "home": "होम",
       "myLevels": "मेरे स्तर",
-      "retry": "क्विज़ फिर से करें",
-      "attemptsLeft": "शेष प्रयास"
+      "retry": "प्रश्नोत्तरी पुनः प्रयास करें",
+      "attemptsLeft": "प्रयास शेष",
+      "getCertificate": "प्रमाणपत्र प्राप्त करें"
     },
     "messages": {
-      "outstanding": "उत्कृष्ट उपलब्धि!",
-      "excellent": "बेहतरीन प्रदर्शन!",
-      "good": "अच्छा काम!",
+      "noQuizResultFound": "कोई प्रश्नोत्तरी परिणाम नहीं मिला",
+      "outstanding": "असाधारण उपलब्धि!",
+      "excellent": "उत्कृष्ट प्रदर्शन!",
+      "good": "बहुत बढ़िया!",
       "satisfactory": "संतोषजनक",
-      "fair": "ठीक-ठाक प्रयास",
+      "fair": "औसत प्रयास",
       "keepPracticing": "अभ्यास जारी रखें",
-      "outstandingSub": "आपने असाधारण समझ दिखाई है",
-      "excellentSub": "आपकी विषय पर अच्छी पकड़ है",
-      "goodSub": "अच्छा प्रदर्शन, ऐसे ही जारी रखें",
-      "satisfactorySub": "आप सही दिशा में हैं",
+      "outstandingSub": "आपने असाधारण समझ का प्रदर्शन किया है",
+      "excellentSub": "आपकी सामग्री पर अच्छी पकड़ है",
+      "goodSub": "ठोस प्रदर्शन, अच्छा काम जारी रखें",
+      "satisfactorySub": "आप सही रास्ते पर हैं",
       "fairSub": "सुधार की गुंजाइश है, सीखते रहें",
-      "keepPracticingSub": "हार मत मानो, दोबारा प्रयास करो"
+      "keepPracticingSub": "हार न मानें, पुनरावलोकन करें और पुनः प्रयास करें"
     },
     "errors": {
       "ratingRequired": "कृपया एक रेटिंग चुनें",
-      "feedbackFailed": "फीडबैक सबमिट नहीं हो सका। कृपया पुनः प्रयास करें।"
+      "feedbackFailed": "प्रतिक्रिया सबमिट करने में विफल। कृपया पुनः प्रयास करें।"
     }
   },
 
@@ -773,26 +786,26 @@
 
   "assessment": {
     "tabs": {
-      "quiz": "क्विज़ मूल्यांकन",
+      "quiz": "प्रश्नोत्तरी मूल्यांकन",
       "exam": "परीक्षा मूल्यांकन"
     },
     "quizReport": {
-      "pageTitle": "क्विज़ मूल्यांकन रिपोर्ट",
-      "pageSubtitle": "सभी प्रयास और परिणाम देखें",
+      "pageTitle": "प्रश्नोत्तरी मूल्यांकन रिपोर्ट",
+      "pageSubtitle": "सभी मूल्यांकन प्रयास और परिणाम देखें",
       "table": {
-        "userDetails": "यूज़र विवरण",
+        "userDetails": "उपयोगकर्ता विवरण",
         "assessment": "मूल्यांकन",
         "scorePercentage": "स्कोर / प्रतिशत",
         "status": "स्थिति",
         "answers": "उत्तर",
         "attempt": "प्रयास",
-        "dateTime": "दिनांक और समय",
+        "dateTime": "तिथि और समय",
         "action": "कार्रवाई",
         "viewCertificate": "प्रमाण पत्र देखें",
         "correct": "सही",
         "incorrect": "गलत",
         "skipped": "छोड़ा गया",
-        "passing": "उत्तीर्ण"
+        "passing": "उत्तीर्णांक"
       },
       "status": {
         "passed": "उत्तीर्ण",
@@ -801,25 +814,58 @@
     },
     "examReport": {
       "pageTitle": "परीक्षा मूल्यांकन रिपोर्ट",
-      "pageSubtitle": "सभी प्रयास और परिणाम देखें",
+      "pageSubtitle": "सभी मूल्यांकन प्रयास और परिणाम देखें",
       "table": {
-        "userDetails": "यूज़र विवरण",
+        "userDetails": "उपयोगकर्ता विवरण",
         "assessment": "मूल्यांकन",
         "scorePercentage": "स्कोर / प्रतिशत",
         "status": "स्थिति",
         "answers": "उत्तर",
         "attempt": "प्रयास",
-        "dateTime": "दिनांक और समय",
+        "dateTime": "तिथि और समय",
         "correct": "सही",
         "incorrect": "गलत",
         "skipped": "छोड़ा गया",
-        "passing": "उत्तीर्ण"
+        "passing": "उत्तीर्णांक",
+        "action": "कार्रवाई",
+        "viewCertificate": "प्रमाण पत्र देखें"
       },
       "status": {
         "passed": "उत्तीर्ण",
         "failed": "अनुत्तीर्ण"
       }
     }
+  },
+
+  "certificate": {
+    "pageTitle": "उपलब्धि प्रमाण पत्र",
+    "downloadButton": "प्रमाण पत्र डाउनलोड करें",
+    "ofAchievement": "उपलब्धि का",
+    "presentedTo": "यह प्रमाण पत्र गर्व से प्रदान किया जाता है",
+    "recipientName": "प्राप्तकर्ता का नाम",
+    "employeeId": "कर्मचारी आईडी",
+    "achievementScore": "उपलब्धि स्कोर",
+    "questions": "प्रश्न",
+    "passed": "उत्तीर्ण",
+    "completed": "पूर्ण",
+    "finalStatus": "अंतिम स्थिति",
+    "passingScore": "उत्तीर्णांक",
+    "timeTaken": "लिया गया समय",
+    "attempt": "प्रयास",
+    "assessmentDetails": "मूल्यांकन विवरण",
+    "assessmentDate": "मूल्यांकन तिथि",
+    "questionsAttempted": "किए गए प्रश्न",
+    "correctAnswers": "सही उत्तर",
+    "correct": "सही",
+    "courseType": "पाठ्यक्रम प्रकार",
+    "signature": "हस्ताक्षर",
+    "authorizedSignatory": "अधिकृत हस्ताक्षरकर्ता",
+    "dateOfIssue": "जारी करने की तिथि",
+    "certificateId": "प्रमाण पत्र आईडी",
+    "digitallyVerified": "डिजिटली सत्यापित प्रमाण पत्र",
+    "whatsapp": "व्हाट्सएप",
+    "facebook": "फेसबुक",
+    "linkedin": "लिंक्डइन"
   },
 
   "auditLogs": {
@@ -865,10 +911,10 @@
 
   "certificationReports": {
     "pageTitle": "प्रमाणन रिपोर्ट",
-    "pageSubtitle": "सभी यूज़र प्रमाणपत्र देखें",
+    "pageSubtitle": "सभी उपयोगकर्ता प्रमाणपत्र देखें",
     "table": {
-      "userDetails": "यूज़र विवरण",
-      "program": "प्रोग्राम",
+      "userDetails": "उपयोगकर्ता विवरण",
+      "program": "कार्यक्रम",
       "type": "प्रकार",
       "levelTopic": "स्तर/विषय",
       "certificateId": "प्रमाणपत्र आईडी",
@@ -877,8 +923,9 @@
       "percentage": "प्रतिशत",
       "issueDate": "जारी करने की तिथि",
       "status": "स्थिति",
-      "certificate": "प्रमाणपत्र",
-      "download": "डाउनलोड",
+      "action": "कार्रवाई",
+      "viewCertificate": "प्रमाणपत्र देखें",
+      "download": "डाउनलोड करें",
       "notAvailable": "उपलब्ध नहीं",
       "level": "स्तर"
     },
@@ -892,5 +939,20 @@
       "active": "सक्रिय",
       "expired": "समाप्त"
     }
+  },
+
+  "globalConfirmationModal": {
+    "confirmDeletion": "हटाने की पुष्टि करें",
+    "cancle": "रद्द करें",
+    "confirm": "पुष्टि करें"
+  },
+
+  "loaderText": "कृपया प्रतीक्षा करें, हम आपका अनुरोध संसाधित कर रहे हैं",
+
+  "sessionModal": {
+    "title": "सत्र समाप्त हो रहा है",
+    "description": "आप कुछ समय से सक्रिय नहीं हैं। आप जल्द ही लॉग आउट हो जाएंगे।",
+    "continue": "जारी रखें",
+    "logout": "लॉग आउट"
   }
 }

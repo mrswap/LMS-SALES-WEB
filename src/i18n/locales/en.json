@@ -548,6 +548,17 @@
     }
   },
 
+  "faq": {
+    "pageTitle": "Frequently Asked Questions",
+    "pageSubtitle": "Find answers to common questions about our courses",
+    "contentType": "Content Type",
+    "illustrationFor": "Illustration for",
+    "emptyState": {
+      "title": "No FAQs available at the moment.",
+      "description": "Please check back later for updates."
+    }
+  },
+
   "topicContent": {
     "loading": "Loading content...",
     "notFound": {
@@ -666,9 +677,11 @@
       "home": "Home",
       "myLevels": "My Levels",
       "retry": "Retry Quiz",
-      "attemptsLeft": "attempts left"
+      "attemptsLeft": "attempts left",
+      "getCertificate": "Get Certificate"
     },
     "messages": {
+      "noQuizResultFound": "No Quiz Result Found",
       "outstanding": "Outstanding Achievement!",
       "excellent": "Excellent Performance!",
       "good": "Good Job!",
@@ -813,7 +826,9 @@
         "correct": "Correct",
         "incorrect": "Incorrect",
         "skipped": "Skipped",
-        "passing": "Passing"
+        "passing": "Passing",
+        "action": "Action",
+        "viewCertificate": "View Certificate"
       },
       "status": {
         "passed": "PASSED",
@@ -822,7 +837,36 @@
     }
   },
 
-  "certificate": {},
+  "certificate": {
+    "pageTitle": "Certificate of Achievement",
+    "downloadButton": "Download Certificate",
+    "ofAchievement": "OF ACHIEVEMENT",
+    "presentedTo": "This certificate is proudly presented to",
+    "recipientName": "Recipient Name",
+    "employeeId": "Employee ID",
+    "achievementScore": "Achievement Score",
+    "questions": "Questions",
+    "passed": "Passed",
+    "completed": "Completed",
+    "finalStatus": "Final Status",
+    "passingScore": "Passing Score",
+    "timeTaken": "Time Taken",
+    "attempt": "Attempt",
+    "assessmentDetails": "Assessment Details",
+    "assessmentDate": "Assessment Date",
+    "questionsAttempted": "Questions Attempted",
+    "correctAnswers": "Correct Answers",
+    "correct": "correct",
+    "courseType": "Course Type",
+    "signature": "Signature",
+    "authorizedSignatory": "Authorized Signatory",
+    "dateOfIssue": "Date of Issue",
+    "certificateId": "Certificate ID",
+    "digitallyVerified": "Digitally Verified Certificate",
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "linkedin": "LinkedIn"
+  },
 
   "auditLogs": {
     "pageTitle": "Audit Logs Report",
@@ -879,7 +923,8 @@
       "percentage": "Percentage",
       "issueDate": "Issue Date",
       "status": "Status",
-      "certificate": "Certificate",
+      "action": "Actions",
+      "viewCertificate": "View Certificate",
       "download": "Download",
       "notAvailable": "Not Available",
       "level": "Level"

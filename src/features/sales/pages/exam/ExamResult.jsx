@@ -28,7 +28,6 @@ import {
   FiLayers,
   FiHash,
 } from "react-icons/fi";
-import { useTranslation } from "react-i18next";
 import {
   submitFeedback,
   clearQuizData,
@@ -128,7 +127,6 @@ const Confetti = () => (
 
 /* ── SVG Score Ring ── */
 const ScoreRing = ({ percentage, isPassed }) => {
-  const { t } = useTranslation();
   const circleRef = useRef(null);
   const r = 70;
   const circ = 2 * Math.PI * r;
@@ -205,7 +203,7 @@ const ScoreRing = ({ percentage, isPassed }) => {
           {Math.round(percentage || 0)}%
         </span>
         <span className="text-[0.6rem] tracking-widest text-gray-400 font-semibold uppercase">
-          {t("quizResult.score")}
+          SCORE
         </span>
       </div>
     </div>
@@ -215,10 +213,9 @@ const ScoreRing = ({ percentage, isPassed }) => {
 /* ══════════════════════════════
    MAIN COMPONENT
 ══════════════════════════════ */
-const QuizResult = () => {
+const ExamResult = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
   const { quizResults, isLoading, feedbackSubmitted } = useSelector(
     (state) => state.quiz,
@@ -258,30 +255,30 @@ const QuizResult = () => {
   const currentChapterId = quizResults?.context?.chapter?.id;
 
   const getScoreMessage = () => {
-    if (pct >= 80) return t("quizResult.messages.outstanding");
-    if (pct >= 70) return t("quizResult.messages.excellent");
-    if (pct >= 60) return t("quizResult.messages.good");
-    if (pct >= 50) return t("quizResult.messages.satisfactory");
-    if (pct >= 40) return t("quizResult.messages.fair");
-    return t("quizResult.messages.keepPracticing");
+    if (pct >= 80) return "Exceptional! Outstanding performance";
+    if (pct >= 70) return "Excellent! Great job";
+    if (pct >= 60) return "Good work! Keep it up";
+    if (pct >= 50) return "Satisfactory. Room for improvement";
+    if (pct >= 40) return "Fair. Keep practicing";
+    return "Keep practicing. You'll get there";
   };
 
   const getScoreSubtext = () => {
-    if (pct >= 80) return t("quizResult.messages.outstandingSub");
-    if (pct >= 70) return t("quizResult.messages.excellentSub");
-    if (pct >= 60) return t("quizResult.messages.goodSub");
-    if (pct >= 50) return t("quizResult.messages.satisfactorySub");
-    if (pct >= 40) return t("quizResult.messages.fairSub");
-    return t("quizResult.messages.keepPracticingSub");
+    if (pct >= 80) return "You've mastered this topic brilliantly";
+    if (pct >= 70) return "You have a solid understanding";
+    if (pct >= 60) return "You're on the right track";
+    if (pct >= 50) return "Good effort, but review weak areas";
+    if (pct >= 40) return "A bit more focus will help";
+    return "Don't give up — practice makes perfect";
   };
 
   const getRatingLabel = (r) =>
     ({
-      1: t("quizResult.feedback.ratingLabels.1"),
-      2: t("quizResult.feedback.ratingLabels.2"),
-      3: t("quizResult.feedback.ratingLabels.3"),
-      4: t("quizResult.feedback.ratingLabels.4"),
-      5: t("quizResult.feedback.ratingLabels.5"),
+      1: "Very Poor",
+      2: "Poor",
+      3: "Average",
+      4: "Good",
+      5: "Excellent",
     })[r] || "";
 
   const handleRatingClick = (rating) => {
@@ -292,7 +289,7 @@ const QuizResult = () => {
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
     if (!feedback.rating) {
-      setFeedbackError(t("quizResult.errors.ratingRequired"));
+      setFeedbackError("Please select a rating");
       return;
     }
     setIsSubmittingFeedback(true);
@@ -308,7 +305,8 @@ const QuizResult = () => {
       setShowFeedbackForm(false);
     } catch (err) {
       setFeedbackError(
-        err?.response?.data?.message || t("quizResult.errors.feedbackFailed"),
+        err?.response?.data?.message ||
+          "Failed to submit feedback. Please try again.",
       );
     } finally {
       setIsSubmittingFeedback(false);
@@ -324,44 +322,12 @@ const QuizResult = () => {
     navigate(`/chapters/${currentChapterId}`);
   };
 
-  // /* loading */
-  // if (isLoading || !quizResults) {
-  //   return (
-  //     <PageLayout>
-  //       <div className="flex justify-center items-center min-h-[60vh]">
-  //         <Loader />
-  //       </div>
-  //     </PageLayout>
-  //   );
-  // }
-
-  // loading state
-  if (isLoading) {
+  /* loading */
+  if (isLoading || !quizResults) {
     return (
       <PageLayout>
         <div className="flex justify-center items-center min-h-[60vh]">
           <Loader />
-        </div>
-      </PageLayout>
-    );
-  }
-
-  // no result state
-  if (!quizResults) {
-    return (
-      <PageLayout>
-        <div className="flex flex-col justify-center items-center min-h-[60vh] gap-4">
-          <p className="text-gray-600 text-lg">
-            {" "}
-            {t("quizResult.messages.noQuizResultFound")}
-          </p>
-          <button
-            onClick={handleGoHome}
-            className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer "
-          >
-            <FiHome className="w-3.5 h-3.5" />
-            {t("quizResult.buttons.home")}
-          </button>
         </div>
       </PageLayout>
     );
@@ -390,77 +356,70 @@ const QuizResult = () => {
     {
       icon: FiCheckCircle,
       value: quizResults.correct || 0,
-      label: t("quizResult.stats.correct"),
+      label: "Correct",
       bg: "#d1fae5",
       color: "#059669",
     },
     {
       icon: FiXCircle,
       value: quizResults.wrong || 0,
-      label: t("quizResult.stats.incorrect"),
+      label: "Incorrect",
       bg: "#ffe4e6",
       color: "#e11d48",
     },
     {
       icon: FiClock,
       value: quizResults.skipped || 0,
-      label: t("quizResult.stats.skipped"),
+      label: "Skipped",
       bg: "#f3f4f6",
       color: "#6b7280",
     },
     {
       icon: FiTrendingUp,
       value: `${Math.floor(quizResults.time_taken_minutes || 0)}m ${Math.floor((quizResults.time_taken_seconds || 0) % 60)}s`,
-      label: t("quizResult.stats.timeSpent"),
+      label: "Time Spent",
       bg: "#dbeafe",
       color: "#1d4ed8",
       small: true,
     },
   ];
 
-  // Add this navigation handler
-  const handleGetCertificate = () => {
-    if (attemptIdValue) {
-      navigate(`/certificate/${attemptIdValue}`);
-    }
-  };
-
   /* analysis rows - ADDED attempt details here */
   const analysisRows = [
     {
       icon: FiHash,
-      label: t("quizResult.analysis.attemptId"),
+      label: "Attempt ID",
       value: `#${attemptIdValue}`,
     },
     {
       icon: FiBookOpen,
-      label: t("quizResult.analysis.totalQuestions"),
+      label: "Total Questions",
       value: quizResults.total || 0,
     },
     {
       icon: FiTarget,
-      label: t("quizResult.analysis.questionsAttempted"),
+      label: "Questions Attempted",
       value: quizResults.answered_questions || 0,
     },
     {
       icon: FiClock,
-      label: t("quizResult.analysis.pendingQuestions"),
+      label: "Pending Questions",
       value: quizResults.remaining_questions || 0,
     },
     {
       icon: FiRefreshCw,
-      label: t("quizResult.analysis.attemptsUsed"),
+      label: "Attempts Used",
       value: `${attemptsUsed} / ${totalAttemptsAllowed}`,
     },
     {
       icon: FiAward,
-      label: t("quizResult.analysis.attemptsRemaining"),
+      label: "Attempts Remaining",
       value: attemptsRemaining,
       highlight: attemptsRemaining > 0 && !isPassed,
     },
     {
       icon: FiClock,
-      label: t("quizResult.analysis.totalDuration"),
+      label: "Total Duration",
       value: `${(quizResults.time_taken_minutes || 0).toFixed(2)} minutes`,
       last: true,
     },
@@ -500,14 +459,12 @@ const QuizResult = () => {
 
             <div className="animate-[fadeUp_.5s_ease_both]">
               <PageTitle className="qr-serif text-[1.75rem]">
-                {isPassed
-                  ? t("quizResult.pageTitlePassed")
-                  : t("quizResult.pageTitleFailed")}
+                {isPassed ? "Exam Passed!" : "Exam Failed"}
               </PageTitle>
               <PageSubtitle className="text-gray-500 mt-1">
                 {isPassed
-                  ? t("quizResult.pageSubtitlePassed")
-                  : t("quizResult.pageSubtitleFailed")}
+                  ? "Congratulations on completing the exam"
+                  : "Better luck next time"}
               </PageSubtitle>
             </div>
           </div>
@@ -577,8 +534,7 @@ const QuizResult = () => {
                   className="text-xs font-semibold uppercase tracking-wide"
                   style={{ color: pillText }}
                 >
-                  {isPassed ? t("quizResult.passed") : t("quizResult.failed")}{" "}
-                  &nbsp;·&nbsp; {t("quizResult.scoreLabel")}:{" "}
+                  {isPassed ? "PASSED" : "FAILED"} &nbsp;·&nbsp; SCORE:{" "}
                   {quizResults.score} / {quizResults.total}
                 </span>
               </div>
@@ -625,7 +581,7 @@ const QuizResult = () => {
                 <FiBarChart2 className="w-4 h-4 text-gray-600" />
               </div>
               <span className="qr-serif font-semibold text-gray-800 text-base">
-                {t("quizResult.analysis.title")}
+                Performance Analysis
               </span>
             </div>
 
@@ -666,7 +622,7 @@ const QuizResult = () => {
                   <FiMessageSquare className="w-4 h-4 text-gray-600" />
                 </div>
                 <span className="qr-serif font-semibold text-gray-800 text-base">
-                  {t("quizResult.feedback.title")}
+                  Share Your Feedback
                 </span>
               </div>
 
@@ -675,10 +631,8 @@ const QuizResult = () => {
                   {/* Stars */}
                   <div className="mb-7">
                     <label className="block text-gray-700 font-medium text-sm mb-3">
-                      {t("quizResult.feedback.ratingLabel")}{" "}
-                      <span className="text-rose-500">
-                        {t("quizResult.feedback.required")}
-                      </span>
+                      How would you rate this exam?{" "}
+                      <span className="text-rose-500">*</span>
                     </label>
 
                     <div className="flex items-center gap-2.5 mb-2">
@@ -723,7 +677,7 @@ const QuizResult = () => {
                   {/* Textarea */}
                   <div className="mb-6">
                     <label className="block text-gray-700 font-medium text-sm mb-2">
-                      {t("quizResult.feedback.additionalComments")}
+                      Additional Comments (Optional)
                     </label>
                     <textarea
                       value={feedback.review}
@@ -731,7 +685,7 @@ const QuizResult = () => {
                         setFeedback((f) => ({ ...f, review: e.target.value }))
                       }
                       rows={4}
-                      placeholder={t("quizResult.feedback.placeholder")}
+                      placeholder="Share your experience with this exam..."
                       className="qr-textarea w-full px-4 py-3 border-[1.5px] border-gray-200 rounded-xl text-sm text-gray-700 resize-none bg-gray-50 transition-all duration-200"
                       style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
                     />
@@ -756,12 +710,11 @@ const QuizResult = () => {
                             borderTopColor: "#fff",
                           }}
                         />
-                        {t("quizResult.feedback.submitting")}
+                        Submitting...
                       </>
                     ) : (
                       <>
-                        <FiSend className="w-4 h-4" />{" "}
-                        {t("quizResult.feedback.submitButton")}
+                        <FiSend className="w-4 h-4" /> Submit Feedback
                       </>
                     )}
                   </button>
@@ -793,10 +746,10 @@ const QuizResult = () => {
               </div>
 
               <h3 className="qr-serif text-[1.4rem] font-bold text-emerald-900 mb-1.5">
-                {t("quizResult.feedback.thankYouTitle")}
+                Thank You for Your Feedback!
               </h3>
               <p className="text-emerald-700 text-sm mb-4">
-                {t("quizResult.feedback.thankYouMessage")}
+                We appreciate you taking the time to share your thoughts.
               </p>
 
               <div className="flex justify-center gap-1.5 mb-6">
@@ -820,14 +773,14 @@ const QuizResult = () => {
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm transition-all duration-200"
                 >
                   <FiHome className="w-4 h-4" />
-                  {t("quizResult.buttons.home")}
+                  Go to Dashboard
                 </button>
                 <button
                   onClick={handleGoToLevels}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-emerald-300 bg-white text-emerald-700 font-semibold text-sm transition-all duration-200 hover:shadow-lg"
                 >
                   <FiLayers className="w-4 h-4" />
-                  {t("quizResult.buttons.myLevels")}
+                  My Levels
                 </button>
               </div>
             </div>
@@ -841,7 +794,7 @@ const QuizResult = () => {
                 className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 <FiHome className="w-3.5 h-3.5" />
-                {t("quizResult.buttons.home")}
+                Go to Dashboard
               </button>
 
               <button
@@ -849,23 +802,8 @@ const QuizResult = () => {
                 className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 <FiLayers className="w-3.5 h-3.5" />
-                {t("quizResult.buttons.myLevels")}
+                My Levels
               </button>
-
-              {/* Get Certificate Button - ONLY show when user has PASSED */}
-              {/* {isPassed && (
-                <button
-                  onClick={handleGetCertificate}
-                  className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-0 text-white font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                  style={{
-                    background: "linear-gradient(135deg, #10b981, #059669)",
-                    fontFamily: "'DM Sans', system-ui, sans-serif",
-                  }}
-                >
-                  <FiAward className="w-3.5 h-3.5" />
-                  {t("quizResult.buttons.getCertificate")}
-                </button>
-              )} */}
 
               {/* Retry button - only show if NOT passed AND attempts remaining > 0 */}
               {canRetry && (
@@ -878,8 +816,7 @@ const QuizResult = () => {
                   }}
                 >
                   <FiRefreshCw className="w-3.5 h-3.5" />
-                  {t("quizResult.buttons.retry")} ({attemptsRemaining}{" "}
-                  {t("quizResult.buttons.attemptsLeft")})
+                  Retry Exam ({attemptsRemaining} attempts left)
                 </button>
               )}
             </div>
@@ -890,4 +827,4 @@ const QuizResult = () => {
   );
 };
 
-export default QuizResult;
+export default ExamResult;
