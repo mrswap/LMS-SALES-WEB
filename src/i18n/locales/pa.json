@@ -173,15 +173,17 @@
   },
 
   "navbar": {
-    "home": "ਹੋਮ",
-    "myLevels": "ਮੇਰੇ ਲੈਵਲ",
-    "analytics": "ਐਨਾਲਿਟਿਕਸ",
+    "home": "ਘਰ",
+    "myLevels": "ਮੇਰੇ ਪੱਧਰ",
+    "analytics": "ਵਿਸ਼ਲੇਸ਼ਣ",
+    "progress": "ਤਰੱਕੀ",
     "assessment": "ਮੁਲਾਂਕਣ",
+    "reports": "ਰਿਪੋਰਟਾਂ",
     "profile": "ਪ੍ਰੋਫਾਈਲ",
     "settings": "ਸੈਟਿੰਗਜ਼",
     "logout": "ਲੌਗਆਉਟ",
     "language": {
-      "en": "English",
+      "en": "ਅੰਗਰੇਜ਼ੀ",
       "hi": "ਹਿੰਦੀ",
       "pa": "ਪੰਜਾਬੀ"
     }
@@ -567,70 +569,67 @@
   },
 
   "topicContent": {
-    "loading": "ਸਮੱਗਰੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ...",
-    "notFound": {
-      "title": "ਸਮੱਗਰੀ ਨਹੀਂ ਮਿਲੀ",
-      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਹਿਲਾ ਦਿੱਤੀ ਗਈ ਹੈ।",
-      "button": "ਕੋਰਸ 'ਤੇ ਵਾਪਸ ਜਾਓ"
-    },
-    "backButton": "ਵਾਪਸ",
     "contentTypes": {
       "text": "ਪੜ੍ਹਨ ਸਮੱਗਰੀ",
       "video": "ਵੀਡੀਓ ਲੈਕਚਰ",
       "pdf": "ਦਸਤਾਵੇਜ਼",
       "audio": "ਆਡੀਓ ਪਾਠ",
-      "image": "ਦ੍ਰਿਸ਼ਟੀਗਤ ਸਮੱਗਰੀ"
+      "image": "ਦ੍ਰਿਸ਼ ਸਮੱਗਰੀ"
     },
-    "readStatus": "ਪੜ੍ਹਿਆ",
     "pdf": {
-      "download": "PDF ਡਾਊਨਲੋਡ ਕਰੋ",
-      "title": "PDF ਦਸਤਾਵੇਜ਼"
+      "title": "ਪੀਡੀਐਫ ਦਸਤਾਵੇਜ਼",
+      "download": "ਪੀਡੀਐਫ ਡਾਊਨਲੋਡ ਕਰੋ"
     },
+    "notFound": {
+      "title": "ਸਮੱਗਰੀ ਨਹੀਂ ਮਿਲੀ",
+      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਇਸਨੂੰ ਹੋਰ ਥਾਂ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+      "button": "ਕੋਰਸ ਵੱਲ ਵਾਪਸ ਜਾਓ"
+    },
+    "fallbackMessage": "ਸਮੱਗਰੀ ਕਿਸਮ:",
     "navigation": {
       "previous": "ਪਿਛਲਾ",
       "previousLesson": "ਪਿਛਲਾ ਪਾਠ",
-      "next": "ਅਗਲਾ",
-      "nextLesson": "ਅਗਲਾ ਪਾਠ",
-      "continueText": "ਅਗਲੇ ਪਾਠ 'ਤੇ ਜਾਰੀ ਰੱਖੋ"
-    },
-    "fallbackMessage": "ਸਮੱਗਰੀ ਦੀ ਕਿਸਮ:"
+      "next": "ਅੱਗੇ",
+      "nextLesson": "ਅੱਗਲਾ ਪਾਠ",
+      "continueText": "ਅੱਗਲੇ ਪਾਠ ਵੱਲ ਜਾਓ"
+    }
   },
 
   "quiz": {
     "pageTitle": "ਕੁਇਜ਼",
-    "pageSubtitle": "ਆਪਣਾ ਗਿਆਨ ਪਰਖੋ",
+    "pageSubtitle": "ਆਪਣਾ ਗਿਆਨ ਜਾਂਚੋ",
     "timeLeft": "ਬਚਿਆ ਸਮਾਂ",
     "exitQuiz": "ਕੁਇਜ਼ ਛੱਡੋ",
-    "topicDetails": "ਵਿਸ਼ਾ ਵੇਰਵਾ",
+    "topicDetails": "ਵਿਸ਼ਾ ਵੇਰਵੇ",
     "attempts": "ਕੋਸ਼ਿਸ਼ਾਂ",
-    "remaining": "ਬਚਿਆ",
+    "remaining": "ਬਾਕੀ",
     "duration": "ਅਵਧੀ",
     "minutes": "ਮਿੰਟ",
     "startedAt": "ਸ਼ੁਰੂ ਹੋਇਆ",
-    "expiresAt": "ਮੁਕੰਮਲ ਹੋਵੇਗਾ",
+    "expiresAt": "ਖਤਮ ਹੋਵੇਗਾ",
     "attemptId": "ਕੋਸ਼ਿਸ਼ ਆਈਡੀ",
-    "questionOf": "ਸਵਾਲ {current} ਵਿੱਚੋਂ {total}",
+    "questionOf": "ਸਵਾਲ {current} / {total}",
     "answerSelected": "ਜਵਾਬ ਚੁਣਿਆ ਗਿਆ",
     "skipped": "ਛੱਡਿਆ ਗਿਆ",
     "previous": "ਪਿਛਲਾ",
     "skip": "ਛੱਡੋ",
-    "next": "ਅਗਲਾ",
+    "next": "ਅੱਗੇ",
     "submitQuiz": "ਕੁਇਜ਼ ਜਮ੍ਹਾਂ ਕਰੋ",
     "submitting": "ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
-    "timeUpWarning": "ਸਮਾਂ ਖਤਮ! ਤੁਹਾਡਾ ਕੁਇਜ਼ ਆਪੇ ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "timeUpWarning": "ਸਮਾਂ ਮੁੱਕ ਗਿਆ! ਤੁਹਾਡਾ ਕੁਇਜ਼ ਆਪੇ ਜਮ੍ਹਾਂ ਹੋ ਰਿਹਾ ਹੈ...",
     "noQuestionsTitle": "ਕੋਈ ਸਵਾਲ ਉਪਲਬਧ ਨਹੀਂ",
     "noQuestionsDescription": "ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
-    "noAttemptsLeft": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਨਹੀਂ ਬਚੀ! ਤੁਸੀਂ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ।",
-    "noAttemptsTitle": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਨਹੀਂ ਬਚੀ",
-    "noAttemptsSubtitle": "ਤੁਸੀਂ ਇਸ ਕੁਇਜ਼ ਲਈ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਖਤਮ ਕਰ ਲਈਆਂ ਹਨ",
-    "noAttemptsHeading": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਨਹੀਂ ਬਚੀ",
-    "noAttemptsMessage": "ਤੁਸੀਂ ਇਸ ਕੁਇਜ਼ ਲਈ ਸਾਰੀਆਂ {total} ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ।",
+    "noAttemptsLeft": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਬਾਕੀ ਨਹੀਂ! ਤੁਸੀਂ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ।",
+    "noAttemptsTitle": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਬਾਕੀ ਨਹੀਂ",
+    "noAttemptsSubtitle": "ਤੁਸੀਂ ਇਸ ਕੁਇਜ਼ ਲਈ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ",
+    "noAttemptsHeading": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਬਾਕੀ ਨਹੀਂ",
+    "noAttemptsMessage": "ਤੁਸੀਂ ਇਸ ਕੁਇਜ਼ ਲਈ ਸਾਰੀਆਂ {total} ਕੋਸ਼ਿਸ਼ਾਂ ਪੂਰੀਆਂ ਕਰ ਲਈਆਂ ਹਨ।",
     "goBack": "ਵਾਪਸ ਜਾਓ",
-    "leaveWarning": "ਤੁਹਾਡਾ ਕੁਇਜ਼ ਚੱਲ ਰਿਹਾ ਹੈ! ਕੀ ਤੁਸੀਂ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "leaveWarning": "ਤੁਹਾਡਾ ਕੁਇਜ਼ ਚੱਲ ਰਿਹਾ ਹੈ! ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਛੱਡਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
     "confirmationModal": {
       "title": "ਕੁਇਜ਼ ਛੱਡਣਾ ਹੈ?",
-      "description": "ਤੁਹਾਡਾ ਕੁਇਜ਼ ਚੱਲ ਰਿਹਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਹੁਣ ਛੱਡਦੇ ਹੋ, ਇਹ ਆਪੇ ਜਮ੍ਹਾਂ ਹੋ ਜਾਵੇਗਾ।",
-      "progressSaved": "ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ ਸੇਵ ਰਹੇਗੀ।",
+      "description": "ਤੁਹਾਡਾ ਕੁਇਜ਼ ਚੱਲ ਰਿਹਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਹੁਣ ਛੱਡਦੇ ਹੋ, ਤਾਂ ਇਹ ਆਪਣੇ ਆਪ ਜਮ੍ਹਾਂ ਹੋ ਜਾਵੇਗਾ।",
+      "progressSaved": "ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ ਸੇਵ ਹੋ ਜਾਵੇਗੀ।",
       "timeRemaining": "ਬਚਿਆ ਸਮਾਂ:",
       "cancel": "ਰੱਦ ਕਰੋ",
       "confirm": "ਛੱਡੋ ਅਤੇ ਜਮ੍ਹਾਂ ਕਰੋ"
@@ -843,29 +842,37 @@
 
   "aboutUs": {
     "pageTitle": "ਸਾਡੇ ਬਾਰੇ",
-    "pageSubtitle": "ਸਾਡੀ ਕੰਪਨੀ ਅਤੇ ਮਿਸ਼ਨ ਬਾਰੇ ਜਾਣੋ",
-    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+    "pageSubtitle": "ਸਾਡੀ ਕੰਪਨੀ ਅਤੇ ਮਿਸ਼ਨ ਬਾਰੇ ਹੋਰ ਜਾਣੋ",
+    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+    "home": "ਘਰ",
+    "view-aboutUs": "ਸਾਡੇ ਬਾਰੇ ਵੇਖੋ"
   },
 
   "termsConditions": {
     "pageTitle": "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
-    "pageSubtitle": "ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀਆਂ ਸੇਵਾਵਾਂ ਦੀ ਵਰਤੋਂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ",
-    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+    "pageSubtitle": "ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੀਆਂ ਸੇਵਾਵਾਂ ਵਰਤਣ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ ਧਿਆਨ ਨਾਲ ਪੜ੍ਹੋ",
+    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+    "home": "ਘਰ",
+    "view-term-condition": "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ ਵੇਖੋ"
   },
 
   "privacyPolicy": {
-    "pageTitle": "ਪਰਾਈਵੇਸੀ ਨੀਤੀ",
-    "pageSubtitle": "ਜਾਣੋ ਅਸੀਂ ਤੁਹਾਡੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਕਿਵੇਂ ਇਕੱਠੀ, ਵਰਤਦੇ ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਰਦੇ ਹਾਂ",
-    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+    "pageTitle": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ",
+    "pageSubtitle": "ਜਾਣੋ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਇਕੱਠਾ, ਵਰਤਦੇ ਅਤੇ ਸੁਰੱਖਿਅਤ ਕਰਦੇ ਹਾਂ",
+    "noContent": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+    "home": "ਘਰ",
+    "view-privacy-policy": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ ਵੇਖੋ"
   },
 
   "contactUs": {
-    "pageTitle": "ਸੰਪਰਕ ਕਰੋ",
-    "pageSubtitle": "ਅਸੀਂ ਤੁਹਾਡੇ ਤੋਂ ਸੁਣਨਾ ਚਾਹੁੰਦੇ ਹਾਂ",
+    "pageTitle": "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ",
+    "pageSubtitle": "ਸਾਨੂੰ ਤੁਹਾਡੀ ਗੱਲ ਸੁਣ ਕੇ ਖੁਸ਼ੀ ਹੋਵੇਗੀ",
     "aboutCompany": "ਕੰਪਨੀ ਬਾਰੇ",
     "contactInformation": "ਸੰਪਰਕ ਜਾਣਕਾਰੀ",
     "sendMessage": "ਸਾਨੂੰ ਸੁਨੇਹਾ ਭੇਜੋ",
     "address": "123 ਬਿਜ਼ਨਸ ਐਵੇਨਿਊ, ਸੂਟ 100",
+    "home": "ਘਰ",
+    "contact-us": "ਸੰਪਰਕ ਕਰੋ",
     "buttons": {
       "sendMessage": "ਸੁਨੇਹਾ ਭੇਜੋ",
       "sending": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ..."
@@ -885,7 +892,7 @@
       },
       "message": {
         "label": "ਸੁਨੇਹਾ",
-        "placeholder": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਸਮੱਸਿਆ ਵੇਰਵਾ ਕਰੋ..."
+        "placeholder": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਸਮੱਸਿਆ/ਸਵਾਲ ਦਾ ਵੇਰਵਾ ਦਿਓ..."
       }
     },
     "validation": {
@@ -958,34 +965,36 @@
   },
 
   "certificate": {
-    "pageTitle": "ਪ੍ਰਾਪਤੀ ਸਰਟੀਫਿਕੇਟ",
+    "pageTitle": "ਉਪਲਬਧੀ ਸਰਟੀਫਿਕੇਟ",
     "downloadButton": "ਸਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ ਕਰੋ",
-    "ofAchievement": "ਪ੍ਰਾਪਤੀ ਦਾ",
-    "presentedTo": "ਇਹ ਸਰਟੀਫਿਕੇਟ ਮਾਣ ਨਾਲ ਪੇਸ਼ ਕੀਤਾ ਜਾਂਦਾ ਹੈ",
+    "ofAchievement": "ਉਪਲਬਧੀ ਦਾ",
+    "presentedTo": "ਇਹ ਸਰਟੀਫਿਕੇਟ ਗਰਵ ਨਾਲ ਪੇਸ਼ ਕੀਤਾ ਜਾਂਦਾ ਹੈ",
     "recipientName": "ਪ੍ਰਾਪਤਕਰਤਾ ਦਾ ਨਾਮ",
-    "employeeId": "ਕਰਮਚਾਰੀ ਆਈ.ਡੀ",
-    "achievementScore": "ਪ੍ਰਾਪਤੀ ਸਕੋਰ",
+    "employeeId": "ਕਰਮਚਾਰੀ ਆਈਡੀ",
+    "achievementScore": "ਉਪਲਬਧੀ ਸਕੋਰ",
     "questions": "ਸਵਾਲ",
     "passed": "ਪਾਸ",
-    "completed": "ਮੁਕੰਮਲ",
+    "completed": "ਪੂਰਾ",
     "finalStatus": "ਅੰਤਿਮ ਸਥਿਤੀ",
     "passingScore": "ਪਾਸਿੰਗ ਸਕੋਰ",
     "timeTaken": "ਲੱਗਿਆ ਸਮਾਂ",
     "attempt": "ਕੋਸ਼ਿਸ਼",
     "assessmentDetails": "ਮੁਲਾਂਕਣ ਵੇਰਵੇ",
-    "assessmentDate": "ਮੁਲਾਂਕਣ ਮਿਤੀ",
+    "assessmentDate": "ਮੁਲਾਂਕਣ ਤਾਰੀਖ",
     "questionsAttempted": "ਕੀਤੇ ਗਏ ਸਵਾਲ",
     "correctAnswers": "ਸਹੀ ਜਵਾਬ",
     "correct": "ਸਹੀ",
-    "courseType": "ਕੋਰਸ ਦੀ ਕਿਸਮ",
+    "courseType": "ਕੋਰਸ ਕਿਸਮ",
     "signature": "ਦਸਤਖਤ",
-    "authorizedSignatory": "ਅਧਿਕਾਰਤ ਦਸਤਖਤਕਾਰ",
-    "dateOfIssue": "ਜਾਰੀ ਕਰਨ ਦੀ ਮਿਤੀ",
-    "certificateId": "ਸਰਟੀਫਿਕੇਟ ਆਈ.ਡੀ",
-    "digitallyVerified": "ਡਿਜੀਟਲੀ ਪ੍ਰਮਾਣਿਤ ਸਰਟੀਫਿਕੇਟ",
+    "authorizedSignatory": "ਅਧਿਕਾਰਤ ਦਸਤਖਤਕਰਤਾ",
+    "dateOfIssue": "ਜਾਰੀ ਕਰਨ ਦੀ ਤਾਰੀਖ",
+    "certificateId": "ਸਰਟੀਫਿਕੇਟ ਆਈਡੀ",
+    "digitallyVerified": "ਡਿਜਿਟਲੀ ਵੈਰੀਫਾਈਡ ਸਰਟੀਫਿਕੇਟ",
     "whatsapp": "ਵਟਸਐਪ",
     "facebook": "ਫੇਸਬੁੱਕ",
-    "linkedin": "ਲਿੰਕਡਇਨ"
+    "linkedin": "ਲਿੰਕਡਇਨ",
+    "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
+    "view-certificate": "ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ"
   },
 
   "auditLogs": {

@@ -21,6 +21,7 @@ import {
   PageTitle,
 } from "../../../common/layout";
 import { useTranslation } from "react-i18next";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const ContactUs = () => {
   const dispatch = useDispatch();
@@ -69,6 +70,17 @@ const ContactUs = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("contactUs.home"),
+            path: `/dashboard`,
+          },
+          {
+            label: t("contactUs.contact-us"),
+          },
+        ]}
+      />
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("contactUs.pageTitle")}</PageTitle>

@@ -115,8 +115,6 @@ const LevelCard = ({ item }) => {
     return (item.is_passed || item.is_content_completed) && item.is_unlocked;
   };
 
-  console.log("item", item);
-
   // Get main button config
   const getMainButtonConfig = () => {
     if (!item.is_unlocked) {
@@ -133,7 +131,8 @@ const LevelCard = ({ item }) => {
     if (item.is_passed) {
       return {
         text: t("levelsPage.buttons.viewCertificate"),
-        action: () => navigate(`/certificate/${item.id}`),
+        action: () =>
+          navigate(`/certificate/${item?.exam_details?.passed_attempt_id}`),
         disabled: false,
         color:
           "bg-emerald-50 cursor-pointer text-emerald-700 border border-emerald-300 hover:bg-emerald-100 transition-colors",

@@ -46,7 +46,7 @@ export default function Chapters() {
     }
   }, [dispatch, id]);
 
-  console.log("currentChapter from API:", currentChapter);
+  // console.log("currentChapter from API:", currentChapter);
 
   // Use actual topics from API response
   const topics = currentChapter?.topics || [];
@@ -75,6 +75,7 @@ export default function Chapters() {
   // Get current topic (first unlocked and not completed)
   const currentTopic =
     topics.find((t) => {
+      console.log("t", t);
       const isUnlocked = t.is_unlocked === true || t.is_unlocked === 1;
       const isCompleted = t.is_completed === true || t.is_completed === 1;
       return isUnlocked && !isCompleted;
@@ -96,6 +97,8 @@ export default function Chapters() {
     e.stopPropagation();
     navigate(`/quiz/${topicId}`);
   };
+
+  // console.log("topics", currentChapter);
 
   if (isLoading) {
     return <Loader />;
@@ -261,6 +264,9 @@ export default function Chapters() {
               const isQuizAvailable =
                 topic.is_quiz_available === true ||
                 topic.is_quiz_available === 1;
+
+              const isAssessmentAvailable =
+                topic.assessment && topic.assessment !== null;
 
               return (
                 <div
@@ -441,20 +447,20 @@ export default function Chapters() {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (topics?.assessment) {
-                              handleGiveQuiz(topics?.assessment.id, e);
+                            if (isAssessmentAvailable) {
+                              handleGiveQuiz(topic?.assessment?.id, e);
                             }
                           }}
                           className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
       ${
-        isUnlocked && topics?.assessment
+        isUnlocked && isAssessmentAvailable
           ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:opacity-90"
           : "bg-gray-100 text-gray-500 cursor-not-allowed"
       }`}
-                          disabled={!isUnlocked || !topics?.assessment}
+                          disabled={!isUnlocked || !isAssessmentAvailable}
                         >
                           <IoHelpCircle className="w-4 h-4" />
-                          {topics?.assessment
+                          {isAssessmentAvailable
                             ? t("chapters.topicsSection.giveQuiz")
                             : t("chapters.topicsSection.quizNotAvailable")}{" "}
                         </button>

@@ -17,6 +17,7 @@ import TruncateText from "../../../common/TruncateText";
 import { useNavigate } from "react-router-dom";
 import { getAuditLogs } from "../../../../../redux/slice/reportSlice";
 import { useTranslation } from "react-i18next";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -168,14 +169,26 @@ const AuditLogsReports = () => {
 
   const pagination = getPaginationData();
 
-  console.log("Pagination Data:", pagination);
+  // console.log("Pagination Data:", pagination);
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("navbar.reports"),
+            path: `/progress`,
+          },
+          {
+            label: t("auditLogs.pageSubtitle"),
+          },
+        ]}
+      />
+
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("auditLogs.pageTitle")}</PageTitle>
-          <PageSubtitle>{t("auditLogs.pageSubtitle")}</PageSubtitle>
+          {/* <PageSubtitle>{t("auditLogs.pageSubtitle")}</PageSubtitle> */}
         </PageHeaderLeft>
         <PageHeaderRight />
       </PageHeader>

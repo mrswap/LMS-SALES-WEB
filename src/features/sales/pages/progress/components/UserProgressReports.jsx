@@ -15,6 +15,7 @@ import Loader from "../../../common/Loader";
 import Error from "../../../common/Error";
 import { getUserProgress } from "../../../../../redux/slice/reportSlice";
 import { useTranslation } from "react-i18next";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -204,10 +205,22 @@ const UserProgressReports = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("navbar.reports"),
+            path: `/progress`,
+          },
+          {
+            label: t("userProgress.pageSubtitle"),
+          },
+        ]}
+      />
+
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("userProgress.pageTitle")}</PageTitle>
-          <PageSubtitle>{t("userProgress.pageSubtitle")}</PageSubtitle>
+          {/* <PageSubtitle>{t("userProgress.pageSubtitle")}</PageSubtitle> */}
         </PageHeaderLeft>
         <PageHeaderRight />
       </PageHeader>

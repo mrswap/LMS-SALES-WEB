@@ -22,6 +22,7 @@ import Error from "../../../common/Error";
 import { getCertifications } from "../../../../../redux/slice/reportSlice";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -281,10 +282,22 @@ const CertificationReports = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("navbar.reports"),
+            path: `/progress`,
+          },
+          {
+            label: t("certificationReports.pageSubtitle"),
+          },
+        ]}
+      />
+
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("certificationReports.pageTitle")}</PageTitle>
-          <PageSubtitle>{t("certificationReports.pageSubtitle")}</PageSubtitle>
+          {/* <PageSubtitle>{t("certificationReports.pageSubtitle")}</PageSubtitle> */}
         </PageHeaderLeft>
         <PageHeaderRight />
       </PageHeader>

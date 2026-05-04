@@ -13,6 +13,7 @@ import {
 import { useTranslation } from "react-i18next";
 import Loader from "../../../common/Loader";
 import { FiUsers, FiAward, FiBriefcase, FiTarget } from "react-icons/fi";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const AboutUs = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,17 @@ const AboutUs = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("aboutUs.home"),
+            path: `/dashboard`,
+          },
+          {
+            label: t("aboutUs.view-aboutUs"),
+          },
+        ]}
+      />
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("aboutUs.pageTitle")}</PageTitle>

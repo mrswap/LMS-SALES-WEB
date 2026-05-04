@@ -176,7 +176,9 @@
     "home": "Home",
     "myLevels": "My Levels",
     "analytics": "Analytics",
+    "progress": "Progress",
     "assessment": "Assessment",
+    "reports": "Reports",
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Logout",
@@ -567,13 +569,6 @@
   },
 
   "topicContent": {
-    "loading": "Loading content...",
-    "notFound": {
-      "title": "Content Not Found",
-      "description": "The content you're looking for doesn't exist or has been moved.",
-      "button": "Return to Course"
-    },
-    "backButton": "Back",
     "contentTypes": {
       "text": "Reading Material",
       "video": "Video Lecture",
@@ -581,19 +576,23 @@
       "audio": "Audio Lesson",
       "image": "Visual Content"
     },
-    "readStatus": "Read",
     "pdf": {
-      "download": "Download PDF",
-      "title": "PDF Document"
+      "title": "PDF Document",
+      "download": "Download PDF"
     },
+    "notFound": {
+      "title": "Content Not Found",
+      "description": "The content you're looking for doesn't exist or has been moved.",
+      "button": "Return to Course"
+    },
+    "fallbackMessage": "Content type:",
     "navigation": {
       "previous": "Previous",
       "previousLesson": "Previous Lesson",
       "next": "Next",
       "nextLesson": "Next Lesson",
       "continueText": "Continue to next lesson"
-    },
-    "fallbackMessage": "Content type:"
+    }
   },
 
   "quiz": {
@@ -844,19 +843,25 @@
   "aboutUs": {
     "pageTitle": "About Us",
     "pageSubtitle": "Learn more about our company and mission",
-    "noContent": "No content available"
+    "noContent": "No content available",
+    "home": "Home",
+    "view-aboutUs": "View About Us"
   },
 
   "termsConditions": {
     "pageTitle": "Terms & Conditions",
     "pageSubtitle": "Please read these terms and conditions carefully before using our services",
-    "noContent": "No content available"
+    "noContent": "No content available",
+    "home": "Home",
+    "view-term-condition": "View Terms And Conditions"
   },
 
   "privacyPolicy": {
     "pageTitle": "Privacy Policy",
     "pageSubtitle": "Learn how we collect, use, and protect your personal information",
-    "noContent": "No content available"
+    "noContent": "No content available",
+    "home": "Home",
+    "view-privacy-policy": "View Privacy Policy"
   },
 
   "contactUs": {
@@ -866,6 +871,8 @@
     "contactInformation": "Contact Information",
     "sendMessage": "Send us a message",
     "address": "123 Business Avenue, Suite 100",
+    "home": "Home",
+    "contact-us": "Contact Us",
     "buttons": {
       "sendMessage": "Send Message",
       "sending": "Sending..."
@@ -985,7 +992,9 @@
     "digitallyVerified": "Digitally Verified Certificate",
     "whatsapp": "WhatsApp",
     "facebook": "Facebook",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "certification": "Certification",
+    "view-certificate": "View Certificate"
   },
 
   "auditLogs": {
