@@ -510,8 +510,10 @@
   },
 
   "topics": {
-    "pageTitle": "ਸਿੱਖਣ ਵਾਲੇ ਵਿਸ਼ੇ",
+    "pageTitle": "ਲਰਨਿੰਗ ਵਿਸ਼ੇ",
     "pageSubtitle": "ਆਪਣੀ ਸਿੱਖਣ ਸਮੱਗਰੀ ਨੂੰ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
+    "topics": "ਵਿਸ਼ੇ",
+    "viewContents": "ਸਾਰੀ ਸਮੱਗਰੀ ਵੇਖੋ",
     "topicTypes": {
       "text": "ਟੈਕਸਟ ਵਿਸ਼ਾ",
       "media": "ਮੀਡੀਆ ਵਿਸ਼ਾ"

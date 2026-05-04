@@ -463,6 +463,7 @@ const coursePreviewSlice = createSlice({
         currentTopic: null,
         currentContent: null,
         assessmentStatusTopic: null,
+        contextHerarcyTopic: null,
         faqs: [],           // Added FAQs array
         isLoading: false,
         isError: false,
@@ -492,7 +493,7 @@ const coursePreviewSlice = createSlice({
             .addCase(getAllLevels.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.levels = action.payload.data || action.payload;
+                state.levels = action.payload.data;
                 state.message = action.payload.message;
             })
             .addCase(getAllLevels.rejected, (state, action) => {
@@ -558,6 +559,7 @@ const coursePreviewSlice = createSlice({
                 state.isSuccess = true;
                 state.currentTopic = action.payload.data;
                 state.assessmentStatusTopic = action.payload?.assessment_status;
+                state.contextHerarcyTopic = action.payload?.context;
                 state.message = action.payload.message;
             })
             .addCase(getTopicById.rejected, (state, action) => {

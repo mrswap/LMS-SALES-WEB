@@ -6,6 +6,7 @@ import commonReducer from "./slice/commonSlice"
 import quizReducer from "./slice/quizSlice"
 import languageReducer from "./slice/languageSlice"
 import reportReducer from "./slice/reportSlice"
+import dashboardReducer from "./slice/dashboardSlice"
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         common: commonReducer,
         quiz: quizReducer,
         language: languageReducer,
-        report: reportReducer
+        report: reportReducer,
+        dashboard: dashboardReducer
     },
 });

@@ -6,14 +6,32 @@ import SessionModal from "../common/SessionModal";
 import Navbar from "../components/Navbar";
 import NavbarBottom from "../components/NavbarBottom";
 import Footer from "../components/Footer";
+import { logout } from "../../../redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 
 const SalesLayout = () => {
   const navigate = useNavigate();
   const mainRef = useRef(null);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
+    dispatch(logout());
     navigate("/login");
   };
+
+  // ✅ Tab/Window close hone par auto logout
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      // Jab user tab close karega, immediately logout
+      dispatch(logout());
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     if (mainRef.current) {
@@ -23,6 +41,15 @@ const SalesLayout = () => {
       });
     }
   }, [location.pathname]);
+
+  // useEffect(() => {
+  //   if (mainRef.current) {
+  //     mainRef.current.scrollTo({
+  //       top: 0,
+  //       behavior: "smooth",
+  //     });
+  //   }
+  // }, [location.pathname]);
 
   const { showModal, setShowModal, resetTimer } = useIdleTimeout(
     handleLogout,

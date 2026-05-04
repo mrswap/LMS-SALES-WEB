@@ -6,7 +6,6 @@ import Levels from "../pages/levels/Levels";
 import LevelDetails from "../pages/levels/components/LevelDetails";
 import Quize from "../pages/quize/Quize";
 import QuizeResult from "../pages/quize/QuizeResult";
-// import Certificate from "../pages/certificate/Certificate";
 import ProgressStats from "../pages/progress/ProgressStats";
 import Profile from "../pages/profile/Profile";
 import ProfileDetails from "../pages/profile/components/ProfileDetails";
@@ -28,6 +27,7 @@ import UserProgressReports from "../pages/progress/components/UserProgressReport
 import CertificationReports from "../pages/progress/components/CertificationReports";
 import Certificate from "../pages/assessment/components/Certificate";
 import ExamResult from "../pages/exam/ExamResult";
+import ProtectedQuizExamRoute from "./ProtectedQuizExamRoute";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -38,7 +38,6 @@ const SalesRoutes = (
       {/* levels */}
       <Route path="levels" element={<Levels />} />
       <Route path="levels/:levelId" element={<LevelDetails />} />
-      {/* <Route path="levels/exam/:id" element={<Exam />} /> */}
 
       {/* modules */}
       <Route path="modules/:moduleId" element={<Modules />} />
@@ -56,18 +55,49 @@ const SalesRoutes = (
       <Route path="faqs" element={<Faq />} />
 
       {/* quize */}
-      <Route path="quiz/:topicId" element={<Quize />} />
+      {/* <Route path="quiz/:topicId" element={<Quize />} />
       <Route
         path="/quiz/result/:topicId/:attemptId"
         element={<QuizeResult />}
+      /> */}
+      {/* quize - Protected */}
+      <Route
+        path="quiz/:topicId"
+        element={
+          <ProtectedQuizExamRoute>
+            <Quize />
+          </ProtectedQuizExamRoute>
+        }
+      />
+      <Route
+        path="/quiz/result/:topicId/:attemptId"
+        element={
+          <ProtectedQuizExamRoute>
+            <QuizeResult />
+          </ProtectedQuizExamRoute>
+        }
       />
 
       {/* exam */}
-      <Route path="exam/:topicId" element={<Exam />} />
-      <Route path="/exam/result/:topicId/:attemptId" element={<ExamResult />} />
-
-      {/*certificate  */}
-      {/* <Route path="certificate" element={<Certificate />} /> */}
+      {/* <Route path="exam/:topicId" element={<Exam />} />
+      <Route path="/exam/result/:topicId/:attemptId" element={<ExamResult />} /> */}
+      {/* exam - Protected */}
+      <Route
+        path="exam/:topicId"
+        element={
+          <ProtectedQuizExamRoute>
+            <Exam />
+          </ProtectedQuizExamRoute>
+        }
+      />
+      <Route
+        path="/exam/result/:topicId/:attemptId"
+        element={
+          <ProtectedQuizExamRoute>
+            <ExamResult />
+          </ProtectedQuizExamRoute>
+        }
+      />
 
       {/*progress  */}
       <Route path="progress" element={<ProgressStats />} />

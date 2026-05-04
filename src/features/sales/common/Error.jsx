@@ -255,7 +255,129 @@
 
 // export default Error;
 
-import React, { useState } from "react";
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { FiAlertCircle, FiRefreshCw, FiX, FiHome } from "react-icons/fi";
+
+// const Error = ({
+//   type = "error",
+//   title,
+//   message,
+//   onRetry,
+//   onDismiss,
+//   fullScreen = false,
+//   showIcon = true,
+//   showRetry = true,
+//   showDismiss = true,
+//   showHome = true,
+// }) => {
+//   const [isVisible, setIsVisible] = useState(true);
+//   const navigate = useNavigate();
+
+//   const handleDismiss = () => {
+//     setIsVisible(false);
+//     if (onDismiss) onDismiss();
+//   };
+
+//   const handleRetry = () => {
+//     if (onRetry) onRetry();
+//   };
+
+//   if (!isVisible) return null;
+
+//   const alertConfig = {
+//     error: {
+//       bgColor: "bg-red-50",
+//       borderColor: "border-red-200",
+//       textColor: "text-red-800",
+//       iconColor: "text-red-500",
+//       title: "Error",
+//       icon: <FiAlertCircle />,
+//     },
+//     warning: {
+//       bgColor: "bg-yellow-50",
+//       borderColor: "border-yellow-200",
+//       textColor: "text-yellow-800",
+//       iconColor: "text-yellow-500",
+//       title: "Warning",
+//       icon: <FiAlertCircle />,
+//     },
+//     info: {
+//       bgColor: "bg-blue-50",
+//       borderColor: "border-blue-200",
+//       textColor: "text-blue-800",
+//       iconColor: "text-blue-500",
+//       title: "Info",
+//       icon: <FiAlertCircle />,
+//     },
+//   };
+
+//   const config = alertConfig[type] || alertConfig.error;
+//   const displayTitle = title || config.title;
+
+//   return (
+//     <div
+//       className={
+//         fullScreen
+//           ? "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+//           : "w-full"
+//       }
+//     >
+//       <div
+//         className={`border-l-4 rounded-lg shadow-lg p-5 w-full
+//         ${config.bgColor} ${config.borderColor}`}
+//       >
+//         <div className="flex items-start gap-3">
+//           {/* Icon */}
+//           {showIcon && (
+//             <div className={`text-xl ${config.iconColor}`}>{config.icon}</div>
+//           )}
+
+//           <div className="flex-1">
+//             {/* Title */}
+//             <h3 className={`text-lg font-semibold ${config.textColor}`}>
+//               {displayTitle}
+//             </h3>
+
+//             {/* Message */}
+//             <p className={`mt-1 text-sm ${config.textColor}`}>
+//               {message || "Something went wrong"}
+//             </p>
+
+//             {/* Buttons */}
+//             <div className="mt-4 flex flex-wrap gap-2">
+//               {/* Retry */}
+//               {showRetry && onRetry && (
+//                 <button
+//                   onClick={handleRetry}
+//                   className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md bg-gray-100 hover:bg-gray-200"
+//                 >
+//                   <FiRefreshCw className="text-sm" />
+//                   Retry
+//                 </button>
+//               )}
+
+//               {/* Home */}
+//               {showHome && (
+//                 <button
+//                   onClick={() => navigate("/")}
+//                   className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md cursor-pointer bg-accent text-white hover:opacity-90"
+//                 >
+//                   <FiHome className="text-sm" />
+//                   Home
+//                 </button>
+//               )}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Error;
+
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiAlertCircle, FiRefreshCw, FiX, FiHome } from "react-icons/fi";
 
@@ -270,9 +392,41 @@ const Error = ({
   showRetry = true,
   showDismiss = true,
   showHome = true,
+  autoReload = true, // New prop to control auto reload
+  reloadDelay = 5000, // 5 seconds default delay
 }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [countdown, setCountdown] = useState(reloadDelay / 1000);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let intervalId;
+    let timeoutId;
+
+    if (autoReload && isVisible) {
+      // Countdown timer
+      intervalId = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(intervalId);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      // Auto reload after delay
+      timeoutId = setTimeout(() => {
+        window.location.reload();
+      }, reloadDelay);
+    }
+
+    // Cleanup timers
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [autoReload, isVisible, reloadDelay]);
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -280,7 +434,12 @@ const Error = ({
   };
 
   const handleRetry = () => {
-    if (onRetry) onRetry();
+    if (onRetry) {
+      onRetry();
+    } else {
+      // Default retry behavior - reload page
+      window.location.reload();
+    }
   };
 
   if (!isVisible) return null;
@@ -324,7 +483,7 @@ const Error = ({
       }
     >
       <div
-        className={`border-l-4 rounded-lg shadow-lg p-5 w-full  
+        className={`border-l-4 rounded-lg shadow-lg p-5 w-full 
         ${config.bgColor} ${config.borderColor}`}
       >
         <div className="flex items-start gap-3">
@@ -344,16 +503,35 @@ const Error = ({
               {message || "Something went wrong"}
             </p>
 
+            {/* Auto reload countdown */}
+            {autoReload && countdown > 0 && (
+              <p className={`mt-2 text-xs ${config.textColor} opacity-75`}>
+                Page will reload automatically in {countdown} second
+                {countdown !== 1 ? "s" : ""}...
+              </p>
+            )}
+
             {/* Buttons */}
             <div className="mt-4 flex flex-wrap gap-2">
+              {/* Dismiss button */}
+              {showDismiss && (
+                <button
+                  onClick={handleDismiss}
+                  className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md bg-gray-100 hover:bg-gray-200"
+                >
+                  <FiX className="text-sm" />
+                  Dismiss
+                </button>
+              )}
+
               {/* Retry */}
-              {showRetry && onRetry && (
+              {showRetry && (
                 <button
                   onClick={handleRetry}
                   className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md bg-gray-100 hover:bg-gray-200"
                 >
                   <FiRefreshCw className="text-sm" />
-                  Retry
+                  Retry Now
                 </button>
               )}
 
@@ -361,23 +539,12 @@ const Error = ({
               {showHome && (
                 <button
                   onClick={() => navigate("/")}
-                  className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md cursor-pointer bg-accent text-white hover:opacity-90"
+                  className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md text-white bg-accent hover:opacity-90"
                 >
                   <FiHome className="text-sm" />
                   Home
                 </button>
               )}
-
-              {/* Dismiss */}
-              {/* {showDismiss && (
-                <button
-                  onClick={handleDismiss}
-                  className="flex items-center gap-1 px-3 py-1.5 text-sm rounded-md bg-gray-200 hover:bg-gray-300"
-                >
-                  <FiX className="text-sm" />
-                  Dismiss
-                </button>
-              )} */}
             </div>
           </div>
         </div>

@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTopicById } from "../../../../redux/slice/coursePreviewSlice";
 import Loader from "../../common/Loader";
 import { useTranslation } from "react-i18next";
+import Breadcrumb from "../../common/layout/Breadcrumb";
 
 const Topics = () => {
   const { topicId: id } = useParams();
@@ -32,10 +33,16 @@ const Topics = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const { currentTopic, assessmentStatusTopic, isLoading, isError, message } =
-    useSelector((state) => state.course);
+  const {
+    currentTopic,
+    assessmentStatusTopic,
+    contextHerarcyTopic,
+    isLoading,
+    isError,
+    message,
+  } = useSelector((state) => state.course);
 
-  console.log("assessmentStatusTopic", assessmentStatusTopic);
+  console.log("contextHerarcyTopic", contextHerarcyTopic);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -160,6 +167,18 @@ const Topics = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("topics.topics"),
+            path: `/chapters/${contextHerarcyTopic?.chapter?.id}`,
+          },
+          {
+            label: t("topics.viewContents"),
+          },
+        ]}
+      />
+
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("topics.pageTitle")}</PageTitle>
