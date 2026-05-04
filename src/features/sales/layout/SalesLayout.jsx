@@ -19,20 +19,6 @@ const SalesLayout = () => {
     navigate("/login");
   };
 
-  // ✅ Tab/Window close hone par auto logout
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      // Jab user tab close karega, immediately logout
-      dispatch(logout());
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [dispatch]);
-
   useEffect(() => {
     if (mainRef.current) {
       mainRef.current.scrollTo({
@@ -41,15 +27,6 @@ const SalesLayout = () => {
       });
     }
   }, [location.pathname]);
-
-  // useEffect(() => {
-  //   if (mainRef.current) {
-  //     mainRef.current.scrollTo({
-  //       top: 0,
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // }, [location.pathname]);
 
   const { showModal, setShowModal, resetTimer } = useIdleTimeout(
     handleLogout,
