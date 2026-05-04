@@ -141,10 +141,10 @@ const Login = () => {
               </div>
 
               {/* Stay Logged */}
-              <div className="flex items-center gap-2 text-sm text-gray-600">
+              {/* <div className="flex items-center gap-2 text-sm text-gray-600">
                 <input type="checkbox" />
                 <span>{t("login.stayLoggedIn")}</span>
-              </div>
+              </div> */}
               <button
                 type="submit"
                 disabled={isLoading || isSubmitting}

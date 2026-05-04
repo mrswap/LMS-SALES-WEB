@@ -20,6 +20,7 @@ import {
   FiLock,
   FiCreditCard,
 } from "react-icons/fi";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const TermsAndCondition = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,17 @@ const TermsAndCondition = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("termsConditions.home"),
+            path: `/dashboard`,
+          },
+          {
+            label: t("termsConditions.view-term-condition"),
+          },
+        ]}
+      />
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("termsConditions.pageTitle")}</PageTitle>

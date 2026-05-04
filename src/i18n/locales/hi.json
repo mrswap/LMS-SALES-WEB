@@ -174,14 +174,16 @@
 
   "navbar": {
     "home": "होम",
-    "myLevels": "मेरे लेवल्स",
-    "analytics": "एनालिटिक्स",
+    "myLevels": "मेरे स्तर",
+    "analytics": "विश्लेषण",
+    "progress": "प्रगति",
     "assessment": "मूल्यांकन",
-    "profile": "प्रोफाइल",
+    "reports": "रिपोर्ट्स",
+    "profile": "प्रोफ़ाइल",
     "settings": "सेटिंग्स",
     "logout": "लॉगआउट",
     "language": {
-      "en": "English",
+      "en": "अंग्रेज़ी",
       "hi": "हिंदी",
       "pa": "पंजाबी"
     }
@@ -567,33 +569,30 @@
   },
 
   "topicContent": {
-    "loading": "सामग्री लोड हो रही है...",
-    "notFound": {
-      "title": "सामग्री नहीं मिली",
-      "description": "जो सामग्री आप ढूंढ रहे हैं वह मौजूद नहीं है या स्थानांतरित कर दी गई है।",
-      "button": "कोर्स पर वापस जाएं"
-    },
-    "backButton": "वापस",
     "contentTypes": {
-      "text": "पठन सामग्री",
-      "video": "वीडियो व्याख्यान",
+      "text": "पढ़ने की सामग्री",
+      "video": "वीडियो लेक्चर",
       "pdf": "दस्तावेज़",
       "audio": "ऑडियो पाठ",
       "image": "दृश्य सामग्री"
     },
-    "readStatus": "पढ़ा गया",
     "pdf": {
-      "download": "PDF डाउनलोड करें",
-      "title": "PDF दस्तावेज़"
+      "title": "पीडीएफ दस्तावेज़",
+      "download": "पीडीएफ डाउनलोड करें"
     },
+    "notFound": {
+      "title": "सामग्री नहीं मिली",
+      "description": "आप जिस सामग्री को खोज रहे हैं वह मौजूद नहीं है या स्थानांतरित कर दी गई है।",
+      "button": "कोर्स पर वापस जाएं"
+    },
+    "fallbackMessage": "सामग्री प्रकार:",
     "navigation": {
       "previous": "पिछला",
       "previousLesson": "पिछला पाठ",
       "next": "अगला",
       "nextLesson": "अगला पाठ",
-      "continueText": "अगले पाठ पर जारी रखें"
-    },
-    "fallbackMessage": "सामग्री प्रकार:"
+      "continueText": "अगले पाठ पर जाएं"
+    }
   },
 
   "quiz": {
@@ -609,31 +608,31 @@
     "startedAt": "शुरू हुआ",
     "expiresAt": "समाप्त होगा",
     "attemptId": "प्रयास आईडी",
-    "questionOf": "प्रश्न {current} में से {total}",
+    "questionOf": "प्रश्न {current} / {total}",
     "answerSelected": "उत्तर चयनित",
     "skipped": "छोड़ा गया",
     "previous": "पिछला",
     "skip": "छोड़ें",
     "next": "अगला",
-    "submitQuiz": "क्विज़ सबमिट करें",
-    "submitting": "सबमिट हो रहा है...",
-    "timeUpWarning": "समय समाप्त! आपका क्विज़ स्वतः सबमिट किया जा रहा है...",
-    "noQuestionsTitle": "कोई प्रश्न उपलब्ध नहीं",
-    "noQuestionsDescription": "कृपया बाद में फिर से प्रयास करें।",
-    "noAttemptsLeft": "कोई प्रयास शेष नहीं! आपने सभी प्रयास समाप्त कर दिए हैं।",
+    "submitQuiz": "क्विज़ जमा करें",
+    "submitting": "जमा किया जा रहा है...",
+    "timeUpWarning": "समय समाप्त! आपका क्विज़ स्वतः जमा किया जा रहा है...",
+    "noQuestionsTitle": "कोई प्रश्न उपलब्ध नहीं है",
+    "noQuestionsDescription": "कृपया बाद में फिर प्रयास करें।",
+    "noAttemptsLeft": "कोई प्रयास शेष नहीं! आपने सभी प्रयास समाप्त कर लिए हैं।",
     "noAttemptsTitle": "कोई प्रयास शेष नहीं",
-    "noAttemptsSubtitle": "आपने इस क्विज़ के सभी प्रयास समाप्त कर दिए हैं",
-    "noAttemptsHeading": "कोई प्रयास शेष नहीं",
-    "noAttemptsMessage": "आपने इस क्विज़ के सभी {total} प्रयास उपयोग कर लिए हैं।",
+    "noAttemptsSubtitle": "आपने इस क्विज़ के सभी प्रयास समाप्त कर लिए हैं",
+    "noAttemptsHeading": "कोई प्रयास बाकी नहीं",
+    "noAttemptsMessage": "आपने इस क्विज़ के सभी {total} प्रयास पूरे कर लिए हैं।",
     "goBack": "वापस जाएं",
-    "leaveWarning": "आपका क्विज़ जारी है! क्या आप सच में छोड़ना चाहते हैं?",
+    "leaveWarning": "आपका क्विज़ जारी है! क्या आप वाकई छोड़ना चाहते हैं?",
     "confirmationModal": {
       "title": "क्विज़ छोड़ें?",
-      "description": "आपका क्विज़ जारी है। यदि आप अभी छोड़ते हैं, तो यह स्वतः सबमिट हो जाएगा।",
+      "description": "आपका क्विज़ जारी है। यदि आप अभी छोड़ते हैं, तो आपका क्विज़ स्वतः जमा हो जाएगा।",
       "progressSaved": "आपकी प्रगति सुरक्षित रहेगी।",
       "timeRemaining": "शेष समय:",
       "cancel": "रद्द करें",
-      "confirm": "छोड़ें और सबमिट करें"
+      "confirm": "छोड़ें और जमा करें"
     }
   },
 
@@ -843,29 +842,37 @@
 
   "aboutUs": {
     "pageTitle": "हमारे बारे में",
-    "pageSubtitle": "हमारी कंपनी और मिशन के बारे में जानें",
-    "noContent": "कोई सामग्री उपलब्ध नहीं है"
+    "pageSubtitle": "हमारी कंपनी और मिशन के बारे में अधिक जानें",
+    "noContent": "कोई सामग्री उपलब्ध नहीं है",
+    "home": "होम",
+    "view-aboutUs": "हमारे बारे में देखें"
   },
 
   "termsConditions": {
     "pageTitle": "नियम और शर्तें",
     "pageSubtitle": "कृपया हमारी सेवाओं का उपयोग करने से पहले इन नियमों और शर्तों को ध्यान से पढ़ें",
-    "noContent": "कोई सामग्री उपलब्ध नहीं है"
+    "noContent": "कोई सामग्री उपलब्ध नहीं है",
+    "home": "होम",
+    "view-term-condition": "नियम और शर्तें देखें"
   },
 
   "privacyPolicy": {
     "pageTitle": "गोपनीयता नीति",
-    "pageSubtitle": "जानें कि हम आपकी व्यक्तिगत जानकारी को कैसे एकत्र, उपयोग और सुरक्षित रखते हैं",
-    "noContent": "कोई सामग्री उपलब्ध नहीं है"
+    "pageSubtitle": "जानें कि हम आपकी व्यक्तिगत जानकारी को कैसे एकत्रित, उपयोग और सुरक्षित करते हैं",
+    "noContent": "कोई सामग्री उपलब्ध नहीं है",
+    "home": "होम",
+    "view-privacy-policy": "गोपनीयता नीति देखें"
   },
 
   "contactUs": {
     "pageTitle": "संपर्क करें",
-    "pageSubtitle": "हम आपसे सुनना पसंद करेंगे",
+    "pageSubtitle": "हमें आपसे सुनकर खुशी होगी",
     "aboutCompany": "कंपनी के बारे में",
     "contactInformation": "संपर्क जानकारी",
     "sendMessage": "हमें संदेश भेजें",
-    "address": "123 बिज़नेस एवेन्यू, सुइट 100",
+    "address": "123 बिजनेस एवेन्यू, सुइट 100",
+    "home": "होम",
+    "contact-us": "संपर्क करें",
     "buttons": {
       "sendMessage": "संदेश भेजें",
       "sending": "भेजा जा रहा है..."
@@ -885,7 +892,7 @@
       },
       "message": {
         "label": "संदेश",
-        "placeholder": "कृपया अपनी समस्या का विवरण दें..."
+        "placeholder": "कृपया अपनी समस्या/प्रश्न का विवरण दें..."
       }
     },
     "validation": {
@@ -900,7 +907,7 @@
     },
     "toast": {
       "success": "संदेश सफलतापूर्वक भेजा गया!",
-      "error": "संदेश भेजने में विफल। कृपया पुनः प्रयास करें।"
+      "error": "संदेश भेजने में विफल। कृपया फिर से प्रयास करें।"
     }
   },
 
@@ -958,10 +965,10 @@
   },
 
   "certificate": {
-    "pageTitle": "उपलब्धि प्रमाण पत्र",
-    "downloadButton": "प्रमाण पत्र डाउनलोड करें",
+    "pageTitle": "उपलब्धि प्रमाणपत्र",
+    "downloadButton": "प्रमाणपत्र डाउनलोड करें",
     "ofAchievement": "उपलब्धि का",
-    "presentedTo": "यह प्रमाण पत्र गर्व से प्रदान किया जाता है",
+    "presentedTo": "यह प्रमाणपत्र गर्व से प्रदान किया जाता है",
     "recipientName": "प्राप्तकर्ता का नाम",
     "employeeId": "कर्मचारी आईडी",
     "achievementScore": "उपलब्धि स्कोर",
@@ -969,23 +976,25 @@
     "passed": "उत्तीर्ण",
     "completed": "पूर्ण",
     "finalStatus": "अंतिम स्थिति",
-    "passingScore": "उत्तीर्णांक",
+    "passingScore": "उत्तीर्ण अंक",
     "timeTaken": "लिया गया समय",
     "attempt": "प्रयास",
     "assessmentDetails": "मूल्यांकन विवरण",
     "assessmentDate": "मूल्यांकन तिथि",
-    "questionsAttempted": "किए गए प्रश्न",
+    "questionsAttempted": "प्रयास किए गए प्रश्न",
     "correctAnswers": "सही उत्तर",
     "correct": "सही",
-    "courseType": "पाठ्यक्रम प्रकार",
+    "courseType": "कोर्स प्रकार",
     "signature": "हस्ताक्षर",
     "authorizedSignatory": "अधिकृत हस्ताक्षरकर्ता",
     "dateOfIssue": "जारी करने की तिथि",
-    "certificateId": "प्रमाण पत्र आईडी",
-    "digitallyVerified": "डिजिटली सत्यापित प्रमाण पत्र",
+    "certificateId": "प्रमाणपत्र आईडी",
+    "digitallyVerified": "डिजिटली सत्यापित प्रमाणपत्र",
     "whatsapp": "व्हाट्सएप",
     "facebook": "फेसबुक",
-    "linkedin": "लिंक्डइन"
+    "linkedin": "लिंक्डइन",
+    "certification": "प्रमाणन",
+    "view-certificate": "प्रमाणपत्र देखें"
   },
 
   "auditLogs": {

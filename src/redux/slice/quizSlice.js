@@ -178,6 +178,12 @@ const quizSlice = createSlice({
             state.feedbackData = null;
         },
 
+        // Add this new reducer specifically for resetting feedback state
+        resetFeedbackState: (state) => {
+            state.feedbackSubmitted = false;
+            state.feedbackData = null;
+        },
+
         nextQuestion: (state) => {
             if (state.currentQuestionIndex < state.questions.length - 1) {
                 state.currentQuestionIndex += 1;
@@ -308,6 +314,7 @@ export const {
     nextQuestion,
     prevQuestion,
     clearQuizResults,
+    resetFeedbackState,
 } = quizSlice.actions;
 
 export default quizSlice.reducer;

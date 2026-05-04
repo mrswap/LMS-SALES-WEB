@@ -19,6 +19,7 @@ import {
   FiDatabase,
   FiFileText,
 } from "react-icons/fi";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const Policy = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,17 @@ const Policy = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("privacyPolicy.home"),
+            path: `/dashboard`,
+          },
+          {
+            label: t("privacyPolicy.view-privacy-policy"),
+          },
+        ]}
+      />
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle>{t("privacyPolicy.pageTitle")}</PageTitle>

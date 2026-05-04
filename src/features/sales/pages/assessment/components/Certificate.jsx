@@ -39,6 +39,7 @@ import Loader from "../../../common/Loader";
 import Error from "../../../common/Error";
 import { getCertificateById } from "../../../../../redux/slice/reportSlice";
 import { useTranslation } from "react-i18next";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 const Certificate = () => {
   const { id } = useParams();
@@ -70,6 +71,17 @@ const Certificate = () => {
 
   return (
     <PageLayout>
+      <Breadcrumb
+        items={[
+          {
+            label: t("certificate.certification"),
+            path: `/certification`,
+          },
+          {
+            label: t("certificate.view-certificate"),
+          },
+        ]}
+      />
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle className="flex items-center gap-2">
