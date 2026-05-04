@@ -370,6 +370,8 @@ export default function LevelsPage() {
   const [activeTab, setActiveTab] = useState("ALL");
   const dispatch = useDispatch();
   const courseData = useSelector((state) => state.course);
+  // console.log("courseData");
+
   const { t } = useTranslation();
 
   useEffect(() => {

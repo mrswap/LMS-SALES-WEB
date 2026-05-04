@@ -512,6 +512,8 @@
   "topics": {
     "pageTitle": "Learning Topics",
     "pageSubtitle": "Browse through your learning materials",
+    "topics": "Topics",
+    "viewContents": "View Contents",
     "topicTypes": {
       "text": "Text Topic",
       "media": "Media Topic"
