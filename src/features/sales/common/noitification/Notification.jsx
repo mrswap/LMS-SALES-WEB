@@ -605,6 +605,7 @@ const Notification = () => {
                   key={notification.id}
                   onMouseEnter={() => setHoveredId(notification.id)}
                   onMouseLeave={() => setHoveredId(null)}
+                  onClick={() => handleNotificationClick(notification)}
                   className={`group relative transition-all duration-300 cursor-pointer ${
                     !notification.is_read
                       ? "bg-gradient-to-r from-indigo-50/30 to-transparent hover:bg-indigo-50/50"
@@ -654,30 +655,8 @@ const Notification = () => {
                           </div>
                         </div>
 
-                        {/* Action Buttons */}
-                        {!notification.is_read && (
-                          <div
-                            className="mt-3"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleMarkAsRead(notification.id);
-                              }}
-                              className="text-xs text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-indigo-50 transition-all duration-200"
-                            >
-                              <IoCheckmarkCircle size={14} />
-                              Mark as read
-                            </button>
-                          </div>
-                        )}
-
-                        {/* Read more link - like dropdown */}
-                        <div
-                          onClick={() => handleNotificationClick(notification)}
-                          className="mt-3 flex items-center text-indigo-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase tracking-wider cursor-pointer"
-                        >
+                        {/* Read more link - appears on hover */}
+                        <div className="mt-3 flex items-center text-indigo-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase tracking-wider">
                           Read more
                           <svg
                             className="ml-1 w-3 h-3"
@@ -694,21 +673,6 @@ const Notification = () => {
                           </svg>
                         </div>
                       </div>
-
-                      {/* Quick action on hover */}
-                      {!notification.is_read &&
-                        hoveredId === notification.id && (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleMarkAsRead(notification.id);
-                            }}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 bg-white rounded-full shadow-md border border-gray-200 text-gray-500 hover:text-indigo-600 transition-all duration-200 opacity-0 group-hover:opacity-100"
-                            title="Mark as read"
-                          >
-                            <IoCheckmarkCircle size={16} />
-                          </button>
-                        )}
                     </div>
                   </div>
                 </div>

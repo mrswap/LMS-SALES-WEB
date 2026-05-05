@@ -39,6 +39,7 @@
 //   FiCheckCircle,
 //   FiBarChart2,
 // } from "react-icons/fi";
+// import { useNavigate } from "react-router-dom";
 
 // // ==================== COMPONENTS ====================
 
@@ -145,7 +146,7 @@
 //     {actionText && (
 //       <button
 //         onClick={onAction}
-//         className="text-blue-600 text-xs font-semibold hover:underline"
+//         className="text-blue-600 text-xs font-semibold cursor-pointer"
 //       >
 //         {actionText}
 //       </button>
@@ -154,7 +155,7 @@
 // );
 
 // // Simple Level Card - No progress bar, just name and status
-// const SimpleLevelCard = ({ title, status, active }) => {
+// const SimpleLevelCard = ({ title, status, active, onClick }) => {
 //   let statusText = "";
 //   let statusColor = "";
 //   let icon = null;
@@ -176,6 +177,7 @@
 //   return (
 //     <div
 //       className={`bg-white shadow-sm rounded-lg p-4 text-center transition-all cursor-pointer hover:shadow-md ${!active ? "opacity-60" : ""}`}
+//       onClick={onClick}
 //     >
 //       <div className="flex justify-center mb-2">
 //         <span className="p-2 rounded-full bg-gray-100">{icon}</span>
@@ -344,6 +346,7 @@
 
 // export default function Dashboard() {
 //   const dispatch = useDispatch();
+//   const navigate = useNavigate();
 //   const { dashboardData, isLoading, isError, message } = useSelector(
 //     (state) => state.dashboard,
 //   );
@@ -384,6 +387,25 @@
 //   const displayedLevels = levels.slice(0, 3);
 //   const remainingLevels = levels.slice(3);
 //   const chartData = [25, 45, 60, 40, 70, 55, 80];
+
+//   // Navigation handlers
+//   const handleViewAllLevels = () => {
+//     navigate("/levels");
+//   };
+
+//   const handleResumeTopic = () => {
+//     if (current_learning?.chapter?.id) {
+//       navigate(`/chapters/${current_learning.chapter.id}`);
+//     } else if (next_action?.topic?.id) {
+//       navigate(`/chapters/${next_action.topic.id}`);
+//     }
+//   };
+
+//   const handleTopicClick = (topicId) => {
+//     if (topicId) {
+//       navigate(`/chapters/${topicId}`);
+//     }
+//   };
 
 //   return (
 //     <PageLayout>
@@ -472,8 +494,11 @@
 //               </div>
 //             )}
 
-//             <button className="mt-4 px-6 bg-white text-blue-600 text-sm py-2 rounded-full font-medium hover:shadow-lg transition-all flex items-center gap-2">
-//               <FiPlayCircle size={14} /> Resume Lesson
+//             <button
+//               className="mt-4 px-6 bg-white text-blue-600 text-sm py-2 rounded-full font-medium hover:shadow-lg transition-all flex items-center gap-2"
+//               onClick={handleResumeTopic}
+//             >
+//               <FiPlayCircle size={14} /> Resume Topic
 //             </button>
 //           </div>
 
@@ -487,11 +512,12 @@
 //           >
 //             <div className="flex justify-between mb-4">
 //               <h3 className="font-semibold">Learning Path</h3>
-//               {remainingLevels.length > 0 && (
-//                 <span className="text-blue-600 text-xs cursor-pointer hover:underline">
-//                   +{remainingLevels.length} More Levels
-//                 </span>
-//               )}
+//               <button
+//                 className="text-blue-600 text-xs cursor-pointer hover:underline"
+//                 onClick={handleViewAllLevels}
+//               >
+//                 View All
+//               </button>
 //             </div>
 //             <div className="grid grid-cols-3 gap-3">
 //               {displayedLevels.map((level) => {
@@ -502,6 +528,7 @@
 //                     title={level.title}
 //                     status={level.status}
 //                     active={isActive}
+//                     onClick={() => handleTopicClick(level.id)}
 //                   />
 //                 );
 //               })}
@@ -521,9 +548,6 @@
 //           >
 //             <div className="flex justify-between mb-4">
 //               <h3 className="font-semibold">Current Topics</h3>
-//               <span className="text-blue-600 text-xs cursor-pointer hover:underline">
-//                 View All
-//               </span>
 //             </div>
 //             <div className="space-y-3">
 //               <CourseCard
@@ -533,7 +557,7 @@
 //                 progress={current_learning.progress_percent}
 //                 status="IN PROGRESS"
 //                 statusColor="#1e63ff"
-//                 onClick={() => console.log("Resume topic")}
+//                 onClick={handleResumeTopic}
 //               />
 //               {current_learning.last_completed_topic && (
 //                 <CourseCard
@@ -543,7 +567,9 @@
 //                   progress={100}
 //                   status="COMPLETED"
 //                   statusColor="#16a34a"
-//                   onClick={() => console.log("View completed")}
+//                   onClick={() =>
+//                     handleTopicClick(current_learning.last_completed_topic.id)
+//                   }
 //                 />
 //               )}
 //               {current_learning.pending_quizzes === 0 && (
@@ -559,7 +585,7 @@
 //               )}
 //             </div>
 
-//             {/* Topic Contents */}
+//             {/* Topic Contents - No Read/Watch buttons, just display content */}
 //             {current_topic_contents && current_topic_contents.length > 0 && (
 //               <div className="mt-4">
 //                 <h4 className="font-semibold text-sm mb-2">Topic Contents</h4>
@@ -584,9 +610,6 @@
 //                           {content.type}
 //                         </p>
 //                       </div>
-//                       <button className="text-blue-600 text-xs font-semibold">
-//                         {content.type === "text" ? "Read" : "Watch"}
-//                       </button>
 //                     </div>
 //                   ))}
 //                 </div>
@@ -631,7 +654,7 @@
 //                   title={`Next: ${next_action.topic.title}`}
 //                   time={`${next_action.level.title} • ${next_action.module.title} • ${next_action.chapter.title}`}
 //                   actionText="Continue"
-//                   onAction={() => console.log("Continue")}
+//                   onAction={handleResumeTopic}
 //                 />
 //                 <div className="border-t border-gray-300" />
 //               </>
@@ -644,8 +667,12 @@
 //                 color="text-green-600"
 //                 title={`Certificate earned: ${last_certificate.meta?.context?.title}`}
 //                 time={`Score: ${last_certificate.percentage}% • ${new Date(last_certificate.issued_at).toLocaleDateString()}`}
-//                 actionText="Download"
-//                 onAction={() => console.log("Download certificate")}
+//                 actionText="View"
+//                 onAction={() =>
+//                   navigate(
+//                     `/certificate/${last_certificate?.assessment_attempt_id}`,
+//                   )
+//                 }
 //               />
 //             )}
 
@@ -656,7 +683,7 @@
 //               title={`${stats.completed_levels}/${stats.total_levels} levels completed`}
 //               time={`${stats.remaining_levels} more to go`}
 //               actionText="View"
-//               onAction={() => console.log("View levels")}
+//               onAction={handleViewAllLevels}
 //             />
 
 //             {current_learning.last_activity_date && (
@@ -669,7 +696,7 @@
 //                   current_learning.last_activity_date,
 //                 ).toLocaleString()}
 //                 actionText="Resume"
-//                 onAction={() => console.log("Resume")}
+//                 onAction={handleResumeTopic}
 //               />
 //             )}
 //           </div>
@@ -923,7 +950,7 @@ const ProgressAnalytics = ({
           </h3>
         </div>
         <div className="p-4">
-          {levels.map((level) => (
+          {levels?.map((level) => (
             <div key={level.id} className="mb-4 last:mb-0">
               <div className="flex justify-between items-center mb-2">
                 <div>
@@ -931,17 +958,18 @@ const ProgressAnalytics = ({
                     {level.title}
                   </span>
                   <span className="text-xs text-gray-500 ml-2">
-                    ({level.completed_topics || 0}/{level.total_topics} topics)
+                    ({level.completed_topics || 0}/{level.total_topics || 0}{" "}
+                    topics)
                   </span>
                 </div>
                 <span className="text-sm font-semibold text-blue-600">
-                  {level.completion_percent}%
+                  {level.completion_percent || 0}%
                 </span>
               </div>
               <div className="w-full h-2 bg-gray-200 rounded-full">
                 <div
                   className="h-2 bg-blue-500 rounded-full transition-all"
-                  style={{ width: `${level.completion_percent}%` }}
+                  style={{ width: `${level.completion_percent || 0}%` }}
                 />
               </div>
             </div>
@@ -979,12 +1007,13 @@ const ProgressAnalytics = ({
                     {module.module_title}
                   </span>
                   <span className="text-xs text-gray-500">
-                    ({module.completed_topics}/{module.total_topics} topics)
+                    ({module.completed_topics || 0}/{module.total_topics || 0}{" "}
+                    topics)
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-sm font-semibold text-green-600">
-                    {module.progress_percent}%
+                    {module.progress_percent || 0}%
                   </span>
                   {expandedModule === module.module_id ? (
                     <FaChevronUp className="text-gray-500" />
@@ -998,7 +1027,7 @@ const ProgressAnalytics = ({
                 <div className="w-full h-1.5 bg-gray-200 rounded-full mt-2">
                   <div
                     className="h-1.5 bg-green-500 rounded-full transition-all"
-                    style={{ width: `${module.progress_percent}%` }}
+                    style={{ width: `${module.progress_percent || 0}%` }}
                   />
                 </div>
               </div>
@@ -1019,18 +1048,20 @@ const ProgressAnalytics = ({
                                 {chapter.chapter_title}
                               </span>
                               <span className="text-xs text-gray-400">
-                                ({chapter.completed_topics}/
-                                {chapter.total_topics} topics)
+                                ({chapter.completed_topics || 0}/
+                                {chapter.total_topics || 0} topics)
                               </span>
                             </div>
                             <span className="text-xs font-medium text-purple-600">
-                              {chapter.progress_percent}%
+                              {chapter.progress_percent || 0}%
                             </span>
                           </div>
                           <div className="w-full h-1 bg-gray-100 rounded-full">
                             <div
                               className="h-1 bg-purple-500 rounded-full transition-all"
-                              style={{ width: `${chapter.progress_percent}%` }}
+                              style={{
+                                width: `${chapter.progress_percent || 0}%`,
+                              }}
                             />
                           </div>
                         </div>
@@ -1088,9 +1119,8 @@ export default function Dashboard() {
   };
 
   // Get first 3 levels for learning path
-  const displayedLevels = levels.slice(0, 3);
-  const remainingLevels = levels.slice(3);
-  const chartData = [25, 45, 60, 40, 70, 55, 80];
+  const displayedLevels = levels?.slice(0, 3) || [];
+  const remainingLevels = levels?.slice(3) || [];
 
   // Navigation handlers
   const handleViewAllLevels = () => {
@@ -1098,10 +1128,21 @@ export default function Dashboard() {
   };
 
   const handleResumeTopic = () => {
+    // First priority: current learning chapter
     if (current_learning?.chapter?.id) {
       navigate(`/chapters/${current_learning.chapter.id}`);
-    } else if (next_action?.topic?.id) {
+    }
+    // Second priority: next_action topic
+    else if (next_action?.topic?.id) {
       navigate(`/chapters/${next_action.topic.id}`);
+    }
+    // Third priority: current learning topic
+    else if (current_learning?.topic?.id) {
+      navigate(`/chapters/${current_learning.topic.id}`);
+    }
+    // Fallback for quiz
+    else if (next_action?.type === "topic_quiz" && next_action?.assessment_id) {
+      navigate(`/quiz/${next_action.assessment_id}`);
     }
   };
 
@@ -1109,6 +1150,22 @@ export default function Dashboard() {
     if (topicId) {
       navigate(`/chapters/${topicId}`);
     }
+  };
+
+  // Helper function to get next action display text
+  const getNextActionTitle = () => {
+    if (!next_action) return "Continue Learning";
+    if (next_action.topic?.title) return `Next: ${next_action.topic.title}`;
+    if (next_action.assessment_title)
+      return `Next: ${next_action.assessment_title}`;
+    return "Continue Learning";
+  };
+
+  const getNextActionTime = () => {
+    if (!next_action) return "Ready to continue";
+    if (next_action.type === "topic_quiz") return "Quiz • Ready to start";
+    if (next_action.topic?.title) return "Topic • Ready to continue";
+    return "Ready to start";
   };
 
   return (
@@ -1135,34 +1192,37 @@ export default function Dashboard() {
             <div className="flex justify-between items-start">
               <div className="flex-1">
                 <p className="text-yellow-300 text-xs font-semibold mb-1">
-                  {current_learning.program.title} •{" "}
-                  {current_learning.level.title}
+                  {current_learning?.program?.title || "Program"} •{" "}
+                  {current_learning?.level?.title || "Level"}
                 </p>
                 <h2 className="text-lg font-semibold">
-                  {current_learning.module.title}
+                  {current_learning?.module?.title || "Module"}
                 </h2>
                 <p className="text-sm opacity-80 mt-1">
-                  Current Topic: {current_learning.topic.title}
+                  Current Topic: {current_learning?.topic?.title || "Topic"}
                 </p>
 
                 <div className="mt-3">
                   <div className="w-full h-2 bg-blue-300 rounded-full">
                     <div
                       className="h-2 bg-white rounded-full transition-all duration-700"
-                      style={{ width: `${current_learning.progress_percent}%` }}
+                      style={{
+                        width: `${current_learning?.progress_percent || 0}%`,
+                      }}
                     />
                   </div>
                   <p className="text-right text-xs mt-1">
-                    {current_learning.progress_percent}% Complete
+                    {current_learning?.progress_percent || 0}% Complete
                   </p>
                 </div>
 
                 <div className="mt-3 flex gap-2 text-xs flex-wrap">
                   <span className="bg-white/20 px-2 py-1 rounded">
                     <FiCheckCircle className="inline mr-1" size={10} />{" "}
-                    {stats.completed_topics}/{stats.total_topics} Topics
+                    {stats?.completed_topics || 0}/{stats?.total_topics || 0}{" "}
+                    Topics
                   </span>
-                  {current_learning.pending_quizzes > 0 && (
+                  {current_learning?.pending_quizzes > 0 && (
                     <span className="bg-orange-500/30 px-2 py-1 rounded">
                       Pending Quizzes: {current_learning.pending_quizzes}
                     </span>
@@ -1173,27 +1233,28 @@ export default function Dashboard() {
               {/* Progress Ring */}
               <div className="ml-4">
                 <ProgressRing
-                  percentage={current_learning.progress_percent}
+                  percentage={current_learning?.progress_percent || 0}
                   size={80}
                 />
               </div>
             </div>
 
             {/* Current Topic Content Progress */}
-            {stats.current_topic_progress && (
+            {stats?.current_topic_progress && (
               <div className="mt-3 bg-white/10 rounded p-2">
                 <p className="text-xs mb-1">Current Topic Progress</p>
                 <div className="w-full h-1.5 bg-blue-300 rounded-full">
                   <div
                     className="h-1.5 bg-yellow-300 rounded-full transition-all"
                     style={{
-                      width: `${stats.current_topic_progress.progress_percent}%`,
+                      width: `${stats.current_topic_progress.progress_percent || 0}%`,
                     }}
                   />
                 </div>
                 <p className="text-right text-xs mt-1">
-                  {stats.current_topic_progress.read_contents}/
-                  {stats.current_topic_progress.total_contents} Contents Read
+                  {stats.current_topic_progress.read_contents || 0}/
+                  {stats.current_topic_progress.total_contents || 0} Contents
+                  Read
                 </p>
               </div>
             )}
@@ -1255,15 +1316,15 @@ export default function Dashboard() {
             </div>
             <div className="space-y-3">
               <CourseCard
-                title={current_learning.topic.title}
-                subtitle={`${current_learning.chapter.title} • ${current_learning.module.title}`}
+                title={current_learning?.topic?.title || "Current Topic"}
+                subtitle={`${current_learning?.chapter?.title || "Chapter"} • ${current_learning?.module?.title || "Module"}`}
                 days={5}
-                progress={current_learning.progress_percent}
+                progress={current_learning?.progress_percent || 0}
                 status="IN PROGRESS"
                 statusColor="#1e63ff"
                 onClick={handleResumeTopic}
               />
-              {current_learning.last_completed_topic && (
+              {current_learning?.last_completed_topic?.title && (
                 <CourseCard
                   title={current_learning.last_completed_topic.title}
                   subtitle="Completed"
@@ -1276,7 +1337,7 @@ export default function Dashboard() {
                   }
                 />
               )}
-              {current_learning.pending_quizzes === 0 && (
+              {current_learning?.pending_quizzes === 0 && (
                 <CourseCard
                   title="Quiz Assessment"
                   subtitle="Ready to take"
@@ -1284,7 +1345,11 @@ export default function Dashboard() {
                   progress={0}
                   status="PENDING"
                   statusColor="#f97316"
-                  onClick={() => console.log("Start quiz")}
+                  onClick={() => {
+                    if (next_action?.assessment_id) {
+                      navigate(`/quiz/${next_action.assessment_id}`);
+                    }
+                  }}
                 />
               )}
             </div>
@@ -1330,10 +1395,10 @@ export default function Dashboard() {
             }`}
           >
             <ProgressAnalytics
-              levels={levels}
-              modules={stats.modules_progress}
-              chapters={stats.chapters_progress}
-              currentTopic={stats.current_topic_progress}
+              levels={levels || []}
+              modules={stats?.modules_progress || []}
+              chapters={stats?.chapters_progress || []}
+              currentTopic={stats?.current_topic_progress}
               currentLearning={current_learning}
             />
           </div>
@@ -1355,8 +1420,8 @@ export default function Dashboard() {
                   icon={<FiTarget />}
                   bg="bg-blue-100"
                   color="text-blue-600"
-                  title={`Next: ${next_action.topic.title}`}
-                  time={`${next_action.level.title} • ${next_action.module.title} • ${next_action.chapter.title}`}
+                  title={getNextActionTitle()}
+                  time={getNextActionTime()}
                   actionText="Continue"
                   onAction={handleResumeTopic}
                 />
@@ -1369,8 +1434,8 @@ export default function Dashboard() {
                 icon={<FaMedal />}
                 bg="bg-green-100"
                 color="text-green-600"
-                title={`Certificate earned: ${last_certificate.meta?.context?.title}`}
-                time={`Score: ${last_certificate.percentage}% • ${new Date(last_certificate.issued_at).toLocaleDateString()}`}
+                title={`Certificate earned: ${last_certificate.meta?.context?.title || "Certificate"}`}
+                time={`Score: ${last_certificate.percentage || 0}% • ${new Date(last_certificate.issued_at).toLocaleDateString()}`}
                 actionText="View"
                 onAction={() =>
                   navigate(
@@ -1384,13 +1449,13 @@ export default function Dashboard() {
               icon={<FaUserGraduate />}
               bg="bg-orange-100"
               color="text-orange-600"
-              title={`${stats.completed_levels}/${stats.total_levels} levels completed`}
-              time={`${stats.remaining_levels} more to go`}
+              title={`${stats?.completed_levels || 0}/${stats?.total_levels || 0} levels completed`}
+              time={`${stats?.remaining_levels || 0} more to go`}
               actionText="View"
               onAction={handleViewAllLevels}
             />
 
-            {current_learning.last_activity_date && (
+            {current_learning?.last_activity_date && (
               <ActivityItem
                 icon={<FiCalendar />}
                 bg="bg-purple-100"
@@ -1421,8 +1486,8 @@ export default function Dashboard() {
                 Achievement Unlocked
               </p>
               <p className="text-xs text-amber-600">
-                You have earned {stats.certificates_earned} certificates with an
-                average score of {stats.avg_topic_score}%.
+                You have earned {stats?.certificates_earned || 0} certificates
+                with an average score of {stats?.avg_topic_score || 0}%.
               </p>
             </div>
             <FiChevronRight className="text-amber-600" />
