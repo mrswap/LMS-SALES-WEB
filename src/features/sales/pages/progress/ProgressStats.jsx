@@ -809,7 +809,7 @@ const CurrentFocus = ({ currentLearning, onContinue }) => {
         {/* Action Button */}
         <button
           onClick={onContinue}
-          className="w-full py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+          className="w-full py-2 bg-accent hover:opacity-90 text-white rounded text-sm font-medium cursor-pointer transition-colors flex items-center justify-center gap-2"
         >
           <FaPlayCircle size={12} /> Continue Learning
         </button>
@@ -847,8 +847,10 @@ export default function ProgressStats() {
     Math.round((stats?.completed_topics / stats?.total_topics) * 100) || 0;
 
   const handleContinueLearning = () => {
-    if (current_learning?.topic?.id) {
-      navigate(`/learn/topic/${current_learning.topic.id}`);
+    if (current_learning?.chapter?.id) {
+      navigate(`/chapters/${current_learning.chapter.id}`);
+    } else if (next_action?.topic?.id) {
+      navigate(`/chapters/${next_action.topic.id}`);
     }
   };
 
