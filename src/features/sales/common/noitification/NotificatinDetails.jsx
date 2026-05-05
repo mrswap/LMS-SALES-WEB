@@ -7,15 +7,18 @@ import {
   IoTimeOutline,
   IoCheckmarkCircle,
   IoMailOpenOutline,
+  IoCloseCircleOutline,
 } from "react-icons/io5";
 import { FaChalkboardTeacher, FaTrophy, FaGraduationCap } from "react-icons/fa";
 import { GiDiploma } from "react-icons/gi";
+import { HiOutlineBell } from "react-icons/hi2";
 import {
   PageBody,
   PageHeader,
   PageHeaderLeft,
   PageLayout,
   PageTitle,
+  PageSubtitle,
 } from "../layout";
 import Breadcrumb from "../layout/Breadcrumb";
 
@@ -36,13 +39,13 @@ const NotificationDetail = () => {
 
   const getIcon = (type) => {
     const icons = {
-      TRAINING_ASSIGNED: <FaChalkboardTeacher size={32} />,
-      ASSESSMENT_COMPLETED: <IoCheckmarkCircle size={32} />,
-      CERTIFICATE_ISSUED: <GiDiploma size={32} />,
-      COURSE_COMPLETED: <FaGraduationCap size={32} />,
-      ACHIEVEMENT_UNLOCKED: <FaTrophy size={32} />,
+      TRAINING_ASSIGNED: <FaChalkboardTeacher size={28} />,
+      ASSESSMENT_COMPLETED: <IoCheckmarkCircle size={28} />,
+      CERTIFICATE_ISSUED: <GiDiploma size={28} />,
+      COURSE_COMPLETED: <FaGraduationCap size={28} />,
+      ACHIEVEMENT_UNLOCKED: <FaTrophy size={28} />,
     };
-    return icons[type] || <IoMailOpenOutline size={32} />;
+    return icons[type] || <HiOutlineBell size={28} />;
   };
 
   const getIconBackground = (type) => {
@@ -85,11 +88,20 @@ const NotificationDetail = () => {
       <PageLayout>
         <div className="flex items-center justify-center h-96">
           <div className="text-center">
-            <p className="text-gray-500">Notification not found</p>
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-100 rounded-full mb-4">
+              <IoCloseCircleOutline className="text-gray-400 text-4xl" />
+            </div>
+            <h3 className="text-gray-700 font-medium mb-1">
+              Notification not found
+            </h3>
+            <p className="text-gray-400 text-sm mb-4">
+              The notification you're looking for doesn't exist
+            </p>
             <button
               onClick={() => navigate("/notifications")}
-              className="mt-4 text-blue-600 hover:text-blue-700"
+              className="text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-2 mx-auto"
             >
+              <IoArrowBack size={16} />
               Go back to notifications
             </button>
           </div>
@@ -102,117 +114,119 @@ const NotificationDetail = () => {
     <PageLayout>
       <Breadcrumb
         items={[
-          { label: "Dashboard", path: "/dashboard" },
+          { label: "Home", path: "/" },
           { label: "Notifications", path: "/notifications" },
-          { label: "Notification Details", path: `/notification/${id}` },
+          { label: "Notification Details", path: `/notifications/${id}` },
         ]}
       />
 
       <PageHeader>
         <PageHeaderLeft>
-          <button
-            onClick={() => navigate("/notifications")}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors mb-4"
-          >
-            <IoArrowBack size={20} />
-            <span>Back to Notifications</span>
-          </button>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <div
-              className={`rounded-2xl p-3 ${getIconBackground(notification.type)}`}
+              className={`rounded-xl p-3 ${getIconBackground(notification.type)} shadow-sm`}
             >
               {getIcon(notification.type)}
             </div>
-            <PageTitle>{notification.title}</PageTitle>
+            <div>
+              <PageTitle>{notification.title}</PageTitle>
+              <PageSubtitle>Notification details and information</PageSubtitle>
+            </div>
           </div>
         </PageHeaderLeft>
       </PageHeader>
 
       <PageBody>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            {/* Status Bar */}
-            <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+            {/* Status Bar - Matching dropdown style */}
+            <div className="px-6 py-4 bg-gradient-to-r from-gray-50 to-white border-b border-gray-200 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <IoTimeOutline className="text-gray-400" />
-                <span className="text-sm text-gray-600">
+                <div className="bg-indigo-50 rounded-full p-1.5">
+                  <IoTimeOutline className="text-indigo-500 text-sm" />
+                </div>
+                <span className="text-sm text-gray-600 font-medium">
                   {getRelativeTime(notification.created_at)}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span
-                  className={`text-xs font-medium px-2 py-1 rounded-full ${
+                <div
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${
                     notification.is_read
-                      ? "bg-green-100 text-green-700"
-                      : "bg-blue-100 text-blue-700"
+                      ? "bg-green-50 text-green-700"
+                      : "bg-amber-50 text-amber-700"
                   }`}
                 >
+                  <div
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      notification.is_read ? "bg-green-500" : "bg-amber-500"
+                    }`}
+                  ></div>
                   {notification.is_read ? "Read" : "Unread"}
-                </span>
+                </div>
               </div>
             </div>
 
             {/* Content */}
-            <div className="p-6">
+            <div className="p-8">
               <div className="prose max-w-none">
-                <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                  {notification.title}
-                </h2>
-                <p className="text-gray-600 leading-relaxed whitespace-pre-wrap">
-                  {notification.message}
-                </p>
+                <div className="mb-6 pb-6 border-b border-gray-100">
+                  <h2 className="text-2xl font-bold text-gray-800 mb-3">
+                    {notification.title}
+                  </h2>
+                  {!notification.is_read && (
+                    <div className="inline-flex items-center gap-1.5 px-2 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">
+                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
+                      New
+                    </div>
+                  )}
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6 mb-6">
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-wrap text-base">
+                    {notification.message}
+                  </p>
+                </div>
 
                 {/* Additional Data if any */}
                 {notification.data &&
                   Object.keys(notification.data).length > 0 && (
-                    <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                      <h3 className="font-medium text-gray-700 mb-2">
-                        Additional Information
-                      </h3>
-                      <div className="space-y-2 text-sm">
+                    <div className="mt-6 rounded-lg border border-gray-200 overflow-hidden">
+                      <div className="px-4 py-3 bg-gray-50 border-b border-gray-200">
+                        <h3 className="font-semibold text-gray-700 text-sm uppercase tracking-wider">
+                          Additional Information
+                        </h3>
+                      </div>
+                      <div className="p-4 space-y-3">
                         {notification.data.screen && (
-                          <p>
-                            <span className="font-medium text-gray-600">
+                          <div className="flex items-start gap-2 text-sm">
+                            <span className="font-medium text-gray-600 min-w-[80px]">
                               Screen:
-                            </span>{" "}
-                            {notification.data.screen}
-                          </p>
+                            </span>
+                            <span className="text-gray-700">
+                              {notification.data.screen}
+                            </span>
+                          </div>
                         )}
                         {notification.data.link && (
-                          <p>
-                            <span className="font-medium text-gray-600">
+                          <div className="flex items-start gap-2 text-sm">
+                            <span className="font-medium text-gray-600 min-w-[80px]">
                               Link:
-                            </span>{" "}
+                            </span>
                             <a
                               href={notification.data.link}
-                              className="text-blue-600 hover:underline"
+                              className="text-indigo-600 hover:text-indigo-700 hover:underline break-all"
                               target="_blank"
                               rel="noopener noreferrer"
                             >
                               {notification.data.link}
                             </a>
-                          </p>
+                          </div>
                         )}
                       </div>
                     </div>
                   )}
               </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex gap-3">
-              <button
-                onClick={() => navigate("/notifications")}
-                className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-all"
-              >
-                View All Notifications
-              </button>
-              <button
-                onClick={() => navigate("/dashboard")}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all"
-              >
-                Go to Dashboard
-              </button>
             </div>
           </div>
         </div>
