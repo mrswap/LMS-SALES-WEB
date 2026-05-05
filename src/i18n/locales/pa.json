@@ -172,6 +172,180 @@
     }
   },
 
+  "notification": {
+    "notifications": "ਸੂਚਨਾਵਾਂ",
+    "markAllAsRead": "ਸਭ ਨੂੰ ਪੜ੍ਹਿਆ ਹੋਇਆ ਮਾਰਕ ਕਰੋ",
+    "stayUpdated": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਅਤੇ ਪ੍ਰਾਪਤੀਆਂ ਨਾਲ ਅਪਡੇਟ ਰਹੋ",
+    "readMore": "ਹੋਰ ਪੜ੍ਹੋ",
+    "justNow": "ਹੁਣੇ ਹੁਣੇ",
+    "minAgo": "ਮਿੰਟ ਪਹਿਲਾਂ",
+    "hourAgo_one": "ਘੰਟਾ ਪਹਿਲਾਂ",
+    "hourAgo_other": "ਘੰਟੇ ਪਹਿਲਾਂ",
+    "yesterday": "ਕੱਲ੍ਹ",
+    "daysAgo": "ਦਿਨ ਪਹਿਲਾਂ",
+    "weeksAgo_one": "ਹਫ਼ਤਾ ਪਹਿਲਾਂ",
+    "weeksAgo_other": "ਹਫ਼ਤੇ ਪਹਿਲਾਂ",
+    "monthsAgo_one": "ਮਹੀਨਾ ਪਹਿਲਾਂ",
+    "monthsAgo_other": "ਮਹੀਨੇ ਪਹਿਲਾਂ",
+    "yearsAgo_one": "ਸਾਲ ਪਹਿਲਾਂ",
+    "yearsAgo_other": "ਸਾਲ ਪਹਿਲਾਂ",
+    "page": "ਸਫ਼ਾ",
+    "of": "ਦਾ",
+    "noNotifications": "ਕੋਈ ਸੂਚਨਾ ਨਹੀਂ",
+    "quietCenter": "ਤੁਹਾਡਾ ਸੂਚਨਾ ਕੇਂਦਰ ਸ਼ਾਂਤ ਹੈ",
+    "viewAll": "ਸਾਰੀਆਂ ਸੂਚਨਾਵਾਂ ਵੇਖੋ",
+    "allNotifications": "ਸਾਰੀਆਂ ਸੂਚਨਾਵਾਂ",
+    "unread": "ਅਪੜ੍ਹੀਆਂ",
+    "allCaughtUp": "ਸਭ ਪੜ੍ਹ ਲਿਆ",
+    "noNotificationsYet": "ਅਜੇ ਤੱਕ ਕੋਈ ਸੂਚਨਾ ਨਹੀਂ",
+    "allRead": "ਤੁਸੀਂ ਆਪਣੀਆਂ ਸਾਰੀਆਂ ਸੂਚਨਾਵਾਂ ਪੜ੍ਹ ਲਈਆਂ ਹਨ",
+    "willAppear": "ਜਦੋਂ ਤੁਹਾਨੂੰ ਸੂਚਨਾਵਾਂ ਮਿਲਣਗੀਆਂ, ਉਹ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੀਆਂ",
+    "notFound": "ਸੂਚਨਾ ਨਹੀਂ ਮਿਲੀ",
+    "notFoundDescription": "ਤੁਸੀਂ ਜਿਸ ਸੂਚਨਾ ਨੂੰ ਲੱਭ ਰਹੇ ਹੋ, ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ",
+    "goBack": "ਸੂਚਨਾਵਾਂ 'ਤੇ ਵਾਪਸ ਜਾਓ",
+    "detailSubtitle": "ਸੂਚਨਾ ਵੇਰਵੇ ਅਤੇ ਜਾਣਕਾਰੀ",
+    "additionalInfo": "ਵਾਧੂ ਜਾਣਕਾਰੀ",
+    "screen": "ਸਕ੍ਰੀਨ",
+    "link": "ਲਿੰਕ",
+    "new": "ਨਵਾਂ",
+    "stats": {
+      "total": "ਕੁੱਲ ਸੂਚਨਾਵਾਂ",
+      "unread": "ਅਪੜ੍ਹੀਆਂ",
+      "read": "ਪੜ੍ਹੀਆਂ ਹੋਈਆਂ"
+    }
+  },
+
+  "breadcrumb": {
+    "home": "ਹੋਮ",
+    "notifications": "ਸੂਚਨਾਵਾਂ",
+    "notificationDetails": "ਸੂਚਨਾ ਵੇਰਵੇ"
+  },
+
+  "dashboard": {
+    "greeting": {
+      "morning": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ",
+      "afternoon": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ",
+      "evening": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ"
+    },
+    "status": {
+      "inProgress": "ਜਾਰੀ ਹੈ",
+      "completed": "ਮੁਕੰਮਲ",
+      "pending": "ਬਾਕੀ"
+    },
+    "simpleLevel": {
+      "completed": "ਮੁਕੰਮਲ",
+      "inProgress": "ਜਾਰੀ ਹੈ",
+      "locked": "ਤਾਲਾਬੰਦ"
+    },
+    "levelProgress": "ਪੱਧਰ ਦੀ ਤਰੱਕੀ",
+    "moduleChapterProgress": "ਮੋਡੀਊਲ ਅਤੇ ਚੈਪਟਰ ਦੀ ਤਰੱਕੀ",
+    "topics": "ਵਿਸ਼ੇ",
+    "chapters": "ਅਧਿਆਏ",
+    "currentLearning": {
+      "program": "ਪ੍ਰੋਗਰਾਮ",
+      "level": "ਪੱਧਰ",
+      "module": "ਮੋਡੀਊਲ",
+      "currentTopic": "ਮੌਜੂਦਾ ਵਿਸ਼ਾ",
+      "topic": "ਵਿਸ਼ਾ",
+      "complete": "ਮੁਕੰਮਲ ਕਰੋ",
+      "topics": "ਵਿਸ਼ੇ",
+      "pendingQuizzes": "ਬਾਕੀ ਕੁਇਜ਼ਾਂ",
+      "currentTopicProgress": "ਮੌਜੂਦਾ ਵਿਸ਼ੇ ਦੀ ਤਰੱਕੀ",
+      "contentsRead": "ਪੜ੍ਹੀ ਸਮੱਗਰੀ",
+      "resumeTopic": "ਵਿਸ਼ਾ ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਕਰੋ"
+    },
+    "learningPath": {
+      "title": "ਸਿੱਖਣ ਦਾ ਰਾਹ",
+      "viewAll": "ਸਾਰੇ ਵੇਖੋ"
+    },
+    "currentTopics": {
+      "title": "ਮੌਜੂਦਾ ਵਿਸ਼ੇ",
+      "currentTopic": "ਮੌਜੂਦਾ ਵਿਸ਼ਾ",
+      "chapter": "ਅਧਿਆਇ",
+      "module": "ਮੋਡੀਊਲ",
+      "completed": "ਮੁਕੰਮਲ",
+      "quizAssessment": "ਕੁਇਜ਼ ਮੁਲਾਂਕਣ",
+      "readyToTake": "ਦੇਣ ਲਈ ਤਿਆਰ",
+      "topicContents": "ਵਿਸ਼ਾ ਸਮੱਗਰੀ"
+    },
+    "latestUpdates": {
+      "title": "ਤਾਜ਼ਾ ਅਪਡੇਟਸ",
+      "continue": "ਜਾਰੀ ਰੱਖੋ",
+      "certificateEarned": "ਸਰਟੀਫਿਕੇਟ ਪ੍ਰਾਪਤ ਹੋਇਆ",
+      "certificate": "ਸਰਟੀਫਿਕੇਟ",
+      "score": "ਸਕੋਰ",
+      "view": "ਵੇਖੋ",
+      "levelsCompleted": "ਪੱਧਰ ਮੁਕੰਮਲ ਹੋਏ",
+      "moreToGo": "ਹੋਰ ਬਾਕੀ",
+      "lastLearningSession": "ਆਖਰੀ ਸਿੱਖਣ ਸੈਸ਼ਨ",
+      "resume": "ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਕਰੋ"
+    },
+    "achievement": {
+      "unlocked": "ਪ੍ਰਾਪਤੀ ਖੁੱਲ੍ਹ ਗਈ",
+      "message": "ਤੁਸੀਂ {certificates} ਸਰਟੀਫਿਕੇਟ ਪ੍ਰਾਪਤ ਕੀਤੇ ਹਨ, ਜਿਸਦਾ ਔਸਤ ਸਕੋਰ {score}% ਹੈ।"
+    },
+    "nextAction": {
+      "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
+      "next": "ਅਗਲਾ",
+      "readyToContinue": "ਜਾਰੀ ਰੱਖਣ ਲਈ ਤਿਆਰ",
+      "quizReady": "ਕੁਇਜ਼ • ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਤਿਆਰ",
+      "topicReady": "ਵਿਸ਼ਾ • ਜਾਰੀ ਰੱਖਣ ਲਈ ਤਿਆਰ",
+      "readyToStart": "ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਤਿਆਰ"
+    }
+  },
+
+  "progressStats": {
+    "pageTitle": "ਤਰੱਕੀ ਡੈਸ਼ਬੋਰਡ",
+    "pageSubtitle": "ਮੋਡੀਊਲਾਂ ਅਤੇ ਚੈਪਟਰਾਂ ਵਿੱਚ ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਤਰੱਕੀ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
+    "topics": "ਵਿਸ਼ੇ",
+    "min": "ਮਿੰਟ",
+    "noActiveLearning": "ਕੋਈ ਕਿਰਿਆਸ਼ੀਲ ਸਿੱਖਿਆ ਜਾਰੀ ਨਹੀਂ ਹੈ",
+    "browseCourses": "ਕੋਰਸ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
+    "currentFocus": "ਮੌਜੂਦਾ ਫੋਕਸ",
+    "module": "ਮੋਡੀਊਲ",
+    "chapter": "ਚੈਪਟਰ",
+    "currentTopic": "ਮੌਜੂਦਾ ਵਿਸ਼ਾ",
+    "topicProgress": "ਵਿਸ਼ੇ ਦੀ ਤਰੱਕੀ",
+    "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
+    "viewReport": "ਰਿਪੋਰਟ ਵੇਖੋ",
+    "stats": {
+      "levelsCompleted": "ਪੱਧਰ ਮੁਕੰਮਲ ਹੋਏ",
+      "inProgress": "ਜਾਰੀ ਹੈ",
+      "certificates": "ਸਰਟੀਫਿਕੇਟ",
+      "avgScore": "ਔਸਤ ਸਕੋਰ",
+      "overallPerformance": "ਸਮੁੱਚੀ ਕਾਰਗੁਜ਼ਾਰੀ",
+      "topicsCompleted": "ਵਿਸ਼ੇ ਮੁਕੰਮਲ ਹੋਏ",
+      "complete": "ਮੁਕੰਮਲ"
+    },
+    "quickStats": {
+      "title": "ਤੁਰੰਤ ਅੰਕੜੇ",
+      "totalTopics": "ਕੁੱਲ ਵਿਸ਼ੇ",
+      "completed": "ਮੁਕੰਮਲ ਹੋਏ",
+      "inProgress": "ਜਾਰੀ ਹੈ",
+      "pendingQuizzes": "ਬਾਕੀ ਕੁਇਜ਼ਾਂ"
+    },
+    "moduleHierarchy": {
+      "title": "ਮੋਡੀਊਲ ਅਤੇ ਚੈਪਟਰ ਦਾ ਲੜੀਵਾਰ ਢਾਂਚਾ",
+      "modules": "ਮੋਡੀਊਲ"
+    },
+    "reports": {
+      "title": "ਰਿਪੋਰਟਾਂ ਅਤੇ ਵਿਸ਼ਲੇਸ਼ਣ",
+      "subtitle": "ਵਿਸਤ੍ਰਿਤ ਜਾਣਕਾਰੀ ਵੇਖਣ ਲਈ ਕਿਸੇ ਵੀ ਕਾਰਡ 'ਤੇ ਕਲਿੱਕ ਕਰੋ",
+      "auditLogs": {
+        "title": "ਆਡਿਟ ਲੌਗ",
+        "description": "ਸਿਸਟਮ ਗਤੀਵਿਧੀਆਂ, ਉਪਭੋਗਤਾ ਕਿਰਿਆਵਾਂ, ਅਤੇ ਸੁਰੱਖਿਆ ਘਟਨਾਵਾਂ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ"
+      },
+      "userProgress": {
+        "title": "ਉਪਭੋਗਤਾ ਦੀ ਤਰੱਕੀ",
+        "description": "ਸਿਖਿਆਰਥੀਆਂ ਦੀਆਂ ਪ੍ਰਾਪਤੀਆਂ, ਮੁਕੰਮਲ ਹੋਣ ਦੀਆਂ ਦਰਾਂ, ਅਤੇ ਮੀਲ ਪੱਥਰਾਂ ਦੀ ਨਿਗਰਾਨੀ ਕਰੋ"
+      },
+      "certification": {
+        "title": "ਸਰਟੀਫਿਕੇਸ਼ਨ ਰਿਪੋਰਟਾਂ",
+        "description": "ਜਾਰੀ ਕੀਤੇ, ਬਾਕੀ ਅਤੇ ਮਿਆਦ ਪੁੱਗਣ ਦੀ ਸਥਿਤੀ ਵਾਲੇ ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ"
+      }
+    }
+  },
+
   "navbar": {
     "home": "ਘਰ",
     "myLevels": "ਮੇਰੇ ਪੱਧਰ",
@@ -190,29 +364,37 @@
   },
 
   "profile": {
-    "pageTitle": "ਪ੍ਰੋਫਾਈਲ",
-    "pageSubtitle": "ਆਪਣਾ ਖਾਤਾ ਪ੍ਰਬੰਧਿਤ ਕਰੋ",
+    "pageTitle": "ਮੇਰੀ ਪ੍ਰੋਫਾਈਲ",
+    "pageSubtitle": "ਆਪਣੀ ਖਾਤਾ ਜਾਣਕਾਰੀ ਪ੍ਰਬੰਧਿਤ ਕਰੋ",
     "loading": "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
-    "notSpecified": "ਨਿਰਧਾਰਿਤ ਨਹੀਂ",
-    "notAssigned": "ਅਸਾਈਨ ਨਹੀਂ",
-    "notProvided": "ਪ੍ਰਦਾਨ ਨਹੀਂ ਕੀਤਾ ਗਿਆ",
     "na": "ਲਾਗੂ ਨਹੀਂ",
-    "tags": {
-      "id": "ਆਈ.ਡੀ",
-      "city": "ਸ਼ਹਿਰ"
-    },
-    "details": {
-      "department": "ਵਿਭਾਗ",
-      "mobile": "ਮੋਬਾਈਲ",
-      "role": "ਭੂਮਿਕਾ",
-      "designationId": "ਅਹੁਦਾ ਆਈ.ਡੀ",
-      "employeeId": "ਕਰਮਚਾਰੀ ਆਈ.ਡੀ"
-    },
-    "menu": {
-      "editProfile": "ਪ੍ਰੋਫਾਈਲ ਸੰਪਾਦਿਤ ਕਰੋ",
-      "changePassword": "ਪਾਸਵਰਡ ਬਦਲੋ",
-      "notificationSettings": "ਸੂਚਨਾ ਸੈਟਿੰਗਾਂ",
-      "logout": "ਲੌਗਆਉਟ"
+    "id": "ਆਈ.ਡੀ.",
+    "notAssigned": "ਅਸਾਈਨ ਨਹੀਂ ਕੀਤਾ ਗਿਆ",
+    "notProvided": "ਪ੍ਰਦਾਨ ਨਹੀਂ ਕੀਤਾ ਗਿਆ",
+    "accountDetails": "ਖਾਤਾ ਵੇਰਵੇ",
+    "department": "ਵਿਭਾਗ",
+    "mobile": "ਮੋਬਾਈਲ",
+    "role": "ਭੂਮਿਕਾ",
+    "designationId": "ਅਹੁਦਾ ਆਈ.ਡੀ.",
+    "editProfile": "ਪ੍ਰੋਫਾਈਲ ਸੰਪਾਦਿਤ ਕਰੋ",
+    "changePassword": "ਪਾਸਵਰਡ ਬਦਲੋ",
+    "changePasswordSubtitle": "ਆਪਣੇ ਖਾਤੇ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਲਈ ਆਪਣਾ ਪਾਸਵਰਡ ਅਪਡੇਟ ਕਰੋ",
+    "currentPassword": "ਮੌਜੂਦਾ ਪਾਸਵਰਡ",
+    "currentPasswordPlaceholder": "ਆਪਣਾ ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
+    "newPassword": "ਨਵਾਂ ਪਾਸਵਰਡ",
+    "newPasswordPlaceholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
+    "confirmPassword": "ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "confirmPasswordPlaceholder": "ਆਪਣੇ ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "updatePassword": "ਪਾਸਵਰਡ ਅਪਡੇਟ ਕਰੋ",
+    "logout": "ਲੌਗਆਉਟ",
+    "passwordSuccess": "ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਬਦਲ ਦਿੱਤਾ ਗਿਆ!",
+    "passwordError": "ਪਾਸਵਰਡ ਬਦਲਣ ਵਿੱਚ ਅਸਫਲ",
+    "validation": {
+      "currentPasswordRequired": "ਮੌਜੂਦਾ ਪਾਸਵਰਡ ਲੋੜੀਂਦਾ ਹੈ",
+      "newPasswordRequired": "ਨਵਾਂ ਪਾਸਵਰਡ ਲੋੜੀਂਦਾ ਹੈ",
+      "passwordMin": "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "confirmPasswordRequired": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਖਾਂਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ"
     }
   },
 

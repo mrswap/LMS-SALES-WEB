@@ -290,7 +290,7 @@
 //         {/* Action Button */}
 //         <button
 //           onClick={onContinue}
-//           className="w-full py-2 bg-blue-600 text-white rounded text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+//           className="w-full py-2 bg-accent hover:opacity-90 text-white rounded text-sm font-medium cursor-pointer transition-colors flex items-center justify-center gap-2"
 //         >
 //           <FaPlayCircle size={12} /> Continue Learning
 //         </button>
@@ -328,8 +328,10 @@
 //     Math.round((stats?.completed_topics / stats?.total_topics) * 100) || 0;
 
 //   const handleContinueLearning = () => {
-//     if (current_learning?.topic?.id) {
-//       navigate(`/learn/topic/${current_learning.topic.id}`);
+//     if (current_learning?.chapter?.id) {
+//       navigate(`/chapters/${current_learning.chapter.id}`);
+//     } else if (next_action?.topic?.id) {
+//       navigate(`/chapters/${next_action.topic.id}`);
 //     }
 //   };
 
@@ -337,30 +339,37 @@
 //     navigate(`/learn/chapter/${chapterId}`);
 //   };
 
+//   const navigationHandlers = {
+//     auditLogs: () => navigate("/audit-logs"),
+//     userProgress: () => navigate("/user-progress"),
+//     certification: () => navigate("/certification"),
+//   };
+
 //   const reports = [
 //     {
 //       key: "auditLogs",
 //       icon: FaClipboardList,
 //       title: "Audit Logs",
-//       description: "Track system activities and user actions",
-//       color: "blue",
-//       onClick: () => navigate("/audit-logs"),
+//       description: "Track system activities, user actions, and security events",
+//       color: "purple",
+//       onClick: navigationHandlers.auditLogs,
 //     },
 //     {
 //       key: "userProgress",
 //       icon: FaUserGraduate,
 //       title: "User Progress",
-//       description: "Monitor learner achievements and completion rates",
-//       color: "green",
-//       onClick: () => navigate("/user-progress"),
+//       description:
+//         "Monitor learner achievements, completion rates, and milestones",
+//       color: "blue",
+//       onClick: navigationHandlers.userProgress,
 //     },
 //     {
 //       key: "certification",
 //       icon: FaCertificate,
-//       title: "Certification",
-//       description: "View certificates issued and status",
-//       color: "purple",
-//       onClick: () => navigate("/certification"),
+//       title: "Certification Reports",
+//       description: "View certificates issued, pending, and expiration status",
+//       color: "emerald",
+//       onClick: navigationHandlers.certification,
 //     },
 //   ];
 
@@ -476,39 +485,19 @@
 //           </div>
 //         </div>
 
-//         {/* Reports Section */}
-//         <div className="mt-8">
-//           <div className="mb-4">
-//             <h3 className="text-lg font-semibold text-gray-800">Reports</h3>
-//             <p className="text-sm text-gray-500">
-//               Access detailed reports and analytics
+//         <div className="mt-5">
+//           <div className="mb-3">
+//             <h3 className="text-lg font-semibold text-gray-800">
+//               Reports & Analytics
+//             </h3>
+//             <p className="text-sm text-gray-500 mt-1">
+//               Click any card to view detailed insights
 //             </p>
 //           </div>
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 //             {reports.map((report) => (
-//               <ClassicCard
-//                 key={report.key}
-//                 className="cursor-pointer hover:shadow-md transition-shadow"
-//                 onClick={report.onClick}
-//               >
-//                 <div className="p-5">
-//                   <div
-//                     className={`inline-flex p-2 rounded-lg bg-${report.color}-50 mb-3`}
-//                   >
-//                     <report.icon
-//                       className={`text-${report.color}-600 text-lg`}
-//                     />
-//                   </div>
-//                   <h4 className="font-semibold text-gray-900 mb-1">
-//                     {report.title}
-//                   </h4>
-//                   <p className="text-sm text-gray-500">{report.description}</p>
-//                   <div className="flex items-center gap-1 text-sm text-blue-600 mt-3">
-//                     <span>Access</span>
-//                     <FaArrowRight size={11} />
-//                   </div>
-//                 </div>
-//               </ClassicCard>
+//               <ReportCard key={report.key} {...report} />
 //             ))}
 //           </div>
 //         </div>
@@ -516,6 +505,52 @@
 //     </PageLayout>
 //   );
 // }
+
+// const ReportCard = ({ icon: Icon, title, description, color, onClick }) => {
+//   const colorStyles = {
+//     purple: {
+//       bg: "bg-purple-50",
+//       text: "text-purple-600",
+//       borderHover: "hover:border-purple-200",
+//     },
+//     blue: {
+//       bg: "bg-blue-50",
+//       text: "text-blue-600",
+//       borderHover: "hover:border-blue-200",
+//     },
+//     emerald: {
+//       bg: "bg-emerald-50",
+//       text: "text-emerald-600",
+//       borderHover: "hover:border-emerald-200",
+//     },
+//   };
+
+//   const styles = colorStyles[color] || colorStyles.blue;
+
+//   return (
+//     <div
+//       className={`bg-white rounded-lg border border-gray-200 p-5 shadow-sm cursor-pointer transition-all hover:shadow-md ${styles.borderHover}`}
+//       onClick={onClick}
+//       role="button"
+//       tabIndex={0}
+//       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onClick()}
+//     >
+//       <div
+//         className={`inline-flex p-2 rounded-md ${styles.bg} ${styles.text} mb-4`}
+//       >
+//         <Icon size={20} />
+//       </div>
+//       <h4 className="text-base font-semibold text-gray-800 mb-2">{title}</h4>
+//       <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+//         {description}
+//       </p>
+//       <div className="flex items-center text-sm font-medium text-blue-600">
+//         <span>View report</span>
+//         <FaChevronRight size={12} className="ml-1" />
+//       </div>
+//     </div>
+//   );
+// };
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -554,6 +589,7 @@ import {
 } from "../../common/layout";
 import Loader from "../../common/Loader";
 import Error from "../../common/Error";
+import { useTranslation } from "react-i18next";
 
 // ==================== PROFESSIONAL CLASSIC COMPONENTS ====================
 
@@ -570,6 +606,7 @@ const ClassicCard = ({ children, className, bordered = true }) => {
 
 // Stat Card
 const StatCard = ({ icon: Icon, title, value, subtitle, color }) => {
+  const { t } = useTranslation();
   const colors = {
     blue: "bg-blue-50 text-blue-600",
     green: "bg-green-50 text-green-600",
@@ -597,6 +634,7 @@ const StatCard = ({ icon: Icon, title, value, subtitle, color }) => {
 
 // Module Hierarchy Component
 const ModuleHierarchy = ({ modules, chapters, onModuleClick }) => {
+  const { t } = useTranslation();
   const [expandedModules, setExpandedModules] = useState({});
 
   const toggleModule = (moduleId) => {
@@ -658,7 +696,8 @@ const ModuleHierarchy = ({ modules, chapters, onModuleClick }) => {
                     </div>
                     <span className="text-xs text-gray-400">
                       {module.completed_topics || 0}/
-                      {module.total_topics || moduleChapters.length} topics
+                      {module.total_topics || moduleChapters.length}{" "}
+                      {t("progressStats.topics")}
                     </span>
                   </div>
                 </div>
@@ -704,7 +743,7 @@ const ModuleHierarchy = ({ modules, chapters, onModuleClick }) => {
                     <div className="flex items-center gap-2">
                       {chapter.estimated_time && (
                         <span className="text-xs text-gray-400">
-                          {chapter.estimated_time} min
+                          {chapter.estimated_time} {t("progressStats.min")}
                         </span>
                       )}
                       <span className="text-xs font-medium text-gray-500 min-w-[35px] text-right">
@@ -724,13 +763,15 @@ const ModuleHierarchy = ({ modules, chapters, onModuleClick }) => {
 
 // Current Focus Component
 const CurrentFocus = ({ currentLearning, onContinue }) => {
+  const { t } = useTranslation();
+
   if (!currentLearning) {
     return (
       <ClassicCard className="p-6 text-center">
         <FaBookOpen className="text-4xl text-gray-300 mx-auto mb-3" />
-        <p className="text-gray-500">No active learning in progress</p>
+        <p className="text-gray-500">{t("progressStats.noActiveLearning")}</p>
         <button className="mt-3 text-blue-600 text-sm font-medium hover:underline">
-          Browse Courses →
+          {t("progressStats.browseCourses")} →
         </button>
       </ClassicCard>
     );
@@ -739,7 +780,9 @@ const CurrentFocus = ({ currentLearning, onContinue }) => {
   return (
     <ClassicCard className="overflow-hidden">
       <div className="bg-blue-50 px-4 py-2 border-b border-blue-100">
-        <h3 className="font-semibold text-gray-900 text-sm">CURRENT FOCUS</h3>
+        <h3 className="font-semibold text-gray-900 text-sm">
+          {t("progressStats.currentFocus")}
+        </h3>
       </div>
       <div className="p-4">
         {/* Program/Level */}
@@ -757,7 +800,9 @@ const CurrentFocus = ({ currentLearning, onContinue }) => {
             <div className="flex items-start gap-2">
               <FaFolderOpen className="text-blue-500 text-sm mt-0.5" />
               <div>
-                <p className="text-xs text-gray-500">Module</p>
+                <p className="text-xs text-gray-500">
+                  {t("progressStats.module")}
+                </p>
                 <p className="text-sm font-medium text-gray-900">
                   {currentLearning.module.title}
                 </p>
@@ -769,7 +814,9 @@ const CurrentFocus = ({ currentLearning, onContinue }) => {
             <div className="flex items-start gap-2 ml-4">
               <FaFileAlt className="text-gray-400 text-sm mt-0.5" />
               <div>
-                <p className="text-xs text-gray-500">Chapter</p>
+                <p className="text-xs text-gray-500">
+                  {t("progressStats.chapter")}
+                </p>
                 <p className="text-sm text-gray-800">
                   {currentLearning.chapter.title}
                 </p>
@@ -781,7 +828,9 @@ const CurrentFocus = ({ currentLearning, onContinue }) => {
             <div className="flex items-start gap-2 ml-8">
               <FaStar className="text-amber-500 text-sm mt-0.5" />
               <div>
-                <p className="text-xs text-gray-500">Current Topic</p>
+                <p className="text-xs text-gray-500">
+                  {t("progressStats.currentTopic")}
+                </p>
                 <p className="text-sm font-medium text-gray-900">
                   {currentLearning.topic.title}
                 </p>
@@ -793,7 +842,9 @@ const CurrentFocus = ({ currentLearning, onContinue }) => {
         {/* Progress Bar */}
         <div className="mb-4">
           <div className="flex justify-between text-xs mb-1">
-            <span className="text-gray-600">Topic Progress</span>
+            <span className="text-gray-600">
+              {t("progressStats.topicProgress")}
+            </span>
             <span className="font-medium text-blue-700">
               {currentLearning.progress_percent || 0}%
             </span>
@@ -811,221 +862,16 @@ const CurrentFocus = ({ currentLearning, onContinue }) => {
           onClick={onContinue}
           className="w-full py-2 bg-accent hover:opacity-90 text-white rounded text-sm font-medium cursor-pointer transition-colors flex items-center justify-center gap-2"
         >
-          <FaPlayCircle size={12} /> Continue Learning
+          <FaPlayCircle size={12} /> {t("progressStats.continueLearning")}
         </button>
       </div>
     </ClassicCard>
   );
 };
 
-// Main Component
-export default function ProgressStats() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { dashboardData, isLoading, isError, message } = useSelector(
-    (state) => state.dashboard,
-  );
-
-  useEffect(() => {
-    dispatch(getDashboardData());
-  }, [dispatch]);
-
-  if (isLoading) return <Loader />;
-  if (isError) return <Error message={message} />;
-
-  const data = dashboardData?.data;
-  if (!data) return null;
-
-  const { current_learning, levels, stats, modules, chapters } = data;
-
-  // Calculate stats
-  const completedLevels =
-    levels?.filter((l) => l.status === "completed").length || 0;
-  const inProgressLevels =
-    levels?.filter((l) => l.status === "unlocked").length || 0;
-  const overallProgress =
-    Math.round((stats?.completed_topics / stats?.total_topics) * 100) || 0;
-
-  const handleContinueLearning = () => {
-    if (current_learning?.chapter?.id) {
-      navigate(`/chapters/${current_learning.chapter.id}`);
-    } else if (next_action?.topic?.id) {
-      navigate(`/chapters/${next_action.topic.id}`);
-    }
-  };
-
-  const handleModuleChapterClick = (moduleId, chapterId) => {
-    navigate(`/learn/chapter/${chapterId}`);
-  };
-
-  const navigationHandlers = {
-    auditLogs: () => navigate("/audit-logs"),
-    userProgress: () => navigate("/user-progress"),
-    certification: () => navigate("/certification"),
-  };
-
-  const reports = [
-    {
-      key: "auditLogs",
-      icon: FaClipboardList,
-      title: "Audit Logs",
-      description: "Track system activities, user actions, and security events",
-      color: "purple",
-      onClick: navigationHandlers.auditLogs,
-    },
-    {
-      key: "userProgress",
-      icon: FaUserGraduate,
-      title: "User Progress",
-      description:
-        "Monitor learner achievements, completion rates, and milestones",
-      color: "blue",
-      onClick: navigationHandlers.userProgress,
-    },
-    {
-      key: "certification",
-      icon: FaCertificate,
-      title: "Certification Reports",
-      description: "View certificates issued, pending, and expiration status",
-      color: "emerald",
-      onClick: navigationHandlers.certification,
-    },
-  ];
-
-  return (
-    <PageLayout>
-      <PageHeader>
-        <PageHeaderLeft>
-          <PageTitle>Progress Dashboard</PageTitle>
-          <PageSubtitle>
-            Track your learning progress across modules and chapters
-          </PageSubtitle>
-        </PageHeaderLeft>
-      </PageHeader>
-
-      <PageBody>
-        {/* Stats Row */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-6">
-          <StatCard
-            icon={FaTrophy}
-            title="Levels Completed"
-            value={completedLevels}
-            subtitle={`${inProgressLevels} in progress`}
-            color="blue"
-          />
-          <StatCard
-            icon={FaCertificate}
-            title="Certificates"
-            value={stats?.certificates_earned || 0}
-            subtitle={`Avg. score ${stats?.avg_topic_score || 0}%`}
-            color="green"
-          />
-          <StatCard
-            icon={FiBarChart2}
-            title="Avg. Score"
-            value={`${stats?.avg_topic_score || 0}%`}
-            subtitle="Overall performance"
-            color="purple"
-          />
-          <StatCard
-            icon={FaBookOpen}
-            title="Topics Completed"
-            value={`${stats?.completed_topics || 0}/${stats?.total_topics || 0}`}
-            subtitle={`${overallProgress}% complete`}
-            color="orange"
-          />
-        </div>
-
-        {/* Main Content - 2 Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Left Column - Current Focus (1/3) */}
-          <div>
-            <CurrentFocus
-              currentLearning={current_learning}
-              onContinue={handleContinueLearning}
-            />
-
-            {/* Quick Stats */}
-            <ClassicCard className="mt-5 p-4">
-              <h4 className="text-sm font-semibold text-gray-700 mb-3">
-                Quick Stats
-              </h4>
-              <div className="space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Total Topics</span>
-                  <span className="font-medium text-gray-900">
-                    {stats?.total_topics || 0}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Completed</span>
-                  <span className="font-medium text-green-600">
-                    {stats?.completed_topics || 0}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">In Progress</span>
-                  <span className="font-medium text-blue-600">
-                    {stats?.in_progress_topics || 0}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Pending Quizzes</span>
-                  <span className="font-medium text-orange-600">
-                    {current_learning?.pending_quizzes || 0}
-                  </span>
-                </div>
-              </div>
-            </ClassicCard>
-          </div>
-
-          {/* Right Column - Module Hierarchy (2/3) */}
-          <div className="lg:col-span-2">
-            <ClassicCard className="overflow-hidden">
-              <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
-                <div className="flex items-center gap-2">
-                  <FaFolderOpen className="text-blue-600" />
-                  <h3 className="font-semibold text-gray-900">
-                    Module & Chapter Hierarchy
-                  </h3>
-                  <span className="text-xs text-gray-400 ml-auto">
-                    {modules?.length || 0} modules
-                  </span>
-                </div>
-              </div>
-              <div className="p-4">
-                <ModuleHierarchy
-                  modules={modules || stats?.modules_progress}
-                  chapters={chapters || stats?.chapters_progress}
-                  onModuleClick={handleModuleChapterClick}
-                />
-              </div>
-            </ClassicCard>
-          </div>
-        </div>
-
-        <div className="mt-5">
-          <div className="mb-3">
-            <h3 className="text-lg font-semibold text-gray-800">
-              Reports & Analytics
-            </h3>
-            <p className="text-sm text-gray-500 mt-1">
-              Click any card to view detailed insights
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {reports.map((report) => (
-              <ReportCard key={report.key} {...report} />
-            ))}
-          </div>
-        </div>
-      </PageBody>
-    </PageLayout>
-  );
-}
-
+// Report Card Component
 const ReportCard = ({ icon: Icon, title, description, color, onClick }) => {
+  const { t } = useTranslation();
   const colorStyles = {
     purple: {
       bg: "bg-purple-50",
@@ -1064,9 +910,224 @@ const ReportCard = ({ icon: Icon, title, description, color, onClick }) => {
         {description}
       </p>
       <div className="flex items-center text-sm font-medium text-blue-600">
-        <span>View report</span>
+        <span>{t("progressStats.viewReport")}</span>
         <FaChevronRight size={12} className="ml-1" />
       </div>
     </div>
   );
 };
+
+// Main Component
+export default function ProgressStats() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const { dashboardData, isLoading, isError, message } = useSelector(
+    (state) => state.dashboard,
+  );
+
+  useEffect(() => {
+    dispatch(getDashboardData());
+  }, [dispatch]);
+
+  if (isLoading) return <Loader />;
+  if (isError) return <Error message={message} />;
+
+  const data = dashboardData?.data;
+  if (!data) return null;
+
+  const { current_learning, levels, stats, modules, chapters, next_action } =
+    data;
+
+  // Calculate stats
+  const completedLevels =
+    levels?.filter((l) => l.status === "completed").length || 0;
+  const inProgressLevels =
+    levels?.filter((l) => l.status === "unlocked").length || 0;
+  const overallProgress =
+    Math.round((stats?.completed_topics / stats?.total_topics) * 100) || 0;
+
+  const handleContinueLearning = () => {
+    if (current_learning?.chapter?.id) {
+      navigate(`/chapters/${current_learning.chapter.id}`);
+    } else if (next_action?.topic?.id) {
+      navigate(`/chapters/${next_action.topic.id}`);
+    }
+  };
+
+  const handleModuleChapterClick = (moduleId, chapterId) => {
+    navigate(`/learn/chapter/${chapterId}`);
+  };
+
+  const navigationHandlers = {
+    auditLogs: () => navigate("/audit-logs"),
+    userProgress: () => navigate("/user-progress"),
+    certification: () => navigate("/certification"),
+  };
+
+  const reports = [
+    {
+      key: "auditLogs",
+      icon: FaClipboardList,
+      title: t("progressStats.reports.auditLogs.title"),
+      description: t("progressStats.reports.auditLogs.description"),
+      color: "purple",
+      onClick: navigationHandlers.auditLogs,
+    },
+    {
+      key: "userProgress",
+      icon: FaUserGraduate,
+      title: t("progressStats.reports.userProgress.title"),
+      description: t("progressStats.reports.userProgress.description"),
+      color: "blue",
+      onClick: navigationHandlers.userProgress,
+    },
+    {
+      key: "certification",
+      icon: FaCertificate,
+      title: t("progressStats.reports.certification.title"),
+      description: t("progressStats.reports.certification.description"),
+      color: "emerald",
+      onClick: navigationHandlers.certification,
+    },
+  ];
+
+  return (
+    <PageLayout>
+      <PageHeader>
+        <PageHeaderLeft>
+          <PageTitle>{t("progressStats.pageTitle")}</PageTitle>
+          <PageSubtitle>{t("progressStats.pageSubtitle")}</PageSubtitle>
+        </PageHeaderLeft>
+      </PageHeader>
+
+      <PageBody>
+        {/* Stats Row */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-6">
+          <StatCard
+            icon={FaTrophy}
+            title={t("progressStats.stats.levelsCompleted")}
+            value={completedLevels}
+            subtitle={`${inProgressLevels} ${t("progressStats.stats.inProgress")}`}
+            color="blue"
+          />
+          <StatCard
+            icon={FaCertificate}
+            title={t("progressStats.stats.certificates")}
+            value={stats?.certificates_earned || 0}
+            subtitle={`${t("progressStats.stats.avgScore")} ${stats?.avg_topic_score || 0}%`}
+            color="green"
+          />
+          <StatCard
+            icon={FiBarChart2}
+            title={t("progressStats.stats.avgScore")}
+            value={`${stats?.avg_topic_score || 0}%`}
+            subtitle={t("progressStats.stats.overallPerformance")}
+            color="purple"
+          />
+          <StatCard
+            icon={FaBookOpen}
+            title={t("progressStats.stats.topicsCompleted")}
+            value={`${stats?.completed_topics || 0}/${stats?.total_topics || 0}`}
+            subtitle={`${overallProgress}% ${t("progressStats.stats.complete")}`}
+            color="orange"
+          />
+        </div>
+
+        {/* Main Content - 2 Columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - Current Focus (1/3) */}
+          <div>
+            <CurrentFocus
+              currentLearning={current_learning}
+              onContinue={handleContinueLearning}
+            />
+
+            {/* Quick Stats */}
+            <ClassicCard className="mt-5 p-4">
+              <h4 className="text-sm font-semibold text-gray-700 mb-3">
+                {t("progressStats.quickStats.title")}
+              </h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">
+                    {t("progressStats.quickStats.totalTopics")}
+                  </span>
+                  <span className="font-medium text-gray-900">
+                    {stats?.total_topics || 0}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">
+                    {t("progressStats.quickStats.completed")}
+                  </span>
+                  <span className="font-medium text-green-600">
+                    {stats?.completed_topics || 0}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">
+                    {t("progressStats.quickStats.inProgress")}
+                  </span>
+                  <span className="font-medium text-blue-600">
+                    {stats?.in_progress_topics || 0}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-500">
+                    {t("progressStats.quickStats.pendingQuizzes")}
+                  </span>
+                  <span className="font-medium text-orange-600">
+                    {current_learning?.pending_quizzes || 0}
+                  </span>
+                </div>
+              </div>
+            </ClassicCard>
+          </div>
+
+          {/* Right Column - Module Hierarchy (2/3) */}
+          <div className="lg:col-span-2">
+            <ClassicCard className="overflow-hidden">
+              <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+                <div className="flex items-center gap-2">
+                  <FaFolderOpen className="text-blue-600" />
+                  <h3 className="font-semibold text-gray-900">
+                    {t("progressStats.moduleHierarchy.title")}
+                  </h3>
+                  <span className="text-xs text-gray-400 ml-auto">
+                    {modules?.length || 0}{" "}
+                    {t("progressStats.moduleHierarchy.modules")}
+                  </span>
+                </div>
+              </div>
+              <div className="p-4">
+                <ModuleHierarchy
+                  modules={modules || stats?.modules_progress}
+                  chapters={chapters || stats?.chapters_progress}
+                  onModuleClick={handleModuleChapterClick}
+                />
+              </div>
+            </ClassicCard>
+          </div>
+        </div>
+
+        <div className="mt-5">
+          <div className="mb-3">
+            <h3 className="text-lg font-semibold text-gray-800">
+              {t("progressStats.reports.title")}
+            </h3>
+            <p className="text-sm text-gray-500 mt-1">
+              {t("progressStats.reports.subtitle")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {reports.map((report) => (
+              <ReportCard key={report.key} {...report} />
+            ))}
+          </div>
+        </div>
+      </PageBody>
+    </PageLayout>
+  );
+}

@@ -33,7 +33,17 @@ export const markNotificationAsRead = createAsyncThunk(
                 {},
                 getAuthConfig()
             );
-            return { data: res.data, notificationId };
+            // Get current state to check if notification was unread
+            const state = thunkAPI.getState();
+            const notification = state.notification.notifications.find(n => n.id === notificationId);
+            const wasUnread = notification && !notification.is_read;
+
+            return {
+                data: res.data.data,
+                notificationId: notificationId,
+                message: res.data.message,
+                wasUnread: wasUnread  // Send this info
+            };
         } catch (error) {
             return thunkAPI.rejectWithValue(
                 error.response?.data || { message: "Failed to mark notification as read" }
@@ -83,14 +93,17 @@ export const markAllAsRead = createAsyncThunk(
     }
 );
 
-/* ===========================
-   SLICE
-=========================== */
 const notificationSlice = createSlice({
     name: "notification",
     initialState: {
         notifications: [],
         unreadCount: 0,
+        pagination: {
+            current_page: 1,
+            last_page: 1,
+            per_page: 20,
+            total: 0
+        },
         isLoading: false,
         isError: false,
         isSuccess: false,
@@ -106,20 +119,21 @@ const notificationSlice = createSlice({
         clearNotifications: (state) => {
             state.notifications = [];
             state.unreadCount = 0;
+            state.pagination = {
+                current_page: 1,
+                last_page: 1,
+                per_page: 20,
+                total: 0
+            };
         },
-        // Local update for unread count without API call
-        decrementUnreadCount: (state) => {
-            if (state.unreadCount > 0) {
-                state.unreadCount -= 1;
-            }
-        },
+        // Remove decrementUnreadCount from here if you're using it in component
+        // Or keep it but don't call it from component
         resetUnreadCount: (state) => {
             state.unreadCount = 0;
-        },
+        }
     },
     extraReducers: (builder) => {
         builder
-            /* ===== GET ALL NOTIFICATIONS ===== */
             .addCase(getAllNotifications.pending, (state) => {
                 state.isLoading = true;
                 state.isError = false;
@@ -127,16 +141,23 @@ const notificationSlice = createSlice({
             .addCase(getAllNotifications.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.notifications = action.payload.data;
-                state.message = action.payload.message;
+                state.notifications = action.payload.data || [];
+                if (action.payload) {
+                    state.pagination = {
+                        current_page: action.payload.current_page || 1,
+                        last_page: action.payload.last_page || 1,
+                        per_page: action.payload.per_page || 20,
+                        total: action.payload.total || 0
+                    };
+                }
+                state.message = action.payload.message || "Notifications fetched successfully";
             })
             .addCase(getAllNotifications.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message;
+                state.message = action.payload?.message || "Failed to fetch notifications";
             })
 
-            /* ===== MARK NOTIFICATION AS READ ===== */
             .addCase(markNotificationAsRead.pending, (state) => {
                 state.isLoading = true;
                 state.isError = false;
@@ -144,15 +165,31 @@ const notificationSlice = createSlice({
             .addCase(markNotificationAsRead.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.message = action.payload.data?.message;
+                state.message = action.payload.message || "Notification marked as read";
+
+                // Update notification in array
+                const updatedNotification = action.payload.data;
+                if (updatedNotification && state.notifications.length > 0) {
+                    const index = state.notifications.findIndex(
+                        n => n.id === updatedNotification.id
+                    );
+                    if (index !== -1) {
+                        const wasUnread = !state.notifications[index].is_read;
+                        state.notifications[index] = updatedNotification;
+
+                        // ✅ Sirf tabhi decrement karo jab actually unread tha
+                        if (wasUnread && state.unreadCount > 0) {
+                            state.unreadCount -= 1;
+                        }
+                    }
+                }
             })
             .addCase(markNotificationAsRead.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message;
+                state.message = action.payload?.message || "Failed to mark notification as read";
             })
 
-            /* ===== GET UNREAD COUNT ===== */
             .addCase(getUnreadCount.pending, (state) => {
                 state.isLoading = true;
                 state.isError = false;
@@ -160,51 +197,44 @@ const notificationSlice = createSlice({
             .addCase(getUnreadCount.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                // Handle different possible response structures
-                state.unreadCount = action?.payload?.unread_count
-                // console.log("action?.payload?.unread_count", action?.payload?.unread_count)
-                state.message = action.payload.message;
+                state.unreadCount = action.payload?.unread_count || 0;
+                state.message = action.payload?.message || "Unread count fetched";
             })
             .addCase(getUnreadCount.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
-                state.message = action.payload?.message;
+                state.message = action.payload?.message || "Failed to fetch unread count";
             })
 
-        /* ===== MARK ALL AS READ ===== */
-        // .addCase(markAllAsRead.pending, (state) => {
-        //     state.isLoading = true;
-        //     state.isError = false;
-        // })
-        // .addCase(markAllAsRead.fulfilled, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isSuccess = true;
+            .addCase(markAllAsRead.pending, (state) => {
+                state.isLoading = true;
+                state.isError = false;
+            })
+            .addCase(markAllAsRead.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.message = action.payload?.message || "All notifications marked as read";
 
-        //     // Mark all notifications as read
-        //     if (state.notifications && Array.isArray(state.notifications)) {
-        //         state.notifications = state.notifications.map(notification => ({
-        //             ...notification,
-        //             isRead: true,
-        //             read: true
-        //         }));
-        //     }
+                if (state.notifications && state.notifications.length > 0) {
+                    state.notifications.forEach(notification => {
+                        notification.is_read = true;
+                        notification.read_at = new Date().toISOString();
+                    });
+                }
 
-        //     // Reset unread count to 0
-        //     state.unreadCount = 0;
-        //     state.message = action.payload.message;
-        // })
-        // .addCase(markAllAsRead.rejected, (state, action) => {
-        //     state.isLoading = false;
-        //     state.isError = true;
-        //     state.message = action.payload?.message;
-        // });
+                state.unreadCount = 0;
+            })
+            .addCase(markAllAsRead.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload?.message || "Failed to mark all as read";
+            });
     },
 });
 
 export const {
     resetNotificationState,
     clearNotifications,
-    decrementUnreadCount,
     resetUnreadCount
 } = notificationSlice.actions;
 
