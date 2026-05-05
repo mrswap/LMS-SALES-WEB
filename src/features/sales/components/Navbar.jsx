@@ -35,8 +35,6 @@
 //     dispatch(getProfile());
 //   }, [dispatch]);
 
-//   // console.log("profile", profile);
-
 //   // Get user initials (first 2 characters of name)
 //   const getUserInitials = () => {
 //     const name = profile?.name || "User";
@@ -119,13 +117,13 @@
 //   const getLanguageDisplay = () => {
 //     switch (lang) {
 //       case "en":
-//         return { flag: "🇺🇸", text: "English" };
+//         return { flag: "🇺🇸", text: t("navbar.language.en") };
 //       case "hi":
-//         return { flag: "🇮🇳", text: "हिंदी" };
+//         return { flag: "🇮🇳", text: t("navbar.language.hi") };
 //       case "pa":
-//         return { flag: "🇮🇳", text: "ਪੰਜਾਬੀ" };
+//         return { flag: "🇮🇳", text: t("navbar.language.pa") };
 //       default:
-//         return { flag: "🇺🇸", text: "English" };
+//         return { flag: "🇺🇸", text: t("navbar.language.en") };
 //     }
 //   };
 
@@ -133,21 +131,37 @@
 
 //   // Language options for dropdown
 //   const languageOptions = [
-//     { code: "en", flag: "🇺🇸", name: "English", label: "header.language.en" },
-//     { code: "hi", flag: "🇮🇳", name: "हिंदी", label: "header.language.hi" },
-//     { code: "pa", flag: "🇮🇳", name: "ਪੰਜਾਬੀ", label: "header.language.pa" },
+//     {
+//       code: "en",
+//       flag: "🇺🇸",
+//       name: t("navbar.language.en"),
+//       label: "navbar.language.en",
+//     },
+//     {
+//       code: "hi",
+//       flag: "🇮🇳",
+//       name: t("navbar.language.hi"),
+//       label: "navbar.language.hi",
+//     },
+//     {
+//       code: "pa",
+//       flag: "🇮🇳",
+//       name: t("navbar.language.pa"),
+//       label: "navbar.language.pa",
+//     },
 //   ];
 
 //   // --- Navigation Items ---
 //   const navItems = [
-//     { path: "/dashboard", name: t("sidebar.home"), icon: HiHome },
+//     { path: "/dashboard", name: t("navbar.home"), icon: HiHome },
 //     {
 //       path: "/levels",
-//       name: t("sidebar.myLevels"),
+//       name: t("navbar.myLevels"),
 //       icon: MdOutlineVideoLibrary,
 //     },
-//     { path: "/progress", name: t("sidebar.anlytics"), icon: MdAnalytics },
-//     { path: "/assessment", name: "Assessment", icon: MdAssignment },
+//     { path: "/progress", name: t("navbar.analytics"), icon: MdAnalytics },
+//     { path: "/assessment", name: t("navbar.assessment"), icon: MdAssignment },
+//     { path: "/notification", name: "Notification", icon: MdAssignment },
 //   ];
 
 //   const linkClass =
@@ -217,7 +231,7 @@
 //                       }`}
 //                     >
 //                       <span className="text-base">{option.flag}</span>
-//                       <span>{t(option.label)}</span>
+//                       <span>{option.name}</span>
 //                       {lang === option.code && (
 //                         <span className="ml-auto text-blue-600">✓</span>
 //                       )}
@@ -261,14 +275,14 @@
 //                     className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors duration-150"
 //                   >
 //                     <MdPerson className="w-4 h-4 text-gray-500" />
-//                     <span>Profile</span>
+//                     <span>{t("navbar.profile")}</span>
 //                   </button>
 //                   <button
 //                     onClick={handleSettingsClick}
 //                     className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors duration-150"
 //                   >
 //                     <MdSettings className="w-4 h-4 text-gray-500" />
-//                     <span>Settings</span>
+//                     <span>{t("navbar.settings")}</span>
 //                   </button>
 //                   <hr className="my-1 border-gray-100" />
 //                   <button
@@ -276,7 +290,7 @@
 //                     className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center gap-3 transition-colors duration-150"
 //                   >
 //                     <MdLogout className="w-4 h-4" />
-//                     <span>Logout</span>
+//                     <span>{t("navbar.logout")}</span>
 //                   </button>
 //                 </div>
 //               )}
@@ -300,9 +314,10 @@ import {
   MdLogout,
   MdPerson,
   MdAssignment,
+  MdNotifications,
 } from "react-icons/md";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { IoMdArrowDropdown } from "react-icons/io";
 import i18n from "../../../i18n";
 import logo from "../../../assets/admin/AvanteMedicalLogo.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -368,6 +383,12 @@ const HeaderNavbar = () => {
     setIsUserDropdownOpen(false);
   };
 
+  // Handle direct profile click (without arrow)
+  const handleProfileDirectClick = (e) => {
+    e.stopPropagation();
+    toggleUserDropdown();
+  };
+
   const handleProfileClick = () => {
     navigate("/profile");
     setIsUserDropdownOpen(false);
@@ -382,6 +403,11 @@ const HeaderNavbar = () => {
     dispatch(logout());
     navigate("/login");
     setIsUserDropdownOpen(false);
+  };
+
+  // Handle notification click
+  const handleNotificationClick = () => {
+    navigate("/notification");
   };
 
   // Close dropdowns when clicking outside
@@ -405,45 +431,30 @@ const HeaderNavbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Get language display with flag and text
+  // Get language display without flag
   const getLanguageDisplay = () => {
     switch (lang) {
       case "en":
-        return { flag: "🇺🇸", text: t("navbar.language.en") };
+        return t("navbar.language.en");
       case "hi":
-        return { flag: "🇮🇳", text: t("navbar.language.hi") };
+        return t("navbar.language.hi");
       case "pa":
-        return { flag: "🇮🇳", text: t("navbar.language.pa") };
+        return t("navbar.language.pa");
       default:
-        return { flag: "🇺🇸", text: t("navbar.language.en") };
+        return t("navbar.language.en");
     }
   };
 
   const currentLanguage = getLanguageDisplay();
 
-  // Language options for dropdown
+  // Language options for dropdown without flags
   const languageOptions = [
-    {
-      code: "en",
-      flag: "🇺🇸",
-      name: t("navbar.language.en"),
-      label: "navbar.language.en",
-    },
-    {
-      code: "hi",
-      flag: "🇮🇳",
-      name: t("navbar.language.hi"),
-      label: "navbar.language.hi",
-    },
-    {
-      code: "pa",
-      flag: "🇮🇳",
-      name: t("navbar.language.pa"),
-      label: "navbar.language.pa",
-    },
+    { code: "en", name: t("navbar.language.en"), label: "navbar.language.en" },
+    { code: "hi", name: t("navbar.language.hi"), label: "navbar.language.hi" },
+    { code: "pa", name: t("navbar.language.pa"), label: "navbar.language.pa" },
   ];
 
-  // --- Navigation Items ---
+  // --- Navigation Items (removed notification from here) ---
   const navItems = [
     { path: "/dashboard", name: t("navbar.home"), icon: HiHome },
     {
@@ -491,17 +502,28 @@ const HeaderNavbar = () => {
             ))}
           </div>
 
-          {/* Right Section: Language + User Info with Dropdowns */}
+          {/* Right Section: Language + Notification + User Info with Dropdowns */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Custom Language Dropdown */}
+            {/* Notification Bell Icon */}
+            <button
+              onClick={handleNotificationClick}
+              className="relative bg-white/10 backdrop-blur-sm rounded-full p-2 border border-white/20 hover:bg-white/20 transition-all duration-200 cursor-pointer"
+            >
+              <MdNotifications className="w-5 h-5 text-white" />
+              {/* Optional: Notification Badge - you can remove this if not needed */}
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                3
+              </span>
+            </button>
+
+            {/* Custom Language Dropdown - Original style without flags */}
             <div className="relative" ref={languageDropdownRef}>
               <button
                 onClick={toggleLanguageDropdown}
-                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-1.5 sm:py-2 border border-white/20 hover:bg-white/20 transition-all duration-200 cursor-pointer min-w-[100px] sm:min-w-[120px]"
+                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-1.5 sm:py-2 border border-white/20 hover:bg-white/20 transition-all duration-200 cursor-pointer"
               >
-                <span className="text-base">{currentLanguage.flag}</span>
                 <span className="text-white text-sm sm:text-base font-medium">
-                  {currentLanguage.text}
+                  {currentLanguage}
                 </span>
                 <IoMdArrowDropdown
                   className={`text-white/70 transition-transform duration-200 ${isLanguageDropdownOpen ? "rotate-180" : ""}`}
@@ -521,7 +543,6 @@ const HeaderNavbar = () => {
                           : "text-gray-700 hover:bg-gray-50"
                       }`}
                     >
-                      <span className="text-base">{option.flag}</span>
                       <span>{option.name}</span>
                       {lang === option.code && (
                         <span className="ml-auto text-blue-600">✓</span>
@@ -532,11 +553,11 @@ const HeaderNavbar = () => {
               )}
             </div>
 
-            {/* User Dropdown */}
+            {/* User Dropdown - Direct click on profile opens dropdown (no arrow) */}
             <div className="relative" ref={userDropdownRef}>
               <button
-                onClick={toggleUserDropdown}
-                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full pl-1 pr-3 py-1 border border-white/20 hover:bg-white/20 transition-all duration-200 cursor-pointer"
+                onClick={handleProfileDirectClick}
+                className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full pl-1 pr-1 py-1 border border-white/20 hover:bg-white/20 transition-all duration-200 cursor-pointer"
               >
                 {/* Profile Image or Name Initials */}
                 {profileDisplay?.type === "image" ? (
@@ -553,9 +574,7 @@ const HeaderNavbar = () => {
                 <span className="text-white text-sm sm:text-base font-medium hidden xs:inline-block">
                   {profile?.name || "User"}
                 </span>
-                <IoMdArrowDropdown
-                  className={`text-white/70 transition-transform duration-200 ${isUserDropdownOpen ? "rotate-180" : ""}`}
-                />
+                {/* Arrow removed from here */}
               </button>
 
               {/* User Dropdown Menu */}

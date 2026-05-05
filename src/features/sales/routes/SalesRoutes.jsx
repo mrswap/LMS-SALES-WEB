@@ -28,12 +28,14 @@ import CertificationReports from "../pages/progress/components/CertificationRepo
 import Certificate from "../pages/assessment/components/Certificate";
 import ExamResult from "../pages/exam/ExamResult";
 import ProtectedQuizExamRoute from "./ProtectedQuizExamRoute";
+import Notification from "../common/noitification/Notification";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
     <Route path="/" element={<SalesLayout />}>
       <Route index element={<Navigate to="/dashboard" replace />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/notification" element={<Notification />} />
 
       {/* levels */}
       <Route path="levels" element={<Levels />} />

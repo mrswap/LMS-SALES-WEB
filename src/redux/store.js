@@ -7,6 +7,7 @@ import quizReducer from "./slice/quizSlice"
 import languageReducer from "./slice/languageSlice"
 import reportReducer from "./slice/reportSlice"
 import dashboardReducer from "./slice/dashboardSlice"
+import notificationsReducer from "./slice/notificationSlicer"
 
 export const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
         quiz: quizReducer,
         language: languageReducer,
         report: reportReducer,
-        dashboard: dashboardReducer
+        dashboard: dashboardReducer,
+        notification: notificationsReducer
     },
 });
