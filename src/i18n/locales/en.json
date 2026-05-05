@@ -172,6 +172,180 @@
     }
   },
 
+  "notification": {
+    "notifications": "Notifications",
+    "markAllAsRead": "Mark all as read",
+    "stayUpdated": "Stay updated with your learning journey and achievements",
+    "readMore": "Read more",
+    "justNow": "Just now",
+    "minAgo": "min ago",
+    "hourAgo_one": "hour ago",
+    "hourAgo_other": "hours ago",
+    "yesterday": "Yesterday",
+    "daysAgo": "days ago",
+    "weeksAgo_one": "week ago",
+    "weeksAgo_other": "weeks ago",
+    "monthsAgo_one": "month ago",
+    "monthsAgo_other": "months ago",
+    "yearsAgo_one": "year ago",
+    "yearsAgo_other": "years ago",
+    "page": "Page",
+    "of": "of",
+    "noNotifications": "No notifications",
+    "quietCenter": "Your notification center is quiet",
+    "viewAll": "View All Notifications",
+    "allNotifications": "All Notifications",
+    "unread": "Unread",
+    "allCaughtUp": "All caught up",
+    "noNotificationsYet": "No notifications yet",
+    "allRead": "You've read all your notifications",
+    "willAppear": "When you receive notifications, they'll appear here",
+    "notFound": "Notification not found",
+    "notFoundDescription": "The notification you're looking for doesn't exist",
+    "goBack": "Go back to notifications",
+    "detailSubtitle": "Notification details and information",
+    "additionalInfo": "Additional Information",
+    "screen": "Screen",
+    "link": "Link",
+    "new": "New",
+    "stats": {
+      "total": "Total Notifications",
+      "unread": "Unread",
+      "read": "Read"
+    }
+  },
+
+  "breadcrumb": {
+    "home": "Home",
+    "notifications": "Notifications",
+    "notificationDetails": "Notification Details"
+  },
+
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "status": {
+      "inProgress": "IN PROGRESS",
+      "completed": "COMPLETED",
+      "pending": "PENDING"
+    },
+    "simpleLevel": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "locked": "Locked"
+    },
+    "levelProgress": "Level Progress",
+    "moduleChapterProgress": "Module & Chapter Progress",
+    "topics": "topics",
+    "chapters": "Chapters",
+    "currentLearning": {
+      "program": "Program",
+      "level": "Level",
+      "module": "Module",
+      "currentTopic": "Current Topic",
+      "topic": "Topic",
+      "complete": "Complete",
+      "topics": "Topics",
+      "pendingQuizzes": "Pending Quizzes",
+      "currentTopicProgress": "Current Topic Progress",
+      "contentsRead": "Contents Read",
+      "resumeTopic": "Resume Topic"
+    },
+    "learningPath": {
+      "title": "Learning Path",
+      "viewAll": "View All"
+    },
+    "currentTopics": {
+      "title": "Current Topics",
+      "currentTopic": "Current Topic",
+      "chapter": "Chapter",
+      "module": "Module",
+      "completed": "Completed",
+      "quizAssessment": "Quiz Assessment",
+      "readyToTake": "Ready to take",
+      "topicContents": "Topic Contents"
+    },
+    "latestUpdates": {
+      "title": "Latest Updates",
+      "continue": "Continue",
+      "certificateEarned": "Certificate earned",
+      "certificate": "Certificate",
+      "score": "Score",
+      "view": "View",
+      "levelsCompleted": "levels completed",
+      "moreToGo": "more to go",
+      "lastLearningSession": "Last Learning Session",
+      "resume": "Resume"
+    },
+    "achievement": {
+      "unlocked": "Achievement Unlocked",
+      "message": "You have earned {certificates} certificates with an average score of {score}%."
+    },
+    "nextAction": {
+      "continueLearning": "Continue Learning",
+      "next": "Next",
+      "readyToContinue": "Ready to continue",
+      "quizReady": "Quiz • Ready to start",
+      "topicReady": "Topic • Ready to continue",
+      "readyToStart": "Ready to start"
+    }
+  },
+
+  "progressStats": {
+    "pageTitle": "Progress Dashboard",
+    "pageSubtitle": "Track your learning progress across modules and chapters",
+    "topics": "topics",
+    "min": "min",
+    "noActiveLearning": "No active learning in progress",
+    "browseCourses": "Browse Courses",
+    "currentFocus": "CURRENT FOCUS",
+    "module": "Module",
+    "chapter": "Chapter",
+    "currentTopic": "Current Topic",
+    "topicProgress": "Topic Progress",
+    "continueLearning": "Continue Learning",
+    "viewReport": "View report",
+    "stats": {
+      "levelsCompleted": "Levels Completed",
+      "inProgress": "in progress",
+      "certificates": "Certificates",
+      "avgScore": "Avg. score",
+      "overallPerformance": "Overall performance",
+      "topicsCompleted": "Topics Completed",
+      "complete": "complete"
+    },
+    "quickStats": {
+      "title": "Quick Stats",
+      "totalTopics": "Total Topics",
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "pendingQuizzes": "Pending Quizzes"
+    },
+    "moduleHierarchy": {
+      "title": "Module & Chapter Hierarchy",
+      "modules": "modules"
+    },
+    "reports": {
+      "title": "Reports & Analytics",
+      "subtitle": "Click any card to view detailed insights",
+      "auditLogs": {
+        "title": "Audit Logs",
+        "description": "Track system activities, user actions, and security events"
+      },
+      "userProgress": {
+        "title": "User Progress",
+        "description": "Monitor learner achievements, completion rates, and milestones"
+      },
+      "certification": {
+        "title": "Certification Reports",
+        "description": "View certificates issued, pending, and expiration status"
+      }
+    }
+  },
+
   "navbar": {
     "home": "Home",
     "myLevels": "My Levels",
@@ -190,29 +364,37 @@
   },
 
   "profile": {
-    "pageTitle": "Profile",
-    "pageSubtitle": "Manage your account",
+    "pageTitle": "My Profile",
+    "pageSubtitle": "Manage your account information",
     "loading": "Loading...",
-    "notSpecified": "Not specified",
-    "notAssigned": "Not assigned",
-    "notProvided": "Not provided",
     "na": "N/A",
-    "tags": {
-      "id": "ID",
-      "city": "CITY"
-    },
-    "details": {
-      "department": "Department",
-      "mobile": "Mobile",
-      "role": "Role",
-      "designationId": "Designation ID",
-      "employeeId": "Employee ID"
-    },
-    "menu": {
-      "editProfile": "Edit Profile",
-      "changePassword": "Change Password",
-      "notificationSettings": "Notification Settings",
-      "logout": "Logout"
+    "id": "ID",
+    "notAssigned": "Not Assigned",
+    "notProvided": "Not Provided",
+    "accountDetails": "ACCOUNT DETAILS",
+    "department": "Department",
+    "mobile": "Mobile",
+    "role": "Role",
+    "designationId": "Designation ID",
+    "editProfile": "Edit Profile",
+    "changePassword": "Change Password",
+    "changePasswordSubtitle": "Update your password to keep your account secure",
+    "currentPassword": "Current Password",
+    "currentPasswordPlaceholder": "Enter your current password",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPassword": "Confirm New Password",
+    "confirmPasswordPlaceholder": "Confirm your new password",
+    "updatePassword": "Update Password",
+    "logout": "Logout",
+    "passwordSuccess": "Password changed successfully!",
+    "passwordError": "Failed to change password",
+    "validation": {
+      "currentPasswordRequired": "Current password is required",
+      "newPasswordRequired": "New password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "confirmPasswordRequired": "Please confirm your password",
+      "passwordMatch": "Passwords must match"
     }
   },
 

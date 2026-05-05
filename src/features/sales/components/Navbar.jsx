@@ -19,7 +19,7 @@ import { getProfile } from "../../../redux/slice/profileSlice";
 import { logout } from "../../../redux/slice/authSlice";
 import NotificationDropdown from "../common/noitification/NotificationDropdown";
 import {
-  getAllNotifications,
+  // getAllNotifications,
   getUnreadCount,
 } from "../../../redux/slice/notificationSlicer";
 
@@ -44,7 +44,7 @@ const HeaderNavbar = () => {
 
   useEffect(() => {
     dispatch(getProfile());
-    dispatch(getAllNotifications());
+    // dispatch(getAllNotifications());
     dispatch(getUnreadCount());
   }, [dispatch]);
 
@@ -213,18 +213,6 @@ const HeaderNavbar = () => {
 
           {/* Right Section: Language + Notification + User Info with Dropdowns */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Notification Bell Icon */}
-            {/* <button
-              onClick={handleNotificationClick}
-              className="relative bg-white/10 backdrop-blur-sm rounded-full p-2 border border-white/20 hover:bg-white/20 transition-all duration-200 cursor-pointer"
-            >
-              <MdNotifications className="w-5 h-5 text-white" />
-            
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                3
-              </span>
-            </button> */}
-            {/* // Replace the notification bell button with this: */}
             <button
               onClick={() => setIsNotificationOpen(!isNotificationOpen)}
               className="relative bg-white/10 backdrop-blur-sm rounded-full p-2 border border-white/20 hover:bg-white/20 transition-all duration-200 cursor-pointer"
@@ -233,7 +221,7 @@ const HeaderNavbar = () => {
               {/* Notification Badge */}
               {unreadCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
-                  {unreadCount > 9 ? "9+" : unreadCount}
+                  {unreadCount}
                 </span>
               )}
             </button>
@@ -312,13 +300,13 @@ const HeaderNavbar = () => {
                     <MdPerson className="w-4 h-4 text-gray-500" />
                     <span>{t("navbar.profile")}</span>
                   </button>
-                  <button
+                  {/* <button
                     onClick={handleSettingsClick}
                     className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors duration-150"
                   >
                     <MdSettings className="w-4 h-4 text-gray-500" />
                     <span>{t("navbar.settings")}</span>
-                  </button>
+                  </button> */}
                   <hr className="my-1 border-gray-100" />
                   <button
                     onClick={handleLogoutClick}

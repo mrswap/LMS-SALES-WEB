@@ -1,5 +1,6 @@
 // import React, { useEffect, useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 // import {
 //   getAllNotifications,
 //   markNotificationAsRead,
@@ -35,6 +36,7 @@
 
 // const Notification = () => {
 //   const dispatch = useDispatch();
+//   const navigate = useNavigate();
 //   const { notifications, unreadCount, isLoading, isError, message } =
 //     useSelector((state) => state.notification);
 
@@ -59,6 +61,13 @@
 //     if (unreadCount > 0) {
 //       dispatch(markAllAsRead());
 //     }
+//   };
+
+//   const handleNotificationClick = (notification) => {
+//     if (!notification.is_read) {
+//       dispatch(markNotificationAsRead(notification.id));
+//     }
+//     navigate(`/notifications/${notification.id}`, { state: { notification } });
 //   };
 
 //   const getRelativeTime = (dateString) => {
@@ -94,20 +103,6 @@
 //       ACHIEVEMENT_UNLOCKED: <FaTrophy size={18} />,
 //     };
 //     return icons[type] || <HiOutlineBell size={18} />;
-//   };
-
-//   const getIconBackground = (type, isRead) => {
-//     const baseClass = "rounded-full p-2 transition-all duration-200";
-//     if (isRead) return `${baseClass} bg-gray-100 text-gray-500`;
-
-//     const bgColors = {
-//       TRAINING_ASSIGNED: "bg-blue-100 text-blue-600",
-//       ASSESSMENT_COMPLETED: "bg-green-100 text-green-600",
-//       CERTIFICATE_ISSUED: "bg-purple-100 text-purple-600",
-//       COURSE_COMPLETED: "bg-emerald-100 text-emerald-600",
-//       ACHIEVEMENT_UNLOCKED: "bg-amber-100 text-amber-600",
-//     };
-//     return `${baseClass} ${bgColors[type] || "bg-indigo-100 text-indigo-600"}`;
 //   };
 
 //   if (isLoading) return <Loader />;
@@ -236,14 +231,15 @@
 //           )}
 
 //           {/* Notifications List */}
-//           <div className="divide-y divide-gray-100 ">
+//           <div className="divide-y divide-gray-100">
 //             {filteredNotifications && filteredNotifications.length > 0 ? (
 //               filteredNotifications.map((notification) => (
 //                 <div
 //                   key={notification.id}
 //                   onMouseEnter={() => setHoveredId(notification.id)}
 //                   onMouseLeave={() => setHoveredId(null)}
-//                   className={`group relative transition-all  duration-300 ${
+//                   onClick={() => handleNotificationClick(notification)}
+//                   className={`group relative transition-all duration-300 cursor-pointer ${
 //                     !notification.is_read
 //                       ? "bg-gradient-to-r from-indigo-50/30 to-transparent hover:bg-indigo-50/50"
 //                       : "hover:bg-gray-50"
@@ -252,15 +248,16 @@
 //                   <div className="p-4">
 //                     <div className="flex gap-4">
 //                       {/* Icon */}
-//                       <div className="flex-shrink-0">
-//                         <div
-//                           className={getIconBackground(
-//                             notification.type,
-//                             notification.is_read,
-//                           )}
+//                       <div>
+//                         <span
+//                           className={`flex rounded-full p-2 mt-0.5 ${
+//                             !notification.is_read
+//                               ? "bg-indigo-100 text-indigo-600"
+//                               : "bg-gray-50 text-gray-500"
+//                           }`}
 //                         >
 //                           {getIcon(notification.type)}
-//                         </div>
+//                         </span>
 //                       </div>
 
 //                       {/* Content */}
@@ -279,7 +276,7 @@
 //                                 <span className="ml-2 inline-block w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
 //                               )}
 //                             </h4>
-//                             <p className="text-sm text-gray-600 mt-1 leading-relaxed">
+//                             <p className="text-sm text-gray-600 mt-1 leading-relaxed line-clamp-2">
 //                               {notification.message}
 //                             </p>
 //                           </div>
@@ -292,31 +289,24 @@
 //                           </div>
 //                         </div>
 
-//                         {/* Action Buttons */}
-//                         {!notification.is_read && (
-//                           <div className="mt-3">
-//                             <button
-//                               onClick={() => handleMarkAsRead(notification.id)}
-//                               className="text-xs text-indigo-600 hover:text-indigo-700 font-medium inline-flex items-center gap-1.5 px-2 py-1 rounded-md hover:bg-indigo-50 transition-all duration-200"
-//                             >
-//                               <IoCheckmarkCircle size={14} />
-//                               Mark as read
-//                             </button>
-//                           </div>
-//                         )}
-//                       </div>
-
-//                       {/* Quick action on hover */}
-//                       {!notification.is_read &&
-//                         hoveredId === notification.id && (
-//                           <button
-//                             onClick={() => handleMarkAsRead(notification.id)}
-//                             className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 bg-white rounded-full shadow-md border border-gray-200 text-gray-500 hover:text-indigo-600 transition-all duration-200 opacity-0 group-hover:opacity-100"
-//                             title="Mark as read"
+//                         {/* Read more link - appears on hover */}
+//                         <div className="mt-3 flex items-center text-indigo-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase tracking-wider">
+//                           Read more
+//                           <svg
+//                             className="ml-1 w-3 h-3"
+//                             fill="none"
+//                             stroke="currentColor"
+//                             viewBox="0 0 24 24"
 //                           >
-//                             <IoCheckmarkCircle size={16} />
-//                           </button>
-//                         )}
+//                             <path
+//                               strokeLinecap="round"
+//                               strokeLinejoin="round"
+//                               strokeWidth={2}
+//                               d="M9 5l7 7-7 7"
+//                             />
+//                           </svg>
+//                         </div>
+//                       </div>
 //                     </div>
 //                   </div>
 //                 </div>
@@ -386,10 +376,12 @@ import {
   PageTitle,
 } from "../layout";
 import Breadcrumb from "../layout/Breadcrumb";
+import { useTranslation } from "react-i18next";
 
 const Notification = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { notifications, unreadCount, isLoading, isError, message } =
     useSelector((state) => state.notification);
 
@@ -434,17 +426,17 @@ const Notification = () => {
     const diffMonths = Math.floor(diffDays / 30);
     const diffYears = Math.floor(diffDays / 365);
 
-    if (diffSeconds < 60) return "Just now";
-    if (diffMinutes < 60) return `${diffMinutes} min ago`;
+    if (diffSeconds < 60) return t("notification.justNow");
+    if (diffMinutes < 60) return `${diffMinutes} ${t("notification.minAgo")}`;
     if (diffHours < 24)
-      return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
-    if (diffDays === 1) return "Yesterday";
-    if (diffDays < 7) return `${diffDays} days ago`;
+      return `${diffHours} ${t("notification.hourAgo", { count: diffHours })}`;
+    if (diffDays === 1) return t("notification.yesterday");
+    if (diffDays < 7) return `${diffDays} ${t("notification.daysAgo")}`;
     if (diffWeeks < 4)
-      return `${diffWeeks} week${diffWeeks > 1 ? "s" : ""} ago`;
+      return `${diffWeeks} ${t("notification.weeksAgo", { count: diffWeeks })}`;
     if (diffMonths < 12)
-      return `${diffMonths} month${diffMonths > 1 ? "s" : ""} ago`;
-    return `${diffYears} year${diffYears > 1 ? "s" : ""} ago`;
+      return `${diffMonths} ${t("notification.monthsAgo", { count: diffMonths })}`;
+    return `${diffYears} ${t("notification.yearsAgo", { count: diffYears })}`;
   };
 
   const getIcon = (type) => {
@@ -458,37 +450,24 @@ const Notification = () => {
     return icons[type] || <HiOutlineBell size={18} />;
   };
 
-  const getIconBackground = (type, isRead) => {
-    const baseClass = "rounded-full p-2 transition-all duration-200";
-    if (isRead) return `${baseClass} bg-gray-100 text-gray-500`;
-
-    const bgColors = {
-      TRAINING_ASSIGNED: "bg-blue-100 text-blue-600",
-      ASSESSMENT_COMPLETED: "bg-green-100 text-green-600",
-      CERTIFICATE_ISSUED: "bg-purple-100 text-purple-600",
-      COURSE_COMPLETED: "bg-emerald-100 text-emerald-600",
-      ACHIEVEMENT_UNLOCKED: "bg-amber-100 text-amber-600",
-    };
-    return `${baseClass} ${bgColors[type] || "bg-indigo-100 text-indigo-600"}`;
-  };
-
   if (isLoading) return <Loader />;
   if (isError) return <Error message={message} />;
 
   return (
     <PageLayout>
       <Breadcrumb
-        items={[{ label: "Home", path: "/" }, { label: "Notifications" }]}
+        items={[
+          { label: t("breadcrumb.home"), path: "/" },
+          { label: t("breadcrumb.notifications") },
+        ]}
       />
 
       <PageHeader>
         <PageHeaderLeft>
           <PageTitle className="flex items-center gap-3">
-            Notifications
+            {t("notification.notifications")}
           </PageTitle>
-          <PageSubtitle>
-            Stay updated with your learning journey and achievements
-          </PageSubtitle>
+          <PageSubtitle>{t("notification.stayUpdated")}</PageSubtitle>
         </PageHeaderLeft>
         <PageHeaderRight />
       </PageHeader>
@@ -500,7 +479,7 @@ const Notification = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Total Notifications
+                  {t("notification.stats.total")}
                 </p>
                 <p className="text-3xl font-bold text-gray-800 mt-1">
                   {notifications?.length || 0}
@@ -516,7 +495,7 @@ const Notification = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Unread
+                  {t("notification.stats.unread")}
                 </p>
                 <p className="text-3xl font-bold text-blue-600 mt-1">
                   {unreadCount}
@@ -532,7 +511,7 @@ const Notification = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Read
+                  {t("notification.stats.read")}
                 </p>
                 <p className="text-3xl font-bold text-green-600 mt-1">
                   {(notifications?.length || 0) - (unreadCount || 0)}
@@ -559,7 +538,7 @@ const Notification = () => {
               >
                 <div className="flex items-center justify-center gap-2">
                   <IoMailOutline className="text-base" />
-                  All Notifications
+                  {t("notification.allNotifications")}
                 </div>
               </button>
 
@@ -573,7 +552,7 @@ const Notification = () => {
               >
                 <div className="flex items-center justify-center gap-2">
                   <HiOutlineBellAlert className="text-base" />
-                  Unread
+                  {t("notification.unread")}
                   {unreadCount > 0 && (
                     <span className="ml-1.75 px-2 py-0.5 text-xs font-semibold bg-red-500 text-white rounded-full">
                       {unreadCount}
@@ -592,7 +571,7 @@ const Notification = () => {
                 className="text-sm text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-indigo-50 transition-all duration-200"
               >
                 <MdDoneAll size={16} />
-                Mark all as read
+                {t("notification.markAllAsRead")}
               </button>
             </div>
           )}
@@ -615,15 +594,16 @@ const Notification = () => {
                   <div className="p-4">
                     <div className="flex gap-4">
                       {/* Icon */}
-                      <div className="flex-shrink-0">
-                        <div
-                          className={getIconBackground(
-                            notification.type,
-                            notification.is_read,
-                          )}
+                      <div>
+                        <span
+                          className={`flex rounded-full p-2 mt-0.5 ${
+                            !notification.is_read
+                              ? "bg-indigo-100 text-indigo-600"
+                              : "bg-gray-50 text-gray-500"
+                          }`}
                         >
                           {getIcon(notification.type)}
-                        </div>
+                        </span>
                       </div>
 
                       {/* Content */}
@@ -657,7 +637,7 @@ const Notification = () => {
 
                         {/* Read more link - appears on hover */}
                         <div className="mt-3 flex items-center text-indigo-600 text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200 uppercase tracking-wider">
-                          Read more
+                          {t("notification.readMore")}
                           <svg
                             className="ml-1 w-3 h-3"
                             fill="none"
@@ -688,13 +668,13 @@ const Notification = () => {
                 </div>
                 <h3 className="text-gray-700 font-medium mb-1">
                   {activeTab === "unread"
-                    ? "All caught up"
-                    : "No notifications yet"}
+                    ? t("notification.allCaughtUp")
+                    : t("notification.noNotificationsYet")}
                 </h3>
                 <p className="text-gray-400 text-sm">
                   {activeTab === "unread"
-                    ? "You've read all your notifications"
-                    : "When you receive notifications, they'll appear here"}
+                    ? t("notification.allRead")
+                    : t("notification.willAppear")}
                 </p>
               </div>
             )}

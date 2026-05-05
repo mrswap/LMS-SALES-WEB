@@ -172,6 +172,180 @@
     }
   },
 
+  "notification": {
+    "notifications": "सूचनाएँ",
+    "markAllAsRead": "सभी को पढ़ा हुआ मार्क करें",
+    "stayUpdated": "अपनी सीखने की यात्रा और उपलब्धियों से अपडेट रहें",
+    "readMore": "और पढ़ें",
+    "justNow": "अभी अभी",
+    "minAgo": "मिनट पहले",
+    "hourAgo_one": "घंटा पहले",
+    "hourAgo_other": "घंटे पहले",
+    "yesterday": "कल",
+    "daysAgo": "दिन पहले",
+    "weeksAgo_one": "सप्ताह पहले",
+    "weeksAgo_other": "सप्ताह पहले",
+    "monthsAgo_one": "महीना पहले",
+    "monthsAgo_other": "महीने पहले",
+    "yearsAgo_one": "साल पहले",
+    "yearsAgo_other": "साल पहले",
+    "page": "पृष्ठ",
+    "of": "का",
+    "noNotifications": "कोई सूचना नहीं",
+    "quietCenter": "आपका सूचना केंद्र शांत है",
+    "viewAll": "सभी सूचनाएँ देखें",
+    "allNotifications": "सभी सूचनाएँ",
+    "unread": "अपठित",
+    "allCaughtUp": "सब पढ़ लिया",
+    "noNotificationsYet": "अभी तक कोई सूचना नहीं",
+    "allRead": "आपने अपनी सभी सूचनाएँ पढ़ ली हैं",
+    "willAppear": "जब आपको सूचनाएँ मिलेंगी, तो वे यहाँ दिखाई देंगी",
+    "notFound": "सूचना नहीं मिली",
+    "notFoundDescription": "आप जिस सूचना को खोज रहे हैं, वह मौजूद नहीं है",
+    "goBack": "सूचनाओं पर वापस जाएँ",
+    "detailSubtitle": "सूचना विवरण और जानकारी",
+    "additionalInfo": "अतिरिक्त जानकारी",
+    "screen": "स्क्रीन",
+    "link": "लिंक",
+    "new": "नया",
+    "stats": {
+      "total": "कुल सूचनाएँ",
+      "unread": "अपठित",
+      "read": "पढ़ी हुई"
+    }
+  },
+
+  "breadcrumb": {
+    "home": "होम",
+    "notifications": "सूचनाएँ",
+    "notificationDetails": "सूचना विवरण"
+  },
+
+  "dashboard": {
+    "greeting": {
+      "morning": "सुप्रभात",
+      "afternoon": "शुभ अपराह्न",
+      "evening": "शुभ संध्या"
+    },
+    "status": {
+      "inProgress": "प्रगति पर",
+      "completed": "पूर्ण",
+      "pending": "लंबित"
+    },
+    "simpleLevel": {
+      "completed": "पूर्ण",
+      "inProgress": "प्रगति पर",
+      "locked": "लॉक किया गया"
+    },
+    "levelProgress": "स्तर प्रगति",
+    "moduleChapterProgress": "मॉड्यूल और अध्याय प्रगति",
+    "topics": "विषय",
+    "chapters": "अध्याय",
+    "currentLearning": {
+      "program": "कार्यक्रम",
+      "level": "स्तर",
+      "module": "मॉड्यूल",
+      "currentTopic": "वर्तमान विषय",
+      "topic": "विषय",
+      "complete": "पूर्ण करें",
+      "topics": "विषय",
+      "pendingQuizzes": "लंबित क्विज़",
+      "currentTopicProgress": "वर्तमान विषय प्रगति",
+      "contentsRead": "पढ़ी गई सामग्री",
+      "resumeTopic": "विषय जारी रखें"
+    },
+    "learningPath": {
+      "title": "सीखने का पथ",
+      "viewAll": "सभी देखें"
+    },
+    "currentTopics": {
+      "title": "वर्तमान विषय",
+      "currentTopic": "वर्तमान विषय",
+      "chapter": "अध्याय",
+      "module": "मॉड्यूल",
+      "completed": "पूर्ण",
+      "quizAssessment": "क्विज़ मूल्यांकन",
+      "readyToTake": "देने के लिए तैयार",
+      "topicContents": "विषय सामग्री"
+    },
+    "latestUpdates": {
+      "title": "नवीनतम अपडेट",
+      "continue": "जारी रखें",
+      "certificateEarned": "प्रमाणपत्र प्राप्त हुआ",
+      "certificate": "प्रमाणपत्र",
+      "score": "स्कोर",
+      "view": "देखें",
+      "levelsCompleted": "स्तर पूर्ण",
+      "moreToGo": "और शेष",
+      "lastLearningSession": "अंतिम सीखने का सत्र",
+      "resume": "पुनः शुरू करें"
+    },
+    "achievement": {
+      "unlocked": "उपलब्धि अनलॉक की गई",
+      "message": "आपने {certificates} प्रमाणपत्र अर्जित किए हैं, जिसका औसत स्कोर {score}% है।"
+    },
+    "nextAction": {
+      "continueLearning": "सीखना जारी रखें",
+      "next": "अगला",
+      "readyToContinue": "जारी रखने के लिए तैयार",
+      "quizReady": "क्विज़ • शुरू करने के लिए तैयार",
+      "topicReady": "विषय • जारी रखने के लिए तैयार",
+      "readyToStart": "शुरू करने के लिए तैयार"
+    }
+  },
+
+  "progressStats": {
+    "pageTitle": "प्रगति डैशबोर्ड",
+    "pageSubtitle": "मॉड्यूल और अध्यायों में अपनी सीखने की प्रगति को ट्रैक करें",
+    "topics": "विषय",
+    "min": "मिनट",
+    "noActiveLearning": "कोई सक्रिय सीखने की प्रगति नहीं",
+    "browseCourses": "पाठ्यक्रम ब्राउज़ करें",
+    "currentFocus": "वर्तमान फोकस",
+    "module": "मॉड्यूल",
+    "chapter": "अध्याय",
+    "currentTopic": "वर्तमान विषय",
+    "topicProgress": "विषय प्रगति",
+    "continueLearning": "सीखना जारी रखें",
+    "viewReport": "रिपोर्ट देखें",
+    "stats": {
+      "levelsCompleted": "स्तर पूर्ण हुए",
+      "inProgress": "प्रगति पर",
+      "certificates": "प्रमाणपत्र",
+      "avgScore": "औसत स्कोर",
+      "overallPerformance": "समग्र प्रदर्शन",
+      "topicsCompleted": "विषय पूर्ण हुए",
+      "complete": "पूर्ण"
+    },
+    "quickStats": {
+      "title": "त्वरित आँकड़े",
+      "totalTopics": "कुल विषय",
+      "completed": "पूर्ण हुए",
+      "inProgress": "प्रगति पर",
+      "pendingQuizzes": "लंबित क्विज़"
+    },
+    "moduleHierarchy": {
+      "title": "मॉड्यूल और अध्याय पदानुक्रम",
+      "modules": "मॉड्यूल"
+    },
+    "reports": {
+      "title": "रिपोर्ट और विश्लेषण",
+      "subtitle": "विस्तृत जानकारी देखने के लिए किसी भी कार्ड पर क्लिक करें",
+      "auditLogs": {
+        "title": "ऑडिट लॉग",
+        "description": "सिस्टम गतिविधियों, उपयोगकर्ता क्रियाओं और सुरक्षा घटनाओं को ट्रैक करें"
+      },
+      "userProgress": {
+        "title": "उपयोगकर्ता प्रगति",
+        "description": "शिक्षार्थियों की उपलब्धियों, पूर्णता दरों और मील के पत्थरों की निगरानी करें"
+      },
+      "certification": {
+        "title": "प्रमाणन रिपोर्ट",
+        "description": "जारी किए गए, लंबित और समाप्ति स्थिति वाले प्रमाणपत्र देखें"
+      }
+    }
+  },
+
   "navbar": {
     "home": "होम",
     "myLevels": "मेरे स्तर",
@@ -190,29 +364,37 @@
   },
 
   "profile": {
-    "pageTitle": "प्रोफ़ाइल",
-    "pageSubtitle": "अपना खाता प्रबंधित करें",
+    "pageTitle": "मेरी प्रोफ़ाइल",
+    "pageSubtitle": "अपनी खाता जानकारी प्रबंधित करें",
     "loading": "लोड हो रहा है...",
-    "notSpecified": "निर्दिष्ट नहीं",
-    "notAssigned": "असाइन नहीं",
-    "notProvided": "प्रदान नहीं किया गया",
     "na": "लागू नहीं",
-    "tags": {
-      "id": "आईडी",
-      "city": "शहर"
-    },
-    "details": {
-      "department": "विभाग",
-      "mobile": "मोबाइल",
-      "role": "भूमिका",
-      "designationId": "पदनाम आईडी",
-      "employeeId": "कर्मचारी आईडी"
-    },
-    "menu": {
-      "editProfile": "प्रोफ़ाइल संपादित करें",
-      "changePassword": "पासवर्ड बदलें",
-      "notificationSettings": "सूचना सेटिंग्स",
-      "logout": "लॉगआउट"
+    "id": "आईडी",
+    "notAssigned": "असाइन नहीं किया गया",
+    "notProvided": "प्रदान नहीं किया गया",
+    "accountDetails": "खाता विवरण",
+    "department": "विभाग",
+    "mobile": "मोबाइल",
+    "role": "भूमिका",
+    "designationId": "पदनाम आईडी",
+    "editProfile": "प्रोफ़ाइल संपादित करें",
+    "changePassword": "पासवर्ड बदलें",
+    "changePasswordSubtitle": "अपना पासवर्ड अपडेट करें ताकि आपका खाता सुरक्षित रहे",
+    "currentPassword": "वर्तमान पासवर्ड",
+    "currentPasswordPlaceholder": "अपना वर्तमान पासवर्ड दर्ज करें",
+    "newPassword": "नया पासवर्ड",
+    "newPasswordPlaceholder": "नया पासवर्ड दर्ज करें",
+    "confirmPassword": "नए पासवर्ड की पुष्टि करें",
+    "confirmPasswordPlaceholder": "अपने नए पासवर्ड की पुष्टि करें",
+    "updatePassword": "पासवर्ड अपडेट करें",
+    "logout": "लॉगआउट",
+    "passwordSuccess": "पासवर्ड सफलतापूर्वक बदला गया!",
+    "passwordError": "पासवर्ड बदलने में विफल",
+    "validation": {
+      "currentPasswordRequired": "वर्तमान पासवर्ड आवश्यक है",
+      "newPasswordRequired": "नया पासवर्ड आवश्यक है",
+      "passwordMin": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए",
+      "confirmPasswordRequired": "कृपया अपने पासवर्ड की पुष्टि करें",
+      "passwordMatch": "पासवर्ड मेल खाने चाहिए"
     }
   },
 

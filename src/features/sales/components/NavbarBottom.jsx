@@ -24,7 +24,7 @@ const NavbarBottom = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-300 shadow-md flex justify-around items-center h-16 z-50 sm:hidden">
+    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-300 shadow-md flex justify-around items-center h-16 z-50 md:hidden">
       {navItems.map((item) => (
         <NavLink
           key={item.path}
