@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import useIdleTimeout from "../../../hooks/useIdleTimeout";
 import SessionModal from "../common/SessionModal";
-// import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import NavbarBottom from "../components/NavbarBottom";
 import Footer from "../components/Footer";
@@ -44,8 +43,6 @@ const SalesLayout = () => {
         onLogout={handleLogout}
       />
       <div className="h-screen flex flex-col overflow-hidden ">
-        {/* <Header /> */}
-
         {/* Desktop Navbar */}
         <Navbar />
 

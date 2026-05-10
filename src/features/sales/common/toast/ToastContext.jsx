@@ -9,7 +9,7 @@ import React, {
 
 // ==============================
 // Types & Constants
-// ============================== 
+// ==============================
 
 const TOAST_TYPES = {
   SUCCESS: "success",
@@ -26,7 +26,7 @@ const DEFAULT_CONFIG = {
 };
 
 // ==============================
-// Toast Item Component
+// Toast Item Component (Fixed)
 // ==============================
 
 const ToastItem = ({ id, message, type, onClose, duration, pauseOnHover }) => {
@@ -34,45 +34,68 @@ const ToastItem = ({ id, message, type, onClose, duration, pauseOnHover }) => {
   const timeoutRef = useRef(null);
   const startTimeRef = useRef(Date.now());
   const remainingTimeRef = useRef(duration);
+  const isMountedRef = useRef(true);
+  const isClosedRef = useRef(false);
 
-  const clearTimer = () => {
+  const clearTimer = useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-  };
+  }, []);
 
-  const startTimer = () => {
-    if (isPaused) return;
+  const closeToast = useCallback(() => {
+    if (isClosedRef.current) return;
+    isClosedRef.current = true;
+    clearTimer();
+    onClose(id);
+  }, [clearTimer, id, onClose]);
+
+  const startTimer = useCallback(() => {
+    if (isPaused || isClosedRef.current) return;
 
     clearTimer();
-    timeoutRef.current = setTimeout(() => {
-      onClose(id);
-    }, remainingTimeRef.current);
-  };
 
-  const handleMouseEnter = () => {
-    if (pauseOnHover) {
+    timeoutRef.current = setTimeout(() => {
+      if (!isPaused && !isClosedRef.current && isMountedRef.current) {
+        closeToast();
+      }
+    }, remainingTimeRef.current);
+  }, [isPaused, clearTimer, closeToast]);
+
+  const handleMouseEnter = useCallback(() => {
+    if (pauseOnHover && !isClosedRef.current) {
       setIsPaused(true);
       clearTimer();
       remainingTimeRef.current -= Date.now() - startTimeRef.current;
+      // Ensure remaining time doesn't go below 0
+      if (remainingTimeRef.current < 0) remainingTimeRef.current = 0;
     }
-  };
+  }, [pauseOnHover, clearTimer]);
 
-  const handleMouseLeave = () => {
-    if (pauseOnHover) {
+  const handleMouseLeave = useCallback(() => {
+    if (pauseOnHover && !isClosedRef.current) {
       setIsPaused(false);
       startTimeRef.current = Date.now();
-      startTimer();
+      // Only restart if there's remaining time
+      if (remainingTimeRef.current > 0) {
+        startTimer();
+      } else {
+        closeToast();
+      }
     }
-  };
+  }, [pauseOnHover, startTimer, closeToast]);
 
   useEffect(() => {
+    isMountedRef.current = true;
     startTimeRef.current = Date.now();
     startTimer();
 
-    return () => clearTimer();
-  }, []);
+    return () => {
+      isMountedRef.current = false;
+      clearTimer();
+    };
+  }, [startTimer, clearTimer]);
 
   const getIcon = () => {
     switch (type) {
@@ -145,7 +168,7 @@ const ToastItem = ({ id, message, type, onClose, duration, pauseOnHover }) => {
       <p className="flex-1 text-sm font-medium">{message}</p>
 
       <button
-        onClick={() => onClose(id)}
+        onClick={closeToast}
         className="flex-shrink-0 ml-2 text-gray-400 hover:text-gray-600 transition-colors"
         aria-label="Close notification"
       >
@@ -208,9 +231,13 @@ export const useToast = () => {
 export const ToastProvider = ({ children, config = DEFAULT_CONFIG }) => {
   const [toasts, setToasts] = useState([]);
   const idCounterRef = useRef(0);
+  const timeoutsRef = useRef(new Map()); // Store timeouts for safety
 
   const removeToast = useCallback((id) => {
-    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+    setToasts((prev) => {
+      const newToasts = prev.filter((toast) => toast.id !== id);
+      return newToasts;
+    });
   }, []);
 
   const addToast = useCallback(
@@ -229,7 +256,7 @@ export const ToastProvider = ({ children, config = DEFAULT_CONFIG }) => {
         return newToasts;
       });
 
-      return id; // Return ID for manual dismissal if needed
+      return id;
     },
     [config.duration, config.maxToasts],
   );
@@ -257,23 +284,3 @@ export const ToastProvider = ({ children, config = DEFAULT_CONFIG }) => {
     </ToastContext.Provider>
   );
 };
-
-// ==============================
-// CSS Animations (Add to your global CSS)
-// ==============================
-/* 
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.3s ease-out;
-}
-*/

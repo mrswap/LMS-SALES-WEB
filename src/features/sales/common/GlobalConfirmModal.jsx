@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 const GlobalConfirmModal = () => {
   const dispatch = useDispatch();
   const { isOpen, message } = useSelector((state) => state.confirm);
-
   const { t } = useTranslation();
 
   if (!isOpen) return null;

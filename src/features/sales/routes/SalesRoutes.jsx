@@ -9,7 +9,7 @@ import QuizeResult from "../pages/quize/QuizeResult";
 import ProgressStats from "../pages/progress/ProgressStats";
 import Profile from "../pages/profile/Profile";
 import ProfileDetails from "../pages/profile/components/ProfileDetails";
-import ChangePassword from "../pages/profile/components/ChangePassword";
+// import ChangePassword from "../pages/profile/components/ChangePassword";
 import Chapters from "../pages/chapters/Chapters";
 import Modules from "../pages/modules/Modules";
 import Topics from "../pages/topics/Topic";
@@ -58,12 +58,6 @@ const SalesRoutes = (
 
       <Route path="faqs" element={<Faq />} />
 
-      {/* quize */}
-      {/* <Route path="quiz/:topicId" element={<Quize />} />
-      <Route
-        path="/quiz/result/:topicId/:attemptId"
-        element={<QuizeResult />}
-      /> */}
       {/* quize - Protected */}
       <Route
         path="quiz/:topicId"
@@ -82,9 +76,6 @@ const SalesRoutes = (
         }
       />
 
-      {/* exam */}
-      {/* <Route path="exam/:topicId" element={<Exam />} />
-      <Route path="/exam/result/:topicId/:attemptId" element={<ExamResult />} /> */}
       {/* exam - Protected */}
       <Route
         path="exam/:topicId"
@@ -116,7 +107,7 @@ const SalesRoutes = (
       {/*profile  */}
       <Route path="profile" element={<Profile />} />
       <Route path="profile/details" element={<ProfileDetails />} />
-      <Route path="change-password" element={<ChangePassword />} />
+      {/* <Route path="change-password" element={<ChangePassword />} /> */}
 
       {/*settings  */}
       <Route path="about-us" element={<AboutUs />} />

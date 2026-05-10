@@ -225,6 +225,8 @@ const ExamResult = () => {
     (state) => state.quiz,
   );
 
+  // console.log("quizResult", quizResults);
+
   const [feedback, setFeedback] = useState({ rating: 0, review: "" });
   const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -563,7 +565,7 @@ const ExamResult = () => {
                 >
                   {isPassed ? t("examResult.passed") : t("examResult.failed")}{" "}
                   &nbsp;·&nbsp; {t("examResult.scoreLabel")}:{" "}
-                  {quizResults.score} / {quizResults.total}
+                  {quizResults.score} / {quizResults.total_marks}
                 </span>
               </div>
             </div>
