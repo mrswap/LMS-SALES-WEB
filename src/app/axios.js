@@ -1,14 +1,3 @@
-// import axios from "axios";
-
-// const axiosInstance = axios.create({
-//     baseURL: "https://lms-backend.netswaptech.com/api/v1",
-//     withCredentials: false,
-// });
-
-// export default axiosInstance;
-
-
-
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 

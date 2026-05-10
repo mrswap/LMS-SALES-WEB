@@ -119,33 +119,6 @@ const TopicContent = () => {
   const renderTextContent = () => (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="p-8 bg-gradient-to-br from-gray-50 to-white">
-        {/* <div className="prose prose-lg prose-slate max-w-none  custom-content">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: content?.body || content?.content,
-            }}
-          />
-        </div>
-        <style>{`
-  .custom-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    border: 1px solid #d1d5db;
-  }
-
-  .custom-content td,
-  .custom-content th {
-    border: 1px solid #d1d5db;
-    padding: 12px;
-  }
-
-  .custom-content th {
-    background: #f3f4f6;
-    font-weight: 600;
-  }
-`}</style> */}
-
         <div className="max-w-none custom-content">
           <div
             dangerouslySetInnerHTML={{
