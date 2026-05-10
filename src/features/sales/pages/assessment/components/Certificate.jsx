@@ -62,86 +62,6 @@ const Certificate = () => {
     }
   }, [dispatch, id]);
 
-  // const handleDownload = () => {};
-
-  // const handleDownload = async () => {
-  //   const element = certificateRef.current;
-  //   if (!element) return;
-
-  //   try {
-  //     // Clone the element to avoid modifying the original
-  //     const clone = element.cloneNode(true);
-  //     clone.style.position = "fixed";
-  //     clone.style.top = "-9999px";
-  //     clone.style.left = "-9999px";
-  //     clone.style.width = element.offsetWidth + "px";
-  //     document.body.appendChild(clone);
-
-  //     // Replace all oklch colors with safe fallbacks
-  //     const allElements = [clone, ...clone.querySelectorAll("*")];
-  //     allElements.forEach((el) => {
-  //       const computed = window.getComputedStyle(el);
-  //       const propsToFix = [
-  //         "color",
-  //         "backgroundColor",
-  //         "borderColor",
-  //         "outlineColor",
-  //       ];
-  //       propsToFix.forEach((prop) => {
-  //         const value = computed[prop];
-  //         if (value && value.includes("oklch")) {
-  //           el.style[prop] = "#000000"; // fallback black
-  //         }
-  //       });
-  //     });
-
-  //     const canvas = await html2canvas(clone, {
-  //       scale: 2,
-  //       useCORS: true,
-  //       allowTaint: true,
-  //       backgroundColor: "#ffffff",
-  //       logging: false,
-  //       onclone: (clonedDoc) => {
-  //         // Inject a style to override oklch globally
-  //         const style = clonedDoc.createElement("style");
-  //         style.innerHTML = `
-  //         *, *::before, *::after {
-  //           --tw-ring-color: #10b981 !important;
-  //           --tw-shadow-color: #000 !important;
-  //         }
-  //       `;
-  //         clonedDoc.head.appendChild(style);
-  //       },
-  //     });
-
-  //     document.body.removeChild(clone);
-
-  //     const imgData = canvas.toDataURL("image/jpeg", 1.0);
-
-  //     const pdf = new jsPDF({
-  //       orientation: "landscape",
-  //       unit: "mm",
-  //       format: "a4",
-  //     });
-
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = pdf.internal.pageSize.getHeight();
-  //     const ratio = Math.min(
-  //       pdfWidth / canvas.width,
-  //       pdfHeight / canvas.height,
-  //     );
-  //     const imgWidth = canvas.width * ratio;
-  //     const imgHeight = canvas.height * ratio;
-  //     const x = (pdfWidth - imgWidth) / 2;
-  //     const y = (pdfHeight - imgHeight) / 2;
-
-  //     pdf.addImage(imgData, "JPEG", x, y, imgWidth, imgHeight);
-  //     pdf.save(`${certificate_id || "certificate"}.pdf`);
-  //   } catch (error) {
-  //     console.error("Download failed:", error);
-  //   }
-  // };
-
   const handleDownload = async () => {
     const element = certificateRef.current;
     if (!element) return;
@@ -284,7 +204,7 @@ const Certificate = () => {
             <div className="absolute top-6 left-6 w-16 h-16 border-t-4 border-l-4 border-emerald-700"></div>
             <div className="absolute top-6 right-6 w-16 h-16 border-t-4 border-r-4 border-emerald-700"></div>
             <div className="absolute bottom-6 left-6 w-16 h-16 border-b-4 border-l-4 border-emerald-700"></div>
-            <div className="absolute bottom-6 right-16 w-16 h-16 border-b-4 border-r-4 border-emerald-700"></div>
+            <div className="absolute bottom-6 right-6 w-16 h-16 border-b-4 border-r-4 border-emerald-700"></div>
 
             {/* Decorative Icons at Corners */}
             <div className="absolute top-12 left-12 text-emerald-600 opacity-50">
