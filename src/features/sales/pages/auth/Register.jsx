@@ -92,7 +92,7 @@ const Register = () => {
       .required(t("register.validation.countryRequired")),
     city: Yup.string().required(t("register.validation.cityRequired")),
     password: Yup.string()
-      .min(6, t("register.validation.passwordMin"))
+      .min(8, t("register.validation.passwordMin"))
       .required(t("register.validation.passwordRequired")),
     password_confirmation: Yup.string()
       .oneOf([Yup.ref("password")], t("register.validation.passwordMatch"))

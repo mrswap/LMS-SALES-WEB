@@ -32,9 +32,9 @@ const ChangePassword = () => {
     ),
     new_password: Yup.string()
       .min(8, t("changePassword.validation.passwordMin"))
-      .matches(/[A-Z]/, t("changePassword.validation.passwordUppercase"))
-      .matches(/[0-9]/, t("changePassword.validation.passwordNumber"))
-      .matches(/[!@#$%^&*]/, t("changePassword.validation.passwordSpecial"))
+      // .matches(/[A-Z]/, t("changePassword.validation.passwordUppercase"))
+      // .matches(/[0-9]/, t("changePassword.validation.passwordNumber"))
+      // .matches(/[!@#$%^&*]/, t("changePassword.validation.passwordSpecial"))
       .required(t("changePassword.validation.passwordRequired")),
     confirm_new_password: Yup.string()
       .oneOf(

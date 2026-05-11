@@ -96,7 +96,7 @@
       "countryRequired": "ਦੇਸ਼ ਦੀ ਲੋੜ ਹੈ",
       "cityRequired": "ਸ਼ਹਿਰ ਦੀ ਲੋੜ ਹੈ",
       "passwordRequired": "ਪਾਸਵਰਡ ਦੀ ਲੋੜ ਹੈ",
-      "passwordMin": "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 6 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "passwordMin": "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
       "confirmPasswordRequired": "ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ ਦੀ ਲੋੜ ਹੈ",
       "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਖਾਣੇ ਚਾਹੀਦੇ ਹਨ",
       "imageInvalidType": "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਵੈਧ ਤਸਵੀਰ ਫਾਈਲ ਅਪਲੋਡ ਕਰੋ (JPEG, PNG, GIF, WEBP)",

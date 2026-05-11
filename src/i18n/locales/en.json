@@ -96,7 +96,7 @@
       "countryRequired": "Country required",
       "cityRequired": "City required",
       "passwordRequired": "Password required",
-      "passwordMin": "Password must be at least 6 characters",
+      "passwordMin": "Password must be at least 8 characters",
       "confirmPasswordRequired": "Confirm password required",
       "passwordMatch": "Passwords must match",
       "imageInvalidType": "Please upload a valid image file (JPEG, PNG, GIF, WEBP)",

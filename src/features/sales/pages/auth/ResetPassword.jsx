@@ -130,12 +130,12 @@ const ResetPassword = () => {
               </div>
 
               {/* Password Rules */}
-              <ul className="text-xs text-gray-500 space-y-1 pl-4 list-disc">
+              {/* <ul className="text-xs text-gray-500 space-y-1 pl-4 list-disc">
                 <li>{t("resetPassword.passwordRules.length")}</li>
                 <li>{t("resetPassword.passwordRules.uppercase")}</li>
                 <li>{t("resetPassword.passwordRules.number")}</li>
                 <li>{t("resetPassword.passwordRules.specialChar")}</li>
-              </ul>
+              </ul> */}
 
               {/* Button */}
               <FormButton
