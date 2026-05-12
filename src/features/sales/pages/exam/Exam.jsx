@@ -53,7 +53,7 @@ const ConfirmationModal = memo(
           className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
           onClick={onCancel}
         />
-        <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4">
+        <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 modal-allowed">
           <button
             onClick={onCancel}
             className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
@@ -273,52 +273,110 @@ const Exam = () => {
   );
 
   // ── Navigation blocker ─────────────────────────────────────────────────────
-  useEffect(() => {
-    const originalPushState = window.history.pushState.bind(window.history);
+  // useEffect(() => {
+  //   const originalPushState = window.history.pushState.bind(window.history);
 
-    const shouldBlock = () => {
+  //   const shouldBlock = () => {
+  //     if (hasAutoSubmittedRef.current) return false;
+  //     if (isTimeUpRef.current) return false;
+  //     if (showLeaveModalRef.current) return false;
+  //     const activeAttempt = sessionStorage.getItem(QUIZ_ACTIVE_KEY);
+  //     if (!activeAttempt) return false;
+  //     return true;
+  //   };
+
+  //   const pushSentinel = () => {
+  //     originalPushState(null, "", window.location.href);
+  //   };
+
+  //   pushSentinel();
+
+  //   const handlePopState = () => {
+  //     if (shouldBlock()) {
+  //       pushSentinel();
+  //       setShowLeaveModal(true);
+  //     }
+  //   };
+
+  //   const handleLinkClick = (e) => {
+  //     const anchor = e.target.closest("a");
+  //     if (anchor?.href && anchor.href !== window.location.href) {
+  //       if (anchor.href.startsWith(window.location.origin) && shouldBlock()) {
+  //         e.preventDefault();
+  //         e.stopPropagation();
+  //         setShowLeaveModal(true);
+  //         window.__pendingNavigation = () => {
+  //           window.location.href = anchor.href;
+  //         };
+  //       }
+  //     }
+  //   };
+
+  //   window.addEventListener("popstate", handlePopState);
+  //   document.addEventListener("click", handleLinkClick, true);
+
+  //   return () => {
+  //     window.removeEventListener("popstate", handlePopState);
+  //     document.removeEventListener("click", handleLinkClick, true);
+  //     delete window.__pendingNavigation;
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const blockNavigation = () => {
       if (hasAutoSubmittedRef.current) return false;
       if (isTimeUpRef.current) return false;
-      if (showLeaveModalRef.current) return false;
+
       const activeAttempt = sessionStorage.getItem(QUIZ_ACTIVE_KEY);
-      if (!activeAttempt) return false;
-      return true;
+
+      return !!activeAttempt;
     };
 
-    const pushSentinel = () => {
-      originalPushState(null, "", window.location.href);
-    };
-
-    pushSentinel();
-
+    // BACK/FORWARD BLOCK
     const handlePopState = () => {
-      if (shouldBlock()) {
-        pushSentinel();
+      if (blockNavigation()) {
+        window.history.pushState(null, "", window.location.href);
+
         setShowLeaveModal(true);
       }
     };
 
-    const handleLinkClick = (e) => {
-      const anchor = e.target.closest("a");
-      if (anchor?.href && anchor.href !== window.location.href) {
-        if (anchor.href.startsWith(window.location.origin) && shouldBlock()) {
-          e.preventDefault();
-          e.stopPropagation();
-          setShowLeaveModal(true);
-          window.__pendingNavigation = () => {
-            window.location.href = anchor.href;
-          };
-        }
-      }
+    // ALL CLICK BLOCK
+    const handleClick = (e) => {
+      if (!blockNavigation()) return;
+
+      // const target = e.target.closest("a, button, [role='button'], div, li");
+      const target = e.target.closest("a, button, [role='button']");
+
+      if (!target) return;
+
+      // quiz ke buttons allow karo
+      // const allowQuizAction = target.closest(".quiz-allowed");
+      // const allowQuizAction =
+      //   target.closest(".quiz-allowed") || target.closest(".modal-allowed");
+
+      const allowQuizAction =
+        e.target.closest(".quiz-allowed") || e.target.closest(".modal-allowed");
+
+      if (allowQuizAction) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      setShowLeaveModal(true);
     };
 
+    // push current history
+    window.history.pushState(null, "", window.location.href);
+
     window.addEventListener("popstate", handlePopState);
-    document.addEventListener("click", handleLinkClick, true);
+
+    document.addEventListener("click", handleClick, true);
 
     return () => {
       window.removeEventListener("popstate", handlePopState);
-      document.removeEventListener("click", handleLinkClick, true);
-      delete window.__pendingNavigation;
+
+      document.removeEventListener("click", handleClick, true);
     };
   }, []);
 
@@ -705,12 +763,6 @@ const Exam = () => {
               <div className="bg-white rounded-lg shadow-sm border border-gray-200">
                 <div className="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg">
                   <div className="flex justify-between items-center">
-                    {/* <span className="text-sm text-gray-600">
-                      {t("exam.questionOf", {
-                        current: currentIndex + 1,
-                        total: questions.length,
-                      })}
-                    </span> */}
                     <span className="text-sm text-gray-600">
                       {t("quiz.question")} {currentIndex + 1} {t("quiz.of")}{" "}
                       {attempt?.total_questions ?? questions?.length ?? 0}
@@ -802,7 +854,7 @@ const Exam = () => {
                     })}
                   </div>
 
-                  <div className="flex justify-between items-center mt-8 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between items-center mt-8 pt-4 border-t border-gray-200 quiz-allowed">
                     <button
                       disabled={
                         currentIndex === 0 ||
