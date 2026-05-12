@@ -1479,6 +1479,89 @@ const Quiz = () => {
     }
   }, [currentIndex, currentQuestion, answers]);
 
+  // ─────────────────────────────────────────────────────────────
+  // CONTENT PROTECTION
+  // ─────────────────────────────────────────────────────────────
+  useEffect(() => {
+    // RIGHT CLICK BLOCK
+    const disableRightClick = (e) => {
+      e.preventDefault();
+    };
+
+    // COPY / CUT / PASTE BLOCK
+    const preventCopyActions = (e) => {
+      e.preventDefault();
+    };
+
+    // KEYBOARD SHORTCUTS BLOCK
+    const preventKeys = (e) => {
+      const key = e.key.toLowerCase();
+
+      // CTRL BASED SHORTCUTS
+      if (e.ctrlKey && ["c", "a", "u", "s", "p", "x", "v"].includes(key)) {
+        e.preventDefault();
+      }
+
+      // CTRL + SHIFT + I/J/C
+      if (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key)) {
+        e.preventDefault();
+      }
+
+      // F12
+      if (e.key === "F12") {
+        e.preventDefault();
+      }
+    };
+
+    // TEXT SELECTION BLOCK
+    const preventSelection = (e) => {
+      e.preventDefault();
+    };
+
+    // DRAG BLOCK
+    const preventDrag = (e) => {
+      e.preventDefault();
+    };
+
+    // EVENTS
+    document.addEventListener("contextmenu", disableRightClick);
+
+    document.addEventListener("copy", preventCopyActions);
+
+    document.addEventListener("cut", preventCopyActions);
+
+    document.addEventListener("paste", preventCopyActions);
+
+    document.addEventListener("keydown", preventKeys);
+
+    document.addEventListener("selectstart", preventSelection);
+
+    document.addEventListener("dragstart", preventDrag);
+
+    // BODY STYLE
+    document.body.style.userSelect = "none";
+    document.body.style.webkitUserSelect = "none";
+
+    return () => {
+      document.removeEventListener("contextmenu", disableRightClick);
+
+      document.removeEventListener("copy", preventCopyActions);
+
+      document.removeEventListener("cut", preventCopyActions);
+
+      document.removeEventListener("paste", preventCopyActions);
+
+      document.removeEventListener("keydown", preventKeys);
+
+      document.removeEventListener("selectstart", preventSelection);
+
+      document.removeEventListener("dragstart", preventDrag);
+
+      document.body.style.userSelect = "auto";
+      document.body.style.webkitUserSelect = "auto";
+    };
+  }, []);
+
   if (isError) {
     return <Error message={message} />;
   }
