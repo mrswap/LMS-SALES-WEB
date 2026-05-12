@@ -789,6 +789,8 @@
     "remaining": "Remaining",
     "duration": "Duration",
     "minutes": "minutes",
+    "question": "Question",
+    "of": "of",
     "startedAt": "Started at",
     "expiresAt": "Expires at",
     "attemptId": "Attempt ID",

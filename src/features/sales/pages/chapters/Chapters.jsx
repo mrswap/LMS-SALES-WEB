@@ -444,26 +444,40 @@ export default function Chapters() {
                           {t("chapters.buttons.view")}
                         </button>
                       ) : isQuizAvailable ? (
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (isAssessmentAvailable) {
-                              handleGiveQuiz(topic?.assessment?.id, e);
-                            }
-                          }}
-                          className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
+                        <div className="flex gap-2">
+                          <button
+                            className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/topics/${topic.id}`);
+                            }}
+                          >
+                            {t("chapters.buttons.view")}
+                          </button>
+
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (isAssessmentAvailable) {
+                                handleGiveQuiz(topic?.assessment?.id, e);
+                              }
+                            }}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
       ${
         isUnlocked && isAssessmentAvailable
           ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:opacity-90"
           : "bg-gray-100 text-gray-500 cursor-not-allowed"
       }`}
-                          disabled={!isUnlocked || !isAssessmentAvailable}
-                        >
-                          <IoHelpCircle className="w-4 h-4" />
-                          {isAssessmentAvailable
-                            ? t("chapters.topicsSection.giveQuiz")
-                            : t("chapters.topicsSection.quizNotAvailable")}{" "}
-                        </button>
+                            disabled={!isUnlocked || !isAssessmentAvailable}
+                          >
+                            <IoHelpCircle className="w-4 h-4" />
+                            {isAssessmentAvailable
+                              ? t("chapters.topicsSection.giveQuiz")
+                              : t(
+                                  "chapters.topicsSection.quizNotAvailable",
+                                )}{" "}
+                          </button>
+                        </div>
                       ) : (
                         <button
                           className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer

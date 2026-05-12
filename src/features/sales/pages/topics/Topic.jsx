@@ -42,7 +42,7 @@ const Topics = () => {
     message,
   } = useSelector((state) => state.course);
 
-  console.log("contextHerarcyTopic", contextHerarcyTopic);
+  console.log("assessmentStatusTopic", assessmentStatusTopic);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -54,6 +54,8 @@ const Topics = () => {
 
   // Extract topics data from paginated response
   const topicsData = currentTopic?.data || [];
+
+  console.log("topicsData", topicsData);
   const pagination = {
     current_page: currentTopic?.current_page || 1,
     last_page: currentTopic?.last_page || 1,
@@ -132,7 +134,11 @@ const Topics = () => {
         icon: <FaArrowRight className="w-4 h-4" />,
         variant: "blue",
       };
-    } else if (allTopicsRead && isQuizAvailable && !isAssessmentPassed) {
+    } else if (
+      allTopicsRead &&
+      //&& isQuizAvailable &&
+      !isAssessmentPassed
+    ) {
       return {
         text: t("topics.cta.giveQuiz"),
         action: handleGiveQuiz,

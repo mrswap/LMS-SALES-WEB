@@ -301,7 +301,7 @@ const Login = () => {
         >
           <button
             onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-            className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-6 py-1.5 sm:py-2 border border-gray-300 hover:bg-gray-50 transition-all duration-200 cursor-pointer"
+            className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-1.5 sm:py-2 border border-gray-300 hover:bg-gray-50 transition-all duration-200 cursor-pointer"
           >
             <span className="text-gray-700 text-sm sm:text-base font-medium">
               {getLanguageDisplay()}
