@@ -705,11 +705,15 @@ const Quiz = () => {
               <div className="bg-white rounded-lg shadow-sm border border-gray-200">
                 <div className="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">
+                    {/* <span className="text-sm text-gray-600">
                       {t("quiz.questionOf", {
                         current: currentIndex + 1,
                         total: questions.length,
                       })}
+                    </span> */}
+                    <span className="text-sm text-gray-600">
+                      {t("quiz.question")} {currentIndex + 1} {t("quiz.of")}{" "}
+                      {attempt?.total_questions ?? questions?.length ?? 0}
                     </span>
                     <div className="flex gap-2">
                       {selected && !isTimeUp && !hasAutoSubmitted && (
