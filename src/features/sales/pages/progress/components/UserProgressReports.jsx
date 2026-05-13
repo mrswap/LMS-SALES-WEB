@@ -16,6 +16,7 @@ import Error from "../../../common/Error";
 import { getUserProgress } from "../../../../../redux/slice/reportSlice";
 import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../../common/layout/Breadcrumb";
+import TruncateText from "../../../common/TruncateText";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -68,7 +69,9 @@ const UserProgressReports = () => {
       render: (row) => (
         <div className="flex items-center gap-3">
           <div>
-            <p className="font-semibold text-gray-800">{row?.user_name}</p>
+            <p className="font-semibold text-gray-800">
+              <TruncateText text={row?.user_name} maxLength={25} />
+            </p>
             <p className="text-xs text-gray-500 flex items-center gap-1">
               <FaEnvelope size={10} />
               {row?.email}
@@ -81,7 +84,9 @@ const UserProgressReports = () => {
       header: t("userProgress.table.level"),
       render: (row) => (
         <div className="min-w-[100px]">
-          <p className="text-sm text-gray-700">{row?.level || "-"}</p>
+          <p className="text-sm text-gray-700">
+            <TruncateText text={row?.level || "-"} maxLength={25} />
+          </p>
         </div>
       ),
     },
@@ -89,7 +94,9 @@ const UserProgressReports = () => {
       header: t("userProgress.table.module"),
       render: (row) => (
         <div className="min-w-[100px]">
-          <p className="text-sm text-gray-700">{row?.module || "-"}</p>
+          <p className="text-sm text-gray-700">
+            <TruncateText text={row?.module || "-"} maxLength={25} />
+          </p>
         </div>
       ),
     },
@@ -97,7 +104,9 @@ const UserProgressReports = () => {
       header: t("userProgress.table.chapter"),
       render: (row) => (
         <div className="min-w-[100px]">
-          <p className="text-sm text-gray-700">{row?.chapter || "-"}</p>
+          <p className="text-sm text-gray-700">
+            <TruncateText text={row?.chapter || "-"} maxLength={25} />
+          </p>
         </div>
       ),
     },
@@ -105,7 +114,9 @@ const UserProgressReports = () => {
       header: t("userProgress.table.topic"),
       render: (row) => (
         <div className="min-w-[100px]">
-          <p className="text-sm text-gray-700">{row?.topic || "-"}</p>
+          <p className="text-sm text-gray-700">
+            <TruncateText text={row?.topic || "-"} maxLength={25} />
+          </p>
         </div>
       ),
     },

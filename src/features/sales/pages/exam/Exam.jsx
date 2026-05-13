@@ -322,6 +322,64 @@ const Exam = () => {
   //   };
   // }, []);
 
+  // useEffect(() => {
+  //   const blockNavigation = () => {
+  //     if (hasAutoSubmittedRef.current) return false;
+  //     if (isTimeUpRef.current) return false;
+
+  //     const activeAttempt = sessionStorage.getItem(QUIZ_ACTIVE_KEY);
+
+  //     return !!activeAttempt;
+  //   };
+
+  //   // BACK/FORWARD BLOCK
+  //   const handlePopState = () => {
+  //     if (blockNavigation()) {
+  //       window.history.pushState(null, "", window.location.href);
+
+  //       setShowLeaveModal(true);
+  //     }
+  //   };
+
+  //   // ALL CLICK BLOCK
+  //   const handleClick = (e) => {
+  //     if (!blockNavigation()) return;
+
+  //     // const target = e.target.closest("a, button, [role='button'], div, li");
+  //     const target = e.target.closest("a, button, [role='button']");
+
+  //     if (!target) return;
+
+  //     // quiz ke buttons allow karo
+  //     // const allowQuizAction = target.closest(".quiz-allowed");
+  //     // const allowQuizAction =
+  //     //   target.closest(".quiz-allowed") || target.closest(".modal-allowed");
+
+  //     const allowQuizAction =
+  //       e.target.closest(".quiz-allowed") || e.target.closest(".modal-allowed");
+
+  //     if (allowQuizAction) return;
+
+  //     e.preventDefault();
+  //     e.stopPropagation();
+
+  //     setShowLeaveModal(true);
+  //   };
+
+  //   // push current history
+  //   window.history.pushState(null, "", window.location.href);
+
+  //   window.addEventListener("popstate", handlePopState);
+
+  //   document.addEventListener("click", handleClick, true);
+
+  //   return () => {
+  //     window.removeEventListener("popstate", handlePopState);
+
+  //     document.removeEventListener("click", handleClick, true);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const blockNavigation = () => {
       if (hasAutoSubmittedRef.current) return false;
@@ -332,28 +390,25 @@ const Exam = () => {
       return !!activeAttempt;
     };
 
-    // BACK/FORWARD BLOCK
+    // history trap
+    window.history.pushState(null, "", window.location.href);
+
     const handlePopState = () => {
       if (blockNavigation()) {
-        window.history.pushState(null, "", window.location.href);
+        // browser ko same page pe force karo
+        window.history.go(1);
 
         setShowLeaveModal(true);
       }
     };
 
-    // ALL CLICK BLOCK
+    // click blocker
     const handleClick = (e) => {
       if (!blockNavigation()) return;
 
-      // const target = e.target.closest("a, button, [role='button'], div, li");
       const target = e.target.closest("a, button, [role='button']");
 
       if (!target) return;
-
-      // quiz ke buttons allow karo
-      // const allowQuizAction = target.closest(".quiz-allowed");
-      // const allowQuizAction =
-      //   target.closest(".quiz-allowed") || target.closest(".modal-allowed");
 
       const allowQuizAction =
         e.target.closest(".quiz-allowed") || e.target.closest(".modal-allowed");
@@ -366,9 +421,6 @@ const Exam = () => {
       setShowLeaveModal(true);
     };
 
-    // push current history
-    window.history.pushState(null, "", window.location.href);
-
     window.addEventListener("popstate", handlePopState);
 
     document.addEventListener("click", handleClick, true);
@@ -379,6 +431,70 @@ const Exam = () => {
       document.removeEventListener("click", handleClick, true);
     };
   }, []);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (
+        !hasAutoSubmittedRef.current &&
+        !isTimeUpRef.current &&
+        attemptRef.current?.attempt_id
+      ) {
+        // refresh flag
+        sessionStorage.setItem("quiz_refresh_detected", "true");
+
+        // important quiz data
+        localStorage.setItem(
+          "quiz_reload_submit",
+          JSON.stringify({
+            attemptId: attemptRef.current.attempt_id,
+            topicId: topicIdRef.current,
+          }),
+        );
+
+        e.preventDefault();
+        e.returnValue = "";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    const refreshDetected =
+      sessionStorage.getItem("quiz_refresh_detected") === "true";
+
+    const pendingQuiz = localStorage.getItem("quiz_reload_submit");
+
+    if (!refreshDetected || !pendingQuiz) return;
+
+    sessionStorage.removeItem("quiz_refresh_detected");
+
+    const data = JSON.parse(pendingQuiz);
+
+    localStorage.removeItem("quiz_reload_submit");
+
+    if (data?.attemptId && data?.topicId) {
+      dispatch(
+        submitQuiz({
+          attemptId: data.attemptId,
+          topicId: data.topicId,
+        }),
+      )
+        .unwrap()
+        .then((result) => {
+          navigate(`/exam/result/${data.topicId}/${data.attemptId}`, {
+            state: { results: result },
+          });
+        })
+        .catch((err) => {
+          console.error("Auto submit failed:", err);
+        });
+    }
+  }, [dispatch, navigate]);
 
   // ── Modal callbacks ────────────────────────────────────────────────────────
   const handleConfirmLeave = useCallback(async () => {

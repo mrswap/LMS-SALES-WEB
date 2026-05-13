@@ -27,6 +27,7 @@ import {
   FaFileAlt,
   FaClipboardList,
 } from "react-icons/fa";
+import ReadMoreText from "../../common/ReadMoreText";
 
 const LevelCard = ({ item }) => {
   const navigate = useNavigate();
@@ -224,12 +225,11 @@ const LevelCard = ({ item }) => {
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="font-bold text-lg text-gray-800 line-clamp-2 mb-1">
-          {item.title}
-        </h3>
+        <h3 className="font-bold text-lg text-gray-800 mb-1">{item.title}</h3>
 
-        <p className="text-sm text-gray-500 line-clamp-2 mb-2">
-          {item.description}
+        <p className="text-sm text-gray-500  mb-2">
+          {/* {item.description} */}
+          <ReadMoreText text={item.description} maxLength={70} />
         </p>
 
         <p className="text-xs text-gray-400 mb-3 flex items-center gap-1">

@@ -109,7 +109,7 @@ const AuditLogsReports = () => {
       render: (row) => (
         <div className="min-w-[200px]">
           <p className="text-gray-700">
-            <TruncateText text={row?.description || "-"} maxLength={50} />
+            <TruncateText text={row?.description || "-"} maxLength={25} />
           </p>
         </div>
       ),
@@ -128,7 +128,7 @@ const AuditLogsReports = () => {
         <div>
           <p className="text-gray-600 text-sm flex items-center gap-1">
             <FaDesktop size={12} />
-            <TruncateText text={row?.device || "-"} maxLength={30} />
+            <TruncateText text={row?.device || "-"} maxLength={25} />
           </p>
         </div>
       ),

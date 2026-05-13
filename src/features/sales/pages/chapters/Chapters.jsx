@@ -29,6 +29,7 @@ import {
 import Loader from "../../common/Loader";
 import Error from "../../common/Error";
 import { useTranslation } from "react-i18next";
+import ReadMoreText from "../../common/ReadMoreText";
 
 export default function Chapters() {
   const { chapterId: id } = useParams();
@@ -153,12 +154,8 @@ export default function Chapters() {
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-              {currentChapter?.title || "Device Introduction & Core Concepts"}
+              {currentChapter?.title || "-"}
             </h1>
-            <p className="text-sm sm:text-base text-white/80 mt-2 max-w-2xl">
-              {currentChapter?.description ||
-                "Master the fundamentals through interactive topics"}
-            </p>
           </div>
 
           <button
@@ -237,7 +234,10 @@ export default function Chapters() {
                 {t("chapters.aboutSection.title")}
               </h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                {currentChapter?.description}
+                <ReadMoreText
+                  text={currentChapter?.description}
+                  maxLength={50}
+                />
               </p>
             </div>
           </div>
@@ -255,7 +255,7 @@ export default function Chapters() {
             </p>
           </div>
 
-          <div className="space-y-3">
+          {/* <div className="space-y-3">
             {topics.map((topic, index) => {
               const isUnlocked =
                 topic.is_unlocked === true || topic.is_unlocked === 1;
@@ -323,7 +323,10 @@ export default function Chapters() {
                         </h4>
                         {topic.description && (
                           <p className="text-xs text-gray-500 mt-1">
-                            {topic.description}
+                            <ReadMoreText
+                              text={topic?.description}
+                              maxLength={50}
+                            />
                           </p>
                         )}
                       </div>
@@ -348,90 +351,6 @@ export default function Chapters() {
                         <IoHelpCircle className="w-4 h-4" />
                         FAQ
                       </button>
-
-                      {/* {isQuizAvailable && (
-                        <button
-                          onClick={(e) => handleGiveQuiz(topic.id, e)}
-                          className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
-                              ${
-                                isUnlocked
-                                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:opacity-90"
-                                  : "bg-gray-100 text-gray-500 cursor-not-allowed"
-                              }`}
-                          disabled={!isUnlocked}
-                        >
-                          <IoHelpCircle className="w-4 h-4" />
-                          {t("chapters.topicsSection.giveQuiz")}
-                        </button>
-                      )}
-
-                      {!isCompleted && (
-                        <button
-                          className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
-                              ${
-                                isUnlocked
-                                  ? "bg-accent hover:opacity-90  text-white shadow-md "
-                                  : "bg-gray-100 text-gray-500 cursor-not-allowed"
-                              }`}
-                          disabled={!isUnlocked}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (isUnlocked) {
-                              navigate(`/topics/${topic.id}`);
-                            }
-                          }}
-                        >
-                          {isUnlocked
-                            ? t("chapters.buttons.continue")
-                            : t("chapters.topicsSection.lockedButton")}
-                        </button>
-                      )} */}
-
-                      {/* {isCompleted ? (
-                        <button
-                          className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            navigate(`/topics/${topic.id}`);
-                          }}
-                        >
-                          {t("chapters.buttons.view")}
-                        </button>
-                      ) : isQuizAvailable ? (
-                        <button
-                          onClick={(e) => handleGiveQuiz(topic.id, e)}
-                          className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
-      ${
-        isUnlocked
-          ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:opacity-90"
-          : "bg-gray-100 text-gray-500 cursor-not-allowed"
-      }`}
-                          disabled={!isUnlocked}
-                        >
-                          <IoHelpCircle className="w-4 h-4" />
-                          {t("chapters.topicsSection.giveQuiz")}
-                        </button>
-                      ) : (
-                        <button
-                          className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
-      ${
-        isUnlocked
-          ? "bg-accent hover:opacity-90 text-white shadow-md"
-          : "bg-gray-100 text-gray-500 cursor-not-allowed"
-      }`}
-                          disabled={!isUnlocked}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (isUnlocked) {
-                              navigate(`/topics/${topic.id}`);
-                            }
-                          }}
-                        >
-                          {isUnlocked
-                            ? t("chapters.buttons.continue")
-                            : t("chapters.topicsSection.lockedButton")}
-                        </button>
-                      )} */}
 
                       {isCompleted ? (
                         <button
@@ -504,11 +423,182 @@ export default function Chapters() {
                 </div>
               );
             })}
+          </div> */}
+
+          <div className="space-y-3">
+            {topics.map((topic, index) => {
+              const isUnlocked =
+                topic.is_unlocked === true || topic.is_unlocked === 1;
+              const isCompleted =
+                topic.is_completed === true || topic.is_completed === 1;
+              const isQuizAvailable =
+                topic.is_quiz_available === true ||
+                topic.is_quiz_available === 1;
+
+              const isAssessmentAvailable =
+                topic.assessment && topic.assessment !== null;
+
+              return (
+                <div
+                  key={topic.id}
+                  className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md 
+          ${isUnlocked && !isCompleted ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
+                >
+                  {/* Responsive: md screen pe flex-row, small screen pe flex-col */}
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between md:flex-wrap gap-3">
+                    {/* Left side content */}
+                    <div className="flex items-center gap-3 flex-1">
+                      <div
+                        className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all
+                ${isCompleted ? "bg-green-100" : isUnlocked ? "bg-blue-100" : "bg-gray-100"}`}
+                      >
+                        {isCompleted ? (
+                          <IoCheckmarkCircle className="w-6 h-6 text-green-600" />
+                        ) : isUnlocked ? (
+                          <IoPlay className="w-6 h-6 text-blue-600" />
+                        ) : (
+                          <IoLockClosed className="w-6 h-6 text-gray-400" />
+                        )}
+                      </div>
+
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <p className="text-xs font-medium text-gray-500">
+                            {t("chapters.topicsSection.topicText")} {index + 1}
+                          </p>
+                          {isUnlocked && !isCompleted && (
+                            <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
+                              {t("chapters.topicsSection.current")}
+                            </span>
+                          )}
+                          {isCompleted && (
+                            <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
+                              {t("chapters.topicsSection.completed")}
+                            </span>
+                          )}
+                          {!isUnlocked && (
+                            <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+                              <IoLockClosed className="w-3 h-3" />{" "}
+                              {t("chapters.topicsSection.locked")}
+                            </span>
+                          )}
+                          {topic.estimated_duration && (
+                            <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+                              <IoTimeOutline className="w-3 h-3" />{" "}
+                              {topic.estimated_duration}{" "}
+                              {t("chapters.topicsSection.min")}
+                            </span>
+                          )}
+                        </div>
+                        <h4 className="text-base font-semibold text-gray-800 mt-0.5">
+                          {topic.title}
+                        </h4>
+                        {topic.description && (
+                          <p className="text-xs text-gray-500 mt-1">
+                            <ReadMoreText
+                              text={topic?.description}
+                              maxLength={50}
+                            />
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Buttons - always end (right side), mobile pe niche */}
+                    <div className="flex gap-2 justify-end md:flex-shrink-0">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (isUnlocked) {
+                            navigate(`/faqs?type=topic&id=${topic.id}`);
+                          }
+                        }}
+                        disabled={!isUnlocked}
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1
+                ${
+                  isUnlocked
+                    ? "bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 cursor-pointer"
+                    : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
+                }`}
+                      >
+                        <IoHelpCircle className="w-4 h-4" />
+                        FAQ
+                      </button>
+
+                      {isCompleted ? (
+                        <button
+                          className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/topics/${topic.id}`);
+                          }}
+                        >
+                          {t("chapters.buttons.view")}
+                        </button>
+                      ) : isQuizAvailable ? (
+                        <div className="flex gap-2">
+                          <button
+                            className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              navigate(`/topics/${topic.id}`);
+                            }}
+                          >
+                            {t("chapters.buttons.view")}
+                          </button>
+
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (isAssessmentAvailable) {
+                                handleGiveQuiz(topic?.assessment?.id, e);
+                              }
+                            }}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2
+                    ${
+                      isUnlocked && isAssessmentAvailable
+                        ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md hover:opacity-90"
+                        : "bg-gray-100 text-gray-500 cursor-not-allowed"
+                    }`}
+                            disabled={!isUnlocked || !isAssessmentAvailable}
+                          >
+                            <IoHelpCircle className="w-4 h-4" />
+                            {isAssessmentAvailable
+                              ? t("chapters.topicsSection.giveQuiz")
+                              : t("chapters.topicsSection.quizNotAvailable")}
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
+                  ${
+                    isUnlocked
+                      ? "bg-accent hover:opacity-90 text-white shadow-md"
+                      : "bg-gray-100 text-gray-500 cursor-not-allowed"
+                  }`}
+                          disabled={!isUnlocked}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (isUnlocked) {
+                              navigate(`/topics/${topic.id}`);
+                            }
+                          }}
+                        >
+                          {isUnlocked
+                            ? t("chapters.buttons.continue")
+                            : t("chapters.topicsSection.lockedButton")}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* Bottom Sticky CTA */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
+        <div className="fixed bottom-15 md:bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="hidden sm:block">

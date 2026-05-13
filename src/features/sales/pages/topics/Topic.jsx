@@ -26,6 +26,7 @@ import { getTopicById } from "../../../../redux/slice/coursePreviewSlice";
 import Loader from "../../common/Loader";
 import { useTranslation } from "react-i18next";
 import Breadcrumb from "../../common/layout/Breadcrumb";
+import ReadMoreText from "../../common/ReadMoreText";
 
 const Topics = () => {
   const { topicId: id } = useParams();
@@ -43,6 +44,7 @@ const Topics = () => {
   } = useSelector((state) => state.course);
 
   console.log("assessmentStatusTopic", assessmentStatusTopic);
+  console.log("currentTopic", currentTopic);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -103,7 +105,8 @@ const Topics = () => {
   const handleGiveQuiz = () => {
     // Only navigate if assessment is not passed
     if (!isAssessmentPassed) {
-      navigate(`/quiz/${id}`);
+      // navigate(`/quiz/${id}`);
+      navigate(`/quiz/${assessmentStatusTopic?.assessment?.id}`);
     }
   };
 
@@ -299,6 +302,7 @@ const Topics = () => {
                   {/* Topic Title - Main Heading */}
                   <h3 className="text-lg font-semibold text-gray-800 leading-snug line-clamp-2">
                     {topic.title}
+                    {/* <ReadMoreText text={topic?.title} maxLength={50} /> */}
                   </h3>
 
                   {/* Topic Order */}
@@ -416,7 +420,7 @@ const Topics = () => {
 
       {/* Bottom Sticky CTA - Similar to Chapters */}
       {ctaButton && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
+        <div className="fixed bottom-15 md:bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="hidden sm:block">

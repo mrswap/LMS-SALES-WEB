@@ -28,6 +28,7 @@ import {
 import Loader from "../../../common/Loader";
 import Error from "../../../common/Error";
 import { useTranslation } from "react-i18next";
+import ReadMoreText from "../../../common/ReadMoreText";
 
 export default function LevelDetails() {
   const { levelId: id } = useParams();
@@ -145,9 +146,9 @@ export default function LevelDetails() {
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
               {currentLevel?.title}
             </h1>
-            <p className="text-sm sm:text-base text-white/80 mt-2 max-w-2xl">
-              {currentLevel?.description}
-            </p>
+            {/* <p className="text-sm sm:text-base text-white/80 mt-2 max-w-2xl">
+              <ReadMoreText text={currentLevel?.description} maxLength={100} />
+            </p> */}
           </div>
 
           <button
@@ -226,7 +227,11 @@ export default function LevelDetails() {
                 {t("levelDetails.aboutSection.title")}
               </h3>
               <p className="text-sm text-gray-600 leading-relaxed">
-                {currentLevel?.description}
+                {/* {currentLevel?.description} */}
+                <ReadMoreText
+                  text={currentLevel?.description}
+                  maxLength={100}
+                />
               </p>
             </div>
           </div>
@@ -244,7 +249,7 @@ export default function LevelDetails() {
             </p>
           </div>
 
-          <div className="space-y-3">
+          {/* <div className="space-y-3">
             {modules.map((module, index) => (
               <div
                 key={module.id}
@@ -293,7 +298,10 @@ export default function LevelDetails() {
                         {module?.title}
                       </h4>
                       <p className="text-xs text-gray-500 mt-1">
-                        {module?.description}
+                        <ReadMoreText
+                          text={module?.description}
+                          maxLength={50}
+                        />
                       </p>
                       {module?.chapters && (
                         <p className="text-xs text-gray-400 mt-1">
@@ -329,27 +337,6 @@ export default function LevelDetails() {
                       FAQ
                     </button>
 
-                    {/* {!module?.is_completed && (
-                      <button
-                        className={`px-4 py-2 rounded-lg text-sm font-medium 
-                          ${
-                            module.is_unlocked
-                              ? "bg-accent hover:opacity-90 text-white shadow-md "
-                              : "bg-gray-100 text-gray-500 cursor-not-allowed"
-                          }`}
-                        disabled={!module.is_unlocked}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (module.is_unlocked) {
-                            navigate(`/modules/${module.id}`);
-                          }
-                        }}
-                      >
-                        {module.is_unlocked
-                          ? t("levelDetails.buttons.continue")
-                          : t("levelDetails.modulesSection.lockedButton")}
-                      </button>
-                    )} */}
                     {module?.is_completed ? (
                       <button
                         className="w-full py-2 px-4 cursor-pointer rounded-md text-sm font-semibold  justify-center bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
@@ -385,11 +372,139 @@ export default function LevelDetails() {
                 </div>
               </div>
             ))}
+          </div> */}
+
+          <div className="space-y-3">
+            {modules.map((module, index) => (
+              <div
+                key={module.id}
+                className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md 
+        ${module.is_unlocked && !module.is_completed ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
+              >
+                {/* Responsive: md screen pe flex-row, small screen pe flex-col */}
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between md:flex-wrap gap-3">
+                  {/* Left side content - same as before */}
+                  <div className="flex items-center gap-3 flex-1">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all
+              ${module.is_completed ? "bg-green-100" : module.is_unlocked ? "bg-blue-100" : "bg-gray-100"}`}
+                    >
+                      {module.is_completed ? (
+                        <IoCheckmarkCircle className="w-6 h-6 text-green-600" />
+                      ) : module.is_unlocked ? (
+                        <IoPlay className="w-6 h-6 text-blue-600" />
+                      ) : (
+                        <IoLockClosed className="w-6 h-6 text-gray-400" />
+                      )}
+                    </div>
+
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <p className="text-xs font-medium text-gray-500">
+                          {t("levelDetails.modulesSection.moduleText")}{" "}
+                          {index + 1}
+                        </p>
+                        {module.is_unlocked && !module.is_completed && (
+                          <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
+                            {t("levelDetails.modulesSection.current")}
+                          </span>
+                        )}
+                        {module.is_completed && (
+                          <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
+                            {t("levelDetails.modulesSection.completed")}
+                          </span>
+                        )}
+                        {!module.is_unlocked && (
+                          <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+                            <IoLockClosed className="w-3 h-3" />{" "}
+                            {t("levelDetails.modulesSection.locked")}
+                          </span>
+                        )}
+                      </div>
+                      <h4 className="text-base font-semibold text-gray-800 mt-0.5">
+                        {module?.title}
+                      </h4>
+                      <p className="text-xs text-gray-500 mt-1">
+                        <ReadMoreText
+                          text={module?.description}
+                          maxLength={50}
+                        />
+                      </p>
+                      {module?.chapters && (
+                        <p className="text-xs text-gray-400 mt-1">
+                          {module.chapters.length}{" "}
+                          {t("levelDetails.modulesSection.chapters")} •{" "}
+                          {module.chapters.reduce(
+                            (acc, ch) => acc + (ch.topics?.length || 0),
+                            0,
+                          )}{" "}
+                          {t("levelDetails.modulesSection.topics")}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Buttons - always end (right side), just mobile pe niche */}
+                  <div className="flex gap-2 justify-end md:flex-shrink-0">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (module.is_unlocked) {
+                          navigate(`/faqs?type=module&id=${module.id}`);
+                        }
+                      }}
+                      disabled={!module.is_unlocked}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1
+              ${
+                module.is_unlocked
+                  ? "bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 cursor-pointer"
+                  : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
+              }`}
+                    >
+                      <IoHelpCircle className="w-4 h-4" />
+                      FAQ
+                    </button>
+
+                    {module?.is_completed ? (
+                      <button
+                        className="w-full py-2 px-4 cursor-pointer rounded-md text-sm font-semibold justify-center bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/modules/${module.id}`);
+                        }}
+                      >
+                        {t("levelDetails.buttons.view")}
+                      </button>
+                    ) : (
+                      <button
+                        className={`px-4 py-2 rounded-lg text-sm font-medium 
+                ${
+                  module.is_unlocked
+                    ? "bg-accent hover:opacity-90 text-white shadow-md cursor-pointer"
+                    : "bg-gray-100 text-gray-500 cursor-not-allowed"
+                }`}
+                        disabled={!module.is_unlocked}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (module.is_unlocked) {
+                            navigate(`/modules/${module.id}`);
+                          }
+                        }}
+                      >
+                        {module.is_unlocked
+                          ? t("levelDetails.buttons.continue")
+                          : t("levelDetails.modulesSection.lockedButton")}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         {/* 🔹 Bottom Sticky CTA */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
+        <div className="fixed bottom-15 md:bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="hidden sm:block">
