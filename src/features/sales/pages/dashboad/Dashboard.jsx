@@ -210,6 +210,166 @@ const SimpleLevelCard = ({ title, status, active, onClick }) => {
 };
 
 // Progress Analytics Component - Full width with clear hierarchy
+// const ProgressAnalytics = ({
+//   levels,
+//   modules,
+//   chapters,
+//   currentTopic,
+//   currentLearning,
+// }) => {
+//   const { t } = useTranslation();
+//   const [expandedModule, setExpandedModule] = useState(null);
+
+//   // Group chapters by module
+//   const modulesWithChapters =
+//     modules?.map((module) => ({
+//       ...module,
+//       chapters:
+//         chapters?.filter((chapter) => chapter.module_id === module.module_id) ||
+//         [],
+//     })) || [];
+
+//   return (
+//     <div className="space-y-4">
+//       {/* Level Progress Section */}
+//       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+//         <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+//           <h3 className="font-semibold text-gray-800 flex items-center gap-2">
+//             <FaShieldAlt className="text-blue-500" />{" "}
+//             {t("dashboard.levelProgress")}
+//           </h3>
+//         </div>
+//         <div className="p-4">
+//           {levels?.map((level) => (
+//             <div key={level.id} className="mb-4 last:mb-0">
+//               <div className="flex justify-between items-center mb-2">
+//                 <div>
+//                   <span className="font-medium text-gray-800">
+//                     {level.title}
+//                   </span>
+//                   <span className="text-xs text-gray-500 ml-2">
+//                     ({level.completed_topics || 0}/{level.total_topics || 0}{" "}
+//                     {t("dashboard.topics")})
+//                   </span>
+//                 </div>
+//                 <span className="text-sm font-semibold text-blue-600">
+//                   {level.completion_percent || 0}%
+//                 </span>
+//               </div>
+//               <div className="w-full h-2 bg-gray-200 rounded-full">
+//                 <div
+//                   className="h-2 bg-blue-500 rounded-full transition-all"
+//                   style={{ width: `${level.completion_percent || 0}%` }}
+//                 />
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+
+//       {/* Module & Chapter Progress Section */}
+//       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+//         <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
+//           <h3 className="font-semibold text-gray-800 flex items-center gap-2">
+//             <FaLayerGroup className="text-green-500" />{" "}
+//             {t("dashboard.moduleChapterProgress")}
+//           </h3>
+//         </div>
+//         <div className="p-4">
+//           {modulesWithChapters.map((module) => (
+//             <div
+//               key={module.module_id}
+//               className="mb-4 border border-gray-100 rounded-lg overflow-hidden"
+//             >
+//               <div
+//                 className="flex justify-between items-center p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+//                 onClick={() =>
+//                   setExpandedModule(
+//                     expandedModule === module.module_id
+//                       ? null
+//                       : module.module_id,
+//                   )
+//                 }
+//               >
+//                 <div className="flex items-center gap-2">
+//                   <FaLayerGroup className="text-green-600 text-sm" />
+//                   <span className="font-medium text-gray-800">
+//                     {module.module_title}
+//                   </span>
+//                   <span className="text-xs text-gray-500">
+//                     ({module.completed_topics || 0}/{module.total_topics || 0}{" "}
+//                     {t("dashboard.topics")})
+//                   </span>
+//                 </div>
+//                 <div className="flex items-center gap-3">
+//                   <span className="text-sm font-semibold text-green-600">
+//                     {module.progress_percent || 0}%
+//                   </span>
+//                   {expandedModule === module.module_id ? (
+//                     <FaChevronUp className="text-gray-500" />
+//                   ) : (
+//                     <FaChevronDown className="text-gray-500" />
+//                   )}
+//                 </div>
+//               </div>
+
+//               <div className="px-3 pb-2">
+//                 <div className="w-full h-1.5 bg-gray-200 rounded-full mt-2">
+//                   <div
+//                     className="h-1.5 bg-green-500 rounded-full transition-all"
+//                     style={{ width: `${module.progress_percent || 0}%` }}
+//                   />
+//                 </div>
+//               </div>
+
+//               {expandedModule === module.module_id &&
+//                 module.chapters.length > 0 && (
+//                   <div className="border-t border-gray-100 p-3 bg-white">
+//                     <p className="text-xs font-semibold text-gray-600 mb-2 flex items-center gap-1">
+//                       <FaBook className="text-purple-500" />{" "}
+//                       {t("dashboard.chapters")}
+//                     </p>
+//                     <div className="space-y-3">
+//                       {module.chapters.map((chapter) => (
+//                         <div key={chapter.chapter_id} className="pl-4">
+//                           <div className="flex justify-between items-center mb-1">
+//                             <div className="flex items-center gap-2">
+//                               <FaBook className="text-purple-400 text-xs" />
+//                               <span className="text-sm text-gray-700">
+//                                 {chapter.chapter_title}
+//                               </span>
+//                               <span className="text-xs text-gray-400">
+//                                 ({chapter.completed_topics || 0}/
+//                                 {chapter.total_topics || 0}{" "}
+//                                 {t("dashboard.topics")})
+//                               </span>
+//                             </div>
+//                             <span className="text-xs font-medium text-purple-600">
+//                               {chapter.progress_percent || 0}%
+//                             </span>
+//                           </div>
+//                           <div className="w-full h-1 bg-gray-100 rounded-full">
+//                             <div
+//                               className="h-1 bg-purple-500 rounded-full transition-all"
+//                               style={{
+//                                 width: `${chapter.progress_percent || 0}%`,
+//                               }}
+//                             />
+//                           </div>
+//                         </div>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 )}
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// Progress Analytics Component - Full width with clear hierarchy
 const ProgressAnalytics = ({
   levels,
   modules,
@@ -242,16 +402,14 @@ const ProgressAnalytics = ({
         <div className="p-4">
           {levels?.map((level) => (
             <div key={level.id} className="mb-4 last:mb-0">
-              <div className="flex justify-between items-center mb-2">
-                <div>
-                  <span className="font-medium text-gray-800">
-                    {level.title}
-                  </span>
-                  <span className="text-xs text-gray-500 ml-2">
-                    ({level.completed_topics || 0}/{level.total_topics || 0}{" "}
-                    {t("dashboard.topics")})
-                  </span>
-                </div>
+              <div className="mb-2">
+                <span className="font-medium text-gray-800">{level.title}</span>
+              </div>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-xs text-gray-500">
+                  ({level.completed_topics || 0}/{level.total_topics || 0}{" "}
+                  {t("dashboard.topics")})
+                </span>
                 <span className="text-sm font-semibold text-blue-600">
                   {level.completion_percent || 0}%
                 </span>
@@ -267,7 +425,7 @@ const ProgressAnalytics = ({
         </div>
       </div>
 
-      {/* Module & Chapter Progress Section */}
+      {/* Module & Chapter Progress Section - WITH SCROLL */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
         <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
           <h3 className="font-semibold text-gray-800 flex items-center gap-2">
@@ -275,14 +433,15 @@ const ProgressAnalytics = ({
             {t("dashboard.moduleChapterProgress")}
           </h3>
         </div>
-        <div className="p-4">
+        <div className="p-4 max-h-[500px] overflow-y-auto">
           {modulesWithChapters.map((module) => (
             <div
               key={module.module_id}
               className="mb-4 border border-gray-100 rounded-lg overflow-hidden"
             >
+              {/* Module Header */}
               <div
-                className="flex justify-between items-center p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
+                className="p-3 bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors"
                 onClick={() =>
                   setExpandedModule(
                     expandedModule === module.module_id
@@ -291,30 +450,29 @@ const ProgressAnalytics = ({
                   )
                 }
               >
-                <div className="flex items-center gap-2">
-                  <FaLayerGroup className="text-green-600 text-sm" />
+                <div className="flex items-center gap-2 mb-1">
+                  <FaLayerGroup className="text-green-600 text-sm flex-shrink-0" />
                   <span className="font-medium text-gray-800">
                     {module.module_title}
                   </span>
+                  <div className="flex-shrink-0 ml-auto">
+                    {expandedModule === module.module_id ? (
+                      <FaChevronUp className="text-gray-500" />
+                    ) : (
+                      <FaChevronDown className="text-gray-500" />
+                    )}
+                  </div>
+                </div>
+                <div className="flex justify-between items-center mb-1">
                   <span className="text-xs text-gray-500">
                     ({module.completed_topics || 0}/{module.total_topics || 0}{" "}
                     {t("dashboard.topics")})
                   </span>
-                </div>
-                <div className="flex items-center gap-3">
                   <span className="text-sm font-semibold text-green-600">
                     {module.progress_percent || 0}%
                   </span>
-                  {expandedModule === module.module_id ? (
-                    <FaChevronUp className="text-gray-500" />
-                  ) : (
-                    <FaChevronDown className="text-gray-500" />
-                  )}
                 </div>
-              </div>
-
-              <div className="px-3 pb-2">
-                <div className="w-full h-1.5 bg-gray-200 rounded-full mt-2">
+                <div className="w-full h-1.5 bg-gray-200 rounded-full">
                   <div
                     className="h-1.5 bg-green-500 rounded-full transition-all"
                     style={{ width: `${module.progress_percent || 0}%` }}
@@ -322,6 +480,7 @@ const ProgressAnalytics = ({
                 </div>
               </div>
 
+              {/* Chapters Section */}
               {expandedModule === module.module_id &&
                 module.chapters.length > 0 && (
                   <div className="border-t border-gray-100 p-3 bg-white">
@@ -329,24 +488,26 @@ const ProgressAnalytics = ({
                       <FaBook className="text-purple-500" />{" "}
                       {t("dashboard.chapters")}
                     </p>
-                    <div className="space-y-3">
+                    <div className="space-y-3 max-h-[300px] overflow-y-auto">
                       {module.chapters.map((chapter) => (
-                        <div key={chapter.chapter_id} className="pl-4">
-                          <div className="flex justify-between items-center mb-1">
-                            <div className="flex items-center gap-2">
-                              <FaBook className="text-purple-400 text-xs" />
+                        <div key={chapter.chapter_id} className="pl-2">
+                          <div className="mb-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <FaBook className="text-purple-400 text-xs flex-shrink-0" />
                               <span className="text-sm text-gray-700">
                                 {chapter.chapter_title}
                               </span>
+                            </div>
+                            <div className="flex justify-between items-center">
                               <span className="text-xs text-gray-400">
                                 ({chapter.completed_topics || 0}/
                                 {chapter.total_topics || 0}{" "}
                                 {t("dashboard.topics")})
                               </span>
+                              <span className="text-xs font-medium text-purple-600">
+                                {chapter.progress_percent || 0}%
+                              </span>
                             </div>
-                            <span className="text-xs font-medium text-purple-600">
-                              {chapter.progress_percent || 0}%
-                            </span>
                           </div>
                           <div className="w-full h-1 bg-gray-100 rounded-full">
                             <div
@@ -475,10 +636,10 @@ export default function Dashboard() {
 
       <PageBody>
         {/* Top Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 my-4">
           {/* Main Card - Current Learning */}
           <div
-            className={`bg-[#1e63ff] text-white rounded-xl p-5 transition-all duration-500 delay-100 transform ${
+            className={`bg-[#1e63ff] lg:col-span-2 text-white rounded-xl p-5 transition-all duration-500 delay-100 transform ${
               animateItems
                 ? "translate-y-0 opacity-100"
                 : "translate-y-4 opacity-0"
@@ -570,7 +731,7 @@ export default function Dashboard() {
 
           {/* Learning Path - Simple Grid with 3 columns, no progress bar */}
           <div
-            className={`border border-gray-300 rounded-lg p-3 transition-all duration-500 delay-200 transform ${
+            className={`border lg:col-span-3 border-gray-300 rounded-lg p-3 transition-all duration-500 delay-200 transform ${
               animateItems
                 ? "translate-y-0 opacity-100"
                 : "translate-y-4 opacity-0"
@@ -605,7 +766,7 @@ export default function Dashboard() {
         </div>
 
         {/* Bottom Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {/* Current Topics Section - Takes 2 columns */}
           <div
             className={`lg:col-span-2 border border-gray-300 rounded-lg p-3 transition-all duration-500 delay-300 transform ${
@@ -698,7 +859,7 @@ export default function Dashboard() {
 
           {/* Progress Analytics Section - Full width and clear hierarchy */}
           <div
-            className={`lg:col-span-1 border border-gray-300 rounded-lg p-3 transition-all duration-500 delay-400 transform ${
+            className={`lg:col-span-2 border border-gray-300 rounded-lg p-3 transition-all duration-500 delay-400 transform ${
               animateItems
                 ? "translate-y-0 opacity-100"
                 : "translate-y-4 opacity-0"

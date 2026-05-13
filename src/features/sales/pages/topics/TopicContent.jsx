@@ -27,6 +27,7 @@ import {
   PageHeaderRight,
 } from "../../common/layout";
 import Breadcrumb from "../../common/layout/Breadcrumb";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 // Common component for HTML content with styles
 const RichTextContent = ({ htmlContent }) => {
@@ -106,6 +107,8 @@ const TopicContent = () => {
   const { topicId, contentId } = useParams();
   const hasMarkedRead = useRef(false); // Prevent multiple API calls
   const { currentContent, isLoading } = useSelector((state) => state.course);
+
+  // console.log("Current Content:", currentContent);
 
   const content = currentContent?.current;
   const topic = currentContent?.topic;
@@ -582,11 +585,12 @@ const TopicContent = () => {
                   navigateToContent(navigation?.previous_content_id)
                 }
                 disabled={!navigation?.has_previous}
-                className="group flex items-center gap-3 px-6 py-3 bg-white border border-gray-300 rounded-lg 
+                className="group flex items-center gap-2 px-4 py-2 cursor-pointer bg-white border border-gray-300 rounded-lg 
                        disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50 
                        hover:border-gray-400 transition-all duration-200 shadow-sm"
               >
-                <FaArrowLeft
+                {/* <FaArrowLeft */}
+                <IoIosArrowBack
                   size={14}
                   className="group-hover:-translate-x-0.5 transition-transform"
                 />
@@ -600,18 +604,18 @@ const TopicContent = () => {
                 </div>
               </button>
 
-              <div className="text-center">
+              {/* <div className="text-center">
                 {navigation?.has_next && (
                   <p className="text-xs text-gray-400">
                     {t("topicContent.navigation.continueText")}
                   </p>
                 )}
-              </div>
+              </div> */}
 
               <button
                 onClick={() => navigateToContent(navigation?.next_content_id)}
                 disabled={!navigation?.has_next}
-                className="group flex items-center gap-3 px-6 py-3 bg-blue-600 border border-blue-600 
+                className="group flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-600 border border-blue-600 
                        rounded-lg disabled:opacity-40 disabled:cursor-not-allowed 
                        hover:bg-blue-700 transition-all duration-200 shadow-sm"
               >
@@ -623,7 +627,7 @@ const TopicContent = () => {
                     {t("topicContent.navigation.nextLesson")}
                   </p> */}
                 </div>
-                <FaArrowRight
+                <IoIosArrowForward
                   size={14}
                   className="group-hover:translate-x-0.5 transition-transform text-white"
                 />
