@@ -295,53 +295,63 @@
   },
 
   "progressStats": {
-    "pageTitle": "प्रगति डैशबोर्ड",
-    "pageSubtitle": "मॉड्यूल और अध्यायों में अपनी सीखने की प्रगति को ट्रैक करें",
-    "topics": "विषय",
-    "min": "मिनट",
-    "noActiveLearning": "कोई सक्रिय सीखने की प्रगति नहीं",
-    "browseCourses": "पाठ्यक्रम ब्राउज़ करें",
-    "currentFocus": "वर्तमान फोकस",
+    "pageTitle": "प्रोग्रेस सांख्यिकी",
+    "pageSubtitle": "अपनी सीखने की यात्रा और प्रदर्शन को ट्रैक करें",
+
+    "topics": "टॉपिक्स",
+    "level": "लेवल",
     "module": "मॉड्यूल",
-    "chapter": "अध्याय",
-    "currentTopic": "वर्तमान विषय",
-    "topicProgress": "विषय प्रगति",
+    "chapter": "चैप्टर",
+    "currentTopic": "वर्तमान टॉपिक",
+    "levelProgress": "लेवल प्रोग्रेस",
+    "topicsCompleted": "पूर्ण किए गए टॉपिक्स",
+    "topicProgress": "टॉपिक प्रोग्रेस",
     "continueLearning": "सीखना जारी रखें",
+    "browseCourses": "कोर्स देखें",
+    "currentFocus": "वर्तमान फोकस",
+    "noActiveLearning": "कोई सक्रिय लर्निंग नहीं मिली",
     "viewReport": "रिपोर्ट देखें",
+
     "stats": {
-      "levelsCompleted": "स्तर पूर्ण हुए",
-      "inProgress": "प्रगति पर",
-      "certificates": "प्रमाणपत्र",
+      "levelsCompleted": "पूर्ण किए गए लेवल",
+      "inProgress": "प्रगति में",
+      "certificates": "सर्टिफिकेट",
       "avgScore": "औसत स्कोर",
-      "overallPerformance": "समग्र प्रदर्शन",
-      "topicsCompleted": "विषय पूर्ण हुए",
+      "overallPerformance": "कुल प्रदर्शन",
+      "topicsCompleted": "पूर्ण किए गए टॉपिक्स",
       "complete": "पूर्ण"
     },
+
     "quickStats": {
       "title": "त्वरित आँकड़े",
-      "totalTopics": "कुल विषय",
-      "completed": "पूर्ण हुए",
-      "inProgress": "प्रगति पर",
+      "totalTopics": "कुल टॉपिक्स",
+      "completed": "पूर्ण",
+      "inProgress": "प्रगति में",
       "pendingQuizzes": "लंबित क्विज़"
     },
-    "moduleHierarchy": {
-      "title": "मॉड्यूल और अध्याय पदानुक्रम",
-      "modules": "मॉड्यूल"
+
+    "levelHierarchy": {
+      "title": "लेवल हाइरार्की",
+      "levels": "लेवल"
     },
+
     "reports": {
-      "title": "रिपोर्ट और विश्लेषण",
-      "subtitle": "विस्तृत जानकारी देखने के लिए किसी भी कार्ड पर क्लिक करें",
+      "title": "रिपोर्ट्स और एनालिटिक्स",
+      "subtitle": "विस्तृत रिपोर्ट और जानकारी देखें",
+
       "auditLogs": {
-        "title": "ऑडिट लॉग",
-        "description": "सिस्टम गतिविधियों, उपयोगकर्ता क्रियाओं और सुरक्षा घटनाओं को ट्रैक करें"
+        "title": "ऑडिट लॉग्स",
+        "description": "लर्निंग गतिविधियों और सिस्टम एक्शन्स को ट्रैक करें"
       },
+
       "userProgress": {
-        "title": "उपयोगकर्ता प्रगति",
-        "description": "शिक्षार्थियों की उपलब्धियों, पूर्णता दरों और मील के पत्थरों की निगरानी करें"
+        "title": "यूज़र प्रोग्रेस",
+        "description": "लर्नर की प्रगति और उपलब्धियों की निगरानी करें"
       },
+
       "certification": {
-        "title": "प्रमाणन रिपोर्ट",
-        "description": "जारी किए गए, लंबित और समाप्ति स्थिति वाले प्रमाणपत्र देखें"
+        "title": "सर्टिफिकेशन",
+        "description": "सर्टिफिकेट और असेसमेंट परिणाम देखें"
       }
     }
   },

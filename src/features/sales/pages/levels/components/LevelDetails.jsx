@@ -40,24 +40,16 @@ export default function LevelDetails() {
     (state) => state.course,
   );
 
-  console.log("currentLevel from API:", currentLevel);
-
   useEffect(() => {
     if (id) {
       dispatch(getLevelById(id));
     }
   }, [dispatch, id]);
 
-  // Use actual modules from API response
   const modules = currentLevel?.modules || [];
-
-  // Calculate progress based on actual completed modules
-  const completedModules = modules.filter(
-    (m) => m.is_completed === true,
-  ).length;
-  const totalModules = modules.length;
-  const progress =
-    totalModules > 0 ? (completedModules / totalModules) * 100 : 0;
+  const completedModules = currentLevel?.completed_topics || 0;
+  const totalModules = currentLevel?.total_topics || 0;
+  const progress = currentLevel?.progress_percent || 0;
 
   // Calculate total estimated time (example: 20-30 min per module based on chapters)
   const calculateTotalTime = () => {
@@ -123,7 +115,7 @@ export default function LevelDetails() {
       </PageHeader>
       <PageBody>
         {/* 🔹 Hero Banner */}
-        <div className="relative rounded-2xl overflow-hidden shadow-xl group">
+        {/* <div className="relative rounded-2xl overflow-hidden shadow-xl group">
           <img
             src={currentLevel?.thumbnail}
             className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
@@ -131,29 +123,64 @@ export default function LevelDetails() {
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
           <div className="absolute bottom-6 left-6 right-6 text-white">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="bg-blue-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium">
-                {t("levelDetails.levelBadge")} {levelNumber} • {totalModules}{" "}
-                {t("levelDetails.modulesCount")}
-              </span>
-              <span className="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs flex items-center gap-1">
-                <IoTimeOutline className="w-3 h-3" />{" "}
-                {t("levelDetails.stats.selfPaced")}
-              </span>
+            <div className="mb-3">
+              <div className="flex items-center gap-2 py-1">
+                <div className="w-2 h-2 rounded-full bg-yellow-300"></div>
+                <span className="font-semibold text-white text-sm border-b border-yellow-300/80">
+                  {t("levelDetails.levelBadge")} {levelNumber}
+                </span>
+              </div>
+
+              <div className="mt-2 text-xs text-white/60 pl-4">
+                {totalModules} {t("levelDetails.modulesCount")}
+              </div>
             </div>
+
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
               {currentLevel?.title}
             </h1>
-            {/* <p className="text-sm sm:text-base text-white/80 mt-2 max-w-2xl">
-              <ReadMoreText text={currentLevel?.description} maxLength={100} />
-            </p> */}
           </div>
 
           <button
             onClick={() => navigate(-1)}
             className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white px-3 py-1.5 rounded-xl text-sm font-medium transition-all hover:shadow-lg flex items-center gap-1"
+          >
+            <IoArrowBack className="w-4 h-4" /> {t("levelDetails.backButton")}
+          </button>
+        </div> */}
+
+        <div className="relative rounded-2xl overflow-hidden shadow-xl group">
+          <img
+            src={currentLevel?.thumbnail}
+            className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
+            alt="Level Banner"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+          <div className="absolute bottom-6 left-6 right-6 text-white">
+            <div className="mb-3">
+              <div className="flex items-center gap-2 py-1">
+                <div className="w-2 h-2 rounded-full bg-yellow-300"></div>
+                <span className="font-semibold text-white text-sm border-b border-yellow-300/80">
+                  {t("levelDetails.levelBadge")} {levelNumber}
+                </span>
+              </div>
+
+              <div className="mt-2 text-xs text-white/80 pl-4">
+                {totalModules} {t("levelDetails.modulesCount")}
+              </div>
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight drop-shadow-lg">
+              {currentLevel?.title}
+            </h1>
+          </div>
+
+          <button
+            onClick={() => navigate(-1)}
+            className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white px-3 py-1.5 rounded-xl text-sm font-medium transition-all flex items-center gap-1"
           >
             <IoArrowBack className="w-4 h-4" /> {t("levelDetails.backButton")}
           </button>
@@ -168,7 +195,8 @@ export default function LevelDetails() {
                   {t("levelDetails.stats.progress")}
                 </p>
                 <h2 className="text-3xl font-bold text-blue-700 mt-1">
-                  {Math.round(progress)}%
+                  {/* {Math.round(progress)}% */}
+                  {Number(progress || 0).toFixed(1)}%
                 </h2>
               </div>
               <IoTrendingUp className="text-blue-400 w-8 h-8" />
@@ -193,9 +221,9 @@ export default function LevelDetails() {
               </div>
               <IoRibbonOutline className="text-purple-400 w-8 h-8" />
             </div>
-            <p className="text-xs text-purple-600 mt-2">
+            {/* <p className="text-xs text-purple-600 mt-2">
               {t("levelDetails.stats.modulesCompleted")}
-            </p>
+            </p> */}
           </div>
 
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
@@ -248,131 +276,6 @@ export default function LevelDetails() {
               {completedModules} of {totalModules} completed
             </p>
           </div>
-
-          {/* <div className="space-y-3">
-            {modules.map((module, index) => (
-              <div
-                key={module.id}
-                className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md 
-                    ${module.is_unlocked && !module.is_completed ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
-              >
-                <div className="flex items-center justify-between flex-wrap gap-3">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all
-                          ${module.is_completed ? "bg-green-100" : module.is_unlocked ? "bg-blue-100" : "bg-gray-100"}`}
-                    >
-                      {module.is_completed ? (
-                        <IoCheckmarkCircle className="w-6 h-6 text-green-600" />
-                      ) : module.is_unlocked ? (
-                        <IoPlay className="w-6 h-6 text-blue-600" />
-                      ) : (
-                        <IoLockClosed className="w-6 h-6 text-gray-400" />
-                      )}
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <p className="text-xs font-medium text-gray-500">
-                          {t("levelDetails.modulesSection.moduleText")}{" "}
-                          {index + 1}
-                        </p>
-                        {module.is_unlocked && !module.is_completed && (
-                          <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                            {t("levelDetails.modulesSection.current")}
-                          </span>
-                        )}
-                        {module.is_completed && (
-                          <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                            {t("levelDetails.modulesSection.completed")}
-                          </span>
-                        )}
-                        {!module.is_unlocked && (
-                          <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                            <IoLockClosed className="w-3 h-3" />{" "}
-                            {t("levelDetails.modulesSection.locked")}
-                          </span>
-                        )}
-                      </div>
-                      <h4 className="text-base font-semibold text-gray-800 mt-0.5">
-                        {module?.title}
-                      </h4>
-                      <p className="text-xs text-gray-500 mt-1">
-                        <ReadMoreText
-                          text={module?.description}
-                          maxLength={50}
-                        />
-                      </p>
-                      {module?.chapters && (
-                        <p className="text-xs text-gray-400 mt-1">
-                          {module.chapters.length}{" "}
-                          {t("levelDetails.modulesSection.chapters")} •{" "}
-                          {module.chapters.reduce(
-                            (acc, ch) => acc + (ch.topics?.length || 0),
-                            0,
-                          )}{" "}
-                          {t("levelDetails.modulesSection.topics")}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (module.is_unlocked) {
-                          navigate(`/faqs?type=module&id=${module.id}`);
-                        }
-                      }}
-                      disabled={!module.is_unlocked}
-                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1
-    ${
-      module.is_unlocked
-        ? "bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 cursor-pointer"
-        : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
-    }`}
-                    >
-                      <IoHelpCircle className="w-4 h-4" />
-                      FAQ
-                    </button>
-
-                    {module?.is_completed ? (
-                      <button
-                        className="w-full py-2 px-4 cursor-pointer rounded-md text-sm font-semibold  justify-center bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/modules/${module.id}`);
-                        }}
-                      >
-                        {t("levelDetails.buttons.view")}
-                      </button>
-                    ) : (
-                      <button
-                        className={`px-4 py-2 rounded-lg text-sm font-medium 
-      ${
-        module.is_unlocked
-          ? "bg-accent hover:opacity-90 text-white shadow-md cursor-pointer"
-          : "bg-gray-100 text-gray-500 cursor-not-allowed"
-      }`}
-                        disabled={!module.is_unlocked}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (module.is_unlocked) {
-                            navigate(`/modules/${module.id}`);
-                          }
-                        }}
-                      >
-                        {module.is_unlocked
-                          ? t("levelDetails.buttons.continue")
-                          : t("levelDetails.modulesSection.lockedButton")}
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div> */}
 
           <div className="space-y-3">
             {modules.map((module, index) => (

@@ -39,8 +39,10 @@ const Notification = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { notifications, unreadCount, isLoading, isError, message } =
+  const { notifications, analytics, unreadCount, isLoading, isError, message } =
     useSelector((state) => state.notification);
+
+  console.log("notifications", notifications);
 
   const [activeTab, setActiveTab] = useState("all");
   const [hoveredId, setHoveredId] = useState(null);
@@ -62,12 +64,16 @@ const Notification = () => {
   const handleMarkAllAsRead = () => {
     if (unreadCount > 0) {
       dispatch(markAllAsRead());
+      dispatch(getAllNotifications());
+      dispatch(getUnreadCount());
     }
   };
 
   const handleNotificationClick = (notification) => {
     if (!notification.is_read) {
       dispatch(markNotificationAsRead(notification.id));
+      dispatch(getAllNotifications());
+      dispatch(getUnreadCount());
     }
     navigate(`/notifications/${notification.id}`, { state: { notification } });
   };
@@ -139,7 +145,7 @@ const Notification = () => {
                   {t("notification.stats.total")}
                 </p>
                 <p className="text-3xl font-bold text-gray-800 mt-1">
-                  {notifications?.length || 0}
+                  {analytics?.total || 0}
                 </p>
               </div>
               <div className="bg-indigo-50 rounded-full p-3">
@@ -155,7 +161,7 @@ const Notification = () => {
                   {t("notification.stats.unread")}
                 </p>
                 <p className="text-3xl font-bold text-blue-600 mt-1">
-                  {unreadCount}
+                  {analytics?.unread || 0}
                 </p>
               </div>
               <div className="bg-blue-50 rounded-full p-3">
@@ -171,7 +177,7 @@ const Notification = () => {
                   {t("notification.stats.read")}
                 </p>
                 <p className="text-3xl font-bold text-green-600 mt-1">
-                  {(notifications?.length || 0) - (unreadCount || 0)}
+                  {analytics?.read || 0}
                 </p>
               </div>
               <div className="bg-green-50 rounded-full p-3">
