@@ -1262,6 +1262,36 @@
     "confirm": "पुष्टि करें"
   },
 
+  "support": {
+    "noTopicSelected": "कोई टॉपिक चयनित नहीं है",
+    "selectTopicMessage": "चैट शुरू करने के लिए सूची में से एक टॉपिक चुनें",
+    "program": "प्रोग्राम",
+    "level": "लेवल",
+    "module": "मॉड्यूल",
+    "chapter": "चैप्टर",
+    "topic": "टॉपिक",
+    "na": "उपलब्ध नहीं",
+    "courseDetails": "कोर्स विवरण",
+    "hide": "छुपाएं",
+    "show": "दिखाएं",
+    "status": "स्थिति",
+    "open": "खुला",
+    "supportConversation": "सपोर्ट बातचीत",
+    "noMessagesYet": "अभी तक कोई संदेश नहीं",
+    "startConversation": "बातचीत शुरू करने के लिए संदेश भेजें",
+    "conversationClosed": "यह बातचीत सफलतापूर्वक हल होकर बंद कर दी गई है।",
+    "messageRequired": "संदेश आवश्यक है",
+    "you": "आप",
+    "failedToSend": "संदेश भेजने में विफल",
+    "preview": "पूर्वावलोकन",
+    "messagePlaceholder": "अपना प्रश्न यहाँ लिखें...",
+    "sending": "भेजा जा रहा है",
+    "send": "भेजें",
+    "supportTeam": "सपोर्ट टीम",
+    "attachment": "अटैचमेंट",
+    "viewAttachment": "अटैचमेंट देखें"
+  },
+
   "loaderText": "कृपया प्रतीक्षा करें, हम आपका अनुरोध संसाधित कर रहे हैं",
 
   "sessionModal": {
