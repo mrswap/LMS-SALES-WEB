@@ -91,18 +91,8 @@ const LevelCard = ({ item }) => {
     }
   };
 
-  // Calculate progress percentage
   const getProgressPercentage = () => {
-    if (item.is_passed) return 100;
-    if (item.is_content_completed) return 100;
-    if (!item.is_unlocked) return 0;
-    if (item.modules) {
-      const completedModules = item.modules.filter(
-        (m) => m.is_completed,
-      ).length;
-      return (completedModules / item.modules.length) * 100;
-    }
-    return 0;
+    return item?.progress?.progress_percent || 0;
   };
 
   const progressPercentage = getProgressPercentage();
@@ -246,11 +236,8 @@ const LevelCard = ({ item }) => {
                 {t("levelsPage.progress")}
               </span>
               <span className="font-medium">
-                {item.is_passed
-                  ? "100%"
-                  : item.is_content_completed
-                    ? "100%"
-                    : `${Math.round(progressPercentage)}%`}
+                {/* {Math.round(progressPercentage)}% */}
+                {Number(progressPercentage || 0).toFixed(1)}%
               </span>
             </div>
 

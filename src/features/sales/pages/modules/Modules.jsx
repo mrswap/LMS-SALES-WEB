@@ -47,18 +47,14 @@ export default function Modules() {
     }
   }, [dispatch, id]);
 
-  console.log("currentModule from API:", currentModule);
-
-  // Use actual chapters from API response
   const chapters = currentModule?.chapters || [];
-
-  // Calculate progress based on actual completed chapters
+  const progress = currentModule?.progress_percent || 0;
+  const totalTopics = currentModule?.total_topics || 0;
+  const completedTopics = currentModule?.completed_topics || 0;
   const completedChapters = chapters.filter(
-    (c) => c.is_completed === true,
+    (c) => c.is_completed === true || c.is_completed === 1,
   ).length;
   const totalChapters = chapters.length;
-  const progress =
-    totalChapters > 0 ? (completedChapters / totalChapters) * 100 : 0;
 
   // Calculate total estimated time from topics
   const calculateTotalTime = () => {
@@ -76,20 +72,6 @@ export default function Modules() {
   };
 
   const totalTime = calculateTotalTime();
-
-  // Calculate total topics
-  const totalTopics = chapters.reduce((acc, chapter) => {
-    return acc + (chapter.topics?.length || 0);
-  }, 0);
-
-  const completedTopics = chapters.reduce((acc, chapter) => {
-    return (
-      acc +
-      (chapter.topics?.filter(
-        (t) => t.is_completed === true || t.is_completed === 1,
-      ).length || 0)
-    );
-  }, 0);
 
   // Get current chapter (first unlocked and not completed)
   const currentChapter =
@@ -132,27 +114,39 @@ export default function Modules() {
       </PageHeader>
       <PageBody>
         {/* 🔹 Hero Banner */}
-        <div className="relative rounded-2xl overflow-hidden shadow-xl group">
+        {/* <div className="relative rounded-2xl overflow-hidden shadow-xl group">
           <img
             src={currentModule?.thumbnail}
-            className="w-full h-56 sm:h-72 lg:h-[450px] object-cover "
+            className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
             alt="Module Banner"
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
           <div className="absolute bottom-6 left-6 right-6 text-white">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="bg-blue-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium">
-                {currentModule?.title || "Module"} • {totalChapters}{" "}
-                {t("modules.badge.chapters")}• {totalTopics}{" "}
+            <div className="mb-3">
+              {currentModule?.parent_hierarchy?.level?.title && (
+                <div className="flex items-center gap-2 py-0.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-300/60"></div>
+                  <span className="text-white/70 text-xs">
+                    {currentModule.parent_hierarchy.level.title}
+                  </span>
+                </div>
+              )}
+
+              <div className="flex items-center gap-2 py-1 pl-4">
+                <div className="w-2 h-2 rounded-full bg-blue-300"></div>
+                <span className="font-semibold text-white text-sm border-b border-blue-300/80">
+                  {currentModule?.title}
+                </span>
+              </div>
+
+              <div className="mt-2 text-xs text-white/60 pl-8">
+                {totalChapters} {t("modules.badge.chapters")} • {totalTopics}{" "}
                 {t("modules.badge.topics")}
-              </span>
-              <span className="bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs flex items-center gap-1">
-                <IoTimeOutline className="w-3 h-3" />{" "}
-                {t("modules.stats.selfPaced")}
-              </span>
+              </div>
             </div>
+
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
               {currentModule?.title || "-"}
             </h1>
@@ -161,6 +155,51 @@ export default function Modules() {
           <button
             onClick={() => navigate(-1)}
             className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white px-3 py-1.5 rounded-xl text-sm font-medium transition-all hover:shadow-lg flex items-center gap-1"
+          >
+            <IoArrowBack className="w-4 h-4" /> {t("modules.backButton")}
+          </button>
+        </div> */}
+        <div className="relative rounded-2xl overflow-hidden shadow-xl group">
+          <img
+            src={currentModule?.thumbnail}
+            className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
+            alt="Module Banner"
+          />
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+          <div className="absolute bottom-6 left-6 right-6 text-white">
+            <div className="mb-3">
+              {currentModule?.parent_hierarchy?.level?.title && (
+                <div className="flex items-center gap-2 py-0.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-300/60"></div>
+                  <span className="text-white/80 text-xs">
+                    {currentModule.parent_hierarchy.level.title}
+                  </span>
+                </div>
+              )}
+
+              <div className="flex items-center gap-2 py-1 pl-4">
+                <div className="w-2 h-2 rounded-full bg-blue-300"></div>
+                <span className="font-semibold text-white text-sm border-b border-blue-300/80">
+                  {currentModule?.title}
+                </span>
+              </div>
+
+              <div className="mt-2 text-xs text-white/80 pl-8">
+                {totalChapters} {t("modules.badge.chapters")} • {totalTopics}{" "}
+                {t("modules.badge.topics")}
+              </div>
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight drop-shadow-lg">
+              {currentModule?.title || "-"}
+            </h1>
+          </div>
+
+          <button
+            onClick={() => navigate(-1)}
+            className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm hover:bg-black/70 text-white px-3 py-1.5 rounded-xl text-sm font-medium transition-all flex items-center gap-1"
           >
             <IoArrowBack className="w-4 h-4" /> {t("modules.backButton")}
           </button>
@@ -175,7 +214,8 @@ export default function Modules() {
                   {t("modules.stats.progress")}
                 </p>
                 <h2 className="text-3xl font-bold text-blue-700 mt-1">
-                  {Math.round(progress)}%
+                  {/* {Math.round(progress)}% */}
+                  {Number(progress || 0).toFixed(1)}%
                 </h2>
               </div>
               <IoTrendingUp className="text-blue-400 w-8 h-8" />
@@ -195,17 +235,11 @@ export default function Modules() {
                   {t("modules.stats.completed")}
                 </p>
                 <h2 className="text-3xl font-bold text-purple-700 mt-1">
-                  {completedChapters}/{totalChapters}
+                  {completedTopics}/{totalTopics}
                 </h2>
               </div>
               <IoRibbonOutline className="text-purple-400 w-8 h-8" />
             </div>
-            <p className="text-xs text-purple-600 mt-2">
-              {t("modules.stats.chaptersCompleted")}
-            </p>
-            <p className="text-xs text-purple-600 mt-1">
-              {completedTopics}/{totalTopics} {t("modules.stats.topics")}
-            </p>
           </div>
 
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
@@ -257,146 +291,6 @@ export default function Modules() {
               {completedChapters} of {totalChapters} completed
             </p>
           </div>
-
-          {/* <div className="space-y-3">
-            {chapters.map((chapter, index) => (
-              <div
-                key={chapter.id}
-                className={`bg-white rounded-xl p-4 transition-all duration-300 hover:shadow-md 
-                    ${chapter.is_unlocked && !chapter.is_completed ? "border-2 border-blue-500 shadow-lg" : "border border-gray-200 hover:border-blue-300"}`}
-              >
-                <div className="flex items-center justify-between flex-wrap gap-3">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all
-                          ${chapter.is_completed ? "bg-green-100" : chapter.is_unlocked ? "bg-blue-100" : "bg-gray-100"}`}
-                    >
-                      {chapter.is_completed ? (
-                        <IoCheckmarkCircle className="w-6 h-6 text-green-600" />
-                      ) : chapter.is_unlocked ? (
-                        <IoPlay className="w-6 h-6 text-blue-600" />
-                      ) : (
-                        <IoLockClosed className="w-6 h-6 text-gray-400" />
-                      )}
-                    </div>
-
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <p className="text-xs font-medium text-gray-500">
-                          {t("modules.chaptersSection.chapterText")} {index + 1}
-                        </p>
-                        {chapter.is_unlocked && !chapter.is_completed && (
-                          <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                            {t("modules.chaptersSection.current")}
-                          </span>
-                        )}
-                        {chapter.is_completed && (
-                          <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-medium">
-                            {t("modules.chaptersSection.completed")}
-                          </span>
-                        )}
-                        {!chapter.is_unlocked && (
-                          <span className="bg-gray-100 text-gray-600 text-xs px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                            <IoLockClosed className="w-3 h-3" />{" "}
-                            {t("modules.chaptersSection.locked")}
-                          </span>
-                        )}
-                      </div>
-                      <h4 className="text-base font-semibold text-gray-800 mt-0.5">
-                        {chapter?.title}
-                      </h4>
-                      <p className="text-xs text-gray-500 mt-1">
-                        <ReadMoreText
-                          text={chapter?.description}
-                          maxLength={50}
-                        />
-                      </p>
-                      {chapter?.topics && (
-                        <p className="text-xs text-gray-400 mt-2 flex items-center gap-2">
-                          <span>
-                            {chapter.topics.length}{" "}
-                            {t("modules.chaptersSection.topics")}
-                          </span>
-                          <span>•</span>
-                          <span>
-                            {
-                              chapter.topics.filter(
-                                (t) =>
-                                  t.is_completed === true ||
-                                  t.is_completed === 1,
-                              ).length
-                            }{" "}
-                            {t("modules.chaptersSection.completedText")}
-                          </span>
-                          <span>•</span>
-                          <span>
-                            {chapter.topics.reduce(
-                              (acc, t) => acc + (t.estimated_duration || 0),
-                              0,
-                            )}{" "}
-                            {t("modules.chaptersSection.min")}
-                          </span>
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        if (chapter.is_unlocked) {
-                          navigate(`/faqs?type=chapter&id=${chapter.id}`);
-                        }
-                      }}
-                      disabled={!chapter.is_unlocked}
-                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1
-    ${
-      chapter.is_unlocked
-        ? "bg-orange-50 text-orange-600 hover:bg-orange-100 border border-orange-200 cursor-pointer"
-        : "bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed"
-    }`}
-                    >
-                      <IoHelpCircle className="w-4 h-4" />
-                      FAQ
-                    </button>
-
-                    {chapter?.is_completed ? (
-                      <button
-                        className="w-full py-2 px-4 cursor-pointer rounded-md text-sm font-semibold justify-center bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/chapters/${chapter.id}`);
-                        }}
-                      >
-                        {t("modules.buttons.view")}
-                      </button>
-                    ) : (
-                      <button
-                        className={`px-4 py-2 rounded-lg text-sm font-medium cursor-pointer
-      ${
-        chapter.is_unlocked
-          ? "bg-accent hover:opacity-90 text-white shadow-md"
-          : "bg-gray-100 text-gray-500 cursor-not-allowed"
-      }`}
-                        disabled={!chapter.is_unlocked}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (chapter.is_unlocked) {
-                            navigate(`/chapters/${chapter.id}`);
-                          }
-                        }}
-                      >
-                        {chapter.is_unlocked
-                          ? t("modules.buttons.continue")
-                          : t("modules.chaptersSection.lockedButton")}
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div> */}
 
           <div className="space-y-3">
             {chapters.map((chapter, index) => (

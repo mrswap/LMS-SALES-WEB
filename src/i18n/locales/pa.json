@@ -295,53 +295,63 @@
   },
 
   "progressStats": {
-    "pageTitle": "ਤਰੱਕੀ ਡੈਸ਼ਬੋਰਡ",
-    "pageSubtitle": "ਮੋਡੀਊਲਾਂ ਅਤੇ ਚੈਪਟਰਾਂ ਵਿੱਚ ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਤਰੱਕੀ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
-    "topics": "ਵਿਸ਼ੇ",
-    "min": "ਮਿੰਟ",
-    "noActiveLearning": "ਕੋਈ ਕਿਰਿਆਸ਼ੀਲ ਸਿੱਖਿਆ ਜਾਰੀ ਨਹੀਂ ਹੈ",
-    "browseCourses": "ਕੋਰਸ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
-    "currentFocus": "ਮੌਜੂਦਾ ਫੋਕਸ",
+    "pageTitle": "ਪ੍ਰੋਗਰੈੱਸ ਅੰਕੜੇ",
+    "pageSubtitle": "ਆਪਣੀ ਲਰਨਿੰਗ ਯਾਤਰਾ ਅਤੇ ਪਰਫਾਰਮੈਂਸ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
+
+    "topics": "ਟਾਪਿਕਸ",
+    "level": "ਲੇਵਲ",
     "module": "ਮੋਡੀਊਲ",
     "chapter": "ਚੈਪਟਰ",
-    "currentTopic": "ਮੌਜੂਦਾ ਵਿਸ਼ਾ",
-    "topicProgress": "ਵਿਸ਼ੇ ਦੀ ਤਰੱਕੀ",
-    "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
+    "currentTopic": "ਮੌਜੂਦਾ ਟਾਪਿਕ",
+    "levelProgress": "ਲੇਵਲ ਪ੍ਰੋਗਰੈੱਸ",
+    "topicsCompleted": "ਪੂਰੇ ਕੀਤੇ ਟਾਪਿਕਸ",
+    "topicProgress": "ਟਾਪਿਕ ਪ੍ਰੋਗਰੈੱਸ",
+    "continueLearning": "ਲਰਨਿੰਗ ਜਾਰੀ ਰੱਖੋ",
+    "browseCourses": "ਕੋਰਸ ਵੇਖੋ",
+    "currentFocus": "ਮੌਜੂਦਾ ਫੋਕਸ",
+    "noActiveLearning": "ਕੋਈ ਐਕਟਿਵ ਲਰਨਿੰਗ ਨਹੀਂ ਮਿਲੀ",
     "viewReport": "ਰਿਪੋਰਟ ਵੇਖੋ",
+
     "stats": {
-      "levelsCompleted": "ਪੱਧਰ ਮੁਕੰਮਲ ਹੋਏ",
-      "inProgress": "ਜਾਰੀ ਹੈ",
+      "levelsCompleted": "ਪੂਰੇ ਕੀਤੇ ਲੇਵਲ",
+      "inProgress": "ਚੱਲ ਰਿਹਾ ਹੈ",
       "certificates": "ਸਰਟੀਫਿਕੇਟ",
       "avgScore": "ਔਸਤ ਸਕੋਰ",
-      "overallPerformance": "ਸਮੁੱਚੀ ਕਾਰਗੁਜ਼ਾਰੀ",
-      "topicsCompleted": "ਵਿਸ਼ੇ ਮੁਕੰਮਲ ਹੋਏ",
-      "complete": "ਮੁਕੰਮਲ"
+      "overallPerformance": "ਕੁੱਲ ਪਰਫਾਰਮੈਂਸ",
+      "topicsCompleted": "ਪੂਰੇ ਕੀਤੇ ਟਾਪਿਕਸ",
+      "complete": "ਪੂਰਾ"
     },
+
     "quickStats": {
       "title": "ਤੁਰੰਤ ਅੰਕੜੇ",
-      "totalTopics": "ਕੁੱਲ ਵਿਸ਼ੇ",
-      "completed": "ਮੁਕੰਮਲ ਹੋਏ",
-      "inProgress": "ਜਾਰੀ ਹੈ",
-      "pendingQuizzes": "ਬਾਕੀ ਕੁਇਜ਼ਾਂ"
+      "totalTopics": "ਕੁੱਲ ਟਾਪਿਕਸ",
+      "completed": "ਪੂਰਾ",
+      "inProgress": "ਚੱਲ ਰਿਹਾ ਹੈ",
+      "pendingQuizzes": "ਬਾਕੀ ਕਵਿਜ਼"
     },
-    "moduleHierarchy": {
-      "title": "ਮੋਡੀਊਲ ਅਤੇ ਚੈਪਟਰ ਦਾ ਲੜੀਵਾਰ ਢਾਂਚਾ",
-      "modules": "ਮੋਡੀਊਲ"
+
+    "levelHierarchy": {
+      "title": "ਲੇਵਲ ਹਾਇਰਾਰਕੀ",
+      "levels": "ਲੇਵਲ"
     },
+
     "reports": {
-      "title": "ਰਿਪੋਰਟਾਂ ਅਤੇ ਵਿਸ਼ਲੇਸ਼ਣ",
-      "subtitle": "ਵਿਸਤ੍ਰਿਤ ਜਾਣਕਾਰੀ ਵੇਖਣ ਲਈ ਕਿਸੇ ਵੀ ਕਾਰਡ 'ਤੇ ਕਲਿੱਕ ਕਰੋ",
+      "title": "ਰਿਪੋਰਟਾਂ ਅਤੇ ਐਨਾਲਿਟਿਕਸ",
+      "subtitle": "ਵਿਸਥਾਰਪੂਰਵਕ ਰਿਪੋਰਟਾਂ ਅਤੇ ਜਾਣਕਾਰੀਆਂ ਵੇਖੋ",
+
       "auditLogs": {
-        "title": "ਆਡਿਟ ਲੌਗ",
-        "description": "ਸਿਸਟਮ ਗਤੀਵਿਧੀਆਂ, ਉਪਭੋਗਤਾ ਕਿਰਿਆਵਾਂ, ਅਤੇ ਸੁਰੱਖਿਆ ਘਟਨਾਵਾਂ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ"
+        "title": "ਆਡਿਟ ਲਾਗਸ",
+        "description": "ਲਰਨਿੰਗ ਐਕਟਿਵਿਟੀਆਂ ਅਤੇ ਸਿਸਟਮ ਐਕਸ਼ਨ ਟ੍ਰੈਕ ਕਰੋ"
       },
+
       "userProgress": {
-        "title": "ਉਪਭੋਗਤਾ ਦੀ ਤਰੱਕੀ",
-        "description": "ਸਿਖਿਆਰਥੀਆਂ ਦੀਆਂ ਪ੍ਰਾਪਤੀਆਂ, ਮੁਕੰਮਲ ਹੋਣ ਦੀਆਂ ਦਰਾਂ, ਅਤੇ ਮੀਲ ਪੱਥਰਾਂ ਦੀ ਨਿਗਰਾਨੀ ਕਰੋ"
+        "title": "ਯੂਜ਼ਰ ਪ੍ਰੋਗਰੈੱਸ",
+        "description": "ਲਰਨਰ ਦੀ ਪ੍ਰਗਤੀ ਅਤੇ ਉਪਲਬਧੀਆਂ ਦੀ ਨਿਗਰਾਨੀ ਕਰੋ"
       },
+
       "certification": {
-        "title": "ਸਰਟੀਫਿਕੇਸ਼ਨ ਰਿਪੋਰਟਾਂ",
-        "description": "ਜਾਰੀ ਕੀਤੇ, ਬਾਕੀ ਅਤੇ ਮਿਆਦ ਪੁੱਗਣ ਦੀ ਸਥਿਤੀ ਵਾਲੇ ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ"
+        "title": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
+        "description": "ਸਰਟੀਫਿਕੇਟ ਅਤੇ ਅਸੈਸਮੈਂਟ ਨਤੀਜੇ ਵੇਖੋ"
       }
     }
   },

@@ -222,126 +222,143 @@
   },
 
   "dashboard": {
-    "greeting": {
-      "morning": "Good morning",
-      "afternoon": "Good afternoon",
-      "evening": "Good evening"
-    },
+    "subtitle": "Track your learning journey and progress",
+
     "status": {
-      "inProgress": "IN PROGRESS",
-      "completed": "COMPLETED",
-      "pending": "PENDING"
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "pending": "Pending"
     },
+
     "simpleLevel": {
       "completed": "Completed",
       "inProgress": "In Progress",
-      "locked": "Locked"
+      "locked": "Locked",
+      "complete": "Complete"
     },
-    "levelProgress": "Level Progress",
-    "moduleChapterProgress": "Module & Chapter Progress",
-    "topics": "topics",
+
+    "levelProgress": {
+      "title": "Level Progress",
+      "completePreviousLevel": "Complete the previous level to unlock this level"
+    },
+
+    "topics": "Topics",
     "chapters": "Chapters",
-    "currentLearning": {
-      "program": "Program",
-      "level": "Level",
-      "module": "Module",
-      "currentTopic": "Current Topic",
-      "topic": "Topic",
-      "complete": "Complete",
-      "topics": "Topics",
-      "pendingQuizzes": "Pending Quizzes",
-      "currentTopicProgress": "Current Topic Progress",
-      "contentsRead": "Contents Read",
-      "resumeTopic": "Resume Topic"
-    },
+
     "learningPath": {
       "title": "Learning Path",
       "viewAll": "View All"
     },
+
     "currentTopics": {
       "title": "Current Topics",
       "currentTopic": "Current Topic",
-      "chapter": "Chapter",
-      "module": "Module",
       "completed": "Completed",
       "quizAssessment": "Quiz Assessment",
       "readyToTake": "Ready to take",
       "topicContents": "Topic Contents"
     },
+
     "latestUpdates": {
       "title": "Latest Updates",
       "continue": "Continue",
-      "certificateEarned": "Certificate earned",
+      "certificateEarned": "Certificate Earned",
       "certificate": "Certificate",
       "score": "Score",
       "view": "View",
-      "levelsCompleted": "levels completed",
-      "moreToGo": "more to go",
+      "levelsCompleted": "Levels Completed",
+      "averageScore": "Average Score",
+      "moreToGo": "More To Go",
       "lastLearningSession": "Last Learning Session",
       "resume": "Resume"
     },
-    "achievement": {
-      "unlocked": "Achievement Unlocked",
-      "message": "You have earned {certificates} certificates with an average score of {score}%."
+
+    "stats": {
+      "avgTopicScore": "Average Topic Score",
+      "certificates": "Certificates"
     },
+
+    "greeting": {
+      "morning": "Good Morning",
+      "afternoon": "Good Afternoon",
+      "evening": "Good Evening"
+    },
+
     "nextAction": {
       "continueLearning": "Continue Learning",
       "next": "Next",
       "readyToContinue": "Ready to continue",
-      "quizReady": "Quiz • Ready to start",
-      "topicReady": "Topic • Ready to continue",
+      "quizReady": "Quiz is ready",
+      "topicReady": "Topic is ready",
       "readyToStart": "Ready to start"
+    },
+
+    "currentLearning": {
+      "levelProgress": "Level Progress",
+      "currentTopicProgress": "Current Topic Progress",
+      "resumeTopic": "Resume Topic",
+      "startTopic": "Start Topic"
     }
   },
 
   "progressStats": {
-    "pageTitle": "Progress Dashboard",
-    "pageSubtitle": "Track your learning progress across modules and chapters",
-    "topics": "topics",
-    "min": "min",
-    "noActiveLearning": "No active learning in progress",
-    "browseCourses": "Browse Courses",
-    "currentFocus": "CURRENT FOCUS",
+    "pageTitle": "Progress Statistics",
+    "pageSubtitle": "Track your learning journey and performance",
+
+    "topics": "Topics",
+    "level": "Level",
     "module": "Module",
     "chapter": "Chapter",
     "currentTopic": "Current Topic",
+    "levelProgress": "Level Progress",
+    "topicsCompleted": "Topics Completed",
     "topicProgress": "Topic Progress",
     "continueLearning": "Continue Learning",
-    "viewReport": "View report",
+    "browseCourses": "Browse Courses",
+    "currentFocus": "Current Focus",
+    "noActiveLearning": "No active learning found",
+    "viewReport": "View Report",
+
     "stats": {
       "levelsCompleted": "Levels Completed",
-      "inProgress": "in progress",
+      "inProgress": "In Progress",
       "certificates": "Certificates",
-      "avgScore": "Avg. score",
-      "overallPerformance": "Overall performance",
+      "avgScore": "Average Score",
+      "overallPerformance": "Overall Performance",
       "topicsCompleted": "Topics Completed",
-      "complete": "complete"
+      "complete": "Complete"
     },
+
     "quickStats": {
-      "title": "Quick Stats",
+      "title": "Quick Statistics",
       "totalTopics": "Total Topics",
       "completed": "Completed",
       "inProgress": "In Progress",
       "pendingQuizzes": "Pending Quizzes"
     },
-    "moduleHierarchy": {
-      "title": "Module & Chapter Hierarchy",
-      "modules": "modules"
+
+    "levelHierarchy": {
+      "title": "Level Hierarchy",
+      "levels": "Levels"
     },
+
     "reports": {
       "title": "Reports & Analytics",
-      "subtitle": "Click any card to view detailed insights",
+      "subtitle": "View detailed reports and insights",
+
       "auditLogs": {
         "title": "Audit Logs",
-        "description": "Track system activities, user actions, and security events"
+        "description": "Track learning activities and system actions"
       },
+
       "userProgress": {
         "title": "User Progress",
-        "description": "Monitor learner achievements, completion rates, and milestones"
+        "description": "Monitor learner progress and achievements"
       },
+
       "certification": {
-        "title": "Certification Reports",
-        "description": "View certificates issued, pending, and expiration status"
+        "title": "Certification",
+        "description": "View certificates and assessment results"
       }
     }
   },
