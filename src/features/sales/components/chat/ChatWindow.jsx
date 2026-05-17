@@ -489,10 +489,20 @@ const ChatWindow = () => {
           )}
         </div>
 
-        {/* Chat Input */}
+        {/* Chat Input
         <div className="flex-shrink-0 border-t border-gray-300 bg-white">
           <ChatInput threadId={thread.id} />
-        </div>
+        </div> */}
+        {/* Disable Chat Input for Resolved Threads */}
+        {status === "resolved" ? (
+          <div className="border-t border-gray-200 bg-gray-50 p-4 text-center">
+            <p className="text-sm text-gray-500">
+              This conversation has been successfully resolved and closed.
+            </p>
+          </div>
+        ) : (
+          <ChatInput threadId={thread.id} />
+        )}
       </div>
     </div>
   );
