@@ -30,6 +30,7 @@ import ExamResult from "../pages/exam/ExamResult";
 import ProtectedQuizExamRoute from "./ProtectedQuizExamRoute";
 import Notification from "../common/noitification/Notification";
 import NotificationDetail from "../common/noitification/NotificatinDetails";
+import ChatWindow from "../components/chat/ChatWindow";
 
 const SalesRoutes = (
   <Route element={<ProtectedRoute />}>
@@ -55,6 +56,7 @@ const SalesRoutes = (
         path="topics/:topicId/content/:contentId"
         element={<TopicContent />}
       />
+      <Route path="support/:topicId" element={<ChatWindow />} />
 
       <Route path="faqs" element={<Faq />} />
 

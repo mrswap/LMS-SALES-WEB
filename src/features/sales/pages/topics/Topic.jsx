@@ -193,7 +193,17 @@ const Topics = () => {
           <PageTitle>{t("topics.pageTitle")}</PageTitle>
           <PageSubtitle>{t("topics.pageSubtitle")}</PageSubtitle>
         </PageHeaderLeft>
-        <PageHeaderRight />
+        <PageHeaderRight>
+          <button
+            className="px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/support/${id}`);
+            }}
+          >
+            Support
+          </button>
+        </PageHeaderRight>
       </PageHeader>
 
       <PageBody>

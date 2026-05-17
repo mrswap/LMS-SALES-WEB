@@ -598,20 +598,8 @@ const TopicContent = () => {
                   <p className="text-xs text-gray-500">
                     {t("topicContent.navigation.previous")}
                   </p>
-                  {/* <p className="text-sm font-medium text-gray-700">
-                    {t("topicContent.navigation.previousLesson")}
-                  </p> */}
                 </div>
               </button>
-
-              {/* <div className="text-center">
-                {navigation?.has_next && (
-                  <p className="text-xs text-gray-400">
-                    {t("topicContent.navigation.continueText")}
-                  </p>
-                )}
-              </div> */}
-
               <button
                 onClick={() => navigateToContent(navigation?.next_content_id)}
                 disabled={!navigation?.has_next}
@@ -623,9 +611,6 @@ const TopicContent = () => {
                   <p className="text-xs text-blue-100">
                     {t("topicContent.navigation.next")}
                   </p>
-                  {/* <p className="text-sm font-medium text-white">
-                    {t("topicContent.navigation.nextLesson")}
-                  </p> */}
                 </div>
                 <IoIosArrowForward
                   size={14}

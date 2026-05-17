@@ -52,7 +52,7 @@ const SalesLayout = () => {
             className="flex-1 overflow-auto bg-white custom-scrollbar"
           >
             {/* Centered Content with Max Width */}
-            <div className=" max-w-[1500px] mx-auto p-4 sm:p-5 lg:p-6 min-h-full pb-20 sm:pb-6">
+            <div className=" max-w-[1500px] mx-auto p-4 sm:p-5 lg:p-6 min-h-full pb-10 sm:pb-6">
               <Outlet />
             </div>
             <Footer />

@@ -8,6 +8,7 @@ import languageReducer from "./slice/languageSlice"
 import reportReducer from "./slice/reportSlice"
 import dashboardReducer from "./slice/dashboardSlice"
 import notificationsReducer from "./slice/notificationSlicer"
+import supportReducer from "./slice/supportSlice"
 
 export const store = configureStore({
     reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
         language: languageReducer,
         report: reportReducer,
         dashboard: dashboardReducer,
-        notification: notificationsReducer
+        notification: notificationsReducer,
+        support: supportReducer
     },
 });
