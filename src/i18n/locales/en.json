@@ -1262,6 +1262,36 @@
     "confirm": "Confirm"
   },
 
+  "support": {
+    "noTopicSelected": "No topic selected",
+    "selectTopicMessage": "Select a topic from the list to start chatting",
+    "program": "Program",
+    "level": "Level",
+    "module": "Module",
+    "chapter": "Chapter",
+    "topic": "Topic",
+    "na": "N/A",
+    "courseDetails": "Course Details",
+    "hide": "Hide",
+    "show": "Show",
+    "status": "Status",
+    "open": "OPEN",
+    "supportConversation": "Support Conversation",
+    "noMessagesYet": "No messages yet",
+    "startConversation": "Send a message to start the conversation",
+    "conversationClosed": "This conversation has been successfully resolved and closed.",
+    "messageRequired": "Message is required",
+    "you": "You",
+    "failedToSend": "Failed to send message",
+    "preview": "Preview",
+    "messagePlaceholder": "Type your question here...",
+    "sending": "Sending",
+    "send": "Send",
+    "supportTeam": "Support Team",
+    "attachment": "Attachment",
+    "viewAttachment": "View Attachment"
+  },
+
   "loaderText": "Please wait while we process your request",
 
   "sessionModal": {
