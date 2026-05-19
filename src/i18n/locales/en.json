@@ -734,7 +734,8 @@
       "viewTopic": "View Topic",
       "previous": "Previous",
       "next": "Next",
-      "view": "View"
+      "view": "View",
+      "chat": "Chat"
     },
     "pagination": {
       "showing": "Showing",
@@ -748,13 +749,17 @@
     "quiz": {
       "title": "Ready to Test Your Knowledge?",
       "description": "You've completed all topics! Take the quiz to earn your certificate.",
-      "giveQuizButton": "Give Quiz"
+      "giveQuizButton": "Give Quiz",
+      "passedTitle": "Quiz Completed!",
+      "passedDescription": "You have successfully passed the quiz. Great job!",
+      "completed": "Completed"
     },
     "cta": {
       "continueLearning": "Continue Learning",
       "nextPage": "Next Page",
       "giveQuiz": "Give Quiz",
       "allCompleted": "All Topics Completed",
+      "quizAlreadyPassed": "Quiz Already Passed",
       "continueJourney": "Continue your learning journey",
       "moreTopics": "More topics available",
       "testYourself": "Test your knowledge",
@@ -762,7 +767,9 @@
       "nextTopic": "Next topic:",
       "nextPageMessage": "Go to next page for more topics",
       "readyForQuiz": "Ready for the quiz?",
-      "congratulations": "Congratulations! You've completed everything"
+      "congratulations": "Congratulations! You've completed everything",
+      "quizCompleted": "Quiz completed successfully",
+      "alreadyPassed": "You have already passed this quiz"
     }
   },
 
@@ -789,6 +796,9 @@
       "title": "PDF Document",
       "download": "Download PDF"
     },
+    "h5p": {
+      "interactive": "Interactive H5P Content"
+    },
     "notFound": {
       "title": "Content Not Found",
       "description": "The content you're looking for doesn't exist or has been moved.",
@@ -801,7 +811,10 @@
       "next": "Next",
       "nextLesson": "Next Lesson",
       "continueText": "Continue to next lesson"
-    }
+    },
+    "exitFullscreen": "Exit Fullscreen",
+    "fullscreen": "Fullscreen",
+    "audioNotSupported": "Your browser does not support the audio element."
   },
 
   "quiz": {

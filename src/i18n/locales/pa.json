@@ -710,52 +710,59 @@
   },
 
   "topics": {
-    "pageTitle": "ਲਰਨਿੰਗ ਵਿਸ਼ੇ",
-    "pageSubtitle": "ਆਪਣੀ ਸਿੱਖਣ ਸਮੱਗਰੀ ਨੂੰ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
-    "topics": "ਵਿਸ਼ੇ",
-    "viewContents": "ਸਾਰੀ ਸਮੱਗਰੀ ਵੇਖੋ",
+    "pageTitle": "ਲਰਨਿੰਗ ਟਾਪਿਕਸ",
+    "pageSubtitle": "ਆਪਣੇ ਲਰਨਿੰਗ ਮਟੀਰੀਅਲ ਨੂੰ ਬ੍ਰਾਊਜ਼ ਕਰੋ",
+    "topics": "ਟਾਪਿਕਸ",
+    "viewContents": "ਕੰਟੈਂਟ ਵੇਖੋ",
     "topicTypes": {
-      "text": "ਟੈਕਸਟ ਵਿਸ਼ਾ",
-      "media": "ਮੀਡੀਆ ਵਿਸ਼ਾ"
+      "text": "ਟੈਕਸਟ ਟਾਪਿਕ",
+      "media": "ਮੀਡੀਆ ਟਾਪਿਕ"
     },
     "status": {
       "read": "ਪੜ੍ਹਿਆ ਹੋਇਆ",
       "unread": "ਨਾ ਪੜ੍ਹਿਆ"
     },
-    "topicLabel": "ਵਿਸ਼ਾ",
+    "topicLabel": "ਟਾਪਿਕ",
     "buttons": {
-      "viewTopic": "ਵਿਸ਼ਾ ਵੇਖੋ",
+      "viewTopic": "ਟਾਪਿਕ ਵੇਖੋ",
       "previous": "ਪਿਛਲਾ",
       "next": "ਅਗਲਾ",
-      "view": "ਵੇਖੋ"
+      "view": "ਵੇਖੋ",
+      "chat": "ਚੈਟ"
     },
     "pagination": {
       "showing": "ਦਿਖਾਇਆ ਜਾ ਰਿਹਾ ਹੈ",
       "of": "ਵਿੱਚੋਂ",
-      "topics": "ਵਿਸ਼ੇ"
+      "topics": "ਟਾਪਿਕਸ"
     },
     "emptyState": {
-      "title": "ਕੋਈ ਵਿਸ਼ਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
-      "description": "ਨਵੀਂ ਸਿੱਖਣ ਸਮੱਗਰੀ ਲਈ ਬਾਅਦ ਵਿੱਚ ਚੈੱਕ ਕਰੋ"
+      "title": "ਕੋਈ ਟਾਪਿਕ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+      "description": "ਨਵੇਂ ਲਰਨਿੰਗ ਮਟੀਰੀਅਲ ਲਈ ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਵੇਖੋ"
     },
     "quiz": {
-      "title": "ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਗਿਆਨ ਦੀ ਪਰਖ ਲਈ ਤਿਆਰ ਹੋ?",
-      "description": "ਤੁਸੀਂ ਸਾਰੇ ਵਿਸ਼ੇ ਪੂਰੇ ਕਰ ਲਏ ਹਨ! ਆਪਣਾ ਸਰਟੀਫਿਕੇਟ ਲੈਣ ਲਈ ਕੁਇਜ਼ ਦਿਓ।",
-      "giveQuizButton": "ਕੁਇਜ਼ ਦਿਓ"
+      "title": "ਕੀ ਤੁਸੀਂ ਆਪਣਾ ਗਿਆਨ ਪਰਖਣ ਲਈ ਤਿਆਰ ਹੋ?",
+      "description": "ਤੁਸੀਂ ਸਾਰੇ ਟਾਪਿਕ ਪੂਰੇ ਕਰ ਲਏ ਹਨ! ਆਪਣਾ ਸਰਟੀਫਿਕੇਟ ਲੈਣ ਲਈ ਕੁਇਜ਼ ਦਿਓ।",
+      "giveQuizButton": "ਕੁਇਜ਼ ਦਿਓ",
+      "passedTitle": "ਕੁਇਜ਼ ਪੂਰਾ ਹੋ ਗਿਆ!",
+      "passedDescription": "ਤੁਸੀਂ ਸਫਲਤਾਪੂਰਵਕ ਕੁਇਜ਼ ਪਾਸ ਕਰ ਲਿਆ ਹੈ। ਸ਼ਾਬਾਸ਼!",
+      "completed": "ਪੂਰਾ ਹੋਇਆ"
     },
     "cta": {
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
       "nextPage": "ਅਗਲਾ ਪੇਜ",
       "giveQuiz": "ਕੁਇਜ਼ ਦਿਓ",
-      "allCompleted": "ਸਾਰੇ ਵਿਸ਼ੇ ਪੂਰੇ ਹੋ ਗਏ",
-      "continueJourney": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ",
-      "moreTopics": "ਹੋਰ ਵਿਸ਼ੇ ਉਪਲਬਧ ਹਨ",
-      "testYourself": "ਆਪਣੇ ਗਿਆਨ ਦੀ ਜਾਂਚ ਕਰੋ",
-      "allCompletedMessage": "ਸਾਰੇ ਵਿਸ਼ੇ ਪੂਰੇ ਹੋ ਗਏ",
-      "nextTopic": "ਅਗਲਾ ਵਿਸ਼ਾ:",
-      "nextPageMessage": "ਹੋਰ ਵਿਸ਼ਿਆਂ ਲਈ ਅਗਲੇ ਪੇਜ 'ਤੇ ਜਾਓ",
+      "allCompleted": "ਸਾਰੇ ਟਾਪਿਕ ਪੂਰੇ ਹੋ ਗਏ",
+      "quizAlreadyPassed": "ਕੁਇਜ਼ ਪਹਿਲਾਂ ਹੀ ਪਾਸ ਕੀਤਾ ਗਿਆ ਹੈ",
+      "continueJourney": "ਆਪਣੀ ਲਰਨਿੰਗ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ",
+      "moreTopics": "ਹੋਰ ਟਾਪਿਕ ਉਪਲਬਧ ਹਨ",
+      "testYourself": "ਆਪਣਾ ਗਿਆਨ ਜਾਂਚੋ",
+      "allCompletedMessage": "ਸਾਰੇ ਟਾਪਿਕ ਪੂਰੇ ਹੋ ਚੁੱਕੇ ਹਨ",
+      "nextTopic": "ਅਗਲਾ ਟਾਪਿਕ:",
+      "nextPageMessage": "ਹੋਰ ਟਾਪਿਕ ਲਈ ਅਗਲੇ ਪੇਜ ਤੇ ਜਾਓ",
       "readyForQuiz": "ਕੀ ਤੁਸੀਂ ਕੁਇਜ਼ ਲਈ ਤਿਆਰ ਹੋ?",
-      "congratulations": "ਵਧਾਈਆਂ! ਤੁਸੀਂ ਸਭ ਕੁਝ ਪੂਰਾ ਕਰ ਲਿਆ ਹੈ"
+      "congratulations": "ਮੁਬਾਰਕਾਂ! ਤੁਸੀਂ ਸਭ ਕੁਝ ਪੂਰਾ ਕਰ ਲਿਆ ਹੈ",
+      "quizCompleted": "ਕੁਇਜ਼ ਸਫਲਤਾਪੂਰਵਕ ਪੂਰਾ ਹੋਇਆ",
+      "alreadyPassed": "ਤੁਸੀਂ ਇਹ ਕੁਇਜ਼ ਪਹਿਲਾਂ ਹੀ ਪਾਸ ਕਰ ਚੁੱਕੇ ਹੋ"
     }
   },
 
@@ -772,29 +779,35 @@
 
   "topicContent": {
     "contentTypes": {
-      "text": "ਪੜ੍ਹਨ ਸਮੱਗਰੀ",
+      "text": "ਪੜ੍ਹਾਈ ਸਮੱਗਰੀ",
       "video": "ਵੀਡੀਓ ਲੈਕਚਰ",
       "pdf": "ਦਸਤਾਵੇਜ਼",
       "audio": "ਆਡੀਓ ਪਾਠ",
       "image": "ਦ੍ਰਿਸ਼ ਸਮੱਗਰੀ"
     },
     "pdf": {
-      "title": "ਪੀਡੀਐਫ ਦਸਤਾਵੇਜ਼",
-      "download": "ਪੀਡੀਐਫ ਡਾਊਨਲੋਡ ਕਰੋ"
+      "title": "PDF ਦਸਤਾਵੇਜ਼",
+      "download": "PDF ਡਾਊਨਲੋਡ ਕਰੋ"
+    },
+    "h5p": {
+      "interactive": "ਇੰਟਰਐਕਟਿਵ H5P ਸਮੱਗਰੀ"
     },
     "notFound": {
       "title": "ਸਮੱਗਰੀ ਨਹੀਂ ਮਿਲੀ",
-      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਇਸਨੂੰ ਹੋਰ ਥਾਂ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਕਿਸੇ ਹੋਰ ਥਾਂ ਭੇਜੀ ਗਈ ਹੈ।",
       "button": "ਕੋਰਸ ਵੱਲ ਵਾਪਸ ਜਾਓ"
     },
     "fallbackMessage": "ਸਮੱਗਰੀ ਕਿਸਮ:",
     "navigation": {
       "previous": "ਪਿਛਲਾ",
       "previousLesson": "ਪਿਛਲਾ ਪਾਠ",
-      "next": "ਅੱਗੇ",
-      "nextLesson": "ਅੱਗਲਾ ਪਾਠ",
-      "continueText": "ਅੱਗਲੇ ਪਾਠ ਵੱਲ ਜਾਓ"
-    }
+      "next": "ਅਗਲਾ",
+      "nextLesson": "ਅਗਲਾ ਪਾਠ",
+      "continueText": "ਅਗਲੇ ਪਾਠ ਵੱਲ ਜਾਰੀ ਰੱਖੋ"
+    },
+    "exitFullscreen": "ਫੁੱਲ ਸਕ੍ਰੀਨ ਬੰਦ ਕਰੋ",
+    "fullscreen": "ਫੁੱਲ ਸਕ੍ਰੀਨ",
+    "audioNotSupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਆਡੀਓ ਐਲੀਮੈਂਟ ਨੂੰ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।"
   },
 
   "quiz": {
