@@ -84,7 +84,7 @@ export const getTopicById = createAsyncThunk(
     async (topicId, thunkAPI) => {
         try {
             const res = await axiosInstance.get(
-                `/trainee/content/topics/${topicId}`,
+                `/trainee/content/topics/${topicId}?page=1&limit=15`,
                 getAuthConfig()
             );
 
