@@ -1,27 +1,29 @@
 {
   "login": {
-    "title": "ਵਾਪਸੀ 'ਤੇ ਸੁਆਗਤ ਹੈ!",
+    "title": "ਵਾਪਸੀ ਤੇ ਸੁਆਗਤ ਹੈ!",
     "emailLabel": "ਈਮੇਲ ਪਤਾ",
-    "emailPlaceholder": "ਆਪਣਾ ਈਮੇਲ ਪਾਓ",
+    "emailPlaceholder": "ਆਪਣਾ ਈਮੇਲ ਦਰਜ ਕਰੋ",
     "passwordLabel": "ਪਾਸਵਰਡ",
-    "passwordPlaceholder": "ਪਾਸਵਰਡ ਪਾਓ",
+    "passwordPlaceholder": "ਆਪਣਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
     "forgotPassword": "ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?",
-    "stayLoggedIn": "ਲੌਗਇਨ ਰੱਖੋ",
-    "button": "ਸਾਈਨ ਇਨ ਕਰੋ",
-    "loading": "ਸਾਈਨ ਇਨ ਹੋ ਰਿਹਾ ਹੈ...",
+    "stayLoggedIn": "ਲਾਗਇਨ ਬਣਾਈ ਰੱਖੋ",
+    "button": "ਸਾਇਨ ਇਨ ਕਰੋ",
+    "loading": "ਸਾਇਨ ਇਨ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "or": "ਜਾਂ",
-    "newEmployee": "ਨਵਾਂ ਕਰਮਚਾਰੀ?",
+    "newEmployee": "ਨਵੇਂ ਕਰਮਚਾਰੀ?",
     "completeEmployeeOnboarding": "ਕਰਮਚਾਰੀ ਆਨਬੋਰਡਿੰਗ ਪੂਰੀ ਕਰੋ",
     "secureLogin": "ਸੁਰੱਖਿਅਤ ਲਾਗਇਨ",
-    "termsOfService": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
-    "privacyPolicy": "ਪਰਦੇਦਾਰੀ ਨੀਤੀ",
+    "termsAndConditions": "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
+    "privacyPolicy": "ਪਰਾਈਵੇਸੀ ਨੀਤੀ",
+    "aboutUs": "ਸਾਡੇ ਬਾਰੇ",
+    "troubleshooting": "ਸਮੱਸਿਆ ਨਿਵਾਰਣ",
     "language": "ਭਾਸ਼ਾ",
-    "successMessage": "ਲੌਗਇਨ ਸਫਲ ਰਿਹਾ",
+    "successMessage": "ਲਾਗਇਨ ਸਫਲ",
     "errorMessage": "ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ",
     "validation": {
-      "emailRequired": "ਈਮੇਲ ਦੀ ਲੋੜ ਹੈ",
-      "emailInvalid": "ਅਵੈਧ ਈਮੇਲ ਪਤਾ",
-      "passwordRequired": "ਪਾਸਵਰਡ ਦੀ ਲੋੜ ਹੈ"
+      "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
+      "emailInvalid": "ਗਲਤ ਈਮੇਲ ਪਤਾ",
+      "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ"
     }
   },
 
@@ -295,26 +297,30 @@
   },
 
   "progressStats": {
-    "pageTitle": "ਪ੍ਰੋਗਰੈੱਸ ਅੰਕੜੇ",
-    "pageSubtitle": "ਆਪਣੀ ਲਰਨਿੰਗ ਯਾਤਰਾ ਅਤੇ ਪਰਫਾਰਮੈਂਸ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
+    "pageTitle": "ਪ੍ਰੋਗਰੈੱਸ ਸਟੈਟਿਸਟਿਕਸ",
+    "pageSubtitle": "ਆਪਣੀ ਲਰਨਿੰਗ ਜਰਨੀ ਅਤੇ ਪਰਫਾਰਮੈਂਸ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
 
     "topics": "ਟਾਪਿਕਸ",
+    "lessons": "ਲੇਸਨ",
+    "contents": "ਕੰਟੈਂਟਸ",
     "level": "ਲੇਵਲ",
     "module": "ਮੋਡੀਊਲ",
     "chapter": "ਚੈਪਟਰ",
     "currentTopic": "ਮੌਜੂਦਾ ਟਾਪਿਕ",
     "levelProgress": "ਲੇਵਲ ਪ੍ਰੋਗਰੈੱਸ",
     "topicsCompleted": "ਪੂਰੇ ਕੀਤੇ ਟਾਪਿਕਸ",
+    "lessonsCompleted": "ਪੂਰੇ ਕੀਤੇ ਲੇਸਨ",
     "topicProgress": "ਟਾਪਿਕ ਪ੍ਰੋਗਰੈੱਸ",
     "continueLearning": "ਲਰਨਿੰਗ ਜਾਰੀ ਰੱਖੋ",
     "browseCourses": "ਕੋਰਸ ਵੇਖੋ",
     "currentFocus": "ਮੌਜੂਦਾ ਫੋਕਸ",
     "noActiveLearning": "ਕੋਈ ਐਕਟਿਵ ਲਰਨਿੰਗ ਨਹੀਂ ਮਿਲੀ",
     "viewReport": "ਰਿਪੋਰਟ ਵੇਖੋ",
+    "locked": "ਲੌਕਡ",
 
     "stats": {
       "levelsCompleted": "ਪੂਰੇ ਕੀਤੇ ਲੇਵਲ",
-      "inProgress": "ਚੱਲ ਰਿਹਾ ਹੈ",
+      "inProgress": "ਚੱਲ ਰਹਿਆ",
       "certificates": "ਸਰਟੀਫਿਕੇਟ",
       "avgScore": "ਔਸਤ ਸਕੋਰ",
       "overallPerformance": "ਕੁੱਲ ਪਰਫਾਰਮੈਂਸ",
@@ -325,8 +331,10 @@
     "quickStats": {
       "title": "ਤੁਰੰਤ ਅੰਕੜੇ",
       "totalTopics": "ਕੁੱਲ ਟਾਪਿਕਸ",
-      "completed": "ਪੂਰਾ",
-      "inProgress": "ਚੱਲ ਰਿਹਾ ਹੈ",
+      "completedTopics": "ਪੂਰੇ ਕੀਤੇ ਟਾਪਿਕਸ",
+      "totalLessons": "ਕੁੱਲ ਲੇਸਨ",
+      "completedLessons": "ਪੂਰੇ ਕੀਤੇ ਲੇਸਨ",
+      "inProgress": "ਚੱਲ ਰਹਿਆ",
       "pendingQuizzes": "ਬਾਕੀ ਕਵਿਜ਼"
     },
 
@@ -336,12 +344,12 @@
     },
 
     "reports": {
-      "title": "ਰਿਪੋਰਟਾਂ ਅਤੇ ਐਨਾਲਿਟਿਕਸ",
-      "subtitle": "ਵਿਸਥਾਰਪੂਰਵਕ ਰਿਪੋਰਟਾਂ ਅਤੇ ਜਾਣਕਾਰੀਆਂ ਵੇਖੋ",
+      "title": "ਰਿਪੋਰਟਸ ਅਤੇ ਐਨਾਲਿਟਿਕਸ",
+      "subtitle": "ਵਿਸਥਾਰ ਨਾਲ ਰਿਪੋਰਟਸ ਅਤੇ ਜਾਣਕਾਰੀਆਂ ਵੇਖੋ",
 
       "auditLogs": {
         "title": "ਆਡਿਟ ਲਾਗਸ",
-        "description": "ਲਰਨਿੰਗ ਐਕਟਿਵਿਟੀਆਂ ਅਤੇ ਸਿਸਟਮ ਐਕਸ਼ਨ ਟ੍ਰੈਕ ਕਰੋ"
+        "description": "ਲਰਨਿੰਗ ਐਕਟੀਵਿਟੀ ਅਤੇ ਸਿਸਟਮ ਐਕਸ਼ਨ ਟ੍ਰੈਕ ਕਰੋ"
       },
 
       "userProgress": {
@@ -1104,6 +1112,45 @@
     "toast": {
       "success": "ਸੁਨੇਹਾ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ!",
       "error": "ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    }
+  },
+
+  "troubleshooting": {
+    "title": "ਸਮੱਸਿਆ ਨਿਵਾਰਣ ਸਹਾਇਤਾ",
+    "description": "ਹੇਠਾਂ ਦਿੱਤਾ ਫਾਰਮ ਭਰੋ ਅਤੇ ਸਾਡੀ ਸਹਾਇਤਾ ਟੀਮ ਤੁਹਾਡੀ ਮਦਦ ਕਰੇਗੀ।",
+    "backToLogin": "ਲਾਗਇਨ ਤੇ ਵਾਪਸ ਜਾਓ",
+    "contactSupport": "ਸਹਾਇਤਾ ਨਾਲ ਸੰਪਰਕ ਕਰੋ",
+    "successMessage": "ਸੁਨੇਹਾ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜਿਆ ਗਿਆ!",
+    "errorMessage": "ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+    "form": {
+      "fullName": {
+        "label": "ਪੂਰਾ ਨਾਮ",
+        "placeholder": "ਆਪਣਾ ਪੂਰਾ ਨਾਮ ਦਰਜ ਕਰੋ"
+      },
+      "email": {
+        "label": "ਈਮੇਲ ਪਤਾ",
+        "placeholder": "ਆਪਣਾ ਈਮੇਲ ਦਰਜ ਕਰੋ"
+      },
+      "subject": {
+        "label": "ਵਿਸ਼ਾ",
+        "placeholder": "ਇਹ ਕਿਸ ਬਾਰੇ ਹੈ?"
+      },
+      "message": {
+        "label": "ਸੁਨੇਹਾ",
+        "placeholder": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਸਮੱਸਿਆ ਵਿਸਥਾਰ ਨਾਲ ਦੱਸੋ..."
+      },
+      "sendMessage": "ਸੁਨੇਹਾ ਭੇਜੋ",
+      "sending": "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ..."
+    },
+    "validation": {
+      "nameRequired": "ਨਾਮ ਲਾਜ਼ਮੀ ਹੈ",
+      "nameMin": "ਨਾਮ ਘੱਟੋ-ਘੱਟ 2 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "emailInvalid": "ਗਲਤ ਈਮੇਲ ਪਤਾ",
+      "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
+      "subjectRequired": "ਵਿਸ਼ਾ ਲਾਜ਼ਮੀ ਹੈ",
+      "subjectMin": "ਵਿਸ਼ਾ ਘੱਟੋ-ਘੱਟ 3 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "messageRequired": "ਸੁਨੇਹਾ ਲਾਜ਼ਮੀ ਹੈ",
+      "messageMin": "ਸੁਨੇਹਾ ਘੱਟੋ-ਘੱਟ 10 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
     }
   },
 

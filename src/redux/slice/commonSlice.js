@@ -7,10 +7,11 @@ import { getAuthConfig } from "../../utils/authConfig";
 =========================== */
 export const getRoles = createAsyncThunk(
     "common/getRoles",
-    async (_, thunkAPI) => {
+    async (params, thunkAPI) => {
         try {
+            const query = new URLSearchParams(params).toString();
             const res = await axiosInstance.get(
-                "/common/roles?status=all",
+                `/common/roles?${query}`,
                 getAuthConfig()
             );
             return res.data;
@@ -27,10 +28,11 @@ export const getRoles = createAsyncThunk(
 =========================== */
 export const getDesignations = createAsyncThunk(
     "common/getDesignations",
-    async (_, thunkAPI) => {
+    async (params, thunkAPI) => {
         try {
+            const query = new URLSearchParams(params).toString();
             const res = await axiosInstance.get(
-                "/common/designations?status=all",
+                `/common/designations?${query}`,
                 getAuthConfig()
             );
             return res.data;
