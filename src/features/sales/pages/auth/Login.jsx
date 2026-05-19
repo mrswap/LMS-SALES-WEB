@@ -241,15 +241,43 @@ const Login = () => {
         </button>
 
         {/* Footer */}
+
         <div className="text-xs text-gray-400 mt-6 text-center">
           <p className="tracking-widest mb-2">{t("login.secureLogin")}</p>
-          <div className="flex justify-center gap-2">
-            <span className="hover:underline cursor-pointer">
-              {t("login.termsOfService")}
+
+          <div className="flex justify-center gap-2 flex-wrap">
+            <span
+              onClick={() => navigate("/terms-conditions-info")}
+              className="hover:underline cursor-pointer"
+            >
+              {t("login.termsAndConditions")}
             </span>
+
             <span>/</span>
-            <span className="hover:underline cursor-pointer">
+
+            <span
+              onClick={() => navigate("/policy-info")}
+              className="hover:underline cursor-pointer"
+            >
               {t("login.privacyPolicy")}
+            </span>
+          </div>
+
+          <div className="flex justify-center gap-2 mt-1 flex-wrap">
+            <span
+              onClick={() => navigate("/about-us-info")}
+              className="hover:underline cursor-pointer"
+            >
+              {t("login.aboutUs")}
+            </span>
+
+            <span>/</span>
+
+            <span
+              onClick={() => navigate("/troubleshooting")}
+              className="hover:underline cursor-pointer"
+            >
+              {t("login.troubleshooting")}
             </span>
           </div>
         </div>

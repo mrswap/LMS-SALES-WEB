@@ -49,7 +49,7 @@ const ProfileDetails = () => {
   useEffect(() => {
     if (!profile) {
       dispatch(getProfile());
-      dispatch(getDesignations());
+      dispatch(getDesignations({ status: 1 }));
     }
   }, [dispatch, profile]);
 

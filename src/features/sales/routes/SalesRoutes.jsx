@@ -31,93 +31,104 @@ import ProtectedQuizExamRoute from "./ProtectedQuizExamRoute";
 import Notification from "../common/noitification/Notification";
 import NotificationDetail from "../common/noitification/NotificatinDetails";
 import ChatWindow from "../components/chat/ChatWindow";
+import Troubleshooting from "../outside/Troubeshooting";
+import AboutUsInfo from "../outside/AboutUsInfo";
+import TermsCondtionInfo from "../outside/TermsCondtionInfo";
+import PolicyInfo from "../outside/PolicyInfo";
 
 const SalesRoutes = (
-  <Route element={<ProtectedRoute />}>
-    <Route path="/" element={<SalesLayout />}>
-      <Route index element={<Navigate to="/dashboard" replace />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/notifications" element={<Notification />} />
-      <Route path="/notifications/:id" element={<NotificationDetail />} />
+  <Route>
+    <Route path="about-us-info" element={<AboutUsInfo />} />
+    <Route path="terms-conditions-info" element={<TermsCondtionInfo />} />
+    <Route path="policy-info" element={<PolicyInfo />} />
+    <Route path="troubleshooting" element={<Troubleshooting />} />
 
-      {/* levels */}
-      <Route path="levels" element={<Levels />} />
-      <Route path="levels/:levelId" element={<LevelDetails />} />
+    <Route path="*" element={<WorkInProgress />} />
 
-      {/* modules */}
-      <Route path="modules/:moduleId" element={<Modules />} />
+    <Route element={<ProtectedRoute />}>
+      <Route path="/" element={<SalesLayout />}>
+        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/notifications" element={<Notification />} />
+        <Route path="/notifications/:id" element={<NotificationDetail />} />
 
-      {/* chapters */}
-      <Route path="chapters/:chapterId" element={<Chapters />} />
+        {/* levels */}
+        <Route path="levels" element={<Levels />} />
+        <Route path="levels/:levelId" element={<LevelDetails />} />
 
-      {/* topics */}
-      <Route path="topics/:topicId" element={<Topics />} />
-      <Route
-        path="topics/:topicId/content/:contentId"
-        element={<TopicContent />}
-      />
-      <Route path="support/:topicId" element={<ChatWindow />} />
+        {/* modules */}
+        <Route path="modules/:moduleId" element={<Modules />} />
 
-      <Route path="faqs" element={<Faq />} />
+        {/* chapters */}
+        <Route path="chapters/:chapterId" element={<Chapters />} />
 
-      {/* quize - Protected */}
-      <Route
-        path="quiz/:topicId"
-        element={
-          <ProtectedQuizExamRoute>
-            <Quize />
-          </ProtectedQuizExamRoute>
-        }
-      />
-      <Route
-        path="/quiz/result/:topicId/:attemptId"
-        element={
-          <ProtectedQuizExamRoute>
-            <QuizeResult />
-          </ProtectedQuizExamRoute>
-        }
-      />
+        {/* topics */}
+        <Route path="topics/:topicId" element={<Topics />} />
+        <Route
+          path="topics/:topicId/content/:contentId"
+          element={<TopicContent />}
+        />
+        <Route path="support/:topicId" element={<ChatWindow />} />
 
-      {/* exam - Protected */}
-      <Route
-        path="exam/:topicId"
-        element={
-          <ProtectedQuizExamRoute>
-            <Exam />
-          </ProtectedQuizExamRoute>
-        }
-      />
-      <Route
-        path="/exam/result/:topicId/:attemptId"
-        element={
-          <ProtectedQuizExamRoute>
-            <ExamResult />
-          </ProtectedQuizExamRoute>
-        }
-      />
+        <Route path="faqs" element={<Faq />} />
 
-      {/*progress  */}
-      <Route path="progress" element={<ProgressStats />} />
-      <Route path="audit-logs" element={<AuditLogsReports />} />
-      <Route path="user-progress" element={<UserProgressReports />} />
-      <Route path="certification" element={<CertificationReports />} />
-      <Route path="certificate/:id" element={<Certificate />} />
+        {/* quize - Protected */}
+        <Route
+          path="quiz/:topicId"
+          element={
+            <ProtectedQuizExamRoute>
+              <Quize />
+            </ProtectedQuizExamRoute>
+          }
+        />
+        <Route
+          path="/quiz/result/:topicId/:attemptId"
+          element={
+            <ProtectedQuizExamRoute>
+              <QuizeResult />
+            </ProtectedQuizExamRoute>
+          }
+        />
 
-      {/*assessment  */}
-      <Route path="assessment" element={<Assessment />} />
+        {/* exam - Protected */}
+        <Route
+          path="exam/:topicId"
+          element={
+            <ProtectedQuizExamRoute>
+              <Exam />
+            </ProtectedQuizExamRoute>
+          }
+        />
+        <Route
+          path="/exam/result/:topicId/:attemptId"
+          element={
+            <ProtectedQuizExamRoute>
+              <ExamResult />
+            </ProtectedQuizExamRoute>
+          }
+        />
 
-      {/*profile  */}
-      <Route path="profile" element={<Profile />} />
-      <Route path="profile/details" element={<ProfileDetails />} />
-      {/* <Route path="change-password" element={<ChangePassword />} /> */}
+        {/*progress  */}
+        <Route path="progress" element={<ProgressStats />} />
+        <Route path="audit-logs" element={<AuditLogsReports />} />
+        <Route path="user-progress" element={<UserProgressReports />} />
+        <Route path="certification" element={<CertificationReports />} />
+        <Route path="certificate/:id" element={<Certificate />} />
 
-      {/*settings  */}
-      <Route path="about-us" element={<AboutUs />} />
-      <Route path="terms-conditions" element={<TermsAndCondition />} />
-      <Route path="policy" element={<Policy />} />
-      <Route path="contact-us" element={<ContactUs />} />
+        {/*assessment  */}
+        <Route path="assessment" element={<Assessment />} />
 
-      <Route path="*" element={<WorkInProgress />} />
+        {/*profile  */}
+        <Route path="profile" element={<Profile />} />
+        <Route path="profile/details" element={<ProfileDetails />} />
+        {/* <Route path="change-password" element={<ChangePassword />} /> */}
+
+        {/*settings  */}
+        <Route path="about-us" element={<AboutUs />} />
+        <Route path="terms-conditions" element={<TermsAndCondition />} />
+        <Route path="policy" element={<Policy />} />
+        <Route path="contact-us" element={<ContactUs />} />
+      </Route>
     </Route>
   </Route>
 );

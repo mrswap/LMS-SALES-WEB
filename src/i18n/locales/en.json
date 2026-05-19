@@ -13,8 +13,10 @@
     "newEmployee": "New Employee?",
     "completeEmployeeOnboarding": "Complete Employee Onboarding",
     "secureLogin": "SECURE LOGIN",
-    "termsOfService": "Terms of Service",
+    "termsAndConditions": "Terms & Conditions",
     "privacyPolicy": "Privacy Policy",
+    "aboutUs": "About Us",
+    "troubleshooting": "Troubleshooting",
     "language": "Language",
     "successMessage": "Login Successful",
     "errorMessage": "Something went wrong",
@@ -306,18 +308,22 @@
     "pageSubtitle": "Track your learning journey and performance",
 
     "topics": "Topics",
+    "lessons": "Lessons",
+    "contents": "Contents",
     "level": "Level",
     "module": "Module",
     "chapter": "Chapter",
     "currentTopic": "Current Topic",
     "levelProgress": "Level Progress",
     "topicsCompleted": "Topics Completed",
+    "lessonsCompleted": "Lessons Completed",
     "topicProgress": "Topic Progress",
     "continueLearning": "Continue Learning",
     "browseCourses": "Browse Courses",
     "currentFocus": "Current Focus",
     "noActiveLearning": "No active learning found",
     "viewReport": "View Report",
+    "locked": "Locked",
 
     "stats": {
       "levelsCompleted": "Levels Completed",
@@ -332,7 +338,9 @@
     "quickStats": {
       "title": "Quick Statistics",
       "totalTopics": "Total Topics",
-      "completed": "Completed",
+      "completedTopics": "Completed Topics",
+      "totalLessons": "Total Lessons",
+      "completedLessons": "Completed Lessons",
       "inProgress": "In Progress",
       "pendingQuizzes": "Pending Quizzes"
     },
@@ -1111,6 +1119,45 @@
     "toast": {
       "success": "Message sent successfully!",
       "error": "Failed to send message. Please try again."
+    }
+  },
+
+  "troubleshooting": {
+    "title": "Troubleshooting Support",
+    "description": "Fill out the form below and our support team will assist you.",
+    "backToLogin": "Back to Login",
+    "contactSupport": "Contact Support",
+    "successMessage": "Message sent successfully!",
+    "errorMessage": "Failed to send message. Please try again.",
+    "form": {
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "What is this regarding?"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Please describe your issue in detail..."
+      },
+      "sendMessage": "Send Message",
+      "sending": "Sending..."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMin": "Name must be at least 2 characters",
+      "emailInvalid": "Invalid email address",
+      "emailRequired": "Email is required",
+      "subjectRequired": "Subject is required",
+      "subjectMin": "Subject must be at least 3 characters",
+      "messageRequired": "Message is required",
+      "messageMin": "Message must be at least 10 characters"
     }
   },
 

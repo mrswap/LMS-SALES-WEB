@@ -2,22 +2,24 @@
   "login": {
     "title": "वापसी पर स्वागत है!",
     "emailLabel": "ईमेल पता",
-    "emailPlaceholder": "अपना ईमेल डालें",
+    "emailPlaceholder": "अपना ईमेल दर्ज करें",
     "passwordLabel": "पासवर्ड",
-    "passwordPlaceholder": "पासवर्ड डालें",
+    "passwordPlaceholder": "अपना पासवर्ड दर्ज करें",
     "forgotPassword": "पासवर्ड भूल गए?",
     "stayLoggedIn": "लॉगिन बनाए रखें",
     "button": "साइन इन करें",
-    "loading": "साइन इन हो रहा है...",
+    "loading": "साइन इन किया जा रहा है...",
     "or": "या",
     "newEmployee": "नए कर्मचारी?",
-    "completeEmployeeOnboarding": "कर्मचारी ऑनबोर्डिंग पूरा करें",
+    "completeEmployeeOnboarding": "कर्मचारी ऑनबोर्डिंग पूरी करें",
     "secureLogin": "सुरक्षित लॉगिन",
-    "termsOfService": "सेवा की शर्तें",
+    "termsAndConditions": "नियम और शर्तें",
     "privacyPolicy": "गोपनीयता नीति",
+    "aboutUs": "हमारे बारे में",
+    "troubleshooting": "समस्या निवारण",
     "language": "भाषा",
-    "successMessage": "लॉगिन सफल रहा",
-    "errorMessage": "कुछ गड़बड़ हो गई",
+    "successMessage": "लॉगिन सफल",
+    "errorMessage": "कुछ गलत हो गया",
     "validation": {
       "emailRequired": "ईमेल आवश्यक है",
       "emailInvalid": "अमान्य ईमेल पता",
@@ -295,27 +297,31 @@
   },
 
   "progressStats": {
-    "pageTitle": "प्रोग्रेस सांख्यिकी",
-    "pageSubtitle": "अपनी सीखने की यात्रा और प्रदर्शन को ट्रैक करें",
+    "pageTitle": "प्रोग्रेस स्टैटिस्टिक्स",
+    "pageSubtitle": "अपनी लर्निंग जर्नी और परफॉर्मेंस को ट्रैक करें",
 
     "topics": "टॉपिक्स",
+    "lessons": "लेसन्स",
+    "contents": "कॉन्टेंट्स",
     "level": "लेवल",
     "module": "मॉड्यूल",
     "chapter": "चैप्टर",
     "currentTopic": "वर्तमान टॉपिक",
     "levelProgress": "लेवल प्रोग्रेस",
     "topicsCompleted": "पूर्ण किए गए टॉपिक्स",
+    "lessonsCompleted": "पूर्ण किए गए लेसन्स",
     "topicProgress": "टॉपिक प्रोग्रेस",
-    "continueLearning": "सीखना जारी रखें",
-    "browseCourses": "कोर्स देखें",
+    "continueLearning": "लर्निंग जारी रखें",
+    "browseCourses": "कोर्स ब्राउज़ करें",
     "currentFocus": "वर्तमान फोकस",
-    "noActiveLearning": "कोई सक्रिय लर्निंग नहीं मिली",
+    "noActiveLearning": "कोई एक्टिव लर्निंग नहीं मिली",
     "viewReport": "रिपोर्ट देखें",
+    "locked": "लॉक्ड",
 
     "stats": {
       "levelsCompleted": "पूर्ण किए गए लेवल",
       "inProgress": "प्रगति में",
-      "certificates": "सर्टिफिकेट",
+      "certificates": "सर्टिफिकेट्स",
       "avgScore": "औसत स्कोर",
       "overallPerformance": "कुल प्रदर्शन",
       "topicsCompleted": "पूर्ण किए गए टॉपिक्स",
@@ -325,19 +331,21 @@
     "quickStats": {
       "title": "त्वरित आँकड़े",
       "totalTopics": "कुल टॉपिक्स",
-      "completed": "पूर्ण",
+      "completedTopics": "पूर्ण किए गए टॉपिक्स",
+      "totalLessons": "कुल लेसन्स",
+      "completedLessons": "पूर्ण किए गए लेसन्स",
       "inProgress": "प्रगति में",
-      "pendingQuizzes": "लंबित क्विज़"
+      "pendingQuizzes": "पेंडिंग क्विज़"
     },
 
     "levelHierarchy": {
-      "title": "लेवल हाइरार्की",
-      "levels": "लेवल"
+      "title": "लेवल हायरार्की",
+      "levels": "लेवल्स"
     },
 
     "reports": {
       "title": "रिपोर्ट्स और एनालिटिक्स",
-      "subtitle": "विस्तृत रिपोर्ट और जानकारी देखें",
+      "subtitle": "विस्तृत रिपोर्ट्स और इनसाइट्स देखें",
 
       "auditLogs": {
         "title": "ऑडिट लॉग्स",
@@ -346,12 +354,12 @@
 
       "userProgress": {
         "title": "यूज़र प्रोग्रेस",
-        "description": "लर्नर की प्रगति और उपलब्धियों की निगरानी करें"
+        "description": "लर्नर्स की प्रोग्रेस और उपलब्धियों की निगरानी करें"
       },
 
       "certification": {
         "title": "सर्टिफिकेशन",
-        "description": "सर्टिफिकेट और असेसमेंट परिणाम देखें"
+        "description": "सर्टिफिकेट्स और असेसमेंट रिज़ल्ट्स देखें"
       }
     }
   },
@@ -1104,6 +1112,45 @@
     "toast": {
       "success": "संदेश सफलतापूर्वक भेजा गया!",
       "error": "संदेश भेजने में विफल। कृपया फिर से प्रयास करें।"
+    }
+  },
+
+  "troubleshooting": {
+    "title": "समस्या निवारण सहायता",
+    "description": "नीचे दिया गया फॉर्म भरें और हमारी सहायता टीम आपकी मदद करेगी।",
+    "backToLogin": "लॉगिन पर वापस जाएं",
+    "contactSupport": "सहायता से संपर्क करें",
+    "successMessage": "संदेश सफलतापूर्वक भेजा गया!",
+    "errorMessage": "संदेश भेजने में विफल। कृपया पुनः प्रयास करें।",
+    "form": {
+      "fullName": {
+        "label": "पूरा नाम",
+        "placeholder": "अपना पूरा नाम दर्ज करें"
+      },
+      "email": {
+        "label": "ईमेल पता",
+        "placeholder": "अपना ईमेल दर्ज करें"
+      },
+      "subject": {
+        "label": "विषय",
+        "placeholder": "यह किस बारे में है?"
+      },
+      "message": {
+        "label": "संदेश",
+        "placeholder": "कृपया अपनी समस्या विस्तार से बताएं..."
+      },
+      "sendMessage": "संदेश भेजें",
+      "sending": "भेजा जा रहा है..."
+    },
+    "validation": {
+      "nameRequired": "नाम आवश्यक है",
+      "nameMin": "नाम कम से कम 2 अक्षरों का होना चाहिए",
+      "emailInvalid": "अमान्य ईमेल पता",
+      "emailRequired": "ईमेल आवश्यक है",
+      "subjectRequired": "विषय आवश्यक है",
+      "subjectMin": "विषय कम से कम 3 अक्षरों का होना चाहिए",
+      "messageRequired": "संदेश आवश्यक है",
+      "messageMin": "संदेश कम से कम 10 अक्षरों का होना चाहिए"
     }
   },
 
