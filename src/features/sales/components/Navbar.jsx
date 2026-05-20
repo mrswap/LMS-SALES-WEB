@@ -184,20 +184,22 @@ const HeaderNavbar = () => {
 
   return (
     <div className="bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] shadow-lg border-b border-[#1d3d8a] sticky top-0 z-50">
-      <div className="max-w-[1600px] mx-auto px-3 sm:px-6">
+      <div className="max-w-[1500px] mx-auto ">
         {/* Top Row: Logo + Navigation + Right Section (Language + User) */}
-        <div className="flex items-center justify-between h-14 sm:h-16 gap-4">
+        <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo Section */}
-          <div className="flex-shrink-0 bg-white">
-            <img
-              src={siteSettings?.company_logo || ""}
-              alt="Logo"
-              className="w-[130px] sm:w-[130px] h-[64px]"
-            />
+          <div className=" min-[1500px]:px-4">
+            <div className="flex-shrink-0 bg-white">
+              <img
+                src={siteSettings?.company_logo || ""}
+                alt="Logo"
+                className="w-[130px] sm:w-[130px] h-[64px] object-cover"
+              />
+            </div>
           </div>
 
           {/* Navigation Links - Desktop Only */}
-          <div className="hidden md:flex items-center justify-center gap-1 lg:gap-2 bg-white/5 backdrop-blur-sm rounded-full px-2 py-1">
+          <div className="hidden lg:flex items-center justify-center gap-1 lg:gap-2 bg-white/5 backdrop-blur-sm rounded-full px-2 py-1">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}

@@ -1438,7 +1438,7 @@ const Topics = () => {
 
       {/* Bottom Sticky CTA - Similar to Chapters */}
       {ctaButton && (
-        <div className="fixed bottom-15 md:bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
+        <div className="fixed bottom-15 lg:bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="hidden sm:block">
@@ -1489,7 +1489,7 @@ const Topics = () => {
       )}
 
       {/* Bottom Right Chat Button - Fixed position */}
-      <div className="fixed bottom-24 right-8 z-20">
+      <div className="fixed bottom-36 lg:bottom-24 right-8 z-20">
         <button
           onClick={handleChatClick}
           className="relative px-5 py-3 cursor-pointer rounded-xl text-base font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 shadow-lg transition-all duration-300 hover:scale-105 animate-pulse"
