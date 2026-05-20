@@ -188,11 +188,11 @@ const HeaderNavbar = () => {
         {/* Top Row: Logo + Navigation + Right Section (Language + User) */}
         <div className="flex items-center justify-between h-14 sm:h-16 gap-4">
           {/* Logo Section */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 bg-white">
             <img
               src={siteSettings?.company_logo || ""}
               alt="Logo"
-              className="h-7 sm:h-9 md:h-10 w-auto transition-transform hover:scale-105 cursor-pointer"
+              className="w-[130px] sm:w-[130px] h-[64px]"
             />
           </div>
 
