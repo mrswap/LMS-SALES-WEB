@@ -36,6 +36,7 @@ const HeaderNavbar = () => {
   const { profile, isLoading, isError, message } = useSelector(
     (state) => state.profile,
   );
+  const { siteSettings } = useSelector((state) => state.common);
 
   // Also need to get unreadCount from Redux
   const { unreadCount } = useSelector((state) => state.notification);
@@ -189,7 +190,7 @@ const HeaderNavbar = () => {
           {/* Logo Section */}
           <div className="flex-shrink-0">
             <img
-              src={logo}
+              src={siteSettings?.company_logo || ""}
               alt="Logo"
               className="h-7 sm:h-9 md:h-10 w-auto transition-transform hover:scale-105 cursor-pointer"
             />

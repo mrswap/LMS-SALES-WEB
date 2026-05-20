@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
 import success from "../../../../assets/admin/success-right.png";
 import { verifyEmail } from "../../../../redux/slice/authSlice";
+import { getSiteSettings } from "../../../../redux/slice/commonSlice";
+import Loader from "../../common/Loader";
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
@@ -17,6 +19,13 @@ const VerifyEmail = () => {
   const { isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth,
   );
+
+  const { siteSettings, isLoading: siteSettingsLoading } = useSelector(
+    (state) => state.common,
+  );
+  useEffect(() => {
+    dispatch(getSiteSettings());
+  }, [dispatch]);
 
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
@@ -60,13 +69,15 @@ const VerifyEmail = () => {
     }
   }, [isSuccess, isLoading, message]);
 
+  if (siteSettingsLoading) return <Loader />;
+
   // Loading State
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#EEF2F6] px-4">
         <div className="text-center mb-6">
           <img
-            src={logo}
+            src={siteSettings?.company_logo || ""}
             alt={t("verifyEmail.title")}
             className="w-[190px] h-[110px] object-contain"
           />
@@ -89,7 +100,9 @@ const VerifyEmail = () => {
           </div>
         </div>
 
-        <p className="text-xs text-gray-400 my-4">{t("verifyEmail.footer")}</p>
+        <p className="tracking-widest text-xs text-gray-400 my-6">
+          {siteSettings?.footer_text}
+        </p>
       </div>
     );
   }
@@ -100,7 +113,7 @@ const VerifyEmail = () => {
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#EEF2F6] px-4">
         <div className="text-center mb-6">
           <img
-            src={logo}
+            src={siteSettings?.company_logo || ""}
             alt={t("verifyEmail.title")}
             className="w-[190px] h-[110px] object-contain"
           />
@@ -149,7 +162,9 @@ const VerifyEmail = () => {
           </div>
         </div>
 
-        <p className="text-xs text-gray-400 my-4">{t("verifyEmail.footer")}</p>
+        <p className="tracking-widest text-xs text-gray-400 my-6">
+          {siteSettings?.footer_text}
+        </p>
       </div>
     );
   }
@@ -159,7 +174,7 @@ const VerifyEmail = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#EEF2F6] px-4">
       <div className="text-center mb-6">
         <img
-          src={logo}
+          src={siteSettings?.company_logo || ""}
           alt={t("verifyEmail.title")}
           className="w-[190px] h-[110px] object-contain"
         />
@@ -205,7 +220,9 @@ const VerifyEmail = () => {
         </div>
       </div>
 
-      <p className="text-xs text-gray-400 my-4">{t("verifyEmail.footer")}</p>
+      <p className="tracking-widest text-xs text-gray-400 my-6">
+        {siteSettings?.footer_text}
+      </p>
     </div>
   );
 };

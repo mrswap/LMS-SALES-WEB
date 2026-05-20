@@ -11,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../../../redux/slice/authSlice";
 import { useTranslation } from "react-i18next";
 import { useToast } from "../../common/toast/ToastContext";
+import { getSiteSettings } from "../../../../redux/slice/commonSlice";
+import Loader from "../../common/Loader";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,12 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const languageDropdownRef = useRef(null);
+  const { siteSettings, isLoading: siteSettingsLoading } = useSelector(
+    (state) => state.common,
+  );
+  useEffect(() => {
+    dispatch(getSiteSettings());
+  }, [dispatch]);
 
   const { isLoading } = useSelector((state) => state.auth);
 
@@ -98,6 +106,8 @@ const Login = () => {
     }
   };
 
+  if (siteSettingsLoading) return <Loader />;
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#EEF2F6] px-4 sm:px-6">
       {/* Card */}
@@ -145,7 +155,7 @@ const Login = () => {
         {/* Logo */}
         <div className="text-center mb-4">
           <img
-            src={logo}
+            src={siteSettings?.company_logo || ""}
             alt="logo"
             className="mx-auto w-[160px] sm:w-[190px]"
           />
@@ -282,6 +292,10 @@ const Login = () => {
           </div>
         </div>
       </div>
+
+      <p className="tracking-widest text-xs text-gray-400 mt-6">
+        {siteSettings?.footer_text}
+      </p>
     </div>
   );
 };

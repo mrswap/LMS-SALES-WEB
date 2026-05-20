@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi";
@@ -7,10 +7,12 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import TextInput from "../../common/form/TextInput";
 import FormButton from "../../common/form/FormButton";
 import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "../../common/toast/ToastContext";
 import { resetPassword } from "../../../../redux/slice/authSlice";
 import { useTranslation } from "react-i18next";
+import { getSiteSettings } from "../../../../redux/slice/commonSlice";
+import Loader from "../../common/Loader";
 
 const ResetPassword = () => {
   const dispatch = useDispatch();
@@ -21,6 +23,13 @@ const ResetPassword = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+
+  const { siteSettings, isLoading: siteSettingsLoading } = useSelector(
+    (state) => state.common,
+  );
+  useEffect(() => {
+    dispatch(getSiteSettings());
+  }, [dispatch]);
 
   // Get token from URL
   const location = useLocation();
@@ -64,11 +73,17 @@ const ResetPassword = () => {
     }
   };
 
+  if (siteSettingsLoading) return <Loader />;
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#EEF2F6] px-4">
       {/* Logo */}
       <div className="mb-6">
-        <img src={logo} alt={t("resetPassword.title")} className="w-[200px]" />
+        <img
+          src={siteSettings?.company_logo || ""}
+          alt={t("resetPassword.title")}
+          className="w-[200px]"
+        />
       </div>
 
       {/* Card */}
@@ -154,7 +169,9 @@ const ResetPassword = () => {
       </div>
 
       {/* Footer */}
-      <p className="text-xs text-gray-400 my-4">{t("resetPassword.footer")}</p>
+      <p className="tracking-widest text-xs text-gray-400 my-6">
+        {siteSettings?.footer_text}
+      </p>
     </div>
   );
 };

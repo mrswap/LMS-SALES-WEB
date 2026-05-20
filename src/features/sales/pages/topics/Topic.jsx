@@ -1047,9 +1047,23 @@ const Topics = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(getTopicById(id, currentPage));
+  //   }
+  // }, [dispatch, id, currentPage]);
+
   useEffect(() => {
     if (id) {
-      dispatch(getTopicById(id, currentPage));
+      dispatch(
+        getTopicById({
+          topicId: id,
+          params: {
+            page: currentPage,
+            limit: 6,
+          },
+        }),
+      );
     }
   }, [dispatch, id, currentPage]);
 
@@ -1072,10 +1086,15 @@ const Topics = () => {
     topicsData.every((topic) => topic.is_read === 1 || topic.is_read === true);
 
   // Check if quiz is available for the chapter/topic
-  const isQuizAvailable = Boolean(assessmentStatusTopic?.assessment?.id);
+  // const isQuizAvailable = Boolean(assessmentStatusTopic?.assessment?.id);
 
-  // Check if assessment status is passed
-  const isAssessmentPassed = assessmentStatusTopic?.status === "passed";
+  // // Check if assessment status is passed
+  // const isAssessmentPassed = assessmentStatusTopic?.status === "passed";
+
+  // Backend flags
+  const isQuizAvailable = contextHerarcyTopic?.is_quiz_available === true;
+
+  const isAssessmentPassed = contextHerarcyTopic?.is_completed === true;
 
   // Get current topic index and next topic
   const currentTopicIndex = topicsData.findIndex(
@@ -1118,11 +1137,7 @@ const Topics = () => {
 
   // Handle chat click - pulsating effect
   const handleChatClick = () => {
-    // Add your chat navigation or open chat modal here
-    // For example: navigate(`/chat/${id}`);
-    console.log("Open chat");
-    // You can customize this based on your requirements
-    alert("Chat karna hai to krlo!"); // Just as a demo, replace with actual chat logic
+    navigate(`/support/${id}`);
   };
 
   const getCTAButton = () => {
@@ -1186,7 +1201,7 @@ const Topics = () => {
         </PageHeaderLeft>
         <PageHeaderRight>
           <button
-            className="relative px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 animate-pulse"
+            className="relative px-4 cursor-pointer py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 animate-pulse"
             onClick={handleChatClick}
           >
             <FaCommentDots className="inline-block mr-2" />
@@ -1477,7 +1492,7 @@ const Topics = () => {
       <div className="fixed bottom-24 right-8 z-20">
         <button
           onClick={handleChatClick}
-          className="relative px-5 py-3 rounded-xl text-base font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 shadow-lg transition-all duration-300 hover:scale-105 animate-pulse"
+          className="relative px-5 py-3 cursor-pointer rounded-xl text-base font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 shadow-lg transition-all duration-300 hover:scale-105 animate-pulse"
         >
           <FaCommentDots className="inline-block mr-2 text-lg" />
           {t("topics.buttons.chat")}

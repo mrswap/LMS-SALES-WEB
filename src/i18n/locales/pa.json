@@ -175,9 +175,9 @@
   },
 
   "notification": {
-    "notifications": "ਨੋਟੀਫਿਕੇਸ਼ਨ",
+    "notifications": "ਸੂਚਨਾਵਾਂ",
     "markAllAsRead": "ਸਭ ਨੂੰ ਪੜ੍ਹਿਆ ਹੋਇਆ ਚਿੰਨ੍ਹਿਤ ਕਰੋ",
-    "stayUpdated": "ਆਪਣੀ ਲਰਨਿੰਗ ਯਾਤਰਾ ਅਤੇ ਉਪਲਬਧੀਆਂ ਨਾਲ ਅੱਪਡੇਟ ਰਹੋ",
+    "stayUpdated": "ਆਪਣੀ ਸਿੱਖਣ ਯਾਤਰਾ ਅਤੇ ਉਪਲਬਧੀਆਂ ਨਾਲ ਅਪਡੇਟ ਰਹੋ",
     "readMore": "ਹੋਰ ਪੜ੍ਹੋ",
     "justNow": "ਹੁਣੇ ਹੀ",
     "minAgo": "ਮਿੰਟ ਪਹਿਲਾਂ",
@@ -191,36 +191,33 @@
     "monthsAgo_other": "ਮਹੀਨੇ ਪਹਿਲਾਂ",
     "yearsAgo_one": "ਸਾਲ ਪਹਿਲਾਂ",
     "yearsAgo_other": "ਸਾਲ ਪਹਿਲਾਂ",
-    "page": "ਪੰਨਾ",
-    "of": "ਵਿੱਚੋਂ",
-    "noNotifications": "ਕੋਈ ਨੋਟੀਫਿਕੇਸ਼ਨ ਨਹੀਂ",
-    "quietCenter": "ਤੁਹਾਡਾ ਨੋਟੀਫਿਕੇਸ਼ਨ ਸੈਂਟਰ ਸ਼ਾਂਤ ਹੈ",
-    "viewAll": "ਸਾਰੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵੇਖੋ",
-    "allNotifications": "ਸਾਰੇ ਨੋਟੀਫਿਕੇਸ਼ਨ",
-    "unread": "ਨਾ ਪੜ੍ਹੇ",
-    "allCaughtUp": "ਸਭ ਕੁਝ ਅੱਪਡੇਟ ਹੈ",
-    "noNotificationsYet": "ਹਾਲੇ ਤੱਕ ਕੋਈ ਨੋਟੀਫਿਕੇਸ਼ਨ ਨਹੀਂ",
-    "allRead": "ਤੁਸੀਂ ਆਪਣੇ ਸਾਰੇ ਨੋਟੀਫਿਕੇਸ਼ਨ ਪੜ੍ਹ ਲਏ ਹਨ",
-    "willAppear": "ਜਦੋਂ ਤੁਹਾਨੂੰ ਨੋਟੀਫਿਕੇਸ਼ਨ ਮਿਲਣਗੇ, ਉਹ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੇ",
-    "notFound": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਨਹੀਂ ਮਿਲਿਆ",
-    "notFoundDescription": "ਜੋ ਨੋਟੀਫਿਕੇਸ਼ਨ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ",
-    "goBack": "ਨੋਟੀਫਿਕੇਸ਼ਨਾਂ ਵੱਲ ਵਾਪਸ ਜਾਓ",
-    "detailSubtitle": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੇ ਵੇਰਵੇ ਅਤੇ ਜਾਣਕਾਰੀ",
-    "additionalInfo": "ਵਾਧੂ ਜਾਣਕਾਰੀ",
-    "screen": "ਸਕ੍ਰੀਨ",
-    "link": "ਲਿੰਕ",
+    "page": "ਪੇਜ",
+    "of": "ਦਾ",
+    "noNotifications": "ਕੋਈ ਸੂਚਨਾ ਨਹੀਂ",
+    "quietCenter": "ਤੁਹਾਡਾ ਸੂਚਨਾ ਕੇਂਦਰ ਸ਼ਾਂਤ ਹੈ",
+    "viewAll": "ਸਾਰੀਆਂ ਸੂਚਨਾਵਾਂ ਵੇਖੋ",
+    "allNotifications": "ਸਾਰੀਆਂ ਸੂਚਨਾਵਾਂ",
+    "unread": "ਨਾ ਪੜ੍ਹੀਆਂ",
+    "allCaughtUp": "ਸਭ ਕੁਝ ਅਪਡੇਟ ਹੈ",
+    "noNotificationsYet": "ਹਾਲੇ ਤੱਕ ਕੋਈ ਸੂਚਨਾ ਨਹੀਂ",
+    "allRead": "ਤੁਸੀਂ ਆਪਣੀਆਂ ਸਾਰੀਆਂ ਸੂਚਨਾਵਾਂ ਪੜ੍ਹ ਲਈਆਂ ਹਨ",
+    "willAppear": "ਜਦੋਂ ਤੁਹਾਨੂੰ ਸੂਚਨਾਵਾਂ ਮਿਲਣਗੀਆਂ, ਉਹ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੀਆਂ",
+    "notFound": "ਸੂਚਨਾ ਨਹੀਂ ਮਿਲੀ",
+    "notFoundDescription": "ਜਿਸ ਸੂਚਨਾ ਨੂੰ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ",
+    "goBack": "ਸੂਚਨਾਵਾਂ ਵੱਲ ਵਾਪਸ ਜਾਓ",
+    "detailSubtitle": "ਸੂਚਨਾ ਦੇ ਵੇਰਵੇ ਅਤੇ ਜਾਣਕਾਰੀ",
     "new": "ਨਵਾਂ",
     "stats": {
-      "total": "ਕੁੱਲ ਨੋਟੀਫਿਕੇਸ਼ਨ",
-      "unread": "ਨਾ ਪੜ੍ਹੇ",
-      "read": "ਪੜ੍ਹੇ ਹੋਏ"
+      "total": "ਕੁੱਲ ਸੂਚਨਾਵਾਂ",
+      "unread": "ਨਾ ਪੜ੍ਹੀਆਂ",
+      "read": "ਪੜ੍ਹੀਆਂ"
     }
   },
 
   "breadcrumb": {
     "home": "ਹੋਮ",
-    "notifications": "ਨੋਟੀਫਿਕੇਸ਼ਨ",
-    "notificationDetails": "ਨੋਟੀਫਿਕੇਸ਼ਨ ਵੇਰਵਾ"
+    "notifications": "ਸੂਚਨਾਵਾਂ",
+    "notificationDetails": "ਸੂਚਨਾ ਵੇਰਵੇ"
   },
 
   "dashboard": {
