@@ -79,19 +79,41 @@ export const getChapterById = createAsyncThunk(
 /* ===========================
    GET TOPIC BY ID
 =========================== */
+// export const getTopicById = createAsyncThunk(
+//     "coursePreview/getTopicById",
+//     async (topicId, thunkAPI) => {
+//         try {
+//             const res = await axiosInstance.get(
+//                 `/trainee/content/topics/${topicId}?page=1&limit=15`,
+//                 getAuthConfig()
+//             );
+
+//             return res.data;
+//         } catch (error) {
+//             return thunkAPI.rejectWithValue(
+//                 error.response?.data || { message: "Failed to fetch topic" }
+//             );
+//         }
+//     }
+// );
+
 export const getTopicById = createAsyncThunk(
     "coursePreview/getTopicById",
-    async (topicId, thunkAPI) => {
+    async ({ topicId, params }, thunkAPI) => {
         try {
+            const query = new URLSearchParams(params).toString();
+
             const res = await axiosInstance.get(
-                `/trainee/content/topics/${topicId}?page=1&limit=15`,
+                `/trainee/content/topics/${topicId}?${query}`,
                 getAuthConfig()
             );
 
             return res.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(
-                error.response?.data || { message: "Failed to fetch topic" }
+                error.response?.data || {
+                    message: "Failed to fetch topic",
+                }
             );
         }
     }

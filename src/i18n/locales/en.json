@@ -206,9 +206,6 @@
     "notFoundDescription": "The notification you're looking for doesn't exist",
     "goBack": "Go back to notifications",
     "detailSubtitle": "Notification details and information",
-    "additionalInfo": "Additional Information",
-    "screen": "Screen",
-    "link": "Link",
     "new": "New",
     "stats": {
       "total": "Total Notifications",

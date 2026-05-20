@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   FiMail,
   FiArrowLeft,
@@ -9,21 +9,33 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { getSiteSettings } from "../../../../redux/slice/commonSlice";
+import Loader from "../../common/Loader";
 
 const CheckEmail = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { siteSettings, isLoading: siteSettingsLoading } = useSelector(
+    (state) => state.common,
+  );
+  useEffect(() => {
+    dispatch(getSiteSettings());
+  }, [dispatch]);
 
   // Get email from registration form (passed via navigation state)
   const userEmail = location.state?.email || "your registered email";
 
+  if (siteSettingsLoading) return <Loader />;
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50 p-4">
       {/* Logo */}
       <div className="text-center mb-8">
         <img
-          src={logo}
+          src={siteSettings?.company_logo || ""}
           alt={t("checkEmail.title")}
           className="w-[180px] h-auto mx-auto"
         />
@@ -97,9 +109,9 @@ const CheckEmail = () => {
       </div>
 
       {/* Footer */}
-      <div className="mt-8 text-center">
-        <p className="text-xs text-gray-400">{t("checkEmail.footer")}</p>
-      </div>
+      <p className="tracking-widest text-xs text-gray-400 my-6">
+        {siteSettings?.footer_text}
+      </p>
     </div>
   );
 };
