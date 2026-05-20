@@ -109,12 +109,12 @@ const Footer = () => {
           {/* Main Footer Content */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Company Info Section */}
-            <div className="space-y-4">
+            <div className="space-y-4 ">
               {data.company_logo && (
                 <img
                   src={data.company_logo}
                   alt="Company Logo"
-                  className="h-12 w-auto"
+                  className="w-[160px] sm:w-[160px] h-[100px] bg-white rounded-sm"
                 />
               )}
               {data.company_bio && (
