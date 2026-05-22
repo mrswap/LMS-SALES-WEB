@@ -573,42 +573,42 @@
   },
 
   "levelDetails": {
-    "pageTitle": "ਲੈਵਲ ਵੇਰਵਾ",
-    "pageSubtitle": "ਆਪਣੀ ਤਰੱਕੀ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ ਅਤੇ ਆਪਣਾ ਸਫਰ ਜਾਰੀ ਰੱਖੋ",
+    "pageTitle": "ਲੈਵਲ ਵੇਰਵੇ",
+    "pageSubtitle": "ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ ਅਤੇ ਆਪਣਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
     "backButton": "ਵਾਪਸ",
     "levelBadge": "ਲੈਵਲ",
-    "modulesCount": "ਮੋਡੀਊਲ",
+    "modulesCount": "ਮੌਡੀਊਲ",
     "stats": {
-      "progress": "ਤਰੱਕੀ",
-      "completed": "ਪੂਰਾ",
+      "progress": "ਪ੍ਰਗਤੀ",
+      "completed": "ਪੂਰਾ ਹੋਇਆ",
       "estTime": "ਅਨੁਮਾਨਿਤ ਸਮਾਂ",
-      "modulesCompleted": "ਮੋਡੀਊਲ ਪੂਰੇ ਕੀਤੇ",
+      "modulesCompleted": "ਮੌਡੀਊਲ ਪੂਰੇ ਹੋਏ",
       "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ",
-      "selfPaced": "ਆਪਣੀ ਗਤੀ ਨਾਲ"
+      "selfPaced": "ਆਪਣੀ ਰਫ਼ਤਾਰ ਨਾਲ"
     },
     "aboutSection": {
       "title": "ਇਸ ਲੈਵਲ ਬਾਰੇ"
     },
     "modulesSection": {
-      "title": "ਸਿੱਖਣ ਦੇ ਮੋਡੀਊਲ",
-      "moduleText": "ਮੋਡੀਊਲ",
+      "title": "ਲਰਨਿੰਗ ਮੌਡੀਊਲ",
+      "moduleText": "ਮੌਡੀਊਲ",
       "current": "ਮੌਜੂਦਾ",
-      "completed": "ਪੂਰਾ",
-      "locked": "ਲੌਕ",
-      "chapters": "ਅਧਿਆਇ",
-      "topics": "ਵਿਸ਼ੇ",
-      "lockedButton": "ਲੌਕ"
+      "completed": "ਪੂਰਾ ਹੋਇਆ",
+      "locked": "ਲੌਕ ਕੀਤਾ",
+      "chapters": "ਅਧਿਆਏ",
+      "topics": "ਟੌਪਿਕਸ",
+      "lockedButton": "ਲੌਕ ਹੈ"
     },
     "buttons": {
       "continue": "ਜਾਰੀ ਰੱਖੋ",
-      "view": "ਵੇਖੋ"
+      "view": "ਦੇਖੋ"
     },
     "cta": {
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
-      "allCompleted": "ਸਾਰੇ ਪੂਰੇ",
-      "continueJourney": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ",
+      "allCompleted": "ਸਭ ਪੂਰਾ ਹੋ ਗਿਆ",
+      "continueJourney": "ਆਪਣਾ ਸਿੱਖਣ ਦਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
       "nextModule": "ਅਗਲਾ:",
-      "allModulesCompleted": "ਸਾਰੇ ਮੋਡੀਊਲ ਪੂਰੇ ਹੋ ਗਏ!"
+      "allModulesCompleted": "ਸਾਰੇ ਮੌਡੀਊਲ ਪੂਰੇ ਹੋ ਗਏ!"
     },
     "emptyState": {
       "noData": "ਕੋਈ ਲੈਵਲ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
@@ -616,92 +616,92 @@
   },
 
   "modules": {
-    "pageTitle": "ਮੋਡੀਊਲ ਵੇਰਵਾ",
-    "pageSubtitle": "ਅਧਿਆਇਆਂ ਰਾਹੀਂ ਆਪਣੀ ਤਰੱਕੀ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
+    "pageTitle": "ਮੌਡੀਊਲ ਵੇਰਵੇ",
+    "pageSubtitle": "ਅਧਿਆਵਾਂ ਰਾਹੀਂ ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ",
     "backButton": "ਵਾਪਸ",
     "badge": {
-      "chapters": "ਅਧਿਆਇ",
-      "topics": "ਵਿਸ਼ੇ"
+      "chapters": "ਅਧਿਆਏ",
+      "topics": "ਟੌਪਿਕਸ"
     },
     "stats": {
-      "progress": "ਤਰੱਕੀ",
-      "completed": "ਪੂਰਾ",
+      "progress": "ਪ੍ਰਗਤੀ",
+      "completed": "ਪੂਰਾ ਹੋਇਆ",
       "estTime": "ਅਨੁਮਾਨਿਤ ਸਮਾਂ",
-      "chaptersCompleted": "ਅਧਿਆਇ ਪੂਰੇ ਕੀਤੇ",
+      "chaptersCompleted": "ਅਧਿਆਏ ਪੂਰੇ ਹੋਏ",
       "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ",
-      "selfPaced": "ਆਪਣੀ ਗਤੀ ਨਾਲ",
-      "topics": "ਵਿਸ਼ੇ"
+      "selfPaced": "ਆਪਣੀ ਰਫ਼ਤਾਰ ਨਾਲ",
+      "topics": "ਟੌਪਿਕਸ"
     },
     "aboutSection": {
-      "title": "ਇਸ ਮੋਡੀਊਲ ਬਾਰੇ"
+      "title": "ਇਸ ਮੌਡੀਊਲ ਬਾਰੇ"
     },
     "chaptersSection": {
-      "title": "ਸਾਰੇ ਅਧਿਆਇ",
+      "title": "ਸਾਰੇ ਅਧਿਆਏ",
       "chapterText": "ਅਧਿਆਇ",
       "current": "ਮੌਜੂਦਾ",
-      "completed": "ਪੂਰਾ",
-      "locked": "ਲੌਕ",
-      "topics": "ਵਿਸ਼ੇ",
-      "completedText": "ਪੂਰਾ",
+      "completed": "ਪੂਰਾ ਹੋਇਆ",
+      "locked": "ਲੌਕ ਕੀਤਾ",
+      "topics": "ਟੌਪਿਕਸ",
+      "completedText": "ਪੂਰਾ ਹੋਇਆ",
       "min": "ਮਿੰਟ",
-      "lockedButton": "ਲੌਕ"
+      "lockedButton": "ਲੌਕ ਹੈ"
     },
     "buttons": {
       "continue": "ਜਾਰੀ ਰੱਖੋ",
-      "view": "ਵੇਖੋ"
+      "view": "ਦੇਖੋ"
     },
     "cta": {
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
-      "allCompleted": "ਸਾਰੇ ਪੂਰੇ",
-      "continueJourney": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ",
+      "allCompleted": "ਸਭ ਪੂਰਾ ਹੋ ਗਿਆ",
+      "continueJourney": "ਆਪਣਾ ਸਿੱਖਣ ਦਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
       "nextChapter": "ਅਗਲਾ:",
-      "allChaptersCompleted": "ਸਾਰੇ ਅਧਿਆਇ ਪੂਰੇ ਹੋ ਗਏ!"
+      "allChaptersCompleted": "ਸਾਰੇ ਅਧਿਆਏ ਪੂਰੇ ਹੋ ਗਏ!"
     },
     "emptyState": {
-      "noData": "ਕੋਈ ਮੋਡੀਊਲ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+      "noData": "ਕੋਈ ਮੌਡੀਊਲ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
     }
   },
 
   "chapters": {
-    "pageTitle": "ਅਧਿਆਇ ਵੇਰਵਾ",
-    "pageSubtitle": "ਵਿਸ਼ਿਆਂ ਰਾਹੀਂ ਆਪਣੀ ਤਰੱਕੀ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
+    "pageTitle": "ਅਧਿਆਇ ਵੇਰਵੇ",
+    "pageSubtitle": "ਟੌਪਿਕਸ ਰਾਹੀਂ ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ",
     "backButton": "ਵਾਪਸ",
     "badge": {
-      "topics": "ਵਿਸ਼ੇ",
+      "topics": "ਟੌਪਿਕਸ",
       "minutes": "ਮਿੰਟ"
     },
     "stats": {
-      "progress": "ਤਰੱਕੀ",
-      "completed": "ਪੂਰਾ",
+      "progress": "ਪ੍ਰਗਤੀ",
+      "completed": "ਪੂਰਾ ਹੋਇਆ",
       "estTime": "ਅਨੁਮਾਨਿਤ ਸਮਾਂ",
-      "topicsCompleted": "ਵਿਸ਼ੇ ਪੂਰੇ ਕੀਤੇ",
+      "topicsCompleted": "ਟੌਪਿਕਸ ਪੂਰੇ ਹੋਏ",
       "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ",
-      "selfPaced": "ਆਪਣੀ ਗਤੀ ਨਾਲ"
+      "selfPaced": "ਆਪਣੀ ਰਫ਼ਤਾਰ ਨਾਲ"
     },
     "aboutSection": {
       "title": "ਇਸ ਅਧਿਆਇ ਬਾਰੇ"
     },
     "topicsSection": {
-      "title": "ਸਾਰੇ ਵਿਸ਼ੇ",
-      "topicText": "ਵਿਸ਼ਾ",
+      "title": "ਸਾਰੇ ਟੌਪਿਕਸ",
+      "topicText": "ਟੌਪਿਕ",
       "current": "ਮੌਜੂਦਾ",
       "completed": "ਪੂਰਾ ਹੋਇਆ",
-      "locked": "ਲੌਕ ਕੀਤਾ ਗਿਆ",
+      "locked": "ਲੌਕ ਕੀਤਾ",
       "min": "ਮਿੰਟ",
       "giveQuiz": "ਕੁਇਜ਼ ਦਿਓ",
-      "lockedButton": "ਲੌਕ ਕੀਤਾ ਗਿਆ",
+      "lockedButton": "ਲੌਕ ਹੈ",
       "quizNotAvailable": "ਕੁਇਜ਼ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
     },
     "buttons": {
       "continue": "ਜਾਰੀ ਰੱਖੋ",
-      "view": "ਵੇਖੋ"
+      "view": "ਦੇਖੋ"
     },
     "cta": {
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
-      "allCompleted": "ਸਾਰੇ ਪੂਰੇ",
-      "continueJourney": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ",
+      "allCompleted": "ਸਭ ਪੂਰਾ ਹੋ ਗਿਆ",
+      "continueJourney": "ਆਪਣਾ ਸਿੱਖਣ ਦਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
       "nextTopic": "ਅਗਲਾ:",
-      "allTopicsCompleted": "ਸਾਰੇ ਵਿਸ਼ੇ ਪੂਰੇ ਹੋ ਗਏ!"
+      "allTopicsCompleted": "ਸਾਰੇ ਟੌਪਿਕਸ ਪੂਰੇ ਹੋ ਗਏ!"
     },
     "emptyState": {
       "noData": "ਕੋਈ ਅਧਿਆਇ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
