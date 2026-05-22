@@ -573,31 +573,31 @@
   },
 
   "levelDetails": {
-    "pageTitle": "स्तर विवरण",
-    "pageSubtitle": "अपनी प्रगति को ट्रैक करें और अपनी यात्रा जारी रखें",
+    "pageTitle": "लेवल डिटेल्स",
+    "pageSubtitle": "अपनी प्रगति ट्रैक करें और अपनी यात्रा जारी रखें",
     "backButton": "वापस",
-    "levelBadge": "स्तर",
-    "modulesCount": "मॉड्यूल",
+    "levelBadge": "लेवल",
+    "modulesCount": "मॉड्यूल्स",
     "stats": {
       "progress": "प्रगति",
-      "completed": "पूर्ण",
+      "completed": "पूर्ण हुआ",
       "estTime": "अनुमानित समय",
-      "modulesCompleted": "मॉड्यूल पूरे किए गए",
+      "modulesCompleted": "मॉड्यूल पूर्ण हुए",
       "totalLearningTime": "कुल सीखने का समय",
-      "selfPaced": "स्वयं की गति से"
+      "selfPaced": "अपनी गति से"
     },
     "aboutSection": {
-      "title": "इस स्तर के बारे में"
+      "title": "इस लेवल के बारे में"
     },
     "modulesSection": {
-      "title": "सीखने के मॉड्यूल",
+      "title": "लर्निंग मॉड्यूल्स",
       "moduleText": "मॉड्यूल",
-      "current": "वर्तमान",
-      "completed": "पूर्ण",
-      "locked": "लॉक",
+      "current": "करंट",
+      "completed": "पूर्ण हुआ",
+      "locked": "लॉक किया हुआ",
       "chapters": "अध्याय",
-      "topics": "विषय",
-      "lockedButton": "लॉक"
+      "topics": "टॉपिक्स",
+      "lockedButton": "लॉक है"
     },
     "buttons": {
       "continue": "जारी रखें",
@@ -605,32 +605,32 @@
     },
     "cta": {
       "continueLearning": "सीखना जारी रखें",
-      "allCompleted": "सभी पूर्ण",
+      "allCompleted": "सब पूर्ण हो गया",
       "continueJourney": "अपनी सीखने की यात्रा जारी रखें",
       "nextModule": "अगला:",
-      "allModulesCompleted": "सभी मॉड्यूल पूरे हो गए!"
+      "allModulesCompleted": "सभी मॉड्यूल पूर्ण हो गए!"
     },
     "emptyState": {
-      "noData": "कोई स्तर डेटा उपलब्ध नहीं है"
+      "noData": "कोई लेवल डेटा उपलब्ध नहीं है"
     }
   },
 
   "modules": {
-    "pageTitle": "मॉड्यूल विवरण",
-    "pageSubtitle": "अध्यायों के माध्यम से अपनी प्रगति को ट्रैक करें",
+    "pageTitle": "मॉड्यूल डिटेल्स",
+    "pageSubtitle": "अध्यायों के माध्यम से अपनी प्रगति ट्रैक करें",
     "backButton": "वापस",
     "badge": {
       "chapters": "अध्याय",
-      "topics": "विषय"
+      "topics": "टॉपिक्स"
     },
     "stats": {
       "progress": "प्रगति",
-      "completed": "पूर्ण",
+      "completed": "पूर्ण हुआ",
       "estTime": "अनुमानित समय",
-      "chaptersCompleted": "अध्याय पूरे किए गए",
+      "chaptersCompleted": "अध्याय पूर्ण हुए",
       "totalLearningTime": "कुल सीखने का समय",
-      "selfPaced": "स्वयं की गति से",
-      "topics": "विषय"
+      "selfPaced": "अपनी गति से",
+      "topics": "टॉपिक्स"
     },
     "aboutSection": {
       "title": "इस मॉड्यूल के बारे में"
@@ -638,13 +638,13 @@
     "chaptersSection": {
       "title": "सभी अध्याय",
       "chapterText": "अध्याय",
-      "current": "वर्तमान",
-      "completed": "पूर्ण",
-      "locked": "लॉक",
-      "topics": "विषय",
-      "completedText": "पूर्ण",
+      "current": "करंट",
+      "completed": "पूर्ण हुआ",
+      "locked": "लॉक किया हुआ",
+      "topics": "टॉपिक्स",
+      "completedText": "पूर्ण हुआ",
       "min": "मिनट",
-      "lockedButton": "लॉक"
+      "lockedButton": "लॉक है"
     },
     "buttons": {
       "continue": "जारी रखें",
@@ -652,10 +652,10 @@
     },
     "cta": {
       "continueLearning": "सीखना जारी रखें",
-      "allCompleted": "सभी पूर्ण",
+      "allCompleted": "सब पूर्ण हो गया",
       "continueJourney": "अपनी सीखने की यात्रा जारी रखें",
       "nextChapter": "अगला:",
-      "allChaptersCompleted": "सभी अध्याय पूरे हो गए!"
+      "allChaptersCompleted": "सभी अध्याय पूर्ण हो गए!"
     },
     "emptyState": {
       "noData": "कोई मॉड्यूल डेटा उपलब्ध नहीं है"
@@ -663,33 +663,33 @@
   },
 
   "chapters": {
-    "pageTitle": "अध्याय विवरण",
-    "pageSubtitle": "विषयों के माध्यम से अपनी प्रगति को ट्रैक करें",
+    "pageTitle": "चैप्टर डिटेल्स",
+    "pageSubtitle": "टॉपिक्स के माध्यम से अपनी प्रगति ट्रैक करें",
     "backButton": "वापस",
     "badge": {
-      "topics": "विषय",
+      "topics": "टॉपिक्स",
       "minutes": "मिनट"
     },
     "stats": {
       "progress": "प्रगति",
-      "completed": "पूर्ण",
+      "completed": "पूर्ण हुआ",
       "estTime": "अनुमानित समय",
-      "topicsCompleted": "विषय पूरे किए गए",
+      "topicsCompleted": "टॉपिक्स पूर्ण हुए",
       "totalLearningTime": "कुल सीखने का समय",
-      "selfPaced": "स्वयं की गति से"
+      "selfPaced": "अपनी गति से"
     },
     "aboutSection": {
       "title": "इस अध्याय के बारे में"
     },
     "topicsSection": {
-      "title": "सभी विषय",
-      "topicText": "विषय",
-      "current": "वर्तमान",
-      "completed": "पूर्ण",
-      "locked": "लॉक्ड",
+      "title": "सभी टॉपिक्स",
+      "topicText": "टॉपिक",
+      "current": "करंट",
+      "completed": "पूर्ण हुआ",
+      "locked": "लॉक किया हुआ",
       "min": "मिनट",
       "giveQuiz": "क्विज़ दें",
-      "lockedButton": "लॉक्ड",
+      "lockedButton": "लॉक है",
       "quizNotAvailable": "क्विज़ उपलब्ध नहीं है"
     },
     "buttons": {
@@ -698,10 +698,10 @@
     },
     "cta": {
       "continueLearning": "सीखना जारी रखें",
-      "allCompleted": "सभी पूर्ण",
+      "allCompleted": "सब पूर्ण हो गया",
       "continueJourney": "अपनी सीखने की यात्रा जारी रखें",
       "nextTopic": "अगला:",
-      "allTopicsCompleted": "सभी विषय पूरे हो गए!"
+      "allTopicsCompleted": "सभी टॉपिक्स पूर्ण हो गए!"
     },
     "emptyState": {
       "noData": "कोई अध्याय डेटा उपलब्ध नहीं है"
