@@ -79,7 +79,7 @@ const VerifyEmail = () => {
           <img
             src={siteSettings?.company_logo || ""}
             alt={t("verifyEmail.title")}
-            className="w-[190px] h-[110px] object-contain"
+            className="w-[160px] sm:w-[160px] h-[100px]"
           />
         </div>
 
@@ -115,7 +115,7 @@ const VerifyEmail = () => {
           <img
             src={siteSettings?.company_logo || ""}
             alt={t("verifyEmail.title")}
-            className="w-[190px] h-[110px] object-contain"
+            className="w-[160px] sm:w-[160px] h-[100px]"
           />
         </div>
 
@@ -176,7 +176,7 @@ const VerifyEmail = () => {
         <img
           src={siteSettings?.company_logo || ""}
           alt={t("verifyEmail.title")}
-          className="w-[190px] h-[110px] object-contain"
+          className="w-[160px] sm:w-[160px] h-[100px] object-contain"
         />
       </div>
 

@@ -1092,9 +1092,19 @@ const Topics = () => {
   // const isAssessmentPassed = assessmentStatusTopic?.status === "passed";
 
   // Backend flags
-  const isQuizAvailable = contextHerarcyTopic?.is_quiz_available === true;
+  // const isQuizAvailable = contextHerarcyTopic?.is_quiz_available === true;
+  // Quiz available only when backend flag true + assessment exists
+  const isQuizAvailable =
+    (contextHerarcyTopic?.is_quiz_available === true ||
+      contextHerarcyTopic?.is_quiz_available === 1) &&
+    !!assessmentStatusTopic?.assessment?.id;
 
-  const isAssessmentPassed = contextHerarcyTopic?.is_completed === true;
+  // Assessment passed
+  const isAssessmentPassed =
+    contextHerarcyTopic?.is_completed === true ||
+    contextHerarcyTopic?.is_completed === 1;
+
+  // const isAssessmentPassed = contextHerarcyTopic?.is_completed === true;
 
   // Get current topic index and next topic
   const currentTopicIndex = topicsData.findIndex(
@@ -1118,9 +1128,15 @@ const Topics = () => {
   };
 
   // Handle quiz navigation
+  // const handleGiveQuiz = () => {
+  //   if (!isAssessmentPassed) {
+  //     navigate(`/quiz/${assessmentStatusTopic?.assessment?.id}`);
+  //   }
+  // };
+
   const handleGiveQuiz = () => {
-    if (!isAssessmentPassed) {
-      navigate(`/quiz/${assessmentStatusTopic?.assessment?.id}`);
+    if (!isAssessmentPassed && assessmentStatusTopic?.assessment?.id) {
+      navigate(`/quiz/${assessmentStatusTopic.assessment.id}`);
     }
   };
 
@@ -1148,12 +1164,23 @@ const Topics = () => {
         icon: <FaPlay className="w-4 h-4" />,
         variant: "green",
       };
-    } else if (allTopicsRead && !isAssessmentPassed && isQuizAvailable) {
+    }
+    //  else if (allTopicsRead && !isAssessmentPassed && isQuizAvailable) {
+    //   return {
+    //     text: t("topics.cta.giveQuiz"),
+    //     action: handleGiveQuiz,
+    //     icon: <FaQuestionCircle className="w-4 h-4" />,
+    //     variant: "purple",
+    //   };
+    else if (allTopicsRead && !isAssessmentPassed) {
       return {
-        text: t("topics.cta.giveQuiz"),
-        action: handleGiveQuiz,
+        text: isQuizAvailable
+          ? t("topics.cta.giveQuiz")
+          : t("chapters.topicsSection.quizNotAvailable"),
+        action: isQuizAvailable ? handleGiveQuiz : null,
         icon: <FaQuestionCircle className="w-4 h-4" />,
-        variant: "purple",
+        variant: isQuizAvailable ? "purple" : "gray",
+        disabled: !isQuizAvailable,
       };
     } else if (hasMorePages) {
       return {

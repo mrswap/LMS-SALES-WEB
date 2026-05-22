@@ -114,51 +114,6 @@ export default function Modules() {
       </PageHeader>
       <PageBody>
         {/* 🔹 Hero Banner */}
-        {/* <div className="relative rounded-2xl overflow-hidden shadow-xl group">
-          <img
-            src={currentModule?.thumbnail}
-            className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
-            alt="Module Banner"
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-          <div className="absolute bottom-6 left-6 right-6 text-white">
-            <div className="mb-3">
-              {currentModule?.parent_hierarchy?.level?.title && (
-                <div className="flex items-center gap-2 py-0.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-300/60"></div>
-                  <span className="text-white/70 text-xs">
-                    {currentModule.parent_hierarchy.level.title}
-                  </span>
-                </div>
-              )}
-
-              <div className="flex items-center gap-2 py-1 pl-4">
-                <div className="w-2 h-2 rounded-full bg-blue-300"></div>
-                <span className="font-semibold text-white text-sm border-b border-blue-300/80">
-                  {currentModule?.title}
-                </span>
-              </div>
-
-              <div className="mt-2 text-xs text-white/60 pl-8">
-                {totalChapters} {t("modules.badge.chapters")} • {totalTopics}{" "}
-                {t("modules.badge.topics")}
-              </div>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-              {currentModule?.title || "-"}
-            </h1>
-          </div>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white px-3 py-1.5 rounded-xl text-sm font-medium transition-all hover:shadow-lg flex items-center gap-1"
-          >
-            <IoArrowBack className="w-4 h-4" /> {t("modules.backButton")}
-          </button>
-        </div> */}
         <div className="relative rounded-2xl overflow-hidden shadow-xl group">
           <img
             src={currentModule?.thumbnail}

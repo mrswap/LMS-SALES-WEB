@@ -283,7 +283,7 @@ const Register = () => {
           <img
             src={siteSettings?.company_logo || ""}
             alt="logo"
-            className="mx-auto w-[160px] sm:w-[190px]"
+            className="mx-auto  w-[160px] sm:w-[160px] h-[100px]"
           />
           <p className="text-gray-500 text-sm mt-2">{t("register.subtitle")}</p>
         </div>

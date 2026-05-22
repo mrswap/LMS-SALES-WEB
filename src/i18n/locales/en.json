@@ -1,6 +1,6 @@
 {
   "login": {
-    "title": "Welcome Back!",
+    "title": "Login to Your Account",
     "emailLabel": "Email Address",
     "emailPlaceholder": "Enter your email",
     "passwordLabel": "Password",
@@ -157,6 +157,8 @@
     "footer": "© 2025 Avante Medical LMS · v2.1.0",
     "successMessage": "Password reset successful",
     "errorMessage": "Password reset failed",
+    "signInText": "Remember your password?",
+    "signInLink": "Sign In",
     "validation": {
       "passwordRequired": "Password is required",
       "passwordMin": "Password must be at least 8 characters",

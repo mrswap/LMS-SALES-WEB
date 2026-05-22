@@ -37,7 +37,7 @@ const CheckEmail = () => {
         <img
           src={siteSettings?.company_logo || ""}
           alt={t("checkEmail.title")}
-          className="w-[180px] h-auto mx-auto"
+          className="w-[160px] sm:w-[160px] h-[100px] mx-auto"
         />
       </div>
 

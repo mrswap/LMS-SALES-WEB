@@ -1,28 +1,28 @@
 {
   "login": {
-    "title": "ਵਾਪਸੀ ਤੇ ਸੁਆਗਤ ਹੈ!",
+    "title": "ਆਪਣੇ ਖਾਤੇ ਵਿੱਚ ਲੌਗਿਨ ਕਰੋ",
     "emailLabel": "ਈਮੇਲ ਪਤਾ",
     "emailPlaceholder": "ਆਪਣਾ ਈਮੇਲ ਦਰਜ ਕਰੋ",
     "passwordLabel": "ਪਾਸਵਰਡ",
     "passwordPlaceholder": "ਆਪਣਾ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
     "forgotPassword": "ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ?",
-    "stayLoggedIn": "ਲਾਗਇਨ ਬਣਾਈ ਰੱਖੋ",
+    "stayLoggedIn": "ਲੌਗਿਨ ਰਹੋ",
     "button": "ਸਾਇਨ ਇਨ ਕਰੋ",
     "loading": "ਸਾਇਨ ਇਨ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "or": "ਜਾਂ",
-    "newEmployee": "ਨਵੇਂ ਕਰਮਚਾਰੀ?",
+    "newEmployee": "ਨਵੇਂ ਕਰਮਚਾਰੀ ਹੋ?",
     "completeEmployeeOnboarding": "ਕਰਮਚਾਰੀ ਆਨਬੋਰਡਿੰਗ ਪੂਰੀ ਕਰੋ",
-    "secureLogin": "ਸੁਰੱਖਿਅਤ ਲਾਗਇਨ",
+    "secureLogin": "ਸੁਰੱਖਿਅਤ ਲੌਗਿਨ",
     "termsAndConditions": "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
     "privacyPolicy": "ਪਰਾਈਵੇਸੀ ਨੀਤੀ",
     "aboutUs": "ਸਾਡੇ ਬਾਰੇ",
-    "troubleshooting": "ਸਮੱਸਿਆ ਨਿਵਾਰਣ",
+    "troubleshooting": "ਸਮੱਸਿਆ ਹੱਲ",
     "language": "ਭਾਸ਼ਾ",
-    "successMessage": "ਲਾਗਇਨ ਸਫਲ",
+    "successMessage": "ਲੌਗਿਨ ਸਫਲ ਰਿਹਾ",
     "errorMessage": "ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ",
     "validation": {
       "emailRequired": "ਈਮੇਲ ਲਾਜ਼ਮੀ ਹੈ",
-      "emailInvalid": "ਗਲਤ ਈਮੇਲ ਪਤਾ",
+      "emailInvalid": "ਅਵੈਧ ਈਮੇਲ ਪਤਾ",
       "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ"
     }
   },
@@ -145,32 +145,34 @@
   },
 
   "resetPassword": {
-    "title": "ਅਵਾਂਟੇ ਮੈਡੀਕਲ ਐਲ.ਐਮ.ਐਸ",
+    "title": "ਅਵਾਂਤੇ ਮੈਡੀਕਲ ਐਲਐਮਐਸ",
     "heading": "ਪਾਸਵਰਡ ਰੀਸੈਟ ਕਰੋ",
-    "description": "ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਆਪਣਾ ਨਵਾਂ ਪਾਸਵਰਡ ਪਾਓ।",
+    "description": "ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਆਪਣਾ ਨਵਾਂ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ।",
     "newPasswordLabel": "ਨਵਾਂ ਪਾਸਵਰਡ",
-    "newPasswordPlaceholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਪਾਓ",
-    "confirmPasswordLabel": "ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ ਕਰੋ",
-    "confirmPasswordPlaceholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "newPasswordPlaceholder": "ਨਵਾਂ ਪਾਸਵਰਡ ਦਰਜ ਕਰੋ",
+    "confirmPasswordLabel": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
+    "confirmPasswordPlaceholder": "ਨਵੇਂ ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ",
     "updateButton": "ਪਾਸਵਰਡ ਅਪਡੇਟ ਕਰੋ",
-    "updatingButton": "ਅਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ...",
-    "footer": "© 2025 ਅਵਾਂਟੇ ਮੈਡੀਕਲ ਐਲ.ਐਮ.ਐਸ · v2.1.0",
-    "successMessage": "ਪਾਸਵਰਡ ਰੀਸੈਟ ਸਫਲ ਰਿਹਾ",
-    "errorMessage": "ਪਾਸਵਰਡ ਰੀਸੈਟ ਅਸਫਲ",
+    "updatingButton": "ਅਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "footer": "© 2025 ਅਵਾਂਤੇ ਮੈਡੀਕਲ ਐਲਐਮਐਸ · v2.1.0",
+    "successMessage": "ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਰੀਸੈਟ ਹੋ ਗਿਆ",
+    "errorMessage": "ਪਾਸਵਰਡ ਰੀਸੈਟ ਅਸਫਲ ਰਿਹਾ",
+    "signInText": "ਕੀ ਤੁਹਾਨੂੰ ਆਪਣਾ ਪਾਸਵਰਡ ਯਾਦ ਹੈ?",
+    "signInLink": "ਸਾਇਨ ਇਨ ਕਰੋ",
     "validation": {
-      "passwordRequired": "ਪਾਸਵਰਡ ਦੀ ਲੋੜ ਹੈ",
+      "passwordRequired": "ਪਾਸਵਰਡ ਲਾਜ਼ਮੀ ਹੈ",
       "passwordMin": "ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
       "passwordUppercase": "ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਵੱਡਾ ਅੱਖਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
       "passwordNumber": "ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਨੰਬਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
-      "passwordSpecialChar": "ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਪੈਸ਼ਲ ਕੈਰੇਕਟਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
-      "confirmPasswordRequired": "ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ ਦੀ ਲੋੜ ਹੈ",
-      "passwordMatch": "ਪਾਸਵਰਡ ਮੇਲ ਖਾਣੇ ਚਾਹੀਦੇ ਹਨ"
+      "passwordSpecialChar": "ਪਾਸਵਰਡ ਵਿੱਚ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਖਾਸ ਅੱਖਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ",
+      "confirmPasswordRequired": "ਪਾਸਵਰਡ ਦੀ ਪੁਸ਼ਟੀ ਲਾਜ਼ਮੀ ਹੈ",
+      "passwordMatch": "ਪਾਸਵਰਡ ਇੱਕੋ ਜਿਹੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ"
     },
     "passwordRules": {
       "length": "ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰ",
       "uppercase": "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਵੱਡਾ ਅੱਖਰ",
       "number": "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਨੰਬਰ",
-      "specialChar": "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸਪੈਸ਼ਲ ਕੈਰੇਕਟਰ (!@#$%^&*)"
+      "specialChar": "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਖਾਸ ਅੱਖਰ (!@#$%^&*)"
     }
   },
 

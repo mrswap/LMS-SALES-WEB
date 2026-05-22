@@ -53,11 +53,11 @@ const AboutUsInfo = () => {
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-8">
               {/* Header Image/Logo Area */}
               {siteSettings?.company_logo && (
-                <div className="p-8 pb-0">
+                <div className="flex justify-center p-8 pb-0 border-b border-gray-100">
                   <img
                     src={siteSettings.company_logo}
                     alt="company logo"
-                    className="h-16 w-auto"
+                    className="w-[160px] sm:w-[160px] h-[100px]"
                   />
                 </div>
               )}

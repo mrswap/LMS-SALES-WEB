@@ -59,11 +59,11 @@ const PolicyInfo = () => {
             <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-8">
               {/* Header with Logo */}
               {siteSettings?.company_logo && (
-                <div className="p-8 pb-0 border-b border-gray-100">
+                <div className="flex justify-center p-8 pb-0 border-b border-gray-100">
                   <img
                     src={siteSettings.company_logo}
                     alt="company logo"
-                    className="h-12 w-auto"
+                    className="w-[160px] sm:w-[160px] h-[100px]"
                   />
                 </div>
               )}
