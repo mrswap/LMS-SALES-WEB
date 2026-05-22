@@ -263,6 +263,7 @@ import {
   FiStar,
 } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import ReactMarkdown from "react-markdown";
 
 const MessageBubble = ({ message }) => {
   const { t } = useTranslation();
@@ -286,9 +287,39 @@ const MessageBubble = ({ message }) => {
             </span>
           </div>
           <div className="rounded-2xl px-4 py-2.5 shadow-sm bg-purple-50 border border-purple-200 text-gray-800">
-            <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
+            {/* <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
               {message.message}
-            </p>
+            </p> */}
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => (
+                  <h1 className="text-xl font-bold mt-3 mb-2">{children}</h1>
+                ),
+                h2: ({ children }) => (
+                  <h2 className="text-lg font-bold mt-3 mb-2">{children}</h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-base font-bold mt-3 mb-2">{children}</h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-sm leading-relaxed mb-2">{children}</p>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-semibold">{children}</strong>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc ml-5 mb-2">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal ml-5 mb-2">{children}</ol>
+                ),
+                li: ({ children }) => (
+                  <li className="mb-1 text-sm">{children}</li>
+                ),
+              }}
+            >
+              {message.message}
+            </ReactMarkdown>
             {message.attachment && (
               <div className="mt-2">
                 {message.attachment.match(/\.(jpeg|jpg|gif|png|webp)$/) ? (
@@ -341,9 +372,39 @@ const MessageBubble = ({ message }) => {
             </span>
           </div>
           <div className="rounded-2xl px-4 py-2.5 shadow-sm bg-gradient-to-br from-blue-100 to-blue-50 border border-blue-200 text-blue-600">
-            <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
+            {/* <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
               {message.message}
-            </p>
+            </p> */}
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => (
+                  <h1 className="text-xl font-bold mt-3 mb-2">{children}</h1>
+                ),
+                h2: ({ children }) => (
+                  <h2 className="text-lg font-bold mt-3 mb-2">{children}</h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-base font-bold mt-3 mb-2">{children}</h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-sm leading-relaxed mb-2">{children}</p>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-semibold">{children}</strong>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc ml-5 mb-2">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal ml-5 mb-2">{children}</ol>
+                ),
+                li: ({ children }) => (
+                  <li className="mb-1 text-sm">{children}</li>
+                ),
+              }}
+            >
+              {message.message}
+            </ReactMarkdown>
             {message.attachment && (
               <div className="mt-2">
                 {message.attachment.match(/\.(jpeg|jpg|gif|png|webp)$/) ? (
@@ -393,9 +454,39 @@ const MessageBubble = ({ message }) => {
             </span>
           </div>
           <div className="rounded-2xl px-4 py-2.5 shadow-sm bg-white border border-gray-200 text-gray-800">
-            <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
+            {/* <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
               {message.message}
-            </p>
+            </p> */}
+            <ReactMarkdown
+              components={{
+                h1: ({ children }) => (
+                  <h1 className="text-xl font-bold mt-3 mb-2">{children}</h1>
+                ),
+                h2: ({ children }) => (
+                  <h2 className="text-lg font-bold mt-3 mb-2">{children}</h2>
+                ),
+                h3: ({ children }) => (
+                  <h3 className="text-base font-bold mt-3 mb-2">{children}</h3>
+                ),
+                p: ({ children }) => (
+                  <p className="text-sm leading-relaxed mb-2">{children}</p>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-semibold">{children}</strong>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc ml-5 mb-2">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal ml-5 mb-2">{children}</ol>
+                ),
+                li: ({ children }) => (
+                  <li className="mb-1 text-sm">{children}</li>
+                ),
+              }}
+            >
+              {message.message}
+            </ReactMarkdown>
             {message.attachment && (
               <div className="mt-2">
                 {message.attachment.match(/\.(jpeg|jpg|gif|png|webp)$/) ? (
@@ -444,9 +535,39 @@ const MessageBubble = ({ message }) => {
           </div>
         </div>
         <div className="rounded-2xl px-4 py-2.5 shadow-sm bg-gradient-to-br from-blue-600 to-blue-500 text-white">
-          <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
+          {/* <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
             {message.message}
-          </p>
+          </p> */}
+          <ReactMarkdown
+            components={{
+              h1: ({ children }) => (
+                <h1 className="text-xl font-bold mt-3 mb-2">{children}</h1>
+              ),
+              h2: ({ children }) => (
+                <h2 className="text-lg font-bold mt-3 mb-2">{children}</h2>
+              ),
+              h3: ({ children }) => (
+                <h3 className="text-base font-bold mt-3 mb-2">{children}</h3>
+              ),
+              p: ({ children }) => (
+                <p className="text-sm leading-relaxed mb-2">{children}</p>
+              ),
+              strong: ({ children }) => (
+                <strong className="font-semibold">{children}</strong>
+              ),
+              ul: ({ children }) => (
+                <ul className="list-disc ml-5 mb-2">{children}</ul>
+              ),
+              ol: ({ children }) => (
+                <ol className="list-decimal ml-5 mb-2">{children}</ol>
+              ),
+              li: ({ children }) => (
+                <li className="mb-1 text-sm">{children}</li>
+              ),
+            }}
+          >
+            {message.message}
+          </ReactMarkdown>
           {message.attachment && (
             <div className="mt-2">
               {message.attachment.match(/\.(jpeg|jpg|gif|png|webp)$/) ? (
