@@ -1,6 +1,6 @@
 {
   "login": {
-    "title": "वापसी पर स्वागत है!",
+    "title": "अपने अकाउंट में लॉगिन करें",
     "emailLabel": "ईमेल पता",
     "emailPlaceholder": "अपना ईमेल दर्ज करें",
     "passwordLabel": "पासवर्ड",
@@ -8,9 +8,9 @@
     "forgotPassword": "पासवर्ड भूल गए?",
     "stayLoggedIn": "लॉगिन बनाए रखें",
     "button": "साइन इन करें",
-    "loading": "साइन इन किया जा रहा है...",
+    "loading": "साइन इन हो रहा है...",
     "or": "या",
-    "newEmployee": "नए कर्मचारी?",
+    "newEmployee": "नए कर्मचारी हैं?",
     "completeEmployeeOnboarding": "कर्मचारी ऑनबोर्डिंग पूरी करें",
     "secureLogin": "सुरक्षित लॉगिन",
     "termsAndConditions": "नियम और शर्तें",
@@ -18,7 +18,7 @@
     "aboutUs": "हमारे बारे में",
     "troubleshooting": "समस्या निवारण",
     "language": "भाषा",
-    "successMessage": "लॉगिन सफल",
+    "successMessage": "लॉगिन सफल रहा",
     "errorMessage": "कुछ गलत हो गया",
     "validation": {
       "emailRequired": "ईमेल आवश्यक है",
@@ -145,32 +145,34 @@
   },
 
   "resetPassword": {
-    "title": "अवांटे मेडिकल एलएमएस",
+    "title": "अवांते मेडिकल एलएमएस",
     "heading": "पासवर्ड रीसेट करें",
-    "description": "कृपया नीचे अपना नया पासवर्ड डालें।",
+    "description": "कृपया नीचे अपना नया पासवर्ड दर्ज करें।",
     "newPasswordLabel": "नया पासवर्ड",
-    "newPasswordPlaceholder": "नया पासवर्ड डालें",
-    "confirmPasswordLabel": "पासवर्ड पुष्टि करें",
-    "confirmPasswordPlaceholder": "नया पासवर्ड पुष्टि करें",
+    "newPasswordPlaceholder": "नया पासवर्ड दर्ज करें",
+    "confirmPasswordLabel": "पासवर्ड की पुष्टि करें",
+    "confirmPasswordPlaceholder": "नए पासवर्ड की पुष्टि करें",
     "updateButton": "पासवर्ड अपडेट करें",
     "updatingButton": "अपडेट हो रहा है...",
-    "footer": "© 2025 अवांटे मेडिकल एलएमएस · v2.1.0",
-    "successMessage": "पासवर्ड रीसेट सफल रहा",
-    "errorMessage": "पासवर्ड रीसेट विफल",
+    "footer": "© 2025 अवांते मेडिकल एलएमएस · v2.1.0",
+    "successMessage": "पासवर्ड सफलतापूर्वक रीसेट हो गया",
+    "errorMessage": "पासवर्ड रीसेट असफल रहा",
+    "signInText": "क्या आपको अपना पासवर्ड याद है?",
+    "signInLink": "साइन इन करें",
     "validation": {
       "passwordRequired": "पासवर्ड आवश्यक है",
       "passwordMin": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए",
       "passwordUppercase": "पासवर्ड में कम से कम एक बड़ा अक्षर होना चाहिए",
       "passwordNumber": "पासवर्ड में कम से कम एक संख्या होनी चाहिए",
-      "passwordSpecialChar": "पासवर्ड में कम से कम एक विशेष वर्ण होना चाहिए",
-      "confirmPasswordRequired": "पासवर्ड पुष्टि आवश्यक है",
+      "passwordSpecialChar": "पासवर्ड में कम से कम एक विशेष अक्षर होना चाहिए",
+      "confirmPasswordRequired": "पासवर्ड की पुष्टि आवश्यक है",
       "passwordMatch": "पासवर्ड मेल खाने चाहिए"
     },
     "passwordRules": {
       "length": "कम से कम 8 अक्षर",
       "uppercase": "कम से कम एक बड़ा अक्षर",
       "number": "कम से कम एक संख्या",
-      "specialChar": "कम से कम एक विशेष वर्ण (!@#$%^&*)"
+      "specialChar": "कम से कम एक विशेष अक्षर (!@#$%^&*)"
     }
   },
 

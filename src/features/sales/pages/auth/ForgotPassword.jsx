@@ -150,20 +150,20 @@ const ForgotPassword = () => {
           <img
             src={siteSettings?.company_logo || ""}
             alt="logo"
-            className="mx-auto w-[160px] sm:w-[190px]"
+            className="mx-auto w-[160px] sm:w-[160px] h-[100px]"
           />
-          <p className="text-gray-500 text-sm mt-2">
+          {/* <p className="text-gray-500 text-sm mt-2">
             {t("forgotPassword.title")}
-          </p>
+          </p> */}
         </div>
 
         {/* Heading */}
         <div className="mb-6">
-          <div className="flex justify-center mb-2">
+          {/* <div className="flex justify-center mb-2">
             <span className="bg-[#EFF6FF] px-3 py-3 rounded-full">
               <FiMail size={20} className="text-primary" />
             </span>
-          </div>
+          </div> */}
           <h2 className="text-2xl text-center font-bold text-primary">
             {t("forgotPassword.heading")}
           </h2>

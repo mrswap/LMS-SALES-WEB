@@ -189,7 +189,7 @@ const HeaderNavbar = () => {
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo Section */}
           <div className=" min-[1500px]:px-4">
-            <div className="flex-shrink-0 bg-white">
+            <div className="flex-shrink-0 ">
               <img
                 src={siteSettings?.company_logo || ""}
                 alt="Logo"

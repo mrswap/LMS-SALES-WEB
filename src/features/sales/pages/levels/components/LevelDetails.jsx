@@ -52,19 +52,33 @@ export default function LevelDetails() {
   const progress = currentLevel?.progress_percent || 0;
 
   // Calculate total estimated time (example: 20-30 min per module based on chapters)
+  // const calculateTotalTime = () => {
+  //   let totalTopics = 0;
+  //   modules.forEach((module) => {
+  //     if (module.chapters) {
+  //       module.chapters.forEach((chapter) => {
+  //         if (chapter.topics) {
+  //           totalTopics += chapter.topics.length;
+  //         }
+  //       });
+  //     }
+  //   });
+  //   // Assume 5 minutes per topic
+  //   return totalTopics * 5;
+  // };
+
   const calculateTotalTime = () => {
-    let totalTopics = 0;
+    let totalTime = 0;
+
     modules.forEach((module) => {
-      if (module.chapters) {
-        module.chapters.forEach((chapter) => {
-          if (chapter.topics) {
-            totalTopics += chapter.topics.length;
-          }
+      module?.chapters?.forEach((chapter) => {
+        chapter?.topics?.forEach((topic) => {
+          totalTime += topic?.estimated_duration || 0;
         });
-      }
+      });
     });
-    // Assume 5 minutes per topic
-    return totalTopics * 5;
+
+    return totalTime;
   };
 
   const totalTime = calculateTotalTime();
@@ -114,42 +128,6 @@ export default function LevelDetails() {
         <PageHeaderRight />
       </PageHeader>
       <PageBody>
-        {/* 🔹 Hero Banner */}
-        {/* <div className="relative rounded-2xl overflow-hidden shadow-xl group">
-          <img
-            src={currentLevel?.thumbnail}
-            className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
-            alt="Level Banner"
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-          <div className="absolute bottom-6 left-6 right-6 text-white">
-            <div className="mb-3">
-              <div className="flex items-center gap-2 py-1">
-                <div className="w-2 h-2 rounded-full bg-yellow-300"></div>
-                <span className="font-semibold text-white text-sm border-b border-yellow-300/80">
-                  {t("levelDetails.levelBadge")} {levelNumber}
-                </span>
-              </div>
-
-              <div className="mt-2 text-xs text-white/60 pl-4">
-                {totalModules} {t("levelDetails.modulesCount")}
-              </div>
-            </div>
-
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-              {currentLevel?.title}
-            </h1>
-          </div>
-
-          <button
-            onClick={() => navigate(-1)}
-            className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm hover:bg-white px-3 py-1.5 rounded-xl text-sm font-medium transition-all hover:shadow-lg flex items-center gap-1"
-          >
-            <IoArrowBack className="w-4 h-4" /> {t("levelDetails.backButton")}
-          </button>
-        </div> */}
-
         <div className="relative rounded-2xl overflow-hidden shadow-xl group">
           <img
             src={currentLevel?.thumbnail}
@@ -161,15 +139,29 @@ export default function LevelDetails() {
 
           <div className="absolute bottom-6 left-6 right-6 text-white">
             <div className="mb-3">
-              <div className="flex items-center gap-2 py-1">
-                <div className="w-2 h-2 rounded-full bg-yellow-300"></div>
-                <span className="font-semibold text-white text-sm border-b border-yellow-300/80">
-                  {t("levelDetails.levelBadge")} {levelNumber}
+              {/* PROGRAM */}
+              {currentLevel?.parent_hierarchy?.program?.title && (
+                <div className="flex items-center gap-2 py-0.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-300/60"></div>
+
+                  <span className="text-white/80 text-xs">
+                    {currentLevel.parent_hierarchy.program.title}
+                  </span>
+                </div>
+              )}
+
+              {/* LEVEL */}
+              <div className="flex items-center gap-2 py-1 pl-4">
+                <div className="w-2 h-2 rounded-full bg-blue-300"></div>
+
+                <span className="font-semibold text-white text-sm border-b border-blue-300/80">
+                  {currentLevel?.title}
                 </span>
               </div>
 
-              <div className="mt-2 text-xs text-white/80 pl-4">
-                {totalModules} {t("levelDetails.modulesCount")}
+              {/* STATS */}
+              <div className="mt-2 text-xs text-white/80 pl-8">
+                {modules.length} Modules • {totalModules} Topics
               </div>
             </div>
 

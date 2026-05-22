@@ -96,7 +96,8 @@ const TopicCard = ({
 
   return (
     <div
-      className="rounded-xl shadow-sm p-4 flex items-center justify-between bg-white hover:shadow-md transition-shadow cursor-pointer"
+      className="rounded-xl shadow-sm p-4 flex items-center justify-between bg-white
+       "
       onClick={onClick}
     >
       <div className="flex items-center gap-4 flex-1">
@@ -510,17 +511,21 @@ export default function Dashboard() {
     navigate("/levels");
   };
 
+  // const handleResumeTopic = () => {
+  //   if (next_action?.topic?.id) {
+  //     navigate(`/topics/${next_action.topic.id}`);
+  //   } else if (current_learning?.topic?.id) {
+  //     navigate(`/topics/${current_learning.topic.id}`);
+  //   } else if (
+  //     next_action?.type === "topic_quiz" &&
+  //     next_action?.assessment_id
+  //   ) {
+  //     navigate(`/quiz/${next_action.assessment_id}`);
+  //   }
+  // };
+
   const handleResumeTopic = () => {
-    if (next_action?.topic?.id) {
-      navigate(`/topics/${next_action.topic.id}`);
-    } else if (current_learning?.topic?.id) {
-      navigate(`/topics/${current_learning.topic.id}`);
-    } else if (
-      next_action?.type === "topic_quiz" &&
-      next_action?.assessment_id
-    ) {
-      navigate(`/quiz/${next_action.assessment_id}`);
-    }
+    navigate(`/chapters/${current_learning?.chapter?.id}`);
   };
 
   const handleTopicClick = (topicId) => {
@@ -785,7 +790,7 @@ export default function Dashboard() {
                 progress={stats?.current_topic_progress?.progress_percent || 0}
                 status="IN_PROGRESS"
                 statusColor="#1e63ff"
-                onClick={handleResumeTopic}
+                // onClick={handleResumeTopic}
               />
 
               {/* Last Completed Topic */}
@@ -796,9 +801,9 @@ export default function Dashboard() {
                   progress={100}
                   status="COMPLETED"
                   statusColor="#16a34a"
-                  onClick={() =>
-                    handleTopicClick(current_learning.last_completed_topic.id)
-                  }
+                  // onClick={() =>
+                  //   handleTopicClick(current_learning.last_completed_topic.id)
+                  // }
                 />
               )}
 
@@ -809,11 +814,11 @@ export default function Dashboard() {
                 progress={0}
                 status="PENDING"
                 statusColor="#f97316"
-                onClick={() => {
-                  if (next_action?.assessment_id) {
-                    navigate(`/quiz/${next_action.assessment_id}`);
-                  }
-                }}
+                // onClick={() => {
+                //   if (next_action?.assessment_id) {
+                //     navigate(`/quiz/${next_action.assessment_id}`);
+                //   }
+                // }}
               />
             </div>
 
@@ -848,7 +853,7 @@ export default function Dashboard() {
             {t("dashboard.latestUpdates.title")}
           </h3>
           <div className="bg-white rounded-xl p-4 shadow-sm space-y-4">
-            {next_action && (
+            {/* {next_action && (
               <>
                 <ActivityItem
                   icon={<FiTarget />}
@@ -861,7 +866,7 @@ export default function Dashboard() {
                 />
                 <div className="border-t border-gray-300" />
               </>
-            )}
+            )} */}
 
             {last_certificate && (
               <ActivityItem
@@ -889,7 +894,7 @@ export default function Dashboard() {
               onAction={handleViewAllLevels}
             />
 
-            {current_learning?.last_activity_date && (
+            {/* {current_learning?.last_activity_date && (
               <ActivityItem
                 icon={<FiCalendar />}
                 bg="bg-purple-100"
@@ -901,7 +906,7 @@ export default function Dashboard() {
                 actionText={t("dashboard.latestUpdates.resume")}
                 onAction={handleResumeTopic}
               />
-            )}
+            )} */}
           </div>
         </div>
       </PageBody>
