@@ -18,10 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../redux/slice/profileSlice";
 import { logout } from "../../../redux/slice/authSlice";
 import NotificationDropdown from "../common/noitification/NotificationDropdown";
-import {
-  // getAllNotifications,
-  getUnreadCount,
-} from "../../../redux/slice/notificationSlicer";
+import { getUnreadCount } from "../../../redux/slice/notificationSlicer";
 
 const HeaderNavbar = () => {
   const [lang, setLang] = useState("en");
@@ -37,15 +34,10 @@ const HeaderNavbar = () => {
     (state) => state.profile,
   );
   const { siteSettings } = useSelector((state) => state.common);
-
-  // Also need to get unreadCount from Redux
   const { unreadCount } = useSelector((state) => state.notification);
-
-  // console.log("unreadCount", unreadCount);
 
   useEffect(() => {
     dispatch(getProfile());
-    // dispatch(getAllNotifications());
     dispatch(getUnreadCount());
   }, [dispatch]);
 
@@ -303,13 +295,6 @@ const HeaderNavbar = () => {
                     <MdPerson className="w-4 h-4 text-gray-500" />
                     <span>{t("navbar.profile")}</span>
                   </button>
-                  {/* <button
-                    onClick={handleSettingsClick}
-                    className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors duration-150"
-                  >
-                    <MdSettings className="w-4 h-4 text-gray-500" />
-                    <span>{t("navbar.settings")}</span>
-                  </button> */}
                   <hr className="my-1 border-gray-100" />
                   <button
                     onClick={handleLogoutClick}
