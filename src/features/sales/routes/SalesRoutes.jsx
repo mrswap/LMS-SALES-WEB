@@ -35,6 +35,7 @@ import Troubleshooting from "../outside/Troubeshooting";
 import AboutUsInfo from "../outside/AboutUsInfo";
 import TermsCondtionInfo from "../outside/TermsCondtionInfo";
 import PolicyInfo from "../outside/PolicyInfo";
+import Support from "../pages/support-page/Support";
 
 const SalesRoutes = (
   <Route>
@@ -68,7 +69,8 @@ const SalesRoutes = (
           path="topics/:topicId/content/:contentId"
           element={<TopicContent />}
         />
-        <Route path="support/:topicId" element={<ChatWindow />} />
+        {/* <Route path="support/:topicId" element={<ChatWindow />} /> */}
+        <Route path="support" element={<Support />} />
 
         <Route path="faqs" element={<Faq />} />
 
