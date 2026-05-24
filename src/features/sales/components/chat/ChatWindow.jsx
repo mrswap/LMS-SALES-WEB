@@ -21,12 +21,12 @@ import {
 import Loader from "../../common/Loader";
 import { useTranslation } from "react-i18next";
 
-const ChatWindow = () => {
+const ChatWindow = ({ topicId }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { topicId } = useParams();
+  // const { topicId } = useParams();
   const { thread, messages, loading } = useSelector((state) => state.support);
-  const [isMetadataOpen, setIsMetadataOpen] = useState(false);
+  const [isMetadataOpen, setIsMetadataOpen] = useState(false); // Default false = closed
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null);
 
@@ -80,132 +80,53 @@ const ChatWindow = () => {
 
   const { program, level, module: moduleData, chapter, topic, status } = thread;
 
-  // Course Details Component (reusable)
-  const CourseDetails = ({
-    isCollapsible = false,
-    isOpen = true,
-    onToggle,
-  }) => {
-    const detailsContent = (
-      <div className="space-y-3">
-        <div className="flex items-baseline gap-2 text-sm">
-          <FiBookOpen className="text-blue-600" size={14} />
-          <span className="text-gray-500 w-20">{t("support.program")}:</span>
-          <span className="text-gray-800 flex-1">
-            {program?.title || t("support.na")}
-          </span>
-        </div>
-        <div className="flex items-baseline gap-2 text-sm">
-          <FiFolder className="text-purple-600" size={14} />
-          <span className="text-gray-500 w-20">{t("support.level")}:</span>
-          <span className="text-gray-800 flex-1">
-            {level?.title || t("support.na")}
-          </span>
-        </div>
-        <div className="flex items-baseline gap-2 text-sm">
-          <FiTag className="text-green-600" size={14} />
-          <span className="text-gray-500 w-20">{t("support.module")}:</span>
-          <span className="text-gray-800 flex-1">
-            {moduleData?.title || t("support.na")}
-          </span>
-        </div>
-        <div className="flex items-baseline gap-2 text-sm">
-          <FiMail className="text-orange-600" size={14} />
-          <span className="text-gray-500 w-20">{t("support.chapter")}:</span>
-          <span className="text-gray-800 flex-1">
-            {chapter?.title || t("support.na")}
-          </span>
-        </div>
-        <div className="flex items-baseline gap-2 text-sm">
-          <FiMessageSquare className="text-purple-600" size={14} />
-          <span className="text-gray-500 w-20">{t("support.topic")}:</span>
-          <span className="text-blue-600 font-medium flex-1">
-            {topic?.title || t("support.na")}
-          </span>
-        </div>
+  // Course Details Content Component
+  const CourseDetailsContent = () => (
+    <div className="space-y-3">
+      <div className="flex items-baseline gap-2 text-sm">
+        <FiBookOpen className="text-blue-600" size={14} />
+        <span className="text-gray-500 w-20">{t("support.program")}:</span>
+        <span className="text-gray-800 flex-1">
+          {program?.title || t("support.na")}
+        </span>
       </div>
-    );
-
-    if (!isCollapsible) {
-      return (
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-4 border border-gray-200">
-          <div className="flex items-center gap-2 mb-3">
-            {/* <FiBookOpen className="text-blue-600" size={16} /> */}
-            <h3 className="font-semibold text-gray-700 text-sm uppercase tracking-wide">
-              {t("support.courseDetails")}
-            </h3>
-          </div>
-          {detailsContent}
-        </div>
-      );
-    }
-
-    return (
-      <div className="border-b border-gray-300 bg-gray-50 lg:hidden">
-        <button
-          onClick={onToggle}
-          className="w-full px-5 py-2.5 flex items-center justify-between hover:bg-gray-100 transition-colors"
-        >
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-              {t("support.courseDetails")}
-            </span>
-            <span className="text-xs text-gray-400">
-              ({isOpen ? t("support.hide") : t("support.show")})
-            </span>
-          </div>
-          {isOpen ? (
-            <FiChevronUp className="text-gray-400" size={14} />
-          ) : (
-            <FiChevronDown className="text-gray-400" size={14} />
-          )}
-        </button>
-
-        {isOpen && (
-          <div className="px-5 pb-4 bg-gradient-to-b from-gray-50 to-white">
-            {detailsContent}
-          </div>
-        )}
+      <div className="flex items-baseline gap-2 text-sm">
+        <FiFolder className="text-purple-600" size={14} />
+        <span className="text-gray-500 w-20">{t("support.level")}:</span>
+        <span className="text-gray-800 flex-1">
+          {level?.title || t("support.na")}
+        </span>
       </div>
-    );
-  };
+      <div className="flex items-baseline gap-2 text-sm">
+        <FiTag className="text-green-600" size={14} />
+        <span className="text-gray-500 w-20">{t("support.module")}:</span>
+        <span className="text-gray-800 flex-1">
+          {moduleData?.title || t("support.na")}
+        </span>
+      </div>
+      <div className="flex items-baseline gap-2 text-sm">
+        <FiMail className="text-orange-600" size={14} />
+        <span className="text-gray-500 w-20">{t("support.chapter")}:</span>
+        <span className="text-gray-800 flex-1">
+          {chapter?.title || t("support.na")}
+        </span>
+      </div>
+      <div className="flex items-baseline gap-2 text-sm">
+        <FiMessageSquare className="text-purple-600" size={14} />
+        <span className="text-gray-500 w-20">{t("support.topic")}:</span>
+        <span className="text-blue-600 font-medium flex-1">
+          {topic?.title || t("support.na")}
+        </span>
+      </div>
+    </div>
+  );
 
   return (
-    // Main container - 2 column layout on desktop
-    <div className="flex-1 flex flex-col lg:flex-row gap-4 h-[calc(100vh-150px)] min-h-0 overflow-hidden">
-      {/* LEFT SIDE - Course Details (Desktop) */}
-      <div className="hidden lg:block lg:w-[350px]  flex-shrink-0 overflow-y-auto">
-        <div className="sticky top-0">
-          {/* Status Card */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 mb-4">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">
-                {t("support.status")}
-              </span>
-              <div
-                className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  status === "open"
-                    ? "bg-green-50 text-green-700 border border-green-200"
-                    : status === "resolved"
-                      ? "bg-blue-50 text-blue-700 border border-blue-200"
-                      : status === "reopened"
-                        ? "bg-orange-50 text-orange-700 border border-orange-200"
-                        : "bg-gray-50 text-gray-600 border border-gray-200"
-                }`}
-              >
-                {status?.toUpperCase() || t("support.open").toUpperCase()}
-              </div>
-            </div>
-          </div>
-
-          {/* Course Details */}
-          <CourseDetails isCollapsible={false} />
-        </div>
-      </div>
-
-      {/* RIGHT SIDE - Chat Section */}
+    // Main container - Full width chat section
+    <div className="flex-1 flex flex-col h-[calc(100vh-150px)] min-h-0 overflow-hidden">
+      {/* Chat Section */}
       <div className="flex-1 flex flex-col min-w-0 bg-white rounded-lg border border-gray-300 overflow-hidden">
-        {/* Header - Mobile/Desktop */}
+        {/* Header */}
         <div className="flex-shrink-0 border-b border-gray-300 bg-white px-5 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -224,31 +145,49 @@ const ChatWindow = () => {
               </div>
             </div>
 
-            {/* Desktop mein status upar dikhega, mobile mein yahan */}
-            <div className="lg:hidden">
-              <div
-                className={`px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
-                  status === "open"
-                    ? "bg-green-50 text-green-700 border border-green-200"
-                    : status === "resolved"
-                      ? "bg-blue-50 text-blue-700 border border-blue-200"
-                      : status === "reopened"
-                        ? "bg-orange-50 text-orange-700 border border-orange-200"
-                        : "bg-gray-50 text-gray-600 border border-gray-200"
-                }`}
-              >
-                {status?.toUpperCase() || t("support.open").toUpperCase()}
-              </div>
+            <div
+              className={`px-3 py-1 rounded-full text-xs font-medium flex-shrink-0 ${
+                status === "open"
+                  ? "bg-green-50 text-green-700 border border-green-200"
+                  : status === "resolved"
+                    ? "bg-blue-50 text-blue-700 border border-blue-200"
+                    : status === "reopened"
+                      ? "bg-orange-50 text-orange-700 border border-orange-200"
+                      : "bg-gray-50 text-gray-600 border border-gray-200"
+              }`}
+            >
+              {status?.toUpperCase() || t("support.open").toUpperCase()}
             </div>
           </div>
         </div>
 
-        {/* Collapsible Course Details - Only Mobile */}
-        <CourseDetails
-          isCollapsible={true}
-          isOpen={isMetadataOpen}
-          onToggle={() => setIsMetadataOpen(!isMetadataOpen)}
-        />
+        {/* Collapsible Course Details - For Mobile & Desktop both, default closed */}
+        <div className="border-b border-gray-300 bg-gray-50">
+          <button
+            onClick={() => setIsMetadataOpen(!isMetadataOpen)}
+            className="w-full px-5 py-2.5 flex items-center justify-between hover:bg-gray-100 transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
+                {t("support.courseDetails")}
+              </span>
+              <span className="text-xs text-gray-400">
+                ({isMetadataOpen ? t("support.hide") : t("support.show")})
+              </span>
+            </div>
+            {isMetadataOpen ? (
+              <FiChevronUp className="text-gray-400" size={14} />
+            ) : (
+              <FiChevronDown className="text-gray-400" size={14} />
+            )}
+          </button>
+
+          {isMetadataOpen && (
+            <div className="px-5 pb-4 bg-gradient-to-b from-gray-50 to-white">
+              <CourseDetailsContent />
+            </div>
+          )}
+        </div>
 
         {/* Messages Section */}
         <div
