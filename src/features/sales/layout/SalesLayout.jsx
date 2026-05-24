@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import useIdleTimeout from "../../../hooks/useIdleTimeout";
 import SessionModal from "../common/SessionModal";
 import Navbar from "../components/Navbar";
 import NavbarBottom from "../components/NavbarBottom";
 import Footer from "../components/Footer";
 import { logout } from "../../../redux/slice/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { FaCommentDots } from "react-icons/fa";
 
@@ -14,6 +14,12 @@ const SalesLayout = () => {
   const navigate = useNavigate();
   const mainRef = useRef(null);
   const dispatch = useDispatch();
+  const { profile, isLoading, isError, message } = useSelector(
+    (state) => state.profile,
+  );
+
+  const location = useLocation();
+  const isSupportPage = location.pathname === "/support";
 
   const handleLogout = () => {
     dispatch(logout());
@@ -70,19 +76,45 @@ const SalesLayout = () => {
         <NavbarBottom />
 
         {/* Chat Button - Added here */}
-        <div className="fixed bottom-36 lg:bottom-24 right-8 z-20">
+        {/* <div className="fixed bottom-36 lg:bottom-24 right-8 z-20">
           <button
             onClick={handleChatClick}
             className="relative px-3 py-3 cursor-pointer rounded-xl text-base font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 shadow-lg transition-all duration-300 hover:scale-105 animate-pulse"
           >
             <FaCommentDots className="inline-block  text-lg" />
-            {/* Pulsing dot effect */}
             <span className="absolute -top-1 -right-1 flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
             </span>
           </button>
-        </div>
+        </div> */}
+
+        {/* Chat Button */}
+        {!isSupportPage && (
+          <div className="fixed bottom-36 lg:bottom-24 right-8 z-20">
+            <button
+              onClick={handleChatClick}
+              className="relative px-3 py-3 cursor-pointer rounded-xl text-base font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 shadow-lg transition-all duration-300 hover:scale-105"
+            >
+              <FaCommentDots className="inline-block text-lg" />
+
+              {/* Animated Unread Count Badge */}
+              {profile?.support_unread_count > 0 && (
+                <span className="absolute -top-2 -right-2 flex">
+                  {/* Ping Animation */}
+                  <span className="animate-ping absolute inline-flex h-5 min-w-[20px] w-full rounded-full bg-red-400 opacity-75"></span>
+
+                  {/* Actual Count */}
+                  <span className="relative min-w-[20px] h-5 px-1 flex items-center justify-center rounded-full bg-red-500 text-white text-[11px] font-bold shadow-md">
+                    {profile?.support_unread_count > 99
+                      ? "99+"
+                      : profile?.support_unread_count}
+                  </span>
+                </span>
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </>
   );
