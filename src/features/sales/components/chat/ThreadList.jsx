@@ -426,6 +426,7 @@ import Loader from "../../common/Loader";
 import Error from "../../common/Error";
 
 import { getInboxConversations } from "../../../../redux/slice/supportSlice";
+import { getProfile } from "../../../../redux/slice/profileSlice";
 
 const ThreadList = ({ selectedTopicId, setSelectedTopicId }) => {
   const dispatch = useDispatch();
@@ -471,16 +472,37 @@ const ThreadList = ({ selectedTopicId, setSelectedTopicId }) => {
     return () => clearTimeout(debounce);
   }, [dispatch, searchQuery, selectedStatus, selectedTopic]);
 
-  useEffect(() => {
-    // agar koi topic already selected nahi hai
-    // to first/latest thread ko active kar do
+  //   useEffect(() => {
+  //     // agar koi topic already selected nahi hai
+  //     // to first/latest thread ko active kar do
 
+  //     if (!selectedTopicId && inboxConversations?.length > 0) {
+  //       const latestThread = inboxConversations[0];
+
+  //       setSelectedTopicId(latestThread.topic_id);
+  //     }
+  //   }, [inboxConversations, selectedTopicId, setSelectedTopicId]);
+
+  useEffect(() => {
     if (!selectedTopicId && inboxConversations?.length > 0) {
       const latestThread = inboxConversations[0];
 
       setSelectedTopicId(latestThread.topic_id);
+
+      // first auto selected thread unread ho to refresh karo
+      if (latestThread.unread_messages_count > 0) {
+        setTimeout(() => {
+          dispatch(getProfile());
+
+          dispatch(
+            getInboxConversations({
+              per_page: 20,
+            }),
+          );
+        }, 500);
+      }
     }
-  }, [inboxConversations, selectedTopicId, setSelectedTopicId]);
+  }, [inboxConversations, selectedTopicId, setSelectedTopicId, dispatch]);
 
   // ================= TOPIC OPTIONS =================
   const topicOptions =
@@ -633,7 +655,49 @@ const ThreadList = ({ selectedTopicId, setSelectedTopicId }) => {
             {inboxConversations?.map((thread) => (
               <button
                 key={thread.id}
-                onClick={() => setSelectedTopicId(thread.topic_id)}
+                // onClick={() => setSelectedTopicId(thread.topic_id)}
+                // onClick={() => {
+                //   setSelectedTopicId(thread.topic_id);
+
+                //   if (thread.unread_messages_count > 0) {
+                //     dispatch(getProfile());
+                //   }
+                // }}
+
+                // onClick={() => {
+                //   setSelectedTopicId(thread.topic_id);
+
+                //   // unread thread open hua
+                //   if (thread.unread_messages_count > 0) {
+                //     // profile unread count refresh
+                //     dispatch(getProfile());
+
+                //     // inbox refresh taaki unread badge hat jaye
+                //     dispatch(
+                //       getInboxConversations({
+                //         per_page: 20,
+                //       }),
+                //     );
+                //   }
+                // }}
+
+                onClick={() => {
+                  setSelectedTopicId(thread.topic_id);
+
+                  // unread thread open hua
+                  if (thread.unread_messages_count > 0) {
+                    // thoda delay do taaki backend read mark kar de
+                    setTimeout(() => {
+                      dispatch(getProfile());
+
+                      dispatch(
+                        getInboxConversations({
+                          per_page: 20,
+                        }),
+                      );
+                    }, 500);
+                  }
+                }}
                 className={`w-full text-left p-4 rounded-xl transition-all border ${
                   selectedTopicId === thread.topic_id
                     ? "bg-blue-50 border-blue-300 shadow-sm"
