@@ -18,7 +18,7 @@ class SocketService {
         const deviceId = localStorage.getItem("deviceId");
 
         if (!token) {
-            console.error("❌ No token found");
+            // console.error("❌ No token found");
             return null;
         }
 
@@ -36,11 +36,11 @@ class SocketService {
         });
 
         pusher.connection.bind("connected", () => {
-            console.log("✅ Pusher connected");
+            // console.log("✅ Pusher connected");
         });
 
         pusher.connection.bind("error", (err) => {
-            console.error("❌ Pusher error:", err);
+            // console.error("❌ Pusher error:", err);
         });
 
         return pusher;
@@ -48,18 +48,18 @@ class SocketService {
 
     joinThread(threadId, callback) {
         if (!threadId) {
-            console.error("❌ No threadId");
+            // console.error("❌ No threadId");
             return null;
         }
 
-        console.log(`🔌 Joining thread: ${threadId}`);
+        // console.log(`🔌 Joining thread: ${threadId}`);
 
         if (!pusher) {
             this.connect();
         }
 
         if (pusher.connection.state !== 'connected') {
-            console.log("⏳ Waiting for connection...");
+            // console.log("⏳ Waiting for connection...");
             setTimeout(() => {
                 this.joinThread(threadId, callback);
             }, 1000);
@@ -69,15 +69,15 @@ class SocketService {
         const channelName = `private-support.thread.${threadId}`;
 
         if (activeChannels[channelName]) {
-            console.log(`Already in channel: ${channelName}`);
+            // console.log(`Already in channel: ${channelName}`);
             return activeChannels[channelName];
         }
 
-        console.log(`📡 Subscribing to: ${channelName}`);
+        // console.log(`📡 Subscribing to: ${channelName}`);
         const channel = pusher.subscribe(channelName);
 
         channel.bind("pusher:subscription_succeeded", () => {
-            console.log(`✅ Subscribed to ${channelName}`);
+            // console.log(`✅ Subscribed to ${channelName}`);
         });
 
         // 🔥 CRITICAL: Listen to ALL possible event names
@@ -91,23 +91,23 @@ class SocketService {
 
         possibleEvents.forEach(eventName => {
             channel.bind(eventName, (data) => {
-                console.log(`📨 Event "${eventName}" received:`, data);
+                // console.log(`📨 Event "${eventName}" received:`, data);
 
                 // Extract message from different possible structures
                 let message = data?.message || data?.data?.message || data;
 
                 if (message?.id) {
-                    console.log("✅ Valid message:", message);
+                    // console.log("✅ Valid message:", message);
                     callback(message);
                 } else {
-                    console.warn("⚠️ No valid message in event:", data);
+                    // console.warn("⚠️ No valid message in event:", data);
                 }
             });
         });
 
         // Debug: Log ALL events
         channel.bind_global((eventName, data) => {
-            console.log(`🌍 [GLOBAL] Event: ${eventName}`, data);
+            // console.log(`🌍 [GLOBAL] Event: ${eventName}`, data);
         });
 
         activeChannels[channelName] = channel;
