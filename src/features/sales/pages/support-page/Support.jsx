@@ -10,7 +10,6 @@ const Support = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const topicIdFromUrl = searchParams.get("topicId");
-  //   const [selectedTopicId, setSelectedTopicId] = useState(null);
   const [selectedTopicId, setSelectedTopicId] = useState(
     topicIdFromUrl ? Number(topicIdFromUrl) : null,
   );

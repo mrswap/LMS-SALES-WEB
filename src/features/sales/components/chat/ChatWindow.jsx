@@ -17,6 +17,7 @@ import { useParams } from "react-router-dom";
 import {
   addRealtimeMessage,
   getOrCreateThread,
+  markThreadAsRead,
 } from "../../../../redux/slice/supportSlice";
 import Loader from "../../common/Loader";
 import { useTranslation } from "react-i18next";
@@ -44,6 +45,13 @@ const ChatWindow = ({ topicId }) => {
       dispatch(addRealtimeMessage(message));
     },
   });
+
+  // ================= MARK AS READ =================
+  useEffect(() => {
+    if (thread?.id && thread?.unread_count > 0 && messages.length > 0) {
+      dispatch(markThreadAsRead(thread.id));
+    }
+  }, [dispatch, thread?.id, thread?.unread_count, messages.length]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
