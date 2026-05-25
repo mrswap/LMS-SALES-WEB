@@ -52,10 +52,12 @@ const Troubleshooting = () => {
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const res = await dispatch(postContactUs(values)).unwrap();
-      toast.success(res?.message || t("troubleshooting.successMessage"));
+      // toast.success(res?.message || t("troubleshooting.successMessage"));
+      toast.success(t("troubleshooting.successMessage"));
       resetForm();
     } catch (err) {
-      toast.error(err?.message || t("troubleshooting.errorMessage"));
+      // toast.error(err?.message || t("troubleshooting.errorMessage"));
+      toast.error(t("troubleshooting.errorMessage"));
     } finally {
       setSubmitting(false);
     }

@@ -26,7 +26,7 @@ const CheckEmail = () => {
   }, [dispatch]);
 
   // Get email from registration form (passed via navigation state)
-  const userEmail = location.state?.email || "your registered email";
+  // const userEmail = location.state?.email || "your registered email";
 
   if (siteSettingsLoading) return <Loader />;
 
@@ -61,10 +61,10 @@ const CheckEmail = () => {
         {/* Message */}
         <div className="text-center mb-6">
           <p className="text-gray-600 mb-3">{t("checkEmail.message")}</p>
-          <p className="font-semibold text-teal-600 bg-teal-50 inline-flex items-center gap-2 px-4 py-2 rounded-lg">
+          {/* <p className="font-semibold text-teal-600 bg-teal-50 inline-flex items-center gap-2 px-4 py-2 rounded-lg">
             <FiMail size={16} />
             {userEmail}
-          </p>
+          </p> */}
           <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
             <p className="text-sm text-gray-700">
               <span className="font-semibold text-blue-600 inline-flex items-center gap-1">

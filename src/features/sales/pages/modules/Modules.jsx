@@ -349,7 +349,7 @@ export default function Modules() {
               }`}
                     >
                       <IoHelpCircle className="w-4 h-4" />
-                      FAQ
+                      {t("modules.buttons.faq")}
                     </button>
 
                     {chapter?.is_completed ? (

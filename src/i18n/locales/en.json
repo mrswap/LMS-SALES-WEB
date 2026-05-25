@@ -608,7 +608,8 @@
     },
     "buttons": {
       "continue": "Continue",
-      "view": "View"
+      "view": "View",
+      "faq": "Faq"
     },
     "cta": {
       "continueLearning": "Continue Learning",
@@ -655,7 +656,8 @@
     },
     "buttons": {
       "continue": "Continue",
-      "view": "View"
+      "view": "View",
+      "faq": "Faq"
     },
     "cta": {
       "continueLearning": "Continue Learning",
@@ -701,7 +703,8 @@
     },
     "buttons": {
       "continue": "Continue",
-      "view": "View"
+      "view": "View",
+      "faq": "Faq"
     },
     "cta": {
       "continueLearning": "Continue Learning",

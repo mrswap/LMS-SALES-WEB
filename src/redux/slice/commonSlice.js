@@ -177,12 +177,12 @@ const commonSlice = createSlice({
                 state.isSubmitting = false;
                 state.contactUsResponse = action.payload?.data || action.payload;
                 state.isError = false;
-                state.message = action.payload?.message || "Contact form submitted successfully";
+                state.message = action.payload?.message;
             })
             .addCase(postContactUs.rejected, (state, action) => {
                 state.isSubmitting = false;
                 state.isError = true;
-                state.message = action.payload?.message || "Failed to submit contact form";
+                state.message = action.payload?.message;
                 state.contactUsResponse = null;
             });
     },
