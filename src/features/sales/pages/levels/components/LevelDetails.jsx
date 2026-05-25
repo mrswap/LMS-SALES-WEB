@@ -337,7 +337,7 @@ export default function LevelDetails() {
               }`}
                     >
                       <IoHelpCircle className="w-4 h-4" />
-                      FAQ
+                      {t("levelDetails.buttons.faq")}
                     </button>
 
                     {module?.is_completed ? (

@@ -352,7 +352,7 @@ export default function Chapters() {
                 }`}
                       >
                         <IoHelpCircle className="w-4 h-4" />
-                        FAQ
+                        {t("chapters.buttons.faq")}
                       </button>
 
                       {isCompleted ? (

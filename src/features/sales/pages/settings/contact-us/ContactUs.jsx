@@ -59,10 +59,13 @@ const ContactUs = () => {
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const res = await dispatch(postContactUs(values)).unwrap();
-      toast.success(res?.message || t("contactUs.toast.success"));
+      // toast.success(res?.message || t("contactUs.toast.success"));
+      toast.success(t("contactUs.toast.success"));
+
       resetForm();
     } catch (err) {
-      toast.error(err?.message || t("contactUs.toast.error"));
+      // toast.error(err?.message || t("contactUs.toast.error"));
+      toast.error(t("contactUs.toast.error"));
     } finally {
       setSubmitting(false);
     }
@@ -195,7 +198,7 @@ const ContactUs = () => {
                         ? t("contactUs.buttons.sending")
                         : t("contactUs.buttons.sendMessage")
                     }
-                    className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-md flex items-center justify-center gap-2 transition-colors"
+                    className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-md flex items-center justify-center gap-2 cursor-pointer transition-colors"
                     type="submit"
                     disabled={isSubmitting}
                     icon={<FiSend />}

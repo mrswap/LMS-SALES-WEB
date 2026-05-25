@@ -78,9 +78,9 @@ const SalesRoutes = (
         <Route
           path="quiz/:topicId"
           element={
-            <ProtectedQuizExamRoute>
-              <Quize />
-            </ProtectedQuizExamRoute>
+            // <ProtectedQuizExamRoute>
+            <Quize />
+            // </ProtectedQuizExamRoute>
           }
         />
         <Route
