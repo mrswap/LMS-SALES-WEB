@@ -207,10 +207,77 @@ const quizSlice = createSlice({
             .addCase(startAttempt.pending, (state) => {
                 state.isLoading = true;
             })
+            // .addCase(startAttempt.fulfilled, (state, action) => {
+            //     state.isLoading = false;
+            //     state.isSuccess = true;
+            //     // state.attempt = action.payload.attempt || action.payload;
+            //     const newAttempt = action.payload.attempt || action.payload;
+
+            //     state.attempt = {
+            //         ...newAttempt,
+            //         topic_id: newAttempt.topic_id || action.meta.arg,
+            //     };
+            //     state.message = action.payload.message;
+            // })
+            // .addCase(startAttempt.fulfilled, (state, action) => {
+            //     state.isLoading = false;
+            //     state.isSuccess = true;
+
+            //     const newAttempt = action.payload.attempt || action.payload;
+
+            //     // IMPORTANT FIX
+            //     // agar old submitted attempt aa raha hai
+            //     // to usko state me mat rakho
+
+            //     if (
+            //         newAttempt?.is_submitted ||
+            //         newAttempt?.status === "passed" ||
+            //         newAttempt?.status === "failed"
+            //     ) {
+            //         state.attempt = null;
+            //         state.questions = [];
+            //         state.quizResults = null;
+            //         state.message = "Old attempt ignored";
+            //         return;
+            //     }
+
+            //     state.attempt = {
+            //         ...newAttempt,
+            //         topic_id: newAttempt.topic_id || action.meta.arg,
+            //     };
+
+            //     state.message = action.payload.message;
+            // })
+            // quizSlice.js mein startAttempt.fulfilled reducer ko aise karo:
+
             .addCase(startAttempt.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.attempt = action.payload.attempt || action.payload;
+
+                const newAttempt = action.payload.attempt || action.payload;
+
+                // CRITICAL: Agar "Resume existing attempt" message hai to ye old attempt hai
+                // Aur backend se koi is_submitted ya status field nahi aa raha
+                const isResumeAttempt = action.payload.message === "Resume existing attempt";
+
+                // Tumhare API response mein ye fields nahi hain, to alternate checks karo
+                // Agar attempt already submitted hai to backend se alag response aana chahiye
+                // Tab tak ke liye, agar resume attempt hai to check karo ki koi pending submission hai ya nahi
+
+                console.log("StartAttempt Response:", action.payload);
+                console.log("Is Resume Attempt:", isResumeAttempt);
+
+                // Agar resume attempt hai to iska matlab pehle se attempt exist karta hai
+                // Lekin ye necessarily submitted nahi hai - ho sakta hai incomplete ho
+                // Isliye hum directly store kar denge
+                state.attempt = {
+                    ...newAttempt,
+                    topic_id: newAttempt.topic_id || action.meta.arg,
+                    // Ensure these fields exist for UI
+                    is_submitted: newAttempt.is_submitted || false,
+                    status: newAttempt.status || "in_progress"
+                };
+
                 state.message = action.payload.message;
             })
             .addCase(startAttempt.rejected, (state, action) => {
