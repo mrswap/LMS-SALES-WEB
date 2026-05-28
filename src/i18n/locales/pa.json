@@ -573,46 +573,52 @@
   },
 
   "levelDetails": {
-    "pageTitle": "ਲੈਵਲ ਵੇਰਵੇ",
-    "pageSubtitle": "ਆਪਣੀ ਪ੍ਰਗਤੀ ਟਰੈਕ ਕਰੋ ਅਤੇ ਆਪਣਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
+    "pageTitle": "ਲੇਵਲ ਵੇਰਵਾ",
+    "pageSubtitle": "ਆਪਣੀ ਤਰੱਕੀ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ ਅਤੇ ਆਪਣੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ",
     "backButton": "ਵਾਪਸ",
-    "levelBadge": "ਲੈਵਲ",
-    "modulesCount": "ਮੌਡੀਊਲ",
+    "levelNotFound": "ਲੇਵਲ ਡਾਟਾ ਨਹੀਂ ਮਿਲਿਆ",
+    "modules": "ਮੋਡੀਊਲ",
+    "topics": "ਟਾਪਿਕ",
     "stats": {
-      "progress": "ਪ੍ਰਗਤੀ",
-      "completed": "ਪੂਰਾ ਹੋਇਆ",
+      "progress": "ਤਰੱਕੀ",
+      "topicsCompleted": "ਪੂਰੇ ਕੀਤੇ ਟਾਪਿਕ",
       "estTime": "ਅਨੁਮਾਨਿਤ ਸਮਾਂ",
-      "modulesCompleted": "ਮੌਡੀਊਲ ਪੂਰੇ ਹੋਏ",
-      "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ",
-      "selfPaced": "ਆਪਣੀ ਰਫ਼ਤਾਰ ਨਾਲ"
+      "totalLearningTime": "ਕੁੱਲ ਸਿੱਖਣ ਦਾ ਸਮਾਂ"
     },
     "aboutSection": {
-      "title": "ਇਸ ਲੈਵਲ ਬਾਰੇ"
+      "title": "ਇਸ ਲੇਵਲ ਬਾਰੇ",
+      "noDescription": "ਕੋਈ ਵੇਰਵਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।"
     },
     "modulesSection": {
-      "title": "ਲਰਨਿੰਗ ਮੌਡੀਊਲ",
-      "moduleText": "ਮੌਡੀਊਲ",
-      "current": "ਮੌਜੂਦਾ",
-      "completed": "ਪੂਰਾ ਹੋਇਆ",
-      "locked": "ਲੌਕ ਕੀਤਾ",
-      "chapters": "ਅਧਿਆਏ",
-      "topics": "ਟੌਪਿਕਸ",
-      "lockedButton": "ਲੌਕ ਹੈ"
-    },
-    "buttons": {
+      "title": "ਲਰਨਿੰਗ ਮੋਡੀਊਲ",
+      "modulesCompleted": "ਮੋਡੀਊਲ ਪੂਰੇ",
+      "module": "ਮੋਡੀਊਲ",
+      "locked": "ਲੌਕਡ",
+      "inProgress": "ਜਾਰੀ ਹੈ",
+      "passed": "ਪਾਸ",
+      "examPending": "ਇਮਤਿਹਾਨ ਬਾਕੀ ਹੈ",
+      "completed": "ਪੂਰਾ",
+      "quizNotAvailable": "ਕੁਇਜ਼ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+      "chapters": "ਅਧਿਆਇ",
+      "topics": "ਟਾਪਿਕ",
+      "complete": "ਪੂਰਾ",
+      "faq": "ਆਮ ਸਵਾਲ",
+      "viewCertificate": "ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ",
+      "takeModuleExam": "ਮੋਡੀਊਲ ਇਮਤਿਹਾਨ ਦਿਓ",
+      "assessmentNotAvailable": "ਅਸੈਸਮੈਂਟ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+      "viewContent": "ਸਮੱਗਰੀ ਵੇਖੋ",
       "continue": "ਜਾਰੀ ਰੱਖੋ",
-      "view": "ਦੇਖੋ",
-      "faq": "ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ"
+      "lockedButton": "ਲੌਕਡ"
     },
     "cta": {
+      "quizNotAvailableWarning": "ਪੂਰੀ ਕੀਤੀ ਸਮੱਗਰੀ ਲਈ ਕੁਇਜ਼ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+      "quizNotAvailableMessage": "ਤੁਸੀਂ ਸਮੱਗਰੀ ਪੂਰੀ ਕਰ ਲਈ ਹੈ ਪਰ ਕੁਇਜ਼ ਉਪਲਬਧ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਮਦਦ ਲਈ ਸਪੋਰਟ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
+      "continueJourney": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਯਾਤਰਾ ਜਾਰੀ ਰੱਖੋ",
+      "next": "ਅਗਲਾ",
+      "allModulesCompleted": "ਸਾਰੇ ਮੋਡੀਊਲ ਪੂਰੇ ਹੋ ਗਏ! ਆਪਣੇ ਮੋਡੀਊਲ ਇਮਤਿਹਾਨ ਚੈੱਕ ਕਰੋ।",
+      "viewQuizIssues": "ਕੁਇਜ਼ ਸਮੱਸਿਆਵਾਂ ਵੇਖੋ",
       "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
-      "allCompleted": "ਸਭ ਪੂਰਾ ਹੋ ਗਿਆ",
-      "continueJourney": "ਆਪਣਾ ਸਿੱਖਣ ਦਾ ਸਫ਼ਰ ਜਾਰੀ ਰੱਖੋ",
-      "nextModule": "ਅਗਲਾ:",
-      "allModulesCompleted": "ਸਾਰੇ ਮੌਡੀਊਲ ਪੂਰੇ ਹੋ ਗਏ!"
-    },
-    "emptyState": {
-      "noData": "ਕੋਈ ਲੈਵਲ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ"
+      "allModulesCompleted": "ਸਾਰੇ ਮੋਡੀਊਲ ਪੂਰੇ"
     }
   },
 

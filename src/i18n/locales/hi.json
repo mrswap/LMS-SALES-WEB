@@ -573,46 +573,52 @@
   },
 
   "levelDetails": {
-    "pageTitle": "लेवल डिटेल्स",
-    "pageSubtitle": "अपनी प्रगति ट्रैक करें और अपनी यात्रा जारी रखें",
+    "pageTitle": "लेवल विवरण",
+    "pageSubtitle": "अपनी प्रगति को ट्रैक करें और अपनी यात्रा जारी रखें",
     "backButton": "वापस",
-    "levelBadge": "लेवल",
-    "modulesCount": "मॉड्यूल्स",
+    "levelNotFound": "लेवल डेटा नहीं मिला",
+    "modules": "मॉड्यूल",
+    "topics": "टॉपिक्स",
     "stats": {
       "progress": "प्रगति",
-      "completed": "पूर्ण हुआ",
+      "topicsCompleted": "पूर्ण किए गए टॉपिक्स",
       "estTime": "अनुमानित समय",
-      "modulesCompleted": "मॉड्यूल पूर्ण हुए",
-      "totalLearningTime": "कुल सीखने का समय",
-      "selfPaced": "अपनी गति से"
+      "totalLearningTime": "कुल सीखने का समय"
     },
     "aboutSection": {
-      "title": "इस लेवल के बारे में"
+      "title": "इस लेवल के बारे में",
+      "noDescription": "कोई विवरण उपलब्ध नहीं है।"
     },
     "modulesSection": {
-      "title": "लर्निंग मॉड्यूल्स",
-      "moduleText": "मॉड्यूल",
-      "current": "करंट",
-      "completed": "पूर्ण हुआ",
-      "locked": "लॉक किया हुआ",
+      "title": "लर्निंग मॉड्यूल",
+      "modulesCompleted": "मॉड्यूल पूर्ण",
+      "module": "मॉड्यूल",
+      "locked": "लॉक्ड",
+      "inProgress": "प्रगति में",
+      "passed": "उत्तीर्ण",
+      "examPending": "परीक्षा लंबित",
+      "completed": "पूर्ण",
+      "quizNotAvailable": "क्विज़ उपलब्ध नहीं है",
       "chapters": "अध्याय",
       "topics": "टॉपिक्स",
-      "lockedButton": "लॉक है"
-    },
-    "buttons": {
+      "complete": "पूर्ण",
+      "faq": "सामान्य प्रश्न",
+      "viewCertificate": "प्रमाणपत्र देखें",
+      "takeModuleExam": "मॉड्यूल परीक्षा दें",
+      "assessmentNotAvailable": "असेसमेंट उपलब्ध नहीं है",
+      "viewContent": "सामग्री देखें",
       "continue": "जारी रखें",
-      "view": "देखें",
-      "faq": "अक्सर पूछे जाने वाले प्रश्न"
+      "lockedButton": "लॉक्ड"
     },
     "cta": {
-      "continueLearning": "सीखना जारी रखें",
-      "allCompleted": "सब पूर्ण हो गया",
+      "quizNotAvailableWarning": "पूर्ण की गई सामग्री के लिए क्विज़ उपलब्ध नहीं है",
+      "quizNotAvailableMessage": "आपने सामग्री पूरी कर ली है लेकिन क्विज़ उपलब्ध नहीं है। कृपया सहायता के लिए सपोर्ट से संपर्क करें।",
       "continueJourney": "अपनी सीखने की यात्रा जारी रखें",
-      "nextModule": "अगला:",
-      "allModulesCompleted": "सभी मॉड्यूल पूर्ण हो गए!"
-    },
-    "emptyState": {
-      "noData": "कोई लेवल डेटा उपलब्ध नहीं है"
+      "next": "अगला",
+      "allModulesCompleted": "सभी मॉड्यूल पूर्ण हो गए! अपने मॉड्यूल एग्जाम देखें।",
+      "viewQuizIssues": "क्विज़ समस्याएँ देखें",
+      "continueLearning": "सीखना जारी रखें",
+      "allModulesCompleted": "सभी मॉड्यूल पूर्ण"
     }
   },
 

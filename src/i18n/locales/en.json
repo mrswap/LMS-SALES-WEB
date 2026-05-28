@@ -583,43 +583,49 @@
     "pageTitle": "Level Details",
     "pageSubtitle": "Track your progress and continue your journey",
     "backButton": "Back",
-    "levelBadge": "Level",
-    "modulesCount": "Modules",
+    "levelNotFound": "Level data not found",
+    "modules": "Modules",
+    "topics": "Topics",
     "stats": {
-      "progress": "PROGRESS",
-      "completed": "COMPLETED",
-      "estTime": "EST. TIME",
-      "modulesCompleted": "Modules completed",
-      "totalLearningTime": "Total learning time",
-      "selfPaced": "Self-paced"
+      "progress": "Progress",
+      "topicsCompleted": "Topics Completed",
+      "estTime": "Est. Time",
+      "totalLearningTime": "Total learning time"
     },
     "aboutSection": {
-      "title": "About this Level"
+      "title": "About this Level",
+      "noDescription": "No description available."
     },
     "modulesSection": {
       "title": "Learning Modules",
-      "moduleText": "Module",
-      "current": "Current",
-      "completed": "Completed",
+      "modulesCompleted": "modules completed",
+      "module": "Module",
       "locked": "Locked",
-      "chapters": "chapters",
-      "topics": "topics",
+      "inProgress": "In Progress",
+      "passed": "Passed",
+      "examPending": "Exam Pending",
+      "completed": "Completed",
+      "quizNotAvailable": "Quiz Not Available",
+      "chapters": "Chapters",
+      "topics": "Topics",
+      "complete": "complete",
+      "faq": "FAQ",
+      "viewCertificate": "View Certificate",
+      "takeModuleExam": "Take Module Exam",
+      "assessmentNotAvailable": "Assessment Not Available",
+      "viewContent": "View Content",
+      "continue": "Continue",
       "lockedButton": "Locked"
     },
-    "buttons": {
-      "continue": "Continue",
-      "view": "View",
-      "faq": "Faq"
-    },
     "cta": {
-      "continueLearning": "Continue Learning",
-      "allCompleted": "All Completed",
+      "quizNotAvailableWarning": "Quiz Not Available for Completed Content",
+      "quizNotAvailableMessage": "You've completed the content but the quiz is unavailable. Please contact support for assistance.",
       "continueJourney": "Continue your learning journey",
-      "nextModule": "Next:",
-      "allModulesCompleted": "All modules completed!"
-    },
-    "emptyState": {
-      "noData": "No level data available"
+      "next": "Next",
+      "allModulesCompleted": "All modules completed! Check your module exams.",
+      "viewQuizIssues": "View Quiz Issues",
+      "continueLearning": "Continue Learning",
+      "allModulesCompleted": "All Modules Completed"
     }
   },
 
@@ -975,6 +981,121 @@
   },
 
   "examResult": {
+    "score": "SCORE",
+    "pageTitlePassed": "Exam Passed!",
+    "pageTitleFailed": "Exam Failed",
+    "pageSubtitlePassed": "Congratulations on passing the assessment!",
+    "pageSubtitleFailed": "Better luck next time! Keep practicing to improve.",
+    "passed": "PASSED",
+    "failed": "FAILED",
+    "scoreLabel": "SCORE",
+    "noResult": "No exam result found.",
+    "goHome": "Go Home",
+    "stats": {
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "skipped": "Skipped",
+      "timeSpent": "Time Spent"
+    },
+    "analysis": {
+      "title": "Exam Analysis",
+      "attemptId": "Attempt ID",
+      "totalQuestions": "Total Questions",
+      "questionsAttempted": "Questions Attempted",
+      "pendingQuestions": "Pending Questions",
+      "attemptsUsed": "Attempts Used",
+      "attemptsRemaining": "Attempts Remaining",
+      "totalDuration": "Total Duration"
+    },
+    "feedback": {
+      "title": "Share Your Feedback",
+      "ratingLabel": "Rate Your Experience",
+      "required": "*",
+      "additionalComments": "Additional Comments",
+      "placeholder": "Share your thoughts about the exam...",
+      "submitButton": "Submit Feedback",
+      "submitting": "Submitting...",
+      "thankYouTitle": "Thank You for Your Feedback!",
+      "thankYouMessage": "Your input helps us improve our exams.",
+      "ratingLabels": {
+        "1": "Poor",
+        "2": "Fair",
+        "3": "Good",
+        "4": "Very Good",
+        "5": "Excellent"
+      }
+    },
+    "buttons": {
+      "home": "Go Home",
+      "myLevels": "My Levels",
+      "getCertificate": "Get Certificate",
+      "retry": "Retry Exam",
+      "attemptsLeft": "attempts left"
+    },
+    "messages": {
+      "outstanding": "Outstanding! Exceptional performance!",
+      "excellent": "Excellent! Great work!",
+      "good": "Good job! Keep it up!",
+      "satisfactory": "Satisfactory! Room for improvement!",
+      "fair": "Fair effort! Keep practicing!",
+      "keepPracticing": "Keep practicing! You'll do better next time!",
+      "outstandingSub": "You've demonstrated mastery of the subject matter.",
+      "excellentSub": "Strong understanding with minor improvements needed.",
+      "goodSub": "Solid foundation with some concepts to review.",
+      "satisfactorySub": "Basic understanding achieved, keep practicing.",
+      "fairSub": "Review the material and try again for better results.",
+      "keepPracticingSub": "Don't give up! Review the levels and attempt the exam again."
+    },
+    "errors": {
+      "ratingRequired": "Please select a rating",
+      "feedbackFailed": "Failed to submit feedback. Please try again."
+    }
+  },
+
+  "examModule": {
+    "pageTitle": "Final Examination",
+    "pageSubtitle": "Module End Assessment",
+    "timeLeft": "Time Remaining",
+    "exitExam": "Exit Examination",
+    "moduleDetails": "Module Details",
+    "attempts": "Attempts",
+    "remaining": "Remaining",
+    "duration": "Duration",
+    "minutes": "minutes",
+    "question": "Question",
+    "of": "of",
+    "startedAt": "Started at",
+    "expiresAt": "Expires at",
+    "attemptId": "Attempt ID",
+    "questionOf": "Question {current} of {total}",
+    "answerSelected": "Answer Selected",
+    "skipped": "Skipped",
+    "previous": "Previous",
+    "skip": "Skip",
+    "next": "Next",
+    "submitQuiz": "Submit Examination",
+    "submitting": "Submitting...",
+    "timeUpWarning": "Time's up! Auto-submitting your examination...",
+    "noQuestionsTitle": "No questions available",
+    "noQuestionsDescription": "Please contact your instructor.",
+    "noAttemptsLeft": "No attempts left! You have exhausted all your attempts.",
+    "noAttemptsTitle": "No Attempts Left",
+    "noAttemptsSubtitle": "You have exhausted all your attempts for this examination",
+    "noAttemptsHeading": "No Attempts Remaining",
+    "noAttemptsMessage": "You have used all {total} attempts for this examination.",
+    "goBack": "Go Back",
+    "leaveWarning": "You have an ongoing examination! Are you sure you want to leave?",
+    "confirmationModal": {
+      "title": "Leave Examination?",
+      "description": "You have an ongoing examination. If you leave now, your examination will be auto-submitted.",
+      "progressSaved": "Your progress will be saved.",
+      "timeRemaining": "Time remaining:",
+      "cancel": "Cancel",
+      "confirm": "Leave & Submit"
+    }
+  },
+
+  "examModuleResult": {
     "score": "SCORE",
     "pageTitlePassed": "Exam Passed!",
     "pageTitleFailed": "Exam Failed",
