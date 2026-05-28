@@ -205,7 +205,7 @@ const ScoreRing = ({ percentage, isPassed }) => {
           {Math.round(percentage || 0)}%
         </span>
         <span className="text-[0.6rem] tracking-widest text-gray-400 font-semibold uppercase">
-          {t("quizResult.score")}
+          {t("examModuleResult.score")}
         </span>
       </div>
     </div>
@@ -213,21 +213,17 @@ const ScoreRing = ({ percentage, isPassed }) => {
 };
 
 /* ══════════════════════════════
-   MAIN COMPONENT
+   MAIN COMPONENT - ExamModuleResult
 ══════════════════════════════ */
-const QuizResult = () => {
+const ExamModuleResult = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { topicId } = useParams();
-
-  // console.log("topicId", topicId);
+  const { topicId, attemptId } = useParams();
 
   const { quizResults, isLoading, feedbackSubmitted } = useSelector(
     (state) => state.quiz,
   );
-
-  console.log("quizResult", quizResults);
 
   const [feedback, setFeedback] = useState({ rating: 0, review: "" });
   const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
@@ -251,7 +247,7 @@ const QuizResult = () => {
   const isPassed = quizResults?.status === "passed";
 
   // Attempt details from API response
-  const attemptIdValue = quizResults?.attempt_id;
+  const attemptIdValue = quizResults?.attempt_id || attemptId;
   const attemptsRemaining = quizResults?.attempts_remaining || 0;
   const attemptsUsed = quizResults?.attempts_used || 0;
   const totalAttemptsAllowed = quizResults?.total_attempts_allowed || 0;
@@ -263,30 +259,30 @@ const QuizResult = () => {
   const currentChapterId = quizResults?.context?.chapter?.id;
 
   const getScoreMessage = () => {
-    if (pct >= 80) return t("quizResult.messages.outstanding");
-    if (pct >= 70) return t("quizResult.messages.excellent");
-    if (pct >= 60) return t("quizResult.messages.good");
-    if (pct >= 50) return t("quizResult.messages.satisfactory");
-    if (pct >= 40) return t("quizResult.messages.fair");
-    return t("quizResult.messages.keepPracticing");
+    if (pct >= 80) return t("examModuleResult.messages.outstanding");
+    if (pct >= 70) return t("examModuleResult.messages.excellent");
+    if (pct >= 60) return t("examModuleResult.messages.good");
+    if (pct >= 50) return t("examModuleResult.messages.satisfactory");
+    if (pct >= 40) return t("examModuleResult.messages.fair");
+    return t("examModuleResult.messages.keepPracticing");
   };
 
   const getScoreSubtext = () => {
-    if (pct >= 80) return t("quizResult.messages.outstandingSub");
-    if (pct >= 70) return t("quizResult.messages.excellentSub");
-    if (pct >= 60) return t("quizResult.messages.goodSub");
-    if (pct >= 50) return t("quizResult.messages.satisfactorySub");
-    if (pct >= 40) return t("quizResult.messages.fairSub");
-    return t("quizResult.messages.keepPracticingSub");
+    if (pct >= 80) return t("examModuleResult.messages.outstandingSub");
+    if (pct >= 70) return t("examModuleResult.messages.excellentSub");
+    if (pct >= 60) return t("examModuleResult.messages.goodSub");
+    if (pct >= 50) return t("examModuleResult.messages.satisfactorySub");
+    if (pct >= 40) return t("examModuleResult.messages.fairSub");
+    return t("examModuleResult.messages.keepPracticingSub");
   };
 
   const getRatingLabel = (r) =>
     ({
-      1: t("quizResult.feedback.ratingLabels.1"),
-      2: t("quizResult.feedback.ratingLabels.2"),
-      3: t("quizResult.feedback.ratingLabels.3"),
-      4: t("quizResult.feedback.ratingLabels.4"),
-      5: t("quizResult.feedback.ratingLabels.5"),
+      1: t("examModuleResult.feedback.ratingLabels.1"),
+      2: t("examModuleResult.feedback.ratingLabels.2"),
+      3: t("examModuleResult.feedback.ratingLabels.3"),
+      4: t("examModuleResult.feedback.ratingLabels.4"),
+      5: t("examModuleResult.feedback.ratingLabels.5"),
     })[r] || "";
 
   const handleRatingClick = (rating) => {
@@ -297,7 +293,7 @@ const QuizResult = () => {
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
     if (!feedback.rating) {
-      setFeedbackError(t("quizResult.errors.ratingRequired"));
+      setFeedbackError(t("examModuleResult.errors.ratingRequired"));
       return;
     }
     setIsSubmittingFeedback(true);
@@ -314,19 +310,19 @@ const QuizResult = () => {
       setShowFeedbackForm(false);
     } catch (err) {
       setFeedbackError(
-        err?.response?.data?.message || t("quizResult.errors.feedbackFailed"),
+        err?.response?.data?.message ||
+          t("examModuleResult.errors.feedbackFailed"),
       );
     } finally {
       setIsSubmittingFeedback(false);
     }
   };
 
-  // Navigation handlers as per requirements
+  // Navigation handlers
   const handleGoHome = () => navigate("/dashboard");
   const handleGoToLevels = () => navigate("/levels");
   const handleRetry = () => {
     dispatch(clearQuizData());
-    // Navigate to /chapters/:chapterId
     navigate(`/chapters/${currentChapterId}`);
   };
 
@@ -347,15 +343,14 @@ const QuizResult = () => {
       <PageLayout>
         <div className="flex flex-col justify-center items-center min-h-[60vh] gap-4">
           <p className="text-gray-600 text-lg">
-            {" "}
-            {t("quizResult.messages.noQuizResultFound")}
+            {t("examModuleResult.messages.noQuizResultFound")}
           </p>
           <button
             onClick={handleGoHome}
-            className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer "
+            className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer"
           >
             <FiHome className="w-3.5 h-3.5" />
-            {t("quizResult.buttons.home")}
+            {t("examModuleResult.buttons.home")}
           </button>
         </div>
       </PageLayout>
@@ -385,77 +380,70 @@ const QuizResult = () => {
     {
       icon: FiCheckCircle,
       value: quizResults.correct || 0,
-      label: t("quizResult.stats.correct"),
+      label: t("examModuleResult.stats.correct"),
       bg: "#d1fae5",
       color: "#059669",
     },
     {
       icon: FiXCircle,
       value: quizResults.wrong || 0,
-      label: t("quizResult.stats.incorrect"),
+      label: t("examModuleResult.stats.incorrect"),
       bg: "#ffe4e6",
       color: "#e11d48",
     },
     {
       icon: FiClock,
       value: quizResults.skipped || 0,
-      label: t("quizResult.stats.skipped"),
+      label: t("examModuleResult.stats.skipped"),
       bg: "#f3f4f6",
       color: "#6b7280",
     },
     {
       icon: FiTrendingUp,
       value: `${Math.floor(quizResults.time_taken_minutes || 0)}m ${Math.floor((quizResults.time_taken_seconds || 0) % 60)}s`,
-      label: t("quizResult.stats.timeSpent"),
+      label: t("examModuleResult.stats.timeSpent"),
       bg: "#dbeafe",
       color: "#1d4ed8",
       small: true,
     },
   ];
 
-  // Add this navigation handler
-  const handleGetCertificate = () => {
-    if (attemptIdValue) {
-      navigate(`/certificate/${attemptIdValue}`);
-    }
-  };
-
-  /* analysis rows - ADDED attempt details here */
+  /* analysis rows with attempt details */
   const analysisRows = [
     {
       icon: FiHash,
-      label: t("quizResult.analysis.attemptId"),
+      label: t("examModuleResult.analysis.attemptId"),
       value: `#${attemptIdValue}`,
     },
     {
       icon: FiBookOpen,
-      label: t("quizResult.analysis.totalQuestions"),
+      label: t("examModuleResult.analysis.totalQuestions"),
       value: quizResults.total || 0,
     },
     {
       icon: FiTarget,
-      label: t("quizResult.analysis.questionsAttempted"),
+      label: t("examModuleResult.analysis.questionsAttempted"),
       value: quizResults.answered_questions || 0,
     },
     {
       icon: FiClock,
-      label: t("quizResult.analysis.pendingQuestions"),
+      label: t("examModuleResult.analysis.pendingQuestions"),
       value: quizResults.remaining_questions || 0,
     },
     {
       icon: FiRefreshCw,
-      label: t("quizResult.analysis.attemptsUsed"),
+      label: t("examModuleResult.analysis.attemptsUsed"),
       value: `${attemptsUsed} / ${totalAttemptsAllowed}`,
     },
     {
       icon: FiAward,
-      label: t("quizResult.analysis.attemptsRemaining"),
+      label: t("examModuleResult.analysis.attemptsRemaining"),
       value: attemptsRemaining,
       highlight: attemptsRemaining > 0 && !isPassed,
     },
     {
       icon: FiClock,
-      label: t("quizResult.analysis.totalDuration"),
+      label: t("examModuleResult.analysis.totalDuration"),
       value: `${(quizResults.time_taken_minutes || 0).toFixed(2)} minutes`,
       last: true,
     },
@@ -496,13 +484,13 @@ const QuizResult = () => {
             <div className="animate-[fadeUp_.5s_ease_both]">
               <PageTitle className="qr-serif text-[1.75rem]">
                 {isPassed
-                  ? t("quizResult.pageTitlePassed")
-                  : t("quizResult.pageTitleFailed")}
+                  ? t("examModuleResult.pageTitlePassed")
+                  : t("examModuleResult.pageTitleFailed")}
               </PageTitle>
               <PageSubtitle className="text-gray-500 mt-1">
                 {isPassed
-                  ? t("quizResult.pageSubtitlePassed")
-                  : t("quizResult.pageSubtitleFailed")}
+                  ? t("examModuleResult.pageSubtitlePassed")
+                  : t("examModuleResult.pageSubtitleFailed")}
               </PageSubtitle>
             </div>
           </div>
@@ -542,8 +530,7 @@ const QuizResult = () => {
                   color: ghostNum,
                 }}
               >
-                {/* {Math.round(pct)} */}
-                {pct?.toFixed(2)}
+                {Math.round(pct)}
               </div>
 
               <div className="mb-6 animate-[scaleIn_.45s_cubic-bezier(.22,.68,0,1.2)_.1s_both]">
@@ -573,8 +560,10 @@ const QuizResult = () => {
                   className="text-xs font-semibold uppercase tracking-wide"
                   style={{ color: pillText }}
                 >
-                  {isPassed ? t("quizResult.passed") : t("quizResult.failed")}{" "}
-                  &nbsp;·&nbsp; {t("quizResult.scoreLabel")}:{" "}
+                  {isPassed
+                    ? t("examModuleResult.passed")
+                    : t("examModuleResult.failed")}{" "}
+                  &nbsp;·&nbsp; {t("examModuleResult.scoreLabel")}:{" "}
                   {quizResults.score} / {quizResults.total_marks}
                 </span>
               </div>
@@ -621,7 +610,7 @@ const QuizResult = () => {
                 <FiBarChart2 className="w-4 h-4 text-gray-600" />
               </div>
               <span className="qr-serif font-semibold text-gray-800 text-base">
-                {t("quizResult.analysis.title")}
+                {t("examModuleResult.analysis.title")}
               </span>
             </div>
 
@@ -662,7 +651,7 @@ const QuizResult = () => {
                   <FiMessageSquare className="w-4 h-4 text-gray-600" />
                 </div>
                 <span className="qr-serif font-semibold text-gray-800 text-base">
-                  {t("quizResult.feedback.title")}
+                  {t("examModuleResult.feedback.title")}
                 </span>
               </div>
 
@@ -671,9 +660,9 @@ const QuizResult = () => {
                   {/* Stars */}
                   <div className="mb-7">
                     <label className="block text-gray-700 font-medium text-sm mb-3">
-                      {t("quizResult.feedback.ratingLabel")}{" "}
+                      {t("examModuleResult.feedback.ratingLabel")}{" "}
                       <span className="text-rose-500">
-                        {t("quizResult.feedback.required")}
+                        {t("examModuleResult.feedback.required")}
                       </span>
                     </label>
 
@@ -719,7 +708,7 @@ const QuizResult = () => {
                   {/* Textarea */}
                   <div className="mb-6">
                     <label className="block text-gray-700 font-medium text-sm mb-2">
-                      {t("quizResult.feedback.additionalComments")}
+                      {t("examModuleResult.feedback.additionalComments")}
                     </label>
                     <textarea
                       value={feedback.review}
@@ -727,7 +716,7 @@ const QuizResult = () => {
                         setFeedback((f) => ({ ...f, review: e.target.value }))
                       }
                       rows={4}
-                      placeholder={t("quizResult.feedback.placeholder")}
+                      placeholder={t("examModuleResult.feedback.placeholder")}
                       className="qr-textarea w-full px-4 py-3 border-[1.5px] border-gray-200 rounded-xl text-sm text-gray-700 resize-none bg-gray-50 transition-all duration-200"
                       style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }}
                     />
@@ -752,12 +741,12 @@ const QuizResult = () => {
                             borderTopColor: "#fff",
                           }}
                         />
-                        {t("quizResult.feedback.submitting")}
+                        {t("examModuleResult.feedback.submitting")}
                       </>
                     ) : (
                       <>
                         <FiSend className="w-4 h-4" />{" "}
-                        {t("quizResult.feedback.submitButton")}
+                        {t("examModuleResult.feedback.submitButton")}
                       </>
                     )}
                   </button>
@@ -789,10 +778,10 @@ const QuizResult = () => {
               </div>
 
               <h3 className="qr-serif text-[1.4rem] font-bold text-emerald-900 mb-1.5">
-                {t("quizResult.feedback.thankYouTitle")}
+                {t("examModuleResult.feedback.thankYouTitle")}
               </h3>
               <p className="text-emerald-700 text-sm mb-4">
-                {t("quizResult.feedback.thankYouMessage")}
+                {t("examModuleResult.feedback.thankYouMessage")}
               </p>
 
               <div className="flex justify-center gap-1.5 mb-6">
@@ -816,14 +805,14 @@ const QuizResult = () => {
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-sm transition-all duration-200"
                 >
                   <FiHome className="w-4 h-4" />
-                  {t("quizResult.buttons.home")}
+                  {t("examModuleResult.buttons.home")}
                 </button>
                 <button
                   onClick={handleGoToLevels}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-emerald-300 bg-white text-emerald-700 font-semibold text-sm transition-all duration-200 hover:shadow-lg"
                 >
                   <FiLayers className="w-4 h-4" />
-                  {t("quizResult.buttons.myLevels")}
+                  {t("examModuleResult.buttons.myLevels")}
                 </button>
               </div>
             </div>
@@ -837,7 +826,7 @@ const QuizResult = () => {
                 className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 <FiHome className="w-3.5 h-3.5" />
-                {t("quizResult.buttons.home")}
+                {t("examModuleResult.buttons.home")}
               </button>
 
               <button
@@ -845,23 +834,8 @@ const QuizResult = () => {
                 className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-gray-200 bg-white text-gray-700 font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 <FiLayers className="w-3.5 h-3.5" />
-                {t("quizResult.buttons.myLevels")}
+                {t("examModuleResult.buttons.myLevels")}
               </button>
-
-              {/* Get Certificate Button - ONLY show when user has PASSED */}
-              {/* {isPassed && (
-                <button
-                  onClick={handleGetCertificate}
-                  className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-0 text-white font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
-                  style={{
-                    background: "linear-gradient(135deg, #10b981, #059669)",
-                    fontFamily: "'DM Sans', system-ui, sans-serif",
-                  }}
-                >
-                  <FiAward className="w-3.5 h-3.5" />
-                  {t("quizResult.buttons.getCertificate")}
-                </button>
-              )} */}
 
               {/* Retry button - only show if NOT passed AND attempts remaining > 0 */}
               {canRetry && (
@@ -874,8 +848,8 @@ const QuizResult = () => {
                   }}
                 >
                   <FiRefreshCw className="w-3.5 h-3.5" />
-                  {t("quizResult.buttons.retry")} ({attemptsRemaining}{" "}
-                  {t("quizResult.buttons.attemptsLeft")})
+                  {t("examModuleResult.buttons.retry")} ({attemptsRemaining}{" "}
+                  {t("examModuleResult.buttons.attemptsLeft")})
                 </button>
               )}
             </div>
@@ -886,4 +860,4 @@ const QuizResult = () => {
   );
 };
 
-export default QuizResult;
+export default ExamModuleResult;

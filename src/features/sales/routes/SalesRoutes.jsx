@@ -13,7 +13,6 @@ import ProfileDetails from "../pages/profile/components/ProfileDetails";
 import Chapters from "../pages/chapters/Chapters";
 import Modules from "../pages/modules/Modules";
 import Topics from "../pages/topics/Topic";
-import Exam from "../pages/exam/Exam";
 import ProtectedRoute from "./ProtectedRoute";
 import TopicContent from "../pages/topics/TopicContent";
 import AboutUs from "../pages/settings/about-us/AboutUs";
@@ -26,7 +25,8 @@ import AuditLogsReports from "../pages/progress/components/AuditLogsReports";
 import UserProgressReports from "../pages/progress/components/UserProgressReports";
 import CertificationReports from "../pages/progress/components/CertificationReports";
 import Certificate from "../pages/assessment/components/Certificate";
-import ExamResult from "../pages/exam/ExamResult";
+// import Exam from "../pages/exam/Exam";
+// import ExamResult from "../pages/exam/ExamResult";
 import ProtectedQuizExamRoute from "./ProtectedQuizExamRoute";
 import Notification from "../common/noitification/Notification";
 import NotificationDetail from "../common/noitification/NotificatinDetails";
@@ -36,6 +36,8 @@ import AboutUsInfo from "../outside/AboutUsInfo";
 import TermsCondtionInfo from "../outside/TermsCondtionInfo";
 import PolicyInfo from "../outside/PolicyInfo";
 import Support from "../pages/support-page/Support";
+import ExamModule from "../pages/exam-module/ExamModule";
+import ExamModuleResult from "../pages/exam-module/ExamModuleResult";
 
 const SalesRoutes = (
   <Route>
@@ -78,9 +80,9 @@ const SalesRoutes = (
         <Route
           path="quiz/:topicId"
           element={
-            <ProtectedQuizExamRoute>
-              <Quize />
-            </ProtectedQuizExamRoute>
+            // <ProtectedQuizExamRoute>
+            <Quize />
+            // </ProtectedQuizExamRoute>
           }
         />
         <Route
@@ -92,8 +94,26 @@ const SalesRoutes = (
           }
         />
 
-        {/* exam - Protected */}
+        {/* exam-module - Protected */}
         <Route
+          path="exam-module/:topicId"
+          element={
+            // <ProtectedQuizExamRoute>
+            <ExamModule />
+            // </ProtectedQuizExamRoute>
+          }
+        />
+        <Route
+          path="/exam-module/result/:topicId/:attemptId"
+          element={
+            <ProtectedQuizExamRoute>
+              <ExamModuleResult />
+            </ProtectedQuizExamRoute>
+          }
+        />
+
+        {/* exam - Protected */}
+        {/* <Route
           path="exam/:topicId"
           element={
             <ProtectedQuizExamRoute>
@@ -108,7 +128,7 @@ const SalesRoutes = (
               <ExamResult />
             </ProtectedQuizExamRoute>
           }
-        />
+        /> */}
 
         {/*progress  */}
         <Route path="progress" element={<ProgressStats />} />

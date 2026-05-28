@@ -37,10 +37,9 @@
 // import Error from "../../common/Error";
 // import ConfirmationModal from "./ConfirmationModal";
 
-// // ─── sessionStorage key ────────────────────────────────────────────────────────
-// const QUIZ_ACTIVE_KEY = "quiz_active_attempt";
+// const EXAM_ACTIVE_KEY = "exam_active_attempt";
 
-// const Quiz = () => {
+// const ExamModule = () => {
 //   const navigate = useNavigate();
 //   const { topicId } = useParams();
 //   const dispatch = useDispatch();
@@ -59,8 +58,9 @@
 //   const [timeLeft, setTimeLeft] = useState(null);
 //   const [isTimeUp, setIsTimeUp] = useState(false);
 //   const [isInitializing, setIsInitializing] = useState(true);
+//   const [isReloadSubmitting, setIsReloadSubmitting] = useState(false);
 
-//   // ── Refs ───────────────────────────────────────────────────────────────────
+//   // Refs
 //   const attemptRef = useRef(attempt);
 //   const topicIdRef = useRef(topicId);
 //   const selectedRef = useRef(selected);
@@ -72,9 +72,8 @@
 //   const timeLeftRef = useRef(timeLeft);
 //   const isTimeUpRef = useRef(isTimeUp);
 //   const showLeaveModalRef = useRef(showLeaveModal);
-//   const [isReloadSubmitting, setIsReloadSubmitting] = useState(false);
 
-//   // ── Sync refs ──────────────────────────────────────────────────────────────
+//   // Sync refs
 //   useEffect(() => {
 //     attemptRef.current = attempt;
 //   }, [attempt]);
@@ -124,37 +123,31 @@
 //     }
 //   }, [blocker]);
 
-//   const currentQuestion =
-//     questions && questions.length > 0 ? questions[currentIndex] : null;
-
 //   useEffect(() => {
 //     if (
 //       attempt?.is_submitted ||
 //       attempt?.status === "failed" ||
 //       attempt?.status === "passed"
 //     ) {
-//       sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
+//       sessionStorage.removeItem(EXAM_ACTIVE_KEY);
 //     }
 //   }, [attempt]);
 
-//   // ── sessionStorage flag: quiz active hote hi set karo ─────────────────────
 //   useEffect(() => {
 //     if (attempt?.attempt_id && attempt?.attempts_remaining > 0) {
-//       sessionStorage.setItem(QUIZ_ACTIVE_KEY, attempt.attempt_id);
+//       sessionStorage.setItem(EXAM_ACTIVE_KEY, attempt.attempt_id);
 //     }
 //   }, [attempt?.attempt_id, attempt?.attempts_remaining]);
 
-//   // ── Guard: no attempts left ────────────────────────────────────────────────
 //   useEffect(() => {
 //     if (attempt && attempt.attempts_remaining === 0) {
-//       alert(t("quiz.noAttemptsLeft"));
+//       alert(t("examModule.noAttemptsLeft"));
 //       navigate(-1);
 //     }
 //   }, [attempt, navigate, t]);
 
 //   useEffect(() => {
 //     dispatch(clearQuizData());
-
 //     setSelected("");
 //     setCurrentIndex(0);
 //     setAnswers({});
@@ -162,45 +155,28 @@
 //     setIsTimeUp(false);
 //     setShowLeaveModal(false);
 //     setTimeLeft(null);
+//     sessionStorage.removeItem(EXAM_ACTIVE_KEY);
+//   }, [topicId, dispatch]);
 
-//     sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
-//   }, [topicId]);
-
-//   // ── Bootstrap ──────────────────────────────────────────────────────────────
-
+//   // Bootstrap
 //   useEffect(() => {
-//     const initQuiz = async () => {
+//     const initExam = async () => {
 //       setIsInitializing(true);
-
 //       if (!topicId) return;
-
 //       dispatch(resetFeedbackState());
-
 //       try {
-//         // Clear previous data
 //         dispatch(clearQuizData());
-
-//         // Start attempt - backend "Resume existing attempt" dega agar pehle se hai
 //         const res = await dispatch(startAttempt(topicId)).unwrap();
-
-//         console.log("Start attempt response:", res);
-
-//         // CRITICAL: Agar resume attempt hai, to check karo ki attempt submit to nahi ho gaya
-//         // Tumhare backend se is_submitted field nahi aa raha, to alternative checks
-//         // Abhi ke liye, agar resume attempt hai to hum maanenge ki valid hai
-//         // Kyunki backend ne attempt_id diya hai, iska matlab attempt exist karta hai
-
-//         // Agar attempts_remaining > 0 hai to proceed
 //         if (res.attempts_remaining === 0) {
 //           console.log("No attempts remaining");
-//           // Handle no attempts left
 //           return;
 //         }
-
-//         // Success - attempt is valid
-//         console.log("Valid attempt started/resumed with ID:", res.attempt_id);
+//         console.log(
+//           "Valid exam attempt started/resumed with ID:",
+//           res.attempt_id,
+//         );
 //       } catch (err) {
-//         console.error("Failed to start attempt:", err);
+//         console.error("Failed to start exam attempt:", err);
 //         if (
 //           err?.message?.includes("rate limit") ||
 //           err?.response?.status === 429
@@ -212,8 +188,7 @@
 //         setIsInitializing(false);
 //       }
 //     };
-
-//     initQuiz();
+//     initExam();
 //   }, [dispatch, topicId, navigate]);
 
 //   useEffect(() => {
@@ -238,12 +213,11 @@
 //     }
 //   }, [attempt?.duration, attempt?.attempts_remaining]);
 
-//   // ── Auto-submit ────────────────────────────────────────────────────────────
 //   const performAutoSubmit = useCallback(
 //     async (shouldNavigate = true, targetPath = null) => {
 //       if (hasAutoSubmittedRef.current) return;
 //       setHasAutoSubmitted(true);
-//       sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
+//       sessionStorage.removeItem(EXAM_ACTIVE_KEY);
 
 //       try {
 //         const currentAttempt = attemptRef.current;
@@ -276,14 +250,14 @@
 //           ).unwrap();
 //         }
 //       } catch (error) {
-//         console.error("Failed to auto-submit quiz:", error);
+//         console.error("Failed to auto-submit exam:", error);
 //       } finally {
 //         if (shouldNavigate) {
 //           const nav = navigateRef.current;
 //           if (targetPath) {
 //             nav(targetPath);
 //           } else if (attemptRef.current?.attempt_id) {
-//             nav(`/quiz/results/${attemptRef.current.attempt_id}`);
+//             nav(`/exam-module/result/${attemptRef.current.attempt_id}`);
 //           } else {
 //             nav(-1);
 //           }
@@ -300,47 +274,36 @@
 //         !isTimeUpRef.current &&
 //         attemptRef.current?.attempt_id
 //       ) {
-//         // refresh flag
-//         sessionStorage.setItem("quiz_refresh_detected", "true");
-
-//         // important quiz data
+//         sessionStorage.setItem("exam_refresh_detected", "true");
 //         localStorage.setItem(
-//           "quiz_reload_submit",
+//           "exam_reload_submit",
 //           JSON.stringify({
 //             attemptId: attemptRef.current.attempt_id,
 //             topicId: topicIdRef.current,
 //           }),
 //         );
-
 //         e.preventDefault();
 //         e.returnValue = "";
 //       }
 //     };
-
 //     window.addEventListener("beforeunload", handleBeforeUnload);
-
-//     return () => {
-//       window.removeEventListener("beforeunload", handleBeforeUnload);
-//     };
+//     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
 //   }, []);
 
 //   useEffect(() => {
 //     const refreshDetected =
-//       sessionStorage.getItem("quiz_refresh_detected") === "true";
+//       sessionStorage.getItem("exam_refresh_detected") === "true";
+//     const pendingExam = localStorage.getItem("exam_reload_submit");
 
-//     const pendingQuiz = localStorage.getItem("quiz_reload_submit");
+//     if (!refreshDetected || !pendingExam) return;
 
-//     if (!refreshDetected || !pendingQuiz) return;
+//     sessionStorage.removeItem("exam_refresh_detected");
+//     const data = JSON.parse(pendingExam);
+//     localStorage.removeItem("exam_reload_submit");
 
-//     sessionStorage.removeItem("quiz_refresh_detected");
-
-//     const data = JSON.parse(pendingQuiz);
-
-//     localStorage.removeItem("quiz_reload_submit");
 //     if (data?.attemptId && data?.topicId) {
 //       setIsReloadSubmitting(true);
 //       setHasAutoSubmitted(true);
-
 //       dispatch(
 //         submitQuiz({
 //           attemptId: data.attemptId,
@@ -349,7 +312,7 @@
 //       )
 //         .unwrap()
 //         .then((result) => {
-//           navigate(`/quiz/result/${data.topicId}/${data.attemptId}`, {
+//           navigate(`/exam-module/result/${data.topicId}/${data.attemptId}`, {
 //             state: { results: result },
 //           });
 //         })
@@ -362,11 +325,8 @@
 
 //   const handleConfirmLeave = useCallback(async () => {
 //     setShowLeaveModal(false);
-
-//     sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
-
+//     sessionStorage.removeItem(EXAM_ACTIVE_KEY);
 //     await performAutoSubmit(false);
-
 //     if (blocker.state === "blocked") {
 //       blocker.proceed();
 //     } else {
@@ -376,7 +336,6 @@
 
 //   const handleCancelLeave = useCallback(() => {
 //     setShowLeaveModal(false);
-
 //     if (blocker.state === "blocked") {
 //       blocker.reset();
 //     }
@@ -391,7 +350,7 @@
 //         if (prev <= 1) {
 //           clearInterval(timer);
 //           setIsTimeUp(true);
-//           sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
+//           sessionStorage.removeItem(EXAM_ACTIVE_KEY);
 //           performAutoSubmit(true);
 //           return 0;
 //         }
@@ -402,17 +361,16 @@
 //     return () => clearInterval(timer);
 //   }, [timeLeft, isTimeUp, hasAutoSubmitted, performAutoSubmit]);
 
-//   // ── Before-unload ──────────────────────────────────────────────────────────
 //   useEffect(() => {
 //     const handler = (e) => {
-//       const activeAttempt = sessionStorage.getItem(QUIZ_ACTIVE_KEY);
+//       const activeAttempt = sessionStorage.getItem(EXAM_ACTIVE_KEY);
 //       if (
 //         !hasAutoSubmittedRef.current &&
 //         activeAttempt &&
 //         !isTimeUpRef.current
 //       ) {
 //         e.preventDefault();
-//         e.returnValue = t("quiz.leaveWarning");
+//         e.returnValue = t("examModule.leaveWarning");
 //         return e.returnValue;
 //       }
 //     };
@@ -420,7 +378,6 @@
 //     return () => window.removeEventListener("beforeunload", handler);
 //   }, [t]);
 
-//   // ── Helpers ────────────────────────────────────────────────────────────────
 //   const formatTime = (seconds) => {
 //     if (!seconds && seconds !== 0) return "00:00";
 //     const mins = Math.floor(seconds / 60);
@@ -435,7 +392,6 @@
 //     return "text-blue-600";
 //   };
 
-//   // ── Answer / nav actions ───────────────────────────────────────────────────
 //   const submitCurrentAnswer = async () => {
 //     if (
 //       !currentQuestion ||
@@ -545,18 +501,20 @@
 //         submitQuiz({ attemptId: attempt.attempt_id, topicId }),
 //       ).unwrap();
 //       setHasAutoSubmitted(true);
-//       sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
-//       navigate(`/quiz/result/${topicId}/${attempt.attempt_id}`, {
+//       sessionStorage.removeItem(EXAM_ACTIVE_KEY);
+//       navigate(`/exam-module/result/${topicId}/${attempt.attempt_id}`, {
 //         state: { results: result },
 //       });
 //     } catch (err) {
-//       console.error("Failed to submit quiz:", err);
+//       console.error("Failed to submit exam:", err);
 //     } finally {
 //       setIsSubmitting(false);
 //     }
 //   };
 
-//   // ── Restore answer when jumping between questions ──────────────────────────
+//   const currentQuestion =
+//     questions && questions.length > 0 ? questions[currentIndex] : null;
+
 //   useEffect(() => {
 //     if (!currentQuestion) return;
 //     if (currentQuestion.selected_option_id !== null) {
@@ -566,84 +524,41 @@
 //     }
 //   }, [currentIndex, currentQuestion, answers]);
 
-//   // ─────────────────────────────────────────────────────────────
-//   // CONTENT PROTECTION
-//   // ─────────────────────────────────────────────────────────────
+//   // Content protection
 //   useEffect(() => {
-//     // RIGHT CLICK BLOCK
-//     const disableRightClick = (e) => {
-//       e.preventDefault();
-//     };
-
-//     // COPY / CUT / PASTE BLOCK
-//     const preventCopyActions = (e) => {
-//       e.preventDefault();
-//     };
-
-//     // KEYBOARD SHORTCUTS BLOCK
+//     const disableRightClick = (e) => e.preventDefault();
+//     const preventCopyActions = (e) => e.preventDefault();
 //     const preventKeys = (e) => {
 //       const key = e.key.toLowerCase();
-
-//       // CTRL BASED SHORTCUTS
 //       if (e.ctrlKey && ["c", "a", "u", "s", "p", "x", "v"].includes(key)) {
 //         e.preventDefault();
 //       }
-
-//       // CTRL + SHIFT + I/J/C
 //       if (e.ctrlKey && e.shiftKey && ["i", "j", "c"].includes(key)) {
 //         e.preventDefault();
 //       }
-
-//       // F12
-//       if (e.key === "F12") {
-//         e.preventDefault();
-//       }
+//       if (e.key === "F12") e.preventDefault();
 //     };
+//     const preventSelection = (e) => e.preventDefault();
+//     const preventDrag = (e) => e.preventDefault();
 
-//     // TEXT SELECTION BLOCK
-//     const preventSelection = (e) => {
-//       e.preventDefault();
-//     };
-
-//     // DRAG BLOCK
-//     const preventDrag = (e) => {
-//       e.preventDefault();
-//     };
-
-//     // EVENTS
 //     document.addEventListener("contextmenu", disableRightClick);
-
 //     document.addEventListener("copy", preventCopyActions);
-
 //     document.addEventListener("cut", preventCopyActions);
-
 //     document.addEventListener("paste", preventCopyActions);
-
 //     document.addEventListener("keydown", preventKeys);
-
 //     document.addEventListener("selectstart", preventSelection);
-
 //     document.addEventListener("dragstart", preventDrag);
-
-//     // BODY STYLE
 //     document.body.style.userSelect = "none";
 //     document.body.style.webkitUserSelect = "none";
 
 //     return () => {
 //       document.removeEventListener("contextmenu", disableRightClick);
-
 //       document.removeEventListener("copy", preventCopyActions);
-
 //       document.removeEventListener("cut", preventCopyActions);
-
 //       document.removeEventListener("paste", preventCopyActions);
-
 //       document.removeEventListener("keydown", preventKeys);
-
 //       document.removeEventListener("selectstart", preventSelection);
-
 //       document.removeEventListener("dragstart", preventDrag);
-
 //       document.body.style.userSelect = "auto";
 //       document.body.style.webkitUserSelect = "auto";
 //     };
@@ -653,8 +568,7 @@
 //     return <Error message={message} />;
 //   }
 
-//   // ── Guards ─────────────────────────────────────────────────────────────────
-//   if (isLoading || !attempt) {
+//   if (isLoading || !attempt || isInitializing) {
 //     return (
 //       <PageLayout>
 //         <div className="flex justify-center items-center min-h-[60vh]">
@@ -663,28 +577,6 @@
 //       </PageLayout>
 //     );
 //   }
-
-//   // if (
-//   //   attempt?.is_submitted &&
-//   //   String(attempt?.topic_id || attempt?.topic?.id) === String(topicId)
-//   // ) {
-//   //   return (
-//   //     <PageLayout>
-//   //       <PageBody>
-//   //         <div className="text-center py-10">
-//   //           <h2 className="text-2xl font-bold mb-4">Quiz Already Submitted</h2>
-
-//   //           <button
-//   //             onClick={() => navigate(-1)}
-//   //             className="px-4 py-2 bg-blue-600 text-white rounded"
-//   //           >
-//   //             Go Back
-//   //           </button>
-//   //         </div>
-//   //       </PageBody>
-//   //     </PageLayout>
-//   //   );
-//   // }
 
 //   if (attempt.attempts_remaining === 0) {
 //     return (
@@ -696,8 +588,10 @@
 //                 <FiAlertCircle className="w-6 h-6 text-red-600" />
 //               </div>
 //               <div>
-//                 <PageTitle>{t("quiz.noAttemptsTitle")}</PageTitle>
-//                 <PageSubtitle>{t("quiz.noAttemptsSubtitle")}</PageSubtitle>
+//                 <PageTitle>{t("examModule.noAttemptsTitle")}</PageTitle>
+//                 <PageSubtitle>
+//                   {t("examModule.noAttemptsSubtitle")}
+//                 </PageSubtitle>
 //               </div>
 //             </div>
 //           </PageHeaderLeft>
@@ -707,10 +601,10 @@
 //             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
 //               <FiAlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
 //               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-//                 {t("quiz.noAttemptsHeading")}
+//                 {t("examModule.noAttemptsHeading")}
 //               </h3>
 //               <p className="text-gray-600 mb-6">
-//                 {t("quiz.noAttemptsMessage", {
+//                 {t("examModule.noAttemptsMessage", {
 //                   total: attempt.total_attempts_allowed,
 //                 })}
 //               </p>
@@ -718,7 +612,7 @@
 //                 onClick={() => navigate(-1)}
 //                 className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
 //               >
-//                 {t("quiz.goBack")}
+//                 {t("examModule.goBack")}
 //               </button>
 //             </div>
 //           </div>
@@ -727,7 +621,6 @@
 //     );
 //   }
 
-//   // ── Main render ────────────────────────────────────────────────────────────
 //   return (
 //     <>
 //       <PageLayout>
@@ -738,8 +631,8 @@
 //                 <FiHelpCircle className="w-6 h-6 text-blue-600" />
 //               </div>
 //               <div>
-//                 <PageTitle>{t("quiz.pageTitle")}</PageTitle>
-//                 <PageSubtitle>{t("quiz.pageSubtitle")}</PageSubtitle>
+//                 <PageTitle>{t("examModule.pageTitle")}</PageTitle>
+//                 <PageSubtitle>{t("examModule.pageSubtitle")}</PageSubtitle>
 //               </div>
 //             </div>
 //           </PageHeaderLeft>
@@ -754,7 +647,7 @@
 //                   {formatTime(timeLeft)}
 //                 </div>
 //                 <div className="text-xs text-gray-500">
-//                   {t("quiz.timeLeft")}
+//                   {t("examModule.timeLeft")}
 //                 </div>
 //               </div>
 //             </div>
@@ -764,7 +657,9 @@
 //               className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors border border-red-200"
 //             >
 //               <FiLogOut className="w-4 h-4" />
-//               <span className="text-sm font-medium">{t("quiz.exitQuiz")}</span>
+//               <span className="text-sm font-medium">
+//                 {t("examModule.exitExam")}
+//               </span>
 //             </button>
 //           </div>
 //         </PageHeader>
@@ -779,18 +674,18 @@
 //                 <div className="flex-1">
 //                   <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
 //                     <h3 className="font-semibold text-gray-800">
-//                       {t("quiz.topicDetails")}
+//                       {t("examModule.moduleDetails")}
 //                     </h3>
 //                     <div className="flex items-center gap-3 text-sm">
 //                       <span className="text-gray-600">
-//                         {t("quiz.attempts")}:{" "}
+//                         {t("examModule.attempts")}:{" "}
 //                         <span className="font-semibold">
 //                           {attempt.attempts_used}
 //                         </span>{" "}
 //                         / {attempt.total_attempts_allowed}
 //                       </span>
 //                       <span className="text-gray-600">
-//                         {t("quiz.remaining")}:{" "}
+//                         {t("examModule.remaining")}:{" "}
 //                         <span className="font-semibold text-green-600">
 //                           {attempt.attempts_remaining}
 //                         </span>
@@ -801,16 +696,16 @@
 //                     <div className="flex items-center gap-2">
 //                       <FiInfo className="w-4 h-4 text-gray-500" />
 //                       <span className="text-gray-600">
-//                         {t("quiz.duration")}:
+//                         {t("examModule.duration")}:
 //                       </span>
 //                       <span className="font-medium text-gray-800">
-//                         {attempt.duration} {t("quiz.minutes")}
+//                         {attempt.duration} {t("examModule.minutes")}
 //                       </span>
 //                     </div>
 //                     <div className="flex items-center gap-2">
 //                       <FiClock className="w-4 h-4 text-gray-500" />
 //                       <span className="text-gray-600">
-//                         {t("quiz.startedAt")}:
+//                         {t("examModule.startedAt")}:
 //                       </span>
 //                       <span className="font-medium text-gray-800">
 //                         {new Date(attempt.started_at).toLocaleTimeString()}
@@ -819,7 +714,7 @@
 //                     <div className="flex items-center gap-2">
 //                       <FiAlertCircle className="w-4 h-4 text-gray-500" />
 //                       <span className="text-gray-600">
-//                         {t("quiz.expiresAt")}:
+//                         {t("examModule.expiresAt")}:
 //                       </span>
 //                       <span className="font-medium text-gray-800">
 //                         {new Date(attempt.expires_at).toLocaleTimeString()}
@@ -828,7 +723,7 @@
 //                     <div className="flex items-center gap-2">
 //                       <FiHelpCircle className="w-4 h-4 text-gray-500" />
 //                       <span className="text-gray-600">
-//                         {t("quiz.attemptId")}:
+//                         {t("examModule.attemptId")}:
 //                       </span>
 //                       <span className="font-medium text-gray-800">
 //                         #{attempt.attempt_id}
@@ -844,7 +739,7 @@
 //                 <div className="flex items-center gap-2">
 //                   <FiAlertCircle className="w-5 h-5 text-red-600" />
 //                   <span className="text-red-700 font-medium">
-//                     {t("quiz.timeUpWarning")}
+//                     {t("examModule.timeUpWarning")}
 //                   </span>
 //                 </div>
 //               </div>
@@ -855,18 +750,19 @@
 //                 <div className="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-lg">
 //                   <div className="flex justify-between items-center">
 //                     <span className="text-sm text-gray-600">
-//                       {t("quiz.question")} {currentIndex + 1} {t("quiz.of")}{" "}
+//                       {t("examModule.question")} {currentIndex + 1}{" "}
+//                       {t("examModule.of")}{" "}
 //                       {attempt?.total_questions ?? questions?.length ?? 0}
 //                     </span>
 //                     <div className="flex gap-2">
 //                       {selected && !isTimeUp && !hasAutoSubmitted && (
 //                         <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">
-//                           ✓ {t("quiz.answerSelected")}
+//                           ✓ {t("examModule.answerSelected")}
 //                         </span>
 //                       )}
 //                       {answers[currentQuestion.id] === null && (
 //                         <span className="text-xs text-orange-600 bg-orange-50 px-2 py-1 rounded-full">
-//                           ⏭ {t("quiz.skipped")}
+//                           ⏭ {t("examModule.skipped")}
 //                         </span>
 //                       )}
 //                     </div>
@@ -893,6 +789,32 @@
 //                 </div>
 
 //                 <div className="p-6">
+//                   {/* Case Section - Show only when type is module and is_case is true */}
+//                   {attempt?.type === "module" &&
+//                     currentQuestion.is_case === true &&
+//                     currentQuestion.case_title &&
+//                     currentQuestion.case_text && (
+//                       <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+//                         <div className="flex items-start gap-3">
+//                           <div className="flex-shrink-0">
+//                             <FiBookOpen className="w-5 h-5 text-blue-600 mt-0.5" />
+//                           </div>
+//                           <div className="flex-1">
+//                             {currentQuestion.case_title && (
+//                               <h3 className="font-semibold text-blue-800 text-lg mb-2">
+//                                 {currentQuestion.case_title}
+//                               </h3>
+//                             )}
+//                             {currentQuestion.case_text && (
+//                               <p className="text-blue-700 text-sm leading-relaxed">
+//                                 {currentQuestion.case_text}
+//                               </p>
+//                             )}
+//                           </div>
+//                         </div>
+//                       </div>
+//                     )}
+
 //                   <div className="mb-6">
 //                     <h2 className="text-xl font-semibold text-gray-800">
 //                       {currentQuestion.question_text}
@@ -964,7 +886,7 @@
 //                       }`}
 //                     >
 //                       <FiChevronLeft className="w-4 h-4" />
-//                       {t("quiz.previous")}
+//                       {t("examModule.previous")}
 //                     </button>
 
 //                     <div className="flex gap-3">
@@ -986,7 +908,7 @@
 //                         }`}
 //                       >
 //                         <FiSkipForward className="w-4 h-4" />
-//                         {t("quiz.skip")}
+//                         {t("examModule.skip")}
 //                       </button>
 
 //                       {currentIndex === questions.length - 1 ? (
@@ -999,8 +921,8 @@
 //                         >
 //                           <FiCheckCircle className="w-4 h-4" />
 //                           {isSubmitting
-//                             ? t("quiz.submitting")
-//                             : t("quiz.submitQuiz")}
+//                             ? t("examModule.submitting")
+//                             : t("examModule.submitExam")}
 //                         </button>
 //                       ) : (
 //                         <button
@@ -1010,7 +932,7 @@
 //                           }
 //                           className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
 //                         >
-//                           {t("quiz.next")}
+//                           {t("examModule.next")}
 //                           <FiChevronRight className="w-4 h-4" />
 //                         </button>
 //                       )}
@@ -1022,10 +944,10 @@
 //               <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
 //                 <FiAlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-3" />
 //                 <h3 className="text-base font-medium text-gray-700 mb-1">
-//                   {t("quiz.noQuestionsTitle")}
+//                   {t("examModule.noQuestionsTitle")}
 //                 </h3>
 //                 <p className="text-sm text-gray-500">
-//                   {t("quiz.noQuestionsDescription")}
+//                   {t("examModule.noQuestionsDescription")}
 //                 </p>
 //               </div>
 //             )}
@@ -1044,7 +966,7 @@
 //   );
 // };
 
-// export default Quiz;
+// export default ExamModule;
 
 import React, { useState, useEffect } from "react";
 import {
@@ -1067,14 +989,14 @@ import { FiAlertCircle, FiHelpCircle, FiLogOut } from "react-icons/fi";
 import Loader from "../../common/Loader";
 import { useTranslation } from "react-i18next";
 import Error from "../../common/Error";
-import ConfirmationModal from "./common/ConfirmationModal";
-import { useQuizSession } from "./common/useQuizSession";
-import { useContentProtection } from "./common/useContentProtection";
-import McqRenderer from "./common/McqRenderer";
-import TimerDisplay from "./common/TimerDisplay";
-import QuizInfoPanel from "./common/QuizInfoPanel";
+import ConfirmationModal from "./ConfirmationModal";
+import { useQuizSession } from "../quize/common/useQuizSession";
+import { useContentProtection } from "../quize/common/useContentProtection";
+import McqRenderer from "../quize/common/McqRenderer";
+import TimerDisplay from "../quize/common/TimerDisplay";
+import QuizInfoPanel from "../quize/common/QuizInfoPanel";
 
-const Quiz = () => {
+const ExamModule = () => {
   const navigate = useNavigate();
   const { topicId } = useParams();
   const dispatch = useDispatch();
@@ -1089,7 +1011,7 @@ const Quiz = () => {
   // Content protection
   useContentProtection(true);
 
-  // Quiz session hook
+  // Exam session hook
   const {
     selected,
     currentIndex,
@@ -1109,8 +1031,8 @@ const Quiz = () => {
     handleCancelLeave,
     setShowLeaveModal,
   } = useQuizSession({
-    sessionKey: "quiz_active_attempt",
-    storagePrefix: "quiz",
+    sessionKey: "exam_active_attempt",
+    storagePrefix: "exam-module",
     attempt,
     questions,
     topicId,
@@ -1118,7 +1040,7 @@ const Quiz = () => {
 
   // Bootstrap
   useEffect(() => {
-    const initQuiz = async () => {
+    const initExam = async () => {
       setIsInitializing(true);
       if (!topicId) return;
       dispatch(resetFeedbackState());
@@ -1130,7 +1052,7 @@ const Quiz = () => {
           return;
         }
       } catch (err) {
-        console.error("Failed to start attempt:", err);
+        console.error("Failed to start exam attempt:", err);
         if (
           err?.message?.includes("rate limit") ||
           err?.response?.status === 429
@@ -1142,7 +1064,7 @@ const Quiz = () => {
         setIsInitializing(false);
       }
     };
-    initQuiz();
+    initExam();
   }, [dispatch, topicId, navigate]);
 
   useEffect(() => {
@@ -1158,14 +1080,14 @@ const Quiz = () => {
 
   useEffect(() => {
     if (attempt && attempt.attempts_remaining === 0) {
-      alert(t("quiz.noAttemptsLeft"));
+      alert(t("examModule.noAttemptsLeft"));
       navigate(-1);
     }
   }, [attempt, navigate, t]);
 
   useEffect(() => {
     dispatch(clearQuizData());
-    sessionStorage.removeItem("quiz_active_attempt");
+    sessionStorage.removeItem("exam_active_attempt");
   }, [topicId, dispatch]);
 
   if (isError) {
@@ -1192,8 +1114,10 @@ const Quiz = () => {
                 <FiAlertCircle className="w-6 h-6 text-red-600" />
               </div>
               <div>
-                <PageTitle>{t("quiz.noAttemptsTitle")}</PageTitle>
-                <PageSubtitle>{t("quiz.noAttemptsSubtitle")}</PageSubtitle>
+                <PageTitle>{t("examModule.noAttemptsTitle")}</PageTitle>
+                <PageSubtitle>
+                  {t("examModule.noAttemptsSubtitle")}
+                </PageSubtitle>
               </div>
             </div>
           </PageHeaderLeft>
@@ -1203,10 +1127,10 @@ const Quiz = () => {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
               <FiAlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                {t("quiz.noAttemptsHeading")}
+                {t("examModule.noAttemptsHeading")}
               </h3>
               <p className="text-gray-600 mb-6">
-                {t("quiz.noAttemptsMessage", {
+                {t("examModule.noAttemptsMessage", {
                   total: attempt.total_attempts_allowed,
                 })}
               </p>
@@ -1214,7 +1138,7 @@ const Quiz = () => {
                 onClick={() => navigate(-1)}
                 className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
               >
-                {t("quiz.goBack")}
+                {t("examModule.goBack")}
               </button>
             </div>
           </div>
@@ -1233,35 +1157,40 @@ const Quiz = () => {
                 <FiHelpCircle className="w-6 h-6 text-blue-600" />
               </div>
               <div>
-                <PageTitle>{t("quiz.pageTitle")}</PageTitle>
-                <PageSubtitle>{t("quiz.pageSubtitle")}</PageSubtitle>
+                <PageTitle>{t("examModule.pageTitle")}</PageTitle>
+                <PageSubtitle>{t("examModule.pageSubtitle")}</PageSubtitle>
               </div>
             </div>
           </PageHeaderLeft>
 
           <div className="flex items-center gap-3">
-            <TimerDisplay timeLeft={timeLeft} label={t("quiz.timeLeft")} />
+            <TimerDisplay
+              timeLeft={timeLeft}
+              label={t("examModule.timeLeft")}
+            />
 
             <button
               onClick={() => setShowLeaveModal(true)}
               className="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors border border-red-200"
             >
               <FiLogOut className="w-4 h-4" />
-              <span className="text-sm font-medium">{t("quiz.exitQuiz")}</span>
+              <span className="text-sm font-medium">
+                {t("examModule.exitExam")}
+              </span>
             </button>
           </div>
         </PageHeader>
 
         <PageBody>
           <div className="max-w-3xl mx-auto px-4">
-            <QuizInfoPanel attempt={attempt} type="quiz" />
+            <QuizInfoPanel attempt={attempt} type="exam" />
 
             {isTimeUp && (
               <div className="mb-4 bg-red-50 border border-red-200 rounded-lg p-4">
                 <div className="flex items-center gap-2">
                   <FiAlertCircle className="w-5 h-5 text-red-600" />
                   <span className="text-red-700 font-medium">
-                    {t("quiz.timeUpWarning")}
+                    {t("examModule.timeUpWarning")}
                   </span>
                 </div>
               </div>
@@ -1280,7 +1209,7 @@ const Quiz = () => {
               isTimeUp={isTimeUp}
               hasAutoSubmitted={hasAutoSubmitted}
               isSubmitting={isSubmitting}
-              attemptType="quiz"
+              attemptType="exam"
               onAnswerSelect={handleAnswerSelect}
               onPrevious={handlePrevious}
               onNext={handleNext}
@@ -1302,4 +1231,4 @@ const Quiz = () => {
   );
 };
 
-export default Quiz;
+export default ExamModule;

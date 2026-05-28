@@ -34,7 +34,7 @@ const ExamAssessment = () => {
     const params = {
       page: overridePage ?? page,
       per_page: ITEMS_PER_PAGE,
-      type: "level",
+      type: "module",
     };
     dispatch(getAssessmentReport(params));
   };
