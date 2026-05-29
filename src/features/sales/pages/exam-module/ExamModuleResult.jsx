@@ -838,7 +838,7 @@ const ExamModuleResult = () => {
               </button>
 
               {/* Retry button - only show if NOT passed AND attempts remaining > 0 */}
-              {canRetry && (
+              {/* {canRetry && (
                 <button
                   onClick={handleRetry}
                   className="action-btn flex items-center gap-2 px-6 py-2.5 rounded-xl border-0 text-white font-semibold text-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
@@ -851,7 +851,7 @@ const ExamModuleResult = () => {
                   {t("examModuleResult.buttons.retry")} ({attemptsRemaining}{" "}
                   {t("examModuleResult.buttons.attemptsLeft")})
                 </button>
-              )}
+              )} */}
             </div>
           )}
         </div>

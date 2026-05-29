@@ -539,6 +539,7 @@
     "progress": "प्रगति",
     "status": {
       "passed": "उत्तीर्ण",
+      "completed": "पूर्ण",
       "readyForExam": "परीक्षा के लिए तैयार",
       "inProgress": "प्रगति में",
       "locked": "लॉक",
@@ -1045,6 +1046,121 @@
     }
   },
 
+  "examModule": {
+    "pageTitle": "अंतिम परीक्षा",
+    "pageSubtitle": "मॉड्यूल समाप्ति असेसमेंट",
+    "timeLeft": "शेष समय",
+    "exitExam": "परीक्षा छोड़ें",
+    "moduleDetails": "मॉड्यूल विवरण",
+    "attempts": "प्रयास",
+    "remaining": "शेष",
+    "duration": "अवधि",
+    "minutes": "मिनट",
+    "question": "प्रश्न",
+    "of": "में से",
+    "startedAt": "शुरू हुआ",
+    "expiresAt": "समाप्त होगा",
+    "attemptId": "प्रयास आईडी",
+    "questionOf": "प्रश्न {current} / {total}",
+    "answerSelected": "उत्तर चयनित",
+    "skipped": "छोड़ा गया",
+    "previous": "पिछला",
+    "skip": "छोड़ें",
+    "next": "अगला",
+    "submitQuiz": "परीक्षा जमा करें",
+    "submitting": "जमा किया जा रहा है...",
+    "timeUpWarning": "समय समाप्त! आपकी परीक्षा स्वतः जमा की जा रही है...",
+    "noQuestionsTitle": "कोई प्रश्न उपलब्ध नहीं है",
+    "noQuestionsDescription": "कृपया अपने प्रशिक्षक से संपर्क करें।",
+    "noAttemptsLeft": "कोई प्रयास शेष नहीं! आपने अपने सभी प्रयास उपयोग कर लिए हैं।",
+    "noAttemptsTitle": "कोई प्रयास शेष नहीं",
+    "noAttemptsSubtitle": "आपने इस परीक्षा के सभी प्रयास उपयोग कर लिए हैं",
+    "noAttemptsHeading": "कोई प्रयास शेष नहीं",
+    "noAttemptsMessage": "आपने इस परीक्षा के सभी {total} प्रयास उपयोग कर लिए हैं।",
+    "goBack": "वापस जाएं",
+    "leaveWarning": "आपकी परीक्षा जारी है! क्या आप वाकई बाहर निकलना चाहते हैं?",
+    "confirmationModal": {
+      "title": "परीक्षा छोड़ें?",
+      "description": "आपकी परीक्षा जारी है। यदि आप अभी बाहर निकलते हैं, तो आपकी परीक्षा स्वतः जमा हो जाएगी।",
+      "progressSaved": "आपकी प्रगति सहेजी जाएगी।",
+      "timeRemaining": "शेष समय:",
+      "cancel": "रद्द करें",
+      "confirm": "छोड़ें और जमा करें"
+    }
+  },
+
+  "examModuleResult": {
+    "score": "स्कोर",
+    "pageTitlePassed": "परीक्षा उत्तीर्ण!",
+    "pageTitleFailed": "परीक्षा अनुत्तीर्ण",
+    "pageSubtitlePassed": "असेसमेंट पास करने पर बधाई!",
+    "pageSubtitleFailed": "अगली बार बेहतर प्रयास करें! सुधार के लिए अभ्यास जारी रखें।",
+    "passed": "उत्तीर्ण",
+    "failed": "अनुत्तीर्ण",
+    "scoreLabel": "स्कोर",
+    "noResult": "कोई परीक्षा परिणाम नहीं मिला।",
+    "goHome": "होम जाएं",
+    "stats": {
+      "correct": "सही",
+      "incorrect": "गलत",
+      "skipped": "छोड़ा गया",
+      "timeSpent": "लिया गया समय"
+    },
+    "analysis": {
+      "title": "परीक्षा विश्लेषण",
+      "attemptId": "प्रयास आईडी",
+      "totalQuestions": "कुल प्रश्न",
+      "questionsAttempted": "प्रयास किए गए प्रश्न",
+      "pendingQuestions": "लंबित प्रश्न",
+      "attemptsUsed": "उपयोग किए गए प्रयास",
+      "attemptsRemaining": "शेष प्रयास",
+      "totalDuration": "कुल अवधि"
+    },
+    "feedback": {
+      "title": "अपना फीडबैक साझा करें",
+      "ratingLabel": "अपने अनुभव को रेट करें",
+      "required": "*",
+      "additionalComments": "अतिरिक्त टिप्पणियाँ",
+      "placeholder": "परीक्षा के बारे में अपने विचार साझा करें...",
+      "submitButton": "फीडबैक जमा करें",
+      "submitting": "जमा किया जा रहा है...",
+      "thankYouTitle": "आपके फीडबैक के लिए धन्यवाद!",
+      "thankYouMessage": "आपकी राय हमें अपनी परीक्षाओं को बेहतर बनाने में मदद करती है।",
+      "ratingLabels": {
+        "1": "खराब",
+        "2": "सामान्य",
+        "3": "अच्छा",
+        "4": "बहुत अच्छा",
+        "5": "उत्कृष्ट"
+      }
+    },
+    "buttons": {
+      "home": "होम जाएं",
+      "myLevels": "मेरे लेवल",
+      "getCertificate": "प्रमाणपत्र प्राप्त करें",
+      "retry": "परीक्षा पुनः दें",
+      "attemptsLeft": "प्रयास शेष"
+    },
+    "messages": {
+      "outstanding": "शानदार! उत्कृष्ट प्रदर्शन!",
+      "excellent": "उत्कृष्ट! बहुत बढ़िया काम!",
+      "good": "अच्छा काम! ऐसे ही जारी रखें!",
+      "satisfactory": "संतोषजनक! सुधार की गुंजाइश है!",
+      "fair": "ठीक प्रयास! अभ्यास जारी रखें!",
+      "keepPracticing": "अभ्यास जारी रखें! अगली बार आप बेहतर करेंगे!",
+      "outstandingSub": "आपने विषय में महारत दिखाई है।",
+      "excellentSub": "मजबूत समझ, केवल छोटे सुधार की आवश्यकता है।",
+      "goodSub": "अच्छी नींव है, कुछ अवधारणाओं की समीक्षा करें।",
+      "satisfactorySub": "बुनियादी समझ प्राप्त हुई, अभ्यास जारी रखें।",
+      "fairSub": "सामग्री की समीक्षा करें और बेहतर परिणाम के लिए फिर प्रयास करें।",
+      "keepPracticingSub": "हार मत मानिए! लेवल्स की समीक्षा करें और फिर से परीक्षा दें।"
+    },
+    "errors": {
+      "ratingRequired": "कृपया एक रेटिंग चुनें",
+      "feedbackFailed": "फीडबैक जमा करने में विफल। कृपया पुनः प्रयास करें।"
+    }
+  },
+
   "footer": {
     "quickLinks": "त्वरित लिंक",
     "downloadApps": "ऐप डाउनलोड करें",
@@ -1309,7 +1425,7 @@
       "userDetails": "उपयोगकर्ता विवरण",
       "program": "कार्यक्रम",
       "type": "प्रकार",
-      "levelTopic": "स्तर/विषय",
+      "topicModule": "टॉपिक/मॉड्यूल",
       "certificateId": "प्रमाणपत्र आईडी",
       "scorePercentage": "स्कोर और प्रतिशत",
       "score": "स्कोर",

@@ -546,6 +546,7 @@
     "progress": "Progress",
     "status": {
       "passed": "Passed",
+      "completed": "Completed",
       "readyForExam": "Ready for Exam",
       "inProgress": "In Progress",
       "locked": "Locked",
@@ -1431,7 +1432,7 @@
       "userDetails": "User Details",
       "program": "Program",
       "type": "Type",
-      "levelTopic": "Level/Topic",
+      "topicModule": "Topic/Module",
       "certificateId": "Certificate ID",
       "scorePercentage": "Score & Percentage",
       "score": "Score",

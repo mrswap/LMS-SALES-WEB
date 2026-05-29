@@ -539,6 +539,7 @@
     "progress": "ਤਰੱਕੀ",
     "status": {
       "passed": "ਪਾਸ",
+      "completed": "ਪੂਰਾ ਕੀਤਾ",
       "readyForExam": "ਪਰੀਖਿਆ ਲਈ ਤਿਆਰ",
       "inProgress": "ਚੱਲ ਰਿਹਾ ਹੈ",
       "locked": "ਲੌਕ",
@@ -1045,6 +1046,121 @@
     }
   },
 
+  "examModule": {
+    "pageTitle": "ਅੰਤਿਮ ਇਮਤਿਹਾਨ",
+    "pageSubtitle": "ਮੋਡੀਊਲ ਅੰਤ ਅਸੈਸਮੈਂਟ",
+    "timeLeft": "ਬਾਕੀ ਸਮਾਂ",
+    "exitExam": "ਇਮਤਿਹਾਨ ਛੱਡੋ",
+    "moduleDetails": "ਮੋਡੀਊਲ ਵੇਰਵੇ",
+    "attempts": "ਕੋਸ਼ਿਸ਼ਾਂ",
+    "remaining": "ਬਾਕੀ",
+    "duration": "ਅਵਧੀ",
+    "minutes": "ਮਿੰਟ",
+    "question": "ਪ੍ਰਸ਼ਨ",
+    "of": "ਵਿੱਚੋਂ",
+    "startedAt": "ਸ਼ੁਰੂ ਹੋਇਆ",
+    "expiresAt": "ਖਤਮ ਹੋਵੇਗਾ",
+    "attemptId": "ਕੋਸ਼ਿਸ਼ ਆਈਡੀ",
+    "questionOf": "ਪ੍ਰਸ਼ਨ {current} ਵਿੱਚੋਂ {total}",
+    "answerSelected": "ਉੱਤਰ ਚੁਣਿਆ ਗਿਆ",
+    "skipped": "ਛੱਡਿਆ ਗਿਆ",
+    "previous": "ਪਿਛਲਾ",
+    "skip": "ਛੱਡੋ",
+    "next": "ਅਗਲਾ",
+    "submitQuiz": "ਇਮਤਿਹਾਨ ਜਮ੍ਹਾਂ ਕਰੋ",
+    "submitting": "ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "timeUpWarning": "ਸਮਾਂ ਖਤਮ! ਤੁਹਾਡਾ ਇਮਤਿਹਾਨ ਆਪਣੇ ਆਪ ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+    "noQuestionsTitle": "ਕੋਈ ਪ੍ਰਸ਼ਨ ਉਪਲਬਧ ਨਹੀਂ",
+    "noQuestionsDescription": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਇੰਸਟਰਕਟਰ ਨਾਲ ਸੰਪਰਕ ਕਰੋ।",
+    "noAttemptsLeft": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਬਾਕੀ ਨਹੀਂ! ਤੁਸੀਂ ਆਪਣੀਆਂ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ।",
+    "noAttemptsTitle": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਬਾਕੀ ਨਹੀਂ",
+    "noAttemptsSubtitle": "ਤੁਸੀਂ ਇਸ ਇਮਤਿਹਾਨ ਲਈ ਆਪਣੀਆਂ ਸਾਰੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ",
+    "noAttemptsHeading": "ਕੋਈ ਕੋਸ਼ਿਸ਼ ਬਾਕੀ ਨਹੀਂ",
+    "noAttemptsMessage": "ਤੁਸੀਂ ਇਸ ਇਮਤਿਹਾਨ ਲਈ ਸਾਰੀਆਂ {total} ਕੋਸ਼ਿਸ਼ਾਂ ਵਰਤ ਲਈਆਂ ਹਨ।",
+    "goBack": "ਵਾਪਸ ਜਾਓ",
+    "leaveWarning": "ਤੁਹਾਡਾ ਇਮਤਿਹਾਨ ਚੱਲ ਰਿਹਾ ਹੈ! ਕੀ ਤੁਸੀਂ ਸੱਚਮੁੱਚ ਬਾਹਰ ਜਾਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "confirmationModal": {
+      "title": "ਇਮਤਿਹਾਨ ਛੱਡਣਾ ਹੈ?",
+      "description": "ਤੁਹਾਡਾ ਇਮਤਿਹਾਨ ਚੱਲ ਰਿਹਾ ਹੈ। ਜੇ ਤੁਸੀਂ ਹੁਣ ਬਾਹਰ ਜਾਂਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡਾ ਇਮਤਿਹਾਨ ਆਪਣੇ ਆਪ ਜਮ੍ਹਾਂ ਹੋ ਜਾਵੇਗਾ।",
+      "progressSaved": "ਤੁਹਾਡੀ ਪ੍ਰਗਤੀ ਸੇਵ ਹੋ ਜਾਵੇਗੀ।",
+      "timeRemaining": "ਬਾਕੀ ਸਮਾਂ:",
+      "cancel": "ਰੱਦ ਕਰੋ",
+      "confirm": "ਛੱਡੋ ਅਤੇ ਜਮ੍ਹਾਂ ਕਰੋ"
+    }
+  },
+
+  "examModuleResult": {
+    "score": "ਸਕੋਰ",
+    "pageTitlePassed": "ਇਮਤਿਹਾਨ ਪਾਸ!",
+    "pageTitleFailed": "ਇਮਤਿਹਾਨ ਫੇਲ",
+    "pageSubtitlePassed": "ਅਸੈਸਮੈਂਟ ਪਾਸ ਕਰਨ ਲਈ ਮੁਬਾਰਕਾਂ!",
+    "pageSubtitleFailed": "ਅਗਲੀ ਵਾਰ ਲਈ ਸ਼ੁਭ ਕਾਮਨਾਵਾਂ! ਸੁਧਾਰ ਲਈ ਅਭਿਆਸ ਜਾਰੀ ਰੱਖੋ।",
+    "passed": "ਪਾਸ",
+    "failed": "ਫੇਲ",
+    "scoreLabel": "ਸਕੋਰ",
+    "noResult": "ਕੋਈ ਇਮਤਿਹਾਨ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।",
+    "goHome": "ਹੋਮ ਜਾਓ",
+    "stats": {
+      "correct": "ਸਹੀ",
+      "incorrect": "ਗਲਤ",
+      "skipped": "ਛੱਡਿਆ ਗਿਆ",
+      "timeSpent": "ਲੱਗਿਆ ਸਮਾਂ"
+    },
+    "analysis": {
+      "title": "ਇਮਤਿਹਾਨ ਵਿਸ਼ਲੇਸ਼ਣ",
+      "attemptId": "ਕੋਸ਼ਿਸ਼ ਆਈਡੀ",
+      "totalQuestions": "ਕੁੱਲ ਪ੍ਰਸ਼ਨ",
+      "questionsAttempted": "ਕੀਤੇ ਗਏ ਪ੍ਰਸ਼ਨ",
+      "pendingQuestions": "ਬਾਕੀ ਪ੍ਰਸ਼ਨ",
+      "attemptsUsed": "ਵਰਤੀਆਂ ਕੋਸ਼ਿਸ਼ਾਂ",
+      "attemptsRemaining": "ਬਾਕੀ ਕੋਸ਼ਿਸ਼ਾਂ",
+      "totalDuration": "ਕੁੱਲ ਅਵਧੀ"
+    },
+    "feedback": {
+      "title": "ਆਪਣਾ ਫੀਡਬੈਕ ਸਾਂਝਾ ਕਰੋ",
+      "ratingLabel": "ਆਪਣੇ ਅਨੁਭਵ ਨੂੰ ਰੇਟ ਕਰੋ",
+      "required": "*",
+      "additionalComments": "ਵਾਧੂ ਟਿੱਪਣੀਆਂ",
+      "placeholder": "ਇਮਤਿਹਾਨ ਬਾਰੇ ਆਪਣੇ ਵਿਚਾਰ ਸਾਂਝੇ ਕਰੋ...",
+      "submitButton": "ਫੀਡਬੈਕ ਜਮ੍ਹਾਂ ਕਰੋ",
+      "submitting": "ਜਮ੍ਹਾਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
+      "thankYouTitle": "ਤੁਹਾਡੇ ਫੀਡਬੈਕ ਲਈ ਧੰਨਵਾਦ!",
+      "thankYouMessage": "ਤੁਹਾਡੀ ਰਾਏ ਸਾਨੂੰ ਆਪਣੇ ਇਮਤਿਹਾਨ ਹੋਰ ਵਧੀਆ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀ ਹੈ।",
+      "ratingLabels": {
+        "1": "ਖਰਾਬ",
+        "2": "ਠੀਕ-ਠਾਕ",
+        "3": "ਚੰਗਾ",
+        "4": "ਬਹੁਤ ਵਧੀਆ",
+        "5": "ਸ਼ਾਨਦਾਰ"
+      }
+    },
+    "buttons": {
+      "home": "ਹੋਮ ਜਾਓ",
+      "myLevels": "ਮੇਰੇ ਲੈਵਲ",
+      "getCertificate": "ਸਰਟੀਫਿਕੇਟ ਪ੍ਰਾਪਤ ਕਰੋ",
+      "retry": "ਇਮਤਿਹਾਨ ਦੁਬਾਰਾ ਦਿਓ",
+      "attemptsLeft": "ਕੋਸ਼ਿਸ਼ਾਂ ਬਾਕੀ"
+    },
+    "messages": {
+      "outstanding": "ਸ਼ਾਨਦਾਰ! ਬੇਮਿਸਾਲ ਪ੍ਰਦਰਸ਼ਨ!",
+      "excellent": "ਉਤਕ੍ਰਿਸ਼ਟ! ਬਹੁਤ ਵਧੀਆ ਕੰਮ!",
+      "good": "ਚੰਗਾ ਕੰਮ! ਇਸੇ ਤਰ੍ਹਾਂ ਜਾਰੀ ਰੱਖੋ!",
+      "satisfactory": "ਸੰਤੋਸ਼ਜਨਕ! ਸੁਧਾਰ ਦੀ ਗੁੰਜਾਇਸ਼ ਹੈ!",
+      "fair": "ਠੀਕ ਕੋਸ਼ਿਸ਼! ਅਭਿਆਸ ਜਾਰੀ ਰੱਖੋ!",
+      "keepPracticing": "ਅਭਿਆਸ ਜਾਰੀ ਰੱਖੋ! ਅਗਲੀ ਵਾਰ ਤੁਸੀਂ ਹੋਰ ਵਧੀਆ ਕਰੋਗੇ!",
+      "outstandingSub": "ਤੁਸੀਂ ਵਿਸ਼ੇ ਵਿੱਚ ਮਹਾਰਤ ਦਰਸਾਈ ਹੈ।",
+      "excellentSub": "ਮਜ਼ਬੂਤ ਸਮਝ, ਕੇਵਲ ਛੋਟੇ ਸੁਧਾਰ ਦੀ ਲੋੜ ਹੈ।",
+      "goodSub": "ਵਧੀਆ ਬੁਨਿਆਦ ਹੈ, ਕੁਝ ਧਾਰਨਾਵਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ।",
+      "satisfactorySub": "ਮੁੱਢਲੀ ਸਮਝ ਪ੍ਰਾਪਤ ਹੋਈ ਹੈ, ਅਭਿਆਸ ਜਾਰੀ ਰੱਖੋ।",
+      "fairSub": "ਸਮੱਗਰੀ ਦੀ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਵਧੀਆ ਨਤੀਜੇ ਲਈ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+      "keepPracticingSub": "ਹਾਰ ਨਾ ਮੰਨੋ! ਲੈਵਲ ਦੀ ਸਮੀਖਿਆ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਇਮਤਿਹਾਨ ਦਿਓ।"
+    },
+    "errors": {
+      "ratingRequired": "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਰੇਟਿੰਗ ਚੁਣੋ",
+      "feedbackFailed": "ਫੀਡਬੈਕ ਜਮ੍ਹਾਂ ਕਰਨ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+    }
+  },
+
   "footer": {
     "quickLinks": "ਤੁਰੰਤ ਲਿੰਕ",
     "downloadApps": "ਐਪ ਡਾਊਨਲੋਡ ਕਰੋ",
@@ -1309,7 +1425,7 @@
       "userDetails": "ਉਪਭੋਗਤਾ ਵੇਰਵੇ",
       "program": "ਪ੍ਰੋਗਰਾਮ",
       "type": "ਕਿਸਮ",
-      "levelTopic": "ਪੱਧਰ/ਵਿਸ਼ਾ",
+      "topicModule": "ਟਾਪਿਕ/ਮੋਡੀਊਲ",
       "certificateId": "ਸਰਟੀਫਿਕੇਟ ਆਈਡੀ",
       "scorePercentage": "ਸਕੋਰ ਅਤੇ ਪ੍ਰਤੀਸ਼ਤ",
       "score": "ਸਕੋਰ",

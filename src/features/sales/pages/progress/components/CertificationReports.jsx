@@ -140,30 +140,42 @@ const CertificationReports = () => {
         </div>
       ),
     },
+    // {
+    //   header: t("certificationReports.table.topicModule"),
+    //   render: (row) => (
+    //     <div className="min-w-[150px]">
+    //       {row?.type?.toLowerCase() === "topic" && (
+    //         <div>
+    //           <p className="text-sm text-gray-700 font-medium">
+    //             {row?.topic || "-"}
+    //           </p>
+    //           {row?.level && (
+    //             <p className="text-xs text-gray-500 mt-1">
+    //               {t("certificationReports.table.level")}: {row?.module}
+    //             </p>
+    //           )}
+    //         </div>
+    //       )}
+    //       {row?.type?.toLowerCase() === "level" && (
+    //         <div>
+    //           <p className="text-sm text-gray-700 font-medium">
+    //             {row?.level || "-"}
+    //           </p>
+    //         </div>
+    //       )}
+    //     </div>
+    //   ),
+    // },
     {
-      header: t("certificationReports.table.levelTopic"),
+      header: t("certificationReports.table.topicModule"),
       render: (row) => (
-        <div className="min-w-[150px]">
-          {row?.type?.toLowerCase() === "topic" && (
-            <div>
-              <p className="text-sm text-gray-700 font-medium">
-                {row?.topic || "-"}
-              </p>
-              {row?.level && (
-                <p className="text-xs text-gray-500 mt-1">
-                  {t("certificationReports.table.level")}: {row?.level}
-                </p>
-              )}
-            </div>
-          )}
-          {row?.type?.toLowerCase() === "level" && (
-            <div>
-              <p className="text-sm text-gray-700 font-medium">
-                {row?.level || "-"}
-              </p>
-            </div>
-          )}
-        </div>
+        <p className="font-medium text-gray-800">
+          {row?.type === "topic"
+            ? row?.topic
+            : row?.type === "module"
+              ? row?.module
+              : "-"}
+        </p>
       ),
     },
     {
