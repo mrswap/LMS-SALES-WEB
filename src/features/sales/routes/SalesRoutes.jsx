@@ -80,9 +80,9 @@ const SalesRoutes = (
         <Route
           path="quiz/:topicId"
           element={
-            // <ProtectedQuizExamRoute>
-            <Quize />
-            // </ProtectedQuizExamRoute>
+            <ProtectedQuizExamRoute>
+              <Quize />
+            </ProtectedQuizExamRoute>
           }
         />
         <Route
@@ -98,9 +98,9 @@ const SalesRoutes = (
         <Route
           path="exam-module/:topicId"
           element={
-            // <ProtectedQuizExamRoute>
-            <ExamModule />
-            // </ProtectedQuizExamRoute>
+            <ProtectedQuizExamRoute>
+              <ExamModule />
+            </ProtectedQuizExamRoute>
           }
         />
         <Route
