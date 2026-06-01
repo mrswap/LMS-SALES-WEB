@@ -91,3 +91,107 @@
   scrollbar-width: thin;
   scrollbar-color: #2563EB transparent;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-spinner-pos,
+.goog-te-float-holder,
+.goog-te-banner {
+  display: none !important;
+  height: 0px !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  z-index: -9999 !important;
+}
+
+body {
+  top: 0px !important;
+  position: relative !important;
+}
+
+iframe[name="google_translate_frame"],
+iframe.goog-te-menu-frame {
+  display: none !important;
+}
+
+.goog-te-combo {
+  font-size: 0px !important;
+  height: 0px !important;
+  width: 0px !important;
+  opacity: 0 !important;
+  position: fixed !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  pointer-events: none !important;
+}
+
+.goog-te-gadget-simple {
+  border: none !important;
+  background: transparent !important;
+}
+
+.VIpgJd-ZVi9od-l4eHX-hSRGPd,
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+
+.VIpgJd-yAWNEb-L7lbkb,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q,
+.VIpgJd-yAWNEb-hvhgNd,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body>.skiptranslate {
+  display: none !important;
+} */
+
+
+
+
+/* Yeh CRITICAL hai */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* Google ka banner/iframe jo layout shift karta hai */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.skiptranslate iframe {
+  display: none !important;
+  height: 0 !important;
+}
+
+.goog-text-highlight {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Yeh Google Translate bar ka space occupy karta hai */
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip {
+  display: none !important;
+}

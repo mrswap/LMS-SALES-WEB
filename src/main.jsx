@@ -32,6 +32,27 @@ import { ToastProvider } from "./features/sales/common/toast/ToastContext.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// main.jsx / index.js - sabse upar, koi bhi import ke baad
+
+// const fixGoogleTranslateBlinking = () => {
+//   // Body ka top reset karta raho
+//   const observer = new MutationObserver(() => {
+//     if (document.body.style.top && document.body.style.top !== "0px") {
+//       document.body.style.top = "0px";
+//     }
+//     if (document.body.style.position === "relative") {
+//       document.body.style.position = "static";
+//     }
+//   });
+
+//   observer.observe(document.body, {
+//     attributes: true,
+//     attributeFilter: ["style"],
+//   });
+// };
+
+// fixGoogleTranslateBlinking();
+
 const router = createBrowserRouter([
   {
     path: "*",
