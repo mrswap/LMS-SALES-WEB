@@ -77,7 +77,7 @@ const HeaderNavbar = () => {
     localStorage.setItem("appLanguage", selectedLang);
     setIsLanguageDropdownOpen(false);
 
-    // window.location.reload();
+    window.location.reload();
   };
 
   // --- Dropdown Handlers ---
