@@ -456,6 +456,9 @@ export default function Dashboard() {
   const { dashboardData, isLoading, isError, message } = useSelector(
     (state) => state.dashboard,
   );
+
+  const { profile } = useSelector((state) => state.profile);
+
   const [animateItems, setAnimateItems] = useState(false);
 
   useEffect(() => {
@@ -501,7 +504,7 @@ export default function Dashboard() {
   };
 
   const getUserName = () => {
-    return last_certificate?.meta?.user?.name || "Kajal Chrave";
+    return profile?.name || "";
   };
 
   const displayedLevels = levels?.slice(0, 3) || [];
