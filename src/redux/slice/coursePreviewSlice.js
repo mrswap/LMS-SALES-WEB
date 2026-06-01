@@ -302,6 +302,7 @@ const coursePreviewSlice = createSlice({
             /* ===== GET SINGLE CONTENT ===== */
             .addCase(getSingleContent.pending, (state) => {
                 state.isLoading = true;
+                state.currentContent = null;
             })
             .addCase(getSingleContent.fulfilled, (state, action) => {
                 state.isLoading = false;

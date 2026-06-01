@@ -64,11 +64,20 @@ const HeaderNavbar = () => {
     i18n.changeLanguage(savedLang);
   }, []);
 
+  // const handleLanguageChange = (selectedLang) => {
+  //   setLang(selectedLang);
+  //   i18n.changeLanguage(selectedLang);
+  //   localStorage.setItem("appLanguage", selectedLang);
+  //   setIsLanguageDropdownOpen(false);
+  // };
+
   const handleLanguageChange = (selectedLang) => {
     setLang(selectedLang);
     i18n.changeLanguage(selectedLang);
     localStorage.setItem("appLanguage", selectedLang);
     setIsLanguageDropdownOpen(false);
+
+    // window.location.reload();
   };
 
   // --- Dropdown Handlers ---

@@ -9,6 +9,9 @@ import { logout } from "../../../redux/slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { FaCommentDots } from "react-icons/fa";
+// import GoogleTranslate from "../../../components/GoogleTranslate";
+// import LanguageSelector from "../../../components/LanguageSelector";
+// import LoadingOverlay from "../../../components/LoadingOverlay";
 
 const SalesLayout = () => {
   const navigate = useNavigate();
@@ -47,6 +50,7 @@ const SalesLayout = () => {
 
   return (
     <>
+      {/* <LoadingOverlay /> */}
       <SessionModal
         open={showModal}
         onContinue={() => {
@@ -58,6 +62,12 @@ const SalesLayout = () => {
       <div className="h-screen flex flex-col overflow-hidden ">
         {/* Desktop Navbar */}
         <Navbar />
+
+        {/* <GoogleTranslate /> */}
+
+        {/* <div className="fixed top-4 right-4 z-50">
+          <LanguageSelector />
+        </div> */}
 
         <div className="flex flex-1 overflow-hidden relative">
           <main
