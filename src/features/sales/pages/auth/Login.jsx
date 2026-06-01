@@ -383,8 +383,8 @@ const Login = () => {
   ];
 
   const initialValues = {
-    email: "kajalcharve6@gmail.com",
-    password: "123456",
+    email: "",
+    password: "",
   };
 
   const validationSchema = Yup.object({
