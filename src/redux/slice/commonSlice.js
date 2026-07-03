@@ -53,7 +53,7 @@ export const getSiteSettings = createAsyncThunk(
         try {
             const res = await axiosInstance.get(
                 "/common/site/settings",
-                getAuthConfig()
+                // getAuthConfig()
             );
             return res.data;
         } catch (error) {

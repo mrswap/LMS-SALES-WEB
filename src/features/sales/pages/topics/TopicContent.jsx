@@ -26,70 +26,6 @@ import { FaPause, FaPlay } from "react-icons/fa";
 import { PiVinylRecordFill } from "react-icons/pi";
 import { GiSoundWaves } from "react-icons/gi";
 
-// Common component for HTML content with styles
-// const RichTextContent = ({ htmlContent }) => {
-//   if (!htmlContent) return null;
-
-//   return (
-//     <>
-//       <div
-//         className="custom-content"
-//         dangerouslySetInnerHTML={{ __html: htmlContent }}
-//       />
-//       <style>{`
-//         .custom-content p {
-//           margin: 0 0 16px;
-//           line-height: 1.8;
-//         }
-//         .custom-content h1,
-//         .custom-content h2,
-//         .custom-content h3,
-//         .custom-content h4,
-//         .custom-content h5,
-//         .custom-content h6 {
-//           margin: 24px 0 16px;
-//           font-weight: 700;
-//           line-height: 1.4;
-//         }
-//         .custom-content ul,
-//         .custom-content ol {
-//           margin: 0 0 16px;
-//           padding-left: 24px;
-//         }
-//         .custom-content li {
-//           margin-bottom: 8px;
-//         }
-//         .custom-content hr {
-//           margin: 24px 0;
-//           border: none;
-//           border-top: 1px solid #d1d5db;
-//         }
-//         .custom-content table {
-//           width: 100%;
-//           border-collapse: collapse;
-//           margin: 20px 0;
-//           border: 1px solid #d1d5db;
-//         }
-//         .custom-content td,
-//         .custom-content th {
-//           border: 1px solid #d1d5db;
-//           padding: 12px;
-//           vertical-align: top;
-//         }
-//         .custom-content th {
-//           background-color: #f3f4f6;
-//           font-weight: 600;
-//         }
-//         .custom-content img {
-//           max-width: 100%;
-//           height: auto;
-//           border-radius: 8px;
-//         }
-//       `}</style>
-//     </>
-//   );
-// };
-
 const RichTextContent = ({ htmlContent }) => {
   if (!htmlContent) return null;
   const contentRef = useRef(null);
@@ -835,7 +771,7 @@ const TopicContent = () => {
     const audioUrl =
       content?.meta?.full_url ||
       content?.media?.full_url ||
-      content?.audio_url ||
+      content?.audio_content ||
       content?.content;
 
     return (
