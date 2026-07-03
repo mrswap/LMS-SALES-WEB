@@ -1,0 +1,745 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { apiRequest } from "../api/baseApi";
+import i18n from "../../i18n";
+
+export const fetchLevelProgress = createAsyncThunk(
+  "course/fetchLevelProgress",
+  async (arg) => {
+    let levelId = null;
+    let lang = null;
+    if (arg && typeof arg === "object") {
+      levelId = arg.levelId;
+      lang = arg.lang;
+    } else {
+      levelId = arg;
+    }
+    const activeLang = lang || i18n.language;
+    return apiRequest({
+      endpoint: `/trainee/hierarchy/level/${levelId}?lang=${activeLang}`,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          activeLang && typeof activeLang === "string"
+            ? activeLang.split("-")[0]
+            : "en",
+      },
+    });
+  },
+);
+
+export const fetchModuleProgress = createAsyncThunk(
+  "course/fetchModuleProgress",
+  async (arg) => {
+    let moduleId = null;
+    let lang = null;
+    if (arg && typeof arg === "object") {
+      moduleId = arg.moduleId;
+      lang = arg.lang;
+    } else {
+      moduleId = arg;
+    }
+    const activeLang = lang || i18n.language;
+    return apiRequest({
+      endpoint: `/trainee/hierarchy/module/${moduleId}?lang=${activeLang}`,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          activeLang && typeof activeLang === "string"
+            ? activeLang.split("-")[0]
+            : "en",
+      },
+    });
+  },
+);
+
+export const fetchChapterProgress = createAsyncThunk(
+  "course/fetchChapterProgress",
+  async (arg) => {
+    let chapterId = null;
+    let lang = null;
+    if (arg && typeof arg === "object") {
+      chapterId = arg.chapterId;
+      lang = arg.lang;
+    } else {
+      chapterId = arg;
+    }
+    const activeLang = lang || i18n.language;
+    return apiRequest({
+      endpoint: `/trainee/hierarchy/chapter/${chapterId}?lang=${activeLang}`,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          activeLang && typeof activeLang === "string"
+            ? activeLang.split("-")[0]
+            : "en",
+      },
+    });
+  },
+);
+
+export const fetchTopicProgress = createAsyncThunk(
+  "course/fetchTopicProgress",
+  async (arg) => {
+    let topicId = null;
+    let lang = null;
+    if (arg && typeof arg === "object") {
+      topicId = arg.topicId;
+      lang = arg.lang;
+    } else {
+      topicId = arg;
+    }
+    const activeLang = lang || i18n.language;
+    return apiRequest({
+      endpoint: `/trainee/hierarchy/topic/${topicId}?lang=${activeLang}`,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          activeLang && typeof activeLang === "string"
+            ? activeLang.split("-")[0]
+            : "en",
+      },
+    });
+  },
+);
+
+export const fetchDashboard = createAsyncThunk(
+  "course/fetchDashboard",
+  async (arg = null) => {
+    let levelId = null;
+    let lang = null;
+    if (arg && typeof arg === "object") {
+      levelId = arg.levelId;
+      lang = arg.lang;
+    } else {
+      levelId = arg;
+    }
+    const activeLang = lang || i18n.language;
+    let endpoint = `/trainee/dashboard?lang=${activeLang}`;
+    if (levelId) {
+      endpoint += `&level_id=${levelId}`;
+    }
+    return apiRequest({
+      endpoint,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          activeLang && typeof activeLang === "string"
+            ? activeLang.split("-")[0]
+            : "en",
+      },
+    });
+  },
+);
+
+export const getHierarchyThunk = createAsyncThunk(
+  "course/fetchCourseHierarchy",
+  async (params = {}) => {
+    const { type, id, lang } = params;
+    const activeLang = lang || i18n.language;
+    let endpoint = `/trainee/hierarchy?lang=${activeLang}`;
+    if (type && id) {
+      endpoint = `/trainee/hierarchy/${type}/${id}?lang=${activeLang}`;
+    }
+    return apiRequest({
+      endpoint,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          activeLang && typeof activeLang === "string"
+            ? activeLang.split("-")[0]
+            : "en",
+      },
+    });
+  },
+);
+
+export const fetchChapterHierarchy = createAsyncThunk(
+  "course/fetchChapterHierarchy",
+  async (chapterId) => {
+    return apiRequest({
+      endpoint: `/trainee/hierarchy/chapter/${chapterId}`,
+      method: "GET",
+    });
+  },
+);
+
+export const fetchTopicContent = createAsyncThunk(
+  "course/fetchTopicContent",
+  async ({ topicId, page = 1, lang = i18n.language }) => {
+    return apiRequest({
+      endpoint: `/trainee/content/topics/${topicId}?page=${page}&lang=${lang}`,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          lang && typeof lang === "string" ? lang.split("-")[0] : "en",
+      },
+    });
+  },
+);
+
+export const toggleTopicContentRead = createAsyncThunk(
+  "course/toggleTopicContentRead",
+  async (contentId) => {
+    return apiRequest({
+      endpoint: `/trainee/content/${contentId}/toggle-read`,
+      method: "POST",
+    });
+  },
+);
+
+export const fetchSinglePreview = createAsyncThunk(
+  "course/fetchSinglePreview",
+  async ({ topicId, contentId, lang = i18n.language }) => {
+    return apiRequest({
+      endpoint: `/trainee/content/single-preview/${topicId}/${contentId}?lang=${lang}`,
+      method: "GET",
+      headers: {
+        "Accept-Language":
+          lang && typeof lang === "string" ? lang.split("-")[0] : "en",
+      },
+    });
+  },
+);
+
+// Thunks for Assessments
+export const startAssessment = createAsyncThunk(
+  "course/startAssessment",
+  async (assessmentId) => {
+    return apiRequest({
+      endpoint: `/trainee/assessments/${assessmentId}/start`,
+      method: "POST",
+    });
+  },
+);
+
+export const fetchAssessmentQuestions = createAsyncThunk(
+  "course/fetchAssessmentQuestions",
+  async ({ assessmentId, attemptId }) => {
+    return apiRequest({
+      endpoint: `/trainee/assessments/${assessmentId}/questions?attempt_id=${attemptId}`,
+      method: "GET",
+    });
+  },
+);
+
+export const answerAssessmentQuestion = createAsyncThunk(
+  "course/answerAssessmentQuestion",
+  async (payload) => {
+    return apiRequest({
+      endpoint: "/trainee/assessments/answer",
+      method: "POST",
+      body: payload,
+    });
+  },
+);
+
+export const resumeAssessment = createAsyncThunk(
+  "course/resumeAssessment",
+  async (assessmentId) => {
+    return apiRequest({
+      endpoint: `/trainee/assessments/${assessmentId}/resume`,
+      method: "GET",
+    });
+  },
+);
+
+export const submitAssessment = createAsyncThunk(
+  "course/submitAssessment",
+  async ({ assessmentId, attemptId }) => {
+    return apiRequest({
+      endpoint: `/trainee/assessments/${assessmentId}/submit`,
+      method: "POST",
+      body: { attempt_id: attemptId },
+    });
+  },
+);
+
+export const submitAssessmentFeedback = createAsyncThunk(
+  "course/submitAssessmentFeedback",
+  async ({ assessmentId, payload }) => {
+    return apiRequest({
+      endpoint: `/trainee/assessments/${assessmentId}/feedback`,
+      method: "POST",
+      body: {
+        ...payload,
+        assessment_id: assessmentId, // Include in body too
+      },
+    });
+  },
+);
+
+export const fetchFaqs = createAsyncThunk(
+  "course/fetchFaqs",
+  async ({ type, id, lang }) => {
+    const activeLang = lang || i18n.language;
+    return apiRequest({
+      endpoint: `/trainee/faqs/${type}/${id}?lang=${activeLang}`,
+      method: "GET",
+    });
+  },
+);
+
+const initialState = {
+  levels: [],
+  currentLevel: null,
+  currentModule: null,
+  currentChapter: null,
+  currentTopic: null,
+  currentModules: [],
+  currentChapters: [],
+  currentTopics: [],
+  topicContent: null,
+  singlePreview: null,
+  assessment: {
+    details: null,
+    questions: [],
+    currentAttemptId: null,
+    result: null,
+    loading: false,
+    error: null,
+  },
+  dashboard: null,
+  loading: {
+    levels: false,
+    levelDetail: false,
+    moduleDetail: false,
+    chapterDetail: false,
+    topicDetail: false,
+    topicContent: false,
+    singlePreview: false,
+    assessmentAction: false,
+    hierarchy: false,
+  },
+  error: null,
+};
+
+const courseSlice = createSlice({
+  name: "course",
+  initialState,
+  reducers: {
+    clearCourseError: (state) => {
+      state.error = null;
+    },
+    clearTopicContent: (state) => {
+      state.topicContent = null;
+      state.currentTopic = null;
+    },
+    updateQuestionAnswer: (state, action) => {
+      const { questionId, optionId } = action.payload;
+      const question = state.assessment.questions.find(
+        (q) => q.id === questionId,
+      );
+      if (question) {
+        question.selected_option_id = optionId;
+      }
+    },
+    resetAssessment: (state) => {
+      state.assessment = {
+        details: null,
+        questions: [],
+        currentAttemptId: null,
+        result: null,
+        loading: false,
+        error: null,
+      };
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      // Level Progress (hierarchy/level/{id} → extract modules)
+      .addCase(fetchLevelProgress.pending, (state) => {
+        state.loading.levelDetail = true;
+        state.error = null;
+      })
+      .addCase(fetchLevelProgress.fulfilled, (state, action) => {
+        state.loading.levelDetail = false;
+        const data = action.payload.data || action.payload;
+        state.currentLevel = data;
+        // Extract modules from nested hierarchy response
+        state.currentModules =
+          data?.modules || (Array.isArray(data) ? data : []);
+      })
+      .addCase(fetchLevelProgress.rejected, (state, action) => {
+        state.loading.levelDetail = false;
+        state.error = action.error.message;
+      })
+      // Module Progress (hierarchy/module/{id} → extract chapters)
+      .addCase(fetchModuleProgress.pending, (state) => {
+        state.loading.moduleDetail = true;
+      })
+      .addCase(fetchModuleProgress.fulfilled, (state, action) => {
+        state.loading.moduleDetail = false;
+        const data = action.payload.data || action.payload;
+        state.currentModule = data;
+        // Extract chapters from nested hierarchy response
+        state.currentChapters =
+          data?.chapters || (Array.isArray(data) ? data : []);
+      })
+      .addCase(fetchModuleProgress.rejected, (state, action) => {
+        state.loading.moduleDetail = false;
+        state.error = action.error.message;
+      })
+      // Chapter Progress (hierarchy/chapter/{id} → extract topics)
+      .addCase(fetchChapterProgress.pending, (state) => {
+        state.loading.chapterDetail = true;
+      })
+      .addCase(fetchChapterProgress.fulfilled, (state, action) => {
+        state.loading.chapterDetail = false;
+        const data = action.payload.data || action.payload;
+        state.currentChapter = data;
+        // Extract topics from nested hierarchy response
+        state.currentTopics = data?.topics || (Array.isArray(data) ? data : []);
+      })
+      .addCase(fetchChapterProgress.rejected, (state, action) => {
+        state.loading.chapterDetail = false;
+        state.error = action.error.message;
+      })
+      // Topic Progress
+      .addCase(fetchTopicProgress.pending, (state) => {
+        state.loading.topicDetail = true;
+      })
+      .addCase(fetchTopicProgress.fulfilled, (state, action) => {
+        state.loading.topicDetail = false;
+        state.currentTopic = action.payload.data || action.payload;
+      })
+      .addCase(fetchTopicProgress.rejected, (state, action) => {
+        state.loading.topicDetail = false;
+        state.error = action.error.message;
+      })
+      // Dashboard Data
+      .addCase(fetchDashboard.pending, (state) => {
+        state.loading.hierarchy = true;
+        state.error = null;
+      })
+      .addCase(fetchDashboard.fulfilled, (state, action) => {
+        state.loading.hierarchy = false;
+        state.error = null;
+        const data = action.payload.data || action.payload;
+
+        state.dashboard = data;
+      })
+      .addCase(fetchDashboard.rejected, (state, action) => {
+        state.loading.hierarchy = false;
+        state.error = action.error.message;
+      })
+      .addCase(getHierarchyThunk.pending, (state) => {
+        state.loading.levels = true;
+        state.error = null;
+      })
+      .addCase(getHierarchyThunk.fulfilled, (state, action) => {
+        state.loading.levels = false;
+        state.error = null;
+        const data = action.payload.data || action.payload;
+
+        if (data) {
+          if (Array.isArray(data)) {
+            // Check if data contains programs and extract levels
+            if (data.length > 0 && data[0].type === "program") {
+              state.levels = data.reduce((acc, program) => {
+                if (program.levels && Array.isArray(program.levels)) {
+                  return acc.concat(program.levels);
+                }
+                return acc;
+              }, []);
+            } else {
+              state.levels = data;
+            }
+          } else {
+            if (data.levels && Array.isArray(data.levels)) {
+              state.levels = data.levels;
+            } else if (data.programs && Array.isArray(data.programs)) {
+              state.levels = data.programs.reduce((acc, program) => {
+                if (program.levels && Array.isArray(program.levels)) {
+                  return acc.concat(program.levels);
+                }
+                return acc;
+              }, []);
+            } else if (
+              data.program &&
+              data.program.levels &&
+              Array.isArray(data.program.levels)
+            ) {
+              state.levels = data.program.levels;
+            } else if (data.data && Array.isArray(data.data)) {
+              const nestedData = data.data;
+              if (nestedData.length > 0 && nestedData[0].type === "program") {
+                state.levels = nestedData.reduce((acc, program) => {
+                  if (program.levels && Array.isArray(program.levels)) {
+                    return acc.concat(program.levels);
+                  }
+                  return acc;
+                }, []);
+              } else {
+                state.levels = nestedData;
+              }
+            } else if (data.type === "level" || (!data.type && data.modules)) {
+              state.currentLevel = data;
+              // Add to levels list if not present or update it
+              const index = state.levels.findIndex((l) => l.id === data.id);
+              if (index !== -1) {
+                state.levels[index] = { ...state.levels[index], ...data };
+              } else {
+                state.levels = [data, ...state.levels];
+              }
+            } else if (data.type === "module") {
+              state.currentModule = data;
+            } else if (data.type === "chapter") {
+              state.currentChapter = data;
+            }
+          }
+        }
+      })
+      .addCase(getHierarchyThunk.rejected, (state, action) => {
+        state.loading.levels = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchChapterHierarchy.pending, (state) => {
+        state.loading.chapterDetail = true;
+      })
+      .addCase(fetchChapterHierarchy.fulfilled, (state, action) => {
+        state.loading.chapterDetail = false;
+        state.currentChapter = action.payload.data || action.payload;
+      })
+      .addCase(fetchChapterHierarchy.rejected, (state, action) => {
+        state.loading.chapterDetail = false;
+        state.error = action.error.message;
+      })
+      // Topic Content
+      .addCase(fetchTopicContent.pending, (state) => {
+        state.loading.topicContent = true;
+        state.topicContent = null;
+      })
+      .addCase(fetchTopicContent.fulfilled, (state, action) => {
+        state.loading.topicContent = false;
+        state.topicContent = action.payload;
+      })
+      .addCase(fetchTopicContent.rejected, (state, action) => {
+        state.loading.topicContent = false;
+        state.error = action.error.message;
+      })
+      .addCase(toggleTopicContentRead.fulfilled, (state, action) => {
+        if (state.topicContent) {
+          const contentId = action.meta.arg;
+
+          // The array might be at state.topicContent.data (old) or state.topicContent.data.data (new)
+          let contentArray = null;
+          if (Array.isArray(state.topicContent.data)) {
+            contentArray = state.topicContent.data;
+          } else if (
+            state.topicContent.data &&
+            Array.isArray(state.topicContent.data.data)
+          ) {
+            contentArray = state.topicContent.data.data;
+          }
+
+          if (contentArray) {
+            const contentIndex = contentArray.findIndex(
+              (c) => c.id == contentId,
+            );
+            if (contentIndex !== -1) {
+              const payload = action.payload?.data || action.payload;
+              const newIsRead =
+                payload?.is_read !== undefined ? payload.is_read : true;
+              contentArray[contentIndex].is_read = newIsRead;
+            }
+          }
+        }
+        // Also update singlePreview.current if it matches (API response nests content in .current)
+        if (
+          state.singlePreview?.current &&
+          state.singlePreview.current.id == action.meta.arg
+        ) {
+          const payload = action.payload?.data || action.payload;
+          state.singlePreview.current.is_read =
+            payload?.is_read !== undefined ? payload.is_read : true;
+        }
+      })
+      // Single Content Preview
+      .addCase(fetchSinglePreview.pending, (state) => {
+        state.loading.singlePreview = true;
+        state.singlePreview = null;
+      })
+
+      .addCase(fetchSinglePreview.fulfilled, (state, action) => {
+        state.loading.singlePreview = false;
+        // API returns { success, data: { topic, current, navigation } }
+        // Store the full data object so content-viewer can access .topic, .current, .navigation
+        state.singlePreview = action.payload.data || action.payload;
+      })
+      .addCase(fetchSinglePreview.rejected, (state) => {
+        state.loading.singlePreview = false;
+      })
+      // Assessment Actions
+      .addCase(startAssessment.pending, (state) => {
+        state.loading.assessmentAction = true;
+      })
+      .addCase(startAssessment.fulfilled, (state, action) => {
+        state.loading.assessmentAction = false;
+        const payload = action.payload.data || action.payload || {};
+        state.assessment.currentAttemptId =
+          payload.attempt_id || payload.data?.attempt_id;
+
+        const limit =
+          payload.attempts_limit ||
+          payload.attempt_limit ||
+          payload.assessment?.attempts_limit ||
+          payload.assessment?.attempt_limit ||
+          payload.details?.attempts_limit ||
+          payload.details?.attempt_limit;
+
+        const count =
+          payload.attempts_count ||
+          payload.attempt_count ||
+          payload.attempt?.attempt_number ||
+          payload.attempts_used ||
+          payload.details?.attempts_count ||
+          payload.details?.attempt_count;
+
+        state.assessment.details = {
+          ...state.assessment.details,
+          attempts_limit:
+            limit !== undefined
+              ? limit
+              : state.assessment.details?.attempts_limit,
+          attempts_count:
+            count !== undefined
+              ? count
+              : state.assessment.details?.attempts_count,
+          duration:
+            payload.duration ||
+            payload.details?.duration ||
+            state.assessment.details?.duration,
+          expires_at:
+            payload.expires_at ||
+            payload.details?.expires_at ||
+            state.assessment.details?.expires_at,
+          started_at:
+            payload.started_at ||
+            payload.details?.started_at ||
+            state.assessment.details?.started_at,
+        };
+      })
+      .addCase(startAssessment.rejected, (state, action) => {
+        state.loading.assessmentAction = false;
+        state.assessment.error = action.error.message;
+      })
+      .addCase(resumeAssessment.fulfilled, (state, action) => {
+        const payload = action.payload.data || action.payload || {};
+        state.assessment.currentAttemptId =
+          payload.attempt_id || payload.data?.attempt_id;
+
+        const limit =
+          payload.attempts_limit ||
+          payload.attempt_limit ||
+          payload.assessment?.attempts_limit ||
+          payload.assessment?.attempt_limit ||
+          payload.details?.attempts_limit ||
+          payload.details?.attempt_limit;
+
+        const count =
+          payload.attempts_count ||
+          payload.attempt_count ||
+          payload.attempt?.attempt_number ||
+          payload.attempts_used ||
+          payload.details?.attempts_count ||
+          payload.details?.attempt_count;
+
+        state.assessment.details = {
+          ...state.assessment.details,
+          attempts_limit:
+            limit !== undefined
+              ? limit
+              : state.assessment.details?.attempts_limit,
+          attempts_count:
+            count !== undefined
+              ? count
+              : state.assessment.details?.attempts_count,
+          duration:
+            payload.duration ||
+            payload.details?.duration ||
+            state.assessment.details?.duration,
+          expires_at:
+            payload.expires_at ||
+            payload.details?.expires_at ||
+            state.assessment.details?.expires_at,
+          started_at:
+            payload.started_at ||
+            payload.details?.started_at ||
+            state.assessment.details?.started_at,
+        };
+      })
+      .addCase(resumeAssessment.rejected, (state, action) => {
+        state.assessment.error = action.error.message;
+      })
+      .addCase(fetchAssessmentQuestions.fulfilled, (state, action) => {
+        const payload = action.payload.data || action.payload || {};
+        state.assessment.questions = payload.questions || [];
+
+        const limit =
+          payload.attempts_limit ||
+          payload.attempt_limit ||
+          payload.assessment?.attempts_limit ||
+          payload.assessment?.attempt_limit ||
+          payload.details?.attempts_limit ||
+          payload.details?.attempt_limit ||
+          state.assessment.details?.attempts_limit;
+
+        const count =
+          payload.attempts_count ||
+          payload.attempt_count ||
+          payload.attempt?.attempt_number ||
+          payload.attempts_used ||
+          payload.details?.attempts_count ||
+          payload.details?.attempt_count ||
+          state.assessment.details?.attempts_count;
+
+        state.assessment.details = {
+          ...state.assessment.details,
+          assessment_id: action.meta.arg.assessmentId,
+          duration:
+            payload.duration ||
+            payload.details?.duration ||
+            state.assessment.details?.duration,
+          expires_at:
+            payload.expires_at ||
+            payload.details?.expires_at ||
+            state.assessment.details?.expires_at,
+          started_at:
+            payload.started_at ||
+            payload.details?.started_at ||
+            state.assessment.details?.started_at,
+          attempts_limit: limit !== undefined ? limit : 0,
+          attempts_count: count !== undefined ? count : 0,
+          title:
+            payload.title ||
+            payload.details?.title ||
+            state.assessment.details?.title,
+        };
+      })
+      .addCase(submitAssessment.fulfilled, (state, action) => {
+        const response = action.payload.data || action.payload;
+        state.assessment.currentAttemptId = null;
+        state.assessment.questions = [];
+        // Store assessment_id from details for feedback submission
+        state.assessment.result = {
+          ...response,
+          assessment_id:
+            state.assessment.details?.assessment_id || response.assessment_id,
+        };
+      })
+      .addCase("auth/logoutUser/fulfilled", () => {
+        return initialState;
+      })
+      .addCase("auth/logoutUser/rejected", () => {
+        return initialState;
+      });
+  },
+});
+
+export const {
+  clearCourseError,
+  clearTopicContent,
+  updateQuestionAnswer,
+  resetAssessment,
+} = courseSlice.actions;
+export default courseSlice.reducer;
