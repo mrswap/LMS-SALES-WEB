@@ -294,7 +294,8 @@ export default function Chapters() {
                       <div className="flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
                           <p className="text-xs font-medium text-gray-500">
-                            {t("chapters.topicsSection.topicText")} {index + 1}
+                            {t("chapters.topicsSection.topicText")}
+                            {/* {index + 1} */}
                           </p>
                           {isUnlocked && !isCompleted && (
                             <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-medium">

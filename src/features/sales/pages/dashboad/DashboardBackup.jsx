@@ -36,6 +36,46 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+// ==================== COMPONENTS ====================
+
+// Progress Ring Component
+const ProgressRing = ({ percentage, size = 80 }) => {
+  const radius = (size - 8) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (percentage / 100) * circumference;
+
+  return (
+    <div className="relative" style={{ width: size, height: size }}>
+      <svg className="transform -rotate-90" width={size} height={size}>
+        <circle
+          className="text-gray-200"
+          strokeWidth="4"
+          stroke="currentColor"
+          fill="transparent"
+          r={radius}
+          cx={size / 2}
+          cy={size / 2}
+        />
+        <circle
+          strokeWidth="4"
+          stroke="#facc15"
+          fill="transparent"
+          r={radius}
+          cx={size / 2}
+          cy={size / 2}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+          className="transition-all duration-1000"
+        />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="text-sm font-bold">{percentage}%</span>
+      </div>
+    </div>
+  );
+};
+
 // Topic Card Component
 const TopicCard = ({
   title,
@@ -541,125 +581,135 @@ export default function Dashboard() {
       <PageBody>
         {/* Top Section */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 my-4">
-          <div className="lg:col-span-2 bg-white rounded-md  border border-gray-300 border-gray-100 p-5 transition-all duration-500 delay-100 transform translate-y-0 opacity-100">
+          {/* Main Card - Current Topic with Hierarchy (Using accurate level data) */}
+          <div
+            className={`bg-[#1e63ff] lg:col-span-2 text-white rounded-xl p-5 transition-all duration-500 delay-100 transform ${
+              animateItems
+                ? "translate-y-0 opacity-100"
+                : "translate-y-4 opacity-0"
+            }`}
+          >
             <div className="flex justify-between items-start">
               <div className="flex-1">
-                {/* Program header */}
-                <div className="flex justify-between items-start border-b border-gray-100 pb-3 mb-4">
-                  <p className="text-blue-700 text-sm font-semibold tracking-wide uppercase flex items-center gap-2">
-                    <span className="w-1 h-5 bg-blue-500 rounded-full"></span>
-                    {current_learning?.program?.title || "Program"}
-                  </p>
-                </div>
+                <p className="text-yellow-300 text-xs font-semibold mb-1">
+                  {current_learning?.program?.title || "Program"}
+                </p>
 
-                {/* Hierarchical breadcrumb – clean & minimal */}
-                <div className="text-xs text-gray-600 mb-4 space-y-1">
+                <div className="text-xs text-white/80 mb-3">
+                  {/* Level */}
                   {currentHierarchy.level && (
-                    <div className="flex items-center gap-2 py-1.5 px-3 bg-gray-50 rounded-md border-l-4 border-blue-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-                      <span className="font-medium text-blue-700">
+                    <div className="flex items-center gap-2 py-0.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-yellow-300/60"></div>
+                      <span className="text-white/70">
                         {currentHierarchy.level}
                       </span>
+                      <FiChevronRight
+                        size={10}
+                        className="text-white/40 ml-auto"
+                      />
                     </div>
                   )}
+
+                  {/* Module */}
                   {currentHierarchy.module && (
-                    <div className="flex items-center gap-2 py-1.5 px-3 bg-gray-50 rounded-md border-l-4 border-blue-300 ml-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-300"></span>
-                      <span className="font-medium text-blue-700">
+                    <div className="flex items-center gap-2 py-0.5 pl-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-300/60"></div>
+                      <span className="text-white/70">
                         {currentHierarchy.module}
                       </span>
+                      <FiChevronRight
+                        size={10}
+                        className="text-white/40 ml-auto"
+                      />
                     </div>
                   )}
+
+                  {/* Chapter */}
                   {currentHierarchy.chapter && (
-                    <div className="flex items-center gap-2 py-1.5 px-3 bg-gray-50 rounded-md border-l-4 border-purple-300 ml-8">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
-                      <span className="font-medium text-purple-700">
+                    <div className="flex items-center gap-2 py-0.5 pl-8">
+                      <div className="w-1.5 h-1.5 rounded-full bg-purple-300/60"></div>
+                      <span className="text-white/70">
                         {currentHierarchy.chapter}
                       </span>
+                      <FiChevronRight
+                        size={10}
+                        className="text-white/40 ml-auto"
+                      />
                     </div>
                   )}
 
-                  {/* Current Topic – with integrated progress */}
-                  {currentHierarchy.topic && (
-                    <div className="ml-12 mt-1 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 rounded-lg border border-blue-200 p-3">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                        <span className="font-semibold text-gray-800 text-sm">
-                          {currentHierarchy.topic}
-                        </span>
-                        <span className="text-[10px] text-white font-bold bg-blue-600 px-2.5 py-0.5 rounded-full ml-auto">
-                          Current
-                        </span>
-                      </div>
-                      {/* Topic progress – inline inside topic */}
-                      {stats?.current_topic_progress && (
-                        <div className="mt-2">
-                          <div className="flex justify-between text-xs text-gray-500">
-                            <span>
-                              {stats.current_topic_progress.read_contents || 0}/
-                              {stats.current_topic_progress.total_contents || 0}{" "}
-                              Contents
-                            </span>
-                            <span className="font-medium text-blue-600">
-                              {stats.current_topic_progress.progress_percent ||
-                                0}
-                              %
-                            </span>
-                          </div>
-                          <div className="w-full h-1.5 bg-gray-200 rounded-full mt-0.5 overflow-hidden">
-                            <div
-                              className="h-full bg-blue-500 rounded-full transition-all duration-500"
-                              style={{
-                                width: `${stats.current_topic_progress.progress_percent || 0}%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Level Progress */}
-                <div className="mt-4">
-                  <div className="flex justify-between text-xs text-gray-600 mb-1">
-                    <span className="font-medium uppercase tracking-wide">
-                      {t("dashboard.currentLearning.levelProgress")}
+                  {/* Topic - Active/Current */}
+                  <div className="flex items-center gap-2 py-1 pl-12 mt-1 bg-white/5 rounded-md">
+                    <div className="w-2 h-2 rounded-full bg-yellow-300"></div>
+                    <span className="font-semibold text-white text-sm">
+                      {currentHierarchy.topic}
                     </span>
-                    <span className="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">
-                      {accurateLevelProgress}%
+                    <span className="text-[10px] text-yellow-300/80 ml-auto">
+                      Current
                     </span>
                   </div>
-                  <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                </div>
+
+                <h2 className="text-lg font-semibold">
+                  {current_learning?.topic?.title || ""}
+                </h2>
+
+                <div className="mt-3">
+                  <div className="flex justify-between text-xs mb-1">
+                    <span>{t("dashboard.currentLearning.levelProgress")}</span>
+                    <span>{accurateLevelProgress}%</span>
+                  </div>
+                  <div className="w-full h-2 bg-blue-300 rounded-full">
                     <div
-                      className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full transition-all duration-700"
+                      className="h-2 bg-white rounded-full transition-all duration-700"
                       style={{ width: `${accurateLevelProgress}%` }}
                     />
                   </div>
                 </div>
 
-                {/* Stats – clean pills */}
-                <div className="mt-4 flex gap-2 text-xs flex-wrap">
-                  <span className="bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-full text-gray-700 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    <span className="font-medium">
-                      {currentLevelData?.completed_topics || 0} /{" "}
-                      {currentLevelData?.total_topics || 0} Topics
-                    </span>
+                <div className="mt-3 flex gap-2 text-xs flex-wrap">
+                  <span className="bg-white/20 px-2 py-1 rounded">
+                    <FiCheckCircle className="inline mr-1" size={10} />
+                    {currentLevelData?.completed_topics || 0}/
+                    {currentLevelData?.total_topics || 0} Topics
                   </span>
-                  <span className="bg-purple-50 border border-purple-100 px-3 py-1.5 rounded-full text-gray-700 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
-                    <span className="font-medium">
-                      {currentLevelData?.title || ""}
-                    </span>
+                  <span className="bg-white/20 px-2 py-1 rounded">
+                    <FaBookOpen className="inline mr-1" size={10} />
+                    Level {currentLevelData?.title || ""}
                   </span>
                 </div>
               </div>
+
+              {/* Progress Ring - Using accurate level progress */}
+              <div className="ml-4">
+                <ProgressRing percentage={accurateLevelProgress} size={80} />
+              </div>
             </div>
 
-            {/* CTA Button */}
+            {/* Current Topic Content Progress */}
+            {stats?.current_topic_progress && (
+              <div className="mt-3 bg-white/10 rounded p-2">
+                <p className="text-xs mb-1">
+                  {t("dashboard.currentLearning.currentTopicProgress")}:{" "}
+                  {current_learning?.topic?.title}
+                </p>
+                <div className="w-full h-1.5 bg-blue-300 rounded-full">
+                  <div
+                    className="h-1.5 bg-yellow-300 rounded-full transition-all"
+                    style={{
+                      width: `${stats.current_topic_progress.progress_percent || 0}%`,
+                    }}
+                  />
+                </div>
+                <p className="text-right text-xs mt-1">
+                  {stats.current_topic_progress.read_contents || 0}/
+                  {stats.current_topic_progress.total_contents || 0} Contents
+                </p>
+              </div>
+            )}
+
             <button
-              className="mt-4 px-6 bg-blue-600 text-white text-sm py-2 rounded-full font-medium hover:bg-blue-700 hover:shadow-md transition-all flex items-center gap-2"
+              className="mt-4 px-6 bg-white text-blue-600 text-sm py-2 rounded-full font-medium hover:shadow-lg transition-all flex items-center gap-2"
               onClick={handleResumeTopic}
             >
               <FiPlayCircle size={14} />
@@ -669,6 +719,7 @@ export default function Dashboard() {
             </button>
           </div>
 
+          {/* Learning Path - Using actual levels data */}
           <div
             className={`border lg:col-span-3 border-gray-300 rounded-lg p-3 transition-all duration-500 delay-200 transform ${
               animateItems
