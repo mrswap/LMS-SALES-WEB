@@ -207,27 +207,13 @@ const RichTextContent = ({ htmlContent }) => {
         .custom-content h4, .custom-content h5, .custom-content h6 {
           margin: 24px 0 16px; font-weight: 700; line-height: 1.4;
         }
+        .custom-content ul, .custom-content ol { margin: 0 0 16px; padding-left: 24px; }
+        .custom-content li { margin-bottom: 8px; }
         .custom-content hr { margin: 24px 0; border: none; border-top: 1px solid #d1d5db; }
         .custom-content table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #d1d5db; }
         .custom-content td, .custom-content th { border: 1px solid #d1d5db; padding: 12px; vertical-align: top; }
         .custom-content th { background-color: #f3f4f6; font-weight: 600; }
         .custom-content img { max-width: 100%; height: auto; border-radius: 8px; }
-        .custom-content ul {
-  margin: 0 0 16px;
-  padding-left: 24px;
-  list-style-type: disc;
-  list-style-position: outside;
-}
-.custom-content ol {
-  margin: 0 0 16px;
-  padding-left: 24px;
-  list-style-type: decimal;
-  list-style-position: outside;
-}
-.custom-content li {
-  margin-bottom: 8px;
-  display: list-item; /* Tailwind kabhi kabhi 'display' bhi reset kar deta hai */
-}
       `}</style>
     </>
   );
@@ -467,34 +453,14 @@ const TopicContent = () => {
   const iframeRef = useRef(null);
   const fullscreenContainerRef = useRef(null);
   const [showAudioPlayer, setShowAudioPlayer] = useState(false);
-  const [flipDirection, setFlipDirection] = useState("next"); // "next" | "prev"
-  const pageAreaRef = useRef(null);
-  const pageContentRef = useRef(null);
-  const [prevPageSnapshot, setPrevPageSnapshot] = useState(null);
-  const [pageKey, setPageKey] = useState(null); // sirf loading complete hone ke baad update hota hai
 
   const { currentContent, isLoading, isMarkingRead } = useSelector(
     (state) => state.course,
   );
 
-  const rawContent = currentContent?.current;
-  const rawTopic = currentContent?.topic;
-  const rawNavigation = currentContent?.navigation;
-
-  // Content ko "sticky" rakhte hain — jab tak naya data pura nahi aa jata,
-  // purana hi dikhta rahega. Isse navigate karte waqt beech me
-  // "content not found" wala false flash nahi aayega.
-  const [content, setContent] = useState(rawContent ?? null);
-  const [topic, setTopic] = useState(rawTopic ?? null);
-  const [navigation, setNavigation] = useState(rawNavigation ?? null);
-
-  useEffect(() => {
-    if (rawContent) {
-      setContent(rawContent);
-      setTopic(rawTopic);
-      setNavigation(rawNavigation);
-    }
-  }, [rawContent, rawTopic, rawNavigation]);
+  const content = currentContent?.current;
+  const topic = currentContent?.topic;
+  const navigation = currentContent?.navigation;
 
   // Load H5P resizer script dynamically
   useEffect(() => {
@@ -573,86 +539,17 @@ const TopicContent = () => {
     }
   }, [content?.id, content?.is_read, contentId, isLoading, dispatch]);
 
-  // Flip sirf tab chale jab naya content pura load ho chuka ho —
-  // isse "flip -> loading -> flip phir se" wala double-flip issue nahi hota
-  useEffect(() => {
-    if (!isLoading && content?.id) {
-      setPageKey((prev) => (prev === content.id ? prev : content.id));
-      setIsNavigating(false);
-    }
-  }, [isLoading, content?.id]);
-
-  // Naya page pehle "rotated" state me mount hota hai (bina transition ke),
-  // fir agle 2 animation-frame ke baad flat state me transition karte hain.
-  // Isse browser ko naye content ka layout pehle complete karne ka time milta
-  // hai, warna layout aur flip animation ek hi frame me collide karke
-  // atakne/lag jaisa feel deti thi.
-  const [isFlipSettled, setIsFlipSettled] = useState(true);
-  useEffect(() => {
-    if (pageKey === null) return;
-    setIsFlipSettled(false);
-    let raf2;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => {
-        setIsFlipSettled(true);
-      });
-    });
-    return () => {
-      cancelAnimationFrame(raf1);
-      if (raf2) cancelAnimationFrame(raf2);
-    };
-  }, [pageKey]);
-
-  // Purane page ka halka snapshot banate hain — iframe/video/audio ko dobara
-  // load karne ki jagah placeholder use karte hain, taaki flip bilkul smooth chale
-  const captureSnapshot = () => {
-    const source = pageContentRef.current;
-    if (!source) return null;
-
-    const clone = source.cloneNode(true);
-    const originalMedia = source.querySelectorAll("iframe, video, audio");
-    const clonedMedia = clone.querySelectorAll("iframe, video, audio");
-
-    clonedMedia.forEach((el, idx) => {
-      const original = originalMedia[idx];
-      const rect = original ? original.getBoundingClientRect() : null;
-      const placeholder = document.createElement("div");
-      placeholder.setAttribute(
-        "style",
-        `width:100%;height:${rect && rect.height ? Math.round(rect.height) : 400}px;background:#f3f4f6;border-radius:8px;`,
-      );
-      el.replaceWith(placeholder);
-    });
-
-    return clone.innerHTML;
-  };
-
-  const navigateToContent = (newContentId, direction = "next") => {
+  const navigateToContent = async (newContentId) => {
     if (newContentId && !isNavigating) {
       setIsNavigating(true);
-      setFlipDirection(direction);
-
-      // Purana page ka snapshot le lo, taaki naya page flip hote waqt
-      // neeche purana page dikhta rahe — real book jaisa feel
-      setPrevPageSnapshot(captureSnapshot());
-
-      // Scroll aur navigation ek saath — koi artificial wait nahi,
-      // isse click karte hi turant response feel hota hai
-      if (pageAreaRef.current) {
-        pageAreaRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-
       try {
+        // await dispatch(getSingleContent({ topicId, contentId: newContentId }));
         navigate(`/topics/${topicId}/content/${newContentId}`, {
           replace: true,
         });
       } catch (error) {
         console.error("Navigation error:", error);
+      } finally {
         setIsNavigating(false);
       }
     }
@@ -1013,108 +910,14 @@ const TopicContent = () => {
               />
             </div>
           )}
-          <div
-            ref={pageAreaRef}
-            className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-8"
-          ></div>
-
-          <div className="book-page-stage mb-10">
-            {prevPageSnapshot && (
-              <div
-                className="book-page-behind"
-                dangerouslySetInnerHTML={{ __html: prevPageSnapshot }}
-              />
-            )}
-            <div
-              key={pageKey}
-              ref={pageContentRef}
-              className="book-page-live"
-              style={{
-                transformOrigin:
-                  flipDirection === "prev" ? "right center" : "left center",
-                transform: isFlipSettled
-                  ? "rotateY(0deg)"
-                  : flipDirection === "prev"
-                    ? "rotateY(94deg)"
-                    : "rotateY(-94deg)",
-                transition: isFlipSettled
-                  ? "transform 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
-                  : "none",
-              }}
-              onTransitionEnd={(e) => {
-                if (e.propertyName === "transform") {
-                  setPrevPageSnapshot(null);
-                }
-              }}
-            >
-              {renderContent()}
-              <div
-                aria-hidden="true"
-                className="book-page-shade"
-                style={{
-                  background:
-                    flipDirection === "prev"
-                      ? "linear-gradient(to left, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)"
-                      : "linear-gradient(to right, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)",
-                  opacity: isFlipSettled ? 0 : 0.9,
-                  transition: isFlipSettled
-                    ? "opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
-                    : "none",
-                }}
-              />
-            </div>
-          </div>
-
-          <style>{`
-            .book-page-stage {
-              position: relative;
-              perspective: 2200px;
-              -webkit-perspective: 2200px;
-            }
-            .book-page-behind {
-              position: absolute;
-              inset: 0;
-              z-index: 1;
-              pointer-events: none;
-              background: #ffffff;
-              overflow: hidden;
-              border-radius: 12px;
-            }
-            .book-page-live {
-              position: relative;
-              z-index: 2;
-              background: #ffffff;
-              border-radius: 12px;
-              transform-style: preserve-3d;
-              backface-visibility: hidden;
-              -webkit-backface-visibility: hidden;
-              isolation: isolate;
-              will-change: transform;
-            }
-            .book-page-shade {
-              position: absolute;
-              inset: 0;
-              z-index: 5;
-              pointer-events: none;
-              border-radius: inherit;
-              will-change: opacity;
-            }
-            @media (prefers-reduced-motion: reduce) {
-              .book-page-live {
-                transition: none !important;
-                transform: none !important;
-              }
-              .book-page-shade {
-                display: none;
-              }
-            }
-          `}</style>
+          <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-8"></div>
+          <div className="mb-10">{renderContent()}</div>
           {/* Navigation Footer with loading state */}
           <div className="pt-6 border-t border-gray-200">
             <div className="flex items-center justify-between gap-4">
               <button
                 onClick={() =>
-                  navigateToContent(navigation?.previous_content_id, "prev")
+                  navigateToContent(navigation?.previous_content_id)
                 }
                 disabled={!navigation?.has_previous || isNavigating}
                 className="group flex items-center gap-2 px-4 py-2 cursor-pointer bg-white border border-gray-300 rounded-lg
@@ -1141,9 +944,7 @@ const TopicContent = () => {
                 )}
               </button>
               <button
-                onClick={() =>
-                  navigateToContent(navigation?.next_content_id, "next")
-                }
+                onClick={() => navigateToContent(navigation?.next_content_id)}
                 disabled={!navigation?.has_next || isNavigating}
                 className="group flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-600 border border-blue-600
                        rounded-lg disabled:opacity-40 disabled:cursor-not-allowed
