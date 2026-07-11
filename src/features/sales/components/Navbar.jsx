@@ -191,11 +191,13 @@ const HeaderNavbar = () => {
           {/* Logo Section */}
           <div className=" min-[1500px]:px-4">
             <div className="flex-shrink-0 ">
-              <img
-                src={siteSettings?.company_logo || ""}
-                alt="Logo"
-                className="w-[130px] sm:w-[130px] h-[64px] object-cover"
-              />
+              {siteSettings?.company_logo && (
+                <img
+                  src={siteSettings?.company_logo || ""}
+                  alt="Logo"
+                  className="w-[130px] sm:w-[130px] h-[64px] object-cover"
+                />
+              )}
             </div>
           </div>
 
