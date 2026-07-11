@@ -541,19 +541,6 @@ const TopicContent = () => {
     }
   }, [topicId, contentId, dispatch]);
 
-  // Effect to call read API when content loads and is not read
-  // useEffect(() => {
-  //   if (
-  //     content &&
-  //     content.id &&
-  //     (content.is_read === 0 || content.is_read === false) &&
-  //     !hasMarkedRead.current
-  //   ) {
-  //     hasMarkedRead.current = true;
-  //     dispatch(markContentAsRead({ contentId: content.id }));
-  //   }
-  // }, [content, dispatch]);
-
   useEffect(() => {
     if (isLoading) return;
 
@@ -980,7 +967,7 @@ const TopicContent = () => {
 
   return (
     <PageLayout>
-      <div className="p-8 rounded-lg border border-gray-300">
+      <div className="p-2 sm:p-8 rounded-lg border border-gray-300">
         <div className="flex items-center justify-between gap-3">
           <Breadcrumb
             items={[

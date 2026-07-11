@@ -44,16 +44,7 @@ const Topics = () => {
     message,
   } = useSelector((state) => state.course);
 
-  console.log("assessmentStatusTopic", assessmentStatusTopic);
-  console.log("currentTopic", currentTopic);
-
   const [currentPage, setCurrentPage] = useState(1);
-
-  // useEffect(() => {
-  //   if (id) {
-  //     dispatch(getTopicById(id, currentPage));
-  //   }
-  // }, [dispatch, id, currentPage]);
 
   useEffect(() => {
     if (id) {
@@ -72,7 +63,6 @@ const Topics = () => {
   // Extract topics data from paginated response
   const topicsData = currentTopic?.data || [];
 
-  console.log("topicsData", topicsData);
   const pagination = {
     current_page: currentTopic?.current_page || 1,
     last_page: currentTopic?.last_page || 1,
@@ -87,28 +77,15 @@ const Topics = () => {
     topicsData.length > 0 &&
     topicsData.every((topic) => topic.is_read === 1 || topic.is_read === true);
 
-  // Check if quiz is available for the chapter/topic
-  // const isQuizAvailable = Boolean(assessmentStatusTopic?.assessment?.id);
-
-  // // Check if assessment status is passed
-  // const isAssessmentPassed = assessmentStatusTopic?.status === "passed";
-
-  // Backend flags
-  // const isQuizAvailable = contextHerarcyTopic?.is_quiz_available === true;
-  // Quiz available only when backend flag true + assessment exists
   const isQuizAvailable =
     (contextHerarcyTopic?.is_quiz_available === true ||
       contextHerarcyTopic?.is_quiz_available === 1) &&
     !!assessmentStatusTopic?.assessment?.id;
 
-  // Assessment passed
   const isAssessmentPassed =
     contextHerarcyTopic?.is_completed === true ||
     contextHerarcyTopic?.is_completed === 1;
 
-  // const isAssessmentPassed = contextHerarcyTopic?.is_completed === true;
-
-  // Get current topic index and next topic
   const currentTopicIndex = topicsData.findIndex(
     (topic) => topic.is_read !== 1 && topic.is_read !== true,
   );
@@ -129,13 +106,6 @@ const Topics = () => {
     navigate(`content/${id}`);
   };
 
-  // Handle quiz navigation
-  // const handleGiveQuiz = () => {
-  //   if (!isAssessmentPassed) {
-  //     navigate(`/quiz/${assessmentStatusTopic?.assessment?.id}`);
-  //   }
-  // };
-
   const handleGiveQuiz = () => {
     if (!isAssessmentPassed && assessmentStatusTopic?.assessment?.id) {
       navigate(`/quiz/${assessmentStatusTopic.assessment.id}`);
@@ -152,11 +122,6 @@ const Topics = () => {
       handleGiveQuiz();
     }
   };
-
-  // // Handle chat click - pulsating effect
-  // const handleChatClick = () => {
-  //   navigate(`/support/${id}`);
-  // };
 
   // Handle chat click - pulsating effect
   const handleChatClick = () => {

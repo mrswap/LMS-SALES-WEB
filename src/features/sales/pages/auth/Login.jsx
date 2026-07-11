@@ -174,7 +174,7 @@ const Login = () => {
                   {t("login.emailLabel")}
                 </label>
                 <div className="relative">
-                  <FiMail className="absolute top-3 left-3 text-gray-400" />
+                  <FiMail className="absolute top-2 left-2 sm:top-3 sm:left-3 text-gray-400" />
                   <TextInput
                     name="email"
                     placeholder={t("login.emailPlaceholder")}
@@ -198,7 +198,7 @@ const Login = () => {
                 </div>
 
                 <div className="relative">
-                  <FiLock className="absolute top-3 left-3 text-gray-400" />
+                  <FiLock className="absolute top-2 left-2 sm:top-3 sm:left-3 text-gray-400" />
                   <TextInput
                     name="password"
                     type={showPassword ? "text" : "password"}
