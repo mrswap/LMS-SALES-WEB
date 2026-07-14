@@ -169,11 +169,13 @@ const ResetPassword = () => {
 
         {/* Logo */}
         <div className="text-center mb-4">
-          <img
-            src={siteSettings?.company_logo || ""}
-            alt={t("resetPassword.title")}
-            className="mx-auto w-[160px] sm:w-[160px] h-[100px]"
-          />
+          {siteSettings?.company_logo && (
+            <img
+              src={siteSettings?.company_logo || ""}
+              alt={t("resetPassword.title")}
+              className="mx-auto w-[160px] sm:w-[160px] h-[100px]"
+            />
+          )}
         </div>
 
         {/* Heading */}
