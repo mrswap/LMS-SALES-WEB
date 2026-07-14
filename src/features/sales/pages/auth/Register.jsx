@@ -280,11 +280,14 @@ const Register = () => {
 
         {/* Logo */}
         <div className="text-center mb-6">
-          <img
-            src={siteSettings?.company_logo || ""}
-            alt="logo"
-            className="mx-auto  w-[160px] sm:w-[160px] h-[100px]"
-          />
+          {siteSettings?.company_logo && (
+            <img
+              src={siteSettings?.company_logo || ""}
+              alt="logo"
+              className="mx-auto  w-[160px] sm:w-[160px] h-[100px]"
+            />
+          )}
+
           <p className="text-gray-500 text-sm mt-2">{t("register.subtitle")}</p>
         </div>
 

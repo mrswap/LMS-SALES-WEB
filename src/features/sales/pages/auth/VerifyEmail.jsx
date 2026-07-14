@@ -76,11 +76,13 @@ const VerifyEmail = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#EEF2F6] px-4">
         <div className="text-center mb-6">
-          <img
-            src={siteSettings?.company_logo || ""}
-            alt={t("verifyEmail.title")}
-            className="w-[160px] sm:w-[160px] h-[100px]"
-          />
+          {siteSettings?.company_logo && (
+            <img
+              src={siteSettings?.company_logo || ""}
+              alt={t("verifyEmail.title")}
+              className="w-[160px] sm:w-[160px] h-[100px]"
+            />
+          )}
         </div>
 
         <div className="w-full max-w-md bg-white rounded-xl shadow-sm p-6 border border-gray-200">

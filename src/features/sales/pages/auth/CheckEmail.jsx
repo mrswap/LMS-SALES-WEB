@@ -34,11 +34,13 @@ const CheckEmail = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50 p-4">
       {/* Logo */}
       <div className="text-center mb-8">
-        <img
-          src={siteSettings?.company_logo || ""}
-          alt={t("checkEmail.title")}
-          className="w-[160px] sm:w-[160px] h-[100px] mx-auto"
-        />
+        {siteSettings?.company_logo && (
+          <img
+            src={siteSettings?.company_logo || ""}
+            alt={t("checkEmail.title")}
+            className="w-[160px] sm:w-[160px] h-[100px] mx-auto"
+          />
+        )}
       </div>
 
       {/* Card */}
