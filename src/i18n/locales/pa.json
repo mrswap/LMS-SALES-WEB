@@ -812,36 +812,41 @@
   },
 
   "topicContent": {
-    "contentTypes": {
-      "text": "ਪੜ੍ਹਾਈ ਸਮੱਗਰੀ",
-      "video": "ਵੀਡੀਓ ਲੈਕਚਰ",
-      "pdf": "ਦਸਤਾਵੇਜ਼",
-      "audio": "ਆਡੀਓ ਪਾਠ",
-      "image": "ਦ੍ਰਿਸ਼ ਸਮੱਗਰੀ"
-    },
-    "pdf": {
-      "title": "PDF ਦਸਤਾਵੇਜ਼",
-      "download": "PDF ਡਾਊਨਲੋਡ ਕਰੋ"
+    "exitFullscreen": "ਪੂਰੀ ਸਕ੍ਰੀਨ ਤੋਂ ਬਾਹਰ ਆਓ",
+    "fullscreen": "ਪੂਰੀ ਸਕ੍ਰੀਨ",
+    "audio": {
+      "classicAudio": "ਕਲਾਸਿਕ ਆਡੀਓ",
+      "lesson": "ਆਡੀਓ ਪਾਠ"
     },
     "h5p": {
       "interactive": "ਇੰਟਰਐਕਟਿਵ H5P ਸਮੱਗਰੀ"
     },
+    "info": {
+      "duration": "ਅਵਧੀ:",
+      "lastUpdated": "ਆਖਰੀ ਅੱਪਡੇਟ:"
+    },
     "notFound": {
       "title": "ਸਮੱਗਰੀ ਨਹੀਂ ਮਿਲੀ",
-      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਕਿਸੇ ਹੋਰ ਥਾਂ ਭੇਜੀ ਗਈ ਹੈ।",
-      "button": "ਕੋਰਸ ਵੱਲ ਵਾਪਸ ਜਾਓ"
+      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਉਸ ਨੂੰ ਕਿਸੇ ਹੋਰ ਥਾਂ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+      "button": "ਕੋਰਸ ਤੇ ਵਾਪਸ ਜਾਓ"
     },
-    "fallbackMessage": "ਸਮੱਗਰੀ ਕਿਸਮ:",
     "navigation": {
       "previous": "ਪਿਛਲਾ",
-      "previousLesson": "ਪਿਛਲਾ ਪਾਠ",
       "next": "ਅਗਲਾ",
-      "nextLesson": "ਅਗਲਾ ਪਾਠ",
-      "continueText": "ਅਗਲੇ ਪਾਠ ਵੱਲ ਜਾਰੀ ਰੱਖੋ"
+      "loading": "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
     },
-    "exitFullscreen": "ਫੁੱਲ ਸਕ੍ਰੀਨ ਬੰਦ ਕਰੋ",
-    "fullscreen": "ਫੁੱਲ ਸਕ੍ਰੀਨ",
-    "audioNotSupported": "ਤੁਹਾਡਾ ਬ੍ਰਾਊਜ਼ਰ ਆਡੀਓ ਐਲੀਮੈਂਟ ਨੂੰ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।"
+    "quiz": {
+      "start": "ਕੁਇਜ਼ ਸ਼ੁਰੂ ਕਰੋ",
+      "retry": "ਕੁਇਜ਼ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+      "passed": "ਪਹਿਲਾਂ ਹੀ ਪਾਸ"
+    },
+    "sidebar": {
+      "tableOfContents": "ਸਮੱਗਰੀ ਸੂਚੀ",
+      "noContents": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+      "otherTopics": "ਹੋਰ ਵਿਸ਼ੇ",
+      "noOtherTopics": "ਹੋਰ ਕੋਈ ਵਿਸ਼ੇ ਨਹੀਂ।",
+      "locked": "ਲੌਕ"
+    }
   },
 
   "quiz": {

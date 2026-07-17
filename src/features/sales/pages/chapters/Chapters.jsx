@@ -957,7 +957,7 @@ export default function Chapters() {
 
         {/* Bottom Sticky CTA */}
         <div className="fixed bottom-15 lg:bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-lg z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1800px] mx-auto px-4  lg:px-6">
             <div className="flex items-center justify-between flex-wrap gap-3">
               <div className="hidden sm:block">
                 <p className="text-sm text-gray-600">
