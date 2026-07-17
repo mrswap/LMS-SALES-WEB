@@ -185,7 +185,7 @@ const HeaderNavbar = () => {
 
   return (
     <div className="bg-gradient-to-r from-[#2563EB] to-[#1E3A8A] shadow-lg border-b border-[#1d3d8a] sticky top-0 z-50">
-      <div className="max-w-[1500px] mx-auto ">
+      <div className="max-w-[1800px] mx-auto ">
         {/* Top Row: Logo + Navigation + Right Section (Language + User) */}
         <div className="flex items-center justify-between h-16 gap-4">
           {/* Logo Section */}

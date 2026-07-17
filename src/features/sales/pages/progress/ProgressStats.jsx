@@ -761,9 +761,13 @@ export default function ProgressStats() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {reports.map((report) => (
+            {/* {reports.map((report) => (
               <ReportCard key={report.key} {...report} />
-            ))}
+            ))} */}
+            {reports.map((report) => {
+              const { key, ...reportProps } = report;
+              return <ReportCard key={key} {...reportProps} />;
+            })}
           </div>
         </div>
       </PageBody>
