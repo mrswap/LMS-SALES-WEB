@@ -665,6 +665,7 @@ import Error from "../../../common/Error";
 import { useTranslation } from "react-i18next";
 import ReadMoreText from "../../../common/ReadMoreText";
 import { FaAward } from "react-icons/fa";
+import Breadcrumb from "../../../common/layout/Breadcrumb";
 
 export default function LevelDetails() {
   const { levelId: id } = useParams();
@@ -747,24 +748,27 @@ export default function LevelDetails() {
         <PageHeaderRight />
       </PageHeader>
       <PageBody>
-        {/* ✅ Updated Breadcrumb */}
-        <nav className="text-sm text-gray-500 mb-4">
-          <Link to="/dashboard" className="hover:text-blue-500">
-            Home
-          </Link>
-          <span className="mx-2 text-gray-300">/</span>
-          {program && (
-            <>
-              <Link to="/levels" className="hover:text-blue-500">
-                {program.title}
-              </Link>
-              <span className="mx-2 text-gray-300">/</span>
-            </>
-          )}
-          <span className="text-gray-700 font-medium">
-            {currentLevel?.title}
-          </span>
-        </nav>
+        <div className="mb-2">
+          <Breadcrumb
+            items={[
+              {
+                label: "Home",
+                path: "/dashboard",
+              },
+              ...(program
+                ? [
+                    {
+                      label: program.title,
+                      path: "/levels",
+                    },
+                  ]
+                : []),
+              {
+                label: currentLevel?.title,
+              },
+            ]}
+          />
+        </div>
 
         {/* Hero Banner – only image with simple shadow, no overlay, no text */}
         <div className="rounded-2xl overflow-hidden shadow-md">
@@ -780,12 +784,23 @@ export default function LevelDetails() {
 
         {/* Level at a glance */}
         <div className="mt-6 bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-          <div className="flex items-baseline gap-2 mb-2">
-            <IoRibbonOutline className="text-accent text-xl" />
-            <span className="text-lg font-bold text-gray-800">
-              {currentLevel?.title}
+          {/* <div className="flex items-end gap-2 mb-4">
+            <IoRibbonOutline className="text-accent text-xl shrink-0" />
+            <span>
+              <span className="text-lg font-bold text-gray-800  leading-none">
+                {currentLevel?.title} {""}
+              </span>
+              <span className="text-sm text-gray-600 leading-none">
+                {t("levelDetails.atAGlance")}
+              </span>
             </span>
-            <span className="text-sm text-gray-600 self-end">
+          </div> */}
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
+            <IoRibbonOutline className="text-accent text-xl shrink-0" />
+            <span className="text-lg font-bold text-gray-800 leading-tight">
+              {currentLevel?.title?.replace(/\s*at a glance$/i, "")}
+            </span>
+            <span className="text-sm text-gray-600 leading-tight self-end">
               {t("levelDetails.atAGlance")}
             </span>
           </div>
