@@ -463,7 +463,6 @@
 //     </PageLayout>
 //   );
 // }
-
 import React, { useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {
@@ -494,6 +493,7 @@ import Loader from "../../common/Loader";
 import Error from "../../common/Error";
 import { useTranslation } from "react-i18next";
 import ReadMoreText from "../../common/ReadMoreText";
+import Breadcrumb from "../../common/layout/Breadcrumb";
 
 export default function Modules() {
   const { moduleId: id } = useParams();
@@ -566,30 +566,35 @@ export default function Modules() {
         <PageHeaderRight />
       </PageHeader>
       <PageBody>
-        {/* Breadcrumb */}
-        <nav className="text-sm text-gray-500 mb-4">
-          <Link to="/dashboard" className="hover:text-blue-500">
-            Home
-          </Link>
-          <span className="mx-2 text-gray-300">/</span>
-          {program && (
-            <>
-              <Link to="/levels" className="hover:text-blue-500">
-                {program.title}
-              </Link>
-              <span className="mx-2 text-gray-300">/</span>
-            </>
-          )}
-          {level && (
-            <>
-              <span className="text-gray-500">{level.title}</span>
-              <span className="mx-2 text-gray-300">/</span>
-            </>
-          )}
-          <span className="text-gray-700 font-medium">
-            {currentModule?.title}
-          </span>
-        </nav>
+        <div className="mb-2">
+          <Breadcrumb
+            items={[
+              {
+                label: "Home",
+                path: "/dashboard",
+              },
+              ...(program
+                ? [
+                    {
+                      label: program.title,
+                      path: "/levels",
+                    },
+                  ]
+                : []),
+              ...(level
+                ? [
+                    {
+                      label: level.title,
+                      path: `/levels/${level.id}`,
+                    },
+                  ]
+                : []),
+              {
+                label: currentModule?.title,
+              },
+            ]}
+          />
+        </div>
 
         {/* Hero Banner – only image, no overlay */}
         <div className="rounded-2xl overflow-hidden shadow-md">
@@ -605,12 +610,23 @@ export default function Modules() {
 
         {/* Module at a glance */}
         <div className="mt-6 bg-white rounded-xl p-5 shadow-sm border border-gray-100">
-          <div className="flex items-baseline gap-2 mb-2">
-            <IoRibbonOutline className="text-accent text-xl" />
-            <span className="text-lg font-bold text-gray-800">
-              {currentModule?.title}
+          {/* <div className="flex items-end gap-2 mb-4">
+            <IoRibbonOutline className="text-accent text-xl shrink-0" />
+            <span>
+              <span className="text-lg font-bold text-gray-800  leading-none">
+                {currentModule?.title} {""}
+              </span>
+              <span className="text-sm text-gray-600 leading-none">
+                {t("modules.atAGlance")}
+              </span>
             </span>
-            <span className="text-sm text-gray-600 self-end">
+          </div> */}
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
+            <IoRibbonOutline className="text-accent text-xl shrink-0" />
+            <span className="text-lg font-bold text-gray-800 leading-tight">
+              {currentModule?.title?.replace(/\s*at a glance$/i, "")}
+            </span>
+            <span className="text-sm text-gray-600 leading-tight self-end">
               {t("modules.atAGlance")}
             </span>
           </div>

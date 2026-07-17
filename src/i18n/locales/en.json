@@ -638,8 +638,8 @@
       "viewCertificate": "View Certificate",
       "takeModuleExam": "Take Module Exam",
       "assessmentNotAvailable": "Assessment Not Available",
-      "viewContent": "View Content",
-      "continue": "Continue",
+      "viewContent": "Review",
+      "continue": "View",
       "lockedButton": "Locked"
     },
     "cta": {
@@ -681,8 +681,8 @@
     },
     "buttons": {
       "faq": "FAQ",
-      "view": "View",
-      "continue": "Continue",
+      "view": "Review",
+      "continue": "View",
       "locked": "Locked"
     },
     "cta": {
@@ -726,8 +726,9 @@
     },
     "buttons": {
       "faq": "FAQ",
-      "view": "View",
-      "continue": "Continue"
+      "view": "Review",
+      "continue": "View",
+      "viewCertificate": "View Certificate"
     },
     "cta": {
       "continueJourney": "Continue your learning journey",
