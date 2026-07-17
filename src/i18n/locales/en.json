@@ -812,36 +812,41 @@
   },
 
   "topicContent": {
-    "contentTypes": {
-      "text": "Reading Material",
-      "video": "Video Lecture",
-      "pdf": "Document",
-      "audio": "Audio Lesson",
-      "image": "Visual Content"
-    },
-    "pdf": {
-      "title": "PDF Document",
-      "download": "Download PDF"
+    "exitFullscreen": "Exit Fullscreen",
+    "fullscreen": "Fullscreen",
+    "audio": {
+      "classicAudio": "Classic Audio",
+      "lesson": "Audio Lesson"
     },
     "h5p": {
       "interactive": "Interactive H5P Content"
+    },
+    "info": {
+      "duration": "Duration:",
+      "lastUpdated": "Last Updated:"
     },
     "notFound": {
       "title": "Content Not Found",
       "description": "The content you're looking for doesn't exist or has been moved.",
       "button": "Return to Course"
     },
-    "fallbackMessage": "Content type:",
     "navigation": {
       "previous": "Previous",
-      "previousLesson": "Previous Lesson",
       "next": "Next",
-      "nextLesson": "Next Lesson",
-      "continueText": "Continue to next lesson"
+      "loading": "Loading..."
     },
-    "exitFullscreen": "Exit Fullscreen",
-    "fullscreen": "Fullscreen",
-    "audioNotSupported": "Your browser does not support the audio element."
+    "quiz": {
+      "start": "Start Quiz",
+      "retry": "Retry Quiz",
+      "passed": "Already Passed"
+    },
+    "sidebar": {
+      "tableOfContents": "Table of Contents",
+      "noContents": "No contents available.",
+      "otherTopics": "Other Topics",
+      "noOtherTopics": "No other topics.",
+      "locked": "Locked"
+    }
   },
 
   "quiz": {

@@ -37,7 +37,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="hidden lg:block w-[250px] min-w-[200px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-r border-gray-700 h-full overflow-y-auto custom-scrollbar">
+    <aside className="hidden lg:block w-[200px] min-w-[200px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-r border-gray-700 h-full overflow-y-auto custom-scrollbar">
       <div className="flex flex-col h-full ">
         {/* Navigation Items */}
         <nav className="flex-1 p-3 space-y-1 mt-6">

@@ -812,36 +812,41 @@
   },
 
   "topicContent": {
-    "contentTypes": {
-      "text": "पठन सामग्री",
-      "video": "वीडियो लेक्चर",
-      "pdf": "दस्तावेज़",
-      "audio": "ऑडियो पाठ",
-      "image": "दृश्य सामग्री"
-    },
-    "pdf": {
-      "title": "PDF दस्तावेज़",
-      "download": "PDF डाउनलोड करें"
+    "exitFullscreen": "पूर्ण स्क्रीन से बाहर निकलें",
+    "fullscreen": "पूर्ण स्क्रीन",
+    "audio": {
+      "classicAudio": "क्लासिक ऑडियो",
+      "lesson": "ऑडियो पाठ"
     },
     "h5p": {
       "interactive": "इंटरैक्टिव H5P सामग्री"
     },
+    "info": {
+      "duration": "अवधि:",
+      "lastUpdated": "अंतिम अपडेट:"
+    },
     "notFound": {
       "title": "सामग्री नहीं मिली",
-      "description": "जिस सामग्री को आप खोज रहे हैं वह मौजूद नहीं है या स्थानांतरित कर दी गई है।",
-      "button": "कोर्स पर वापस जाएं"
+      "description": "जिस सामग्री को आप खोज रहे हैं वह मौजूद नहीं है या उसे स्थानांतरित कर दिया गया है।",
+      "button": "कोर्स पर वापस जाएँ"
     },
-    "fallbackMessage": "सामग्री प्रकार:",
     "navigation": {
       "previous": "पिछला",
-      "previousLesson": "पिछला पाठ",
       "next": "अगला",
-      "nextLesson": "अगला पाठ",
-      "continueText": "अगले पाठ पर जारी रखें"
+      "loading": "लोड हो रहा है..."
     },
-    "exitFullscreen": "फुलस्क्रीन बंद करें",
-    "fullscreen": "फुलस्क्रीन",
-    "audioNotSupported": "आपका ब्राउज़र ऑडियो एलिमेंट को समर्थन नहीं करता।"
+    "quiz": {
+      "start": "क्विज़ शुरू करें",
+      "retry": "क्विज़ पुनः प्रयास करें",
+      "passed": "पहले से उत्तीर्ण"
+    },
+    "sidebar": {
+      "tableOfContents": "विषय सूची",
+      "noContents": "कोई सामग्री उपलब्ध नहीं है।",
+      "otherTopics": "अन्य विषय",
+      "noOtherTopics": "कोई अन्य विषय नहीं।",
+      "locked": "लॉक"
+    }
   },
 
   "quiz": {
