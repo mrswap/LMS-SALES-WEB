@@ -223,82 +223,107 @@
   },
 
   "dashboard": {
-    "subtitle": "Track your learning journey and progress",
-
-    "status": {
-      "inProgress": "In Progress",
-      "completed": "Completed",
-      "pending": "Pending"
-    },
-
-    "simpleLevel": {
-      "completed": "Completed",
-      "inProgress": "In Progress",
-      "locked": "Locked",
-      "complete": "Complete"
-    },
-
-    "levelProgress": {
-      "title": "Level Progress",
-      "completePreviousLevel": "Complete the previous level to unlock this level"
-    },
-
-    "topics": "Topics",
-    "chapters": "Chapters",
-
-    "learningPath": {
-      "title": "Learning Path",
-      "viewAll": "View All"
-    },
-
-    "currentTopics": {
-      "title": "Current Topics",
-      "currentTopic": "Current Topic",
-      "completed": "Completed",
-      "quizAssessment": "Quiz Assessment",
-      "readyToTake": "Ready to take",
-      "topicContents": "Topic Contents"
-    },
-
-    "latestUpdates": {
-      "title": "Latest Updates",
-      "continue": "Continue",
-      "certificateEarned": "Certificate Earned",
-      "certificate": "Certificate",
-      "score": "Score",
-      "view": "View",
-      "levelsCompleted": "Levels Completed",
-      "averageScore": "Average Score",
-      "moreToGo": "More To Go",
-      "lastLearningSession": "Last Learning Session",
-      "resume": "Resume"
-    },
-
-    "stats": {
-      "avgTopicScore": "Average Topic Score",
-      "certificates": "Certificates"
-    },
-
+    "pageSubtitle": "Track your learning progress and continue where you left off",
     "greeting": {
       "morning": "Good Morning",
       "afternoon": "Good Afternoon",
       "evening": "Good Evening"
     },
-
-    "nextAction": {
-      "continueLearning": "Continue Learning",
-      "next": "Next",
-      "readyToContinue": "Ready to continue",
-      "quizReady": "Quiz is ready",
-      "topicReady": "Topic is ready",
-      "readyToStart": "Ready to start"
+    "levelCard": {
+      "locked": "Locked",
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "modules": "Modules",
+      "chapters": "Chapters",
+      "topics": "Topics",
+      "topicsCompleted": "Topics completed",
+      "lockMessage": "Complete previous level to unlock",
+      "readyMessage": "Ready to level up?",
+      "viewPath": "View Path"
     },
-
-    "currentLearning": {
-      "levelProgress": "Level Progress",
-      "currentTopicProgress": "Current Topic Progress",
+    "progressAnalytics": {
+      "title": "Level Progress Details",
+      "topics": "Topics",
+      "chapters": "Chapters"
+    },
+    "assessmentStatus": {
+      "locked": "Locked",
+      "ready": "Ready",
+      "failed": "Failed",
+      "passed": "Passed",
+      "notFound": "Not Found",
+      "completed": "Completed",
+      "type": "Assessment",
+      "untitled": "Untitled Assessment",
+      "contentProgress": "Content Progress",
+      "inProgress": "In Progress",
+      "readingProgress": "Reading Progress",
+      "contentComplete": "All required content completed.",
+      "contentRemaining": "Complete {count} more item(s) to unlock the assessment.",
+      "failedMessage": "Last score: {percent}%. Try again.",
+      "readyMessage": "Quiz is ready to start.",
+      "passedMessage": "Assessment passed successfully.",
+      "lastAttempt": "Last Attempt:",
+      "na": "N/A",
+      "score": "Score",
+      "viewAll": "View all",
+      "retryQuiz": "Retry Quiz",
+      "retryExam": "Retry Exam",
+      "retry": "Retry",
+      "startQuiz": "Start Quiz",
+      "startExam": "Start Exam",
+      "start": "Start",
+      "viewResults": "View Results"
+    },
+    "resumeCard": {
+      "title": "Resume your topic learning",
+      "inProgress": "In Progress",
+      "module": "Module",
+      "currentTopic": "Current Topic",
+      "noTopic": "No topic started",
+      "chapter": "Chapter",
+      "notStarted": "Not yet started",
+      "topicProgress": "Topic Progress",
       "resumeTopic": "Resume Topic",
       "startTopic": "Start Topic"
+    },
+    "assessments": {
+      "title": "Upcoming Assessments",
+      "upcoming": "UPCOMING",
+      "ready": "Assessment Ready",
+      "module": "Module",
+      "readyToTake": "Ready to take",
+      "noUpcoming": "No upcoming assessments"
+    },
+    "levelOverview": {
+      "title": "Current Level Overview",
+      "notStarted": "Not Started",
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "current": "Current",
+      "contents": "Contents",
+      "levelProgress": "Level Progress",
+      "topics": "Topics",
+      "level": "Level 1",
+      "footer": "Complete this module and unlock the exam to get promoted."
+    },
+    "curriculum": {
+      "title": "Your Curriculum",
+      "viewAll": "View all levels"
+    },
+    "growth": {
+      "title": "Professional Growth Tracking",
+      "description": "Your certifications demonstrate commitment to medical excellence and technical precision. Maintain your trajectory to become an Avante Elite Sales Specialist.",
+      "levelsCompleted": "Levels Completed",
+      "inProgress": "in progress",
+      "allDone": "All done",
+      "certificates": "Certificates",
+      "avgScore": "Avg Score",
+      "averageScore": "Average Score",
+      "overallPerformance": "Overall Performance",
+      "topicsCompleted": "Topics Completed",
+      "complete": "complete",
+      "analyzeButton": "Analyze your progress"
     }
   },
 
@@ -582,23 +607,22 @@
 
   "levelDetails": {
     "pageTitle": "Level Details",
-    "pageSubtitle": "Track your progress and continue your journey",
-    "backButton": "Back",
+    "pageSubtitle": "Explore all modules and track your progress in this level.",
     "levelNotFound": "Level data not found",
-    "modules": "Modules",
-    "topics": "Topics",
+    "atAGlance": "at a glance",
     "stats": {
-      "progress": "Progress",
-      "topicsCompleted": "Topics Completed",
-      "estTime": "Est. Time",
-      "totalLearningTime": "Total learning time"
+      "totalModules": "Total Modules",
+      "totalChapters": "Total Chapters",
+      "totalTopics": "Total Topics",
+      "completedTopics": "Completed Topics",
+      "levelProgress": "Level Progress",
+      "estimatedTime": "Estimated Time"
     },
     "aboutSection": {
       "title": "About this Level",
       "noDescription": "No description available."
     },
     "modulesSection": {
-      "title": "Learning Modules",
       "modulesCompleted": "modules completed",
       "module": "Module",
       "locked": "Locked",
@@ -625,104 +649,97 @@
       "next": "Next",
       "allModulesCompleted": "All modules completed! Check your module exams.",
       "viewQuizIssues": "View Quiz Issues",
-      "continueLearning": "Continue Learning",
-      "allModulesCompleted": "All Modules Completed"
+      "continueLearning": "Continue Learning"
     }
   },
 
   "modules": {
     "pageTitle": "Module Details",
-    "pageSubtitle": "Track your progress through chapters",
-    "backButton": "Back",
-    "badge": {
-      "chapters": "Chapters",
-      "topics": "Topics"
-    },
+    "pageSubtitle": "Explore all chapters and track your progress in this module.",
+    "atAGlance": "at a glance",
     "stats": {
-      "progress": "PROGRESS",
-      "completed": "COMPLETED",
-      "estTime": "EST. TIME",
-      "chaptersCompleted": "Chapters completed",
-      "totalLearningTime": "Total learning time",
-      "selfPaced": "Self-paced",
-      "topics": "topics"
+      "totalChapters": "Total Chapters",
+      "totalTopics": "Total Topics",
+      "completedTopics": "Completed Topics",
+      "moduleProgress": "Module Progress",
+      "estimatedTime": "Estimated Time"
     },
     "aboutSection": {
-      "title": "About this Module"
+      "title": "About this Module",
+      "noDescription": "No description available."
     },
     "chaptersSection": {
-      "title": "All Chapters",
+      "syllabus": "Chapter Syllabus",
+      "chaptersCompleted": "chapters completed",
       "chapterText": "Chapter",
-      "current": "Current",
-      "completed": "Completed",
       "locked": "Locked",
-      "topics": "topics",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "topics": "Topics",
       "completedText": "completed",
-      "min": "min",
-      "lockedButton": "Locked"
+      "min": "min"
     },
     "buttons": {
-      "continue": "Continue",
+      "faq": "FAQ",
       "view": "View",
-      "faq": "Faq"
+      "continue": "Continue",
+      "locked": "Locked"
     },
     "cta": {
-      "continueLearning": "Continue Learning",
-      "allCompleted": "All Completed",
       "continueJourney": "Continue your learning journey",
-      "nextChapter": "Next:",
-      "allChaptersCompleted": "All chapters completed!"
+      "next": "Next",
+      "allChaptersCompleted": "All chapters completed!",
+      "continueLearning": "Continue Learning",
+      "allCompleted": "All Completed"
     },
     "emptyState": {
-      "noData": "No module data available"
-    }
+      "noData": "Module not found."
+    },
+    "backButton": "Back"
   },
 
   "chapters": {
     "pageTitle": "Chapter Details",
-    "pageSubtitle": "Track your progress through topics",
-    "backButton": "Back",
-    "badge": {
-      "topics": "Topics",
-      "minutes": "min"
-    },
+    "pageSubtitle": "Explore all topics and track your progress in this chapter.",
+    "atAGlance": "at a glance",
     "stats": {
-      "progress": "PROGRESS",
-      "completed": "COMPLETED",
-      "estTime": "EST. TIME",
-      "topicsCompleted": "Topics completed",
-      "totalLearningTime": "Total learning time",
-      "selfPaced": "Self-paced"
+      "totalTopics": "Total Topics",
+      "completedTopics": "Completed Topics",
+      "chapterProgress": "Chapter Progress",
+      "estimatedTime": "Estimated Time"
     },
     "aboutSection": {
-      "title": "About this Chapter"
+      "title": "About this Chapter",
+      "noDescription": "No description available."
     },
     "topicsSection": {
-      "title": "All Topics",
+      "syllabus": "Topic Syllabus",
+      "topicsCompleted": "topics completed",
       "topicText": "Topic",
-      "current": "Current",
-      "completed": "Completed",
       "locked": "Locked",
+      "inProgress": "In Progress",
+      "completed": "Completed",
       "min": "min",
       "giveQuiz": "Give Quiz",
-      "lockedButton": "Locked",
-      "quizNotAvailable": "Quiz not available"
+      "quizNotAvailable": "Quiz Not Available",
+      "lockedButton": "Locked"
     },
     "buttons": {
-      "continue": "Continue",
+      "faq": "FAQ",
       "view": "View",
-      "faq": "Faq"
+      "continue": "Continue"
     },
     "cta": {
-      "continueLearning": "Continue Learning",
-      "allCompleted": "All Completed",
       "continueJourney": "Continue your learning journey",
-      "nextTopic": "Next:",
-      "allTopicsCompleted": "All topics completed!"
+      "next": "Next",
+      "allTopicsCompleted": "All topics completed!",
+      "continueLearning": "Continue Learning",
+      "allCompleted": "All Completed"
     },
     "emptyState": {
-      "noData": "No chapter data available"
-    }
+      "noData": "Chapter not found."
+    },
+    "backButton": "Back"
   },
 
   "topics": {

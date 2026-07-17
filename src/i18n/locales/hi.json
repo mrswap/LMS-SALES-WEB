@@ -223,75 +223,107 @@
   },
 
   "dashboard": {
+    "pageSubtitle": "अपनी सीखने की प्रगति को ट्रैक करें और वहीं से जारी रखें जहाँ आपने छोड़ा था",
     "greeting": {
       "morning": "सुप्रभात",
-      "afternoon": "शुभ अपराह्न",
+      "afternoon": "नमस्कार",
       "evening": "शुभ संध्या"
     },
-    "status": {
-      "inProgress": "प्रगति पर",
+    "levelCard": {
+      "locked": "लॉक",
       "completed": "पूर्ण",
-      "pending": "लंबित"
-    },
-    "simpleLevel": {
-      "completed": "पूर्ण",
-      "inProgress": "प्रगति पर",
-      "locked": "लॉक किया गया"
-    },
-    "levelProgress": "स्तर प्रगति",
-    "moduleChapterProgress": "मॉड्यूल और अध्याय प्रगति",
-    "topics": "विषय",
-    "chapters": "अध्याय",
-    "currentLearning": {
-      "program": "कार्यक्रम",
-      "level": "स्तर",
-      "module": "मॉड्यूल",
-      "currentTopic": "वर्तमान विषय",
-      "topic": "विषय",
-      "complete": "पूर्ण करें",
+      "inProgress": "प्रगति में",
+      "modules": "मॉड्यूल",
+      "chapters": "अध्याय",
       "topics": "विषय",
-      "pendingQuizzes": "लंबित क्विज़",
-      "currentTopicProgress": "वर्तमान विषय प्रगति",
-      "contentsRead": "पढ़ी गई सामग्री",
-      "resumeTopic": "विषय जारी रखें"
+      "topicsCompleted": "पूर्ण किए गए विषय",
+      "lockMessage": "अनलॉक करने के लिए पिछला स्तर पूरा करें",
+      "readyMessage": "अगले स्तर के लिए तैयार हैं?",
+      "viewPath": "मार्ग देखें"
     },
-    "learningPath": {
-      "title": "सीखने का पथ",
-      "viewAll": "सभी देखें"
+    "progressAnalytics": {
+      "title": "स्तर प्रगति विवरण",
+      "topics": "विषय",
+      "chapters": "अध्याय"
     },
-    "currentTopics": {
-      "title": "वर्तमान विषय",
-      "currentTopic": "वर्तमान विषय",
-      "chapter": "अध्याय",
-      "module": "मॉड्यूल",
+    "assessmentStatus": {
+      "locked": "लॉक",
+      "ready": "तैयार",
+      "failed": "असफल",
+      "passed": "उत्तीर्ण",
+      "notFound": "नहीं मिला",
       "completed": "पूर्ण",
-      "quizAssessment": "क्विज़ मूल्यांकन",
-      "readyToTake": "देने के लिए तैयार",
-      "topicContents": "विषय सामग्री"
-    },
-    "latestUpdates": {
-      "title": "नवीनतम अपडेट",
-      "continue": "जारी रखें",
-      "certificateEarned": "प्रमाणपत्र प्राप्त हुआ",
-      "certificate": "प्रमाणपत्र",
+      "type": "मूल्यांकन",
+      "untitled": "बिना शीर्षक का मूल्यांकन",
+      "contentProgress": "सामग्री प्रगति",
+      "inProgress": "प्रगति में",
+      "readingProgress": "पढ़ने की प्रगति",
+      "contentComplete": "सभी आवश्यक सामग्री पूरी हो गई है।",
+      "contentRemaining": "मूल्यांकन अनलॉक करने के लिए {count} और आइटम पूरा करें।",
+      "failedMessage": "पिछला स्कोर: {percent}%. पुनः प्रयास करें।",
+      "readyMessage": "क्विज़ शुरू करने के लिए तैयार है।",
+      "passedMessage": "मूल्यांकन सफलतापूर्वक उत्तीर्ण हुआ।",
+      "lastAttempt": "अंतिम प्रयास:",
+      "na": "उपलब्ध नहीं",
       "score": "स्कोर",
-      "view": "देखें",
-      "levelsCompleted": "स्तर पूर्ण",
-      "moreToGo": "और शेष",
-      "lastLearningSession": "अंतिम सीखने का सत्र",
-      "resume": "पुनः शुरू करें"
+      "viewAll": "सभी देखें",
+      "retryQuiz": "क्विज़ पुनः दें",
+      "retryExam": "परीक्षा पुनः दें",
+      "retry": "पुनः प्रयास करें",
+      "startQuiz": "क्विज़ शुरू करें",
+      "startExam": "परीक्षा शुरू करें",
+      "start": "शुरू करें",
+      "viewResults": "परिणाम देखें"
     },
-    "achievement": {
-      "unlocked": "उपलब्धि अनलॉक की गई",
-      "message": "आपने {certificates} प्रमाणपत्र अर्जित किए हैं, जिसका औसत स्कोर {score}% है।"
+    "resumeCard": {
+      "title": "अपनी विषय सीखने की प्रक्रिया जारी रखें",
+      "inProgress": "प्रगति में",
+      "module": "मॉड्यूल",
+      "currentTopic": "वर्तमान विषय",
+      "noTopic": "कोई विषय शुरू नहीं हुआ",
+      "chapter": "अध्याय",
+      "notStarted": "अभी शुरू नहीं हुआ",
+      "topicProgress": "विषय प्रगति",
+      "resumeTopic": "विषय जारी रखें",
+      "startTopic": "विषय शुरू करें"
     },
-    "nextAction": {
-      "continueLearning": "सीखना जारी रखें",
-      "next": "अगला",
-      "readyToContinue": "जारी रखने के लिए तैयार",
-      "quizReady": "क्विज़ • शुरू करने के लिए तैयार",
-      "topicReady": "विषय • जारी रखने के लिए तैयार",
-      "readyToStart": "शुरू करने के लिए तैयार"
+    "assessments": {
+      "title": "आगामी मूल्यांकन",
+      "upcoming": "आगामी",
+      "ready": "मूल्यांकन तैयार",
+      "module": "मॉड्यूल",
+      "readyToTake": "देने के लिए तैयार",
+      "noUpcoming": "कोई आगामी मूल्यांकन नहीं"
+    },
+    "levelOverview": {
+      "title": "वर्तमान स्तर का अवलोकन",
+      "notStarted": "शुरू नहीं हुआ",
+      "completed": "पूर्ण",
+      "inProgress": "प्रगति में",
+      "current": "वर्तमान",
+      "contents": "सामग्री",
+      "levelProgress": "स्तर प्रगति",
+      "topics": "विषय",
+      "level": "स्तर 1",
+      "footer": "इस मॉड्यूल को पूरा करें और पदोन्नति पाने के लिए परीक्षा अनलॉक करें।"
+    },
+    "curriculum": {
+      "title": "आपका पाठ्यक्रम",
+      "viewAll": "सभी स्तर देखें"
+    },
+    "growth": {
+      "title": "व्यावसायिक विकास ट्रैकिंग",
+      "description": "आपके प्रमाणपत्र चिकित्सा उत्कृष्टता और तकनीकी सटीकता के प्रति आपकी प्रतिबद्धता को दर्शाते हैं। Avante Elite Sales Specialist बनने के लिए अपनी प्रगति बनाए रखें।",
+      "levelsCompleted": "पूर्ण किए गए स्तर",
+      "inProgress": "प्रगति में",
+      "allDone": "सभी पूर्ण",
+      "certificates": "प्रमाणपत्र",
+      "avgScore": "औसत स्कोर",
+      "averageScore": "औसत स्कोर",
+      "overallPerformance": "समग्र प्रदर्शन",
+      "topicsCompleted": "पूर्ण किए गए विषय",
+      "complete": "पूर्ण",
+      "analyzeButton": "अपनी प्रगति का विश्लेषण करें"
     }
   },
 
