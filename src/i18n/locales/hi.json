@@ -327,6 +327,23 @@
     }
   },
 
+  "sidebar": {
+    "nav": {
+      "home": "होम",
+      "myLevels": "मेरे स्तर",
+      "analytics": "विश्लेषण",
+      "assessment": "मूल्यांकन",
+      "inbox": "इनबॉक्स"
+    },
+    "reports": {
+      "label": "रिपोर्ट्स",
+      "auditLogs": "ऑडिट लॉग्स",
+      "userProgress": "उपयोगकर्ता प्रगति",
+      "certification": "प्रमाणीकरण"
+    },
+    "logout": "लॉगआउट"
+  },
+
   "progressStats": {
     "pageTitle": "प्रोग्रेस स्टैटिस्टिक्स",
     "pageSubtitle": "अपनी लर्निंग जर्नी और परफॉर्मेंस को ट्रैक करें",
@@ -762,7 +779,7 @@
       "previous": "पिछला",
       "next": "अगला",
       "view": "देखें",
-      "chat": "चैट"
+      "askAboutThisTopic": "इस विषय के बारे में पूछें"
     },
     "pagination": {
       "showing": "दिखा रहा है",

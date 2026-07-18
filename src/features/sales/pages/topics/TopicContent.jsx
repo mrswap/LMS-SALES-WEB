@@ -22,6 +22,7 @@ import {
   FaCheckCircle,
   FaClock,
   FaCalendarAlt,
+  FaCommentDots, // Added for chat icon
 } from "react-icons/fa";
 import { MdPictureAsPdf } from "react-icons/md";
 import { useTranslation } from "react-i18next";
@@ -716,6 +717,11 @@ const TopicContent = () => {
     }
   };
 
+  // Handler for "Ask about this topic" button
+  const handleChatClick = () => {
+    navigate(`/support?topicId=${topicId}`);
+  };
+
   if (isLoading && !isNavigating && !isMarkingRead) return <Loader />;
 
   if (!content) {
@@ -795,21 +801,35 @@ const TopicContent = () => {
   return (
     <PageLayout>
       <div className="p-2 sm:p-8 rounded-lg border border-gray-300">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <Breadcrumb
             items={[
               { label: topic?.title, path: `/topics/${topic?.id}` },
               { label: content?.title },
             ]}
           />
-          {content?.audio_content && (
+          <div className="flex items-center gap-2">
+            {/* Ask about this topic button */}
             <button
-              onClick={() => setShowAudioPlayer(!showAudioPlayer)}
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 bg-gray-50 hover:bg-gray-100 transition shadow-sm cursor-pointer"
+              className="relative px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 animate-pulse flex items-center gap-2 cursor-pointer whitespace-nowrap"
+              onClick={handleChatClick}
             >
-              <HiSpeakerWave className="text-xl text-gray-600" />
+              <FaCommentDots className="inline-block" />
+              {t("topics.buttons.askAboutThisTopic")}
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
+              </span>
             </button>
-          )}
+            {content?.audio_content && (
+              <button
+                onClick={() => setShowAudioPlayer(!showAudioPlayer)}
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 bg-gray-50 hover:bg-gray-100 transition shadow-sm cursor-pointer"
+              >
+                <HiSpeakerWave className="text-xl text-gray-600" />
+              </button>
+            )}
+          </div>
         </div>
 
         <PageBody className="mt-4">
@@ -912,8 +932,10 @@ const TopicContent = () => {
                 }
               `}</style>
 
+              {/* ============ UPDATED NAVIGATION ============ */}
               <div className="pt-6 border-t border-gray-200">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center justify-between gap-4 flex-wrap">
+                  {/* Previous button */}
                   <button
                     onClick={() =>
                       navigateToContent(navigation?.previous_content_id, "prev")
@@ -945,69 +967,67 @@ const TopicContent = () => {
                     )}
                   </button>
 
-                  <div className="flex flex-col items-end gap-2">
-                    {navigation?.has_next ? (
-                      <button
-                        onClick={() =>
-                          navigateToContent(navigation?.next_content_id, "next")
-                        }
-                        disabled={!navigation?.has_next || isNavigating}
-                        className="group flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-600 border border-blue-600
-                               rounded-lg disabled:opacity-40 disabled:cursor-not-allowed
-                               hover:bg-blue-700 transition-all duration-200 shadow-sm"
-                      >
-                        {isNavigating ? (
-                          <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                            <span className="text-sm text-white">
-                              {t("topicContent.navigation.loading")}
-                            </span>
-                          </div>
-                        ) : (
-                          <>
-                            <div className="text-right">
-                              <p className="text-xs text-blue-100">
-                                {t("topicContent.navigation.next")}
-                              </p>
-                            </div>
-                            <IoIosArrowForward
-                              size={14}
-                              className="group-hover:translate-x-0.5 transition-transform text-white"
-                            />
-                          </>
-                        )}
-                      </button>
-                    ) : (
-                      <button
-                        disabled
-                        className="group flex items-center gap-2 px-4 py-2 bg-gray-300 border border-gray-300
-                               rounded-lg opacity-60 cursor-not-allowed shadow-sm"
-                      >
-                        <div className="text-right">
-                          <p className="text-xs text-gray-500">
-                            {t("topicContent.navigation.next")}
-                          </p>
-                        </div>
-                        <IoIosArrowForward
-                          size={14}
-                          className="text-gray-500"
-                        />
-                      </button>
-                    )}
+                  {/* Quiz button – now in the middle */}
+                  {quizButton && (
+                    <button
+                      onClick={handleGiveQuiz}
+                      disabled={quizButton.disabled}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 shadow-sm cursor-pointer ${quizButton.color}`}
+                    >
+                      {quizButton.icon}
+                      {quizButton.label}
+                    </button>
+                  )}
 
-                    {quizButton && (
-                      <button
-                        onClick={handleGiveQuiz}
-                        disabled={quizButton.disabled}
-                        className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center gap-2 shadow-sm cursor-pointer ${quizButton.color}`}
-                      >
-                        {quizButton.icon}
-                        {quizButton.label}
-                      </button>
-                    )}
-                  </div>
+                  {/* Next button */}
+                  {navigation?.has_next ? (
+                    <button
+                      onClick={() =>
+                        navigateToContent(navigation?.next_content_id, "next")
+                      }
+                      disabled={!navigation?.has_next || isNavigating}
+                      className="group flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-600 border border-blue-600
+                             rounded-lg disabled:opacity-40 disabled:cursor-not-allowed
+                             hover:bg-blue-700 transition-all duration-200 shadow-sm"
+                    >
+                      {isNavigating ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          <span className="text-sm text-white">
+                            {t("topicContent.navigation.loading")}
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="text-right">
+                            <p className="text-xs text-blue-100">
+                              {t("topicContent.navigation.next")}
+                            </p>
+                          </div>
+                          <IoIosArrowForward
+                            size={14}
+                            className="group-hover:translate-x-0.5 transition-transform text-white"
+                          />
+                        </>
+                      )}
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="group flex items-center gap-2 px-4 py-2 bg-gray-300 border border-gray-300
+                             rounded-lg opacity-60 cursor-not-allowed shadow-sm"
+                    >
+                      <div className="text-right">
+                        <p className="text-xs text-gray-500">
+                          {t("topicContent.navigation.next")}
+                        </p>
+                      </div>
+                      <IoIosArrowForward size={14} className="text-gray-500" />
+                    </button>
+                  )}
                 </div>
               </div>
+              {/* ============ END UPDATED NAVIGATION ============ */}
             </div>
 
             <div className="hidden xl:block xl:col-span-4 space-y-6 sticky top-4 self-start">
@@ -1099,7 +1119,15 @@ const TopicContent = () => {
                             <button
                               onClick={() => {
                                 if (isUnlocked && !isCurrent && !isNavigating) {
-                                  navigate(`/topics/${topicItem.id}`);
+                                  const firstContentId =
+                                    topicItem.first_content_id;
+                                  if (firstContentId) {
+                                    navigate(
+                                      `/topics/${topicItem.id}/content/${firstContentId}`,
+                                    );
+                                  } else {
+                                    navigate(`/topics/${topicItem.id}`);
+                                  }
                                 }
                               }}
                               disabled={!isUnlocked || isNavigating}

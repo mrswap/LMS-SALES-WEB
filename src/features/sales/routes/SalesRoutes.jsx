@@ -39,6 +39,7 @@ import Support from "../pages/support-page/Support";
 import ExamModule from "../pages/exam-module/ExamModule";
 import ExamModuleResult from "../pages/exam-module/ExamModuleResult";
 import DashboardOld from "../pages/dashboad/DashboardBackup";
+import ModuleCertificationStatus from "../pages/module-certification-status/ModuleCertificationStatus";
 
 const SalesRoutes = (
   <Route>
@@ -137,6 +138,10 @@ const SalesRoutes = (
         <Route path="audit-logs" element={<AuditLogsReports />} />
         <Route path="user-progress" element={<UserProgressReports />} />
         <Route path="certification" element={<CertificationReports />} />
+        <Route
+          path="module-certification-status"
+          element={<ModuleCertificationStatus />}
+        />
         <Route path="certificate/:id" element={<Certificate />} />
 
         {/*assessment  */}

@@ -327,6 +327,23 @@
     }
   },
 
+  "sidebar": {
+    "nav": {
+      "home": "Home",
+      "myLevels": "My Levels",
+      "analytics": "Analytics",
+      "assessment": "Assessment",
+      "inbox": "Inbox"
+    },
+    "reports": {
+      "label": "Reports",
+      "auditLogs": "Audit Logs",
+      "userProgress": "User Progress",
+      "certification": "Certification"
+    },
+    "logout": "Logout"
+  },
+
   "progressStats": {
     "pageTitle": "Progress Statistics",
     "pageSubtitle": "Track your learning journey and performance",
@@ -762,7 +779,7 @@
       "previous": "Previous",
       "next": "Next",
       "view": "View",
-      "chat": "Chat"
+      "askAboutThisTopic": "Ask about this topic"
     },
     "pagination": {
       "showing": "Showing",
