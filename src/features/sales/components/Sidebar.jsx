@@ -1,112 +1,70 @@
-// import React from "react";
-// import { NavLink, useNavigate } from "react-router-dom";
-// import { useTranslation } from "react-i18next";
-// import { HiHome } from "react-icons/hi";
-// import {
-//   MdOutlineVideoLibrary,
-//   MdAnalytics,
-//   MdSettings,
-//   MdLogout,
-//   MdPerson,
-//   MdAssignment,
-//   MdNotifications,
-// } from "react-icons/md";
-// import { IoMdArrowDropdown } from "react-icons/io";
-// import { FaSignOutAlt } from "react-icons/fa";
-// import logo from "../../../assets/admin/AvanteMedicalLogo.png";
-
-// const Sidebar = () => {
-//   const { t } = useTranslation();
-//   const navigate = useNavigate();
-
-//   // Define your navigation items
-//   const navItems = [
-//     { path: "/dashboard", name: t("navbar.home"), icon: HiHome },
-//     {
-//       path: "/levels",
-//       name: t("navbar.myLevels"),
-//       icon: MdOutlineVideoLibrary,
-//     },
-//     { path: "/progress", name: t("navbar.analytics"), icon: MdAnalytics },
-//     { path: "/assessment", name: t("navbar.assessment"), icon: MdAssignment },
-//   ];
-
-//   const handleLogout = () => {
-//     // Your logout logic here
-//     navigate("/login");
-//   };
-
-//   return (
-//     <aside className="hidden lg:block w-[200px] min-w-[200px] bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white border-r border-gray-700 h-full overflow-y-auto custom-scrollbar">
-//       <div className="flex flex-col h-full ">
-//         {/* Navigation Items */}
-//         <nav className="flex-1 p-3 space-y-1 mt-6">
-//           {navItems.map((item) => (
-//             <NavLink
-//               key={item.path}
-//               to={item.path}
-//               className={({ isActive }) =>
-//                 `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
-//                   isActive
-//                     ? "bg-white/20 text-white shadow-lg backdrop-blur-sm"
-//                     : "text-white/70 hover:bg-white/10 hover:text-white"
-//                 }`
-//               }
-//             >
-//               <span className="text-lg">{React.createElement(item.icon)}</span>
-//               <span>{item.name}</span>
-//             </NavLink>
-//           ))}
-//         </nav>
-
-//         {/* Bottom Section - Logout with clear border */}
-//         <div className="p-3 border-t-2 border-gray-500/50 mt-auto">
-//           <button
-//             onClick={handleLogout}
-//             className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200"
-//           >
-//             <FaSignOutAlt className="text-lg" />
-//             <span>{t("logout") || "Logout"}</span>
-//           </button>
-//         </div>
-//       </div>
-//     </aside>
-//   );
-// };
-
-// export default Sidebar;
-
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { HiHome } from "react-icons/hi";
 import {
   MdOutlineVideoLibrary,
   MdAnalytics,
   MdAssignment,
 } from "react-icons/md";
-import { FaSignOutAlt } from "react-icons/fa";
+import {
+  FaSignOutAlt,
+  FaCommentDots,
+  FaClipboardList,
+  FaUserGraduate,
+  FaCertificate,
+} from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/slice/authSlice";
+import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   // Navigation Items
   const navItems = [
-    { path: "/dashboard", name: t("navbar.home"), icon: HiHome },
+    { path: "/dashboard", name: t("sidebar.nav.home"), icon: HiHome },
     {
       path: "/levels",
-      name: t("navbar.myLevels"),
+      name: t("sidebar.nav.myLevels"),
       icon: MdOutlineVideoLibrary,
     },
-    { path: "/progress", name: t("navbar.analytics"), icon: MdAnalytics },
-    { path: "/assessment", name: t("navbar.assessment"), icon: MdAssignment },
+    { path: "/progress", name: t("sidebar.nav.analytics"), icon: MdAnalytics },
+
+    {
+      path: "/assessment",
+      name: t("sidebar.nav.assessment"),
+      icon: MdAssignment,
+    },
+    { path: "/support", name: t("sidebar.nav.inbox"), icon: FaCommentDots },
+    {
+      path: "/module-certification-status",
+      name: "Certification",
+      icon: MdAnalytics,
+    },
   ];
 
-  // Logout Logic (same as HeaderNavbar)
+  // Reports Items
+  const reportItems = [
+    {
+      path: "/audit-logs",
+      name: t("sidebar.reports.auditLogs"),
+      icon: FaClipboardList,
+    },
+    {
+      path: "/user-progress",
+      name: t("sidebar.reports.userProgress"),
+      icon: FaUserGraduate,
+    },
+    // {
+    //   path: "/certification",
+    //   name: t("sidebar.reports.certification"),
+    //   icon: FaCertificate,
+    // },
+  ];
+
+  // Logout Logic
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
@@ -133,6 +91,35 @@ const Sidebar = () => {
               <span>{item.name}</span>
             </NavLink>
           ))}
+
+          {/* Reports Section - Always Open */}
+          <div className="mt-1">
+            {/* Reports Label */}
+            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-white/70">
+              <FaClipboardList className="text-lg" />
+              <span>{t("sidebar.reports.label")}</span>
+            </div>
+
+            {/* Child Items - Always Visible with Indentation */}
+            <div className="ml-4 mt-1 space-y-1 border-l-2 border-white/10 pl-3">
+              {reportItems.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium ${
+                      isActive
+                        ? "bg-white/20 text-white shadow-lg backdrop-blur-sm"
+                        : "text-white/70 hover:bg-white/10 hover:text-white"
+                    }`
+                  }
+                >
+                  <item.icon className="text-base" />
+                  <span>{item.name}</span>
+                </NavLink>
+              ))}
+            </div>
+          </div>
         </nav>
 
         {/* Logout */}
@@ -142,7 +129,7 @@ const Sidebar = () => {
             className="flex items-center cursor-pointer gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200"
           >
             <FaSignOutAlt className="text-lg" />
-            <span>{t("navbar.logout")}</span>
+            <span>{t("sidebar.logout")}</span>
           </button>
         </div>
       </div>

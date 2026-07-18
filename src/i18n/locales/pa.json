@@ -327,6 +327,23 @@
     }
   },
 
+  "sidebar": {
+    "nav": {
+      "home": "ਮੁੱਖ ਪੰਨਾ",
+      "myLevels": "ਮੇਰੇ ਪੱਧਰ",
+      "analytics": "ਵਿਸ਼ਲੇਸ਼ਣ",
+      "assessment": "ਮੁਲਾਂਕਣ",
+      "inbox": "ਇਨਬਾਕਸ"
+    },
+    "reports": {
+      "label": "ਰਿਪੋਰਟਾਂ",
+      "auditLogs": "ਆਡਿਟ ਲੌਗ",
+      "userProgress": "ਯੂਜ਼ਰ ਪ੍ਰਗਤੀ",
+      "certification": "ਪ੍ਰਮਾਣੀਕਰਨ"
+    },
+    "logout": "ਲੌਗਆਉਟ"
+  },
+
   "progressStats": {
     "pageTitle": "ਪ੍ਰੋਗਰੈੱਸ ਸਟੈਟਿਸਟਿਕਸ",
     "pageSubtitle": "ਆਪਣੀ ਲਰਨਿੰਗ ਜਰਨੀ ਅਤੇ ਪਰਫਾਰਮੈਂਸ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ",
@@ -762,7 +779,7 @@
       "previous": "ਪਿਛਲਾ",
       "next": "ਅਗਲਾ",
       "view": "ਵੇਖੋ",
-      "chat": "ਚੈਟ"
+      "askAboutThisTopic": "ਇਸ ਵਿਸ਼ੇ ਬਾਰੇ ਪੁੱਛੋ"
     },
     "pagination": {
       "showing": "ਦਿਖਾਇਆ ਜਾ ਰਿਹਾ ਹੈ",

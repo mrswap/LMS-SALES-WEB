@@ -9,6 +9,7 @@ import reportReducer from "./slice/reportSlice"
 import dashboardReducer from "./slice/dashboardSlice"
 import notificationsReducer from "./slice/notificationSlicer"
 import supportReducer from "./slice/supportSlice"
+import moduleCertificationReducer from "./slice/moduleLearningStatusSlice"
 
 export const store = configureStore({
     reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
         report: reportReducer,
         dashboard: dashboardReducer,
         notification: notificationsReducer,
-        support: supportReducer
+        support: supportReducer,
+        moduleCertification: moduleCertificationReducer,
     },
 });
