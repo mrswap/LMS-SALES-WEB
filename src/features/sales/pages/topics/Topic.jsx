@@ -269,7 +269,7 @@ const Topics = () => {
         )}
 
         {/* Topics Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-24">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 pb-24">
           {topicsData.map((topic) => {
             const isRead = topic.is_read === 1 || topic.is_read === true;
 

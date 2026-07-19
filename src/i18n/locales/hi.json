@@ -236,10 +236,10 @@
       "modules": "मॉड्यूल",
       "chapters": "अध्याय",
       "topics": "विषय",
-      "topicsCompleted": "पूर्ण किए गए विषय",
+      "topicsCompleted": "विषय पूर्ण",
       "lockMessage": "अनलॉक करने के लिए पिछला स्तर पूरा करें",
       "readyMessage": "अगले स्तर के लिए तैयार हैं?",
-      "viewPath": "मार्ग देखें"
+      "viewPath": "पथ देखें"
     },
     "progressAnalytics": {
       "title": "स्तर प्रगति विवरण",
@@ -249,7 +249,7 @@
     "assessmentStatus": {
       "locked": "लॉक",
       "ready": "तैयार",
-      "failed": "असफल",
+      "failed": "अनुत्तीर्ण",
       "passed": "उत्तीर्ण",
       "notFound": "नहीं मिला",
       "completed": "पूर्ण",
@@ -257,18 +257,18 @@
       "untitled": "बिना शीर्षक का मूल्यांकन",
       "contentProgress": "सामग्री प्रगति",
       "inProgress": "प्रगति में",
-      "readingProgress": "पढ़ने की प्रगति",
-      "contentComplete": "सभी आवश्यक सामग्री पूरी हो गई है।",
-      "contentRemaining": "मूल्यांकन अनलॉक करने के लिए {count} और आइटम पूरा करें।",
-      "failedMessage": "पिछला स्कोर: {percent}%. पुनः प्रयास करें।",
+      "readingProgress": "पठन प्रगति",
+      "contentComplete": "सभी आवश्यक सामग्री पूरी हो चुकी है।",
+      "contentRemaining": "मूल्यांकन अनलॉक करने के लिए {{count}} और आइटम पूरे करें।",
+      "failedMessage": "पिछला स्कोर: {{percent}}%. फिर से प्रयास करें।",
       "readyMessage": "क्विज़ शुरू करने के लिए तैयार है।",
       "passedMessage": "मूल्यांकन सफलतापूर्वक उत्तीर्ण हुआ।",
-      "lastAttempt": "अंतिम प्रयास:",
+      "lastAttempt": "पिछला प्रयास:",
       "na": "उपलब्ध नहीं",
-      "score": "स्कोर",
+      "score": "अंक",
       "viewAll": "सभी देखें",
-      "retryQuiz": "क्विज़ पुनः दें",
-      "retryExam": "परीक्षा पुनः दें",
+      "retryQuiz": "क्विज़ दोबारा दें",
+      "retryExam": "परीक्षा दोबारा दें",
       "retry": "पुनः प्रयास करें",
       "startQuiz": "क्विज़ शुरू करें",
       "startExam": "परीक्षा शुरू करें",
@@ -276,13 +276,13 @@
       "viewResults": "परिणाम देखें"
     },
     "resumeCard": {
-      "title": "अपनी विषय सीखने की प्रक्रिया जारी रखें",
+      "title": "अपनी विषय सीखना जारी रखें",
       "inProgress": "प्रगति में",
       "module": "मॉड्यूल",
       "currentTopic": "वर्तमान विषय",
       "noTopic": "कोई विषय शुरू नहीं हुआ",
       "chapter": "अध्याय",
-      "notStarted": "अभी शुरू नहीं हुआ",
+      "notStarted": "अभी तक शुरू नहीं हुआ",
       "topicProgress": "विषय प्रगति",
       "resumeTopic": "विषय जारी रखें",
       "startTopic": "विषय शुरू करें"
@@ -313,17 +313,18 @@
     },
     "growth": {
       "title": "व्यावसायिक विकास ट्रैकिंग",
-      "description": "आपके प्रमाणपत्र चिकित्सा उत्कृष्टता और तकनीकी सटीकता के प्रति आपकी प्रतिबद्धता को दर्शाते हैं। Avante Elite Sales Specialist बनने के लिए अपनी प्रगति बनाए रखें।",
-      "levelsCompleted": "पूर्ण किए गए स्तर",
+      "description": "आपके प्रमाणपत्र चिकित्सा उत्कृष्टता और तकनीकी सटीकता के प्रति आपकी प्रतिबद्धता को दर्शाते हैं। Avante Elite Sales Specialist बनने की दिशा में अपनी प्रगति बनाए रखें।",
+      "levelsCompleted": "पूर्ण स्तर",
       "inProgress": "प्रगति में",
       "allDone": "सभी पूर्ण",
       "certificates": "प्रमाणपत्र",
-      "avgScore": "औसत स्कोर",
-      "averageScore": "औसत स्कोर",
+      "avgScore": "औसत अंक",
+      "averageScore": "औसत अंक",
       "overallPerformance": "समग्र प्रदर्शन",
-      "topicsCompleted": "पूर्ण किए गए विषय",
+      "topicsCompleted": "पूर्ण विषय",
       "complete": "पूर्ण",
-      "analyzeButton": "अपनी प्रगति का विश्लेषण करें"
+      "analyzeButton": "अपनी प्रगति का विश्लेषण करें",
+      "growthInside": "विकास अंतर्दृष्टि"
     }
   },
 
@@ -333,15 +334,17 @@
       "myLevels": "मेरे स्तर",
       "analytics": "विश्लेषण",
       "assessment": "मूल्यांकन",
-      "inbox": "इनबॉक्स"
+      "inbox": "इनबॉक्स",
+      "certificationStatus": "प्रमाणन",
+      "contactUs": "संपर्क करें"
     },
     "reports": {
       "label": "रिपोर्ट्स",
       "auditLogs": "ऑडिट लॉग्स",
       "userProgress": "उपयोगकर्ता प्रगति",
-      "certification": "प्रमाणीकरण"
+      "certification": "प्रमाणन"
     },
-    "logout": "लॉगआउट"
+    "logout": "लॉग आउट"
   },
 
   "progressStats": {
@@ -408,6 +411,11 @@
       "certification": {
         "title": "सर्टिफिकेशन",
         "description": "सर्टिफिकेट्स और असेसमेंट रिज़ल्ट्स देखें"
+      },
+
+      "certificate": {
+        "title": "प्रमाणपत्र",
+        "description": "प्रमाणपत्र और मूल्यांकन परिणाम देखें"
       }
     }
   },
@@ -844,21 +852,22 @@
     },
     "notFound": {
       "title": "सामग्री नहीं मिली",
-      "description": "जिस सामग्री को आप खोज रहे हैं वह मौजूद नहीं है या उसे स्थानांतरित कर दिया गया है।",
+      "description": "जिस सामग्री की आप तलाश कर रहे हैं वह मौजूद नहीं है या उसे स्थानांतरित कर दिया गया है।",
       "button": "कोर्स पर वापस जाएँ"
     },
     "navigation": {
       "previous": "पिछला",
       "next": "अगला",
-      "loading": "लोड हो रहा है..."
+      "loading": "लोड हो रहा है...",
+      "syncing": "क्विज़ की स्थिति जाँची जा रही है..."
     },
     "quiz": {
       "start": "क्विज़ शुरू करें",
-      "retry": "क्विज़ पुनः प्रयास करें",
-      "passed": "पहले से उत्तीर्ण"
+      "retry": "क्विज़ दोबारा दें",
+      "passed": "पहले ही उत्तीर्ण"
     },
     "sidebar": {
-      "tableOfContents": "विषय सूची",
+      "tableOfContents": "विषय-सूची",
       "noContents": "कोई सामग्री उपलब्ध नहीं है।",
       "otherTopics": "अन्य विषय",
       "noOtherTopics": "कोई अन्य विषय नहीं।",
@@ -1391,37 +1400,162 @@
     }
   },
 
+  "moduleCertification": {
+    "somethingWentWrong": "कुछ गलत हो गया।",
+    "noData": "कोई मॉड्यूल डेटा उपलब्ध नहीं है।",
+    "status": {
+      "passed": "उत्तीर्ण",
+      "failed": "अनुत्तीर्ण",
+      "pending": "लंबित"
+    },
+    "topic": {
+      "locked": "लॉक"
+    },
+    "actions": {
+      "viewCertificate": "प्रमाणपत्र देखें",
+      "giveExam": "परीक्षा दें",
+      "examLocked": "परीक्षा लॉक है",
+      "retryQuiz": "क्विज़ दोबारा दें",
+      "continue": "जारी रखें",
+      "continueLearning": "सीखना जारी रखें",
+      "certificate": "प्रमाणपत्र",
+      "startQuiz": "क्विज़ शुरू करें",
+      "lockedTooltip": "अनलॉक करने के लिए पिछले विषय पूरे करें",
+      "reviewContent": "सामग्री की समीक्षा करें"
+    },
+    "pills": {
+      "milestoneReached": "मील का पत्थर प्राप्त",
+      "examReady": "परीक्षा के लिए तैयार",
+      "learningInProgress": "सीखना जारी है"
+    },
+    "hero": {
+      "certificationComplete": "प्रमाणन पूर्ण",
+      "completeModule": "प्रमाणन अनलॉक करने के लिए अपना मॉड्यूल पूरा करें",
+      "description": "शेष विषयों का अध्ययन जारी रखें और प्रमाणन परीक्षा अनलॉक करने के लिए प्रत्येक विषय की क्विज़ उत्तीर्ण करें।"
+    },
+    "footerNote": "प्रमाणन परीक्षा अनलॉक करने के लिए सभी आवश्यक विषय और क्विज़ पूरी करें।",
+    "moduleCard": {
+      "currentModule": "वर्तमान मॉड्यूल",
+      "studyTime": "अध्ययन समय",
+      "lessons": "पाठ",
+      "program": "कार्यक्रम",
+      "level": "स्तर",
+      "topics": "विषय",
+      "completed": "पूर्ण",
+      "remaining": "शेष",
+      "topicsLeft": "शेष विषय"
+    },
+    "checklist": {
+      "title": "परीक्षा तैयारी चेकलिस्ट",
+      "topics": "विषय",
+      "remaining": "शेष",
+      "unlocked": "अनलॉक",
+      "locked": "लॉक"
+    },
+    "whatToExpect": {
+      "title": "क्या अपेक्षा करें",
+      "minutes": "मिनट",
+      "timeDescription": "पूरा करने के लिए कुल निर्धारित समय।",
+      "questions": "प्रश्न",
+      "questionDescription": "बहुविकल्पीय प्रश्न और क्लिनिकल परिदृश्य।",
+      "passingScore": "उत्तीर्ण अंक",
+      "requiredFor": "के लिए आवश्यक",
+      "certification": "प्रमाणन",
+      "reason": "परीक्षा उत्तीर्ण करने पर आपको तुरंत अपना डिजिटल प्रमाणपत्र प्राप्त होगा।"
+    },
+    "credential": {
+      "earned": "प्रमाण-पत्र प्राप्त",
+      "pending": "लंबित प्रमाण-पत्र",
+      "certification": "प्रमाणन",
+      "badgeActive": "आपका बैज सक्रिय है।",
+      "badgeInactive": "बैज सक्रिय करने के लिए परीक्षा पूरी करें।"
+    },
+    "table": {
+      "title": "अध्याय एवं विषय प्रगति",
+      "passed": "उत्तीर्ण",
+      "failed": "अनुत्तीर्ण",
+      "pending": "लंबित",
+      "topics": "विषय",
+      "complete": "पूर्ण",
+      "topic": "विषय",
+      "status": "स्थिति",
+      "score": "अंक",
+      "attempted": "प्रयास किया",
+      "action": "कार्यवाही"
+    }
+  },
+
   "certificate": {
-    "pageTitle": "उपलब्धि प्रमाणपत्र",
-    "downloadButton": "प्रमाणपत्र डाउनलोड करें",
-    "ofAchievement": "उपलब्धि का",
-    "presentedTo": "यह प्रमाणपत्र गर्व से प्रदान किया जाता है",
-    "recipientName": "प्राप्तकर्ता का नाम",
-    "employeeId": "कर्मचारी आईडी",
-    "achievementScore": "उपलब्धि स्कोर",
-    "questions": "प्रश्न",
-    "passed": "उत्तीर्ण",
-    "completed": "पूर्ण",
-    "finalStatus": "अंतिम स्थिति",
-    "passingScore": "उत्तीर्ण अंक",
-    "timeTaken": "लिया गया समय",
-    "attempt": "प्रयास",
-    "assessmentDetails": "मूल्यांकन विवरण",
-    "assessmentDate": "मूल्यांकन तिथि",
-    "questionsAttempted": "प्रयास किए गए प्रश्न",
-    "correctAnswers": "सही उत्तर",
-    "correct": "सही",
-    "courseType": "कोर्स प्रकार",
-    "signature": "हस्ताक्षर",
-    "authorizedSignatory": "अधिकृत हस्ताक्षरकर्ता",
-    "dateOfIssue": "जारी करने की तिथि",
-    "certificateId": "प्रमाणपत्र आईडी",
-    "digitallyVerified": "डिजिटली सत्यापित प्रमाणपत्र",
-    "whatsapp": "व्हाट्सएप",
-    "facebook": "फेसबुक",
-    "linkedin": "लिंक्डइन",
-    "certification": "प्रमाणन",
-    "view-certificate": "प्रमाणपत्र देखें"
+    "breadcrumb": {
+      "certification": "प्रमाणन",
+      "view": "प्रमाणपत्र देखें"
+    },
+    "banner": {
+      "congratulations": "बधाई हो,",
+      "recipient": "प्राप्तकर्ता",
+      "examPassed": "आपने सफलतापूर्वक परीक्षा उत्तीर्ण की है",
+      "quizMastered": "आपने सफलतापूर्वक क्विज़ पूरी कर ली है",
+      "topic": "इस विषय पर"
+    },
+    "buttons": {
+      "shareLinkedin": "LinkedIn पर साझा करें",
+      "downloadPdf": "PDF डाउनलोड करें",
+      "certificateId": "प्रमाणपत्र:"
+    },
+    "types": {
+      "moduleExam": "मॉड्यूल परीक्षा प्रमाणपत्र",
+      "quiz": "क्विज़ प्रमाणपत्र",
+      "exam": "परीक्षा"
+    },
+    "certificate": {
+      "examPassedText": "मॉड्यूल परीक्षा सफलतापूर्वक उत्तीर्ण करने के लिए",
+      "quizCompletedText": "विषय क्विज़ सफलतापूर्वक पूर्ण करने के लिए",
+      "presentedTo": "प्रस्तुत किया गया",
+      "recipientName": "प्राप्तकर्ता का नाम",
+      "forModule": "मॉड्यूल के लिए",
+      "forTopic": "विषय के लिए",
+      "id": "आईडी",
+      "signature": "हस्ताक्षर",
+      "authorizedSignatory": "अधिकृत हस्ताक्षरकर्ता",
+      "dateOfIssue": "जारी करने की तिथि",
+      "digitallyVerified": "डिजिटल रूप से सत्यापित"
+    },
+    "metrics": {
+      "score": "अंक",
+      "status": "स्थिति",
+      "time": "समय",
+      "passed": "उत्तीर्ण",
+      "completed": "पूर्ण"
+    },
+    "details": {
+      "recipient": "प्राप्तकर्ता",
+      "name": "नाम",
+      "employeeId": "कर्मचारी आईडी",
+      "email": "ईमेल",
+      "result": "परिणाम",
+      "score": "अंक",
+      "percentage": "प्रतिशत",
+      "passing": "उत्तीर्ण अंक",
+      "status": "स्थिति",
+      "passed": "उत्तीर्ण",
+      "questions": "प्रश्न",
+      "total": "कुल",
+      "attempted": "प्रयास किए गए",
+      "correct": "सही",
+      "incorrect": "गलत",
+      "skipped": "छोड़े गए",
+      "timeAndAttempt": "समय और प्रयास",
+      "started": "शुरू किया",
+      "submitted": "जमा किया",
+      "timeTaken": "लिया गया समय",
+      "attemptNumber": "प्रयास #",
+      "courseContext": "पाठ्यक्रम संदर्भ",
+      "program": "कार्यक्रम",
+      "level": "स्तर",
+      "module": "मॉड्यूल",
+      "chapter": "अध्याय",
+      "topic": "विषय"
+    }
   },
 
   "auditLogs": {

@@ -615,7 +615,7 @@ export default function ProgressStats() {
     {
       key: "certification",
       icon: FaCertificate,
-      title: t("progressStats.reports.certification.title"),
+      title: t("progressStats.reports.certificate.title"),
       description: t("progressStats.reports.certification.description"),
       color: "emerald",
       onClick: navigationHandlers.certification,

@@ -168,39 +168,7 @@ const LevelCard = ({ level, onClick }) => {
 // ----------------------------------------------------------------------
 // StatCard (fully responsive – truncates text, resizes)
 // ----------------------------------------------------------------------
-// const StatCard = ({ icon: Icon, title, value, subtitle, color }) => {
-//   const colors = {
-//     blue: "bg-blue-500/20 text-blue-300",
-//     green: "bg-green-500/20 text-green-300",
-//     purple: "bg-purple-500/20 text-purple-300",
-//     orange: "bg-orange-500/20 text-orange-300",
-//   };
-
-//   return (
-//     <div className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-2 sm:p-4 transition-transform duration-300 hover:scale-105 hover:border-white/30 min-w-0">
-//       <div className="flex items-start justify-between gap-2">
-//         <div className="flex-1 min-w-0">
-//           <p className="text-[7px] sm:text-[10px] font-medium text-gray-300 uppercase tracking-wider truncate">
-//             {title}
-//           </p>
-//           <p className="text-base sm:text-xl font-bold text-white mt-1 truncate">
-//             {value}
-//           </p>
-//           <p className="text-[7px] sm:text-[10px] text-gray-400 mt-0.5 truncate">
-//             {subtitle}
-//           </p>
-//         </div>
-//         <div
-//           className={`p-1.5 sm:p-2 rounded-xl flex-shrink-0 ${colors[color]}`}
-//         >
-//           <Icon className="text-sm sm:text-lg" />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-const StatCard = ({ icon: Icon, title, value, subtitle, color }) => {
+const StatCard = ({ icon: Icon, title, value, subtitle, color, onClick }) => {
   const colors = {
     blue: "bg-blue-100 text-blue-600",
     green: "bg-green-100 text-green-600",
@@ -209,7 +177,21 @@ const StatCard = ({ icon: Icon, title, value, subtitle, color }) => {
   };
 
   return (
-    <div className="bg-gray-50/80 border border-gray-200 rounded-xl p-2 sm:p-4 transition-all duration-300 hover:shadow-md hover:border-gray-300 min-w-0">
+    <div
+      className={`bg-gray-50/80 border border-gray-200 rounded-xl p-2 sm:p-4 transition-all duration-300 hover:shadow-md hover:border-gray-300 min-w-0 ${
+        onClick ? "cursor-pointer hover:border-blue-300" : ""
+      }`}
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") onClick();
+            }
+          : undefined
+      }
+    >
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
           <p className="text-[7px] sm:text-[10px] font-medium text-gray-500 uppercase tracking-wider truncate">
@@ -260,8 +242,10 @@ const ProgressAnalytics = ({ levels }) => {
           {levels?.map((level) => (
             <div key={level.id} className="mb-4 sm:mb-6 last:mb-0">
               <div
-                className={`flex items-center justify-between mb-2 p-2 rounded-lg cursor-pointer transition-colors ${
-                  level.status === "locked" ? "opacity-60" : "hover:bg-gray-50"
+                className={`flex items-center justify-between mb-2 p-2 rounded-lg transition-colors ${
+                  level.status === "locked"
+                    ? "opacity-60 cursor-not-allowed"
+                    : "cursor-pointer hover:bg-gray-50"
                 }`}
                 onClick={() => {
                   if (level.status !== "locked") {
@@ -563,7 +547,7 @@ const AssessmentStatusCard = ({ assessment, navigate }) => {
               {badge.label}
             </span>
             <button
-              className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 whitespace-nowrap transition-colors"
+              className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1 whitespace-nowrap transition-colors cursor-pointer"
               onClick={() => navigate("/assessments")}
             >
               {t("dashboard.assessmentStatus.viewAll")}
@@ -688,9 +672,9 @@ const AssessmentStatusCard = ({ assessment, navigate }) => {
               flex items-center gap-1.5 text-xs sm:text-sm
               ${
                 status === "failed" || status === "ready"
-                  ? "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md"
+                  ? "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md cursor-pointer"
                   : status === "passed" || is_completed
-                    ? "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                    ? "bg-gray-200 text-gray-700 hover:bg-gray-300 cursor-pointer"
                     : "bg-gray-100 text-gray-400 cursor-not-allowed"
               }
             `}
@@ -992,14 +976,13 @@ export default function Dashboard() {
             {currentHierarchy.level && (
               <div className="flex items-center gap-2 py-1.5 px-3 bg-gray-50 rounded-md border-l-4 border-blue-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-                <span className="font-medium text-blue-700 text-sm">
+                <span className="font-medium text-blue-700 text-xl">
                   {currentHierarchy.level}
                 </span>
               </div>
             )}
 
-            {/* Ring - now responsive */}
-            <div className="flex justify-center mb-4">
+            {/* <div className="flex justify-center my-6">
               <div className="relative w-32 h-32 sm:w-48 sm:h-48 rounded-full bg-slate-100 flex items-center justify-center">
                 <div
                   className="absolute inset-0 rounded-full"
@@ -1012,6 +995,25 @@ export default function Dashboard() {
                     {levelProgress}%
                   </span>
                   <span className="text-[9px] sm:text-[11px] text-slate-500 mt-0.5">
+                    {t("dashboard.levelOverview.completed")}
+                  </span>
+                </div>
+              </div>
+            </div> */}
+
+            <div className="flex justify-center my-6">
+              <div className="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-slate-100 flex items-center justify-center">
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background: `conic-gradient(#2563eb ${levelProgress * 3.6}deg, #e5e7eb 0deg)`,
+                  }}
+                />
+                <div className="relative w-40 h-40 sm:w-56 sm:h-56 rounded-full bg-white shadow-inner flex flex-col items-center justify-center">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                    {levelProgress}%
+                  </span>
+                  <span className="text-[10px] sm:text-xs text-slate-500 mt-0.5">
                     {t("dashboard.levelOverview.completed")}
                   </span>
                 </div>
@@ -1121,7 +1123,7 @@ export default function Dashboard() {
             {allLevels.length > 2 && (
               <button
                 onClick={handleViewAllLevels}
-                className="text-xs sm:text-sm text-blue-600 hover:underline"
+                className="text-xs sm:text-sm text-blue-600 hover:underline cursor-pointer"
               >
                 {t("dashboard.curriculum.viewAll")} →
               </button>
@@ -1143,69 +1145,8 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Professional Growth Tracking Banner */}
-        {/* <div className="relative mt-6 bg-[#23262b] rounded-xl overflow-hidden p-4 sm:p-6 w-full">
-          <div className="absolute right-6 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-white/5 hidden sm:block" />
-
-          <div className="relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 w-full">
-            <div className="flex-1 min-w-0 w-full">
-              <h2 className="text-white text-base sm:text-xl font-bold mb-3">
-                {t("dashboard.growth.title")}
-              </h2>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
-                {t("dashboard.growth.description")}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 w-full">
-                <StatCard
-                  icon={FaTrophy}
-                  title={t("dashboard.growth.levelsCompleted")}
-                  value={completedLevels}
-                  subtitle={
-                    inProgressLevels > 0
-                      ? `${inProgressLevels} ${t("dashboard.growth.inProgress")}`
-                      : t("dashboard.growth.allDone")
-                  }
-                  color="blue"
-                />
-                <StatCard
-                  icon={FaCertificate}
-                  title={t("dashboard.growth.certificates")}
-                  value={stats?.certificates_earned || 0}
-                  subtitle={`${t("dashboard.growth.avgScore")} ${stats?.avg_topic_score || 0}%`}
-                  color="green"
-                />
-                <StatCard
-                  icon={FiBarChart2}
-                  title={t("dashboard.growth.averageScore")}
-                  value={`${stats?.avg_topic_score || 0}%`}
-                  subtitle={t("dashboard.growth.overallPerformance")}
-                  color="purple"
-                />
-                <StatCard
-                  icon={FaBookOpen}
-                  title={t("dashboard.growth.topicsCompleted")}
-                  value={`${completedTopics}/${totalTopics}`}
-                  subtitle={`${overallProgress}% ${t("dashboard.growth.complete")}`}
-                  color="orange"
-                />
-              </div>
-            </div>
-
-            <button
-              className="shrink-0 w-full lg:w-auto bg-teal-300 hover:bg-teal-200 text-slate-900 font-bold text-sm px-6 py-4 rounded-lg leading-snug transition-colors text-center"
-              onClick={() => navigate("/assessments")}
-            >
-              {t("dashboard.growth.analyzeButton")}
-            </button>
-          </div>
-        </div> */}
-
         {/* Professional Growth Tracking Banner – White Theme + Light Gray Circle */}
         <div className="relative mt-6 bg-white border border-slate-200 shadow-sm rounded-xl overflow-hidden p-4 sm:p-6 w-full">
-          {/* Decorative Circle - Light Gray for white theme */}
-          <div className="absolute right-6 top-1/2 -translate-y-1/2 w-40 h-40 rounded-full bg-slate-200/40 hidden sm:block" />
-
           <div className="relative flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 w-full">
             <div className="flex-1 min-w-0 w-full">
               <h2 className="text-slate-800 text-base sm:text-xl font-bold mb-3">
@@ -1215,7 +1156,7 @@ export default function Dashboard() {
                 {t("dashboard.growth.description")}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 w-full">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 lg:gap-4 w-full">
                 <StatCard
                   icon={FaTrophy}
                   title={t("dashboard.growth.levelsCompleted")}
@@ -1226,6 +1167,7 @@ export default function Dashboard() {
                       : t("dashboard.growth.allDone")
                   }
                   color="blue"
+                  onClick={() => navigate("/levels")}
                 />
                 <StatCard
                   icon={FaCertificate}
@@ -1233,6 +1175,7 @@ export default function Dashboard() {
                   value={stats?.certificates_earned || 0}
                   subtitle={`${t("dashboard.growth.avgScore")} ${stats?.avg_topic_score || 0}%`}
                   color="green"
+                  onClick={() => navigate("/assessment")}
                 />
                 <StatCard
                   icon={FiBarChart2}
@@ -1240,6 +1183,7 @@ export default function Dashboard() {
                   value={`${stats?.avg_topic_score || 0}%`}
                   subtitle={t("dashboard.growth.overallPerformance")}
                   color="purple"
+                  onClick={() => navigate("/progress")}
                 />
                 <StatCard
                   icon={FaBookOpen}
@@ -1251,16 +1195,26 @@ export default function Dashboard() {
               </div>
             </div>
 
+            {/* Desktop/tablet: circle ke andar button, exact center */}
+            <div className="hidden lg:flex shrink-0 w-40 h-40 rounded-full bg-slate-200/40 items-center justify-center">
+              <button
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-3 rounded-xl leading-snug transition-colors text-center shadow-sm cursor-pointer whitespace-nowrap"
+                onClick={() => navigate("/progress")}
+              >
+                {t("dashboard.growth.growthInside")}
+              </button>
+            </div>
+
+            {/* Mobile: sirf plain button, circle nahi */}
             <button
-              className="shrink-0 w-full lg:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-3 rounded-2xl leading-snug transition-colors text-center shadow-sm"
-              onClick={() => navigate("/assessments")}
+              className="lg:hidden shrink-0 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-3 rounded-xl leading-snug transition-colors text-center shadow-sm cursor-pointer"
+              onClick={() => navigate("/progress")}
             >
-              {t("dashboard.growth.analyzeButton")}
+              {t("dashboard.growth.growthInside")}
             </button>
           </div>
         </div>
 
-        {/* Progress Analytics Section */}
         <div
           className={`mt-4 transition-all duration-500 delay-400 transform ${
             animateItems

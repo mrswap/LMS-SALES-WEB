@@ -223,7 +223,7 @@
   },
 
   "dashboard": {
-    "pageSubtitle": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਪ੍ਰਗਤੀ ਨੂੰ ਟਰੈਕ ਕਰੋ ਅਤੇ ਜਿੱਥੇ ਛੱਡਿਆ ਸੀ ਉੱਥੋਂ ਜਾਰੀ ਰੱਖੋ",
+    "pageSubtitle": "ਆਪਣੀ ਸਿੱਖਣ ਦੀ ਪ੍ਰਗਤੀ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ ਅਤੇ ਜਿੱਥੇ ਛੱਡਿਆ ਸੀ ਉੱਥੋਂ ਜਾਰੀ ਰੱਖੋ",
     "greeting": {
       "morning": "ਸ਼ੁਭ ਸਵੇਰ",
       "afternoon": "ਸ਼ੁਭ ਦੁਪਹਿਰ",
@@ -242,31 +242,31 @@
       "viewPath": "ਮਾਰਗ ਵੇਖੋ"
     },
     "progressAnalytics": {
-      "title": "ਪੱਧਰ ਦੀ ਪ੍ਰਗਤੀ ਦੇ ਵੇਰਵੇ",
+      "title": "ਪੱਧਰ ਪ੍ਰਗਤੀ ਵੇਰਵੇ",
       "topics": "ਵਿਸ਼ੇ",
       "chapters": "ਅਧਿਆਇ"
     },
     "assessmentStatus": {
       "locked": "ਲੌਕ",
       "ready": "ਤਿਆਰ",
-      "failed": "ਅਸਫਲ",
+      "failed": "ਫੇਲ",
       "passed": "ਪਾਸ",
       "notFound": "ਨਹੀਂ ਮਿਲਿਆ",
       "completed": "ਪੂਰਾ",
       "type": "ਮੁਲਾਂਕਣ",
       "untitled": "ਬਿਨਾਂ ਸਿਰਲੇਖ ਵਾਲਾ ਮੁਲਾਂਕਣ",
-      "contentProgress": "ਸਮੱਗਰੀ ਦੀ ਪ੍ਰਗਤੀ",
+      "contentProgress": "ਸਮੱਗਰੀ ਪ੍ਰਗਤੀ",
       "inProgress": "ਜਾਰੀ",
-      "readingProgress": "ਪੜ੍ਹਨ ਦੀ ਪ੍ਰਗਤੀ",
-      "contentComplete": "ਸਾਰੀ ਲੋੜੀਂਦੀ ਸਮੱਗਰੀ ਪੂਰੀ ਹੋ ਗਈ ਹੈ।",
-      "contentRemaining": "ਮੁਲਾਂਕਣ ਅਨਲੌਕ ਕਰਨ ਲਈ ਹੋਰ {count} ਆਈਟਮ ਪੂਰੇ ਕਰੋ।",
-      "failedMessage": "ਪਿਛਲਾ ਸਕੋਰ: {percent}%. ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+      "readingProgress": "ਪੜ੍ਹਾਈ ਪ੍ਰਗਤੀ",
+      "contentComplete": "ਸਾਰੀ ਲੋੜੀਂਦੀ ਸਮੱਗਰੀ ਪੂਰੀ ਹੋ ਚੁੱਕੀ ਹੈ।",
+      "contentRemaining": "ਮੁਲਾਂਕਣ ਅਨਲੌਕ ਕਰਨ ਲਈ ਹੋਰ {{count}} ਆਈਟਮ ਪੂਰੇ ਕਰੋ।",
+      "failedMessage": "ਪਿਛਲਾ ਸਕੋਰ: {{percent}}%. ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
       "readyMessage": "ਕੁਇਜ਼ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਤਿਆਰ ਹੈ।",
       "passedMessage": "ਮੁਲਾਂਕਣ ਸਫਲਤਾਪੂਰਵਕ ਪਾਸ ਹੋ ਗਿਆ।",
       "lastAttempt": "ਆਖਰੀ ਕੋਸ਼ਿਸ਼:",
       "na": "ਉਪਲਬਧ ਨਹੀਂ",
-      "score": "ਸਕੋਰ",
-      "viewAll": "ਸਭ ਵੇਖੋ",
+      "score": "ਅੰਕ",
+      "viewAll": "ਸਾਰੇ ਵੇਖੋ",
       "retryQuiz": "ਕੁਇਜ਼ ਦੁਬਾਰਾ ਦਿਓ",
       "retryExam": "ਪਰੀਖਿਆ ਦੁਬਾਰਾ ਦਿਓ",
       "retry": "ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
@@ -280,16 +280,16 @@
       "inProgress": "ਜਾਰੀ",
       "module": "ਮੋਡੀਊਲ",
       "currentTopic": "ਮੌਜੂਦਾ ਵਿਸ਼ਾ",
-      "noTopic": "ਕੋਈ ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ ਗਿਆ",
+      "noTopic": "ਕੋਈ ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ",
       "chapter": "ਅਧਿਆਇ",
       "notStarted": "ਹਾਲੇ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ",
-      "topicProgress": "ਵਿਸ਼ੇ ਦੀ ਪ੍ਰਗਤੀ",
+      "topicProgress": "ਵਿਸ਼ਾ ਪ੍ਰਗਤੀ",
       "resumeTopic": "ਵਿਸ਼ਾ ਜਾਰੀ ਰੱਖੋ",
       "startTopic": "ਵਿਸ਼ਾ ਸ਼ੁਰੂ ਕਰੋ"
     },
     "assessments": {
       "title": "ਆਉਣ ਵਾਲੇ ਮੁਲਾਂਕਣ",
-      "upcoming": "ਆਉਣ ਵਾਲੇ",
+      "upcoming": "ਆਉਣ ਵਾਲਾ",
       "ready": "ਮੁਲਾਂਕਣ ਤਿਆਰ",
       "module": "ਮੋਡੀਊਲ",
       "readyToTake": "ਦੇਣ ਲਈ ਤਿਆਰ",
@@ -302,28 +302,29 @@
       "inProgress": "ਜਾਰੀ",
       "current": "ਮੌਜੂਦਾ",
       "contents": "ਸਮੱਗਰੀ",
-      "levelProgress": "ਪੱਧਰ ਦੀ ਪ੍ਰਗਤੀ",
+      "levelProgress": "ਪੱਧਰ ਪ੍ਰਗਤੀ",
       "topics": "ਵਿਸ਼ੇ",
       "level": "ਪੱਧਰ 1",
-      "footer": "ਇਸ ਮੋਡੀਊਲ ਨੂੰ ਪੂਰਾ ਕਰੋ ਅਤੇ ਤਰੱਕੀ ਲਈ ਪਰੀਖਿਆ ਅਨਲੌਕ ਕਰੋ।"
+      "footer": "ਇਹ ਮੋਡੀਊਲ ਪੂਰਾ ਕਰੋ ਅਤੇ ਤਰੱਕੀ ਲਈ ਪਰੀਖਿਆ ਅਨਲੌਕ ਕਰੋ।"
     },
     "curriculum": {
       "title": "ਤੁਹਾਡਾ ਪਾਠਕ੍ਰਮ",
       "viewAll": "ਸਾਰੇ ਪੱਧਰ ਵੇਖੋ"
     },
     "growth": {
-      "title": "ਪੇਸ਼ੇਵਰ ਵਿਕਾਸ ਟਰੈਕਿੰਗ",
-      "description": "ਤੁਹਾਡੇ ਸਰਟੀਫਿਕੇਟ ਮੈਡੀਕਲ ਸ਼ਾਨਦਾਰਤਾ ਅਤੇ ਤਕਨੀਕੀ ਸਹੀਪਣ ਪ੍ਰਤੀ ਤੁਹਾਡੀ ਵਚਨਬੱਧਤਾ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ। Avante Elite Sales Specialist ਬਣਨ ਲਈ ਆਪਣੀ ਪ੍ਰਗਤੀ ਜਾਰੀ ਰੱਖੋ।",
+      "title": "ਪੇਸ਼ਾਵਰ ਵਿਕਾਸ ਟ੍ਰੈਕਿੰਗ",
+      "description": "ਤੁਹਾਡੇ ਸਰਟੀਫਿਕੇਟ ਚਿਕਿਤਸਕ ਉਤਕ੍ਰਿਸ਼ਟਤਾ ਅਤੇ ਤਕਨੀਕੀ ਸ਼ੁੱਧਤਾ ਪ੍ਰਤੀ ਤੁਹਾਡੀ ਵਚਨਬੱਧਤਾ ਦਰਸਾਉਂਦੇ ਹਨ। Avante Elite Sales Specialist ਬਣਨ ਵੱਲ ਆਪਣੀ ਪ੍ਰਗਤੀ ਜਾਰੀ ਰੱਖੋ।",
       "levelsCompleted": "ਪੂਰੇ ਕੀਤੇ ਪੱਧਰ",
       "inProgress": "ਜਾਰੀ",
       "allDone": "ਸਭ ਪੂਰਾ",
       "certificates": "ਸਰਟੀਫਿਕੇਟ",
-      "avgScore": "ਔਸਤ ਸਕੋਰ",
-      "averageScore": "ਔਸਤ ਸਕੋਰ",
+      "avgScore": "ਔਸਤ ਅੰਕ",
+      "averageScore": "ਔਸਤ ਅੰਕ",
       "overallPerformance": "ਕੁੱਲ ਪ੍ਰਦਰਸ਼ਨ",
       "topicsCompleted": "ਪੂਰੇ ਕੀਤੇ ਵਿਸ਼ੇ",
       "complete": "ਪੂਰਾ",
-      "analyzeButton": "ਆਪਣੀ ਪ੍ਰਗਤੀ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ ਕਰੋ"
+      "analyzeButton": "ਆਪਣੀ ਪ੍ਰਗਤੀ ਦਾ ਵਿਸ਼ਲੇਸ਼ਣ ਕਰੋ",
+      "growthInside": "ਵਿਕਾਸ ਝਲਕ"
     }
   },
 
@@ -333,15 +334,17 @@
       "myLevels": "ਮੇਰੇ ਪੱਧਰ",
       "analytics": "ਵਿਸ਼ਲੇਸ਼ਣ",
       "assessment": "ਮੁਲਾਂਕਣ",
-      "inbox": "ਇਨਬਾਕਸ"
+      "inbox": "ਇਨਬਾਕਸ",
+      "certificationStatus": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
+      "contactUs": "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
     },
     "reports": {
       "label": "ਰਿਪੋਰਟਾਂ",
       "auditLogs": "ਆਡਿਟ ਲੌਗ",
-      "userProgress": "ਯੂਜ਼ਰ ਪ੍ਰਗਤੀ",
-      "certification": "ਪ੍ਰਮਾਣੀਕਰਨ"
+      "userProgress": "ਉਪਭੋਗਤਾ ਪ੍ਰਗਤੀ",
+      "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ"
     },
-    "logout": "ਲੌਗਆਉਟ"
+    "logout": "ਲੌਗ ਆਉਟ"
   },
 
   "progressStats": {
@@ -408,6 +411,11 @@
       "certification": {
         "title": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
         "description": "ਸਰਟੀਫਿਕੇਟ ਅਤੇ ਅਸੈਸਮੈਂਟ ਨਤੀਜੇ ਵੇਖੋ"
+      },
+
+      "certificate": {
+        "title": "ਸਰਟੀਫਿਕੇਟ",
+        "description": "ਸਰਟੀਫਿਕੇਟ ਅਤੇ ਮੁਲਾਂਕਣ ਦੇ ਨਤੀਜੇ ਵੇਖੋ"
       }
     }
   },
@@ -844,24 +852,25 @@
     },
     "notFound": {
       "title": "ਸਮੱਗਰੀ ਨਹੀਂ ਮਿਲੀ",
-      "description": "ਜੋ ਸਮੱਗਰੀ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਉਸ ਨੂੰ ਕਿਸੇ ਹੋਰ ਥਾਂ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
-      "button": "ਕੋਰਸ ਤੇ ਵਾਪਸ ਜਾਓ"
+      "description": "ਜਿਸ ਸਮੱਗਰੀ ਦੀ ਤੁਸੀਂ ਖੋਜ ਕਰ ਰਹੇ ਹੋ ਉਹ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਇਸ ਨੂੰ ਕਿਸੇ ਹੋਰ ਥਾਂ ਭੇਜ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
+      "button": "ਕੋਰਸ 'ਤੇ ਵਾਪਸ ਜਾਓ"
     },
     "navigation": {
       "previous": "ਪਿਛਲਾ",
       "next": "ਅਗਲਾ",
-      "loading": "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
+      "loading": "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ...",
+      "syncing": "ਕੁਇਜ਼ ਦੀ ਸਥਿਤੀ ਜਾਂਚੀ ਜਾ ਰਹੀ ਹੈ..."
     },
     "quiz": {
       "start": "ਕੁਇਜ਼ ਸ਼ੁਰੂ ਕਰੋ",
-      "retry": "ਕੁਇਜ਼ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+      "retry": "ਕੁਇਜ਼ ਦੁਬਾਰਾ ਦਿਓ",
       "passed": "ਪਹਿਲਾਂ ਹੀ ਪਾਸ"
     },
     "sidebar": {
       "tableOfContents": "ਸਮੱਗਰੀ ਸੂਚੀ",
       "noContents": "ਕੋਈ ਸਮੱਗਰੀ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
       "otherTopics": "ਹੋਰ ਵਿਸ਼ੇ",
-      "noOtherTopics": "ਹੋਰ ਕੋਈ ਵਿਸ਼ੇ ਨਹੀਂ।",
+      "noOtherTopics": "ਕੋਈ ਹੋਰ ਵਿਸ਼ਾ ਨਹੀਂ।",
       "locked": "ਲੌਕ"
     }
   },
@@ -1391,37 +1400,162 @@
     }
   },
 
+  "moduleCertification": {
+    "somethingWentWrong": "ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ।",
+    "noData": "ਕੋਈ ਮੋਡੀਊਲ ਡਾਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।",
+    "status": {
+      "passed": "ਪਾਸ",
+      "failed": "ਫੇਲ",
+      "pending": "ਬਾਕੀ"
+    },
+    "topic": {
+      "locked": "ਲੌਕ"
+    },
+    "actions": {
+      "viewCertificate": "ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ",
+      "giveExam": "ਪਰੀਖਿਆ ਦਿਓ",
+      "examLocked": "ਪਰੀਖਿਆ ਲੌਕ ਹੈ",
+      "retryQuiz": "ਕੁਇਜ਼ ਦੁਬਾਰਾ ਦਿਓ",
+      "continue": "ਜਾਰੀ ਰੱਖੋ",
+      "continueLearning": "ਸਿੱਖਣਾ ਜਾਰੀ ਰੱਖੋ",
+      "certificate": "ਸਰਟੀਫਿਕੇਟ",
+      "startQuiz": "ਕੁਇਜ਼ ਸ਼ੁਰੂ ਕਰੋ",
+      "lockedTooltip": "ਅਨਲੌਕ ਕਰਨ ਲਈ ਪਿਛਲੇ ਵਿਸ਼ੇ ਪੂਰੇ ਕਰੋ",
+      "reviewContent": "ਸਮੱਗਰੀ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
+    },
+    "pills": {
+      "milestoneReached": "ਮਹੱਤਵਪੂਰਨ ਮੰਜ਼ਿਲ ਹਾਸਲ",
+      "examReady": "ਪਰੀਖਿਆ ਲਈ ਤਿਆਰ",
+      "learningInProgress": "ਸਿੱਖਣਾ ਜਾਰੀ ਹੈ"
+    },
+    "hero": {
+      "certificationComplete": "ਸਰਟੀਫਿਕੇਸ਼ਨ ਪੂਰੀ",
+      "completeModule": "ਸਰਟੀਫਿਕੇਸ਼ਨ ਅਨਲੌਕ ਕਰਨ ਲਈ ਆਪਣਾ ਮੋਡੀਊਲ ਪੂਰਾ ਕਰੋ",
+      "description": "ਬਾਕੀ ਵਿਸ਼ਿਆਂ ਦਾ ਅਧਿਐਨ ਜਾਰੀ ਰੱਖੋ ਅਤੇ ਸਰਟੀਫਿਕੇਸ਼ਨ ਪਰੀਖਿਆ ਅਨਲੌਕ ਕਰਨ ਲਈ ਹਰ ਵਿਸ਼ੇ ਦੀ ਕੁਇਜ਼ ਪਾਸ ਕਰੋ।"
+    },
+    "footerNote": "ਸਰਟੀਫਿਕੇਸ਼ਨ ਪਰੀਖਿਆ ਅਨਲੌਕ ਕਰਨ ਲਈ ਸਾਰੇ ਲੋੜੀਂਦੇ ਵਿਸ਼ੇ ਅਤੇ ਕੁਇਜ਼ ਪੂਰੇ ਕਰੋ।",
+    "moduleCard": {
+      "currentModule": "ਮੌਜੂਦਾ ਮੋਡੀਊਲ",
+      "studyTime": "ਅਧਿਐਨ ਸਮਾਂ",
+      "lessons": "ਪਾਠ",
+      "program": "ਪ੍ਰੋਗਰਾਮ",
+      "level": "ਪੱਧਰ",
+      "topics": "ਵਿਸ਼ੇ",
+      "completed": "ਪੂਰੇ",
+      "remaining": "ਬਾਕੀ",
+      "topicsLeft": "ਬਾਕੀ ਵਿਸ਼ੇ"
+    },
+    "checklist": {
+      "title": "ਪਰੀਖਿਆ ਤਿਆਰੀ ਚੈਕਲਿਸਟ",
+      "topics": "ਵਿਸ਼ੇ",
+      "remaining": "ਬਾਕੀ",
+      "unlocked": "ਅਨਲੌਕ",
+      "locked": "ਲੌਕ"
+    },
+    "whatToExpect": {
+      "title": "ਕੀ ਉਮੀਦ ਕਰਨੀ ਹੈ",
+      "minutes": "ਮਿੰਟ",
+      "timeDescription": "ਪੂਰਾ ਕਰਨ ਲਈ ਕੁੱਲ ਨਿਰਧਾਰਤ ਸਮਾਂ।",
+      "questions": "ਪ੍ਰਸ਼ਨ",
+      "questionDescription": "ਬਹੁ-ਵਿਕਲਪੀ ਪ੍ਰਸ਼ਨ ਅਤੇ ਕਲੀਨਿਕਲ ਸਥਿਤੀਆਂ।",
+      "passingScore": "ਪਾਸ ਅੰਕ",
+      "requiredFor": "ਲਈ ਲੋੜੀਂਦਾ",
+      "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
+      "reason": "ਪਰੀਖਿਆ ਪਾਸ ਕਰਨ 'ਤੇ ਤੁਹਾਨੂੰ ਤੁਰੰਤ ਆਪਣਾ ਡਿਜ਼ਿਟਲ ਸਰਟੀਫਿਕੇਟ ਮਿਲੇਗਾ।"
+    },
+    "credential": {
+      "earned": "ਪ੍ਰਮਾਣ ਪੱਤਰ ਪ੍ਰਾਪਤ",
+      "pending": "ਬਾਕੀ ਪ੍ਰਮਾਣ ਪੱਤਰ",
+      "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
+      "badgeActive": "ਤੁਹਾਡਾ ਬੈਜ ਸਰਗਰਮ ਹੈ।",
+      "badgeInactive": "ਬੈਜ ਸਰਗਰਮ ਕਰਨ ਲਈ ਪਰੀਖਿਆ ਪੂਰੀ ਕਰੋ।"
+    },
+    "table": {
+      "title": "ਅਧਿਆਇ ਅਤੇ ਵਿਸ਼ਾ ਪ੍ਰਗਤੀ",
+      "passed": "ਪਾਸ",
+      "failed": "ਫੇਲ",
+      "pending": "ਬਾਕੀ",
+      "topics": "ਵਿਸ਼ੇ",
+      "complete": "ਪੂਰੇ",
+      "topic": "ਵਿਸ਼ਾ",
+      "status": "ਸਥਿਤੀ",
+      "score": "ਅੰਕ",
+      "attempted": "ਕੋਸ਼ਿਸ਼ ਕੀਤੀ",
+      "action": "ਕਾਰਵਾਈ"
+    }
+  },
+
   "certificate": {
-    "pageTitle": "ਉਪਲਬਧੀ ਸਰਟੀਫਿਕੇਟ",
-    "downloadButton": "ਸਰਟੀਫਿਕੇਟ ਡਾਊਨਲੋਡ ਕਰੋ",
-    "ofAchievement": "ਉਪਲਬਧੀ ਦਾ",
-    "presentedTo": "ਇਹ ਸਰਟੀਫਿਕੇਟ ਗਰਵ ਨਾਲ ਪੇਸ਼ ਕੀਤਾ ਜਾਂਦਾ ਹੈ",
-    "recipientName": "ਪ੍ਰਾਪਤਕਰਤਾ ਦਾ ਨਾਮ",
-    "employeeId": "ਕਰਮਚਾਰੀ ਆਈਡੀ",
-    "achievementScore": "ਉਪਲਬਧੀ ਸਕੋਰ",
-    "questions": "ਸਵਾਲ",
-    "passed": "ਪਾਸ",
-    "completed": "ਪੂਰਾ",
-    "finalStatus": "ਅੰਤਿਮ ਸਥਿਤੀ",
-    "passingScore": "ਪਾਸਿੰਗ ਸਕੋਰ",
-    "timeTaken": "ਲੱਗਿਆ ਸਮਾਂ",
-    "attempt": "ਕੋਸ਼ਿਸ਼",
-    "assessmentDetails": "ਮੁਲਾਂਕਣ ਵੇਰਵੇ",
-    "assessmentDate": "ਮੁਲਾਂਕਣ ਤਾਰੀਖ",
-    "questionsAttempted": "ਕੀਤੇ ਗਏ ਸਵਾਲ",
-    "correctAnswers": "ਸਹੀ ਜਵਾਬ",
-    "correct": "ਸਹੀ",
-    "courseType": "ਕੋਰਸ ਕਿਸਮ",
-    "signature": "ਦਸਤਖਤ",
-    "authorizedSignatory": "ਅਧਿਕਾਰਤ ਦਸਤਖਤਕਰਤਾ",
-    "dateOfIssue": "ਜਾਰੀ ਕਰਨ ਦੀ ਤਾਰੀਖ",
-    "certificateId": "ਸਰਟੀਫਿਕੇਟ ਆਈਡੀ",
-    "digitallyVerified": "ਡਿਜਿਟਲੀ ਵੈਰੀਫਾਈਡ ਸਰਟੀਫਿਕੇਟ",
-    "whatsapp": "ਵਟਸਐਪ",
-    "facebook": "ਫੇਸਬੁੱਕ",
-    "linkedin": "ਲਿੰਕਡਇਨ",
-    "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
-    "view-certificate": "ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ"
+    "breadcrumb": {
+      "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
+      "view": "ਸਰਟੀਫਿਕੇਟ ਵੇਖੋ"
+    },
+    "banner": {
+      "congratulations": "ਮੁਬਾਰਕਾਂ,",
+      "recipient": "ਪ੍ਰਾਪਤਕਰਤਾ",
+      "examPassed": "ਤੁਸੀਂ ਸਫਲਤਾਪੂਰਵਕ ਪਰੀਖਿਆ ਪਾਸ ਕਰ ਲਈ ਹੈ",
+      "quizMastered": "ਤੁਸੀਂ ਸਫਲਤਾਪੂਰਵਕ ਕੁਇਜ਼ ਪੂਰੀ ਕਰ ਲਈ ਹੈ",
+      "topic": "ਇਸ ਵਿਸ਼ੇ ਲਈ"
+    },
+    "buttons": {
+      "shareLinkedin": "LinkedIn 'ਤੇ ਸਾਂਝਾ ਕਰੋ",
+      "downloadPdf": "PDF ਡਾਊਨਲੋਡ ਕਰੋ",
+      "certificateId": "ਸਰਟੀਫਿਕੇਟ:"
+    },
+    "types": {
+      "moduleExam": "ਮੋਡੀਊਲ ਪਰੀਖਿਆ ਸਰਟੀਫਿਕੇਟ",
+      "quiz": "ਕੁਇਜ਼ ਸਰਟੀਫਿਕੇਟ",
+      "exam": "ਪਰੀਖਿਆ"
+    },
+    "certificate": {
+      "examPassedText": "ਮੋਡੀਊਲ ਪਰੀਖਿਆ ਸਫਲਤਾਪੂਰਵਕ ਪਾਸ ਕਰਨ ਲਈ",
+      "quizCompletedText": "ਵਿਸ਼ਾ ਕੁਇਜ਼ ਸਫਲਤਾਪੂਰਵਕ ਪੂਰੀ ਕਰਨ ਲਈ",
+      "presentedTo": "ਪੇਸ਼ ਕੀਤਾ ਗਿਆ",
+      "recipientName": "ਪ੍ਰਾਪਤਕਰਤਾ ਦਾ ਨਾਮ",
+      "forModule": "ਮੋਡੀਊਲ ਲਈ",
+      "forTopic": "ਵਿਸ਼ੇ ਲਈ",
+      "id": "ਆਈਡੀ",
+      "signature": "ਦਸਤਖਤ",
+      "authorizedSignatory": "ਅਧਿਕ੍ਰਿਤ ਦਸਤਖਤਕਰਤਾ",
+      "dateOfIssue": "ਜਾਰੀ ਕਰਨ ਦੀ ਤਾਰੀਖ",
+      "digitallyVerified": "ਡਿਜ਼ਿਟਲ ਤੌਰ 'ਤੇ ਪ੍ਰਮਾਣਿਤ"
+    },
+    "metrics": {
+      "score": "ਅੰਕ",
+      "status": "ਸਥਿਤੀ",
+      "time": "ਸਮਾਂ",
+      "passed": "ਪਾਸ",
+      "completed": "ਪੂਰਾ"
+    },
+    "details": {
+      "recipient": "ਪ੍ਰਾਪਤਕਰਤਾ",
+      "name": "ਨਾਮ",
+      "employeeId": "ਕਰਮਚਾਰੀ ਆਈਡੀ",
+      "email": "ਈਮੇਲ",
+      "result": "ਨਤੀਜਾ",
+      "score": "ਅੰਕ",
+      "percentage": "ਪ੍ਰਤੀਸ਼ਤ",
+      "passing": "ਪਾਸ ਅੰਕ",
+      "status": "ਸਥਿਤੀ",
+      "passed": "ਪਾਸ",
+      "questions": "ਪ੍ਰਸ਼ਨ",
+      "total": "ਕੁੱਲ",
+      "attempted": "ਕੋਸ਼ਿਸ਼ ਕੀਤੇ",
+      "correct": "ਸਹੀ",
+      "incorrect": "ਗਲਤ",
+      "skipped": "ਛੱਡੇ ਗਏ",
+      "timeAndAttempt": "ਸਮਾਂ ਅਤੇ ਕੋਸ਼ਿਸ਼",
+      "started": "ਸ਼ੁਰੂ ਕੀਤਾ",
+      "submitted": "ਜਮ੍ਹਾਂ ਕੀਤਾ",
+      "timeTaken": "ਲੱਗਿਆ ਸਮਾਂ",
+      "attemptNumber": "ਕੋਸ਼ਿਸ਼ #",
+      "courseContext": "ਕੋਰਸ ਸੰਦਰਭ",
+      "program": "ਪ੍ਰੋਗਰਾਮ",
+      "level": "ਪੱਧਰ",
+      "module": "ਮੋਡੀਊਲ",
+      "chapter": "ਅਧਿਆਇ",
+      "topic": "ਵਿਸ਼ਾ"
+    }
   },
 
   "auditLogs": {
