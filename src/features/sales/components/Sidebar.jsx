@@ -12,6 +12,7 @@ import {
   FaClipboardList,
   FaUserGraduate,
   FaCertificate,
+  FaEnvelope, // icon for Contact Us
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../redux/slice/authSlice";
@@ -31,7 +32,6 @@ const Sidebar = () => {
       icon: MdOutlineVideoLibrary,
     },
     { path: "/progress", name: t("sidebar.nav.analytics"), icon: MdAnalytics },
-
     {
       path: "/assessment",
       name: t("sidebar.nav.assessment"),
@@ -40,12 +40,12 @@ const Sidebar = () => {
     { path: "/support", name: t("sidebar.nav.inbox"), icon: FaCommentDots },
     {
       path: "/module-certification-status",
-      name: "Certification",
+      name: t("sidebar.nav.certificationStatus"),
       icon: MdAnalytics,
     },
   ];
 
-  // Reports Items
+  // Reports Items (no Contact Us here)
   const reportItems = [
     {
       path: "/audit-logs",
@@ -57,11 +57,11 @@ const Sidebar = () => {
       name: t("sidebar.reports.userProgress"),
       icon: FaUserGraduate,
     },
-    // {
-    //   path: "/certification",
-    //   name: t("sidebar.reports.certification"),
-    //   icon: FaCertificate,
-    // },
+    {
+      path: "/certification",
+      name: t("sidebar.reports.certification"),
+      icon: FaCertificate,
+    },
   ];
 
   // Logout Logic
@@ -120,6 +120,21 @@ const Sidebar = () => {
               ))}
             </div>
           </div>
+
+          {/* Contact Us - Standalone item, outside Reports */}
+          <NavLink
+            to="/contact-us"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
+                isActive
+                  ? "bg-white/20 text-white shadow-lg backdrop-blur-sm"
+                  : "text-white/70 hover:bg-white/10 hover:text-white"
+              }`
+            }
+          >
+            <FaEnvelope className="text-lg" />
+            <span>{t("sidebar.nav.contactUs")}</span>
+          </NavLink>
         </nav>
 
         {/* Logout */}

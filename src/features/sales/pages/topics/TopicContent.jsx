@@ -22,7 +22,7 @@ import {
   FaCheckCircle,
   FaClock,
   FaCalendarAlt,
-  FaCommentDots, // Added for chat icon
+  FaCommentDots,
 } from "react-icons/fa";
 import { MdPictureAsPdf } from "react-icons/md";
 import { useTranslation } from "react-i18next";
@@ -302,11 +302,13 @@ const TopicContent = () => {
   const fullscreenContainerRef = useRef(null);
   const [showAudioPlayer, setShowAudioPlayer] = useState(false);
   const [flipDirection, setFlipDirection] = useState("next");
+  const [pageTransitionMode, setPageTransitionMode] = useState("flip");
   const pageAreaRef = useRef(null);
   const pageContentRef = useRef(null);
   const [prevPageSnapshot, setPrevPageSnapshot] = useState(null);
   const [pageKey, setPageKey] = useState(null);
   const [pendingContentId, setPendingContentId] = useState(null);
+  const [isSyncingNav, setIsSyncingNav] = useState(false);
 
   const { currentContent, isLoading, isMarkingRead } = useSelector(
     (state) => state.course,
@@ -379,9 +381,30 @@ const TopicContent = () => {
       !hasMarkedRead.current
     ) {
       hasMarkedRead.current = true;
-      dispatch(markContentAsRead({ contentId: content.id }));
+
+      const action = dispatch(markContentAsRead({ contentId: content.id }));
+
+      const asPromise =
+        action && typeof action.unwrap === "function"
+          ? action.unwrap()
+          : Promise.resolve(action);
+
+      setIsSyncingNav(true);
+      asPromise
+        .then(() => {
+          const refetch = dispatch(getSingleContent({ topicId, contentId }));
+          return refetch && typeof refetch.unwrap === "function"
+            ? refetch.unwrap()
+            : refetch;
+        })
+        .catch((err) => {
+          console.error("Failed to sync content-read/assessment status:", err);
+        })
+        .finally(() => {
+          setIsSyncingNav(false);
+        });
     }
-  }, [content?.id, content?.is_read, contentId, isLoading, dispatch]);
+  }, [content?.id, content?.is_read, contentId, isLoading, dispatch, topicId]);
 
   useEffect(() => {
     if (!isLoading && content?.id) {
@@ -427,12 +450,22 @@ const TopicContent = () => {
     return clone.innerHTML;
   };
 
-  const navigateToContent = (newContentId, direction = "next") => {
+  const navigateToContent = (
+    newContentId,
+    direction = "next",
+    mode = "flip",
+  ) => {
     if (newContentId && !isNavigating) {
       setPendingContentId(newContentId);
       setIsNavigating(true);
-      setFlipDirection(direction);
-      setPrevPageSnapshot(captureSnapshot());
+      setPageTransitionMode(mode);
+
+      if (mode === "flip") {
+        setFlipDirection(direction);
+        setPrevPageSnapshot(captureSnapshot());
+      } else {
+        setPrevPageSnapshot(null);
+      }
 
       if (pageAreaRef.current) {
         pageAreaRef.current.scrollIntoView({
@@ -717,7 +750,6 @@ const TopicContent = () => {
     }
   };
 
-  // Handler for "Ask about this topic" button
   const handleChatClick = () => {
     navigate(`/support?topicId=${topicId}`);
   };
@@ -751,13 +783,12 @@ const TopicContent = () => {
   const assessment = learningNavigation?.assessment;
 
   const handleGiveQuiz = () => {
-    if (assessment?.id) navigate(`/assessment/${assessment.id}`);
+    if (assessment?.id) navigate(`/quiz/${assessment.id}`);
   };
 
   const getQuizButtonProps = () => {
     if (!assessment) return null;
     const { status } = assessment;
-    if (status === "locked" || status === "not_found") return null;
 
     let label = "";
     let disabled = false;
@@ -775,7 +806,10 @@ const TopicContent = () => {
       disabled = true;
       color = "bg-gray-200 text-gray-500 cursor-not-allowed hover:bg-gray-200";
       icon = <FaCheckCircle className="w-4 h-4" />;
+    } else {
+      return null;
     }
+
     return { label, disabled, color, icon };
   };
 
@@ -809,7 +843,6 @@ const TopicContent = () => {
             ]}
           />
           <div className="flex items-center gap-2">
-            {/* Ask about this topic button */}
             <button
               className="relative px-4 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 animate-pulse flex items-center gap-2 cursor-pointer whitespace-nowrap"
               onClick={handleChatClick}
@@ -876,7 +909,7 @@ const TopicContent = () => {
               />
 
               <div className="book-page-stage mb-10">
-                {prevPageSnapshot && (
+                {pageTransitionMode === "flip" && prevPageSnapshot && (
                   <div
                     className="book-page-behind"
                     dangerouslySetInnerHTML={{ __html: prevPageSnapshot }}
@@ -885,39 +918,62 @@ const TopicContent = () => {
                 <div
                   key={pageKey}
                   ref={pageContentRef}
-                  className="book-page-live"
-                  style={{
-                    transformOrigin:
-                      flipDirection === "next" ? "right center" : "left center",
-                    transform: isFlipSettled
-                      ? "rotateY(0deg)"
-                      : flipDirection === "next"
-                        ? "rotateY(94deg)"
-                        : "rotateY(-94deg)",
-                    transition: isFlipSettled
-                      ? "transform 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
-                      : "none",
-                  }}
+                  className={
+                    pageTransitionMode === "flip"
+                      ? "book-page-live"
+                      : "book-page-live book-page-fade"
+                  }
+                  style={
+                    pageTransitionMode === "flip"
+                      ? {
+                          transformOrigin:
+                            flipDirection === "next"
+                              ? "right center"
+                              : "left center",
+                          transform: isFlipSettled
+                            ? "rotateY(0deg)"
+                            : flipDirection === "next"
+                              ? "rotateY(94deg)"
+                              : "rotateY(-94deg)",
+                          transition: isFlipSettled
+                            ? "transform 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
+                            : "none",
+                        }
+                      : {
+                          opacity: isFlipSettled ? 1 : 0,
+                          transform: isFlipSettled
+                            ? "translateY(0px)"
+                            : "translateY(10px)",
+                          transition: isFlipSettled
+                            ? "opacity 0.28s ease, transform 0.28s ease"
+                            : "none",
+                        }
+                  }
                   onTransitionEnd={(e) => {
-                    if (e.propertyName === "transform")
+                    if (
+                      e.propertyName === "transform" ||
+                      e.propertyName === "opacity"
+                    )
                       setPrevPageSnapshot(null);
                   }}
                 >
                   {renderContent()}
-                  <div
-                    aria-hidden="true"
-                    className="book-page-shade"
-                    style={{
-                      background:
-                        flipDirection === "next"
-                          ? "linear-gradient(to left, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)"
-                          : "linear-gradient(to right, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)",
-                      opacity: isFlipSettled ? 0 : 0.9,
-                      transition: isFlipSettled
-                        ? "opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
-                        : "none",
-                    }}
-                  />
+                  {pageTransitionMode === "flip" && (
+                    <div
+                      aria-hidden="true"
+                      className="book-page-shade"
+                      style={{
+                        background:
+                          flipDirection === "next"
+                            ? "linear-gradient(to left, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)"
+                            : "linear-gradient(to right, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)",
+                        opacity: isFlipSettled ? 0 : 0.9,
+                        transition: isFlipSettled
+                          ? "opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
+                          : "none",
+                      }}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -925,6 +981,7 @@ const TopicContent = () => {
                 .book-page-stage { position: relative; perspective: 2200px; -webkit-perspective: 2200px; }
                 .book-page-behind { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: #ffffff; overflow: hidden; border-radius: 12px; }
                 .book-page-live { position: relative; z-index: 2; background: #ffffff; border-radius: 12px; transform-style: preserve-3d; backface-visibility: hidden; -webkit-backface-visibility: hidden; isolation: isolate; will-change: transform; }
+                .book-page-fade { will-change: opacity, transform; }
                 .book-page-shade { position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit; will-change: opacity; }
                 @media (prefers-reduced-motion: reduce) {
                   .book-page-live { transition: none !important; transform: none !important; }
@@ -932,13 +989,15 @@ const TopicContent = () => {
                 }
               `}</style>
 
-              {/* ============ UPDATED NAVIGATION ============ */}
               <div className="pt-6 border-t border-gray-200">
                 <div className="flex items-center justify-between gap-4 flex-wrap">
-                  {/* Previous button */}
                   <button
                     onClick={() =>
-                      navigateToContent(navigation?.previous_content_id, "prev")
+                      navigateToContent(
+                        navigation?.previous_content_id,
+                        "prev",
+                        "flip",
+                      )
                     }
                     disabled={!navigation?.has_previous || isNavigating}
                     className="group flex items-center gap-2 px-4 py-2 cursor-pointer bg-white border border-gray-300 rounded-lg
@@ -967,7 +1026,6 @@ const TopicContent = () => {
                     )}
                   </button>
 
-                  {/* Quiz button – now in the middle */}
                   {quizButton && (
                     <button
                       onClick={handleGiveQuiz}
@@ -979,11 +1037,21 @@ const TopicContent = () => {
                     </button>
                   )}
 
-                  {/* Next button */}
+                  {isSyncingNav && !quizButton && (
+                    <span className="text-xs text-gray-400 flex items-center gap-1.5">
+                      <div className="w-3 h-3 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
+                      {t("topicContent.navigation.syncing")}
+                    </span>
+                  )}
+
                   {navigation?.has_next ? (
                     <button
                       onClick={() =>
-                        navigateToContent(navigation?.next_content_id, "next")
+                        navigateToContent(
+                          navigation?.next_content_id,
+                          "next",
+                          "flip",
+                        )
                       }
                       disabled={!navigation?.has_next || isNavigating}
                       className="group flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-600 border border-blue-600
@@ -1027,7 +1095,6 @@ const TopicContent = () => {
                   )}
                 </div>
               </div>
-              {/* ============ END UPDATED NAVIGATION ============ */}
             </div>
 
             <div className="hidden xl:block xl:col-span-4 space-y-6 sticky top-4 self-start">
@@ -1053,7 +1120,7 @@ const TopicContent = () => {
                             <button
                               onClick={() => {
                                 if (!isActive && !isNavigating) {
-                                  navigateToContent(item.id);
+                                  navigateToContent(item.id, "next", "fade");
                                 }
                               }}
                               disabled={isNavigating}

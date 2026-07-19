@@ -1,3 +1,837 @@
+// import React, { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useNavigate } from "react-router-dom";
+// import { fetchModuleCertificationStatus } from "../../../../redux/slice/moduleLearningStatusSlice";
+// import {
+//   FaCheckCircle,
+//   FaTimesCircle,
+//   FaClock,
+//   FaChevronDown,
+//   FaChevronRight,
+//   FaAward,
+//   FaBookOpen,
+//   FaPlayCircle,
+//   FaEye,
+//   FaLock,
+//   FaUnlock,
+//   FaClipboardList,
+//   FaHourglassHalf,
+//   FaArrowRight,
+//   FaInfoCircle,
+//   FaQuestionCircle,
+//   FaStar,
+// } from "react-icons/fa";
+// import Loader from "../../common/Loader";
+// import Error from "../../common/Error";
+
+// const ModuleCertificationStatus = () => {
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+
+//   const { data, isLoading, isError, message } = useSelector(
+//     (state) => state.moduleCertification,
+//   );
+
+//   const [expandedChapters, setExpandedChapters] = useState(new Set());
+
+//   useEffect(() => {
+//     dispatch(fetchModuleCertificationStatus());
+//   }, [dispatch]);
+
+//   useEffect(() => {
+//     if (data?.data?.chapters) {
+//       setExpandedChapters(new Set(data.data.chapters.map((c) => c.id)));
+//     }
+//   }, [data]);
+
+//   if (isLoading) {
+//     return <Loader />;
+//   }
+
+//   if (isError) {
+//     return <Error message={message || "Something went wrong."} />;
+//   }
+
+//   if (!data || !data.data) {
+//     return (
+//       <div className="flex justify-center items-center min-h-[60vh] text-gray-500">
+//         <p>No module data available.</p>
+//       </div>
+//     );
+//   }
+
+//   const {
+//     module,
+//     progress,
+//     exam,
+//     chapters,
+//     program,
+//     level,
+//     checklist,
+//     content,
+//     next_learning,
+//   } = data.data;
+
+//   // ---- NAVIGATION HANDLERS ----
+//   const handleNavigateToTopic = (topicId) => navigate(`/topics/${topicId}`);
+
+//   // Topic-level quiz start/retry -> /quiz/:assessmentId
+//   const handleNavigateToQuiz = (assessmentId) =>
+//     navigate(`/quiz/${assessmentId}`);
+
+//   // Module-level exam give/retry -> /exam-module/:assessmentId
+//   const handleGiveExam = () => navigate(`/exam-module/${exam.assessment.id}`);
+
+//   // Certificate view (topic or module) -> /certificate/:assessmentId
+//   const handleViewCertificate = (assessmentId) =>
+//     navigate(`/certificate/${assessmentId}`);
+
+//   // "Review Content" -> jump to the topic the learner is currently/next on
+//   const handleReviewContent = () => {
+//     const currentTopicId = next_learning?.topic?.id;
+//     if (currentTopicId) {
+//       handleNavigateToTopic(currentTopicId);
+//     } else {
+//       // fallback: agar next_learning na ho (sab complete ho chuka), module page pe le jao
+//       navigate(`/module/${module.id}`);
+//     }
+//   };
+
+//   const allTopics = chapters.flatMap((c) => c.topics);
+//   const totalTopics = allTopics.length;
+//   const passedTopics = allTopics.filter((t) => t.quiz_status === "passed");
+//   const failedTopics = allTopics.filter((t) => t.quiz_status === "failed");
+//   const pendingTopics = allTopics.filter((t) => t.quiz_status === "pending");
+//   const allTopicsPassed =
+//     totalTopics > 0 && passedTopics.length === totalTopics;
+//   const hasFailedTopics = failedTopics.length > 0;
+
+//   const isModuleCompleted = module.is_completed;
+//   const isExamPassed = exam.status === "passed";
+//   const canViewCertificate = isModuleCompleted || isExamPassed;
+
+//   // Passing score as a percentage of total marks (e.g. 10/15 -> 67%)
+//   const passingScorePercentage =
+//     exam.assessment.total_marks > 0
+//       ? Math.round(
+//           (exam.assessment.passing_score / exam.assessment.total_marks) * 100,
+//         )
+//       : 0;
+
+//   const toggleChapter = (chapterId) => {
+//     const newSet = new Set(expandedChapters);
+//     newSet.has(chapterId) ? newSet.delete(chapterId) : newSet.add(chapterId);
+//     setExpandedChapters(newSet);
+//   };
+
+//   const getPrimaryAction = () => {
+//     if (canViewCertificate) {
+//       return {
+//         label: "View Certificate",
+//         icon: <FaEye className="w-4 h-4" />,
+//         onClick: () => handleViewCertificate(exam.last_attempt?.id),
+//         variant: "primary",
+//       };
+//     }
+//     if (allTopicsPassed && exam.unlocked) {
+//       return {
+//         label: "Give Exam",
+//         icon: <FaArrowRight className="w-4 h-4" />,
+//         onClick: handleGiveExam,
+//         variant: "primary",
+//       };
+//     }
+//     if (allTopicsPassed && !exam.unlocked) {
+//       return {
+//         label: "Exam Locked",
+//         icon: <FaLock className="w-4 h-4" />,
+//         onClick: () => {},
+//         variant: "disabled",
+//       };
+//     }
+//     if (hasFailedTopics) {
+//       const firstFailed = failedTopics[0];
+//       return {
+//         label: `Retry Quiz: ${firstFailed.title}`,
+//         icon: <FaBookOpen className="w-4 h-4" />,
+//         onClick: () => handleNavigateToQuiz(firstFailed.assessment.id),
+//         variant: "warning",
+//       };
+//     }
+//     const firstPending = pendingTopics[0];
+//     if (firstPending) {
+//       return {
+//         label: `Continue: ${firstPending.title}`,
+//         icon: <FaBookOpen className="w-4 h-4" />,
+//         onClick: () => handleNavigateToTopic(firstPending.id),
+//         variant: "secondary",
+//       };
+//     }
+//     return {
+//       label: content?.cta || "Continue Learning",
+//       icon: <FaBookOpen className="w-4 h-4" />,
+//       onClick: handleReviewContent,
+//       variant: "secondary",
+//     };
+//   };
+
+//   const primaryAction = getPrimaryAction();
+
+//   const buttonStyles = {
+//     primary:
+//       "bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow-md cursor-pointer",
+//     warning: "bg-blue-500 hover:bg-blue-600 text-white cursor-pointer",
+//     secondary: "bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer",
+//     disabled: "bg-gray-200 text-gray-400 cursor-not-allowed",
+//   };
+
+//   const StatusBadge = ({ status }) => {
+//     const config = {
+//       passed: {
+//         icon: <FaCheckCircle className="w-3.5 h-3.5" />,
+//         label: "Passed",
+//         className: "bg-teal-50 text-teal-700 border-teal-200",
+//       },
+//       failed: {
+//         icon: <FaTimesCircle className="w-3.5 h-3.5" />,
+//         label: "Failed",
+//         className: "bg-rose-50 text-rose-700 border-rose-200",
+//       },
+//       pending: {
+//         icon: <FaHourglassHalf className="w-3.5 h-3.5" />,
+//         label: "Pending",
+//         className: "bg-amber-50 text-amber-700 border-amber-200",
+//       },
+//     };
+//     const c = config[status] || config.pending;
+//     return (
+//       <span
+//         className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border ${c.className}`}
+//       >
+//         {c.icon}
+//         {c.label}
+//       </span>
+//     );
+//   };
+
+//   // Row-level click / action column ka logic status ke hisaab se
+//   const renderTopicRow = (topic) => {
+//     const scoreDisplay = topic.last_attempt
+//       ? `${topic.last_attempt.score}/${topic.last_attempt.total_score}`
+//       : "—";
+//     const percentageDisplay = topic.last_attempt
+//       ? `${topic.last_attempt.percentage}%`
+//       : "—";
+
+//     const isReady = topic.quiz_status === "pending" && topic.is_unlocked;
+//     const isFailed = topic.quiz_status === "failed";
+//     const isPassed = topic.quiz_status === "passed";
+//     const isLockedPending =
+//       topic.quiz_status === "pending" && !topic.is_unlocked;
+
+//     // row click -> quiz page (failed ya ready pending ke liye)
+//     const isRowClickable = isFailed || isReady;
+//     const handleRowClick = () => {
+//       if (isFailed || isReady) {
+//         handleNavigateToQuiz(topic.assessment.id);
+//       }
+//     };
+
+//     return (
+//       <tr
+//         key={topic.id}
+//         className={`border-b border-gray-100 transition-colors ${
+//           isRowClickable ? "cursor-pointer hover:bg-teal-50/50" : ""
+//         }`}
+//         onClick={handleRowClick}
+//       >
+//         <td className="px-4 py-3 max-w-[240px]">
+//           <div className="flex items-center gap-2 truncate" title={topic.title}>
+//             <span className="text-sm font-medium text-gray-800 truncate">
+//               {topic.title}
+//             </span>
+//             {!topic.is_unlocked && (
+//               <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full flex items-center gap-1 flex-shrink-0">
+//                 <FaLock className="w-3 h-3" />
+//                 Locked
+//               </span>
+//             )}
+//           </div>
+//         </td>
+//         <td className="px-4 py-3">
+//           <StatusBadge status={topic.quiz_status} />
+//         </td>
+//         <td className="px-4 py-3 text-sm font-medium text-gray-700 whitespace-nowrap">
+//           {scoreDisplay}
+//         </td>
+//         <td className="px-4 py-3 text-sm text-gray-500 whitespace-nowrap">
+//           {percentageDisplay}
+//         </td>
+//         <td className="px-4 py-3 text-sm text-gray-400 whitespace-nowrap">
+//           {topic.last_attempt?.submitted_at
+//             ? new Date(topic.last_attempt.submitted_at).toLocaleDateString()
+//             : "—"}
+//         </td>
+//         <td className="px-4 py-3 text-center">
+//           {isPassed && (
+//             <button
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 handleViewCertificate(topic.last_attempt.id);
+//               }}
+//               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-teal-700 bg-teal-50 hover:bg-teal-100 transition whitespace-nowrap cursor-pointer"
+//               title="View Certificate"
+//             >
+//               <FaEye className="w-3.5 h-3.5" />
+//               Certificate
+//             </button>
+//           )}
+
+//           {isFailed && (
+//             <button
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 handleNavigateToQuiz(topic.assessment.id);
+//               }}
+//               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 transition whitespace-nowrap cursor-pointer"
+//               title="Retry Quiz"
+//             >
+//               <FaPlayCircle className="w-3.5 h-3.5" />
+//               Retry Quiz
+//             </button>
+//           )}
+
+//           {isReady && (
+//             <button
+//               onClick={(e) => {
+//                 e.stopPropagation();
+//                 handleNavigateToQuiz(topic.assessment.id);
+//               }}
+//               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 transition whitespace-nowrap cursor-pointer"
+//               title="Start Quiz"
+//             >
+//               <FaPlayCircle className="w-3.5 h-3.5" />
+//               Start Quiz
+//             </button>
+//           )}
+
+//           {isLockedPending && (
+//             <button
+//               disabled
+//               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-gray-400 bg-gray-100 cursor-not-allowed whitespace-nowrap"
+//               title="Complete previous topics to unlock"
+//             >
+//               <FaLock className="w-3.5 h-3.5" />
+//               Start Quiz
+//             </button>
+//           )}
+//         </td>
+//       </tr>
+//     );
+//   };
+
+//   // Pill / heading copy driven by API "content" block, falling back to computed state
+//   const pillLabel =
+//     content?.heading ||
+//     (canViewCertificate
+//       ? "Milestone Reached"
+//       : allTopicsPassed
+//         ? "Exam Ready"
+//         : "Learning In Progress");
+//   const heroTitle =
+//     content?.title ||
+//     (canViewCertificate
+//       ? "Certification Complete"
+//       : "Complete Your Module to Unlock Certification");
+//   const heroDescription =
+//     content?.description ||
+//     "Continue studying the remaining topics and pass every topic quiz to unlock your certification exam.";
+//   const footerNote =
+//     content?.footer ||
+//     "Complete all required topics and quizzes to unlock the certification exam.";
+
+//   return (
+//     <div className="min-h-screen bg-slate-50 font-sans antialiased">
+//       <style>{`
+//         .thin-scroll::-webkit-scrollbar {
+//           height: 3px;
+//         }
+//         .thin-scroll::-webkit-scrollbar-track {
+//           background: transparent;
+//         }
+//         .thin-scroll::-webkit-scrollbar-thumb {
+//           background-color: #d1d5db;
+//           border-radius: 9999px;
+//         }
+//         .thin-scroll::-webkit-scrollbar-thumb:hover {
+//           background-color: #9ca3af;
+//         }
+//         .thin-scroll {
+//           scrollbar-width: thin;
+//           scrollbar-color: #d1d5db transparent;
+//         }
+//       `}</style>
+//       <div className="lg:p-4">
+//         {/* PILL + HERO HEADING */}
+//         <div className="mb-8">
+//           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-teal-50 text-teal-700 border border-teal-100">
+//             <FaAward className="w-3 h-3" />
+//             {pillLabel}
+//           </span>
+//           <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+//             {heroTitle}
+//           </h1>
+//           <p className="mt-2 text-sm sm:text-base text-gray-500 max-w-2xl">
+//             {heroDescription}
+//           </p>
+//         </div>
+
+//         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+//           {/* LEFT COLUMN */}
+//           <div className="lg:col-span-2 flex flex-col gap-6">
+//             {/* MODULE CARD */}
+//             <div className="relative bg-white rounded-2xl shadow-sm border border-gray-200/80 pl-6 pr-6 py-6 overflow-hidden">
+//               <span className="absolute left-0 top-0 bottom-0 w-1.5 bg-teal-500 rounded-l-2xl" />
+//               <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+//                 <div className="flex items-center gap-5 flex-1 min-w-0">
+//                   <div className="relative w-16 h-16 flex-shrink-0">
+//                     <svg className="w-16 h-16 -rotate-90" viewBox="0 0 100 100">
+//                       <circle
+//                         cx="50"
+//                         cy="50"
+//                         r="42"
+//                         stroke="#e5e7eb"
+//                         strokeWidth="9"
+//                         fill="none"
+//                       />
+//                       <circle
+//                         cx="50"
+//                         cy="50"
+//                         r="42"
+//                         stroke="#14b8a6"
+//                         strokeWidth="9"
+//                         fill="none"
+//                         strokeDasharray={`${(progress.percentage / 100) * 264} 264`}
+//                         strokeLinecap="round"
+//                       />
+//                     </svg>
+//                     <div className="absolute inset-0 flex items-center justify-center text-base font-bold text-teal-600">
+//                       {Math.round(progress.percentage)}%
+//                     </div>
+//                   </div>
+
+//                   <div className="min-w-0 flex-1">
+//                     <p className="text-[11px] font-semibold tracking-wide uppercase text-gray-400">
+//                       Current Module
+//                     </p>
+//                     <h2
+//                       className="text-lg sm:text-xl font-bold text-gray-900 leading-snug truncate"
+//                       title={module.title}
+//                     >
+//                       {module.title}
+//                     </h2>
+//                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
+//                       <span className="flex items-center gap-1.5 whitespace-nowrap">
+//                         <FaClock className="text-teal-500" />
+//                         {module.estimated_duration || "—"} Study Time
+//                       </span>
+//                       <span className="flex items-center gap-1.5 whitespace-nowrap">
+//                         <FaBookOpen className="text-teal-500" />
+//                         {chapters.length} Lessons
+//                       </span>
+//                     </div>
+//                   </div>
+//                 </div>
+
+//                 <button
+//                   onClick={handleReviewContent}
+//                   className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-blue-200 text-blue-700 hover:bg-blue-50 font-semibold rounded-lg transition text-sm whitespace-nowrap cursor-pointer flex-shrink-0"
+//                 >
+//                   <FaArrowRight className="w-3.5 h-3.5" />
+//                   Review Content
+//                 </button>
+//               </div>
+
+//               {/* Module description */}
+//               {module.description && (
+//                 <p className="mt-4 text-sm text-gray-500 leading-relaxed">
+//                   {module.description}
+//                 </p>
+//               )}
+
+//               {/* Extra stats row: program / level / topics / remaining — fills out the card */}
+//               <div className="mt-5 pt-5 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-4">
+//                 <div className="flex items-center gap-2.5 min-w-0">
+//                   <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
+//                     <FaAward className="w-3.5 h-3.5" />
+//                   </div>
+//                   <div className="min-w-0">
+//                     <p
+//                       className="text-xs font-semibold text-gray-800 truncate"
+//                       title={program.title}
+//                     >
+//                       {program.title}
+//                     </p>
+//                     <p className="text-[11px] text-gray-400">Program</p>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-center gap-2.5 min-w-0">
+//                   <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+//                     <FaStar className="w-3.5 h-3.5" />
+//                   </div>
+//                   <div className="min-w-0">
+//                     <p
+//                       className="text-xs font-semibold text-gray-800 truncate"
+//                       title={level.title}
+//                     >
+//                       {level.title}
+//                     </p>
+//                     <p className="text-[11px] text-gray-400">Level</p>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-center gap-2.5 min-w-0">
+//                   <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+//                     <FaClipboardList className="w-3.5 h-3.5" />
+//                   </div>
+//                   <div className="min-w-0">
+//                     <p className="text-xs font-semibold text-gray-800 truncate">
+//                       {progress.completed_topics}/{progress.total_topics} Topics
+//                     </p>
+//                     <p className="text-[11px] text-gray-400">Completed</p>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-center gap-2.5 min-w-0">
+//                   <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 flex items-center justify-center flex-shrink-0">
+//                     <FaHourglassHalf className="w-3.5 h-3.5" />
+//                   </div>
+//                   <div className="min-w-0">
+//                     <p className="text-xs font-semibold text-gray-800 truncate">
+//                       {progress.remaining_topics} Remaining
+//                     </p>
+//                     <p className="text-[11px] text-gray-400">Topics Left</p>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+
+//             {/* EXAM READINESS CHECKLIST */}
+//             <div className="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6 flex-1 flex flex-col">
+//               <div className="flex items-center gap-2 mb-4">
+//                 <FaClipboardList className="text-teal-600 w-4 h-4" />
+//                 <h3 className="font-bold text-gray-900">
+//                   Exam Readiness Checklist
+//                 </h3>
+//               </div>
+//               <div className="space-y-3">
+//                 {checklist.map((item, idx) => (
+//                   <div
+//                     key={idx}
+//                     className="flex items-center justify-between gap-3 bg-gray-50 rounded-xl px-4 py-3"
+//                   >
+//                     <div className="flex items-center gap-3 min-w-0">
+//                       <div
+//                         className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
+//                           item.completed
+//                             ? "bg-teal-500 text-white"
+//                             : "bg-gray-200 text-gray-400"
+//                         }`}
+//                       >
+//                         <FaCheckCircle className="w-3.5 h-3.5" />
+//                       </div>
+//                       <span
+//                         className="text-sm font-semibold text-gray-800 truncate"
+//                         title={item.title}
+//                       >
+//                         {item.title}
+//                       </span>
+//                     </div>
+//                     <span className="text-xs text-gray-500 whitespace-nowrap flex-shrink-0">
+//                       {item.completed_count !== undefined &&
+//                         `${item.completed_count}/${item.total_count} Topics`}
+//                       {item.remaining !== undefined &&
+//                         `${item.remaining} remaining`}
+//                       {item.unlocked !== undefined &&
+//                         (item.unlocked ? (
+//                           <span className="inline-flex items-center gap-1 text-teal-600">
+//                             <FaUnlock className="w-3 h-3" /> Unlocked
+//                           </span>
+//                         ) : (
+//                           <span className="inline-flex items-center gap-1 text-amber-600">
+//                             <FaLock className="w-3 h-3" /> Locked
+//                           </span>
+//                         ))}
+//                     </span>
+//                   </div>
+//                 ))}
+//               </div>
+
+//               {/* CTA row: Retry / Start / Give Exam / View Certificate — sab primaryAction se driven */}
+//               {/* Button right below checklist, then divider, then footer note — centered */}
+//               <div className="mt-6 flex-1 flex flex-col items-center justify-center text-center gap-4">
+//                 <button
+//                   onClick={primaryAction.onClick}
+//                   disabled={primaryAction.variant === "disabled"}
+//                   className={`inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
+//                     buttonStyles[primaryAction.variant] ||
+//                     buttonStyles.secondary
+//                   }`}
+//                 >
+//                   {primaryAction.icon}
+//                   {primaryAction.label}
+//                 </button>
+//                 <div className="w-full pt-4 border-t border-gray-100">
+//                   <p className="text-xs text-gray-400 leading-snug whitespace-nowrap">
+//                     {footerNote}
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* RIGHT COLUMN */}
+//           <div className="flex flex-col gap-6">
+//             {/* WHAT TO EXPECT */}
+//             <div className="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6">
+//               <h3 className="text-xs font-bold tracking-wide uppercase text-teal-600 mb-4">
+//                 What to Expect
+//               </h3>
+//               <div className="space-y-4">
+//                 <div className="flex items-start gap-3">
+//                   <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+//                     <FaClock className="w-4 h-4" />
+//                   </div>
+//                   <div>
+//                     <p className="text-sm font-semibold text-gray-800">
+//                       {exam.assessment.duration} Minutes
+//                     </p>
+//                     <p className="text-xs text-gray-500">
+//                       Total time allotted for completion.
+//                     </p>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-start gap-3">
+//                   <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+//                     <FaQuestionCircle className="w-4 h-4" />
+//                   </div>
+//                   <div>
+//                     <p className="text-sm font-semibold text-gray-800">
+//                       {exam.assessment.total_marks} Questions
+//                     </p>
+//                     <p className="text-xs text-gray-500">
+//                       Multiple choice and clinical scenarios.
+//                     </p>
+//                   </div>
+//                 </div>
+//                 <div className="flex items-start gap-3">
+//                   <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+//                     <FaStar className="w-4 h-4" />
+//                   </div>
+//                   <div>
+//                     <p className="text-sm font-semibold text-gray-800">
+//                       {exam.assessment.passing_score}/
+//                       {exam.assessment.total_marks} Passing Score
+//                       <span className="text-gray-400 font-normal ml-1">
+//                         ({passingScorePercentage}%)
+//                       </span>
+//                     </p>
+//                     <p className="text-xs text-gray-500">
+//                       Required for {program.title} certification.
+//                     </p>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               <div className="mt-5 flex gap-2.5 bg-blue-50 text-blue-800 text-xs leading-snug rounded-xl px-4 py-3">
+//                 <FaInfoCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+//                 <p>
+//                   {exam.reason ||
+//                     "Passing the exam grants immediate access to your digital certificate."}
+//                 </p>
+//               </div>
+
+//               {/* Sab topics complete + exam unlocked -> seedha Give Exam CTA yahan bhi */}
+//               {allTopicsPassed && exam.unlocked && !canViewCertificate && (
+//                 <button
+//                   onClick={handleGiveExam}
+//                   className="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white transition cursor-pointer"
+//                 >
+//                   <FaArrowRight className="w-3.5 h-3.5" />
+//                   Give Exam
+//                 </button>
+//               )}
+//             </div>
+
+//             {/* PENDING / EARNED CREDENTIAL CARD */}
+//             <div className="bg-gray-900 rounded-2xl p-6 text-white overflow-hidden flex-1 flex flex-col">
+//               <span
+//                 className={`text-[11px] font-semibold tracking-wide uppercase ${
+//                   canViewCertificate ? "text-teal-400" : "text-amber-400"
+//                 }`}
+//               >
+//                 {canViewCertificate
+//                   ? "Credential Earned"
+//                   : "Pending Credential"}
+//               </span>
+
+//               <div className="flex items-center gap-3 mt-3">
+//                 <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0">
+//                   <FaAward
+//                     className={`w-5 h-5 ${
+//                       canViewCertificate ? "text-teal-400" : "text-gray-400"
+//                     }`}
+//                   />
+//                 </div>
+//                 <div className="min-w-0">
+//                   <p
+//                     className="font-bold leading-tight truncate"
+//                     title={program.title}
+//                   >
+//                     {program.title}
+//                   </p>
+//                   <p className="text-xs text-gray-400">
+//                     {level.title} Certification
+//                   </p>
+//                 </div>
+//               </div>
+
+//               <div className="mt-5 relative rounded-xl bg-gray-800/70 border border-dashed border-gray-700 flex-1 min-h-[8rem] overflow-hidden flex items-center justify-center">
+//                 {module.thumbnail && (
+//                   <img
+//                     src={module.thumbnail}
+//                     alt={module.title}
+//                     className={`absolute inset-0 w-full h-full object-cover ${
+//                       canViewCertificate
+//                         ? ""
+//                         : "grayscale opacity-25 blur-[1px]"
+//                     }`}
+//                   />
+//                 )}
+//                 {canViewCertificate ? (
+//                   <FaAward className="relative w-10 h-10 text-teal-400 drop-shadow" />
+//                 ) : (
+//                   <div className="relative w-10 h-10 rounded-full bg-gray-900/80 border border-gray-700 flex items-center justify-center">
+//                     <FaLock className="w-4 h-4 text-gray-400" />
+//                   </div>
+//                 )}
+//               </div>
+
+//               <p className="mt-3 text-[11px] text-gray-500 text-center">
+//                 {canViewCertificate
+//                   ? "Your badge is active."
+//                   : "Finish the exam to activate your badge."}
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* CHAPTER / TOPIC TABLE — full width, own row */}
+//         <div className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+//           <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/60 flex flex-wrap items-center justify-between gap-2">
+//             <div className="flex items-center gap-2 text-sm font-bold text-gray-800">
+//               <FaClipboardList className="text-teal-600" />
+//               <span>Chapter &amp; Topic Progress</span>
+//             </div>
+//             <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
+//               <span className="flex items-center gap-1 whitespace-nowrap">
+//                 <FaCheckCircle className="text-teal-500" /> Passed:{" "}
+//                 {passedTopics.length}
+//               </span>
+//               <span className="flex items-center gap-1 whitespace-nowrap">
+//                 <FaTimesCircle className="text-rose-500" /> Failed:{" "}
+//                 {failedTopics.length}
+//               </span>
+//               <span className="flex items-center gap-1 whitespace-nowrap">
+//                 <FaHourglassHalf className="text-amber-500" /> Pending:{" "}
+//                 {pendingTopics.length}
+//               </span>
+//             </div>
+//           </div>
+
+//           <div className="divide-y divide-gray-100">
+//             {chapters.map((chapter) => {
+//               const isExpanded = expandedChapters.has(chapter.id);
+//               const chapterPassed = chapter.topics.every(
+//                 (t) => t.quiz_status === "passed",
+//               );
+
+//               return (
+//                 <div key={chapter.id} className="transition-all">
+//                   <div
+//                     className="px-6 py-3 bg-white hover:bg-gray-50 cursor-pointer flex flex-wrap items-center justify-between gap-2 transition-colors"
+//                     onClick={() => toggleChapter(chapter.id)}
+//                   >
+//                     <div className="flex items-center gap-3 min-w-0 flex-1">
+//                       {isExpanded ? (
+//                         <FaChevronDown className="w-4 h-4 text-gray-400 flex-shrink-0" />
+//                       ) : (
+//                         <FaChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0" />
+//                       )}
+//                       <span
+//                         className="font-medium text-gray-800 truncate"
+//                         title={chapter.title}
+//                       >
+//                         {chapter.title}
+//                       </span>
+//                       <span className="text-xs text-gray-400 whitespace-nowrap flex-shrink-0">
+//                         ({chapter.progress.completed_topics}/
+//                         {chapter.progress.total_topics} topics)
+//                       </span>
+//                     </div>
+//                     <div className="flex items-center gap-4 flex-shrink-0">
+//                       <span className="text-xs text-gray-500 whitespace-nowrap">
+//                         {Math.round(chapter.progress.percentage)}% complete
+//                       </span>
+//                       {chapterPassed ? (
+//                         <FaCheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
+//                       ) : (
+//                         <FaHourglassHalf className="w-5 h-5 text-amber-400 flex-shrink-0" />
+//                       )}
+//                     </div>
+//                   </div>
+
+//                   {isExpanded && (
+//                     <div className="overflow-x-auto thin-scroll">
+//                       <table className="w-full text-sm table-fixed min-w-[640px]">
+//                         <thead className="bg-gray-50/70 text-xs uppercase text-gray-500">
+//                           <tr>
+//                             <th className="px-4 py-2 text-left font-medium w-[34%]">
+//                               Topic
+//                             </th>
+//                             <th className="px-4 py-2 text-left font-medium w-[14%]">
+//                               Status
+//                             </th>
+//                             <th className="px-4 py-2 text-left font-medium w-[12%]">
+//                               Score
+//                             </th>
+//                             <th className="px-4 py-2 text-left font-medium w-[8%]">
+//                               %
+//                             </th>
+//                             <th className="px-4 py-2 text-left font-medium w-[16%]">
+//                               Attempted
+//                             </th>
+//                             <th className="px-4 py-2 text-center font-medium w-[16%]">
+//                               Action
+//                             </th>
+//                           </tr>
+//                         </thead>
+//                         <tbody>
+//                           {chapter.topics.map((topic) => renderTopicRow(topic))}
+//                         </tbody>
+//                       </table>
+//                     </div>
+//                   )}
+//                 </div>
+//               );
+//             })}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ModuleCertificationStatus;
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +840,6 @@ import {
   FaCheckCircle,
   FaTimesCircle,
   FaClock,
-  FaExclamationCircle,
   FaChevronDown,
   FaChevronRight,
   FaAward,
@@ -17,11 +850,19 @@ import {
   FaUnlock,
   FaClipboardList,
   FaHourglassHalf,
+  FaArrowRight,
+  FaInfoCircle,
+  FaQuestionCircle,
+  FaStar,
 } from "react-icons/fa";
+import Loader from "../../common/Loader";
+import Error from "../../common/Error";
+import { useTranslation } from "react-i18next";
 
 const ModuleCertificationStatus = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { data, isLoading, isError, message } = useSelector(
     (state) => state.moduleCertification,
@@ -40,50 +881,59 @@ const ModuleCertificationStatus = () => {
   }, [data]);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-[60vh]">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading certification status…</p>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (isError) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh] text-red-500">
-        <p>{message || "Something went wrong."}</p>
-      </div>
+      <Error message={message || t("moduleCertification.somethingWentWrong")} />
     );
   }
 
   if (!data || !data.data) {
     return (
       <div className="flex justify-center items-center min-h-[60vh] text-gray-500">
-        <p>No module data available.</p>
+        <p>{t("moduleCertification.noData")}</p>
       </div>
     );
   }
 
-  const handleNavigateToTopic = (topicId) => {
-    navigate(`/topics/${topicId}`);
-  };
+  const {
+    module,
+    progress,
+    exam,
+    chapters,
+    program,
+    level,
+    checklist,
+    content,
+    next_learning,
+  } = data.data;
 
-  const handleStartExam = () => {
-    navigate(`/exam/${data.data.module.id}`);
-  };
+  // ---- NAVIGATION HANDLERS ----
+  const handleNavigateToTopic = (topicId) => navigate(`/topics/${topicId}`);
 
-  const handleViewCertificate = (assessmentId) => {
+  // Topic-level quiz start/retry -> /quiz/:assessmentId
+  const handleNavigateToQuiz = (assessmentId) =>
+    navigate(`/quiz/${assessmentId}`);
+
+  // Module-level exam give/retry -> /exam-module/:assessmentId
+  const handleGiveExam = () => navigate(`/exam-module/${exam.assessment.id}`);
+
+  // Certificate view (topic or module) -> /certificate/:assessmentId
+  const handleViewCertificate = (assessmentId) =>
     navigate(`/certificate/${assessmentId}`);
-  };
 
-  const handleContinueLearning = () => {
-    navigate(`/module/${data.data.module.id}`);
+  // "Review Content" -> jump to the topic the learner is currently/next on
+  const handleReviewContent = () => {
+    const currentTopicId = next_learning?.topic?.id;
+    if (currentTopicId) {
+      handleNavigateToTopic(currentTopicId);
+    } else {
+      // fallback: agar next_learning na ho (sab complete ho chuka), module page pe le jao
+      navigate(`/module/${module.id}`);
+    }
   };
-
-  const { module, progress, exam, chapters, program, level, checklist } =
-    data.data;
 
   const allTopics = chapters.flatMap((c) => c.topics);
   const totalTopics = allTopics.length;
@@ -98,6 +948,14 @@ const ModuleCertificationStatus = () => {
   const isExamPassed = exam.status === "passed";
   const canViewCertificate = isModuleCompleted || isExamPassed;
 
+  // Passing score as a percentage of total marks (e.g. 10/15 -> 67%)
+  const passingScorePercentage =
+    exam.assessment.total_marks > 0
+      ? Math.round(
+          (exam.assessment.passing_score / exam.assessment.total_marks) * 100,
+        )
+      : 0;
+
   const toggleChapter = (chapterId) => {
     const newSet = new Set(expandedChapters);
     newSet.has(chapterId) ? newSet.delete(chapterId) : newSet.add(chapterId);
@@ -107,24 +965,24 @@ const ModuleCertificationStatus = () => {
   const getPrimaryAction = () => {
     if (canViewCertificate) {
       return {
-        label: "View Certificate",
-        icon: <FaEye className="w-5 h-5" />,
-        onClick: () => handleViewCertificate(exam.assessment.id),
+        label: t("moduleCertification.actions.viewCertificate"),
+        icon: <FaEye className="w-4 h-4" />,
+        onClick: () => handleViewCertificate(exam.last_attempt?.id),
         variant: "primary",
       };
     }
     if (allTopicsPassed && exam.unlocked) {
       return {
-        label: "Start Certification Exam",
-        icon: <FaPlayCircle className="w-5 h-5" />,
-        onClick: handleStartExam,
+        label: t("moduleCertification.actions.giveExam"),
+        icon: <FaArrowRight className="w-4 h-4" />,
+        onClick: handleGiveExam,
         variant: "primary",
       };
     }
     if (allTopicsPassed && !exam.unlocked) {
       return {
-        label: "Exam Locked",
-        icon: <FaLock className="w-5 h-5" />,
+        label: t("moduleCertification.actions.examLocked"),
+        icon: <FaLock className="w-4 h-4" />,
         onClick: () => {},
         variant: "disabled",
       };
@@ -132,25 +990,25 @@ const ModuleCertificationStatus = () => {
     if (hasFailedTopics) {
       const firstFailed = failedTopics[0];
       return {
-        label: `Retry: ${firstFailed.title}`,
-        icon: <FaBookOpen className="w-5 h-5" />,
-        onClick: () => handleNavigateToTopic(firstFailed.id),
+        label: `${t("moduleCertification.actions.retryQuiz")}: ${firstFailed.title}`,
+        icon: <FaBookOpen className="w-4 h-4" />,
+        onClick: () => handleNavigateToQuiz(firstFailed.assessment.id),
         variant: "warning",
       };
     }
     const firstPending = pendingTopics[0];
     if (firstPending) {
       return {
-        label: `Continue: ${firstPending.title}`,
-        icon: <FaBookOpen className="w-5 h-5" />,
+        label: `${t("moduleCertification.actions.continue")}: ${firstPending.title}`,
+        icon: <FaBookOpen className="w-4 h-4" />,
         onClick: () => handleNavigateToTopic(firstPending.id),
         variant: "secondary",
       };
     }
     return {
-      label: "Continue Learning",
-      icon: <FaBookOpen className="w-5 h-5" />,
-      onClick: handleContinueLearning,
+      label: content?.cta || t("moduleCertification.actions.continueLearning"),
+      icon: <FaBookOpen className="w-4 h-4" />,
+      onClick: handleReviewContent,
       variant: "secondary",
     };
   };
@@ -159,34 +1017,34 @@ const ModuleCertificationStatus = () => {
 
   const buttonStyles = {
     primary:
-      "bg-blue-700 hover:bg-blue-800 text-white shadow-sm hover:shadow-md cursor-pointer",
-    warning: "bg-amber-600 hover:bg-amber-700 text-white cursor-pointer",
+      "bg-blue-500 hover:bg-blue-600 text-white shadow-sm hover:shadow-md cursor-pointer",
+    warning: "bg-blue-500 hover:bg-blue-600 text-white cursor-pointer",
     secondary: "bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer",
-    disabled: "bg-gray-300 text-gray-500 cursor-not-allowed",
+    disabled: "bg-gray-200 text-gray-400 cursor-not-allowed",
   };
 
   const StatusBadge = ({ status }) => {
     const config = {
       passed: {
-        icon: <FaCheckCircle className="w-4 h-4" />,
-        label: "Passed",
-        className: "bg-emerald-50 text-emerald-700 border-emerald-200",
+        icon: <FaCheckCircle className="w-3.5 h-3.5" />,
+        label: t("moduleCertification.status.passed"),
+        className: "bg-teal-50 text-teal-700 border-teal-200",
       },
       failed: {
-        icon: <FaTimesCircle className="w-4 h-4" />,
-        label: "Failed",
+        icon: <FaTimesCircle className="w-3.5 h-3.5" />,
+        label: t("moduleCertification.status.failed"),
         className: "bg-rose-50 text-rose-700 border-rose-200",
       },
       pending: {
-        icon: <FaHourglassHalf className="w-4 h-4" />,
-        label: "Pending",
+        icon: <FaHourglassHalf className="w-3.5 h-3.5" />,
+        label: t("moduleCertification.status.pending"),
         className: "bg-amber-50 text-amber-700 border-amber-200",
       },
     };
     const c = config[status] || config.pending;
     return (
       <span
-        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border ${c.className}`}
+        className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border ${c.className}`}
       >
         {c.icon}
         {c.label}
@@ -194,33 +1052,38 @@ const ModuleCertificationStatus = () => {
     );
   };
 
-  const renderTopicRow = (topic, chapterTitle) => {
+  // Row-level click / action column ka logic status ke hisaab se
+  const renderTopicRow = (topic) => {
     const scoreDisplay = topic.last_attempt
       ? `${topic.last_attempt.score}/${topic.last_attempt.total_score}`
       : "—";
     const percentageDisplay = topic.last_attempt
       ? `${topic.last_attempt.percentage}%`
       : "—";
-    const isClickable =
-      topic.quiz_status === "failed" || topic.quiz_status === "pending";
+
+    const isReady = topic.quiz_status === "pending" && topic.is_unlocked;
+    const isFailed = topic.quiz_status === "failed";
+    const isPassed = topic.quiz_status === "passed";
+    const isLockedPending =
+      topic.quiz_status === "pending" && !topic.is_unlocked;
+
+    // row click -> quiz page (failed ya ready pending ke liye)
+    const isRowClickable = isFailed || isReady;
+    const handleRowClick = () => {
+      if (isFailed || isReady) {
+        handleNavigateToQuiz(topic.assessment.id);
+      }
+    };
 
     return (
       <tr
         key={topic.id}
         className={`border-b border-gray-100 transition-colors ${
-          isClickable ? "cursor-pointer hover:bg-blue-50" : ""
+          isRowClickable ? "cursor-pointer hover:bg-teal-50/50" : ""
         }`}
-        onClick={() => isClickable && handleNavigateToTopic(topic.id)}
+        onClick={handleRowClick}
       >
-        {/* Chapter name – truncate with max-width */}
-        <td
-          className="px-4 py-3 text-sm text-gray-600 max-w-[140px] truncate"
-          title={chapterTitle}
-        >
-          {chapterTitle}
-        </td>
-        {/* Topic name – truncate with max-width */}
-        <td className="px-4 py-3 max-w-[200px]">
+        <td className="px-4 py-3 max-w-[240px]">
           <div className="flex items-center gap-2 truncate" title={topic.title}>
             <span className="text-sm font-medium text-gray-800 truncate">
               {topic.title}
@@ -228,7 +1091,7 @@ const ModuleCertificationStatus = () => {
             {!topic.is_unlocked && (
               <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full flex items-center gap-1 flex-shrink-0">
                 <FaLock className="w-3 h-3" />
-                Locked
+                {t("moduleCertification.topic.locked")}
               </span>
             )}
           </div>
@@ -248,170 +1111,493 @@ const ModuleCertificationStatus = () => {
             : "—"}
         </td>
         <td className="px-4 py-3 text-center">
-          {topic.quiz_status === "passed" && (
+          {isPassed && (
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                handleViewCertificate(topic.assessment.id);
+                handleViewCertificate(topic.last_attempt.id);
               }}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-blue-700 bg-blue-50 hover:bg-blue-100 transition whitespace-nowrap cursor-pointer"
-              title="View Certificate"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-teal-700 bg-teal-50 hover:bg-teal-100 transition whitespace-nowrap cursor-pointer"
+              title={t("moduleCertification.actions.viewCertificate")}
             >
               <FaEye className="w-3.5 h-3.5" />
-              Certificate
+              {t("moduleCertification.actions.certificate")}
             </button>
           )}
-          {topic.quiz_status !== "passed" && (
-            <span className="text-gray-300 text-xs">—</span>
+
+          {isFailed && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNavigateToQuiz(topic.assessment.id);
+              }}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 transition whitespace-nowrap cursor-pointer"
+              title={t("moduleCertification.actions.retryQuiz")}
+            >
+              <FaPlayCircle className="w-3.5 h-3.5" />
+              {t("moduleCertification.actions.retryQuiz")}
+            </button>
+          )}
+
+          {isReady && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNavigateToQuiz(topic.assessment.id);
+              }}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 transition whitespace-nowrap cursor-pointer"
+              title={t("moduleCertification.actions.startQuiz")}
+            >
+              <FaPlayCircle className="w-3.5 h-3.5" />
+              {t("moduleCertification.actions.startQuiz")}
+            </button>
+          )}
+
+          {isLockedPending && (
+            <button
+              disabled
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-gray-400 bg-gray-100 cursor-not-allowed whitespace-nowrap"
+              title={t("moduleCertification.actions.lockedTooltip")}
+            >
+              <FaLock className="w-3.5 h-3.5" />
+              {t("moduleCertification.actions.startQuiz")}
+            </button>
           )}
         </td>
       </tr>
     );
   };
 
+  // Pill / heading copy driven by API "content" block, falling back to computed state
+  const pillLabel =
+    content?.heading ||
+    (canViewCertificate
+      ? t("moduleCertification.pills.milestoneReached")
+      : allTopicsPassed
+        ? t("moduleCertification.pills.examReady")
+        : t("moduleCertification.pills.learningInProgress"));
+  const heroTitle =
+    content?.title ||
+    (canViewCertificate
+      ? t("moduleCertification.hero.certificationComplete")
+      : t("moduleCertification.hero.completeModule"));
+  const heroDescription =
+    content?.description || t("moduleCertification.hero.description");
+  const footerNote = content?.footer || t("moduleCertification.footerNote");
+
   return (
-    <div className="min-h-screen bg-gray-100 font-sans antialiased">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* CARD HEADER */}
-        <div className="bg-white rounded-2xl shadow-md border border-gray-200/80 p-6 sm:p-8 mb-8 transition hover:shadow-lg">
-          <div className="flex flex-col md:flex-row md:items-center gap-6">
-            <div className="flex items-center gap-6 flex-1 min-w-0">
-              <div className="relative w-20 h-20 flex-shrink-0">
-                <svg className="w-20 h-20 -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="42"
-                    stroke="#e5e7eb"
-                    strokeWidth="8"
-                    fill="none"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="42"
-                    stroke="#3b82f6"
-                    strokeWidth="8"
-                    fill="none"
-                    strokeDasharray={`${(progress.percentage / 100) * 264} 264`}
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center text-xl font-bold text-blue-600">
-                  {Math.round(progress.percentage)}%
+    <div className="min-h-screen bg-slate-50 font-sans antialiased">
+      <style>{`
+        .thin-scroll::-webkit-scrollbar {
+          height: 3px;
+        }
+        .thin-scroll::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .thin-scroll::-webkit-scrollbar-thumb {
+          background-color: #d1d5db;
+          border-radius: 9999px;
+        }
+        .thin-scroll::-webkit-scrollbar-thumb:hover {
+          background-color: #9ca3af;
+        }
+        .thin-scroll {
+          scrollbar-width: thin;
+          scrollbar-color: #d1d5db transparent;
+        }
+      `}</style>
+      <div className="lg:p-4">
+        {/* PILL + HERO HEADING */}
+        <div className="mb-8">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase bg-teal-50 text-teal-700 border border-teal-100">
+            <FaAward className="w-3 h-3" />
+            {pillLabel}
+          </span>
+          <h1 className="mt-3 text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+            {heroTitle}
+          </h1>
+          <p className="mt-2 text-sm sm:text-base text-gray-500 max-w-2xl">
+            {heroDescription}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* LEFT COLUMN */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
+            {/* MODULE CARD */}
+            <div className="relative bg-white rounded-2xl shadow-sm border border-gray-200/80 pl-6 pr-6 py-6 overflow-hidden">
+              <span className="absolute left-0 top-0 bottom-0 w-1.5 bg-teal-500 rounded-l-2xl" />
+              <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                <div className="flex items-center gap-5 flex-1 min-w-0">
+                  <div className="relative w-16 h-16 flex-shrink-0">
+                    <svg className="w-16 h-16 -rotate-90" viewBox="0 0 100 100">
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        stroke="#e5e7eb"
+                        strokeWidth="9"
+                        fill="none"
+                      />
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        stroke="#14b8a6"
+                        strokeWidth="9"
+                        fill="none"
+                        strokeDasharray={`${(progress.percentage / 100) * 264} 264`}
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center text-base font-bold text-teal-600">
+                      {Math.round(progress.percentage)}%
+                    </div>
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[11px] font-semibold tracking-wide uppercase text-gray-400">
+                      {t("moduleCertification.moduleCard.currentModule")}
+                    </p>
+                    <h2
+                      className="text-lg sm:text-xl font-bold text-gray-900 leading-snug truncate"
+                      title={module.title}
+                    >
+                      {module.title}
+                    </h2>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
+                      <span className="flex items-center gap-1.5 whitespace-nowrap">
+                        <FaClock className="text-teal-500" />
+                        {module.estimated_duration || "—"}{" "}
+                        {t("moduleCertification.moduleCard.studyTime")}
+                      </span>
+                      <span className="flex items-center gap-1.5 whitespace-nowrap">
+                        <FaBookOpen className="text-teal-500" />
+                        {chapters.length}{" "}
+                        {t("moduleCertification.moduleCard.lessons")}
+                      </span>
+                    </div>
+                  </div>
                 </div>
+
+                <button
+                  onClick={handleReviewContent}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-blue-200 text-blue-700 hover:bg-blue-50 font-semibold rounded-lg transition text-sm whitespace-nowrap cursor-pointer flex-shrink-0"
+                >
+                  <FaArrowRight className="w-3.5 h-3.5" />
+                  {t("moduleCertification.actions.reviewContent")}
+                </button>
               </div>
 
-              <div className="space-y-1 min-w-0 flex-1">
-                <h2
-                  className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight truncate"
-                  title={module.title}
-                >
-                  {module.title}
-                </h2>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-                  <span className="flex items-center gap-1.5 whitespace-nowrap">
-                    <FaClock className="text-blue-500" />
-                    {module.estimated_duration || "12h"} Study Time
-                  </span>
-                  <span className="flex items-center gap-1.5 whitespace-nowrap">
-                    <FaBookOpen className="text-blue-500" />
-                    {chapters.length} Lessons
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700 whitespace-nowrap">
-                    <FaAward className="w-3 h-3" />
-                    {program.title} · {level.title}
-                  </span>
+              {/* Module description */}
+              {module.description && (
+                <p className="mt-4 text-sm text-gray-500 leading-relaxed">
+                  {module.description}
+                </p>
+              )}
+
+              {/* Extra stats row: program / level / topics / remaining — fills out the card */}
+              <div className="mt-5 pt-5 border-t border-gray-100 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center flex-shrink-0">
+                    <FaAward className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p
+                      className="text-xs font-semibold text-gray-800 truncate"
+                      title={program.title}
+                    >
+                      {program.title}
+                    </p>
+                    <p className="text-[11px] text-gray-400">
+                      {t("moduleCertification.moduleCard.program")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                    <FaStar className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p
+                      className="text-xs font-semibold text-gray-800 truncate"
+                      title={level.title}
+                    >
+                      {level.title}
+                    </p>
+                    <p className="text-[11px] text-gray-400">
+                      {t("moduleCertification.moduleCard.level")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+                    <FaClipboardList className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-gray-800 truncate">
+                      {progress.completed_topics}/{progress.total_topics}{" "}
+                      {t("moduleCertification.moduleCard.topics")}
+                    </p>
+                    <p className="text-[11px] text-gray-400">
+                      {t("moduleCertification.moduleCard.completed")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-500 flex items-center justify-center flex-shrink-0">
+                    <FaHourglassHalf className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold text-gray-800 truncate">
+                      {progress.remaining_topics}{" "}
+                      {t("moduleCertification.moduleCard.remaining")}
+                    </p>
+                    <p className="text-[11px] text-gray-400">
+                      {t("moduleCertification.moduleCard.topicsLeft")}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex-shrink-0">
-              <button
-                onClick={() => navigate(`/module/${module.id}`)}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition shadow-sm hover:shadow-md text-sm whitespace-nowrap cursor-pointer"
+            {/* EXAM READINESS CHECKLIST */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6 flex-1 flex flex-col">
+              <div className="flex items-center gap-2 mb-4">
+                <FaClipboardList className="text-teal-600 w-4 h-4" />
+                <h3 className="font-bold text-gray-900">
+                  {t("moduleCertification.checklist.title")}
+                </h3>
+              </div>
+              <div className="space-y-3">
+                {checklist.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between gap-3 bg-gray-50 rounded-xl px-4 py-3"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div
+                        className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${
+                          item.completed
+                            ? "bg-teal-500 text-white"
+                            : "bg-gray-200 text-gray-400"
+                        }`}
+                      >
+                        <FaCheckCircle className="w-3.5 h-3.5" />
+                      </div>
+                      <span
+                        className="text-sm font-semibold text-gray-800 truncate"
+                        title={item.title}
+                      >
+                        {item.title}
+                      </span>
+                    </div>
+                    <span className="text-xs text-gray-500 whitespace-nowrap flex-shrink-0">
+                      {item.completed_count !== undefined &&
+                        `${item.completed_count}/${item.total_count} ${t("moduleCertification.checklist.topics")}`}
+                      {item.remaining !== undefined &&
+                        `${item.remaining} ${t("moduleCertification.checklist.remaining")}`}
+                      {item.unlocked !== undefined &&
+                        (item.unlocked ? (
+                          <span className="inline-flex items-center gap-1 text-teal-600">
+                            <FaUnlock className="w-3 h-3" />{" "}
+                            {t("moduleCertification.checklist.unlocked")}
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 text-amber-600">
+                            <FaLock className="w-3 h-3" />{" "}
+                            {t("moduleCertification.checklist.locked")}
+                          </span>
+                        ))}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA row: Retry / Start / Give Exam / View Certificate — sab primaryAction se driven */}
+              <div className="mt-6 flex-1 flex flex-col items-center justify-center text-center gap-4">
+                <button
+                  onClick={primaryAction.onClick}
+                  disabled={primaryAction.variant === "disabled"}
+                  className={`inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
+                    buttonStyles[primaryAction.variant] ||
+                    buttonStyles.secondary
+                  }`}
+                >
+                  {primaryAction.icon}
+                  {primaryAction.label}
+                </button>
+                <div className="w-full pt-4 border-t border-gray-100">
+                  <p className="text-xs text-gray-400 leading-snug whitespace-nowrap">
+                    {footerNote}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="flex flex-col gap-6">
+            {/* WHAT TO EXPECT */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6">
+              <h3 className="text-xs font-bold tracking-wide uppercase text-teal-600 mb-4">
+                {t("moduleCertification.whatToExpect.title")}
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                    <FaClock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">
+                      {exam.assessment.duration}{" "}
+                      {t("moduleCertification.whatToExpect.minutes")}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {t("moduleCertification.whatToExpect.timeDescription")}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                    <FaQuestionCircle className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">
+                      {exam.assessment.total_marks}{" "}
+                      {t("moduleCertification.whatToExpect.questions")}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {t(
+                        "moduleCertification.whatToExpect.questionDescription",
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center flex-shrink-0">
+                    <FaStar className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-800">
+                      {exam.assessment.passing_score}/
+                      {exam.assessment.total_marks}{" "}
+                      {t("moduleCertification.whatToExpect.passingScore")}
+                      <span className="text-gray-400 font-normal ml-1">
+                        ({passingScorePercentage}%)
+                      </span>
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {t("moduleCertification.whatToExpect.requiredFor")}{" "}
+                      {program.title}{" "}
+                      {t("moduleCertification.whatToExpect.certification")}.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 flex gap-2.5 bg-blue-50 text-blue-800 text-xs leading-snug rounded-xl px-4 py-3">
+                <FaInfoCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                <p>
+                  {exam.reason || t("moduleCertification.whatToExpect.reason")}
+                </p>
+              </div>
+
+              {/* Sab topics complete + exam unlocked -> seedha Give Exam CTA yahan bhi */}
+              {allTopicsPassed && exam.unlocked && !canViewCertificate && (
+                <button
+                  onClick={handleGiveExam}
+                  className="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white transition cursor-pointer"
+                >
+                  <FaArrowRight className="w-3.5 h-3.5" />
+                  {t("moduleCertification.actions.giveExam")}
+                </button>
+              )}
+            </div>
+
+            {/* PENDING / EARNED CREDENTIAL CARD */}
+            <div className="bg-gray-900 rounded-2xl p-6 text-white overflow-hidden flex-1 flex flex-col">
+              <span
+                className={`text-[11px] font-semibold tracking-wide uppercase ${
+                  canViewCertificate ? "text-teal-400" : "text-amber-400"
+                }`}
               >
-                <FaBookOpen className="w-4 h-4" />
-                Review Content
-              </button>
+                {canViewCertificate
+                  ? t("moduleCertification.credential.earned")
+                  : t("moduleCertification.credential.pending")}
+              </span>
+
+              <div className="flex items-center gap-3 mt-3">
+                <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0">
+                  <FaAward
+                    className={`w-5 h-5 ${
+                      canViewCertificate ? "text-teal-400" : "text-gray-400"
+                    }`}
+                  />
+                </div>
+                <div className="min-w-0">
+                  <p
+                    className="font-bold leading-tight truncate"
+                    title={program.title}
+                  >
+                    {program.title}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {level.title}{" "}
+                    {t("moduleCertification.credential.certification")}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 relative rounded-xl bg-gray-800/70 border border-dashed border-gray-700 flex-1 min-h-[8rem] overflow-hidden flex items-center justify-center">
+                {module.thumbnail && (
+                  <img
+                    src={module.thumbnail}
+                    alt={module.title}
+                    className={`absolute inset-0 w-full h-full object-cover ${
+                      canViewCertificate
+                        ? ""
+                        : "grayscale opacity-25 blur-[1px]"
+                    }`}
+                  />
+                )}
+                {canViewCertificate ? (
+                  <FaAward className="relative w-10 h-10 text-teal-400 drop-shadow" />
+                ) : (
+                  <div className="relative w-10 h-10 rounded-full bg-gray-900/80 border border-gray-700 flex items-center justify-center">
+                    <FaLock className="w-4 h-4 text-gray-400" />
+                  </div>
+                )}
+              </div>
+
+              <p className="mt-3 text-[11px] text-gray-500 text-center">
+                {canViewCertificate
+                  ? t("moduleCertification.credential.badgeActive")
+                  : t("moduleCertification.credential.badgeInactive")}
+              </p>
             </div>
           </div>
         </div>
 
-        {/* CHECKLIST CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          {checklist.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex items-center gap-4 hover:shadow-md transition-shadow min-w-0"
-            >
-              <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  item.completed
-                    ? "bg-emerald-100 text-emerald-600"
-                    : "bg-gray-100 text-gray-400"
-                }`}
-              >
-                {item.completed ? (
-                  <FaCheckCircle className="w-5 h-5" />
-                ) : (
-                  <FaHourglassHalf className="w-5 h-5" />
-                )}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p
-                  className="text-sm font-medium text-gray-800 truncate"
-                  title={item.title}
-                >
-                  {item.title}
-                </p>
-                {item.completed_count !== undefined && (
-                  <p className="text-xs text-gray-500">
-                    {item.completed_count} / {item.total_count}
-                  </p>
-                )}
-                {item.remaining !== undefined && (
-                  <p className="text-xs text-gray-500">
-                    {item.remaining} remaining
-                  </p>
-                )}
-                {item.unlocked !== undefined && (
-                  <p className="text-xs text-gray-500 flex items-center gap-1">
-                    {item.unlocked ? (
-                      <>
-                        <FaUnlock className="text-emerald-500" /> Unlocked
-                      </>
-                    ) : (
-                      <>
-                        <FaLock className="text-amber-500" /> Locked
-                      </>
-                    )}
-                  </p>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CHAPTER / TOPIC TABLE */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200 bg-gray-50/80 flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-              <FaClipboardList className="text-blue-500" />
-              <span>Chapter & Topic Progress</span>
+        {/* CHAPTER / TOPIC TABLE — full width, own row */}
+        <div className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden">
+          <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/60 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-sm font-bold text-gray-800">
+              <FaClipboardList className="text-teal-600" />
+              <span>{t("moduleCertification.table.title")}</span>
             </div>
             <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
               <span className="flex items-center gap-1 whitespace-nowrap">
-                <FaCheckCircle className="text-emerald-500" /> Passed:{" "}
-                {passedTopics.length}
+                <FaCheckCircle className="text-teal-500" />{" "}
+                {t("moduleCertification.table.passed")}: {passedTopics.length}
               </span>
               <span className="flex items-center gap-1 whitespace-nowrap">
-                <FaTimesCircle className="text-rose-500" /> Failed:{" "}
-                {failedTopics.length}
+                <FaTimesCircle className="text-rose-500" />{" "}
+                {t("moduleCertification.table.failed")}: {failedTopics.length}
               </span>
               <span className="flex items-center gap-1 whitespace-nowrap">
-                <FaHourglassHalf className="text-amber-500" /> Pending:{" "}
-                {pendingTopics.length}
+                <FaHourglassHalf className="text-amber-500" />{" "}
+                {t("moduleCertification.table.pending")}: {pendingTopics.length}
               </span>
             </div>
           </div>
@@ -425,7 +1611,6 @@ const ModuleCertificationStatus = () => {
 
               return (
                 <div key={chapter.id} className="transition-all">
-                  {/* Chapter accordion header – cursor-pointer */}
                   <div
                     className="px-6 py-3 bg-white hover:bg-gray-50 cursor-pointer flex flex-wrap items-center justify-between gap-2 transition-colors"
                     onClick={() => toggleChapter(chapter.id)}
@@ -444,15 +1629,17 @@ const ModuleCertificationStatus = () => {
                       </span>
                       <span className="text-xs text-gray-400 whitespace-nowrap flex-shrink-0">
                         ({chapter.progress.completed_topics}/
-                        {chapter.progress.total_topics} topics)
+                        {chapter.progress.total_topics}{" "}
+                        {t("moduleCertification.table.topics")})
                       </span>
                     </div>
                     <div className="flex items-center gap-4 flex-shrink-0">
                       <span className="text-xs text-gray-500 whitespace-nowrap">
-                        {Math.round(chapter.progress.percentage)}% complete
+                        {Math.round(chapter.progress.percentage)}%{" "}
+                        {t("moduleCertification.table.complete")}
                       </span>
                       {chapterPassed ? (
-                        <FaCheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
+                        <FaCheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
                       ) : (
                         <FaHourglassHalf className="w-5 h-5 text-amber-400 flex-shrink-0" />
                       )}
@@ -460,37 +1647,32 @@ const ModuleCertificationStatus = () => {
                   </div>
 
                   {isExpanded && (
-                    <div className="overflow-x-auto">
-                      <table className="w-full text-sm">
+                    <div className="overflow-x-auto thin-scroll">
+                      <table className="w-full text-sm table-fixed min-w-[640px]">
                         <thead className="bg-gray-50/70 text-xs uppercase text-gray-500">
                           <tr>
-                            <th className="px-4 py-2 text-left font-medium">
-                              Chapter
+                            <th className="px-4 py-2 text-left font-medium w-[34%]">
+                              {t("moduleCertification.table.topic")}
                             </th>
-                            <th className="px-4 py-2 text-left font-medium">
-                              Topic
+                            <th className="px-4 py-2 text-left font-medium w-[14%]">
+                              {t("moduleCertification.table.status")}
                             </th>
-                            <th className="px-4 py-2 text-left font-medium">
-                              Status
+                            <th className="px-4 py-2 text-left font-medium w-[12%]">
+                              {t("moduleCertification.table.score")}
                             </th>
-                            <th className="px-4 py-2 text-left font-medium">
-                              Score
-                            </th>
-                            <th className="px-4 py-2 text-left font-medium">
+                            <th className="px-4 py-2 text-left font-medium w-[8%]">
                               %
                             </th>
-                            <th className="px-4 py-2 text-left font-medium">
-                              Attempted
+                            <th className="px-4 py-2 text-left font-medium w-[16%]">
+                              {t("moduleCertification.table.attempted")}
                             </th>
-                            <th className="px-4 py-2 text-center font-medium">
-                              Certificate
+                            <th className="px-4 py-2 text-center font-medium w-[16%]">
+                              {t("moduleCertification.table.action")}
                             </th>
                           </tr>
                         </thead>
                         <tbody>
-                          {chapter.topics.map((topic) =>
-                            renderTopicRow(topic, chapter.title),
-                          )}
+                          {chapter.topics.map((topic) => renderTopicRow(topic))}
                         </tbody>
                       </table>
                     </div>
@@ -498,72 +1680,6 @@ const ModuleCertificationStatus = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
-
-        {/* FOOTER */}
-        <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200 shadow-sm flex flex-wrap items-center justify-between gap-3 text-sm text-gray-600">
-          <div className="flex flex-wrap items-center gap-4">
-            <span className="font-medium text-gray-700">
-              Certification Exam
-            </span>
-            <span className="whitespace-nowrap">
-              {exam.assessment.total_marks} questions
-            </span>
-            <span className="flex items-center gap-1 whitespace-nowrap">
-              <FaClock className="text-gray-400" /> {exam.assessment.duration}{" "}
-              min
-            </span>
-            <span className="text-amber-600 font-medium whitespace-nowrap">
-              Passing: {exam.assessment.passing_score}%
-            </span>
-            <span className="flex items-center gap-1 whitespace-nowrap">
-              {exam.unlocked ? (
-                <>
-                  <FaUnlock className="text-emerald-500" />
-                  <span className="text-emerald-600">Unlocked</span>
-                </>
-              ) : (
-                <>
-                  <FaLock className="text-amber-500" />
-                  <span className="text-amber-600">Locked</span>
-                </>
-              )}
-            </span>
-          </div>
-          <div className="flex flex-wrap items-center gap-4">
-            {exam.last_attempt && (
-              <div className="flex items-center gap-2 whitespace-nowrap">
-                <span className="text-gray-400">Last attempt:</span>
-                <span
-                  className={`font-semibold flex items-center gap-1 ${
-                    exam.last_attempt.status === "passed"
-                      ? "text-emerald-600"
-                      : "text-rose-600"
-                  }`}
-                >
-                  {exam.last_attempt.status === "passed" ? (
-                    <FaCheckCircle className="w-4 h-4" />
-                  ) : (
-                    <FaTimesCircle className="w-4 h-4" />
-                  )}
-                  {exam.last_attempt.status === "passed" ? "Passed" : "Failed"}
-                </span>
-                <span className="text-gray-400">
-                  ({exam.last_attempt.score}/{exam.last_attempt.total_score})
-                </span>
-              </div>
-            )}
-            <button
-              onClick={primaryAction.onClick}
-              className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold transition-all whitespace-nowrap ${
-                buttonStyles[primaryAction.variant] || buttonStyles.secondary
-              }`}
-              disabled={primaryAction.variant === "disabled"}
-            >
-              {primaryAction.icon}
-              {primaryAction.label}
-            </button>
           </div>
         </div>
       </div>

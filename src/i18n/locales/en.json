@@ -259,8 +259,8 @@
       "inProgress": "In Progress",
       "readingProgress": "Reading Progress",
       "contentComplete": "All required content completed.",
-      "contentRemaining": "Complete {count} more item(s) to unlock the assessment.",
-      "failedMessage": "Last score: {percent}%. Try again.",
+      "contentRemaining": "Complete {{count}} more item(s) to unlock the assessment.",
+      "failedMessage": "Last score: {{percent}}%. Try again.",
       "readyMessage": "Quiz is ready to start.",
       "passedMessage": "Assessment passed successfully.",
       "lastAttempt": "Last Attempt:",
@@ -323,7 +323,8 @@
       "overallPerformance": "Overall Performance",
       "topicsCompleted": "Topics Completed",
       "complete": "complete",
-      "analyzeButton": "Analyze your progress"
+      "analyzeButton": "Analyze your progress",
+      "growthInside": "Growth Insight"
     }
   },
 
@@ -333,7 +334,9 @@
       "myLevels": "My Levels",
       "analytics": "Analytics",
       "assessment": "Assessment",
-      "inbox": "Inbox"
+      "inbox": "Inbox",
+      "certificationStatus": "Certification",
+      "contactUs": "Contact Us"
     },
     "reports": {
       "label": "Reports",
@@ -407,6 +410,11 @@
 
       "certification": {
         "title": "Certification",
+        "description": "View certificates and assessment results"
+      },
+
+      "certificate": {
+        "title": "Certificate",
         "description": "View certificates and assessment results"
       }
     }
@@ -850,7 +858,8 @@
     "navigation": {
       "previous": "Previous",
       "next": "Next",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "syncing": "Checking quiz status..."
     },
     "quiz": {
       "start": "Start Quiz",
@@ -1391,37 +1400,162 @@
     }
   },
 
+  "moduleCertification": {
+    "somethingWentWrong": "Something went wrong.",
+    "noData": "No module data available.",
+    "status": {
+      "passed": "Passed",
+      "failed": "Failed",
+      "pending": "Pending"
+    },
+    "topic": {
+      "locked": "Locked"
+    },
+    "actions": {
+      "viewCertificate": "View Certificate",
+      "giveExam": "Give Exam",
+      "examLocked": "Exam Locked",
+      "retryQuiz": "Retry Quiz",
+      "continue": "Continue",
+      "continueLearning": "Continue Learning",
+      "certificate": "Certificate",
+      "startQuiz": "Start Quiz",
+      "lockedTooltip": "Complete previous topics to unlock",
+      "reviewContent": "Review Content"
+    },
+    "pills": {
+      "milestoneReached": "Milestone Reached",
+      "examReady": "Exam Ready",
+      "learningInProgress": "Learning In Progress"
+    },
+    "hero": {
+      "certificationComplete": "Certification Complete",
+      "completeModule": "Complete Your Module to Unlock Certification",
+      "description": "Continue studying the remaining topics and pass every topic quiz to unlock your certification exam."
+    },
+    "footerNote": "Complete all required topics and quizzes to unlock the certification exam.",
+    "moduleCard": {
+      "currentModule": "Current Module",
+      "studyTime": "Study Time",
+      "lessons": "Lessons",
+      "program": "Program",
+      "level": "Level",
+      "topics": "Topics",
+      "completed": "Completed",
+      "remaining": "Remaining",
+      "topicsLeft": "Topics Left"
+    },
+    "checklist": {
+      "title": "Exam Readiness Checklist",
+      "topics": "Topics",
+      "remaining": "remaining",
+      "unlocked": "Unlocked",
+      "locked": "Locked"
+    },
+    "whatToExpect": {
+      "title": "What to Expect",
+      "minutes": "Minutes",
+      "timeDescription": "Total time allotted for completion.",
+      "questions": "Questions",
+      "questionDescription": "Multiple choice and clinical scenarios.",
+      "passingScore": "Passing Score",
+      "requiredFor": "Required for",
+      "certification": "certification",
+      "reason": "Passing the exam grants immediate access to your digital certificate."
+    },
+    "credential": {
+      "earned": "Credential Earned",
+      "pending": "Pending Credential",
+      "certification": "Certification",
+      "badgeActive": "Your badge is active.",
+      "badgeInactive": "Finish the exam to activate your badge."
+    },
+    "table": {
+      "title": "Chapter & Topic Progress",
+      "passed": "Passed",
+      "failed": "Failed",
+      "pending": "Pending",
+      "topics": "topics",
+      "complete": "complete",
+      "topic": "Topic",
+      "status": "Status",
+      "score": "Score",
+      "attempted": "Attempted",
+      "action": "Action"
+    }
+  },
+
   "certificate": {
-    "pageTitle": "Certificate of Achievement",
-    "downloadButton": "Download Certificate",
-    "ofAchievement": "OF ACHIEVEMENT",
-    "presentedTo": "This certificate is proudly presented to",
-    "recipientName": "Recipient Name",
-    "employeeId": "Employee ID",
-    "achievementScore": "Achievement Score",
-    "questions": "Questions",
-    "passed": "Passed",
-    "completed": "Completed",
-    "finalStatus": "Final Status",
-    "passingScore": "Passing Score",
-    "timeTaken": "Time Taken",
-    "attempt": "Attempt",
-    "assessmentDetails": "Assessment Details",
-    "assessmentDate": "Assessment Date",
-    "questionsAttempted": "Questions Attempted",
-    "correctAnswers": "Correct Answers",
-    "correct": "correct",
-    "courseType": "Course Type",
-    "signature": "Signature",
-    "authorizedSignatory": "Authorized Signatory",
-    "dateOfIssue": "Date of Issue",
-    "certificateId": "Certificate ID",
-    "digitallyVerified": "Digitally Verified Certificate",
-    "whatsapp": "WhatsApp",
-    "facebook": "Facebook",
-    "linkedin": "LinkedIn",
-    "certification": "Certification",
-    "view-certificate": "View Certificate"
+    "breadcrumb": {
+      "certification": "Certification",
+      "view": "View Certificate"
+    },
+    "banner": {
+      "congratulations": "Congratulations,",
+      "recipient": "Recipient",
+      "examPassed": "You've successfully passed the exam for",
+      "quizMastered": "You've successfully mastered the quiz on",
+      "topic": "this topic"
+    },
+    "buttons": {
+      "shareLinkedin": "Share to LinkedIn",
+      "downloadPdf": "Download PDF",
+      "certificateId": "Certificate:"
+    },
+    "types": {
+      "moduleExam": "Module Exam Certificate",
+      "quiz": "Quiz Certificate",
+      "exam": "Exam"
+    },
+    "certificate": {
+      "examPassedText": "for successfully passing the module exam",
+      "quizCompletedText": "for successfully completing the topic quiz",
+      "presentedTo": "Presented To",
+      "recipientName": "Recipient Name",
+      "forModule": "for the module",
+      "forTopic": "for the topic",
+      "id": "ID",
+      "signature": "Signature",
+      "authorizedSignatory": "Authorized Signatory",
+      "dateOfIssue": "Date of Issue",
+      "digitallyVerified": "Digitally Verified"
+    },
+    "metrics": {
+      "score": "Score",
+      "status": "Status",
+      "time": "Time",
+      "passed": "Passed",
+      "completed": "Completed"
+    },
+    "details": {
+      "recipient": "Recipient",
+      "name": "Name",
+      "employeeId": "Employee ID",
+      "email": "Email",
+      "result": "Result",
+      "score": "Score",
+      "percentage": "Percentage",
+      "passing": "Passing",
+      "status": "Status",
+      "passed": "Passed",
+      "questions": "Questions",
+      "total": "Total",
+      "attempted": "Attempted",
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "skipped": "Skipped",
+      "timeAndAttempt": "Time & Attempt",
+      "started": "Started",
+      "submitted": "Submitted",
+      "timeTaken": "Time Taken",
+      "attemptNumber": "Attempt #",
+      "courseContext": "Course Context",
+      "program": "Program",
+      "level": "Level",
+      "module": "Module",
+      "chapter": "Chapter",
+      "topic": "Topic"
+    }
   },
 
   "auditLogs": {
