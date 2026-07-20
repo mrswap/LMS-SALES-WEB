@@ -335,14 +335,14 @@
       "analytics": "ਵਿਸ਼ਲੇਸ਼ਣ",
       "assessment": "ਮੁਲਾਂਕਣ",
       "inbox": "ਇਨਬਾਕਸ",
-      "certificationStatus": "ਸਰਟੀਫਿਕੇਸ਼ਨ",
+      "certificationStatus": "ਪ੍ਰਮਾਣਨ",
       "contactUs": "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ"
     },
     "reports": {
       "label": "ਰਿਪੋਰਟਾਂ",
       "auditLogs": "ਆਡਿਟ ਲੌਗ",
       "userProgress": "ਉਪਭੋਗਤਾ ਪ੍ਰਗਤੀ",
-      "certification": "ਸਰਟੀਫਿਕੇਸ਼ਨ"
+      "certificate": "ਪ੍ਰਮਾਣ ਪੱਤਰ"
     },
     "logout": "ਲੌਗ ਆਉਟ"
   },

@@ -1,20 +1,5 @@
 @import "tailwindcss";
 
-/* @theme {
-  --color-primary: #1E3A8A;
-  --color-secondary: #2563EB;
-  --color-accent: #14B8A6;
-
-  --color-background: #F1F5F9;
-
-  --color-textPrimary: #0F172A;
-  --color-textSecondary: #64748B;
-
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-} */
-
 @theme {
   --color-primary: #1E3A8A;
   --color-secondary: #2563EB;
@@ -40,12 +25,24 @@
 
   --color-teal-50: #f0fdfa;
   --color-teal-100: #ccfbf1;
+  --color-teal-400: #2dd4bf;
+  /* <-- YEH LINE NAYI ADD KI HAI */
   --color-teal-500: #14b8a6;
   --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  /* <-- yeh bhi add ki, cert box me use hoti hai */
+  --color-teal-800: #115e59;
+  /* <-- safety ke liye */
+  --color-teal-900: #134e4a;
+  /* <-- safety ke liye */
 
   --color-green-600: #16a34a;
   --color-green-700: #15803d;
 
+  --color-blue-500: #3b82f6;
+  /* <-- add ki, cert box me use hoti hai */
+  --color-blue-600: #2563eb;
+  /* <-- add ki */
   --color-blue-700: #1d4ed8;
   --color-blue-800: #1e40af;
   --color-blue-900: #1e3a8a;
@@ -56,6 +53,7 @@
   --color-gray-600: #4b5563;
   --color-gray-800: #1f2937;
 }
+
 
 
 

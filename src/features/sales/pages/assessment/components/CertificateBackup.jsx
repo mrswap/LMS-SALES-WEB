@@ -35,56 +35,6 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useTranslation } from "react-i18next";
 
-// Backend CORS headers nahi bhejta, isliye images ko ek CORS-friendly
-// proxy ke through load karte hain sirf html2canvas capture ke liye.
-const toCorsProxyUrl = (url) => {
-  if (!url) return url;
-  try {
-    const clean = url.replace(/^https?:\/\//, "");
-    return `https://images.weserv.nl/?url=${encodeURIComponent(clean)}`;
-  } catch {
-    return url;
-  }
-};
-
-// Reusable icon + text row. Fixes the icon/text baseline-misalignment that
-// showed up specifically in the html2canvas-rendered PDF (SVG icons default
-// to baseline alignment inside inline-flex during capture, even though
-// items-center looks fine in the live browser preview).
-const IconLabel = ({
-  icon: Icon,
-  children,
-  className = "",
-  iconClassName = "",
-  size = 12,
-}) => (
-  <span className={`inline-flex items-center ${className}`} style={{ gap: 6 }}>
-    {/* Fixed-px box around the icon: this is what actually fixes cross-icon
-        misalignment. Different react-icons SVGs (FaIdCard vs FaEnvelope etc.)
-        have different internal viewBox proportions, so "vertical-align:middle"
-        on the raw <svg> alone still leaves a few px of drift between icons.
-        Forcing every icon into an identical width/height box, centered with
-        flex, removes that drift regardless of the icon's own metrics. */}
-    <span
-      className={iconClassName}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: size,
-        height: size,
-        flexShrink: 0,
-      }}
-    >
-      <Icon size={size} />
-    </span>
-    {/* Text line-height locked to the same px value as the icon box, instead
-        of Tailwind's leading-none (which html2canvas sometimes resolves
-        differently at 2x scale than the live browser does). */}
-    <span style={{ lineHeight: `${size}px` }}>{children}</span>
-  </span>
-);
-
 const Certificate = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -108,48 +58,39 @@ const Certificate = () => {
     if (!element) return;
 
     try {
-      await document.fonts.ready;
-
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
+        allowTaint: true,
         backgroundColor: "#ffffff",
         logging: false,
         onclone: (clonedDoc) => {
           const style = clonedDoc.createElement("style");
           style.innerHTML = `
-          .text-blue-800, .text-blue-900 { color: #1e3a8a !important; }
-          .text-blue-700 { color: #1d4ed8 !important; }
-          .text-blue-600 { color: #2563eb !important; }
-          .text-blue-500 { color: #3b82f6 !important; }
-          .bg-blue-700 { background-color: #1d4ed8 !important; }
-          .bg-blue-600 { background-color: #2563eb !important; }
-          .bg-blue-500 { background-color: #3b82f6 !important; }
-          .bg-blue-200 { background-color: #bfdbfe !important; }
-          .bg-blue-50  { background-color: #eff6ff !important; }
-          .border-blue-700 { border-color: #1d4ed8 !important; }
-          .border-blue-600 { border-color: #2563eb !important; }
-          .border-blue-500 { border-color: #3b82f6 !important; }
-          .border-blue-300 { border-color: #93c5fd !important; }
-          .border-blue-200 { border-color: #bfdbfe !important; }
-          .text-teal-800, .text-teal-900 { color: #115e59 !important; }
-          .text-teal-700 { color: #0f766e !important; }
-          .text-teal-600 { color: #0d9488 !important; }
-          .text-teal-400 { color: #2dd4bf !important; }
-          .border-teal-400 { border-color: #2dd4bf !important; }
-          .text-gray-800 { color: #1f2937 !important; }
-          .text-gray-600 { color: #4b5563 !important; }
-          .text-gray-500 { color: #6b7280 !important; }
-          .text-gray-400 { color: #9ca3af !important; }
-          .text-green-700 { color: #15803d !important; }
-          .bg-green-600  { background-color: #16a34a !important; }
-          .bg-white { background-color: #ffffff !important; }
-          .text-white { color: #ffffff !important; }
-          .bg-gradient-to-br { background: #eff6ff !important; }
-          /* Keep icon/text baselines aligned identically in the cloned
-             capture DOM as in the live preview */
-          svg { vertical-align: middle !important; }
-        `;
+            .text-emerald-800, .text-emerald-900 { color: #065f46 !important; }
+            .text-emerald-700 { color: #047857 !important; }
+            .text-emerald-600 { color: #059669 !important; }
+            .text-emerald-500 { color: #10b981 !important; }
+            .bg-emerald-700 { background-color: #047857 !important; }
+            .bg-emerald-600 { background-color: #059669 !important; }
+            .bg-emerald-500 { background-color: #10b981 !important; }
+            .bg-emerald-200 { background-color: #a7f3d0 !important; }
+            .bg-emerald-50  { background-color: #ecfdf5 !important; }
+            .border-emerald-700 { border-color: #047857 !important; }
+            .border-emerald-600 { border-color: #059669 !important; }
+            .border-emerald-500 { border-color: #10b981 !important; }
+            .border-emerald-300 { border-color: #6ee7b7 !important; }
+            .border-emerald-200 { border-color: #a7f3d0 !important; }
+            .text-gray-800 { color: #1f2937 !important; }
+            .text-gray-600 { color: #4b5563 !important; }
+            .text-gray-500 { color: #6b7280 !important; }
+            .text-gray-400 { color: #9ca3af !important; }
+            .text-green-700 { color: #15803d !important; }
+            .bg-green-600  { background-color: #16a34a !important; }
+            .bg-white { background-color: #ffffff !important; }
+            .text-white { color: #ffffff !important; }
+            .bg-gradient-to-br { background: #ecfdf5 !important; }
+          `;
           clonedDoc.head.appendChild(style);
         },
       });
@@ -232,21 +173,21 @@ const Certificate = () => {
       />
 
       {/* Congratulatory Banner */}
-      <div className="mb-6 bg-gradient-to-r from-blue-50 to-teal-50 rounded-xl p-5 border border-blue-200 shadow-sm">
+      <div className="mb-6 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl p-5 border border-emerald-200 shadow-sm">
         <div className="flex items-center gap-4">
-          <div className="text-3xl text-blue-600">
+          <div className="text-3xl text-emerald-600">
             <MdOutlineEmojiEvents />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-xl font-bold text-gray-800">
                 {t("certificate.banner.congratulations")}{" "}
-                <span className="text-blue-700">
+                <span className="text-emerald-700">
                   {user?.name || t("certificate.banner.recipient")}
                 </span>
                 !
               </h1>
-              <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-blue-700 text-white rounded-full">
+              <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-emerald-600 text-white rounded-full">
                 {certTypeLabel}
               </span>
             </div>
@@ -254,7 +195,7 @@ const Certificate = () => {
               {isModuleCert
                 ? t("certificate.banner.examPassed")
                 : t("certificate.banner.quizMastered")}{" "}
-              <span className="font-semibold text-teal-700">
+              <span className="font-semibold text-emerald-700">
                 {context?.title || t("certificate.banner.topic")}
               </span>
               .
@@ -269,57 +210,57 @@ const Certificate = () => {
           {share_links?.linkedin && (
             <button
               onClick={() => window.open(share_links.linkedin, "_blank")}
-              className="flex items-center gap-2 px-5 py-2 text-sm font-medium text-blue-700 border border-blue-700 rounded-md cursor-pointer hover:bg-blue-50 transition-colors"
+              className="flex items-center gap-2 px-5 py-2 text-sm font-medium text-emerald-700 border border-emerald-700 rounded-md cursor-pointer hover:bg-emerald-50 transition-colors"
             >
-              <FaLinkedin size={15} className="text-blue-600" />{" "}
+              <FaLinkedin size={15} className="text-emerald-600" />{" "}
               {t("certificate.buttons.shareLinkedin")}
             </button>
           )}
           <button
             onClick={handleDownload}
-            className="flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-blue-700 rounded-md cursor-pointer hover:bg-blue-800 transition-colors"
+            className="flex items-center gap-2 px-5 py-2 text-sm font-medium text-white bg-emerald-700 rounded-md cursor-pointer hover:bg-emerald-800 transition-colors"
           >
             <FaDownload size={14} /> {t("certificate.buttons.downloadPdf")}
           </button>
         </div>
         <div className="text-xs text-gray-500">
           {t("certificate.buttons.certificateId")}{" "}
-          <span className="font-mono text-blue-700 font-medium">
+          <span className="font-mono text-emerald-700 font-medium">
             {certificate_id}
           </span>
         </div>
       </div>
 
       {/* Two Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-8 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
         {/* Left Column: Certificate */}
-        <div className="lg:col-span-5">
-          <div className="flex justify-center items-center bg-gradient-to-br from-blue-50 via-white to-teal-50 rounded-xl p-3 shadow-lg border border-blue-100">
+        <div className="lg:col-span-4">
+          <div className="flex justify-center items-center bg-gradient-to-br from-emerald-50 via-white to-teal-50 rounded-xl p-3 shadow-lg border border-emerald-100">
             <div
               ref={certificateRef}
               className="w-full max-w-3xl bg-white shadow-2xl relative overflow-hidden rounded-lg"
             >
               {/* Premium Border */}
-              <div className="absolute inset-3 border-2 border-blue-700 pointer-events-none"></div>
-              <div className="absolute inset-5 border border-blue-500 pointer-events-none"></div>
-              <div className="absolute inset-6 border border-teal-400 pointer-events-none"></div>
+              <div className="absolute inset-3 border-2 border-emerald-700 pointer-events-none"></div>
+              <div className="absolute inset-5 border border-emerald-500 pointer-events-none"></div>
+              <div className="absolute inset-6 border border-emerald-300 pointer-events-none"></div>
 
               {/* Corner Decorations */}
-              <div className="absolute top-5 left-5 w-12 h-12 border-t-4 border-l-4 border-blue-700"></div>
-              <div className="absolute top-5 right-5 w-12 h-12 border-t-4 border-r-4 border-blue-700"></div>
-              <div className="absolute bottom-5 left-5 w-12 h-12 border-b-4 border-l-4 border-blue-700"></div>
-              <div className="absolute bottom-5 right-5 w-12 h-12 border-b-4 border-r-4 border-blue-700"></div>
+              <div className="absolute top-5 left-5 w-12 h-12 border-t-4 border-l-4 border-emerald-700"></div>
+              <div className="absolute top-5 right-5 w-12 h-12 border-t-4 border-r-4 border-emerald-700"></div>
+              <div className="absolute bottom-5 left-5 w-12 h-12 border-b-4 border-l-4 border-emerald-700"></div>
+              <div className="absolute bottom-5 right-5 w-12 h-12 border-b-4 border-r-4 border-emerald-700"></div>
 
-              <div className="absolute top-10 left-10 text-blue-600 opacity-50">
+              <div className="absolute top-10 left-10 text-emerald-600 opacity-50">
                 <GiLaurelCrown size={20} />
               </div>
-              <div className="absolute top-10 right-10 text-blue-600 opacity-50">
+              <div className="absolute top-10 right-10 text-emerald-600 opacity-50">
                 <GiLaurelCrown size={20} />
               </div>
-              <div className="absolute bottom-10 left-10 text-blue-600 opacity-50">
+              <div className="absolute bottom-10 left-10 text-emerald-600 opacity-50">
                 <GiQuillInk size={20} />
               </div>
-              <div className="absolute bottom-10 right-10 text-blue-600 opacity-50">
+              <div className="absolute bottom-10 right-10 text-emerald-600 opacity-50">
                 <GiQuillInk size={20} />
               </div>
 
@@ -329,17 +270,16 @@ const Certificate = () => {
                 {design?.company_logo && (
                   <div className="flex justify-center mb-3">
                     <img
-                      src={toCorsProxyUrl(design.company_logo)}
+                      src={design.company_logo}
                       alt={design.company_name}
                       className="h-14 object-contain"
-                      crossOrigin="anonymous"
                     />
                   </div>
                 )}
 
                 {design?.company_name && (
                   <div className="text-center mb-0.5">
-                    <h1 className="text-2xl font-serif font-bold text-blue-800 tracking-wide">
+                    <h1 className="text-2xl font-serif font-bold text-emerald-800 tracking-wide">
                       {design.company_name}
                     </h1>
                   </div>
@@ -347,37 +287,31 @@ const Certificate = () => {
 
                 {design?.tagline && (
                   <div className="text-center mb-2">
-                    <p className="text-xs text-gray-500 italic tracking-wide uppercase">
+                    <p className="text-xs text-emerald-600 italic tracking-wide">
                       {design.tagline}
                     </p>
                   </div>
                 )}
 
                 <div className="flex justify-center items-center gap-3 my-3">
-                  <div className="h-px w-16 bg-blue-500"></div>
-                  <FaStar className="text-blue-500 text-xs" />
-                  <div className="h-px w-16 bg-blue-500"></div>
+                  <div className="h-px w-16 bg-emerald-500"></div>
+                  <FaStar className="text-emerald-500 text-xs" />
+                  <div className="h-px w-16 bg-emerald-500"></div>
                 </div>
 
                 {design?.heading && (
                   <div className="text-center mb-4">
-                    <h2 className="text-xl font-serif text-blue-700 uppercase tracking-wider">
+                    <h2 className="text-xl font-serif text-emerald-700 uppercase tracking-wider">
                       {design.heading}
                     </h2>
                     <div className="flex justify-center items-center gap-2 mt-0.5">
-                      <FaMedal
-                        className="text-blue-600 text-sm shrink-0"
-                        style={{ verticalAlign: "middle" }}
-                      />
-                      <p className="text-xs text-gray-500 leading-none">
+                      <FaMedal className="text-emerald-600 text-sm" />
+                      <p className="text-xs text-emerald-600">
                         {isModuleCert
                           ? t("certificate.certificate.examPassedText")
                           : t("certificate.certificate.quizCompletedText")}
                       </p>
-                      <FaMedal
-                        className="text-blue-600 text-sm shrink-0"
-                        style={{ verticalAlign: "middle" }}
-                      />
+                      <FaMedal className="text-emerald-600 text-sm" />
                     </div>
                   </div>
                 )}
@@ -386,13 +320,9 @@ const Certificate = () => {
                   <p className="text-gray-600 text-xs">
                     {t("certificate.certificate.presentedTo")}
                   </p>
-                  {/* Fix: name used to sit too close to the underline (pb-1.5
-                      wasn't enough room for text-3xl descenders, and default
-                      line-height added extra gap above it in the PDF capture).
-                      More bottom padding + leading-none fixes both. */}
                   <div className="my-3">
-                    <div className="inline-block border-b-4 border-blue-600 px-10 pb-3">
-                      <p className="text-3xl font-serif font-bold text-blue-900 tracking-wide leading-none">
+                    <div className="inline-block border-b-4 border-emerald-600 px-10 pb-1.5">
+                      <p className="text-3xl font-serif font-bold text-emerald-900 tracking-wide">
                         {user?.name ||
                           t("certificate.certificate.recipientName")}
                       </p>
@@ -403,26 +333,19 @@ const Certificate = () => {
                       ? t("certificate.certificate.forModule")
                       : t("certificate.certificate.forTopic")}
                   </p>
-                  <p className="text-base font-serif font-semibold text-teal-700 mb-2">
+                  <p className="text-base font-serif font-semibold text-emerald-800 mb-2">
                     {context?.title || "-"}
                   </p>
-                  {/* Fix: icon/text baseline alignment for ID + email row */}
                   <div className="flex justify-center items-center gap-4 text-xs text-gray-500">
-                    <IconLabel
-                      icon={FaIdCard}
-                      iconClassName="text-blue-600"
-                      size={12}
-                    >
+                    <span className="flex items-center gap-1">
+                      <FaIdCard className="text-emerald-600 text-xs" />
                       {t("certificate.certificate.id")}:{" "}
                       {user?.employee_id || "-"}
-                    </IconLabel>
-                    <IconLabel
-                      icon={FaEnvelope}
-                      iconClassName="text-blue-600"
-                      size={12}
-                    >
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <FaEnvelope className="text-emerald-600 text-xs" />
                       {user?.email || "-"}
-                    </IconLabel>
+                    </span>
                   </div>
                 </div>
 
@@ -436,18 +359,18 @@ const Certificate = () => {
                 )}
 
                 {/* Compact Metrics */}
-                <div className="my-4 border-t border-b border-blue-200 py-3">
+                <div className="my-4 border-t border-b border-emerald-200 py-3">
                   <div className="grid grid-cols-3 gap-2 text-center">
                     <div>
-                      <div className="text-2xl font-serif font-bold text-blue-800">
+                      <div className="text-2xl font-serif font-bold text-emerald-800">
                         {result?.percentage || 0}%
                       </div>
                       <div className="text-[9px] text-gray-500 uppercase tracking-wider">
                         {t("certificate.metrics.score")}
                       </div>
                     </div>
-                    <div className="border-x border-blue-200">
-                      <div className="text-2xl font-serif font-bold text-blue-800 capitalize">
+                    <div className="border-x border-emerald-200">
+                      <div className="text-2xl font-serif font-bold text-emerald-800 capitalize">
                         {result?.status === "passed"
                           ? t("certificate.metrics.passed")
                           : t("certificate.metrics.completed")}
@@ -457,7 +380,7 @@ const Certificate = () => {
                       </div>
                     </div>
                     <div>
-                      <div className="text-2xl font-serif font-bold text-blue-800">
+                      <div className="text-2xl font-serif font-bold text-emerald-800">
                         {Math.floor((time?.time_taken_seconds || 0) / 60)}:
                         {String(
                           Math.floor((time?.time_taken_seconds || 0) % 60),
@@ -475,13 +398,12 @@ const Certificate = () => {
                   <div className="text-center">
                     {design?.signer_signature && (
                       <img
-                        src={toCorsProxyUrl(design.signer_signature)}
+                        src={design.signer_signature}
                         alt={t("certificate.certificate.signature")}
                         className="h-10 mx-auto mb-1.5 object-contain"
-                        crossOrigin="anonymous"
                       />
                     )}
-                    <div className="border-b-2 border-blue-600 w-32 mx-auto"></div>
+                    <div className="border-b-2 border-emerald-600 w-32 mx-auto"></div>
                     <p className="text-sm font-serif font-semibold text-gray-800 mt-2">
                       {design?.signer_name}
                     </p>
@@ -491,7 +413,7 @@ const Certificate = () => {
                     </p>
                   </div>
                   <div className="text-center flex flex-col justify-end">
-                    <div className="border-b-2 border-blue-600 w-32 mx-auto"></div>
+                    <div className="border-b-2 border-emerald-600 w-32 mx-auto"></div>
                     <p className="text-sm font-serif font-semibold text-gray-800 mt-2">
                       {issued_at
                         ? new Date(issued_at).toLocaleDateString("en-US", {
@@ -513,7 +435,7 @@ const Certificate = () => {
 
                 {/* Footer */}
                 <div className="text-center mt-6 pt-3 border-t border-gray-200">
-                  <p className="text-[10px] font-mono text-blue-700">
+                  <p className="text-[10px] font-mono text-emerald-700">
                     {certificate_id}
                   </p>
                   {design?.footer_text && (
@@ -522,8 +444,8 @@ const Certificate = () => {
                     </p>
                   )}
                   <div className="flex justify-center items-center gap-1 mt-1.5 text-[9px] text-gray-400">
-                    <MdVerified size={11} style={{ verticalAlign: "middle" }} />
-                    <span className="leading-none">
+                    <MdVerified size={11} />
+                    <span>
                       {t("certificate.certificate.digitallyVerified")}
                     </span>
                   </div>
@@ -537,15 +459,11 @@ const Certificate = () => {
         <div className="lg:col-span-3 space-y-3">
           {/* Recipient - compact */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div className="px-3 py-2 bg-blue-50 border-b border-blue-200">
-              <IconLabel
-                icon={FaUser}
-                iconClassName="text-blue-600"
-                size={11}
-                className="text-[10px] font-semibold text-blue-800 uppercase tracking-wider"
-              >
+            <div className="px-3 py-2 bg-emerald-50 border-b border-emerald-200 flex items-center gap-1.5">
+              <FaUser className="text-emerald-600 text-[11px]" />
+              <h3 className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">
                 {t("certificate.details.recipient")}
-              </IconLabel>
+              </h3>
             </div>
             <div className="px-3 py-2">
               <div className="grid grid-cols-2 gap-1 text-xs">
@@ -580,15 +498,11 @@ const Certificate = () => {
           {/* Result + Questions combined in one row */}
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-              <div className="px-3 py-2 bg-blue-50 border-b border-blue-200">
-                <IconLabel
-                  icon={FaChartLine}
-                  iconClassName="text-blue-600"
-                  size={11}
-                  className="text-[10px] font-semibold text-blue-800 uppercase tracking-wider"
-                >
+              <div className="px-3 py-2 bg-emerald-50 border-b border-emerald-200 flex items-center gap-1.5">
+                <FaChartLine className="text-emerald-600 text-[11px]" />
+                <h3 className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">
                   {t("certificate.details.result")}
-                </IconLabel>
+                </h3>
               </div>
               <div className="px-3 py-2">
                 <div className="space-y-1 text-xs">
@@ -624,13 +538,14 @@ const Certificate = () => {
                       className={`font-medium capitalize text-xs ${result?.status === "passed" ? "text-green-600" : "text-orange-500"}`}
                     >
                       {result?.status === "passed" ? (
-                        <IconLabel icon={FaCheckCircle} size={10}>
+                        <span className="flex items-center gap-0.5">
+                          <FaCheckCircle size={10} />{" "}
                           {t("certificate.details.passed")}
-                        </IconLabel>
+                        </span>
                       ) : (
-                        <IconLabel icon={FaTimesCircle} size={10}>
-                          {result?.status || "-"}
-                        </IconLabel>
+                        <span className="flex items-center gap-0.5">
+                          <FaTimesCircle size={10} /> {result?.status || "-"}
+                        </span>
                       )}
                     </span>
                   </div>
@@ -639,15 +554,11 @@ const Certificate = () => {
             </div>
 
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-              <div className="px-3 py-2 bg-blue-50 border-b border-blue-200">
-                <IconLabel
-                  icon={FaQuestionCircle}
-                  iconClassName="text-blue-600"
-                  size={11}
-                  className="text-[10px] font-semibold text-blue-800 uppercase tracking-wider"
-                >
+              <div className="px-3 py-2 bg-emerald-50 border-b border-emerald-200 flex items-center gap-1.5">
+                <FaQuestionCircle className="text-emerald-600 text-[11px]" />
+                <h3 className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">
                   {t("certificate.details.questions")}
-                </IconLabel>
+                </h3>
               </div>
               <div className="px-3 py-2">
                 <div className="space-y-1 text-xs">
@@ -698,15 +609,11 @@ const Certificate = () => {
 
           {/* Time & Attempt - compact */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div className="px-3 py-2 bg-blue-50 border-b border-blue-200">
-              <IconLabel
-                icon={FaClock}
-                iconClassName="text-blue-600"
-                size={11}
-                className="text-[10px] font-semibold text-blue-800 uppercase tracking-wider"
-              >
+            <div className="px-3 py-2 bg-emerald-50 border-b border-emerald-200 flex items-center gap-1.5">
+              <FaClock className="text-emerald-600 text-[11px]" />
+              <h3 className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">
                 {t("certificate.details.timeAndAttempt")}
-              </IconLabel>
+              </h3>
             </div>
             <div className="px-3 py-2">
               <div className="grid grid-cols-3 gap-1 text-xs">
@@ -749,16 +656,12 @@ const Certificate = () => {
 
           {/* Course Context - compact */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div className="px-3 py-2 bg-blue-50 border-b border-blue-200 flex items-center gap-1.5">
-              <IconLabel
-                icon={FaGraduationCap}
-                iconClassName="text-blue-600"
-                size={11}
-                className="text-[10px] font-semibold text-blue-800 uppercase tracking-wider flex-1"
-              >
+            <div className="px-3 py-2 bg-emerald-50 border-b border-emerald-200 flex items-center gap-1.5">
+              <FaGraduationCap className="text-emerald-600 text-[11px]" />
+              <h3 className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider flex-1">
                 {t("certificate.details.courseContext")}
-              </IconLabel>
-              <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-blue-700 text-white rounded">
+              </h3>
+              <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider bg-emerald-600 text-white rounded">
                 {certTypeShort}
               </span>
             </div>
@@ -785,7 +688,7 @@ const Certificate = () => {
                     {t("certificate.details.module")}
                   </span>
                   <span
-                    className={`font-medium text-[10px] truncate max-w-[140px] ${isModuleCert ? "text-blue-700" : "text-gray-800"}`}
+                    className={`font-medium text-[10px] truncate max-w-[140px] ${isModuleCert ? "text-emerald-700" : "text-gray-800"}`}
                   >
                     {context_details?.module?.title || "-"}
                   </span>
@@ -807,7 +710,7 @@ const Certificate = () => {
                       <span className="text-gray-400 text-[9px]">
                         {t("certificate.details.topic")}
                       </span>
-                      <span className="font-medium text-teal-700 text-[10px] truncate max-w-[140px]">
+                      <span className="font-medium text-emerald-700 text-[10px] truncate max-w-[140px]">
                         {context_details?.topic?.title || "-"}
                       </span>
                     </div>
