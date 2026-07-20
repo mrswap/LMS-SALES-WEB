@@ -276,7 +276,7 @@
       "viewResults": "View Results"
     },
     "resumeCard": {
-      "title": "Resume your topic learning",
+      "title": "Resume Your Topic Learning",
       "inProgress": "In Progress",
       "module": "Module",
       "currentTopic": "Current Topic",
@@ -342,7 +342,7 @@
       "label": "Reports",
       "auditLogs": "Audit Logs",
       "userProgress": "User Progress",
-      "certification": "Certification"
+      "certificate": "Certificate"
     },
     "logout": "Logout"
   },

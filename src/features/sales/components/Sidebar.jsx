@@ -5,6 +5,7 @@ import {
   MdOutlineVideoLibrary,
   MdAnalytics,
   MdAssignment,
+  MdVerified,
 } from "react-icons/md";
 import {
   FaSignOutAlt,
@@ -41,7 +42,7 @@ const Sidebar = () => {
     {
       path: "/module-certification-status",
       name: t("sidebar.nav.certificationStatus"),
-      icon: MdAnalytics,
+      icon: MdVerified,
     },
   ];
 
@@ -59,7 +60,7 @@ const Sidebar = () => {
     },
     {
       path: "/certification",
-      name: t("sidebar.reports.certification"),
+      name: t("sidebar.reports.certificate"),
       icon: FaCertificate,
     },
   ];
