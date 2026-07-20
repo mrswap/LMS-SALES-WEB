@@ -23,10 +23,12 @@
 // } from "react-icons/fa";
 // import Loader from "../../common/Loader";
 // import Error from "../../common/Error";
+// import { useTranslation } from "react-i18next";
 
 // const ModuleCertificationStatus = () => {
 //   const dispatch = useDispatch();
 //   const navigate = useNavigate();
+//   const { t } = useTranslation();
 
 //   const { data, isLoading, isError, message } = useSelector(
 //     (state) => state.moduleCertification,
@@ -49,13 +51,15 @@
 //   }
 
 //   if (isError) {
-//     return <Error message={message || "Something went wrong."} />;
+//     return (
+//       <Error message={message || t("moduleCertification.somethingWentWrong")} />
+//     );
 //   }
 
 //   if (!data || !data.data) {
 //     return (
 //       <div className="flex justify-center items-center min-h-[60vh] text-gray-500">
-//         <p>No module data available.</p>
+//         <p>{t("moduleCertification.noData")}</p>
 //       </div>
 //     );
 //   }
@@ -127,7 +131,7 @@
 //   const getPrimaryAction = () => {
 //     if (canViewCertificate) {
 //       return {
-//         label: "View Certificate",
+//         label: t("moduleCertification.actions.viewCertificate"),
 //         icon: <FaEye className="w-4 h-4" />,
 //         onClick: () => handleViewCertificate(exam.last_attempt?.id),
 //         variant: "primary",
@@ -135,7 +139,7 @@
 //     }
 //     if (allTopicsPassed && exam.unlocked) {
 //       return {
-//         label: "Give Exam",
+//         label: t("moduleCertification.actions.giveExam"),
 //         icon: <FaArrowRight className="w-4 h-4" />,
 //         onClick: handleGiveExam,
 //         variant: "primary",
@@ -143,7 +147,7 @@
 //     }
 //     if (allTopicsPassed && !exam.unlocked) {
 //       return {
-//         label: "Exam Locked",
+//         label: t("moduleCertification.actions.examLocked"),
 //         icon: <FaLock className="w-4 h-4" />,
 //         onClick: () => {},
 //         variant: "disabled",
@@ -152,7 +156,7 @@
 //     if (hasFailedTopics) {
 //       const firstFailed = failedTopics[0];
 //       return {
-//         label: `Retry Quiz: ${firstFailed.title}`,
+//         label: `${t("moduleCertification.actions.retryQuiz")}: ${firstFailed.title}`,
 //         icon: <FaBookOpen className="w-4 h-4" />,
 //         onClick: () => handleNavigateToQuiz(firstFailed.assessment.id),
 //         variant: "warning",
@@ -161,14 +165,14 @@
 //     const firstPending = pendingTopics[0];
 //     if (firstPending) {
 //       return {
-//         label: `Continue: ${firstPending.title}`,
+//         label: `${t("moduleCertification.actions.continue")}: ${firstPending.title}`,
 //         icon: <FaBookOpen className="w-4 h-4" />,
 //         onClick: () => handleNavigateToTopic(firstPending.id),
 //         variant: "secondary",
 //       };
 //     }
 //     return {
-//       label: content?.cta || "Continue Learning",
+//       label: content?.cta || t("moduleCertification.actions.continueLearning"),
 //       icon: <FaBookOpen className="w-4 h-4" />,
 //       onClick: handleReviewContent,
 //       variant: "secondary",
@@ -189,17 +193,17 @@
 //     const config = {
 //       passed: {
 //         icon: <FaCheckCircle className="w-3.5 h-3.5" />,
-//         label: "Passed",
+//         label: t("moduleCertification.status.passed"),
 //         className: "bg-teal-50 text-teal-700 border-teal-200",
 //       },
 //       failed: {
 //         icon: <FaTimesCircle className="w-3.5 h-3.5" />,
-//         label: "Failed",
+//         label: t("moduleCertification.status.failed"),
 //         className: "bg-rose-50 text-rose-700 border-rose-200",
 //       },
 //       pending: {
 //         icon: <FaHourglassHalf className="w-3.5 h-3.5" />,
-//         label: "Pending",
+//         label: t("moduleCertification.status.pending"),
 //         className: "bg-amber-50 text-amber-700 border-amber-200",
 //       },
 //     };
@@ -223,7 +227,7 @@
 //       ? `${topic.last_attempt.percentage}%`
 //       : "—";
 
-//     const isReady = topic.quiz_status === "pending" && topic.is_unlocked;
+//     const isReady = topic.quiz_status === "pending" && topic.is_unlocked &&  topic.is_all_contents_read=== "false",
 //     const isFailed = topic.quiz_status === "failed";
 //     const isPassed = topic.quiz_status === "passed";
 //     const isLockedPending =
@@ -253,7 +257,7 @@
 //             {!topic.is_unlocked && (
 //               <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full flex items-center gap-1 flex-shrink-0">
 //                 <FaLock className="w-3 h-3" />
-//                 Locked
+//                 {t("moduleCertification.topic.locked")}
 //               </span>
 //             )}
 //           </div>
@@ -280,10 +284,10 @@
 //                 handleViewCertificate(topic.last_attempt.id);
 //               }}
 //               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-teal-700 bg-teal-50 hover:bg-teal-100 transition whitespace-nowrap cursor-pointer"
-//               title="View Certificate"
+//               title={t("moduleCertification.actions.viewCertificate")}
 //             >
 //               <FaEye className="w-3.5 h-3.5" />
-//               Certificate
+//               {t("moduleCertification.actions.certificate")}
 //             </button>
 //           )}
 
@@ -294,10 +298,10 @@
 //                 handleNavigateToQuiz(topic.assessment.id);
 //               }}
 //               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 transition whitespace-nowrap cursor-pointer"
-//               title="Retry Quiz"
+//               title={t("moduleCertification.actions.retryQuiz")}
 //             >
 //               <FaPlayCircle className="w-3.5 h-3.5" />
-//               Retry Quiz
+//               {t("moduleCertification.actions.retryQuiz")}
 //             </button>
 //           )}
 
@@ -308,10 +312,10 @@
 //                 handleNavigateToQuiz(topic.assessment.id);
 //               }}
 //               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 transition whitespace-nowrap cursor-pointer"
-//               title="Start Quiz"
+//               title={t("moduleCertification.actions.startQuiz")}
 //             >
 //               <FaPlayCircle className="w-3.5 h-3.5" />
-//               Start Quiz
+//               {t("moduleCertification.actions.startQuiz")}
 //             </button>
 //           )}
 
@@ -319,10 +323,10 @@
 //             <button
 //               disabled
 //               className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-gray-400 bg-gray-100 cursor-not-allowed whitespace-nowrap"
-//               title="Complete previous topics to unlock"
+//               title={t("moduleCertification.actions.lockedTooltip")}
 //             >
 //               <FaLock className="w-3.5 h-3.5" />
-//               Start Quiz
+//               {t("moduleCertification.actions.startQuiz")}
 //             </button>
 //           )}
 //         </td>
@@ -334,21 +338,18 @@
 //   const pillLabel =
 //     content?.heading ||
 //     (canViewCertificate
-//       ? "Milestone Reached"
+//       ? t("moduleCertification.pills.milestoneReached")
 //       : allTopicsPassed
-//         ? "Exam Ready"
-//         : "Learning In Progress");
+//         ? t("moduleCertification.pills.examReady")
+//         : t("moduleCertification.pills.learningInProgress"));
 //   const heroTitle =
 //     content?.title ||
 //     (canViewCertificate
-//       ? "Certification Complete"
-//       : "Complete Your Module to Unlock Certification");
+//       ? t("moduleCertification.hero.certificationComplete")
+//       : t("moduleCertification.hero.completeModule"));
 //   const heroDescription =
-//     content?.description ||
-//     "Continue studying the remaining topics and pass every topic quiz to unlock your certification exam.";
-//   const footerNote =
-//     content?.footer ||
-//     "Complete all required topics and quizzes to unlock the certification exam.";
+//     content?.description || t("moduleCertification.hero.description");
+//   const footerNote = content?.footer || t("moduleCertification.footerNote");
 
 //   return (
 //     <div className="min-h-screen bg-slate-50 font-sans antialiased">
@@ -422,7 +423,7 @@
 
 //                   <div className="min-w-0 flex-1">
 //                     <p className="text-[11px] font-semibold tracking-wide uppercase text-gray-400">
-//                       Current Module
+//                       {t("moduleCertification.moduleCard.currentModule")}
 //                     </p>
 //                     <h2
 //                       className="text-lg sm:text-xl font-bold text-gray-900 leading-snug truncate"
@@ -433,11 +434,13 @@
 //                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-xs text-gray-500">
 //                       <span className="flex items-center gap-1.5 whitespace-nowrap">
 //                         <FaClock className="text-teal-500" />
-//                         {module.estimated_duration || "—"} Study Time
+//                         {module.estimated_duration || "—"}{" "}
+//                         {t("moduleCertification.moduleCard.studyTime")}
 //                       </span>
 //                       <span className="flex items-center gap-1.5 whitespace-nowrap">
 //                         <FaBookOpen className="text-teal-500" />
-//                         {chapters.length} Lessons
+//                         {chapters.length}{" "}
+//                         {t("moduleCertification.moduleCard.lessons")}
 //                       </span>
 //                     </div>
 //                   </div>
@@ -448,7 +451,7 @@
 //                   className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-blue-200 text-blue-700 hover:bg-blue-50 font-semibold rounded-lg transition text-sm whitespace-nowrap cursor-pointer flex-shrink-0"
 //                 >
 //                   <FaArrowRight className="w-3.5 h-3.5" />
-//                   Review Content
+//                   {t("moduleCertification.actions.reviewContent")}
 //                 </button>
 //               </div>
 
@@ -472,7 +475,9 @@
 //                     >
 //                       {program.title}
 //                     </p>
-//                     <p className="text-[11px] text-gray-400">Program</p>
+//                     <p className="text-[11px] text-gray-400">
+//                       {t("moduleCertification.moduleCard.program")}
+//                     </p>
 //                   </div>
 //                 </div>
 //                 <div className="flex items-center gap-2.5 min-w-0">
@@ -486,7 +491,9 @@
 //                     >
 //                       {level.title}
 //                     </p>
-//                     <p className="text-[11px] text-gray-400">Level</p>
+//                     <p className="text-[11px] text-gray-400">
+//                       {t("moduleCertification.moduleCard.level")}
+//                     </p>
 //                   </div>
 //                 </div>
 //                 <div className="flex items-center gap-2.5 min-w-0">
@@ -495,9 +502,12 @@
 //                   </div>
 //                   <div className="min-w-0">
 //                     <p className="text-xs font-semibold text-gray-800 truncate">
-//                       {progress.completed_topics}/{progress.total_topics} Topics
+//                       {progress.completed_topics}/{progress.total_topics}{" "}
+//                       {t("moduleCertification.moduleCard.topics")}
 //                     </p>
-//                     <p className="text-[11px] text-gray-400">Completed</p>
+//                     <p className="text-[11px] text-gray-400">
+//                       {t("moduleCertification.moduleCard.completed")}
+//                     </p>
 //                   </div>
 //                 </div>
 //                 <div className="flex items-center gap-2.5 min-w-0">
@@ -506,9 +516,12 @@
 //                   </div>
 //                   <div className="min-w-0">
 //                     <p className="text-xs font-semibold text-gray-800 truncate">
-//                       {progress.remaining_topics} Remaining
+//                       {progress.remaining_topics}{" "}
+//                       {t("moduleCertification.moduleCard.remaining")}
 //                     </p>
-//                     <p className="text-[11px] text-gray-400">Topics Left</p>
+//                     <p className="text-[11px] text-gray-400">
+//                       {t("moduleCertification.moduleCard.topicsLeft")}
+//                     </p>
 //                   </div>
 //                 </div>
 //               </div>
@@ -519,7 +532,7 @@
 //               <div className="flex items-center gap-2 mb-4">
 //                 <FaClipboardList className="text-teal-600 w-4 h-4" />
 //                 <h3 className="font-bold text-gray-900">
-//                   Exam Readiness Checklist
+//                   {t("moduleCertification.checklist.title")}
 //                 </h3>
 //               </div>
 //               <div className="space-y-3">
@@ -547,17 +560,19 @@
 //                     </div>
 //                     <span className="text-xs text-gray-500 whitespace-nowrap flex-shrink-0">
 //                       {item.completed_count !== undefined &&
-//                         `${item.completed_count}/${item.total_count} Topics`}
+//                         `${item.completed_count}/${item.total_count} ${t("moduleCertification.checklist.topics")}`}
 //                       {item.remaining !== undefined &&
-//                         `${item.remaining} remaining`}
+//                         `${item.remaining} ${t("moduleCertification.checklist.remaining")}`}
 //                       {item.unlocked !== undefined &&
 //                         (item.unlocked ? (
 //                           <span className="inline-flex items-center gap-1 text-teal-600">
-//                             <FaUnlock className="w-3 h-3" /> Unlocked
+//                             <FaUnlock className="w-3 h-3" />{" "}
+//                             {t("moduleCertification.checklist.unlocked")}
 //                           </span>
 //                         ) : (
 //                           <span className="inline-flex items-center gap-1 text-amber-600">
-//                             <FaLock className="w-3 h-3" /> Locked
+//                             <FaLock className="w-3 h-3" />{" "}
+//                             {t("moduleCertification.checklist.locked")}
 //                           </span>
 //                         ))}
 //                     </span>
@@ -566,7 +581,6 @@
 //               </div>
 
 //               {/* CTA row: Retry / Start / Give Exam / View Certificate — sab primaryAction se driven */}
-//               {/* Button right below checklist, then divider, then footer note — centered */}
 //               <div className="mt-6 flex-1 flex flex-col items-center justify-center text-center gap-4">
 //                 <button
 //                   onClick={primaryAction.onClick}
@@ -593,7 +607,7 @@
 //             {/* WHAT TO EXPECT */}
 //             <div className="bg-white rounded-2xl shadow-sm border border-gray-200/80 p-6">
 //               <h3 className="text-xs font-bold tracking-wide uppercase text-teal-600 mb-4">
-//                 What to Expect
+//                 {t("moduleCertification.whatToExpect.title")}
 //               </h3>
 //               <div className="space-y-4">
 //                 <div className="flex items-start gap-3">
@@ -602,10 +616,11 @@
 //                   </div>
 //                   <div>
 //                     <p className="text-sm font-semibold text-gray-800">
-//                       {exam.assessment.duration} Minutes
+//                       {exam.assessment.duration}{" "}
+//                       {t("moduleCertification.whatToExpect.minutes")}
 //                     </p>
 //                     <p className="text-xs text-gray-500">
-//                       Total time allotted for completion.
+//                       {t("moduleCertification.whatToExpect.timeDescription")}
 //                     </p>
 //                   </div>
 //                 </div>
@@ -615,10 +630,13 @@
 //                   </div>
 //                   <div>
 //                     <p className="text-sm font-semibold text-gray-800">
-//                       {exam.assessment.total_marks} Questions
+//                       {exam.assessment.total_marks}{" "}
+//                       {t("moduleCertification.whatToExpect.questions")}
 //                     </p>
 //                     <p className="text-xs text-gray-500">
-//                       Multiple choice and clinical scenarios.
+//                       {t(
+//                         "moduleCertification.whatToExpect.questionDescription",
+//                       )}
 //                     </p>
 //                   </div>
 //                 </div>
@@ -629,13 +647,16 @@
 //                   <div>
 //                     <p className="text-sm font-semibold text-gray-800">
 //                       {exam.assessment.passing_score}/
-//                       {exam.assessment.total_marks} Passing Score
+//                       {exam.assessment.total_marks}{" "}
+//                       {t("moduleCertification.whatToExpect.passingScore")}
 //                       <span className="text-gray-400 font-normal ml-1">
 //                         ({passingScorePercentage}%)
 //                       </span>
 //                     </p>
 //                     <p className="text-xs text-gray-500">
-//                       Required for {program.title} certification.
+//                       {t("moduleCertification.whatToExpect.requiredFor")}{" "}
+//                       {program.title}{" "}
+//                       {t("moduleCertification.whatToExpect.certification")}.
 //                     </p>
 //                   </div>
 //                 </div>
@@ -644,8 +665,7 @@
 //               <div className="mt-5 flex gap-2.5 bg-blue-50 text-blue-800 text-xs leading-snug rounded-xl px-4 py-3">
 //                 <FaInfoCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
 //                 <p>
-//                   {exam.reason ||
-//                     "Passing the exam grants immediate access to your digital certificate."}
+//                   {exam.reason || t("moduleCertification.whatToExpect.reason")}
 //                 </p>
 //               </div>
 
@@ -656,7 +676,7 @@
 //                   className="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-semibold bg-blue-500 hover:bg-blue-600 text-white transition cursor-pointer"
 //                 >
 //                   <FaArrowRight className="w-3.5 h-3.5" />
-//                   Give Exam
+//                   {t("moduleCertification.actions.giveExam")}
 //                 </button>
 //               )}
 //             </div>
@@ -669,8 +689,8 @@
 //                 }`}
 //               >
 //                 {canViewCertificate
-//                   ? "Credential Earned"
-//                   : "Pending Credential"}
+//                   ? t("moduleCertification.credential.earned")
+//                   : t("moduleCertification.credential.pending")}
 //               </span>
 
 //               <div className="flex items-center gap-3 mt-3">
@@ -689,7 +709,8 @@
 //                     {program.title}
 //                   </p>
 //                   <p className="text-xs text-gray-400">
-//                     {level.title} Certification
+//                     {level.title}{" "}
+//                     {t("moduleCertification.credential.certification")}
 //                   </p>
 //                 </div>
 //               </div>
@@ -717,8 +738,8 @@
 
 //               <p className="mt-3 text-[11px] text-gray-500 text-center">
 //                 {canViewCertificate
-//                   ? "Your badge is active."
-//                   : "Finish the exam to activate your badge."}
+//                   ? t("moduleCertification.credential.badgeActive")
+//                   : t("moduleCertification.credential.badgeInactive")}
 //               </p>
 //             </div>
 //           </div>
@@ -729,20 +750,20 @@
 //           <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/60 flex flex-wrap items-center justify-between gap-2">
 //             <div className="flex items-center gap-2 text-sm font-bold text-gray-800">
 //               <FaClipboardList className="text-teal-600" />
-//               <span>Chapter &amp; Topic Progress</span>
+//               <span>{t("moduleCertification.table.title")}</span>
 //             </div>
 //             <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500">
 //               <span className="flex items-center gap-1 whitespace-nowrap">
-//                 <FaCheckCircle className="text-teal-500" /> Passed:{" "}
-//                 {passedTopics.length}
+//                 <FaCheckCircle className="text-teal-500" />{" "}
+//                 {t("moduleCertification.table.passed")}: {passedTopics.length}
 //               </span>
 //               <span className="flex items-center gap-1 whitespace-nowrap">
-//                 <FaTimesCircle className="text-rose-500" /> Failed:{" "}
-//                 {failedTopics.length}
+//                 <FaTimesCircle className="text-rose-500" />{" "}
+//                 {t("moduleCertification.table.failed")}: {failedTopics.length}
 //               </span>
 //               <span className="flex items-center gap-1 whitespace-nowrap">
-//                 <FaHourglassHalf className="text-amber-500" /> Pending:{" "}
-//                 {pendingTopics.length}
+//                 <FaHourglassHalf className="text-amber-500" />{" "}
+//                 {t("moduleCertification.table.pending")}: {pendingTopics.length}
 //               </span>
 //             </div>
 //           </div>
@@ -774,12 +795,14 @@
 //                       </span>
 //                       <span className="text-xs text-gray-400 whitespace-nowrap flex-shrink-0">
 //                         ({chapter.progress.completed_topics}/
-//                         {chapter.progress.total_topics} topics)
+//                         {chapter.progress.total_topics}{" "}
+//                         {t("moduleCertification.table.topics")})
 //                       </span>
 //                     </div>
 //                     <div className="flex items-center gap-4 flex-shrink-0">
 //                       <span className="text-xs text-gray-500 whitespace-nowrap">
-//                         {Math.round(chapter.progress.percentage)}% complete
+//                         {Math.round(chapter.progress.percentage)}%{" "}
+//                         {t("moduleCertification.table.complete")}
 //                       </span>
 //                       {chapterPassed ? (
 //                         <FaCheckCircle className="w-5 h-5 text-teal-500 flex-shrink-0" />
@@ -795,22 +818,22 @@
 //                         <thead className="bg-gray-50/70 text-xs uppercase text-gray-500">
 //                           <tr>
 //                             <th className="px-4 py-2 text-left font-medium w-[34%]">
-//                               Topic
+//                               {t("moduleCertification.table.topic")}
 //                             </th>
 //                             <th className="px-4 py-2 text-left font-medium w-[14%]">
-//                               Status
+//                               {t("moduleCertification.table.status")}
 //                             </th>
 //                             <th className="px-4 py-2 text-left font-medium w-[12%]">
-//                               Score
+//                               {t("moduleCertification.table.score")}
 //                             </th>
 //                             <th className="px-4 py-2 text-left font-medium w-[8%]">
 //                               %
 //                             </th>
 //                             <th className="px-4 py-2 text-left font-medium w-[16%]">
-//                               Attempted
+//                               {t("moduleCertification.table.attempted")}
 //                             </th>
 //                             <th className="px-4 py-2 text-center font-medium w-[16%]">
-//                               Action
+//                               {t("moduleCertification.table.action")}
 //                             </th>
 //                           </tr>
 //                         </thead>
@@ -911,9 +934,13 @@ const ModuleCertificationStatus = () => {
   } = data.data;
 
   // ---- NAVIGATION HANDLERS ----
+  // Content page -> jahan topic padhna hota hai. Quiz yahan se DIRECTLY start nahi hota;
+  // topic detail page ke andar hi "Take Quiz" CTA hona chahiye (content complete hone ke baad).
   const handleNavigateToTopic = (topicId) => navigate(`/topics/${topicId}`);
 
   // Topic-level quiz start/retry -> /quiz/:assessmentId
+  // Ye SIRF FAILED topics ke liye row/table se direct call hota hai (retry).
+  // Pending topics ke liye kabhi bhi seedha ye call mat karo — pehle content padhna zaroori hai.
   const handleNavigateToQuiz = (assessmentId) =>
     navigate(`/quiz/${assessmentId}`);
 
@@ -998,10 +1025,22 @@ const ModuleCertificationStatus = () => {
     }
     const firstPending = pendingTopics[0];
     if (firstPending) {
+      // Agar is topic ka content pehle hi pura padha jaa chuka hai (is_all_contents_read true),
+      // to seedha quiz par bhejo. Warna pehle content page par bhejo.
+      const contentAlreadyRead = firstPending.is_all_contents_read === true;
       return {
-        label: `${t("moduleCertification.actions.continue")}: ${firstPending.title}`,
-        icon: <FaBookOpen className="w-4 h-4" />,
-        onClick: () => handleNavigateToTopic(firstPending.id),
+        label: contentAlreadyRead
+          ? `${t("moduleCertification.actions.startQuiz")}: ${firstPending.title}`
+          : `${t("moduleCertification.actions.continue")}: ${firstPending.title}`,
+        icon: contentAlreadyRead ? (
+          <FaPlayCircle className="w-4 h-4" />
+        ) : (
+          <FaBookOpen className="w-4 h-4" />
+        ),
+        onClick: () =>
+          contentAlreadyRead
+            ? handleNavigateToQuiz(firstPending.assessment.id)
+            : handleNavigateToTopic(firstPending.id),
         variant: "secondary",
       };
     }
@@ -1052,7 +1091,16 @@ const ModuleCertificationStatus = () => {
     );
   };
 
-  // Row-level click / action column ka logic status ke hisaab se
+  // Row-level click / action column ka logic status ke hisaab se.
+  //
+  // Backend ab `is_all_contents_read` (boolean) bhejta hai, jo batata hai ki
+  // topic ka pura content actually padha ja chuka hai ya nahi. Isी se decide hota hai
+  // ki quiz start ho sakta hai ya pehle content page par jaana zaroori hai:
+  //   - quiz_status "pending" + is_unlocked true + is_all_contents_read true  -> Start Quiz
+  //   - quiz_status "pending" + is_unlocked true + is_all_contents_read false -> Start Learning (content page)
+  //   - quiz_status "pending" + is_unlocked false                            -> Locked
+  //   - quiz_status "failed"                                                 -> Retry Quiz (direct)
+  //   - quiz_status "passed"                                                 -> View Certificate
   const renderTopicRow = (topic) => {
     const scoreDisplay = topic.last_attempt
       ? `${topic.last_attempt.score}/${topic.last_attempt.total_score}`
@@ -1061,17 +1109,31 @@ const ModuleCertificationStatus = () => {
       ? `${topic.last_attempt.percentage}%`
       : "—";
 
-    const isReady = topic.quiz_status === "pending" && topic.is_unlocked;
     const isFailed = topic.quiz_status === "failed";
     const isPassed = topic.quiz_status === "passed";
+
+    // pending + unlocked + content already read -> quiz can start
+    const isQuizReady =
+      topic.quiz_status === "pending" &&
+      topic.is_unlocked &&
+      topic.is_all_contents_read === true;
+
+    // pending + unlocked + content NOT read yet -> must go read content first
+    const isContentPending =
+      topic.quiz_status === "pending" &&
+      topic.is_unlocked &&
+      topic.is_all_contents_read !== true;
+
     const isLockedPending =
       topic.quiz_status === "pending" && !topic.is_unlocked;
 
-    // row click -> quiz page (failed ya ready pending ke liye)
-    const isRowClickable = isFailed || isReady;
+    // row click: failed/ready -> quiz, content-pending -> content page
+    const isRowClickable = isFailed || isQuizReady || isContentPending;
     const handleRowClick = () => {
-      if (isFailed || isReady) {
+      if (isFailed || isQuizReady) {
         handleNavigateToQuiz(topic.assessment.id);
+      } else if (isContentPending) {
+        handleNavigateToTopic(topic.id);
       }
     };
 
@@ -1139,7 +1201,7 @@ const ModuleCertificationStatus = () => {
             </button>
           )}
 
-          {isReady && (
+          {isQuizReady && (
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -1150,6 +1212,20 @@ const ModuleCertificationStatus = () => {
             >
               <FaPlayCircle className="w-3.5 h-3.5" />
               {t("moduleCertification.actions.startQuiz")}
+            </button>
+          )}
+
+          {isContentPending && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNavigateToTopic(topic.id);
+              }}
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-medium text-white bg-blue-500 hover:bg-blue-600 transition whitespace-nowrap cursor-pointer"
+              title={t("moduleCertification.actions.startLearning")}
+            >
+              <FaBookOpen className="w-3.5 h-3.5" />
+              {t("moduleCertification.actions.continue")}
             </button>
           )}
 
@@ -1414,7 +1490,7 @@ const ModuleCertificationStatus = () => {
                 ))}
               </div>
 
-              {/* CTA row: Retry / Start / Give Exam / View Certificate — sab primaryAction se driven */}
+              {/* CTA row: Continue / Retry / Give Exam / View Certificate — sab primaryAction se driven */}
               <div className="mt-6 flex-1 flex flex-col items-center justify-center text-center gap-4">
                 <button
                   onClick={primaryAction.onClick}
