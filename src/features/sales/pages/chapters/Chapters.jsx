@@ -888,7 +888,7 @@ export default function Chapters() {
                             <button
                               className="px-4 py-2 rounded-lg text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-300 hover:bg-emerald-100 flex items-center gap-1"
                               onClick={() =>
-                                navigate(`/assessment/${topic.assessment.id}`)
+                                navigate(`/certificate/${topic.assessment.id}`)
                               }
                             >
                               <IoCheckmarkCircle className="w-4 h-4" />
