@@ -5,7 +5,8 @@ import SessionModal from "../common/SessionModal";
 import Navbar from "../components/Navbar";
 import NavbarBottom from "../components/NavbarBottom";
 import Footer from "../components/Footer";
-import { logout } from "../../../redux/slice/authSlice";
+// import { logout } from "../../../redux/slice/authSlice";
+import { logoutUser } from "../../../redux/slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { FaCommentDots } from "react-icons/fa";
@@ -30,8 +31,8 @@ const SalesLayout = () => {
     location.pathname.startsWith("/exam-module/") ||
     location.pathname.startsWith("/topics/");
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await dispatch(logout());
     navigate("/login");
   };
 

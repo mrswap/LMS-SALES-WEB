@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../../../redux/slice/authSlice";
+// import { logout } from "../../../redux/slice/authSlice";
+import { logoutUser } from "../../../redux/slice/authSlice";
 import { useToast } from "./toast/ToastContext";
 import { useTranslation } from "react-i18next";
 
@@ -38,8 +39,8 @@ const Error = ({
     navigate("/");
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await dispatch(logout());
     navigate("/login");
     window.location.reload();
   };
