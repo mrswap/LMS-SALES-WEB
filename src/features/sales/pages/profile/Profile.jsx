@@ -24,7 +24,8 @@ import {
 import { TextInput } from "../../common/form/index";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../../redux/slice/authSlice";
+// import { logout } from "../../../../redux/slice/authSlice";
+import { logoutUser } from "../../../../redux/slice/authSlice";
 import {
   getProfile,
   clearProfile,
@@ -58,8 +59,8 @@ const Profile = () => {
     };
   }, [dispatch]);
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await dispatch(logout());
     navigate("/login");
   };
 
