@@ -301,12 +301,7 @@ const TopicContent = () => {
   const iframeRef = useRef(null);
   const fullscreenContainerRef = useRef(null);
   const [showAudioPlayer, setShowAudioPlayer] = useState(false);
-  const [flipDirection, setFlipDirection] = useState("next");
-  const [pageTransitionMode, setPageTransitionMode] = useState("flip");
   const pageAreaRef = useRef(null);
-  const pageContentRef = useRef(null);
-  const [prevPageSnapshot, setPrevPageSnapshot] = useState(null);
-  const [pageKey, setPageKey] = useState(null);
   const [pendingContentId, setPendingContentId] = useState(null);
   const [isSyncingNav, setIsSyncingNav] = useState(false);
 
@@ -408,64 +403,16 @@ const TopicContent = () => {
 
   useEffect(() => {
     if (!isLoading && content?.id) {
-      setPageKey((prev) => (prev === content.id ? prev : content.id));
       setIsNavigating(false);
       setShowAudioPlayer(false);
       setPendingContentId(null);
     }
   }, [isLoading, content?.id]);
 
-  const [isFlipSettled, setIsFlipSettled] = useState(true);
-  useEffect(() => {
-    if (pageKey === null) return;
-    setIsFlipSettled(false);
-    let raf2;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => {
-        setIsFlipSettled(true);
-      });
-    });
-    return () => {
-      cancelAnimationFrame(raf1);
-      if (raf2) cancelAnimationFrame(raf2);
-    };
-  }, [pageKey]);
-
-  const captureSnapshot = () => {
-    const source = pageContentRef.current;
-    if (!source) return null;
-    const clone = source.cloneNode(true);
-    const originalMedia = source.querySelectorAll("iframe, video, audio");
-    const clonedMedia = clone.querySelectorAll("iframe, video, audio");
-    clonedMedia.forEach((el, idx) => {
-      const original = originalMedia[idx];
-      const rect = original ? original.getBoundingClientRect() : null;
-      const placeholder = document.createElement("div");
-      placeholder.setAttribute(
-        "style",
-        `width:100%;height:${rect && rect.height ? Math.round(rect.height) : 400}px;background:#f3f4f6;border-radius:8px;`,
-      );
-      el.replaceWith(placeholder);
-    });
-    return clone.innerHTML;
-  };
-
-  const navigateToContent = (
-    newContentId,
-    direction = "next",
-    mode = "flip",
-  ) => {
+  const navigateToContent = (newContentId) => {
     if (newContentId && !isNavigating) {
       setPendingContentId(newContentId);
       setIsNavigating(true);
-      setPageTransitionMode(mode);
-
-      if (mode === "flip") {
-        setFlipDirection(direction);
-        setPrevPageSnapshot(captureSnapshot());
-      } else {
-        setPrevPageSnapshot(null);
-      }
 
       if (pageAreaRef.current) {
         pageAreaRef.current.scrollIntoView({
@@ -903,89 +850,22 @@ const TopicContent = () => {
 
           <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
             <div className="col-span-12 xl:col-span-8">
-              <div
-                ref={pageAreaRef}
-                className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent "
-              />
+              <div ref={pageAreaRef} />
 
-              <div className="book-page-stage mb-10">
-                {pageTransitionMode === "flip" && prevPageSnapshot && (
-                  <div
-                    className="book-page-behind"
-                    dangerouslySetInnerHTML={{ __html: prevPageSnapshot }}
-                  />
-                )}
-                <div
-                  key={pageKey}
-                  ref={pageContentRef}
-                  className={
-                    pageTransitionMode === "flip"
-                      ? "book-page-live"
-                      : "book-page-live book-page-fade"
-                  }
-                  style={
-                    pageTransitionMode === "flip"
-                      ? {
-                          transformOrigin:
-                            flipDirection === "next"
-                              ? "right center"
-                              : "left center",
-                          transform: isFlipSettled
-                            ? "rotateY(0deg)"
-                            : flipDirection === "next"
-                              ? "rotateY(94deg)"
-                              : "rotateY(-94deg)",
-                          transition: isFlipSettled
-                            ? "transform 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
-                            : "none",
-                        }
-                      : {
-                          opacity: isFlipSettled ? 1 : 0,
-                          transform: isFlipSettled
-                            ? "translateY(0px)"
-                            : "translateY(10px)",
-                          transition: isFlipSettled
-                            ? "opacity 0.28s ease, transform 0.28s ease"
-                            : "none",
-                        }
-                  }
-                  onTransitionEnd={(e) => {
-                    if (
-                      e.propertyName === "transform" ||
-                      e.propertyName === "opacity"
-                    )
-                      setPrevPageSnapshot(null);
-                  }}
-                >
-                  {renderContent()}
-                  {pageTransitionMode === "flip" && (
-                    <div
-                      aria-hidden="true"
-                      className="book-page-shade"
-                      style={{
-                        background:
-                          flipDirection === "next"
-                            ? "linear-gradient(to left, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)"
-                            : "linear-gradient(to right, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 35%, rgba(0,0,0,0) 65%)",
-                        opacity: isFlipSettled ? 0 : 0.9,
-                        transition: isFlipSettled
-                          ? "opacity 0.68s cubic-bezier(0.22, 1, 0.36, 1)"
-                          : "none",
-                      }}
-                    />
-                  )}
-                </div>
+              <div key={content?.id} className="mb-10 content-fade-in">
+                {renderContent()}
               </div>
 
               <style>{`
-                .book-page-stage { position: relative; perspective: 2200px; -webkit-perspective: 2200px; }
-                .book-page-behind { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: #ffffff; overflow: hidden; border-radius: 12px; }
-                .book-page-live { position: relative; z-index: 2; background: #ffffff; border-radius: 12px; transform-style: preserve-3d; backface-visibility: hidden; -webkit-backface-visibility: hidden; isolation: isolate; will-change: transform; }
-                .book-page-fade { will-change: opacity, transform; }
-                .book-page-shade { position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit; will-change: opacity; }
+                @keyframes contentFadeIn {
+                  from { opacity: 0.4; transform: translateY(4px); }
+                  to { opacity: 1; transform: translateY(0); }
+                }
+                .content-fade-in {
+                  animation: contentFadeIn 0.25s ease-out;
+                }
                 @media (prefers-reduced-motion: reduce) {
-                  .book-page-live { transition: none !important; transform: none !important; }
-                  .book-page-shade { display: none; }
+                  .content-fade-in { animation: none; }
                 }
               `}</style>
 
@@ -993,11 +873,7 @@ const TopicContent = () => {
                 <div className="flex items-center justify-between gap-4 flex-wrap">
                   <button
                     onClick={() =>
-                      navigateToContent(
-                        navigation?.previous_content_id,
-                        "prev",
-                        "flip",
-                      )
+                      navigateToContent(navigation?.previous_content_id)
                     }
                     disabled={!navigation?.has_previous || isNavigating}
                     className="group flex items-center gap-2 px-4 py-2 cursor-pointer bg-white border border-gray-300 rounded-lg
@@ -1047,11 +923,7 @@ const TopicContent = () => {
                   {navigation?.has_next ? (
                     <button
                       onClick={() =>
-                        navigateToContent(
-                          navigation?.next_content_id,
-                          "next",
-                          "flip",
-                        )
+                        navigateToContent(navigation?.next_content_id)
                       }
                       disabled={!navigation?.has_next || isNavigating}
                       className="group flex items-center gap-2 cursor-pointer px-4 py-2 bg-blue-600 border border-blue-600
@@ -1120,7 +992,7 @@ const TopicContent = () => {
                             <button
                               onClick={() => {
                                 if (!isActive && !isNavigating) {
-                                  navigateToContent(item.id, "next", "fade");
+                                  navigateToContent(item.id);
                                 }
                               }}
                               disabled={isNavigating}
