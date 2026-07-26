@@ -40,7 +40,7 @@ const Error = ({
   };
 
   const handleLogout = async () => {
-    await dispatch(logout());
+    await dispatch(logoutUser());
     navigate("/login");
     window.location.reload();
   };
