@@ -232,14 +232,12 @@ const Login = () => {
           )}
         </Formik>
 
-        {/* OR */}
-        <div className="flex items-center gap-3 my-5">
+        {/* <div className="flex items-center gap-3 my-5">
           <div className="flex-1 h-px bg-gray-300"></div>
           <span className="text-gray-500 text-sm">{t("login.or")}</span>
           <div className="flex-1 h-px bg-gray-300"></div>
         </div>
 
-        {/* New Employee */}
         <p className="text-gray-600 text-sm text-center mb-3">
           {t("login.newEmployee")}
         </p>
@@ -249,9 +247,7 @@ const Login = () => {
           className="w-full border border-blue-500 text-blue-600 py-2 rounded-md font-medium hover:bg-blue-50 transition"
         >
           {t("login.completeEmployeeOnboarding")}
-        </button>
-
-        {/* Footer */}
+        </button> */}
 
         <div className="text-xs text-gray-400 mt-6 text-center">
           <p className="tracking-widest mb-2">{t("login.secureLogin")}</p>
