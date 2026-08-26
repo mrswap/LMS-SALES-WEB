@@ -16,7 +16,6 @@ import i18n from "../../../i18n";
 import logo from "../../../assets/admin/AvanteMedicalLogo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../../redux/slice/profileSlice";
-// import { logout } from "../../../redux/slice/authSlice";
 import { logoutUser } from "../../../redux/slice/authSlice";
 import NotificationDropdown from "../common/noitification/NotificationDropdown";
 import { getUnreadCount } from "../../../redux/slice/notificationSlicer";
@@ -65,13 +64,6 @@ const HeaderNavbar = () => {
     i18n.changeLanguage(savedLang);
   }, []);
 
-  // const handleLanguageChange = (selectedLang) => {
-  //   setLang(selectedLang);
-  //   i18n.changeLanguage(selectedLang);
-  //   localStorage.setItem("appLanguage", selectedLang);
-  //   setIsLanguageDropdownOpen(false);
-  // };
-
   const handleLanguageChange = (selectedLang) => {
     setLang(selectedLang);
     i18n.changeLanguage(selectedLang);
@@ -107,12 +99,6 @@ const HeaderNavbar = () => {
     console.log("Navigate to settings");
     setIsUserDropdownOpen(false);
   };
-
-  // const handleLogoutClick = () => {
-  //   dispatch(logout());
-  //   navigate("/login");
-  //   setIsUserDropdownOpen(false);
-  // };
 
   const handleLogoutClick = async () => {
     await dispatch(logoutUser());

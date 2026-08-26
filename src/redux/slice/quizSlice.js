@@ -207,49 +207,6 @@ const quizSlice = createSlice({
             .addCase(startAttempt.pending, (state) => {
                 state.isLoading = true;
             })
-            // .addCase(startAttempt.fulfilled, (state, action) => {
-            //     state.isLoading = false;
-            //     state.isSuccess = true;
-            //     // state.attempt = action.payload.attempt || action.payload;
-            //     const newAttempt = action.payload.attempt || action.payload;
-
-            //     state.attempt = {
-            //         ...newAttempt,
-            //         topic_id: newAttempt.topic_id || action.meta.arg,
-            //     };
-            //     state.message = action.payload.message;
-            // })
-            // .addCase(startAttempt.fulfilled, (state, action) => {
-            //     state.isLoading = false;
-            //     state.isSuccess = true;
-
-            //     const newAttempt = action.payload.attempt || action.payload;
-
-            //     // IMPORTANT FIX
-            //     // agar old submitted attempt aa raha hai
-            //     // to usko state me mat rakho
-
-            //     if (
-            //         newAttempt?.is_submitted ||
-            //         newAttempt?.status === "passed" ||
-            //         newAttempt?.status === "failed"
-            //     ) {
-            //         state.attempt = null;
-            //         state.questions = [];
-            //         state.quizResults = null;
-            //         state.message = "Old attempt ignored";
-            //         return;
-            //     }
-
-            //     state.attempt = {
-            //         ...newAttempt,
-            //         topic_id: newAttempt.topic_id || action.meta.arg,
-            //     };
-
-            //     state.message = action.payload.message;
-            // })
-            // quizSlice.js mein startAttempt.fulfilled reducer ko aise karo:
-
             .addCase(startAttempt.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;

@@ -244,30 +244,6 @@ const Exam = () => {
   }, [topicId]);
 
   // ── Bootstrap ──────────────────────────────────────────────────────────────
-  // useEffect(() => {
-  //   const initQuiz = async () => {
-  //     if (!topicId) return;
-  //     dispatch(resetFeedbackState());
-  //     try {
-  //       const res = await dispatch(startAttempt(topicId)).unwrap();
-  //       // agar backend old submitted attempt bhej raha hai
-  //       if (
-  //         res?.is_submitted ||
-  //         res?.status === "failed" ||
-  //         res?.status === "passed"
-  //       ) {
-  //         sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
-  //         // yaha optionally dubara new attempt create kara sakte ho
-  //         // agar backend support karta ho
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-
-  //   initQuiz();
-  // }, [dispatch, topicId]);
-
   useEffect(() => {
     const initQuiz = async () => {
       setIsInitializing(true);
@@ -439,23 +415,6 @@ const Exam = () => {
 
     localStorage.removeItem("quiz_reload_submit");
 
-    // if (data?.attemptId && data?.topicId) {
-    //   dispatch(
-    //     submitQuiz({
-    //       attemptId: data.attemptId,
-    //       topicId: data.topicId,
-    //     }),
-    //   )
-    //     .unwrap()
-    //     .then((result) => {
-    //       navigate(`/exam/result/${data.topicId}/${data.attemptId}`, {
-    //         state: { results: result },
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       console.error("Auto submit failed:", err);
-    //     });
-    // }
     if (data?.attemptId && data?.topicId) {
       setIsReloadSubmitting(true);
       setHasAutoSubmitted(true);
@@ -480,21 +439,6 @@ const Exam = () => {
   }, [dispatch, navigate]);
 
   // ── Modal callbacks ────────────────────────────────────────────────────────
-  // const handleConfirmLeave = useCallback(async () => {
-  //   setShowLeaveModal(false);
-  //   sessionStorage.removeItem(QUIZ_ACTIVE_KEY);
-  //   await performAutoSubmit(true);
-  //   if (window.__pendingNavigation) {
-  //     window.__pendingNavigation();
-  //     delete window.__pendingNavigation;
-  //   }
-  // }, [performAutoSubmit]);
-
-  // const handleCancelLeave = useCallback(() => {
-  //   setShowLeaveModal(false);
-  //   delete window.__pendingNavigation;
-  // }, []);
-
   const handleConfirmLeave = useCallback(async () => {
     setShowLeaveModal(false);
 
