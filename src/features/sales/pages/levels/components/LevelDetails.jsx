@@ -773,10 +773,7 @@ export default function LevelDetails() {
         {/* Hero Banner – only image with simple shadow, no overlay, no text */}
         <div className="rounded-2xl overflow-hidden shadow-md">
           <img
-            src={
-              currentLevel?.thumbnail ||
-              "https://lms-backend.netswaptech.com/public/uploads/logo.png"
-            }
+            src={currentLevel?.thumbnail}
             className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
             alt={currentLevel?.title}
           />

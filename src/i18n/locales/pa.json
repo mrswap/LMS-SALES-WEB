@@ -1219,14 +1219,17 @@
 
   "footer": {
     "quickLinks": "ਤੁਰੰਤ ਲਿੰਕ",
-    "downloadApps": "ਐਪ ਡਾਊਨਲੋਡ ਕਰੋ",
+    "stores": "ਐਪ ਸਟੋਰ",
     "appStore": "ਐਪ ਸਟੋਰ",
     "playStore": "ਪਲੇ ਸਟੋਰ",
-    "downloadOn": "ਡਾਊਨਲੋਡ ਕਰੋ",
+    "downloadOn": "ਇਸ 'ਤੇ ਡਾਊਨਲੋਡ ਕਰੋ",
+    "directDownload": "ਸਿੱਧਾ ਡਾਊਨਲੋਡ",
+    "iosApp": "iOS ਐਪ",
+    "androidApp": "ਐਂਡਰਾਇਡ ਐਪ",
     "terms": "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ",
     "privacy": "ਪਰਾਈਵੇਸੀ ਨੀਤੀ",
     "aboutUs": "ਸਾਡੇ ਬਾਰੇ",
-    "contactUs": "ਸੰਪਰਕ ਕਰੋ",
+    "contactUs": "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ",
     "cookies": "ਕੂਕੀਜ਼",
     "socialLinks": {
       "facebook": "ਫੇਸਬੁੱਕ",

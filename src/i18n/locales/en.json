@@ -1219,10 +1219,13 @@
 
   "footer": {
     "quickLinks": "Quick Links",
-    "downloadApps": "Download Apps",
+    "stores": "App Store",
     "appStore": "App Store",
     "playStore": "Play Store",
     "downloadOn": "Download on the",
+    "directDownload": "Direct Download",
+    "iosApp": "iOS App",
+    "androidApp": "Android App",
     "terms": "Terms & Condition",
     "privacy": "Privacy Policy",
     "aboutUs": "About Us",

@@ -1219,22 +1219,25 @@
 
   "footer": {
     "quickLinks": "त्वरित लिंक",
-    "downloadApps": "ऐप डाउनलोड करें",
+    "stores": "ऐप स्टोर",
     "appStore": "ऐप स्टोर",
     "playStore": "प्ले स्टोर",
-    "downloadOn": "डाउनलोड करें",
-    "terms": "नियम और शर्तें",
+    "downloadOn": "इस पर डाउनलोड करें",
+    "directDownload": "सीधा डाउनलोड",
+    "iosApp": "iOS ऐप",
+    "androidApp": "एंड्रॉइड ऐप",
+    "terms": "नियम एवं शर्तें",
     "privacy": "गोपनीयता नीति",
     "aboutUs": "हमारे बारे में",
     "contactUs": "संपर्क करें",
     "cookies": "कुकीज़",
     "socialLinks": {
-      "facebook": "फेसबुक",
+      "facebook": "फ़ेसबुक",
       "twitter": "ट्विटर",
       "linkedin": "लिंक्डइन",
       "instagram": "इंस्टाग्राम"
     },
-    "loading": "फुटर सामग्री लोड हो रही है..."
+    "loading": "फ़ूटर सामग्री लोड हो रही है..."
   },
 
   "aboutUs": {
