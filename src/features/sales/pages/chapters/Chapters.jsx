@@ -642,10 +642,7 @@ export default function Chapters() {
         {/* Hero Banner – only image */}
         <div className="rounded-2xl overflow-hidden shadow-md">
           <img
-            src={
-              currentChapter?.thumbnail ||
-              "https://lms-backend.netswaptech.com/public/uploads/logo.png"
-            }
+            src={currentChapter?.thumbnail}
             className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
             alt={currentChapter?.title}
           />

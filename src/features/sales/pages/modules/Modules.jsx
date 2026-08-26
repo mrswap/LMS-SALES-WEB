@@ -599,10 +599,7 @@ export default function Modules() {
         {/* Hero Banner – only image, no overlay */}
         <div className="rounded-2xl overflow-hidden shadow-md">
           <img
-            src={
-              currentModule?.thumbnail ||
-              "https://lms-backend.netswaptech.com/public/uploads/logo.png"
-            }
+            src={currentModule?.thumbnail}
             className="w-full h-56 sm:h-72 lg:h-[450px] object-cover"
             alt={currentModule?.title}
           />

@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { FaApple, FaAndroid, FaDownload } from "react-icons/fa"; // ✅ Added for app links
 import TextInput from "../../common/form/TextInput";
 import logo from "../../../../assets/admin/AvanteMedicalLogoBlue.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -233,92 +232,7 @@ const Login = () => {
           )}
         </Formik>
 
-        {/* ========== NEW: App Store & Direct Download Links (Backend se data) ========== */}
-        {(siteSettings?.app_ios_store ||
-          siteSettings?.app_android_store ||
-          siteSettings?.app_ios_download ||
-          siteSettings?.app_android_download) && (
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {/* App Store Column */}
-              {(siteSettings?.app_ios_store ||
-                siteSettings?.app_android_store) && (
-                <div className="space-y-2">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    {t("footer.appStore")}
-                  </p>
-                  {siteSettings?.app_ios_store && (
-                    <a
-                      href={siteSettings.app_ios_store}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-lg px-3 py-2 transition-all duration-200 group"
-                    >
-                      <FaApple className="w-5 h-5 text-gray-700 group-hover:text-blue-600" />
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600">
-                        {t("footer.appStore")}
-                      </span>
-                    </a>
-                  )}
-                  {siteSettings?.app_android_store && (
-                    <a
-                      href={siteSettings.app_android_store}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-lg px-3 py-2 transition-all duration-200 group"
-                    >
-                      <FaAndroid className="w-5 h-5 text-gray-700 group-hover:text-green-600" />
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
-                        {t("footer.playStore")}
-                      </span>
-                    </a>
-                  )}
-                </div>
-              )}
-
-              {/* Direct Download Column */}
-              {(siteSettings?.app_ios_download ||
-                siteSettings?.app_android_download) && (
-                <div className="space-y-2">
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                    {t("footer.directDownload")}
-                  </p>
-                  {siteSettings?.app_ios_download && (
-                    <a
-                      href={siteSettings.app_ios_download}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-lg px-3 py-2 transition-all duration-200 group"
-                    >
-                      <FaDownload className="w-5 h-5 text-gray-700 group-hover:text-blue-600" />
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-blue-600">
-                        {t("footer.iosApp")}
-                      </span>
-                    </a>
-                  )}
-                  {siteSettings?.app_android_download && (
-                    <a
-                      href={siteSettings.app_android_download}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 rounded-lg px-3 py-2 transition-all duration-200 group"
-                    >
-                      <FaDownload className="w-5 h-5 text-gray-700 group-hover:text-green-600" />
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
-                        {t("footer.androidApp")}
-                      </span>
-                    </a>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-        {/* ================================================================== */}
-
-        {/* ====== Commented Code (Future use – do not remove) ====== */}
-        {/* 
-        <div className="flex items-center gap-3 my-5">
+        {/* <div className="flex items-center gap-3 my-5">
           <div className="flex-1 h-px bg-gray-300"></div>
           <span className="text-gray-500 text-sm">{t("login.or")}</span>
           <div className="flex-1 h-px bg-gray-300"></div>
@@ -333,9 +247,7 @@ const Login = () => {
           className="w-full border border-blue-500 text-blue-600 py-2 rounded-md font-medium hover:bg-blue-50 transition"
         >
           {t("login.completeEmployeeOnboarding")}
-        </button>
-        */}
-        {/* ========================================================== */}
+        </button> */}
 
         <div className="text-xs text-gray-400 mt-6 text-center">
           <p className="tracking-widest mb-2">{t("login.secureLogin")}</p>
