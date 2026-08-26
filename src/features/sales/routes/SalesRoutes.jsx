@@ -38,7 +38,6 @@ import PolicyInfo from "../outside/PolicyInfo";
 import Support from "../pages/support-page/Support";
 import ExamModule from "../pages/exam-module/ExamModule";
 import ExamModuleResult from "../pages/exam-module/ExamModuleResult";
-import DashboardOld from "../pages/dashboad/DashboardBackup";
 import ModuleCertificationStatus from "../pages/module-certification-status/ModuleCertificationStatus";
 
 const SalesRoutes = (
@@ -54,7 +53,6 @@ const SalesRoutes = (
       <Route path="/" element={<SalesLayout />}>
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard-old" element={<DashboardOld />} />
         <Route path="/notifications" element={<Notification />} />
         <Route path="/notifications/:id" element={<NotificationDetail />} />
 
