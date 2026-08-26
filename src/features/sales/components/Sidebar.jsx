@@ -16,7 +16,6 @@ import {
   FaEnvelope, // icon for Contact Us
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-// import { logout } from "../../../redux/slice/authSlice";
 import { logoutUser } from "../../../redux/slice/authSlice";
 import { useTranslation } from "react-i18next";
 

@@ -33,7 +33,6 @@ const ChatWindow = ({ topicId }) => {
 
   useEffect(() => {
     if (topicId) {
-      // console.log("Fetching thread for topic:", topicId);
       dispatch(getOrCreateThread(topicId));
     }
   }, [dispatch, topicId]);
@@ -41,7 +40,6 @@ const ChatWindow = ({ topicId }) => {
   useSupportSocket({
     threadId: thread?.id,
     onMessageReceived: (message) => {
-      // console.log("📨 Real-time message received:", message);
       dispatch(addRealtimeMessage(message));
     },
   });
