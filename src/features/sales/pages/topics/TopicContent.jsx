@@ -39,6 +39,76 @@ import { PiVinylRecordFill } from "react-icons/pi";
 import { GiSoundWaves } from "react-icons/gi";
 import { FiPlayCircle } from "react-icons/fi";
 import { IoCloseCircle } from "react-icons/io5";
+import GoogleTranslate from "../../../../components/GoogleTranslate";
+import LoadingOverlay from "../../../../components/LoadingOverlay";
+
+// ---------- RichTextContent ----------
+// const RichTextContent = ({ htmlContent }) => {
+//   const containerRef = useRef(null);
+
+//   useEffect(() => {
+//     const container = containerRef.current;
+//     if (!container) return;
+
+//     const images = container.querySelectorAll("img");
+
+//     const handleClick = (e) => {
+//       const img = e.currentTarget;
+//       window.dispatchEvent(
+//         new CustomEvent("open-image-zoom", {
+//           detail: { src: img.src, alt: img.alt || "" },
+//         }),
+//       );
+//     };
+
+//     images.forEach((img) => {
+//       img.style.cursor = "zoom-in";
+//       img.setAttribute("title", "Click to zoom");
+//       img.addEventListener("click", handleClick);
+//     });
+
+//     return () => {
+//       images.forEach((img) => {
+//         img.removeEventListener("click", handleClick);
+//       });
+//     };
+//   }, [htmlContent]);
+
+//   if (!htmlContent) return null;
+//   return (
+//     <>
+//       <div
+//         ref={containerRef}
+//         className="custom-content"
+//         dangerouslySetInnerHTML={{ __html: htmlContent }}
+//       />
+//       <style>{`
+//         .custom-content p { margin: 0 0 16px; line-height: 1.8; }
+//         .custom-content h1, .custom-content h2, .custom-content h3,
+//         .custom-content h4, .custom-content h5, .custom-content h6 {
+//           margin: 24px 0 16px; font-weight: 700; line-height: 1.4;
+//         }
+//         .custom-content hr { margin: 24px 0; border: none; border-top: 1px solid #d1d5db; }
+//         .custom-content table { width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #d1d5db; }
+//         .custom-content td, .custom-content th { border: 1px solid #d1d5db; padding: 12px; vertical-align: top; }
+//         .custom-content th { background-color: #f3f4f6; font-weight: 600; }
+//         .custom-content img {
+//           max-width: 100%;
+//           height: auto;
+//           border-radius: 8px;
+//           transition: transform 0.15s ease, box-shadow 0.15s ease;
+//         }
+//         .custom-content img:hover {
+//           transform: scale(1.01);
+//           box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+//         }
+//         .custom-content ul { margin: 0 0 16px; padding-left: 24px; list-style-type: disc; list-style-position: outside; }
+//         .custom-content ol { margin: 0 0 16px; padding-left: 24px; list-style-type: decimal; list-style-position: outside; }
+//         .custom-content li { margin-bottom: 8px; display: list-item; }
+//       `}</style>
+//     </>
+//   );
+// };
 
 // ---------- RichTextContent ----------
 const RichTextContent = ({ htmlContent }) => {
@@ -70,6 +140,26 @@ const RichTextContent = ({ htmlContent }) => {
         img.removeEventListener("click", handleClick);
       });
     };
+  }, [htmlContent]);
+
+  // ✅ Google Translate ko force apply karne ke liye useEffect
+  useEffect(() => {
+    const currentLang = localStorage.getItem("appLanguage") || "en";
+
+    // Agar language English nahi hai toh Google Translate apply karo
+    if (currentLang !== "en") {
+      // Thoda delay do taaki DOM update ho jaye
+      const timer = setTimeout(() => {
+        const select = document.querySelector(".goog-te-combo");
+        if (select) {
+          select.value = currentLang;
+          select.dispatchEvent(new Event("change"));
+          console.log("🔄 Google Translate applied for language:", currentLang);
+        }
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
   }, [htmlContent]);
 
   if (!htmlContent) return null;
@@ -969,6 +1059,8 @@ const TopicContent = () => {
 
   return (
     <PageLayout>
+      <GoogleTranslate />
+      <LoadingOverlay />
       <div className="p-2 sm:p-8 rounded-lg border border-gray-300">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Breadcrumb
