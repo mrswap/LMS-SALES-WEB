@@ -24,5 +24,6 @@ export const store = configureStore({
         notification: notificationsReducer,
         support: supportReducer,
         moduleCertification: moduleCertificationReducer,
+
     },
 });
