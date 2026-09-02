@@ -18,7 +18,7 @@ class SocketService {
         const deviceId = localStorage.getItem("deviceId");
 
         if (!token) {
-            // console.error("❌ No token found");
+            // console.error(" No token found");
             return null;
         }
 
