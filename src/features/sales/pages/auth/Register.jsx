@@ -284,7 +284,7 @@ const Register = () => {
             <img
               src={siteSettings?.company_logo || ""}
               alt="logo"
-              className="mx-auto  w-[160px] sm:w-[160px] h-[100px]"
+              className="mx-auto  w-[100px] sm:w-[100px] h-[100px]"
             />
           )}
 
