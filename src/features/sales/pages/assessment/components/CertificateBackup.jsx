@@ -7,6 +7,7 @@ import {
   FaStar,
   FaDownload,
   FaUser,
+  FaEnvelope,
   FaIdCard,
   FaChartLine,
   FaQuestionCircle,
@@ -30,7 +31,7 @@ import Loader from "../../../common/Loader";
 import Error from "../../../common/Error";
 import { getCertificateById } from "../../../../../redux/slice/reportSlice";
 import Breadcrumb from "../../../common/layout/Breadcrumb";
-import { toJpeg } from "html-to-image";
+import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useTranslation } from "react-i18next";
 
@@ -46,57 +47,43 @@ const toCorsProxyUrl = (url) => {
   }
 };
 
-// Reusable icon + text row.
-// html2canvas me SVG icon aur text ka baseline alag render hota hai, isliye:
-//  - poori row ki ek fixed height hai (size + 4)
-//  - icon ka wrapper bhi wahi height leta hai aur flex se center hota hai
-//  - icon `display: block` hai (baseline gap khatam)
-//  - text ka line-height = row height
+// Reusable icon + text row. Fixes the icon/text baseline-misalignment that
+// showed up specifically in the html2canvas-rendered PDF (SVG icons default
+// to baseline alignment inside inline-flex during capture, even though
+// items-center looks fine in the live browser preview).
 const IconLabel = ({
   icon: Icon,
   children,
   className = "",
   iconClassName = "",
   size = 12,
-}) => {
-  const rowHeight = size + 4;
-  return (
+}) => (
+  <span className={`inline-flex items-center ${className}`} style={{ gap: 6 }}>
+    {/* Fixed-px box around the icon: this is what actually fixes cross-icon
+        misalignment. Different react-icons SVGs (FaIdCard vs FaEnvelope etc.)
+        have different internal viewBox proportions, so "vertical-align:middle"
+        on the raw <svg> alone still leaves a few px of drift between icons.
+        Forcing every icon into an identical width/height box, centered with
+        flex, removes that drift regardless of the icon's own metrics. */}
     <span
-      className={className}
+      className={iconClassName}
       style={{
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: 6,
-        height: rowHeight,
-        lineHeight: `${rowHeight}px`,
+        width: size,
+        height: size,
+        flexShrink: 0,
       }}
     >
-      <span
-        className={iconClassName}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: size,
-          height: rowHeight,
-          flexShrink: 0,
-        }}
-      >
-        <Icon size={size} style={{ display: "block" }} />
-      </span>
-      <span
-        style={{
-          display: "block",
-          lineHeight: `${rowHeight}px`,
-          height: rowHeight,
-        }}
-      >
-        {children}
-      </span>
+      <Icon size={size} />
     </span>
-  );
-};
+    {/* Text line-height locked to the same px value as the icon box, instead
+        of Tailwind's leading-none (which html2canvas sometimes resolves
+        differently at 2x scale than the live browser does). */}
+    <span style={{ lineHeight: `${size}px` }}>{children}</span>
+  </span>
+);
 
 const Certificate = () => {
   const { id } = useParams();
@@ -123,18 +110,51 @@ const Certificate = () => {
     try {
       await document.fonts.ready;
 
-      // html-to-image browser ke native rendering se capture karta hai,
-      // isliye PDF live preview jaisi hi aati hai (html2canvas ka alag
-      // layout engine icon/text ko shift kar deta tha).
-      const imgData = await toJpeg(element, {
-        quality: 1,
-        pixelRatio: 2,
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
         backgroundColor: "#ffffff",
+        logging: false,
+        onclone: (clonedDoc) => {
+          const style = clonedDoc.createElement("style");
+          style.innerHTML = `
+          .text-blue-800, .text-blue-900 { color: #1e3a8a !important; }
+          .text-blue-700 { color: #1d4ed8 !important; }
+          .text-blue-600 { color: #2563eb !important; }
+          .text-blue-500 { color: #3b82f6 !important; }
+          .bg-blue-700 { background-color: #1d4ed8 !important; }
+          .bg-blue-600 { background-color: #2563eb !important; }
+          .bg-blue-500 { background-color: #3b82f6 !important; }
+          .bg-blue-200 { background-color: #bfdbfe !important; }
+          .bg-blue-50  { background-color: #eff6ff !important; }
+          .border-blue-700 { border-color: #1d4ed8 !important; }
+          .border-blue-600 { border-color: #2563eb !important; }
+          .border-blue-500 { border-color: #3b82f6 !important; }
+          .border-blue-300 { border-color: #93c5fd !important; }
+          .border-blue-200 { border-color: #bfdbfe !important; }
+          .text-teal-800, .text-teal-900 { color: #115e59 !important; }
+          .text-teal-700 { color: #0f766e !important; }
+          .text-teal-600 { color: #0d9488 !important; }
+          .text-teal-400 { color: #2dd4bf !important; }
+          .border-teal-400 { border-color: #2dd4bf !important; }
+          .text-gray-800 { color: #1f2937 !important; }
+          .text-gray-600 { color: #4b5563 !important; }
+          .text-gray-500 { color: #6b7280 !important; }
+          .text-gray-400 { color: #9ca3af !important; }
+          .text-green-700 { color: #15803d !important; }
+          .bg-green-600  { background-color: #16a34a !important; }
+          .bg-white { background-color: #ffffff !important; }
+          .text-white { color: #ffffff !important; }
+          .bg-gradient-to-br { background: #eff6ff !important; }
+          /* Keep icon/text baselines aligned identically in the cloned
+             capture DOM as in the live preview */
+          svg { vertical-align: middle !important; }
+        `;
+          clonedDoc.head.appendChild(style);
+        },
       });
 
-      const elWidth = element.offsetWidth;
-      const elHeight = element.offsetHeight;
-
+      const imgData = canvas.toDataURL("image/jpeg", 1.0);
       const pdf = new jsPDF({
         orientation: "landscape",
         unit: "mm",
@@ -142,9 +162,12 @@ const Certificate = () => {
       });
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      const ratio = Math.min(pdfWidth / elWidth, pdfHeight / elHeight);
-      const imgWidth = elWidth * ratio;
-      const imgHeight = elHeight * ratio;
+      const ratio = Math.min(
+        pdfWidth / canvas.width,
+        pdfHeight / canvas.height,
+      );
+      const imgWidth = canvas.width * ratio;
+      const imgHeight = canvas.height * ratio;
       const x = (pdfWidth - imgWidth) / 2;
       const y = (pdfHeight - imgHeight) / 2;
       pdf.addImage(imgData, "JPEG", x, y, imgWidth, imgHeight);
@@ -341,44 +364,20 @@ const Certificate = () => {
                     <h2 className="text-xl font-serif text-blue-700 uppercase tracking-wider">
                       {design.heading}
                     </h2>
-                    {/* Medal row: teeno elements ko same fixed 16px height
-                        di hai taaki PDF capture me icons upar na chadhein */}
-                    <div
-                      className="flex justify-center items-center mt-1"
-                      style={{ gap: 8, height: 16 }}
-                    >
-                      <span
-                        className="text-blue-600"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          height: 16,
-                        }}
-                      >
-                        <FaMedal size={12} style={{ display: "block" }} />
-                      </span>
-                      <span
-                        className="text-xs text-gray-500"
-                        style={{
-                          display: "block",
-                          lineHeight: "16px",
-                          height: 16,
-                        }}
-                      >
+                    <div className="flex justify-center items-center gap-2 mt-0.5">
+                      <FaMedal
+                        className="text-blue-600 text-sm shrink-0"
+                        style={{ verticalAlign: "middle" }}
+                      />
+                      <p className="text-xs text-gray-500 leading-none">
                         {isModuleCert
                           ? t("certificate.certificate.examPassedText")
                           : t("certificate.certificate.quizCompletedText")}
-                      </span>
-                      <span
-                        className="text-blue-600"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          height: 16,
-                        }}
-                      >
-                        <FaMedal size={12} style={{ display: "block" }} />
-                      </span>
+                      </p>
+                      <FaMedal
+                        className="text-blue-600 text-sm shrink-0"
+                        style={{ verticalAlign: "middle" }}
+                      />
                     </div>
                   </div>
                 )}
@@ -387,6 +386,10 @@ const Certificate = () => {
                   <p className="text-gray-600 text-xs">
                     {t("certificate.certificate.presentedTo")}
                   </p>
+                  {/* Fix: name used to sit too close to the underline (pb-1.5
+                      wasn't enough room for text-3xl descenders, and default
+                      line-height added extra gap above it in the PDF capture).
+                      More bottom padding + leading-none fixes both. */}
                   <div className="my-3">
                     <div className="inline-block border-b-4 border-blue-600 px-10 pb-3">
                       <p className="text-3xl font-serif font-bold text-blue-900 tracking-wide leading-none">
@@ -403,11 +406,8 @@ const Certificate = () => {
                   <p className="text-base font-serif font-semibold text-teal-700 mb-2">
                     {context?.title || "-"}
                   </p>
-                  {/* ID row */}
-                  <div
-                    className="flex justify-center items-center gap-4 text-xs text-gray-500"
-                    style={{ height: 18, marginTop: 4 }}
-                  >
+                  {/* Fix: icon/text baseline alignment for ID + email row */}
+                  <div className="flex justify-center items-center gap-4 text-xs text-gray-500">
                     <IconLabel
                       icon={FaIdCard}
                       iconClassName="text-blue-600"
@@ -416,6 +416,13 @@ const Certificate = () => {
                       {t("certificate.certificate.id")}:{" "}
                       {user?.employee_id || "-"}
                     </IconLabel>
+                    {/* <IconLabel
+                      icon={FaEnvelope}
+                      iconClassName="text-blue-600"
+                      size={12}
+                    >
+                      {user?.email || "-"}
+                    </IconLabel> */}
                   </div>
                 </div>
 
@@ -428,7 +435,41 @@ const Certificate = () => {
                   </div>
                 )}
 
-                {/* Status strip */}
+                {/* Compact Metrics */}
+                {/* <div className="my-4 border-t border-b border-blue-200 py-3">
+                  <div className="grid grid-cols-3 gap-2 text-center">
+                    <div>
+                      <div className="text-2xl font-serif font-bold text-blue-800">
+                        {result?.percentage || 0}%
+                      </div>
+                      <div className="text-[9px] text-gray-500 uppercase tracking-wider">
+                        {t("certificate.metrics.score")}
+                      </div>
+                    </div>
+                    <div className="border-x border-blue-200">
+                      <div className="text-2xl font-serif font-bold text-blue-800 capitalize">
+                        {result?.status === "passed"
+                          ? t("certificate.metrics.passed")
+                          : t("certificate.metrics.completed")}
+                      </div>
+                      <div className="text-[9px] text-gray-500 uppercase tracking-wider">
+                        {t("certificate.metrics.status")}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-serif font-bold text-blue-800">
+                        {Math.floor((time?.time_taken_seconds || 0) / 60)}:
+                        {String(
+                          Math.floor((time?.time_taken_seconds || 0) % 60),
+                        ).padStart(2, "0")}
+                      </div>
+                      <div className="text-[9px] text-gray-500 uppercase tracking-wider">
+                        {t("certificate.metrics.time")}
+                      </div>
+                    </div>
+                  </div>
+                </div> */}
+
                 <div className="my-4 border-t border-b border-blue-200 py-3">
                   <div className="grid grid-cols-3 items-center text-center">
                     {/* Left */}
@@ -510,20 +551,9 @@ const Certificate = () => {
                       {design.footer_text}
                     </p>
                   )}
-                  <div
-                    className="flex justify-center items-center text-[9px] text-gray-400"
-                    style={{ gap: 4, height: 14, marginTop: 6 }}
-                  >
-                    <span
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        height: 14,
-                      }}
-                    >
-                      <MdVerified size={11} style={{ display: "block" }} />
-                    </span>
-                    <span style={{ display: "block", lineHeight: "14px" }}>
+                  <div className="flex justify-center items-center gap-1 mt-1.5 text-[9px] text-gray-400">
+                    <MdVerified size={11} style={{ verticalAlign: "middle" }} />
+                    <span className="leading-none">
                       {t("certificate.certificate.digitallyVerified")}
                     </span>
                   </div>
@@ -791,8 +821,8 @@ const Certificate = () => {
                   </span>
                 </div>
 
-                {/* Chapter & Topic sirf topic-level (quiz) certificate ke liye.
-                    Module-level (exam) certificate saare chapters/topics cover karta hai. */}
+                {/* Chapter & Topic only matter for a topic-level (quiz) certificate.
+                    A module-level (exam) certificate covers all chapters/topics at once. */}
                 {!isModuleCert && (
                   <>
                     <div className="flex justify-between col-span-2">
